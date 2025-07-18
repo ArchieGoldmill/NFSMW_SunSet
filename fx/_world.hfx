@@ -1,0 +1,90 @@
+#include "spotlights.fx"
+
+float4x4 WorldViewProj : WORLDVIEWPROJECTION;
+float4x4 cmWorldMat : LOCALWORLD;
+float4 ScreenOffset : SCREENOFFSET;
+int Cull_Mode : CULL_MODE;
+int BaseBlendState[5] : BLENDSTATE;
+int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
+int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
+int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
+
+float4 world_position(float4 screen_pos)
+{
+	float4 p = mul(screen_pos, WorldViewProj);
+	p.xy += ScreenOffset.xy * p.w;
+	return p;
+}
+
+float4 screen_position(float4 screen_pos)
+{
+	screen_pos.xy += ScreenOffset.xy;
+	return screen_pos;
+}
+
+texture diffusemap : DiffuseMap;
+sampler DIFFUSEMAP_SAMPLER = sampler_state
+{
+	texture = <diffusemap>;
+	AddressU = WRAP;
+	AddressV = WRAP;
+	MIPFILTER = <BaseTextureFilterParam>;
+	MINFILTER = <BaseMinTextureFilter>;
+	MAGFILTER = <BaseMagTextureFilter>;
+};
+
+struct VS_INPUT
+{
+	float4 position : POSITION;
+	float3 normal : NORMAL;
+	float4 tex : TEXCOORD;
+	float4 color : COLOR;
+};
+
+struct PS_INPUT
+{
+	float4 position : POSITION;
+	float3 normal : NORMAL0;
+	float2 uv : TEXCOORD0;
+	float4 world_pos : TEXCOORD1;
+	float3 world_nomral : TEXCOORD2;
+	float4 color : COLOR0;
+};
+
+void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
+{
+	OUT.position = world_position(IN.position);
+	OUT.normal = normalize(IN.normal);
+	OUT.uv = IN.tex.xy;
+	OUT.world_pos = mul(IN.position, cmWorldMat);
+	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
+	OUT.color = IN.color;
+}
+
+float4 PS_Main(PS_INPUT IN) : COLOR
+{
+	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+	
+	float3 light = ApplySpotLights(IN.world_nomral, IN.world_pos.xyz, 24);
+	light = max(light, float3(0.35, 0.35, 0.35));
+	
+	tex.rgb *= light;
+	
+	return tex;
+}
+
+technique world <int shader = 1;>
+{
+	pass p0
+	{
+		CullMode = <Cull_Mode>;
+		AlphaTestEnable = (BaseBlendState[0]);
+		AlphaRef = (BaseBlendState[1]);
+		AlphaBlendEnable = (BaseBlendState[2]);
+		SrcBlend = (BaseBlendState[3]);
+		DestBlend = (BaseBlendState[4]);
+
+		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_Main();
+	}
+}

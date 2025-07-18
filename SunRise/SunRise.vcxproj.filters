@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{2b9ff43c-67db-4acf-9b2c-e9970598a4d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features">
+      <UniqueIdentifier>{5dee4d1f-05eb-4966-b5cf-2505cf590988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\DynamicLights">
+      <UniqueIdentifier>{cc22c016-2d95-4c2c-a0cd-90e53e2ef1a0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ShaderLoader.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h" />
+    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Hooks.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="eEffect.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="GrandSceneryCullInfo.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="eModel.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicLights.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="Spotlight.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="eSolid.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderModel.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureInfo.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshEntry.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

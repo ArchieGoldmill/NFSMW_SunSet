@@ -57,5 +57,11 @@
     <ClInclude Include="MeshEntry.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="eView.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

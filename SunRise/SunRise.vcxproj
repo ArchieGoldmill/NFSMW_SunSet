@@ -157,11 +157,13 @@
     <ClInclude Include="eEffect.h" />
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />
+    <ClInclude Include="eView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrandSceneryCullInfo.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="MeshEntry.h" />
     <ClInclude Include="RenderModel.h" />
+    <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Spotlight.h" />

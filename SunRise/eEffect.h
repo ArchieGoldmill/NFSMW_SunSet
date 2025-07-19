@@ -152,15 +152,18 @@ struct eEffectParam
 
 struct eEffect
 {
-	inline static eEffect** List = (eEffect**)0x0093DE78;
-	inline static eEffect*& Last = *(eEffect**)0x00982C80;
+	virtual void Dtor() = 0;
+	virtual void Start() = 0;
+	virtual void End() = 0;
 
-	void* vTable;
+	inline static eEffect** List = (eEffect**)0x0093DE78;
+	inline static eEffect*& Current = *(eEffect**)(0x00982C80);
+
 	shader_type id;
-	int field_8;
-	int field_C;
-	int field_10;
-	int field_14;
+	std::uint32_t stride;
+	std::int32_t main_technique_number;
+	D3DXHANDLE main_technique_handle;
+	UINT PassCount;
 	int field_18;
 	int field_1C;
 	int field_20;
@@ -171,10 +174,10 @@ struct eEffect
 	int field_34;
 	int field_38;
 	int field_3C;
-	int field_40;
+	bool Active;
 	eEffectParam* Params;
-	LPD3DXEFFECT D3DEffect;
-	void* vertex_decl;
+	ID3DXEffect* D3DEffect;
+	IDirect3DVertexDeclaration9* VertexDecl;
 
 	void SetTexture(shader_param param, TextureInfo* textureInfo)
 	{

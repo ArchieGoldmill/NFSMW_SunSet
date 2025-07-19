@@ -1,6 +1,7 @@
 #pragma once
 #include "Spotlight.h"
 #include "RenderModel.h"
+#include "eView.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLight SpotLights[NUM_SPOTLIGHTS];
@@ -24,6 +25,14 @@ void AddSpotLightToBuffer(SpotLight spotLight)
 		{
 			return;
 		}
+	}
+
+	// Check that light is in camera view
+	auto playerView = eView::PlayerView;
+	auto visibleState = playerView->Pinfo->get_visible_state_sb(spotLight.Position, { spotLight.Range,spotLight.Range,spotLight.Range });
+	if (visibleState == visible_state::outside)
+	{
+		return;
 	}
 
 	SpotLightBuffer[NumSpotLightBuffer] = spotLight;
@@ -85,7 +94,7 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 bool DynamicallyLit(eEffect* effect)
 {
 	auto id = effect->id;
-	return id == shader_type::WorldShader || id == shader_type::WorldReflectShader || id == shader_type::WorldNormalMap || id == shader_type::GlossyWindow;
+	return id == shader_type::WorldShader || id == shader_type::WorldReflectShader || id == shader_type::WorldNormalMap || id == shader_type::GlossyWindow || id == shader_type::CarShader;
 }
 
 bool DynamicallyLit(RenderModel* model)

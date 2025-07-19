@@ -1,11 +1,12 @@
 #pragma once
 #include <d3dx9.h>
 #include <cstdint>
+#include "ViewId.h"
 
 struct RenderTarget
 {
 	int Id;
-	int ViewId;
+	ViewId ViewId;
 	IDirect3DSurface9* d3d_target;
 	IDirect3DSurface9* d3d_depth_stencil;
 	bool active;

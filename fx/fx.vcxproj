@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <FxCompile Include="car.fx" />
     <FxCompile Include="GlossyWindow.fx" />
     <FxCompile Include="spotlights.fx" />
     <FxCompile Include="world.fx" />

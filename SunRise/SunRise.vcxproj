@@ -169,6 +169,7 @@
     <ClInclude Include="Spotlight.h" />
     <ClInclude Include="TextureInfo.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="ViewId.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,6 +2,8 @@
 #include "Spotlight.h"
 #include "RenderModel.h"
 #include "eView.h"
+#include "ViewId.h"
+#include "RenderTarget.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLight SpotLights[NUM_SPOTLIGHTS];
@@ -55,19 +57,23 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 	auto drawInfo = cullInfo->FirstDrawInfo;
 	while (drawInfo != cullInfo->CurrentDrawInfo)
 	{
-		auto model = (eModel*)(drawInfo->pModel & 0xFFFFFFFC);
-		auto solid = model->pSolid;
-		if (solid)
+		// Remove road reflected meshes (TODO: find better way)
+		if (drawInfo->Matrix && drawInfo->Matrix->_33 > 0)
 		{
-			for (auto solidLights : SolidLightsList)
+			auto model = (eModel*)(drawInfo->pModel & 0xFFFFFFFC);
+			auto solid = model->pSolid;
+			if (solid)
 			{
-				// TODO use binary search
-				if (solidLights->SolidName == model->NameHash)
+				for (auto solidLights : SolidLightsList)
 				{
-					for (auto pSpotLight : solidLights->Lights)
+					// TODO use binary search
+					if (solidLights->SolidName == model->NameHash)
 					{
-						auto spotLight = CreateSpotLight(pSpotLight, drawInfo->Matrix);
-						AddSpotLightToBuffer(spotLight);
+						for (auto pSpotLight : solidLights->Lights)
+						{
+							auto spotLight = CreateSpotLight(pSpotLight, drawInfo->Matrix);
+							AddSpotLightToBuffer(spotLight);
+						}
 					}
 				}
 			}
@@ -140,7 +146,40 @@ void SetDynamicLights(RenderModel* model)
 {
 	if (DynamicallyLit(model))
 	{
-		PopulateShaderSpotlights(model);
 		model->Effect->SetValue(shader_param::SPLINE, SpotLights, sizeof(SpotLights));
 	}
+}
+
+char* GetTechnique(RenderModel* renderModel)
+{
+	char* technique = NULL;
+	if (DynamicallyLit(renderModel))
+	{
+		if (RenderTarget::Current->ViewId == ViewId::Player1)
+		{
+			PopulateShaderSpotlights(renderModel);
+			if (NumSpotLights == 0)
+			{
+				technique = (char*)"Unlit";
+			}
+			else if (NumSpotLights <= 8)
+			{
+				technique = (char*)"LitPixel_8";
+			}
+			else if (NumSpotLights <= 16)
+			{
+				technique = (char*)"LitPixel_16";
+			}
+			else
+			{
+				technique = (char*)"LitPixel_24";
+			}
+		}
+		else
+		{
+			technique = (char*)"Unlit";
+		}
+	}
+
+	return technique;
 }

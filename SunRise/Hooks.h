@@ -32,11 +32,19 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 	SetDynamicLights(renderModel);
 }
 
+char* LastTechnique = NULL;
 void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 {
+	if (LastEffect == NULL)
+	{
+		LastTechnique = NULL;
+	}
+
 	auto effect = renderModel->Effect;
 
-	if (LastEffect != effect)
+	auto techName = GetTechnique(renderModel);
+
+	if (LastEffect != effect || !StringEqual(LastTechnique, techName))
 	{
 		if (LastEffect)
 		{
@@ -46,14 +54,13 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 			eEffect::Current = NULL;
 		}
 
-		eEffect::Current = effect;
-	}
+		if (techName)
+		{
+			D3DXHANDLE hTech = effect->D3DEffect->GetTechniqueByName(techName);
+			effect->D3DEffect->SetTechnique(hTech);
+		}
 
-	auto id = effect->id;
-	if (id == shader_type::WorldShader || id == shader_type::WorldReflectShader || id == shader_type::WorldNormalMap || id == shader_type::CarShader || id == shader_type::GlossyWindow || id == shader_type::ParticlesShader)
-	{
-		auto v11 = effect->D3DEffect->GetTechnique(effect->main_technique_number);
-		effect->D3DEffect->SetTechnique(v11);
+		eEffect::Current = effect;
 	}
 
 	effect->Start();

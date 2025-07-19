@@ -2,11 +2,25 @@
 #include "Utilities.h"
 #include "eModel.h"
 
+struct Scenery
+{
+	D3DXVECTOR3 bb_min;
+	D3DXVECTOR3 bb_max;
+	unsigned int Flags;
+	int unk1;
+	D3DXVECTOR3 unk2;
+	int unk3;
+	int unk4;
+	int unk5;
+	int unk6;
+	int unk7;
+};
+
 struct SceneryDrawInfo
 {
 	int pModel;
 	D3DXMATRIX* Matrix;
-	void* pScenery;
+	Scenery* pScenery;
 };
 
 struct SceneryCullInfo
@@ -80,5 +94,6 @@ struct GrandSceneryCullInfo
 	}
 };
 
-ASSERT_SIZE(SceneryCullInfo, 0xD0);
+ASSERT_SIZE(Scenery, 0x40);
+ASSERT_SIZE(GrandSceneryCullInfo, 0x9D0);
 ASSERT_SIZE(GrandSceneryCullInfo, 0x9D0);

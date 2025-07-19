@@ -63,5 +63,8 @@
     <ClInclude Include="RenderTarget.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="ViewId.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -18,8 +18,8 @@ float3 GetSpotlight(SpotLight light, float3 normal, float3 worldPos)
 
 	float3 spotDir = normalize(-light.Direction);
 
-	float NdotL = max(dot(normal, lightDir), -0.2);
-	NdotL = abs(NdotL);
+	float NdotL = dot(normal, lightDir);
+	NdotL = max(NdotL, -0.5 * NdotL);
 
 	float spotCos = saturate(dot(lightDir, spotDir));
 	float spotFactor = pow(spotCos, light.Power);

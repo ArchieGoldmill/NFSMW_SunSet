@@ -14,6 +14,7 @@
     <FxCompile Include="spotlights.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="car.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_world.hfx">

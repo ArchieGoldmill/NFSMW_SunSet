@@ -51,6 +51,16 @@ struct PS_INPUT
 	float4 color : COLOR0;
 };
 
+void VS_Stub(VS_INPUT IN, out PS_INPUT OUT)
+{
+	OUT.position = mul(IN.position, WorldViewProj);
+}
+
+float4 PS_Stub(PS_INPUT IN) : COLOR
+{
+	return float4(0, 1, 0, 1); // hot green
+}
+
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = world_position(IN.position);
@@ -61,30 +71,98 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.color = IN.color;
 }
 
-float4 PS_Main(PS_INPUT IN) : COLOR
+float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
-	
-	float3 light = ApplySpotLights(IN.world_nomral, IN.world_pos.xyz, 24);
-	light = max(light, float3(0.35, 0.35, 0.35));
-	
+	float3 light = ApplySpotLights(IN.world_nomral, IN.world_pos.xyz, lightCount);
+	light = max(light, float3(0.15, 0.15, 0.15));
 	tex.rgb *= light;
 	
+	tex.a = 1;
 	return tex;
 }
 
-technique world <int shader = 1;>
+float4 PS_Unlit(PS_INPUT IN) : COLOR
+{
+	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+	float3 light = float3(0.15, 0.15, 0.15);
+	tex.rgb *= light;
+	
+	tex.a = 1;
+	return tex;
+}
+
+float4 PS_Prelit(PS_INPUT IN) : COLOR
+{
+	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+	return tex * IN.color * 2;
+}
+
+float4 PS_LitPixel_8(PS_INPUT IN) : COLOR
+{
+	return PS_LitPixel(IN, 8);
+}
+
+float4 PS_LitPixel_16(PS_INPUT IN) : COLOR
+{
+	return PS_LitPixel(IN, 16);
+}
+
+float4 PS_LitPixel_24(PS_INPUT IN) : COLOR
+{
+	return PS_LitPixel(IN, 24);
+}
+
+technique Stub<int shader = 1;>
 {
 	pass p0
 	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
+		VertexShader = compile vs_3_0 VS_Stub();
+		PixelShader = compile ps_3_0 PS_Stub();
+	}
+}
 
+technique LitPixel_8
+{
+	pass p0
+	{
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_Main();
+		PixelShader = compile ps_3_0 PS_LitPixel_8();
+	}
+}
+
+technique LitPixel_16
+{
+	pass p0
+	{
+		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_LitPixel_16();
+	}
+}
+
+technique LitPixel_24
+{
+	pass p0
+	{
+		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_LitPixel_24();
+	}
+}
+
+technique Unlit
+{
+	pass p0
+	{
+		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_Unlit();
+	}
+}
+
+technique Prelit
+{
+	pass p0
+	{
+		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_Prelit();
 	}
 }

@@ -161,6 +161,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrandSceneryCullInfo.h" />
     <ClInclude Include="Hooks.h" />
+    <ClInclude Include="LightFlare.h" />
+    <ClInclude Include="LightFlares.h" />
     <ClInclude Include="MeshEntry.h" />
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="RenderTarget.h" />

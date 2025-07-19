@@ -11,7 +11,7 @@ void PopulateSolidLights()
 	solidLights->SolidName = 0x2FC6951B;
 
 	auto spotLight = new SpotLight();
-	spotLight->Position = { 0, 0, 10 };
+	spotLight->Position = { 0, -6, 12.5 };
 	spotLight->Direction = { 0.0f, 0.0f, -1.0f };
 	spotLight->Range = 30.0f;
 	spotLight->Intensity = 5.0f;

@@ -66,5 +66,11 @@
     <ClInclude Include="ViewId.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="LightFlares.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFlare.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

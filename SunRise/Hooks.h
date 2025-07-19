@@ -6,6 +6,7 @@
 #include "DynamicLights.h"
 #include "RenderModel.h"
 #include "RenderTarget.h"
+#include "LightFlares.h"
 
 void CheckReloadShaders()
 {
@@ -89,9 +90,23 @@ void __declspec(naked) SetCurrentPassHook()
 	}
 }
 
+void __declspec(naked) RenderWorldLightFlaresHook()
+{
+	__asm
+	{
+		pushad;
+		call RenderWorldLightFlares;
+		popad;
+
+		ret;
+	}
+}
+
 void InitHooks()
 {
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 
 	injector::MakeJMP(0x006E0254, SetCurrentPassHook);
+
+	injector::MakeJMP(0x00505F71, RenderWorldLightFlaresHook);
 }

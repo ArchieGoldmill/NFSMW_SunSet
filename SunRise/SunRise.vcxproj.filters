@@ -14,6 +14,9 @@
     <Filter Include="Features\DynamicLights">
       <UniqueIdentifier>{cc22c016-2d95-4c2c-a0cd-90e53e2ef1a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{eb0d5927-0c13-4fa9-99d5-06f5a769993f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -71,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="LightFlare.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include "eView.h"
 #include "ViewId.h"
 #include "RenderTarget.h"
+#include "Config.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLight SpotLights[NUM_SPOTLIGHTS];
@@ -41,9 +42,9 @@ void AddSpotLightToBuffer(SpotLight spotLight)
 	NumSpotLightBuffer++;
 }
 
-SpotLight CreateSpotLight(SpotLight* pSpotLight, D3DXMATRIX* matrix)
+SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix)
 {
-	SpotLight spotLight = *pSpotLight;
+	SpotLight spotLight = pSpotLight;
 
 	D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 	D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
@@ -64,12 +65,12 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 			auto solid = model->pSolid;
 			if (solid)
 			{
-				for (auto solidLights : SolidLightsList)
+				for (auto& solidLights : SolidLightsList)
 				{
 					// TODO use binary search
-					if (solidLights->SolidName == model->NameHash)
+					if (solidLights.Hash == model->NameHash)
 					{
-						for (auto pSpotLight : solidLights->Lights)
+						for (auto& pSpotLight : solidLights.Lights)
 						{
 							auto spotLight = CreateSpotLight(pSpotLight, drawInfo->Matrix);
 							AddSpotLightToBuffer(spotLight);

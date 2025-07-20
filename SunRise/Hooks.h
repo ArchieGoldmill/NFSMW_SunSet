@@ -57,6 +57,7 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 
 		if (techName)
 		{
+			// TODO store the technique handle
 			D3DXHANDLE hTech = effect->D3DEffect->GetTechniqueByName(techName);
 			effect->D3DEffect->SetTechnique(hTech);
 		}

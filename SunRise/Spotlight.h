@@ -1,6 +1,7 @@
 #pragma once
 #include <d3dx9.h>
 #include <vector>
+#include <string>
 #include "Utilities.h"
 
 struct SpotLight
@@ -15,8 +16,8 @@ struct SpotLight
 
 struct SolidLights
 {
-	Hash SolidName;
-	std::vector<SpotLight*> Lights;
+	Hash Hash;
+	std::string Name;
+	std::string Flare;
+	std::vector<SpotLight> Lights;
 };
-
-std::vector<SolidLights*> SolidLightsList;

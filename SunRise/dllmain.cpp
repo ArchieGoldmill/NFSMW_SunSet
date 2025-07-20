@@ -4,23 +4,7 @@
 #include "Console.h"
 #include "ShaderLoader.h"
 #include "Hooks.h"
-
-void PopulateSolidLights()
-{
-	auto solidLights = new SolidLights();
-	solidLights->SolidName = 0x2FC6951B;
-
-	auto spotLight = new SpotLight();
-	spotLight->Position = { 0, -6, 12.5 };
-	spotLight->Direction = { 0.0f, 0.0f, -1.0f };
-	spotLight->Range = 30.0f;
-	spotLight->Intensity = 5.0f;
-	spotLight->Power = 2.9f;
-	spotLight->Color = { 1,1,1 };
-
-	solidLights->Lights.push_back(spotLight);
-	SolidLightsList.push_back(solidLights);
-}
+#include "Config.h"
 
 void Init()
 {
@@ -29,11 +13,10 @@ void Init()
 	*skipFE = 1;
 #endif 
 
+	LoadConfig();
 	InitConsole();
 	InitShaderLoader();
 	InitHooks();
-
-	PopulateSolidLights();
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)

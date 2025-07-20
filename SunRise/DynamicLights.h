@@ -199,13 +199,13 @@ void SetDynamicLights(RenderModel* model)
 {
 	if (DynamicallyLit(model))
 	{
-		model->Effect->SetValue(shader_param::SPLINE, SpotLights, sizeof(SpotLights));
+		model->Effect->SetValue(ShaderParam::caSpotLights, SpotLights, sizeof(SpotLights));
 	}
 }
 
-char* GetTechnique(RenderModel* renderModel)
+TechniqueType GetTechnique(RenderModel* renderModel)
 {
-	char* technique = NULL;
+	TechniqueType technique = Technique_Invalid;
 	if (DynamicallyLit(renderModel))
 	{
 		if (RenderTarget::Current->ViewId == ViewId::Player1)
@@ -213,24 +213,24 @@ char* GetTechnique(RenderModel* renderModel)
 			PopulateShaderSpotlights(renderModel);
 			if (NumSpotLights == 0)
 			{
-				technique = (char*)"Unlit";
+				technique = Technique_Unlit;
 			}
 			else if (NumSpotLights <= 8)
 			{
-				technique = (char*)"LitPixel_8";
+				technique = Technique_LitPixel_8;
 			}
 			else if (NumSpotLights <= 16)
 			{
-				technique = (char*)"LitPixel_16";
+				technique = Technique_LitPixel_16;
 			}
 			else
 			{
-				technique = (char*)"LitPixel_24";
+				technique = Technique_LitPixel_24;
 			}
 		}
 		else
 		{
-			technique = (char*)"Unlit";
+			technique = Technique_Unlit;
 		}
 	}
 

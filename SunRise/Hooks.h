@@ -35,19 +35,19 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 	SetDynamicLights(renderModel);
 }
 
-char* LastTechnique = NULL;
+TechniqueType LastTechnique = Technique_Invalid;
 void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 {
 	if (LastEffect == NULL)
 	{
-		LastTechnique = NULL;
+		LastTechnique = Technique_Invalid;
 	}
 
 	auto effect = renderModel->Effect;
 
 	auto techName = GetTechnique(renderModel);
 
-	if (LastEffect != effect || !StringEqual(LastTechnique, techName))
+	if (LastEffect != effect || LastTechnique != techName)
 	{
 		if (LastEffect)
 		{
@@ -57,10 +57,9 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 			eEffect::Current = NULL;
 		}
 
-		if (techName)
+		if (techName != Technique_Invalid)
 		{
-			// TODO store the technique handle
-			D3DXHANDLE hTech = effect->D3DEffect->GetTechniqueByName(techName);
+			D3DXHANDLE hTech = ShaderParamsMap[effect->id].Techniques[techName];
 			effect->D3DEffect->SetTechnique(hTech);
 		}
 
@@ -105,6 +104,25 @@ void __declspec(naked) RenderWorldLightFlaresHook()
 	}
 }
 
+void __fastcall SetEffectParams(eEffect* effect)
+{
+	effect->SetParams();
+
+	if (DynamicallyLit(effect))
+	{
+		ShaderParams shaderParams;
+
+		shaderParams.Techniques[Technique_Unlit] = effect->D3DEffect->GetTechniqueByName("Unlit");
+		shaderParams.Techniques[Technique_LitPixel_8] = effect->D3DEffect->GetTechniqueByName("LitPixel_8");
+		shaderParams.Techniques[Technique_LitPixel_16] = effect->D3DEffect->GetTechniqueByName("LitPixel_16");
+		shaderParams.Techniques[Technique_LitPixel_24] = effect->D3DEffect->GetTechniqueByName("LitPixel_24");
+
+		shaderParams.Params[(int)ShaderParam::caSpotLights] = effect->D3DEffect->GetParameterByName(NULL, "caSpotLights");
+
+		ShaderParamsMap[effect->id] = shaderParams;
+	}
+}
+
 void InitHooks()
 {
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
@@ -112,4 +130,7 @@ void InitHooks()
 	injector::MakeJMP(0x006E0254, SetCurrentPassHook);
 
 	injector::MakeJMP(0x00505F71, RenderWorldLightFlaresHook);
+
+	injector::MakeCALL(0x006C60D9, SetEffectParams);
+	injector::MakeCALL(0x006DB2B0, SetEffectParams);
 }

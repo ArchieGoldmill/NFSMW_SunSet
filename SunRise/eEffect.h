@@ -1,6 +1,29 @@
 #pragma once
 #include <d3dx9.h>
+#include <map>
 #include "TextureInfo.h"
+
+enum TechniqueType
+{
+	Technique_Unlit,
+	Technique_LitPixel_8,
+	Technique_LitPixel_16,
+	Technique_LitPixel_24,
+	Technique_Count,
+	Technique_Invalid = -1
+};
+
+enum class ShaderParam
+{
+	caSpotLights,
+	count
+};
+
+struct ShaderParams
+{
+	D3DXHANDLE Techniques[Technique_Count];
+	D3DXHANDLE Params[(int)ShaderParam::count];
+};
 
 enum class shader_type : unsigned int
 {
@@ -150,6 +173,8 @@ struct eEffectParam
 	D3DXHANDLE handle;
 };
 
+std::map<shader_type, ShaderParams> ShaderParamsMap;
+
 struct eEffect
 {
 	virtual void Dtor() = 0;
@@ -179,6 +204,12 @@ struct eEffect
 	ID3DXEffect* D3DEffect;
 	IDirect3DVertexDeclaration9* VertexDecl;
 
+	void SetParams()
+	{
+		FUNC(0x006C5500, void, __thiscall, _SetParams, eEffect*);
+		_SetParams(this);
+	}
+
 	void SetTexture(shader_param param, TextureInfo* textureInfo)
 	{
 		this->D3DEffect->SetTexture(this->Params[(int)param].handle, textureInfo->PlatInfo->D3DTexture);
@@ -199,9 +230,9 @@ struct eEffect
 		this->D3DEffect->SetFloat(this->Params[(int)param].handle, f);
 	}
 
-	void SetValue(shader_param p, void* val, int size)
+	void SetValue(ShaderParam p, void* val, int size)
 	{
-		auto handle = this->Params[(int)p].handle;
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetValue(handle, val, size);

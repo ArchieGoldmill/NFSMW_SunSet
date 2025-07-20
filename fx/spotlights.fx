@@ -8,7 +8,7 @@ struct SpotLight
 	float Intensity;
 };
 
-SpotLight SpotLights[24] : SPLINE;
+SpotLight caSpotLights[24];
  
 float3 GetSpotlight(SpotLight light, float3 normal, float3 worldPos)
 {
@@ -34,7 +34,7 @@ float3 ApplySpotLights(float3 normal, float3 worldPos, int count)
 	float3 color = float3(0, 0, 0);
 	for (int i = 0; i < count; ++i)
 	{
-		SpotLight spotlight = SpotLights[i];
+		SpotLight spotlight = caSpotLights[i];
 		color += GetSpotlight(spotlight, normal, worldPos);
 	}
 

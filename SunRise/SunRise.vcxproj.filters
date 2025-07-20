@@ -78,5 +78,14 @@
     <ClInclude Include="Config.h">
       <Filter>Config</Filter>
     </ClInclude>
+    <ClInclude Include="VehicleRenderConn.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="CarRenderInfo.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

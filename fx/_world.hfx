@@ -75,7 +75,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	float3 light = ApplySpotLights(IN.world_nomral, IN.world_pos.xyz, lightCount);
-	light = max(light, float3(0.15, 0.15, 0.15));
+	light = max(light, float3(0.5, 0.5, 0.5));
 	tex.rgb *= light;
 	
 	tex.a = 1;
@@ -85,7 +85,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 float4 PS_Unlit(PS_INPUT IN) : COLOR
 {
 	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
-	float3 light = float3(0.15, 0.15, 0.15);
+	float3 light = float3(0.5, 0.5, 0.5);
 	tex.rgb *= light;
 	
 	tex.a = 1;

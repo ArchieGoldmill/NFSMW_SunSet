@@ -5,15 +5,16 @@
 #include "ViewId.h"
 #include "RenderTarget.h"
 #include "Config.h"
+#include "VehicleRenderConn.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLight SpotLights[NUM_SPOTLIGHTS];
 int NumSpotLights;
 
-SpotLight SpotLightBuffer[256];
+SpotLightModel SpotLightBuffer[256];
 int NumSpotLightBuffer = 0;
 
-void AddSpotLightToBuffer(SpotLight spotLight)
+void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source)
 {
 	if (NumSpotLightBuffer > 255)
 	{
@@ -24,7 +25,7 @@ void AddSpotLightToBuffer(SpotLight spotLight)
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
 		auto s = SpotLightBuffer[i];
-		if (s.Position == spotLight.Position)
+		if (s.Light.Position == spotLight.Position)
 		{
 			return;
 		}
@@ -38,7 +39,11 @@ void AddSpotLightToBuffer(SpotLight spotLight)
 		return;
 	}
 
-	SpotLightBuffer[NumSpotLightBuffer] = spotLight;
+	SpotLightModel spotLightModel;
+	spotLightModel.Light = spotLight;
+	spotLightModel.Source = source;
+
+	SpotLightBuffer[NumSpotLightBuffer] = spotLightModel;
 	NumSpotLightBuffer++;
 }
 
@@ -73,7 +78,7 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 						for (auto& pSpotLight : solidLights.Lights)
 						{
 							auto spotLight = CreateSpotLight(pSpotLight, drawInfo->Matrix);
-							AddSpotLightToBuffer(spotLight);
+							AddSpotLightToBuffer(spotLight, SpotLightSource::LampPost);
 						}
 					}
 				}
@@ -84,9 +89,55 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 	}
 }
 
+void AddCarHeadlight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFlare* flare)
+{
+	if (flare->Type == eLightFlareType::car_headlight)
+	{
+		SpotLight spotLight;
+		auto flarePos = flare->Position;
+		flarePos.x += 0.7;
+
+		D3DXVec3Transform((D3DXVECTOR4*)&spotLight.Position, &flarePos, matrix);
+
+		D3DXVECTOR3 direction = { 1.0f, 0.0f, -0.0f };
+		D3DXVec3TransformNormal(&spotLight.Direction, &direction, matrix);
+
+		spotLight.Range = 55.0f;
+		spotLight.Intensity = 5;
+		spotLight.Power = 4.0f;
+		spotLight.Color = { 1, 1, 1 };
+
+		AddSpotLightToBuffer(spotLight, SpotLightSource::Car);
+	}
+}
+
 void PopulateCarSpotLights()
 {
-	// TODO
+	for (int i = 0; i < VehicleRenderConn::ListCount; i++)
+	{
+		auto renderConn = VehicleRenderConn::List[i];
+		if (renderConn)
+		{
+			auto carRenderInfo = renderConn->pCarRenderInfo;
+			if (carRenderInfo)
+			{
+				auto matrix = renderConn->Matrix;
+				D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
+				LightFlare* flare = carRenderInfo->LightFlares.HeadNode.Next;
+
+				while (NumSpotLightBuffer < 256)
+				{
+					AddCarHeadlight(carRenderInfo, matrix, flare);
+
+					flare = flare->Next;
+					if (flare == carRenderInfo->LightFlares.HeadNode.Next)
+					{
+						break;
+					}
+				}
+			}
+		}
+	}
 }
 
 void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
@@ -130,7 +181,8 @@ void PopulateShaderSpotlights(RenderModel* model)
 
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
-		auto spotlight = SpotLightBuffer[i];
+		auto spotlightModel = SpotLightBuffer[i];
+		auto spotlight = spotlightModel.Light;
 
 		if (NumSpotLights < NUM_SPOTLIGHTS)
 		{

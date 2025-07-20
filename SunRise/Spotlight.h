@@ -14,6 +14,18 @@ struct SpotLight
 	float Intensity;
 };
 
+enum class SpotLightSource
+{
+	LampPost,
+	Car
+};
+
+struct SpotLightModel
+{
+	SpotLight Light;
+	SpotLightSource Source;
+};
+
 struct SolidLights
 {
 	Hash Hash;

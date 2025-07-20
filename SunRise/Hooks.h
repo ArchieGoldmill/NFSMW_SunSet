@@ -15,6 +15,8 @@ void CheckReloadShaders()
 	{
 		cusprintf("\nManual shader reload started:\n");
 		Game::ReloadShaders = true;
+
+		LoadConfig();
 	}
 #endif 
 }

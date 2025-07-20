@@ -42,7 +42,7 @@ enum class eLightFlareType : std::uint8_t
 struct LightFlare : bTNode<LightFlare>
 {
 	int NameHash;
-	int Tint;
+	D3DCOLOR Tint;
 	D3DXVECTOR3 Position;
 	float ReflectPosZ;
 	D3DXVECTOR3 Direction;

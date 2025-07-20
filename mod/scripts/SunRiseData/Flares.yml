@@ -1,0 +1,6 @@
+Flares:
+    - Name: LampPost
+      Color: [1.0, 0.7, 0.5]
+      Intensity: 1.0
+      Size: 2.0
+      Type: 0

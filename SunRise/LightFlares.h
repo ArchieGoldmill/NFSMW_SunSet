@@ -8,18 +8,20 @@ void RenderWorldLightFlares()
 	{
 		auto spotlight = SpotLightBuffer[i];
 
-		if (spotlight.Source == SpotLightSource::LampPost)
+		if (spotlight.Source == SpotLightSource::LampPost && spotlight.Flare)
 		{
+			auto color = D3DCOLOR_COLORVALUE(spotlight.Flare->Color.z, spotlight.Flare->Color.y, spotlight.Flare->Color.x, 0);
+
 			LightFlare flare;
 			flare.Position = spotlight.Light.Position;
 			flare.Direction = { 1, 0, 0 };
 			flare.ReflectPosZ = 0;
 			flare.Tint = 0;
 			flare.NameHash = 0;
-			flare.Type = eLightFlareType::lamppost;
+			flare.Type = spotlight.Flare->Type;
 			flare.Flags = 0;
 
-			Game::eRenderLightFlare(eView::PlayerView, &flare, (D3DXMATRIX*)0x00987AB0, 1, 0, 0, 0.0, 0, 3);
+			Game::eRenderLightFlare(eView::PlayerView, &flare, (D3DXMATRIX*)0x00987AB0, spotlight.Flare->Intensity, 0, 0, 0.0, color, spotlight.Flare->Size);
 		}
 	}
 }

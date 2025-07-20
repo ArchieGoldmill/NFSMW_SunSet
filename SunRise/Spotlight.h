@@ -20,16 +20,26 @@ enum class SpotLightSource
 	Car
 };
 
+struct FlareModel
+{
+	std::string Name;
+	float Intensity;
+	float Size;
+	eLightFlareType Type;
+	D3DXVECTOR3 Color;
+};
+
 struct SpotLightModel
 {
 	SpotLight Light;
 	SpotLightSource Source;
+	FlareModel* Flare;
 };
 
 struct SolidLights
 {
 	Hash Hash;
 	std::string Name;
-	std::string Flare;
+	FlareModel* Flare;
 	std::vector<SpotLight> Lights;
 };

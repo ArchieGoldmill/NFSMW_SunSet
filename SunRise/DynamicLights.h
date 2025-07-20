@@ -14,7 +14,7 @@ int NumSpotLights;
 SpotLightModel SpotLightBuffer[256];
 int NumSpotLightBuffer = 0;
 
-void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source)
+void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare)
 {
 	if (NumSpotLightBuffer > 255)
 	{
@@ -42,6 +42,7 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source)
 	SpotLightModel spotLightModel;
 	spotLightModel.Light = spotLight;
 	spotLightModel.Source = source;
+	spotLightModel.Flare = flare;
 
 	SpotLightBuffer[NumSpotLightBuffer] = spotLightModel;
 	NumSpotLightBuffer++;
@@ -78,7 +79,7 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 						for (auto& pSpotLight : solidLights.Lights)
 						{
 							auto spotLight = CreateSpotLight(pSpotLight, drawInfo->Matrix);
-							AddSpotLightToBuffer(spotLight, SpotLightSource::LampPost);
+							AddSpotLightToBuffer(spotLight, SpotLightSource::LampPost, solidLights.Flare);
 						}
 					}
 				}
@@ -107,7 +108,7 @@ void AddCarHeadlight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFlar
 		spotLight.Power = 4.0f;
 		spotLight.Color = { 1, 1, 1 };
 
-		AddSpotLightToBuffer(spotLight, SpotLightSource::Car);
+		AddSpotLightToBuffer(spotLight, SpotLightSource::Car, NULL);
 	}
 }
 

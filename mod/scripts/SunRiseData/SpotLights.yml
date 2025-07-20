@@ -1,0 +1,10 @@
+SolidLights:
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -6.0, 12.7]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        Power: 2.9
+        Intensity: 5.0
+        Range: 30

@@ -4,14 +4,25 @@
 #include <string>
 #include "Utilities.h"
 
-struct SpotLight
+struct SpotLightShader
 {
 	D3DXVECTOR3 Position;
 	float Range;
 	D3DXVECTOR3 Direction;
-	float Power;
+	float OuterCos;
 	D3DXVECTOR3 Color;
+	float InnerCos;
+};
+
+struct SpotLight
+{
+	D3DXVECTOR3 Position;
+	D3DXVECTOR3 Direction;
+	D3DXVECTOR3 Color;
+	float Range;
 	float Intensity;
+	float InnerAngle;
+	float OuterAngle;
 };
 
 enum class SpotLightSource

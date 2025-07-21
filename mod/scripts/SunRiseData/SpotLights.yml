@@ -1,3 +1,21 @@
+CarHeadLights:
+    Position: [0.0, 0.0, 0.0]
+    Direction: [1.0, 0.0, 0.0 ]
+    Color: [1.0, 1.0, 1.0]
+    Intensity: 3.0
+    Range: 50.0
+    InnerAngle: 25.0
+    OuterAngle: 45.0
+
+CarBrakeLights:
+    Position: [0.0, 0.0, 0.0]
+    Direction: [-1.0, 0.0, -0.5 ]
+    Color: [1.0, 0.0, 0.0]
+    Intensity: 3.0
+    Range: 50.0
+    InnerAngle: 25.0
+    OuterAngle: 45.0
+
 SolidLights:
   - Solid: XO_STREETLIGHTD2_1B_00
     Flare: LampPost
@@ -5,6 +23,7 @@ SolidLights:
       - Position: [0.0, -6.0, 12.7]
         Direction: [0.0, 0.0, -1.0]
         Color: [1.0, 0.7, 0.5]
-        Power: 2.9
+        InnerAngle: 55.0
+        OuterAngle: 75.0
         Intensity: 5.0
-        Range: 30
+        Range: 30.0

@@ -3,9 +3,9 @@ struct SpotLight
 	float3 Position;
 	float Range;
 	float3 Direction;
-	float Power;
+	float OuterCos;
 	float3 Color;
-	float Intensity;
+	float InnerCos;
 };
 
 SpotLight caSpotLights[24];
@@ -14,19 +14,17 @@ float3 GetSpotlight(SpotLight light, float3 normal, float3 worldPos)
 {
 	float3 lightVec = light.Position - worldPos;
 	float distance = length(lightVec);
-	float3 lightDir = normalize(lightVec);
+	float3 L = lightVec / distance;
 
-	float3 spotDir = normalize(-light.Direction);
+	float spotCos = dot(-L, light.Direction);
+	float spotAtten = saturate((spotCos - light.OuterCos) / (light.InnerCos - light.OuterCos));
 
-	float NdotL = dot(normal, lightDir);
-	NdotL = max(NdotL, -0.5 * NdotL);
+	float atten = saturate(1.0 - distance / light.Range);
+	atten *= atten;
 
-	float spotCos = saturate(dot(lightDir, spotDir));
-	float spotFactor = pow(spotCos, light.Power);
+	float NdotL = saturate(dot(normal, L));
 
-	float attenuation = saturate(1.0 - distance / light.Range);
-
-	return light.Color * light.Intensity * NdotL * spotFactor * attenuation;
+	return light.Color * NdotL * atten * spotAtten;
 }
 
 float3 ApplySpotLights(float3 normal, float3 worldPos, int count)

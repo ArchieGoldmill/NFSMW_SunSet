@@ -5,8 +5,11 @@
 
 inline std::vector<SolidLights> SolidLightsList;
 inline std::vector<FlareModel> FlareList;
+inline SpotLight CarHeadlighsConfig;
+inline SpotLight CarBrakeLightsConfig;
 
-D3DXVECTOR3 ParseVec3(const YAML::Node& node) {
+D3DXVECTOR3 ParseVec3(const YAML::Node& node)
+{
 	return D3DXVECTOR3(node[0].as<float>(), node[1].as<float>(), node[2].as<float>());
 }
 
@@ -28,6 +31,17 @@ std::string GetExeDirectory() {
 	return fullPath.substr(0, pos);
 }
 
+void ParseSpotLight(SpotLight& spotLight, const YAML::Node& spot)
+{
+	spotLight.Position = ParseVec3(spot["Position"]);
+	spotLight.Direction = ParseVec3(spot["Direction"]);
+	spotLight.Color = ParseVec3(spot["Color"]);
+	spotLight.InnerAngle = spot["InnerAngle"].as<float>();
+	spotLight.OuterAngle = spot["OuterAngle"].as<float>();
+	spotLight.Intensity = spot["Intensity"].as<float>();
+	spotLight.Range = spot["Range"].as<float>();
+}
+
 void LoadSpotLightConfig()
 {
 	SolidLightsList.clear();
@@ -39,6 +53,11 @@ void LoadSpotLightConfig()
 	YAML::Node spotlightsRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\SpotLights.yml");
 #endif
 
+	const auto& carHeadlighsNode = spotlightsRoot["CarHeadLights"];
+	ParseSpotLight(CarHeadlighsConfig, carHeadlighsNode);
+	const auto& carBrakeLightsNode = spotlightsRoot["CarBrakeLights"];
+	ParseSpotLight(CarBrakeLightsConfig, carBrakeLightsNode);
+
 	const auto& spotLights = spotlightsRoot["SolidLights"];
 
 	for (const auto& lightNode : spotLights)
@@ -48,9 +67,9 @@ void LoadSpotLightConfig()
 		solid.Hash = Game::bStringHash(solid.Name.c_str());
 
 		auto flareName = lightNode["Flare"].as<std::string>();
-		for (int i =0; i< FlareList.size();i++)
+		for (int i = 0; i < FlareList.size(); i++)
 		{
-			if(FlareList[i].Name == flareName )
+			if (FlareList[i].Name == flareName)
 			{
 				solid.Flare = &FlareList[i];
 				break;
@@ -61,12 +80,7 @@ void LoadSpotLightConfig()
 		for (const auto& spot : spotLights)
 		{
 			SpotLight spotLight;
-			spotLight.Position = ParseVec3(spot["Position"]);
-			spotLight.Direction = ParseVec3(spot["Direction"]);
-			spotLight.Color = ParseVec3(spot["Color"]);
-			spotLight.Power = spot["Power"].as<float>();
-			spotLight.Intensity = spot["Intensity"].as<float>();
-			spotLight.Range = spot["Range"].as<float>();
+			ParseSpotLight(spotLight, spot);
 
 			solid.Lights.push_back(spotLight);
 		}

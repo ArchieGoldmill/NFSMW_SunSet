@@ -8,7 +8,7 @@
 #include "VehicleRenderConn.h"
 
 #define NUM_SPOTLIGHTS 24
-SpotLight SpotLights[NUM_SPOTLIGHTS];
+SpotLightShader SpotLights[NUM_SPOTLIGHTS];
 int NumSpotLights;
 
 SpotLightModel SpotLightBuffer[256];
@@ -94,20 +94,14 @@ void AddCarHeadlight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFlar
 {
 	if (flare->Type == eLightFlareType::car_headlight)
 	{
-		SpotLight spotLight;
+		SpotLight spotLight = CarHeadlighsConfig;
+
 		auto flarePos = flare->Position;
 		flarePos.x += 0.3;
-
 		D3DXVec3TransformCoord(&spotLight.Position, &flarePos, matrix);
 
-		D3DXVECTOR3 direction = { 1.0f, 0.0f, -0.0f };
-		D3DXVec3TransformNormal(&spotLight.Direction, &direction, matrix);
+		D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
 		D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
-
-		spotLight.Range = 55.0f;
-		spotLight.Intensity = 5;
-		spotLight.Power = 4.0f;
-		spotLight.Color = { 1, 1, 1 };
 
 		AddSpotLightToBuffer(spotLight, isPlayer ? SpotLightSource::Player_Headlights : SpotLightSource::Headlights, NULL);
 	}
@@ -117,20 +111,14 @@ void AddCarBrakelight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFla
 {
 	if (flare->Type == eLightFlareType::car_brakelight || flare->Type == eLightFlareType::car_traffic_brakelight)
 	{
-		SpotLight spotLight;
+		SpotLight spotLight = CarBrakeLightsConfig;
+
 		auto flarePos = flare->Position;
 		flarePos.x -= 0.1;
-
 		D3DXVec3TransformCoord(&spotLight.Position, &flarePos, matrix);
 
-		D3DXVECTOR3 direction = { -1.0f, 0.0f, -0.5f };
-		D3DXVec3TransformNormal(&spotLight.Direction, &direction, matrix);
+		D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
 		D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
-
-		spotLight.Range = 3;
-		spotLight.Intensity = 5;
-		spotLight.Power = 4.0f;
-		spotLight.Color = { true ? 0.8f : 0.4f, 0.0f, 0.0f };
 
 		AddSpotLightToBuffer(spotLight, isPlayer ? SpotLightSource::Player_Breaklights : SpotLightSource::Breaklights, NULL);
 	}
@@ -147,7 +135,7 @@ D3DXVECTOR3 GetPlayerPos()
 			if (carRenderInfo)
 			{
 				int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
-				if(renderUsage == 0)
+				if (renderUsage == 0)
 				{
 					auto matrix = &renderConn->Matrix1;
 					return { matrix->_41, matrix->_42, matrix->_43 };
@@ -162,7 +150,7 @@ D3DXVECTOR3 GetPlayerPos()
 void AddHelicopterLight(D3DXVECTOR3 pos)
 {
 	auto playerPos = GetPlayerPos();
-	if(playerPos == D3DXVECTOR3(0, 0, 0))
+	if (playerPos == D3DXVECTOR3(0, 0, 0))
 	{
 		return;
 	}
@@ -175,7 +163,8 @@ void AddHelicopterLight(D3DXVECTOR3 pos)
 	spotLight.Position = pos;
 	spotLight.Range = 100;
 	spotLight.Intensity = 3;
-	spotLight.Power = 35.0f;
+	spotLight.InnerAngle = 50;
+	spotLight.OuterAngle = 70;
 	spotLight.Color = { 1, 1, 1 };
 
 	AddSpotLightToBuffer(spotLight, SpotLightSource::Helicopter, NULL);
@@ -274,7 +263,15 @@ void PopulateShaderSpotlights(RenderModel* model)
 		{
 			if (ConeIntersectsSphere(spotlight.Position, spotlight.Direction, D3DXToRadian(90), spotlight.Range, meshCenter, radius))
 			{
-				SpotLights[NumSpotLights] = spotlight;
+				SpotLightShader s;
+				s.Position = spotlight.Position;
+				s.Direction = spotlight.Direction;
+				s.Color = spotlight.Color * spotlight.Intensity;
+				s.Range = spotlight.Range;
+				s.InnerCos = cosf(D3DXToRadian(spotlight.InnerAngle));
+				s.OuterCos = cosf(D3DXToRadian(spotlight.OuterAngle));
+
+				SpotLights[NumSpotLights] = s;
 				NumSpotLights++;
 			}
 		}

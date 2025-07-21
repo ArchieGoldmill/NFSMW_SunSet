@@ -3,6 +3,33 @@
 #include "Node.h"
 #include "RideInfo.h"
 
+enum VehicleFX
+{
+	VehicleFX_NONE = 0,
+	VehicleFX_LHEAD = 1,
+	VehicleFX_RHEAD = 2,
+	VehicleFX_CHEAD = 4,
+	VehicleFX_HEADLIGHTS = 7,
+	VehicleFX_LBRAKE = 8,
+	VehicleFX_RBRAKE = 0x10,
+	VehicleFX_CBRAKE = 0x20,
+	VehicleFX_BRAKELIGHTS = 0x38,
+	VehicleFX_LIGHTS = 0x3F,
+	VehicleFX_LREVERSE = 0x40,
+	VehicleFX_RREVERSE = 0x80,
+	VehicleFX_REVERSE = 0xC0,
+	VehicleFX_LRSIGNAL = 0x100,
+	VehicleFX_RRSIGNAL = 0x200,
+	VehicleFX_LFSIGNAL = 0x400,
+	VehicleFX_LSIGNAL = 0x5000,
+	VehicleFX_RFSIGNAL = 0x800,
+	VehicleFX_RSIGNAL = 0xA00,
+	VehicleFX_COPRED = 0x1000,
+	VehicleFX_COPBLUE = 0x2000,
+	VehicleFX_COPWHITE = 0x4000,
+	VehicleFX_COPS = 0x7000
+};
+
 struct CarRenderInfo
 {
 	int field_0;
@@ -72,4 +99,10 @@ struct CarRenderInfo
 	int field_100;
 	bTList<LightFlare> LightFlares;
 	int field_10C;
+
+	bool IsLightOn(int light)
+	{
+		FUNC(0x007376B0, bool, __thiscall, _IsLightOn, CarRenderInfo*,int);
+		return _IsLightOn(this, light);
+	}
 };

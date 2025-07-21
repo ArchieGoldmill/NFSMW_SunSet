@@ -111,7 +111,7 @@ void AddCarBrakelight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFla
 {
 	if (flare->Type == eLightFlareType::car_brakelight || flare->Type == eLightFlareType::car_traffic_brakelight)
 	{
-		SpotLight spotLight = CarBrakeLightsConfig;
+		SpotLight spotLight = carRenderInfo->IsLightOn(VehicleFX_BRAKELIGHTS) ? CarBrakeLightsOnConfig : CarBrakeLightsOffConfig;
 
 		auto flarePos = flare->Position;
 		flarePos.x -= 0.1;
@@ -155,17 +155,18 @@ void AddHelicopterLight(D3DXVECTOR3 pos)
 		return;
 	}
 
-	SpotLight spotLight;
+	SpotLight spotLight = HelicopterLightConfig;
 
 	spotLight.Direction = playerPos - pos;
+	float range = D3DXVec3Length(&spotLight.Direction);
+	if (range > spotLight.Range)
+	{
+		return;
+	}
+
 	D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
 
 	spotLight.Position = pos;
-	spotLight.Range = 100;
-	spotLight.Intensity = 3;
-	spotLight.InnerAngle = 50;
-	spotLight.OuterAngle = 70;
-	spotLight.Color = { 1, 1, 1 };
 
 	AddSpotLightToBuffer(spotLight, SpotLightSource::Helicopter, NULL);
 }

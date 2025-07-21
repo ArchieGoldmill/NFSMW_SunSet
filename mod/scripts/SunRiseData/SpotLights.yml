@@ -1,20 +1,38 @@
 CarHeadLights:
-    Position: [0.0, 0.0, 0.0]
-    Direction: [1.0, 0.0, 0.0 ]
-    Color: [1.0, 1.0, 1.0]
-    Intensity: 3.0
-    Range: 50.0
-    InnerAngle: 25.0
-    OuterAngle: 45.0
+  Position: [0.0, 0.0, 0.0]
+  Direction: [1.0, 0.0, 0.0]
+  Color: [1.0, 1.0, 1.0]
+  Intensity: 3.0
+  Range: 50.0
+  InnerAngle: 25.0
+  OuterAngle: 45.0
 
-CarBrakeLights:
-    Position: [0.0, 0.0, 0.0]
-    Direction: [-1.0, 0.0, -0.5 ]
-    Color: [1.0, 0.0, 0.0]
-    Intensity: 3.0
-    Range: 50.0
-    InnerAngle: 25.0
-    OuterAngle: 45.0
+CarBrakeLightsOn:
+  Position: [0.0, 0.0, 0.0]
+  Direction: [-1.0, 0.0, -0.5]
+  Color: [1.0, 0.0, 0.0]
+  Intensity: 3.0
+  Range: 5.0
+  InnerAngle: 25.0
+  OuterAngle: 45.0
+
+CarBrakeLightsOff:
+  Position: [0.0, 0.0, 0.0]
+  Direction: [-1.0, 0.0, -0.5]
+  Color: [1.0, 0.0, 0.0]
+  Intensity: 2.0
+  Range: 4.0
+  InnerAngle: 25.0
+  OuterAngle: 45.0
+
+HelicopterLight:
+  Position: [0.0, 0.0, 0.0]
+  Direction: [0.0, 0.0, 0.0]
+  Color: [1.0, 1.0, 1.0]
+  Intensity: 3.0
+  Range: 100.0
+  InnerAngle: 5.0
+  OuterAngle: 6.0
 
 SolidLights:
   - Solid: XO_STREETLIGHTD2_1B_00

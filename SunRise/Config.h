@@ -6,7 +6,9 @@
 inline std::vector<SolidLights> SolidLightsList;
 inline std::vector<FlareModel> FlareList;
 inline SpotLight CarHeadlighsConfig;
-inline SpotLight CarBrakeLightsConfig;
+inline SpotLight CarBrakeLightsOnConfig;
+inline SpotLight CarBrakeLightsOffConfig;
+inline SpotLight HelicopterLightConfig;
 
 D3DXVECTOR3 ParseVec3(const YAML::Node& node)
 {
@@ -53,13 +55,12 @@ void LoadSpotLightConfig()
 	YAML::Node spotlightsRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\SpotLights.yml");
 #endif
 
-	const auto& carHeadlighsNode = spotlightsRoot["CarHeadLights"];
-	ParseSpotLight(CarHeadlighsConfig, carHeadlighsNode);
-	const auto& carBrakeLightsNode = spotlightsRoot["CarBrakeLights"];
-	ParseSpotLight(CarBrakeLightsConfig, carBrakeLightsNode);
+	ParseSpotLight(CarHeadlighsConfig, spotlightsRoot["CarHeadLights"]);
+	ParseSpotLight(CarBrakeLightsOnConfig, spotlightsRoot["CarBrakeLightsOn"]);
+	ParseSpotLight(CarBrakeLightsOffConfig, spotlightsRoot["CarBrakeLightsOff"]);
+	ParseSpotLight(HelicopterLightConfig, spotlightsRoot["HelicopterLight"]);
 
 	const auto& spotLights = spotlightsRoot["SolidLights"];
-
 	for (const auto& lightNode : spotLights)
 	{
 		SolidLights solid;
@@ -111,7 +112,6 @@ void LoadLightFlareConfig()
 		flare.Size = flareNode["Size"].as<float>();
 		flare.Type = (eLightFlareType)flareNode["Type"].as<int>();
 		flare.Color = ParseVec3(flareNode["Color"]);
-
 
 		FlareList.push_back(flare);
 	}

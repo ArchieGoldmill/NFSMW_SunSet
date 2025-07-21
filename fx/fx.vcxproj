@@ -125,7 +125,9 @@
   <ItemGroup>
     <FxCompile Include="car.fx" />
     <FxCompile Include="GlossyWindow.fx" />
+    <FxCompile Include="skybox.fx" />
     <FxCompile Include="spotlights.fx" />
+    <FxCompile Include="tree.fx" />
     <FxCompile Include="world.fx" />
     <FxCompile Include="worldnormalmap.fx" />
     <FxCompile Include="worldreflect.fx" />

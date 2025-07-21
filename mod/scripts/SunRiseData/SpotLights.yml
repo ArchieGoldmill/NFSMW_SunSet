@@ -45,3 +45,50 @@ SolidLights:
         OuterAngle: 75.0
         Intensity: 5.0
         Range: 30.0
+  - Solid: XO_LIGHTPOSTB_1A_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -3.85, 9.9]
+        Direction: [0.0, -0.5, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+      - Position: [0.0, 3.85, 9.9]
+        Direction: [0.0, 0.5, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_TRAFFICLIGHTA_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -2.8, 8.1]
+        Direction: [0.0, -0.5, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_TRAFFICLIGHTB_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -2.8, 8.1]
+        Direction: [0.0, -0.5, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_STREETLIGHTG_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, 0.0, 7.0]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0

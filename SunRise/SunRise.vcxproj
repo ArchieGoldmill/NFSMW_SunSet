@@ -181,6 +181,7 @@
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VehicleRenderConn.h" />
     <ClInclude Include="ViewId.h" />
+    <ClInclude Include="WorldModel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

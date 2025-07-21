@@ -7,6 +7,7 @@
 #include "Config.h"
 #include "VehicleRenderConn.h"
 #include "Hashes.h"
+#include "WorldModel.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
@@ -34,7 +35,7 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 
 	// Check that light is in camera view
 	auto playerView = eView::PlayerView;
-	auto visibleState = playerView->Pinfo->get_visible_state_sb(spotLight.Position, { spotLight.Range,spotLight.Range,spotLight.Range });
+	auto visibleState = playerView->Pinfo->get_visible_state_sb(spotLight.Position, { spotLight.Range, spotLight.Range, spotLight.Range });
 	if (visibleState == visible_state::outside)
 	{
 		return;
@@ -60,6 +61,26 @@ SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix)
 	return spotLight;
 }
 
+void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
+{
+	auto solid = model->pSolid;
+	if (solid)
+	{
+		for (auto& solidLights : SolidLightsList)
+		{
+			// TODO use binary search
+			if (solidLights.Hash == model->NameHash)
+			{
+				for (auto& pSpotLight : solidLights.Lights)
+				{
+					auto spotLight = CreateSpotLight(pSpotLight, matrix);
+					AddSpotLightToBuffer(spotLight, SpotLightSource::LampPost, solidLights.Flare);
+				}
+			}
+		}
+	}
+}
+
 void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 {
 	auto drawInfo = cullInfo->FirstDrawInfo;
@@ -69,25 +90,36 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 		if (drawInfo->Matrix && drawInfo->Matrix->_33 > 0)
 		{
 			auto model = (eModel*)(drawInfo->pModel & 0xFFFFFFFC);
-			auto solid = model->pSolid;
-			if (solid)
-			{
-				for (auto& solidLights : SolidLightsList)
-				{
-					// TODO use binary search
-					if (solidLights.Hash == model->NameHash)
-					{
-						for (auto& pSpotLight : solidLights.Lights)
-						{
-							auto spotLight = CreateSpotLight(pSpotLight, drawInfo->Matrix);
-							AddSpotLightToBuffer(spotLight, SpotLightSource::LampPost, solidLights.Flare);
-						}
-					}
-				}
-			}
+			PopulateFromModel(model, drawInfo->Matrix);
 		}
 
 		drawInfo++;
+	}
+
+	auto worldModel = WorldModel::List.Next;
+	while (worldModel != &WorldModel::List)
+	{
+		if (worldModel->pModel)
+		{
+			D3DXMATRIX* matrix = NULL;
+
+			auto spaceNode = worldModel->pSpaceNode;
+			if (spaceNode)
+			{
+				matrix = &spaceNode->Matrix1;
+			}
+			else
+			{
+				matrix = &worldModel->Matrix;
+			}
+
+			if (matrix)
+			{
+				PopulateFromModel(worldModel->pModel, matrix);
+			}
+		}
+
+		worldModel = worldModel->Next;
 	}
 }
 
@@ -106,7 +138,7 @@ void AddCarHeadlight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFlar
 			fx = VehicleFX_RHEAD;
 		}
 
-		if(!carRenderInfo->IsLightOn(fx))
+		if (!carRenderInfo->IsLightOn(fx))
 		{
 			return;
 		}
@@ -221,9 +253,9 @@ void PopulateCarSpotLights()
 				}
 				else
 				{
-					LightFlare* flare = carRenderInfo->LightFlares.HeadNode.Next;
+					LightFlare* flare = carRenderInfo->LightFlares;
 
-					while (true)
+					while ((void*)flare != &carRenderInfo->LightFlares)
 					{
 						bool isPlayer = renderUsage == 0;
 
@@ -231,10 +263,6 @@ void PopulateCarSpotLights()
 						AddCarBrakelight(carRenderInfo, matrix, flare, isPlayer);
 
 						flare = flare->Next;
-						if (flare == carRenderInfo->LightFlares.HeadNode.Next)
-						{
-							break;
-						}
 					}
 				}
 			}
@@ -256,7 +284,7 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 bool DynamicallyLit(eEffect* effect)
 {
 	auto id = effect->id;
-	return id == shader_type::WorldShader || id == shader_type::WorldReflectShader || id == shader_type::WorldNormalMap || id == shader_type::GlossyWindow || id == shader_type::CarShader;
+	return id == shader_type::WorldShader || id == shader_type::WorldReflectShader || id == shader_type::WorldNormalMap || id == shader_type::GlossyWindow || id == shader_type::CarShader || id == shader_type::billboardshader;
 }
 
 bool DynamicallyLit(RenderModel* model)
@@ -303,6 +331,12 @@ void PopulateShaderSpotlights(RenderModel* model)
 				SpotLights[NumSpotLights] = s;
 				NumSpotLights++;
 			}
+		}
+		else
+		{
+#ifdef _DEBUG
+			cusprintf("Too many spotlights for model %s, max is %d", model->pSolid->name, NUM_SPOTLIGHTS);
+#endif 
 		}
 	}
 }

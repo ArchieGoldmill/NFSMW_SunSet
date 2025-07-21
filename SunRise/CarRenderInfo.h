@@ -97,7 +97,7 @@ struct CarRenderInfo
 	int field_F8;
 	int field_FC;
 	int field_100;
-	bTList<LightFlare> LightFlares;
+	LightFlare* LightFlares;
 	int field_10C;
 
 	bool IsLightOn(int light)

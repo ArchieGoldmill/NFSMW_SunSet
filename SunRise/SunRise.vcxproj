@@ -172,6 +172,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="RideInfo.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Spotlight.h" />

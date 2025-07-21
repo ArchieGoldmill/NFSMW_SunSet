@@ -87,5 +87,8 @@
     <ClInclude Include="Node.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="RideInfo.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

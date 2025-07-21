@@ -17,7 +17,11 @@ struct SpotLight
 enum class SpotLightSource
 {
 	LampPost,
-	Car
+	Player_Headlights,
+	Helicopter,
+	Headlights,
+	Player_Breaklights,
+	Breaklights
 };
 
 struct FlareModel

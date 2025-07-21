@@ -25,4 +25,12 @@ struct VehicleRenderConn
 	int field_40;
 	CarRenderInfo* pCarRenderInfo;
 	int field_48;
+	int field_4C;
+	int field_50;
+	int field_54;
+	int field_58;
+	int field_5C;
+	bool Inactive;
+	int field_64[179];
+	D3DXMATRIX Matrix1;
 };

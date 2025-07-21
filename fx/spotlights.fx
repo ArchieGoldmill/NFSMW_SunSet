@@ -37,6 +37,10 @@ float3 ApplySpotLights(float3 normal, float3 worldPos, int count)
 		SpotLight spotlight = caSpotLights[i];
 		color += GetSpotlight(spotlight, normal, worldPos);
 	}
-
+	
+	float len = length(color);
+	len = min(len, 4.0);
+	color = normalize(color) * len;
+	
 	return color;
 }

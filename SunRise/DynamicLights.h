@@ -136,6 +136,51 @@ void AddCarBrakelight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFla
 	}
 }
 
+D3DXVECTOR3 GetPlayerPos()
+{
+	for (int i = 0; i < VehicleRenderConn::ListCount; i++)
+	{
+		auto renderConn = VehicleRenderConn::List[i];
+		if (renderConn && !renderConn->Inactive)
+		{
+			auto carRenderInfo = renderConn->pCarRenderInfo;
+			if (carRenderInfo)
+			{
+				int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
+				if(renderUsage == 0)
+				{
+					auto matrix = &renderConn->Matrix1;
+					return { matrix->_41, matrix->_42, matrix->_43 };
+				}
+			}
+		}
+	}
+
+	return { 0, 0, 0 };
+}
+
+void AddHelicopterLight(D3DXVECTOR3 pos)
+{
+	auto playerPos = GetPlayerPos();
+	if(playerPos == D3DXVECTOR3(0, 0, 0))
+	{
+		return;
+	}
+
+	SpotLight spotLight;
+
+	spotLight.Direction = playerPos - pos;
+	D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
+
+	spotLight.Position = pos;
+	spotLight.Range = 100;
+	spotLight.Intensity = 3;
+	spotLight.Power = 35.0f;
+	spotLight.Color = { 1, 1, 1 };
+
+	AddSpotLightToBuffer(spotLight, SpotLightSource::Helicopter, NULL);
+}
+
 void PopulateCarSpotLights()
 {
 	for (int i = 0; i < VehicleRenderConn::ListCount; i++)
@@ -148,18 +193,30 @@ void PopulateCarSpotLights()
 			{
 				auto matrix = &renderConn->Matrix1;
 				D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
-				LightFlare* flare = carRenderInfo->LightFlares.HeadNode.Next;
 
-				while (true)
+				int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
+				if (renderUsage == 5)
 				{
-					bool isPlayer = carRenderInfo->pRideInfo->mMyCarRenderUsage == 0;
-					AddCarHeadlight(carRenderInfo, matrix, flare, isPlayer);
-					AddCarBrakelight(carRenderInfo, matrix, flare, isPlayer);
+					matrix = renderConn->Matrix;
+					pos = { matrix->_41, matrix->_42, matrix->_43 };
+					AddHelicopterLight(pos);
+				}
+				else
+				{
+					LightFlare* flare = carRenderInfo->LightFlares.HeadNode.Next;
 
-					flare = flare->Next;
-					if (flare == carRenderInfo->LightFlares.HeadNode.Next)
+					while (true)
 					{
-						break;
+						bool isPlayer = renderUsage == 0;
+
+						AddCarHeadlight(carRenderInfo, matrix, flare, isPlayer);
+						AddCarBrakelight(carRenderInfo, matrix, flare, isPlayer);
+
+						flare = flare->Next;
+						if (flare == carRenderInfo->LightFlares.HeadNode.Next)
+						{
+							break;
+						}
 					}
 				}
 			}

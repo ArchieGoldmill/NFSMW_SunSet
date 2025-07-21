@@ -6,6 +6,7 @@
 #include "RenderTarget.h"
 #include "Config.h"
 #include "VehicleRenderConn.h"
+#include "Hashes.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
@@ -94,6 +95,22 @@ void AddCarHeadlight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFlar
 {
 	if (flare->Type == eLightFlareType::car_headlight)
 	{
+		VehicleFX fx = VehicleFX_HEADLIGHTS;
+		if (flare->NameHash == Hashes::LEFT_HEADLIGHT)
+		{
+			fx = VehicleFX_LHEAD;
+		}
+
+		if (flare->NameHash == Hashes::RIGHT_HEADLIGHT)
+		{
+			fx = VehicleFX_RHEAD;
+		}
+
+		if(!carRenderInfo->IsLightOn(fx))
+		{
+			return;
+		}
+
 		SpotLight spotLight = CarHeadlighsConfig;
 
 		auto flarePos = flare->Position;
@@ -111,7 +128,18 @@ void AddCarBrakelight(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, LightFla
 {
 	if (flare->Type == eLightFlareType::car_brakelight || flare->Type == eLightFlareType::car_traffic_brakelight)
 	{
-		SpotLight spotLight = carRenderInfo->IsLightOn(VehicleFX_BRAKELIGHTS) ? CarBrakeLightsOnConfig : CarBrakeLightsOffConfig;
+		VehicleFX fx = VehicleFX_BRAKELIGHTS;
+		if (flare->NameHash == Hashes::LEFT_HEADLIGHT)
+		{
+			fx = VehicleFX_LBRAKE;
+		}
+
+		if (flare->NameHash == Hashes::RIGHT_HEADLIGHT)
+		{
+			fx = VehicleFX_RBRAKE;
+		}
+
+		SpotLight spotLight = carRenderInfo->IsLightOn(fx) ? CarBrakeLightsOnConfig : CarBrakeLightsOffConfig;
 
 		auto flarePos = flare->Position;
 		flarePos.x -= 0.1;

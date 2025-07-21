@@ -165,6 +165,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrandSceneryCullInfo.h" />
     <ClInclude Include="CarRenderInfo.h" />
+    <ClInclude Include="Hashes.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="LightFlare.h" />
     <ClInclude Include="LightFlares.h" />

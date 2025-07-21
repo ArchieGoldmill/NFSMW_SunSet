@@ -17,6 +17,9 @@
     <Filter Include="Config">
       <UniqueIdentifier>{eb0d5927-0c13-4fa9-99d5-06f5a769993f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{b9e0f852-b0c3-4e86-99dd-573a86a3d55c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -25,8 +28,6 @@
     <ClInclude Include="ShaderLoader.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h" />
-    <ClInclude Include="Utilities.h" />
     <ClInclude Include="Hooks.h">
       <Filter>Features</Filter>
     </ClInclude>
@@ -89,6 +90,15 @@
     </ClInclude>
     <ClInclude Include="RideInfo.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Hashes.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

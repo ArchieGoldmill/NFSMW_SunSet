@@ -65,7 +65,13 @@ void LoadSpotLightConfig()
 	{
 		SolidLights solid;
 		solid.Name = lightNode["Solid"].as<std::string>();
-		solid.Hash = Game::bStringHash(solid.Name.c_str());
+		solid.HashA = Game::bStringHash(solid.Name.c_str());
+
+		auto nameB = lightNode["SolidLod"];
+		if(nameB.IsDefined())
+		{
+			solid.HashB = Game::bStringHash(nameB.as<std::string>().c_str());
+		}
 
 		auto flareName = lightNode["Flare"].as<std::string>();
 		if (!flareName.empty())

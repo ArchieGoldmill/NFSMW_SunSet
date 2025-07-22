@@ -106,5 +106,8 @@
     <ClInclude Include="SmackableRenderConn.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

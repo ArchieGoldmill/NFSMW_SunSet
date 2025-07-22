@@ -16,6 +16,19 @@ int NumSpotLights;
 SpotLightModel SpotLightBuffer[256];
 int NumSpotLightBuffer = 0;
 
+inline D3DXVECTOR3 GetCameraPos()
+{
+	auto camera = Game::GetPlayerCamera();
+	return camera->Position;
+}
+
+inline float GetCameraDistance(D3DXVECTOR3 pos)
+{
+	auto cameraPos = GetCameraPos();
+	D3DXVECTOR3 diff = pos - cameraPos;
+	return D3DXVec3Length(&diff);
+}
+
 void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare)
 {
 	if (NumSpotLightBuffer > 255)
@@ -69,7 +82,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 		for (auto& solidLights : SolidLightsList)
 		{
 			// TODO use binary search
-			if (solidLights.Hash == model->NameHash)
+			if (solidLights.HashA == model->NameHash || solidLights.HashB == model->NameHash)
 			{
 				for (auto& pSpotLight : solidLights.Lights)
 				{
@@ -306,26 +319,23 @@ void PopulateShaderSpotlights(RenderModel* model)
 		return;
 	}
 
-	for (int i = 0; i < NumSpotLightBuffer; i++)
+	for (int i = 0; i < NumSpotLightBuffer && NumSpotLights < NUM_SPOTLIGHTS; i++)
 	{
 		auto spotlightModel = SpotLightBuffer[i];
 		auto spotlight = spotlightModel.Light;
 
-		if (NumSpotLights < NUM_SPOTLIGHTS)
+		if (ConeIntersectsSphere(spotlight.Position, spotlight.Direction, D3DXToRadian(90), spotlight.Range, meshCenter, radius))
 		{
-			if (ConeIntersectsSphere(spotlight.Position, spotlight.Direction, D3DXToRadian(90), spotlight.Range, meshCenter, radius))
-			{
-				SpotLightShader s;
-				s.Position = spotlight.Position;
-				s.Direction = spotlight.Direction;
-				s.Color = spotlight.Color * spotlight.Intensity;
-				s.Range = spotlight.Range;
-				s.InnerCos = cosf(D3DXToRadian(spotlight.InnerAngle));
-				s.OuterCos = cosf(D3DXToRadian(spotlight.OuterAngle));
+			SpotLightShader s;
+			s.Position = spotlight.Position;
+			s.Direction = spotlight.Direction;
+			s.Color = spotlight.Color * spotlight.Intensity;
+			s.Range = spotlight.Range;
+			s.InnerCos = cosf(D3DXToRadian(spotlight.InnerAngle));
+			s.OuterCos = cosf(D3DXToRadian(spotlight.OuterAngle));
 
-				SpotLights[NumSpotLights] = s;
-				NumSpotLights++;
-			}
+			SpotLights[NumSpotLights] = s;
+			NumSpotLights++;
 		}
 	}
 }
@@ -338,6 +348,21 @@ void SetDynamicLights(RenderModel* model)
 	}
 }
 
+bool UseVertexLighting(RenderModel* model)
+{
+	auto bbox_min = model->pMeshEntry->bbox_min;
+	auto bbox_max = model->pMeshEntry->bbox_max;
+
+	D3DXVec3TransformCoord(&bbox_min, &bbox_min, model->LocalToWorld);
+	D3DXVec3TransformCoord(&bbox_max, &bbox_max, model->LocalToWorld);
+
+	float cameraDistance1 = GetCameraDistance(bbox_min);
+	float cameraDistance2 = GetCameraDistance(bbox_max);
+	float lightLodDist = 150;
+
+	return cameraDistance1 > lightLodDist && cameraDistance2 > lightLodDist;
+}
+
 TechniqueType GetTechnique(RenderModel* renderModel)
 {
 	TechniqueType technique = Technique_Invalid;
@@ -346,6 +371,12 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		if (RenderTarget::Current->ViewId == ViewId::Player1)
 		{
 			PopulateShaderSpotlights(renderModel);
+			bool useVertexLighting = UseVertexLighting(renderModel);
+			if (useVertexLighting && NumSpotLights > 0)
+			{
+				return Technique_LitVertex;
+			}
+
 			if (NumSpotLights == 0)
 			{
 				technique = Technique_Unlit;

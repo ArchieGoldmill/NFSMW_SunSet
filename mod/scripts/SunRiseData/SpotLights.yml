@@ -179,6 +179,17 @@ SolidLights:
         OuterAngle: 65.0
         Intensity: 5.0
         Range: 30.0
+  - Solid: XO_PARKLAMPA_1B_00
+    SolidLod: XO_PARKLAMPA_1C_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, 0.0, 4.6]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
 
   - Solid: XS_CHEVRCNRA_1_00
     Flare: Chevron

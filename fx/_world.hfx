@@ -68,7 +68,17 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.uv = IN.tex.xy;
 	OUT.world_pos = mul(IN.position, cmWorldMat);
 	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
-	OUT.color = IN.color;
+	OUT.color = float4(0, 0, 0, 0);
+}
+
+void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
+{
+	OUT.position = world_position(IN.position);
+	OUT.normal = normalize(IN.normal);
+	OUT.uv = IN.tex.xy;
+	OUT.world_pos = mul(IN.position, cmWorldMat);
+	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
+	OUT.color = float4(ApplySpotLights(OUT.world_nomral, OUT.world_pos.xyz, 12), 1);
 }
 
 float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
@@ -84,16 +94,10 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 float4 PS_Unlit(PS_INPUT IN) : COLOR
 {
 	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
-	float3 light = float3(0.4, 0.4, 0.4);
+	float3 light = max(IN.color.rgb, float3(0.4, 0.4, 0.4));
 	tex.rgb *= light;
 	
 	return tex;
-}
-
-float4 PS_Prelit(PS_INPUT IN) : COLOR
-{
-	float4 tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
-	return tex * IN.color * 2;
 }
 
 float4 PS_LitPixel_8(PS_INPUT IN) : COLOR
@@ -187,6 +191,22 @@ technique Unlit
 		DestBlend = (BaseBlendState[4]);
 
 		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_Unlit();
+	}
+}
+
+technique LitVertex
+{
+	pass p0
+	{
+		CullMode = <Cull_Mode>;
+		AlphaTestEnable = (BaseBlendState[0]);
+		AlphaRef = (BaseBlendState[1]);
+		AlphaBlendEnable = (BaseBlendState[2]);
+		SrcBlend = (BaseBlendState[3]);
+		DestBlend = (BaseBlendState[4]);
+
+		VertexShader = compile vs_3_0 VS_LitVertex();
 		PixelShader = compile ps_3_0 PS_Unlit();
 	}
 }

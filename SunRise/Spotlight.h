@@ -53,7 +53,8 @@ struct SpotLightModel
 
 struct SolidLights
 {
-	Hash Hash;
+	Hash HashA = 0;
+	Hash HashB = 0;
 	std::string Name;
 	FlareModel* Flare = NULL;
 	std::vector<SpotLight> Lights;

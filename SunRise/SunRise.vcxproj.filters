@@ -103,5 +103,8 @@
     <ClInclude Include="WorldModel.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="SmackableRenderConn.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

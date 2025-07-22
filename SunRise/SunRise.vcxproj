@@ -176,6 +176,7 @@
     <ClInclude Include="RideInfo.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="SmackableRenderConn.h" />
     <ClInclude Include="Spotlight.h" />
     <ClInclude Include="TextureInfo.h" />
     <ClInclude Include="Utilities.h" />

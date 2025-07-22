@@ -7,7 +7,7 @@
 #include "Config.h"
 #include "VehicleRenderConn.h"
 #include "Hashes.h"
-#include "WorldModel.h"
+#include "SmackableRenderConn.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
@@ -81,6 +81,28 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 	}
 }
 
+SmackableRenderConn* ToSmackableRenderConn(void* ptr)
+{
+	return (SmackableRenderConn*)((uintptr_t)ptr - sizeof(SimConnection));
+}
+
+bool IsSmackable(WorldModel* worldModel)
+{
+	auto ptr = SmackableRenderConn::List.Next;
+	while ((int)ptr != (int)&SmackableRenderConn::List)
+	{
+		auto smackable = ToSmackableRenderConn(ptr);
+		if (smackable->pWorldModel == worldModel)
+		{
+			return true;
+		}
+
+		ptr = smackable->Next;
+	}
+
+	return false;
+}
+
 void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 {
 	auto drawInfo = cullInfo->FirstDrawInfo;
@@ -99,6 +121,12 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 	auto worldModel = WorldModel::List.Next;
 	while (worldModel != &WorldModel::List)
 	{
+		if (IsSmackable(worldModel))
+		{
+			worldModel = worldModel->Next;
+			continue;
+		}
+
 		auto spaceNode = worldModel->pSpaceNode;
 		D3DXMATRIX* matrix = spaceNode ? &spaceNode->Matrix1 : &worldModel->Matrix;
 

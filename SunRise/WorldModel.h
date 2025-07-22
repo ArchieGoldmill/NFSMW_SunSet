@@ -44,8 +44,14 @@ struct WorldModel : bTNode<WorldModel>
 	int field_1C;
 	int field_20;
 	int field_24;
-	int field_28;
-	int field_2C;
+	char field_28;
+	char field_29;
+	char field_2A;
+	char field_2B;
+	char field_2C;
+	char field_2D;
+	char field_2E;
+	char field_2F;
 	SpaceNode* pSpaceNode;
 	int field_34;
 	int field_38;
@@ -56,3 +62,5 @@ struct WorldModel : bTNode<WorldModel>
 	int field_88;
 	int field_8C;
 };
+
+ASSERT_SIZE(WorldModel, 0x90);

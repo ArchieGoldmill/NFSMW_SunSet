@@ -327,12 +327,6 @@ void PopulateShaderSpotlights(RenderModel* model)
 				NumSpotLights++;
 			}
 		}
-		else
-		{
-#ifdef _DEBUG
-			cusprintf("Too many spotlights for model %s, max is %d", model->pSolid->name, NUM_SPOTLIGHTS);
-#endif 
-		}
 	}
 }
 

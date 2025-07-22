@@ -55,6 +55,6 @@ struct SolidLights
 {
 	Hash Hash;
 	std::string Name;
-	FlareModel* Flare;
+	FlareModel* Flare = NULL;
 	std::vector<SpotLight> Lights;
 };

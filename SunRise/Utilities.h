@@ -36,7 +36,7 @@ bool WriteFileFromMemory(const char* FileName, const void* buffer, long size)
 	return 1;
 }
 
-bool ConeIntersectsSphere(const D3DXVECTOR3& coneTip, const D3DXVECTOR3& coneDir, float coneAngleRad, float coneRange, const D3DXVECTOR3& sphereCenter, float sphereRadius)
+inline bool ConeIntersectsSphere(const D3DXVECTOR3& coneTip, const D3DXVECTOR3& coneDir, float coneAngleRad, float coneRange, const D3DXVECTOR3& sphereCenter, float sphereRadius)
 {
 	D3DXVECTOR3 V = sphereCenter - coneTip;
 

@@ -62,6 +62,23 @@ SolidLights:
         OuterAngle: 65.0
         Intensity: 5.0
         Range: 30.0
+  - Solid: XO_LIGHTPOSTB_WALL_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -3.85, 8.7]
+        Direction: [0.0, -0.5, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+      - Position: [0.0, 3.85, 8.7]
+        Direction: [0.0, 0.5, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
   - Solid: XO_TRAFFICLIGHTA_1B_00
     Flare: LampPost
     SpotLights:
@@ -92,3 +109,124 @@ SolidLights:
         OuterAngle: 65.0
         Intensity: 5.0
         Range: 30.0
+  - Solid: XO_STREETLIGHTC_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -2.8, 8.2]
+        Direction: [0.0, -0.5, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_STREETLIGHTM_1B_DW_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, 0.0, 7.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_IRONLAMPHANGING_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -3.3, 7.4]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_STREETLIGHTJ_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, 0.0, 4.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_LIGHTPOSTA_1A_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -4.2, 9.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_STREETLIGHTCB_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -6.0, 9.8]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+  - Solid: XO_LIGHTPOLEA_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.5, -0.5, 8.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 35.0
+        OuterAngle: 65.0
+        Intensity: 5.0
+        Range: 30.0
+
+  - Solid: XS_CHEVRCNRA_1_00
+    Flare: Chevron
+    SpotLights:
+      - Position: [-0.6, -0.6, 6.3]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.8, 0.4]
+        InnerAngle: 150.0
+        OuterAngle: 180.0
+        Intensity: 15.0
+        Range: 10.0
+  - Solid: XS_MEDIANPOLER_1B_00
+    Flare: Chevron
+    SpotLights:
+      - Position: [0.0, 0.0, 2.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.8, 0.4]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 15.0
+  - Solid: XS_MEDIANPOLE_1B_00
+    Flare: Chevron
+    SpotLights:
+      - Position: [0.0, 0.0, 2.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.8, 0.4]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 5.0
+  - Solid: XS_MEDIANPOLE_1B_LZ_00
+    Flare: Chevron
+    SpotLights:
+      - Position: [0.0, 0.0, 2.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.8, 0.4]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 5.0
+  - Solid: XS_MEDIANPOLEGREEN_1B_CK_00
+    Flare: ""
+    SpotLights:
+      - Position: [0.0, 0.0, 2.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.0, 1.0, 0.0]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 5.0

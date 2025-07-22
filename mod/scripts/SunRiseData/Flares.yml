@@ -4,3 +4,10 @@ Flares:
       Intensity: 1.0
       Size: 2.0
       Type: 0
+    - Name: Chevron
+      Color: [1.0, 0.7, 0.5]
+      Intensity: 1.0
+      Size: 10.0
+      Type: 3
+
+      

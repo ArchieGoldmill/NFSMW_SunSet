@@ -99,26 +99,17 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 	auto worldModel = WorldModel::List.Next;
 	while (worldModel != &WorldModel::List)
 	{
-		D3DXMATRIX* matrix = NULL;
-
 		auto spaceNode = worldModel->pSpaceNode;
-		if (spaceNode)
-		{
-			matrix = &spaceNode->Matrix1;
-		}
-		else
-		{
-			matrix = &worldModel->Matrix;
-		}
+		D3DXMATRIX* matrix = spaceNode ? &spaceNode->Matrix1 : &worldModel->Matrix;
 
 		eModel* model = worldModel->pModel;
-		if (!worldModel->pModel && worldModel->Heirarchy)
+		if (!model && worldModel->Heirarchy)
 		{
 			auto nodes = &worldModel->Heirarchy->Node;
 			model = nodes[worldModel->HeirarchyIndex].pModel;
 		}
 
-		if (matrix && model)
+		if (model && matrix)
 		{
 			PopulateFromModel(model, matrix);
 		}

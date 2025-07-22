@@ -16,14 +16,30 @@ struct SpaceNode
 	D3DXMATRIX Matrix2;
 };
 
+struct ModelHeirarchyNode
+{
+	Hash NameHash;
+	eModel* pModel;
+	int Flags;
+	Hash Parent;
+};
+
+struct ModelHeirarchy
+{
+	Hash NameHash;
+	int NumNodes;
+	int Flags;
+	ModelHeirarchyNode Node;
+};
+
 struct WorldModel : bTNode<WorldModel>
 {
 	inline static auto& List = *(bTNode<WorldModel>*)(0x009B0F90);
 
 	eModel* pModel;
 	int field_C;
-	int field_10;
-	int field_14;
+	ModelHeirarchy* Heirarchy;
+	int HeirarchyIndex;
 	int field_18;
 	int field_1C;
 	int field_20;
@@ -35,4 +51,8 @@ struct WorldModel : bTNode<WorldModel>
 	int field_38;
 	int field_3C;
 	D3DXMATRIX Matrix;
+	int field_80;
+	int field_84;
+	int field_88;
+	int field_8C;
 };

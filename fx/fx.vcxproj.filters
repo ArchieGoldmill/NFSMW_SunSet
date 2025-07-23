@@ -17,9 +17,18 @@
     <FxCompile Include="car.fx" />
     <FxCompile Include="skybox.fx" />
     <FxCompile Include="tree.fx" />
+    <FxCompile Include="shadowmap.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
+    <FxCompile Include="global.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_world.hfx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="techniques.fx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

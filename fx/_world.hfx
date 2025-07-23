@@ -1,37 +1,5 @@
+#include "global.fx"
 #include "spotlights.fx"
-
-float4x4 WorldViewProj : WORLDVIEWPROJECTION;
-float4x4 cmWorldMat : LOCALWORLD;
-float4 ScreenOffset : SCREENOFFSET;
-int Cull_Mode : CULL_MODE;
-int BaseBlendState[5] : BLENDSTATE;
-int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
-int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
-int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
-
-float4 world_position(float4 screen_pos)
-{
-	float4 p = mul(screen_pos, WorldViewProj);
-	p.xy += ScreenOffset.xy * p.w;
-	return p;
-}
-
-float4 screen_position(float4 screen_pos)
-{
-	screen_pos.xy += ScreenOffset.xy;
-	return screen_pos;
-}
-
-texture diffusemap : DiffuseMap;
-sampler DIFFUSEMAP_SAMPLER = sampler_state
-{
-	texture = <diffusemap>;
-	AddressU = WRAP;
-	AddressV = WRAP;
-	MIPFILTER = <BaseTextureFilterParam>;
-	MINFILTER = <BaseMinTextureFilter>;
-	MAGFILTER = <BaseMagTextureFilter>;
-};
 
 struct VS_INPUT
 {
@@ -50,16 +18,6 @@ struct PS_INPUT
 	float3 world_nomral : TEXCOORD2;
 	float4 color : COLOR0;
 };
-
-void VS_Stub(VS_INPUT IN, out PS_INPUT OUT)
-{
-	OUT.position = mul(IN.position, WorldViewProj);
-}
-
-float4 PS_Stub(PS_INPUT IN) : COLOR
-{
-	return float4(0, 1, 0, 1);
-}
 
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
@@ -100,115 +58,5 @@ float4 PS_Unlit(PS_INPUT IN) : COLOR
 	return tex;
 }
 
-float4 PS_LitPixel_8(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 8);
-}
-
-float4 PS_LitPixel_16(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 16);
-}
-
-float4 PS_LitPixel_24(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 24);
-}
-
-technique world<int shader = 1;>
-{
-	pass p0
-	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
-
-		VertexShader = compile vs_3_0 VS_Stub();
-		PixelShader = compile ps_3_0 PS_Stub();
-	}
-}
-
-technique LitPixel_8
-{
-	pass p0
-	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
-
-		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel_8();
-	}
-}
-
-technique LitPixel_16
-{
-	pass p0
-	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
-
-		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel_16();
-	}
-}
-
-technique LitPixel_24
-{
-	pass p0
-	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
-
-		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel_24();
-	}
-}
-
-technique Unlit
-{
-	pass p0
-	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
-
-		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_Unlit();
-	}
-}
-
-technique LitVertex
-{
-	pass p0
-	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
-
-		VertexShader = compile vs_3_0 VS_LitVertex();
-		PixelShader = compile ps_3_0 PS_Unlit();
-	}
-}
-
+#include "techniques.fx"
 #include "shadowmap.fx"

@@ -124,7 +124,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <FxCompile Include="car.fx" />
+    <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
+    <FxCompile Include="shadowmap.fx" />
     <FxCompile Include="skybox.fx" />
     <FxCompile Include="spotlights.fx" />
     <FxCompile Include="tree.fx" />
@@ -133,6 +135,7 @@
     <FxCompile Include="worldreflect.fx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="techniques.fx" />
     <ClInclude Include="_world.hfx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

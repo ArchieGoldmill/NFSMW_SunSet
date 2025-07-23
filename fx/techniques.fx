@@ -7,28 +7,12 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT = VS_Base(IN);
-	OUT.color = float4(ApplySpotLights(OUT.world_nomral, OUT.world_pos.xyz, 12), 1);
-}
-
-float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
-{
-	float3 light = ApplySpotLights(IN.world_nomral, IN.world_pos.xyz, lightCount);
-	return PS_Base(IN, light);
+	OUT.color = float4(ApplySpotLights(OUT.normal, OUT.world_pos.xyz, 12), 1);
 }
 
 float4 PS_Unlit(PS_INPUT IN) : COLOR
 {
-	return PS_Base(IN, IN.color.rgb);
-}
-
-void VS_Stub(VS_INPUT IN, out PS_INPUT OUT)
-{
-	OUT.position = mul(IN.position, WorldViewProj);
-}
-
-float4 PS_Stub(PS_INPUT IN) : COLOR
-{
-	return float4(0, 1, 0, 1);
+	return PS_LitPixel(IN, 0);
 }
 
 float4 PS_LitPixel_8(PS_INPUT IN) : COLOR
@@ -44,6 +28,16 @@ float4 PS_LitPixel_16(PS_INPUT IN) : COLOR
 float4 PS_LitPixel_24(PS_INPUT IN) : COLOR
 {
 	return PS_LitPixel(IN, 24);
+}
+
+void VS_Stub(VS_INPUT IN, out PS_INPUT OUT)
+{
+	OUT.position = mul(IN.position, WorldViewProj);
+}
+
+float4 PS_Stub(PS_INPUT IN) : COLOR
+{
+	return float4(0, 1, 0, 1);
 }
 
 technique world<int shader = 1; >

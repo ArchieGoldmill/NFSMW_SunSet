@@ -30,7 +30,6 @@ struct PS_INPUT
 	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
 	float4 world_pos : TEXCOORD1;
-	float3 world_nomral : TEXCOORD2;
 	float4 color : COLOR0;
 	float4 shadow_tex : TEXCOORD3;
 };
@@ -45,14 +44,15 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal = normalize(IN.normal);
 	OUT.world_pos = mul(IN.position, cmWorldMat);
-	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
 	
 	return OUT;
 }
 
-float4 PS_Base(PS_INPUT IN, float3 light)
+float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
+	
+	float3 light = lightCount > 0 ? ApplySpotLights(normal, IN.world_pos.xyz, lightCount) : IN.color;
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	

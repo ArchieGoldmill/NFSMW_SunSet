@@ -4,6 +4,7 @@
 #include "eEffect.h"
 #include "TimeOfDay.h"
 #include "Utilities.h"
+#include "Rain.h"
 
 class Weather
 {
@@ -30,6 +31,7 @@ public:
 		this->UpdateTextures();
 		this->UpdateSun();
 		this->SetParams();
+		this->UpdateRain();
 
 		MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime);
 	}
@@ -174,9 +176,28 @@ private:
 		e->SetVector(ShaderParam::cvSunDirection, &sunDirection);
 	}
 
+	void UpdateRain()
+	{
+		bool isRaining = this->IsRaining();
+		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * (isRaining ? 0.5 : 0.1));
+
+		auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
+
+		D3DXVECTOR4 rainParams(0, 0, 0, 0);
+		rainParams.x = Rain::Instance->Intensity;
+		rainParams.y = RoadWetness;
+
+		roadShader->SetVector(ShaderParam::cvRainParams, &rainParams);
+	}
+
 	float GetTime()
 	{
 		return TimeOfDay::Instance->CurrentTime;
+	}
+
+	bool IsRaining()
+	{
+		return Rain::Instance->Intensity > 0.0f;
 	}
 };
 

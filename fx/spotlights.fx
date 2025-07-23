@@ -27,13 +27,13 @@ float3 GetSpotlight(SpotLight light, float3 normal, float3 worldPos)
 	return light.Color * NdotL * atten * spotAtten;
 }
 
-float3 ApplySpotLights(float3 normal, float3 worldPos, int count)
+float3 ApplySpotLightsWorld(float3 world_nomral, float3 worldPos, int count)
 {
 	float3 color = float3(0, 0, 0);
 	for (int i = 0; i < count; ++i)
 	{
 		SpotLight spotlight = caSpotLights[i];
-		color += GetSpotlight(spotlight, normal, worldPos);
+		color += GetSpotlight(spotlight, world_nomral, worldPos);
 	}
 	
 	float len = length(color);
@@ -41,4 +41,10 @@ float3 ApplySpotLights(float3 normal, float3 worldPos, int count)
 	color = normalize(color) * len;
 	
 	return color;
+}
+
+float3 ApplySpotLights(float3 normal, float3 worldPos, int count)
+{
+	float3 world_nomral = normalize(mul(normal, (float3x3) cmWorldMat));
+	return ApplySpotLightsWorld(world_nomral, worldPos, count);
 }

@@ -1,8 +1,11 @@
 Config:
-  ForceTime: 0.3
+  ForceTime: 0.5
+
   LightMaxDistance: -1.0
   LightLodDistance: 150.0
+
   SunRise: 0.2 
   SunSet: 0.8
+
   LightsOn: 0.75
   LightsOff: 0.25

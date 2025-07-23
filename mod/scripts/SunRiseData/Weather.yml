@@ -2,15 +2,29 @@ Weather:
   - Time: 0.0
     DiffuseColor: [0.0, 0.0, 0.0]
     AmbientColor: [0.2, 0.2, 0.2]
+    SpecularColor: [0.0, 0.0, 0.0]
+    SpecularPower: 0.0
 
   - Time: 0.2
     DiffuseColor: [0.0, 0.0, 0.0]
-    AmbientColor: [0.4, 0.4, 0.4]
+    AmbientColor: [0.3, 0.3, 0.3]
+    SpecularColor: [0.0, 0.0, 0.0]
+    SpecularPower: 0.0
+
+  - Time: 0.35
+    DiffuseColor: [0.65, 0.65, 0.65]
+    AmbientColor: [0.48, 0.45, 0.43]
+    SpecularColor: [1.80, 1.50, 1.3]
+    SpecularPower: 10.0
 
   - Time: 0.5
     DiffuseColor: [1.0, 0.8, 0.7]
     AmbientColor: [0.5, 0.5, 0.5]
+    SpecularColor: [1.0, 0.7, 0.5]
+    SpecularPower: 30.0
 
   - Time: 0.8
     DiffuseColor: [0.0, 0.0, 0.0]
     AmbientColor: [1.0, 1.0, 1.0]
+    SpecularColor: [0.0, 0.0, 0.0]
+    SpecularPower: 10.0

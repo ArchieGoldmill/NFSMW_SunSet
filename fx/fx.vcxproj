@@ -126,6 +126,7 @@
     <FxCompile Include="car.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
+    <FxCompile Include="lighting.fx" />
     <FxCompile Include="normalmap.fx" />
     <FxCompile Include="shadowmap.fx" />
     <FxCompile Include="skybox.fx" />
@@ -138,7 +139,6 @@
   <ItemGroup>
     <ClInclude Include="shadow.fx" />
     <ClInclude Include="techniques.fx" />
-    <ClInclude Include="_world.hfx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

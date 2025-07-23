@@ -59,10 +59,13 @@ private:
 		for (shader_type stype : { shader_type::WorldShader, shader_type::WorldNormalMap, shader_type::WorldReflectShader, shader_type::GlossyWindow, shader_type::CarShader, shader_type::billboardshader })
 		{
 			auto e = eEffect::Get(stype);
+
 			this->current.DiffuseColor.w = this->LightsOn() ? 1.0f : 0.0f;
+			this->current.SpecularColor.w = this->current.SpecularPower;
 
 			e->SetVector(ShaderParam::cvDiffuseColor, &this->current.DiffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &this->current.AmbientColor);
+			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
 		}
 	}
 
@@ -70,6 +73,8 @@ private:
 	{
 		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t);
 		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t);
+		this->current.SpecularColor = LerpVector(a->SpecularColor, b->SpecularColor, t);
+		this->current.SpecularPower = std::lerp(a->SpecularPower, b->SpecularPower, t);
 	}
 
 	void UpdateWeather()

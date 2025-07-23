@@ -2,13 +2,9 @@
 #include "spotlights.fx"
 #include "shadow.fx"
 #include "normalmap.fx"
+#include "lighting.fx"
 
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
-float4 LocalEyePos : LOCALEYEPOS;
-float4 DiffuseColour : DIFFUSECOLOUR;
-float4 AmbientColour : AMBIENTCOLOUR;
-float4 SpecularColour : SPECULARCOLOUR;
-float SpecularPower : SPECULARPOWER;
 
 float3 cvAmbientColor;
 float3 cvDiffuseColor;
@@ -33,6 +29,7 @@ struct PS_INPUT
 	float4 color : COLOR0;
 	float4 reflection : TEXCOORD4;
 	float4 shadow_tex : TEXCOORD3;
+	float4 local_pos : TEXCOORD2;
 };
 
 texture ReflectedTex : REFLECTEDTEX;
@@ -89,6 +86,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal = normalize(IN.normal);
 	OUT.world_pos = mul(IN.position, cmWorldMat);
+	OUT.local_pos = IN.position;
 	
 	float4 p = OUT.position;
 	p.y = -p.y;
@@ -105,6 +103,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
 	
+	// Apply road detail normal map
 	float3 roadDetail = tex2D(FILTERTEXTURE2_SAMPLER, IN.world_pos.xy * 0.3).rgb * 2 - 1;
 	float3 bitangent = cross(normal, float3(1, 0, 0));
 	float3 tangent = normalize(cross(bitangent, normal));
@@ -121,23 +120,33 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
+	float3 specular = GetSpecular(normal, lightDir, IN.local_pos.xyz);
 	
 	float puddle_mask = tex2D(FILTERTEXTURE0_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
+	
+	// Make puddles darker so reflection is more visible
 	albedo = lerp(albedo, albedo / 15, puddle_mask);
 	
 	float4 reflection_uv = IN.reflection;
 	
+	// Distort reflection by rain drops
 	float2 rainDrops = tex2D(FILTERTEXTURE1_SAMPLER, IN.world_pos.xy).rg * 2 - 1;
 	reflection_uv.xy += rainDrops * cvRainParams.x;
 	
+	// Distor reflection by normal map
 	reflection_uv.xy += normal.xy * 0.1;
 	
 	float3 reflection_sample = tex2Dproj(MISCMAP1_SAMPLER, reflection_uv).rgb;
 	reflection_sample *= puddle_mask;
 	
-	float3 finalLight = cvAmbientColor + diffuse * shadow + light;
-	
+	// Vertical surfaces should not reflect
 	float reflectance = dot(original_normal, float3(0, 0, 1));
+	
+	// Apply road detail in shadow
+	float shadowDetail = dot(normal, original_normal);
+	albedo *= lerp(shadowDetail, 1, shadow);
+	
+	float3 finalLight = cvAmbientColor + (diffuse + specular) * shadow + light;
 	
 	float3 final = albedo;
 	final *= finalLight;

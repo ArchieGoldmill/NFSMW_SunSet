@@ -26,11 +26,11 @@
     <FxCompile Include="normalmap.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="lighting.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_world.hfx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="techniques.fx">
       <Filter>Header Files</Filter>
     </ClInclude>

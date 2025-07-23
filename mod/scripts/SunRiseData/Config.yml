@@ -1,5 +1,5 @@
 Config:
-  ForceTime: 0.5
+  ForceTime: 0.35
 
   LightMaxDistance: -1.0
   LightLodDistance: 150.0

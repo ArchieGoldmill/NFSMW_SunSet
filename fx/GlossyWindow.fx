@@ -1,14 +1,9 @@
 #include "global.fx"
 #include "spotlights.fx"
 #include "shadow.fx"
+#include "lighting.fx"
 
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
-float4 LocalEyePos : LOCALEYEPOS;
-float4 DiffuseColour : DIFFUSECOLOUR;
-float4 AmbientColour : AMBIENTCOLOUR;
-float4 SpecularColour : SPECULARCOLOUR;
-float4 cvRainParams : FILTERBLEND;
-float SpecularPower : SPECULARPOWER;
 
 float3 cvAmbientColor;
 float4 cvDiffuseColor;
@@ -32,6 +27,7 @@ struct PS_INPUT
 	float3 world_nomral : TEXCOORD2;
 	float4 color : COLOR0;
 	float4 shadow_tex : TEXCOORD3;
+	float4 local_pos : TEXCOORD4;
 };
 
 PS_INPUT VS_Base(VS_INPUT IN)
@@ -45,6 +41,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.normal = normalize(IN.normal);
 	OUT.world_pos = mul(IN.position, cmWorldMat);
 	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
+	OUT.local_pos = IN.position;
 	
 	return OUT;
 }
@@ -63,8 +60,9 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
+	float3 specular = GetSpecular(IN.normal, lightDir, IN.local_pos.xyz);
 	
-	float3 finalLight = cvAmbientColor + diffuse * shadow + light;
+	float3 finalLight = cvAmbientColor + (diffuse + specular) * shadow + light;
 	finalLight = lerp(finalLight, float3(30, 20, 10), reflect * cvDiffuseColor.w);
 	
 	float3 final = albedo;

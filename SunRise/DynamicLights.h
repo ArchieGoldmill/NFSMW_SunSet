@@ -358,9 +358,8 @@ inline bool UseVertexLighting(RenderModel* model)
 
 	float cameraDistance1 = GetCameraDistance(bbox_min);
 	float cameraDistance2 = GetCameraDistance(bbox_max);
-	float lightLodDist = 150;
 
-	return cameraDistance1 > lightLodDist && cameraDistance2 > lightLodDist;
+	return cameraDistance1 > g_Config.LightLodDistance && cameraDistance2 > g_Config.LightLodDistance;
 }
 
 TechniqueType GetTechnique(RenderModel* renderModel)

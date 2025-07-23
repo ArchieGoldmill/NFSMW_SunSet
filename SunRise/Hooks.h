@@ -7,6 +7,7 @@
 #include "RenderModel.h"
 #include "RenderTarget.h"
 #include "LightFlares.h"
+#include "Weather.h"
 
 void CheckReloadShaders()
 {
@@ -25,9 +26,16 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
 	cullInfo->SetuWorldCulling();
 
+	if(g_Config.ForceTime >= 0.0f)
+	{
+		TimeOfDay::Instance->CurrentTime = g_Config.ForceTime;
+	}
+
 	CheckReloadShaders();
 
 	PopulateSpotLights(cullInfo);
+
+	g_Weather.Update();
 }
 
 void __stdcall SetShaderParams(RenderModel* renderModel)
@@ -120,6 +128,18 @@ void __fastcall SetEffectParams(eEffect* effect)
 		shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
 
 		shaderParams.Params[(int)ShaderParam::caSpotLights] = effect->D3DEffect->GetParameterByName(NULL, "caSpotLights");
+		shaderParams.Params[(int)ShaderParam::cvDiffuseColor] = effect->D3DEffect->GetParameterByName(NULL, "cvDiffuseColor");
+		shaderParams.Params[(int)ShaderParam::cvAmbientColor] = effect->D3DEffect->GetParameterByName(NULL, "cvAmbientColor");
+		shaderParams.Params[(int)ShaderParam::cvSpecularColor] = effect->D3DEffect->GetParameterByName(NULL, "cvSpecularColor");
+
+		ShaderParamsMap[effect->id] = shaderParams;
+	}
+
+	if (effect->id == shader_type::skyshader)
+	{
+		ShaderParams shaderParams;
+
+		shaderParams.Params[(int)ShaderParam::cvSunDirection] = effect->D3DEffect->GetParameterByName(NULL, "cvSunDirection");
 
 		ShaderParamsMap[effect->id] = shaderParams;
 	}
@@ -135,4 +155,10 @@ void InitHooks()
 
 	injector::MakeCALL(0x006C60D9, SetEffectParams);
 	injector::MakeCALL(0x006DB2B0, SetEffectParams);
+
+	// Disable Texture Headlights
+	injector::WriteMemory<BYTE>(0x007429E0, 0xEB);
+
+	// Disable sun direction
+	injector::MakeNOP(0x0076956E, 5);
 }

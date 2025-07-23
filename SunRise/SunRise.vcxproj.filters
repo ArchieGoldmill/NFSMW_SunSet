@@ -109,5 +109,11 @@
     <ClInclude Include="Camera.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Weather.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeOfDay.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

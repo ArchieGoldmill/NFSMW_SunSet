@@ -23,6 +23,9 @@
     <FxCompile Include="global.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="normalmap.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_world.hfx">

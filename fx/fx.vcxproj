@@ -126,6 +126,7 @@
     <FxCompile Include="car.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
+    <FxCompile Include="normalmap.fx" />
     <FxCompile Include="shadowmap.fx" />
     <FxCompile Include="skybox.fx" />
     <FxCompile Include="spotlights.fx" />

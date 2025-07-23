@@ -73,3 +73,8 @@ bool StringEqual(const char* s1, const char* s2)
 
 	return strcmp(s1, s2) != 0;
 }
+
+inline float ConvertRange(float value, float srcMin, float srcMax, float destMin, float destMax)
+{
+	return destMin + (value - srcMin) * (destMax - destMin) / (srcMax - srcMin);
+}

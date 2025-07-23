@@ -1,0 +1,12 @@
+Weather:
+  - Time: 0.0
+    DiffuseColor: [0.0, 0.0, 0.0]
+    AmbientColor: [0.2, 0.2, 0.2]
+
+  - Time: 0.2
+    DiffuseColor: [0.0, 0.0, 0.0]
+    AmbientColor: [0.4, 0.4, 0.4]
+
+  - Time: 0.5
+    DiffuseColor: [0.0, 0.0, 0.0]
+    AmbientColor: [1.0, 1.0, 1.0]

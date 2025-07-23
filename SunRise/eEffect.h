@@ -18,6 +18,12 @@ enum TechniqueType
 enum class ShaderParam
 {
 	caSpotLights,
+	
+	cvDiffuseColor,
+	cvAmbientColor,
+	cvSpecularColor,
+	cvSunDirection,
+
 	count
 };
 
@@ -206,6 +212,11 @@ struct eEffect
 	ID3DXEffect* D3DEffect;
 	IDirect3DVertexDeclaration9* VertexDecl;
 
+	static eEffect* Get(shader_type type)
+	{
+		return eEffect::List[(int)type];
+	}
+
 	void SetParams()
 	{
 		FUNC(0x006C5500, void, __thiscall, _SetParams, eEffect*);
@@ -222,9 +233,13 @@ struct eEffect
 		this->D3DEffect->SetTexture(this->Params[(int)param].handle, texture);
 	}
 
-	void SetVector(shader_param param, D3DXVECTOR4* vector)
+	void SetVector(ShaderParam p, D3DXVECTOR4* v)
 	{
-		this->D3DEffect->SetVector(this->Params[(int)param].handle, vector);
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetVector(handle, v);
+		}
 	}
 
 	void SetFloat(shader_param param, float f)

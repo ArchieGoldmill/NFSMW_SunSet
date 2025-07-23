@@ -10,6 +10,17 @@ inline SpotLight CarBrakeLightsOnConfig;
 inline SpotLight CarBrakeLightsOffConfig;
 inline SpotLight HelicopterLightConfig;
 
+struct Config
+{
+	float ForceTime;
+	float LightMaxDistance;
+	float LightLodDistance;
+	float SunRise;
+	float SunSet;
+};
+
+inline Config g_Config;
+
 D3DXVECTOR3 ParseVec3(const YAML::Node& node)
 {
 	return D3DXVECTOR3(node[0].as<float>(), node[1].as<float>(), node[2].as<float>());
@@ -107,7 +118,7 @@ void LoadLightFlareConfig()
 	YAML::Node flaresRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Flares.yml");
 #else
 	auto dir = GetExeDirectory();
-	YAML::Node spotlightsRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Flares.yml");
+	YAML::Node flaresRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Flares.yml");
 #endif
 
 	const auto& flares = flaresRoot["Flares"];
@@ -128,6 +139,26 @@ void LoadLightFlareConfig()
 
 void LoadConfig()
 {
+#ifdef _DEBUG 
+	YAML::Node settingsRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Config.yml");
+#else
+	auto dir = GetExeDirectory();
+	YAML::Node settingsRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Config.yml");
+#endif
+
+	const auto& settings = settingsRoot["Config"];
+
+	g_Config.ForceTime = settings["ForceTime"].as<float>();
+	g_Config.LightLodDistance = settings["LightLodDistance"].as<float>();
+	g_Config.LightMaxDistance = settings["LightMaxDistance"].as<float>();
+	g_Config.SunRise = settings["SunRise"].as<float>();
+	g_Config.SunSet = settings["SunSet"].as<float>();
+}
+
+void InitConfig()
+{
+	LoadConfig();
+
 	LoadLightFlareConfig();
 
 	LoadSpotLightConfig();

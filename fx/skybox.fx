@@ -7,6 +7,8 @@ int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
 int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
 int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
 
+float4 cvSunDirection;
+
 struct VS_INPUT
 {
 	float4 position : POSITION;
@@ -52,7 +54,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 _betaM = float3(4e-2, 4e-2, 4e-2);
 	
 	float3 D = normalize(IN.local_position);
-	float3 Ds = normalize(float3(0, 1, 1));
+	float3 Ds = normalize(cvSunDirection.xyz);
 	
 	float t = max(0.001, D.z) + max(-D.z, -0.001);
 

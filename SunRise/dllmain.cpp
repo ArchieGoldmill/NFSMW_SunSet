@@ -13,7 +13,7 @@ void Init()
 	*skipFE = 1;
 #endif 
 
-	LoadConfig();
+	InitConfig();
 	InitConsole();
 	InitShaderLoader();
 	InitHooks();

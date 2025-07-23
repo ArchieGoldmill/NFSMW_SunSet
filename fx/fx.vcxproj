@@ -136,6 +136,7 @@
     <FxCompile Include="worldreflect.fx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="shadow.fx" />
     <ClInclude Include="techniques.fx" />
     <ClInclude Include="_world.hfx" />
   </ItemGroup>

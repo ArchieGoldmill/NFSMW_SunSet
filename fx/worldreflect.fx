@@ -1,5 +1,18 @@
 #include "global.fx"
 #include "spotlights.fx"
+#include "shadow.fx"
+#include "normalmap.fx"
+
+float4 LocalLightVec : LOCALLIGHTDIRVEC;
+float4 LocalEyePos : LOCALEYEPOS;
+float4 DiffuseColour : DIFFUSECOLOUR;
+float4 AmbientColour : AMBIENTCOLOUR;
+float4 SpecularColour : SPECULARCOLOUR;
+float4 cvRainParams : FILTERBLEND;
+float SpecularPower : SPECULARPOWER;
+
+float3 cvAmbientColor;
+float3 cvDiffuseColor;
 
 struct VS_INPUT
 {
@@ -20,6 +33,7 @@ struct PS_INPUT
 	float3 world_nomral : TEXCOORD2;
 	float4 color : COLOR0;
 	float4 reflection : TEXCOORD4;
+	float4 shadow_tex : TEXCOORD3;
 };
 
 texture ReflectedTex : REFLECTEDTEX;
@@ -33,10 +47,10 @@ sampler MISCMAP1_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
-texture MISCMAP5_TEXTURE : FILTERTEXTURE0;
-sampler2D MISCMAP5_SAMPLER = sampler_state
+texture FilterTexture0 : FILTERTEXTURE0;
+sampler2D FILTERTEXTURE0_SAMPLER = sampler_state
 {
-	texture = MISCMAP5_TEXTURE;
+	texture = FilterTexture0;
 	AddressU = WRAP;
 	AddressV = WRAP;
 	MIPFILTER = LINEAR;
@@ -44,10 +58,10 @@ sampler2D MISCMAP5_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
-texture MISCMAP6_TEXTURE : FILTERTEXTURE1;
-sampler2D MISCMAP6_SAMPLER = sampler_state
+texture FilterTexture1 : FILTERTEXTURE1;
+sampler2D FILTERTEXTURE1_SAMPLER = sampler_state
 {
-	texture = MISCMAP6_TEXTURE;
+	texture = FilterTexture1;
 	AddressU = WRAP;
 	AddressV = WRAP;
 	MIPFILTER = LINEAR;
@@ -55,13 +69,23 @@ sampler2D MISCMAP6_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
-#include "normalmap.fx"
+texture FilterTexture2 : FILTERTEXTURE2;
+sampler2D FILTERTEXTURE2_SAMPLER = sampler_state
+{
+	texture = FilterTexture2;
+	AddressU = WRAP;
+	AddressV = WRAP;
+	MIPFILTER = LINEAR;
+	MINFILTER = LINEAR;
+	MAGFILTER = LINEAR;
+};
 
 PS_INPUT VS_Base(VS_INPUT IN)
 {
 	PS_INPUT OUT;
 
 	OUT.position = world_position(IN.position);
+	OUT.shadow_tex = vertex_shadow_tex(IN.position);
 	OUT.uv = IN.tex.xy;
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal = normalize(IN.normal);
@@ -77,31 +101,33 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	return OUT;
 }
 
-void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
-{
-	OUT = VS_Base(IN);
-	OUT.color = float4(0.4, 0.4, 0.4, 1);
-}
-
-void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
-{
-	OUT = VS_Base(IN);
-	OUT.color = float4(ApplySpotLights(OUT.world_nomral, OUT.world_pos.xyz, 12), 1);
-}
-
 float4 PS_Base(PS_INPUT IN, float3 light)
 {
+	float3 original_normal = IN.normal;
+	
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
+	
+	float3 roadDetail = tex2D(FILTERTEXTURE2_SAMPLER, IN.world_pos.xy * 0.3).rgb * 2 - 1;
+	float3 bitangent = cross(normal, float3(1, 0, 0));
+	float3 tangent = normalize(cross(bitangent, normal));
+	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);
+	normal = mul(normalize(roadDetail), tbn);
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	float3 albedo = diffuse_tex.rgb;
 	
-	float puddle_mask = tex2D(MISCMAP5_SAMPLER, IN.world_pos.xy / 20).r;
+	float3 lightDir = normalize(LocalLightVec);
+	float ndotl = dot(normal, lightDir);
+	float shadow = DoShadow(IN.shadow_tex, ndotl);
+	
+	float3 diffuse = ndotl * cvDiffuseColor.rgb;
+	
+	float puddle_mask = tex2D(FILTERTEXTURE0_SAMPLER, IN.world_pos.xy / 20).r;
 	albedo = lerp(albedo, albedo / 15, puddle_mask);
 	
 	float4 reflection_uv = IN.reflection;
 	
-	float2 rainDrops = tex2D(MISCMAP6_SAMPLER, IN.world_pos.xy).rg * 2 - 1;
+	float2 rainDrops = tex2D(FILTERTEXTURE1_SAMPLER, IN.world_pos.xy).rg * 2 - 1;
 	reflection_uv.xy += rainDrops;
 	
 	reflection_uv.xy += normal.xy * 0.1;
@@ -109,23 +135,15 @@ float4 PS_Base(PS_INPUT IN, float3 light)
 	float3 reflection_sample = tex2Dproj(MISCMAP1_SAMPLER, reflection_uv).rgb;
 	reflection_sample *= max(puddle_mask, 0.2);
 	
+	float3 finalLight = cvAmbientColor + diffuse * shadow + light;
+	
+	float reflectance = dot(original_normal, float3(0, 0, 1));
+	
 	float3 final = albedo;
-	final *= light;
-	final += reflection_sample;
+	final *= finalLight;
+	final += reflection_sample * reflectance;
 	
 	return float4(final, 1);
-}
-
-float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
-{
-	float3 light = ApplySpotLights(IN.world_nomral, IN.world_pos.xyz, lightCount);
-	light = max(light, float3(0.4, 0.4, 0.4));
-	return PS_Base(IN, light);
-}
-
-float4 PS_Unlit(PS_INPUT IN) : COLOR
-{
-	return PS_Base(IN, IN.color.rgb);
 }
 
 #include "techniques.fx"

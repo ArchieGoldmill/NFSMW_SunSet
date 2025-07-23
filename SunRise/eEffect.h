@@ -15,14 +15,24 @@ enum TechniqueType
 	Technique_Invalid = -1
 };
 
+const char* ShaderParamNames[] =
+{
+	"caSpotLights",
+	"cvDiffuseColor",
+	"cvAmbientColor",
+	"cvSpecularColor",
+	"cvSunDirection",
+	"cvRainParams"
+};
+
 enum class ShaderParam
 {
 	caSpotLights,
-	
 	cvDiffuseColor,
 	cvAmbientColor,
 	cvSpecularColor,
 	cvSunDirection,
+	cvRainParams,
 
 	count
 };

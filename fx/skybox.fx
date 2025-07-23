@@ -86,7 +86,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	
 	color = pow(color, float3(Gamma, Gamma, Gamma));
 	
-	return float4(color, 0.01);
+	return float4(color, 1.0);
 }
 
 technique skybox<int shader = 1;>

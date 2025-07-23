@@ -118,3 +118,23 @@ inline std::string GetExeDirectory() {
 	}
 	return fullPath.substr(0, pos);
 }
+
+inline void MoveTowards(float& a, float b, float step)
+{
+	if (a < b)
+	{
+		a += step;
+		if (a > b)
+		{
+			a = b;
+		}
+	}
+	else if (a > b)
+	{
+		a -= step;
+		if (a < b)
+		{
+			a = b;
+		}
+	}
+}

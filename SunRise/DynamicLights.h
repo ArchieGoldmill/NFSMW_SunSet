@@ -8,6 +8,7 @@
 #include "VehicleRenderConn.h"
 #include "Hashes.h"
 #include "SmackableRenderConn.h"
+#include "Weather.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
@@ -70,6 +71,7 @@ SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix)
 	D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 	D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
 	D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
+	spotLight.Color *= g_Weather.GetLightIntensity();
 
 	return spotLight;
 }
@@ -96,6 +98,11 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 
 void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 {
+	if (!g_Weather.WorldLightsOn())
+	{
+		return;
+	}
+
 	auto drawInfo = cullInfo->FirstDrawInfo;
 	while (drawInfo != cullInfo->CurrentDrawInfo)
 	{

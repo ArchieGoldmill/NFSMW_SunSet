@@ -182,6 +182,7 @@
     <ClInclude Include="LightFlares.h" />
     <ClInclude Include="MeshEntry.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Rain.h" />
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="RideInfo.h" />

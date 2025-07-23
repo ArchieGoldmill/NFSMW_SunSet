@@ -16,6 +16,11 @@ private:
 	TextureInfo* RoadDetail = nullptr;
 	TextureInfo* RainSplash[30];
 
+	float RoadWetness = 0.0f;
+	float RoadRainDrops = 0.0f;
+
+	float LightIntensity = 0.0f;
+
 public:
 	void Update()
 	{
@@ -25,15 +30,34 @@ public:
 		this->UpdateTextures();
 		this->UpdateSun();
 		this->SetParams();
+
+		MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime);
+	}
+
+	float GetLightIntensity()
+	{
+		return this->LightIntensity;
+	}
+
+	bool WorldLightsOn()
+	{
+		return this->LightIntensity > 0.0;
 	}
 
 private:
 
+	bool LightsOn()
+	{
+		float time = this->GetTime();
+		return (time > g_Config.LightsOn || time < g_Config.LightsOff);
+	}
+
 	void SetParams()
 	{
-		for (shader_type stype : { shader_type::WorldShader, shader_type::WorldNormalMap, shader_type::WorldReflectShader, shader_type::GlossyWindow, shader_type::CarShader })
+		for (shader_type stype : { shader_type::WorldShader, shader_type::WorldNormalMap, shader_type::WorldReflectShader, shader_type::GlossyWindow, shader_type::CarShader, shader_type::billboardshader })
 		{
 			auto e = eEffect::Get(stype);
+			this->current.DiffuseColor.w = this->LightsOn() ? 1.0f : 0.0f;
 
 			e->SetVector(ShaderParam::cvDiffuseColor, &this->current.DiffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &this->current.AmbientColor);

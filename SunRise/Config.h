@@ -12,6 +12,8 @@ struct Config
 	float LightLodDistance;
 	float SunRise;
 	float SunSet;
+	float LightsOn;
+	float LightsOff;
 };
 
 inline Config g_Config;
@@ -32,6 +34,8 @@ void LoadConfig()
 	g_Config.LightMaxDistance = settings["LightMaxDistance"].as<float>();
 	g_Config.SunRise = settings["SunRise"].as<float>();
 	g_Config.SunSet = settings["SunSet"].as<float>();
+	g_Config.LightsOn = settings["LightsOn"].as<float>();
+	g_Config.LightsOff = settings["LightsOff"].as<float>();
 }
 
 void InitConfig()

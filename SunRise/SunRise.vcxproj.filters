@@ -124,5 +124,8 @@
     <ClInclude Include="FlareConfig.h">
       <Filter>Config</Filter>
     </ClInclude>
+    <ClInclude Include="Rain.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

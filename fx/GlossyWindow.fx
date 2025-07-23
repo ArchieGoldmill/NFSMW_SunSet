@@ -12,7 +12,7 @@ float4 cvRainParams : FILTERBLEND;
 float SpecularPower : SPECULARPOWER;
 
 float3 cvAmbientColor;
-float3 cvDiffuseColor;
+float4 cvDiffuseColor;
 
 struct VS_INPUT
 {
@@ -63,7 +63,7 @@ float4 PS_Base(PS_INPUT IN, float3 light)
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	
 	float3 finalLight = cvAmbientColor + diffuse * shadow + light;
-	finalLight = lerp(finalLight, float3(3, 2, 1)*10, reflect);
+	finalLight = lerp(finalLight, float3(30, 20, 10), reflect * cvDiffuseColor.w);
 	
 	float3 final = albedo;
 	final.rgb *= finalLight;

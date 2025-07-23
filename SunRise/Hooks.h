@@ -131,7 +131,7 @@ void __fastcall SetEffectParams(eEffect* effect)
 {
 	effect->SetParams();
 
-	if (DynamicallyLit(effect))
+	for (shader_type stype : { shader_type::WorldShader, shader_type::WorldNormalMap, shader_type::WorldReflectShader, shader_type::GlossyWindow, shader_type::CarShader, shader_type::billboardshader, shader_type::skyshader })
 	{
 		ShaderParams shaderParams;
 
@@ -142,19 +142,10 @@ void __fastcall SetEffectParams(eEffect* effect)
 		shaderParams.Techniques[Technique_LitVertex] = effect->D3DEffect->GetTechniqueByName("LitVertex");
 		shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
 
-		shaderParams.Params[(int)ShaderParam::caSpotLights] = effect->D3DEffect->GetParameterByName(NULL, "caSpotLights");
-		shaderParams.Params[(int)ShaderParam::cvDiffuseColor] = effect->D3DEffect->GetParameterByName(NULL, "cvDiffuseColor");
-		shaderParams.Params[(int)ShaderParam::cvAmbientColor] = effect->D3DEffect->GetParameterByName(NULL, "cvAmbientColor");
-		shaderParams.Params[(int)ShaderParam::cvSpecularColor] = effect->D3DEffect->GetParameterByName(NULL, "cvSpecularColor");
-
-		ShaderParamsMap[effect->id] = shaderParams;
-	}
-
-	if (effect->id == shader_type::skyshader)
-	{
-		ShaderParams shaderParams;
-
-		shaderParams.Params[(int)ShaderParam::cvSunDirection] = effect->D3DEffect->GetParameterByName(NULL, "cvSunDirection");
+		for(int i = 0; i < (int)ShaderParam::count; i++)
+		{
+			shaderParams.Params[i] = effect->D3DEffect->GetParameterByName(NULL, ShaderParamNames[i]);
+		}
 
 		ShaderParamsMap[effect->id] = shaderParams;
 	}

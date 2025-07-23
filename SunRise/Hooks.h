@@ -9,6 +9,7 @@
 #include "LightFlares.h"
 #include "Weather.h"
 
+bool ReloadOnFocus = false;
 void CheckReloadShaders()
 {
 #ifdef _DEBUG
@@ -17,9 +18,23 @@ void CheckReloadShaders()
 		cusprintf("\nManual shader reload started:\n");
 		Game::ReloadShaders = true;
 
-		LoadConfig();
+		InitConfig();
 	}
-#endif 
+#endif
+
+	if (Game::LostFocus)
+	{
+		ReloadOnFocus = true;
+	}
+	else
+	{
+		if (ReloadOnFocus)
+		{
+			InitConfig();
+			cusprintf("\nConfig reload on focus\n");
+			ReloadOnFocus = false;
+		}
+	}
 }
 
 void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
@@ -161,4 +176,13 @@ void InitHooks()
 
 	// Disable sun direction
 	injector::MakeNOP(0x0076956E, 5);
+
+	// Disable sun flare
+	injector::MakeNOP(0x00504C56, 5);
+	injector::MakeNOP(0x006DF57B, 5);
+	injector::MakeNOP(0x006DF585, 5);
+
+	// Disable tunnel bloom
+	injector::MakeNOP(0x00504C65, 5);
+	injector::MakeNOP(0x00504C6F, 5);
 }

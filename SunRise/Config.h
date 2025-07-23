@@ -19,11 +19,25 @@ struct Config
 	float SunSet;
 };
 
+struct WeatherConfig
+{
+	float Time;
+	D3DXVECTOR4 DiffuseColor;
+	D3DXVECTOR4 AmbientColor;
+};
+
+inline std::vector<WeatherConfig*> WeatherList;
+
 inline Config g_Config;
 
 D3DXVECTOR3 ParseVec3(const YAML::Node& node)
 {
 	return D3DXVECTOR3(node[0].as<float>(), node[1].as<float>(), node[2].as<float>());
+}
+
+D3DXVECTOR4 ParseVec3To4(const YAML::Node& node)
+{
+	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), 0);
 }
 
 std::string GetExeDirectory() {
@@ -79,7 +93,7 @@ void LoadSpotLightConfig()
 		solid.HashA = Game::bStringHash(solid.Name.c_str());
 
 		auto nameB = lightNode["SolidLod"];
-		if(nameB.IsDefined())
+		if (nameB.IsDefined())
 		{
 			solid.HashB = Game::bStringHash(nameB.as<std::string>().c_str());
 		}
@@ -155,6 +169,35 @@ void LoadConfig()
 	g_Config.SunSet = settings["SunSet"].as<float>();
 }
 
+void LoadWeatherConfig()
+{
+	for(auto& config : WeatherList)
+	{
+		delete config;
+	}
+
+	WeatherList.clear();
+
+#ifdef _DEBUG 
+	YAML::Node weatherRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Weather.yml");
+#else
+	auto dir = GetExeDirectory();
+	YAML::Node weatherRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Weather.yml");
+#endif
+
+	const auto& list = weatherRoot["Weather"];
+	for (const auto& node : list)
+	{
+		auto config = new WeatherConfig();
+
+		config->Time = node["Time"].as<float>();
+		config->DiffuseColor = ParseVec3To4(node["DiffuseColor"]);
+		config->AmbientColor = ParseVec3To4(node["AmbientColor"]);
+
+		WeatherList.push_back(config);
+	}
+}
+
 void InitConfig()
 {
 	LoadConfig();
@@ -162,4 +205,6 @@ void InitConfig()
 	LoadLightFlareConfig();
 
 	LoadSpotLightConfig();
+
+	LoadWeatherConfig();
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 #include <stdio.h>
 #include "Hashes.h"
 
@@ -77,4 +78,14 @@ bool StringEqual(const char* s1, const char* s2)
 inline float ConvertRange(float value, float srcMin, float srcMax, float destMin, float destMax)
 {
 	return destMin + (value - srcMin) * (destMax - destMin) / (srcMax - srcMin);
+}
+
+inline D3DXVECTOR4 LerpVector(D3DXVECTOR4 a, D3DXVECTOR4 b, float t)
+{
+	return D3DXVECTOR4(std::lerp(a.x, b.x, t), std::lerp(a.y, b.y, t), std::lerp(a.z, b.z, t), std::lerp(a.w, b.w, t));
+}
+
+inline D3DXVECTOR3 LerpVector(D3DXVECTOR3 a, D3DXVECTOR3 b, float t)
+{
+	return D3DXVECTOR3(std::lerp(a.x, b.x, t), std::lerp(a.y, b.y, t), std::lerp(a.z, b.z, t));
 }

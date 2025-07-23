@@ -8,5 +8,9 @@ Weather:
     AmbientColor: [0.4, 0.4, 0.4]
 
   - Time: 0.5
+    DiffuseColor: [1.0, 0.8, 0.7]
+    AmbientColor: [0.3, 0.3, 0.3]
+
+  - Time: 0.8
     DiffuseColor: [0.0, 0.0, 0.0]
     AmbientColor: [1.0, 1.0, 1.0]

@@ -9,4 +9,5 @@ namespace Hashes
 	Hash RIGHT_BRAKELIGHT = 0xBF700A79;
 
 	Hash SR_PUDDLE_MASK = 0x6271C54C;
+	Hash SR_ROAD_DETAIL = 0xA9E127FB;
 }

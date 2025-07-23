@@ -10,10 +10,10 @@ struct TimeOfDay
 	int UpdateDirection;
 	float CurrentTime;
 
-	int pad[85];
+	int pad[89];
 
 	D3DXVECTOR4 SunPosition;
 	D3DXVECTOR4 SunDirection;
 };
 
-ASSERT_SIZE(TimeOfDay, 0x180);
+ASSERT_SIZE(TimeOfDay, 0x190);

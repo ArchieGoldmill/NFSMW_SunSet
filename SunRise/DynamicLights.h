@@ -289,18 +289,18 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 	std::sort(SpotLightBuffer, SpotLightBuffer + NumSpotLightBuffer, [](const SpotLightModel& a, const SpotLightModel& b) { return (int)a.Source < (int)b.Source; });
 }
 
-bool DynamicallyLit(eEffect* effect)
+inline bool DynamicallyLit(eEffect* effect)
 {
 	auto id = effect->id;
 	return id == shader_type::WorldShader || id == shader_type::WorldReflectShader || id == shader_type::WorldNormalMap || id == shader_type::GlossyWindow || id == shader_type::CarShader || id == shader_type::billboardshader;
 }
 
-bool DynamicallyLit(RenderModel* model)
+inline bool DynamicallyLit(RenderModel* model)
 {
 	return DynamicallyLit(model->Effect);
 }
 
-void PopulateShaderSpotlights(RenderModel* model)
+inline void PopulateShaderSpotlights(RenderModel* model)
 {
 	NumSpotLights = 0;
 	memset(&SpotLights, 0, sizeof(SpotLights));
@@ -340,7 +340,7 @@ void PopulateShaderSpotlights(RenderModel* model)
 	}
 }
 
-void SetDynamicLights(RenderModel* model)
+inline void SetDynamicLights(RenderModel* model)
 {
 	if (DynamicallyLit(model))
 	{
@@ -348,7 +348,7 @@ void SetDynamicLights(RenderModel* model)
 	}
 }
 
-bool UseVertexLighting(RenderModel* model)
+inline bool UseVertexLighting(RenderModel* model)
 {
 	auto bbox_min = model->pMeshEntry->bbox_min;
 	auto bbox_max = model->pMeshEntry->bbox_max;
@@ -368,6 +368,11 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 	TechniqueType technique = Technique_Invalid;
 	if (DynamicallyLit(renderModel))
 	{
+		if (RenderTarget::Current->ViewId == ViewId::ShadowMap)
+		{
+			return Technique_ShadowMap;
+		}
+
 		if (RenderTarget::Current->ViewId == ViewId::Player1)
 		{
 			PopulateShaderSpotlights(renderModel);

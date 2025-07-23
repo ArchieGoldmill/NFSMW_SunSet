@@ -58,7 +58,7 @@ void VS_Stub(VS_INPUT IN, out PS_INPUT OUT)
 
 float4 PS_Stub(PS_INPUT IN) : COLOR
 {
-	return float4(0, 1, 0, 1); // hot green
+	return float4(0, 1, 0, 1);
 }
 
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
@@ -210,3 +210,5 @@ technique LitVertex
 		PixelShader = compile ps_3_0 PS_Unlit();
 	}
 }
+
+#include "shadowmap.fx"

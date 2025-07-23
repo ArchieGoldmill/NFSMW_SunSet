@@ -2,6 +2,7 @@
 
 enum class ViewId
 {
-	Flailer,
-	Player1,
+	Flailer = 0,
+	Player1 = 1,
+	ShadowMap = 15
 };

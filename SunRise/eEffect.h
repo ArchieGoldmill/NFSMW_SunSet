@@ -10,6 +10,7 @@ enum TechniqueType
 	Technique_LitPixel_16,
 	Technique_LitPixel_24,
 	Technique_LitVertex,
+	Technique_ShadowMap,
 	Technique_Count,
 	Technique_Invalid = -1
 };

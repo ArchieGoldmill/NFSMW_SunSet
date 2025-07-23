@@ -115,5 +115,14 @@
     <ClInclude Include="TimeOfDay.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="WeatherConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLightConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="FlareConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

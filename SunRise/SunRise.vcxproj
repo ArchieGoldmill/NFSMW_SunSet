@@ -172,6 +172,7 @@
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />
     <ClInclude Include="eView.h" />
+    <ClInclude Include="FlareConfig.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrandSceneryCullInfo.h" />
     <ClInclude Include="CarRenderInfo.h" />
@@ -188,12 +189,14 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="SmackableRenderConn.h" />
     <ClInclude Include="Spotlight.h" />
+    <ClInclude Include="SpotLightConfig.h" />
     <ClInclude Include="TextureInfo.h" />
     <ClInclude Include="TimeOfDay.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VehicleRenderConn.h" />
     <ClInclude Include="ViewId.h" />
     <ClInclude Include="Weather.h" />
+    <ClInclude Include="WeatherConfig.h" />
     <ClInclude Include="WorldModel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

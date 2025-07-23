@@ -20,7 +20,6 @@ void CheckReloadShaders()
 
 		InitConfig();
 	}
-#endif
 
 	if (Game::LostFocus)
 	{
@@ -35,6 +34,7 @@ void CheckReloadShaders()
 			ReloadOnFocus = false;
 		}
 	}
+#endif
 }
 
 void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)

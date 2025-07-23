@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <stdio.h>
+#include <yaml-cpp/yaml.h>
 #include "Hashes.h"
 
 #define ASSERT_SIZE(T, N) static_assert(sizeof(T) == N, "sizeof("#T") != "#N)
@@ -88,4 +89,32 @@ inline D3DXVECTOR4 LerpVector(D3DXVECTOR4 a, D3DXVECTOR4 b, float t)
 inline D3DXVECTOR3 LerpVector(D3DXVECTOR3 a, D3DXVECTOR3 b, float t)
 {
 	return D3DXVECTOR3(std::lerp(a.x, b.x, t), std::lerp(a.y, b.y, t), std::lerp(a.z, b.z, t));
+}
+
+D3DXVECTOR3 ParseVec3(const YAML::Node& node)
+{
+	return D3DXVECTOR3(node[0].as<float>(), node[1].as<float>(), node[2].as<float>());
+}
+
+D3DXVECTOR4 ParseVec3To4(const YAML::Node& node)
+{
+	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), 0);
+}
+
+inline std::string GetExeDirectory() {
+	char path[MAX_PATH] = { 0 };
+	// Get the full path of the executable
+	DWORD length = GetModuleFileNameA(NULL, path, MAX_PATH);
+	if (length == 0 || length == MAX_PATH) {
+		// handle error
+		return "";
+	}
+
+	std::string fullPath(path, length);
+	// Remove the executable name to get the directory
+	size_t pos = fullPath.find_last_of("\\/");
+	if (pos == std::string::npos) {
+		return "";  // unexpected, no directory separator
+	}
+	return fullPath.substr(0, pos);
 }

@@ -1,7 +1,7 @@
 #include "global.fx"
-#include "spotlights.fx"
 #include "shadow.fx"
 #include "lighting.fx"
+#include "spotlights.fx"
 
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
@@ -50,7 +50,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	float3 light = lightCount > 0 ? ApplySpotLightsWorld(IN.world_nomral, IN.world_pos.xyz, lightCount) : IN.color;
+	float3 light = lightCount > 0 ? ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, -1) : IN.color;
 	
 	float3 albedo = diffuse_tex.rgb;
 	float reflect = diffuse_tex.a;

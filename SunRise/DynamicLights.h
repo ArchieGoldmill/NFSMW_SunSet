@@ -341,6 +341,14 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 			s.InnerCos = cosf(D3DXToRadian(spotlight.InnerAngle));
 			s.OuterCos = cosf(D3DXToRadian(spotlight.OuterAngle));
 
+			D3DXMATRIX worldToLocal;
+			D3DXMatrixInverse(&worldToLocal, NULL, model->LocalToWorld);
+
+			D3DXVec3TransformCoord(&s.Position, &s.Position, &worldToLocal);
+
+			D3DXVec3TransformNormal(&s.Direction, &s.Direction, &worldToLocal);
+			D3DXVec3Normalize(&s.Direction, &s.Direction);
+
 			SpotLights[NumSpotLights] = s;
 			NumSpotLights++;
 		}

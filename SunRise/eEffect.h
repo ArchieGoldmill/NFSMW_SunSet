@@ -22,6 +22,9 @@ const char* ShaderParamNames[] =
 	"cvAmbientColor",
 	"cvSpecularColor",
 	"cvSunDirection",
+	"cvSkyBetaR",
+	"cvSkyBetaM",
+	"cvSkyParams",
 	"cvRainParams"
 };
 
@@ -32,6 +35,9 @@ enum class ShaderParam
 	cvAmbientColor,
 	cvSpecularColor,
 	cvSunDirection,
+	cvSkyBetaR,
+	cvSkyBetaM,
+	cvSkyParams,
 	cvRainParams,
 
 	count

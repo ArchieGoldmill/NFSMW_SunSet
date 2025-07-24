@@ -1,3 +1,5 @@
+
+
 struct SpotLight
 {
 	float3 Position;
@@ -9,31 +11,49 @@ struct SpotLight
 };
 
 SpotLight caSpotLights[24];
- 
-float3 GetSpotlight(SpotLight light, float3 normal, float3 worldPos)
+
+float3 GetSpotlight(SpotLight light, float3 localNormal, float3 localPos, float3 view, float shine)
 {
-	float3 lightVec = light.Position - worldPos;
-	float distance = length(lightVec);
-	float3 L = lightVec / distance;
+	float3 L = light.Position - localPos;
+	float distance = length(L);
+	L /= distance;
+
+	float3 H = normalize(L + view);
 
 	float spotCos = dot(-L, light.Direction);
-	float spotAtten = saturate((spotCos - light.OuterCos) / (light.InnerCos - light.OuterCos));
+	float diffuseAtten = smoothstep(light.OuterCos, light.InnerCos, spotCos);
+	float specAtten = spotCos * 5;
+	
+	float distAtten = saturate(1.0 - distance / light.Range);
+	distAtten *= distAtten;
+	
+	float NdotL = saturate(dot(localNormal, L));
+	float3 diffuse = NdotL * diffuseAtten;
 
-	float atten = saturate(1.0 - distance / light.Range);
-	atten *= atten;
+	float spec;
+	float NdotH = saturate(dot(localNormal, H));
+	
+	if (shine < 0 || specAtten < 0)
+	{
+		spec = float3(0, 0, 0);
+	}
+	else
+	{
+		spec = pow(NdotH, shine) * NdotL * specAtten;
+	}
 
-	float NdotL = saturate(dot(normal, L));
-
-	return light.Color * NdotL * atten * spotAtten;
+	return light.Color * (diffuse + spec) * distAtten;
 }
 
-float3 ApplySpotLightsWorld(float3 world_nomral, float3 worldPos, int count)
+float3 ApplySpotLights(float3 normal, float3 localPos, int count, float shine)
 {
 	float3 color = float3(0, 0, 0);
+	
+	float3 view = normalize(LocalEyePos - localPos);
 	for (int i = 0; i < count; ++i)
 	{
 		SpotLight spotlight = caSpotLights[i];
-		color += GetSpotlight(spotlight, world_nomral, worldPos);
+		color += GetSpotlight(spotlight, normal, localPos, view, shine);
 	}
 	
 	float len = length(color);
@@ -41,10 +61,4 @@ float3 ApplySpotLightsWorld(float3 world_nomral, float3 worldPos, int count)
 	color = normalize(color) * len;
 	
 	return color;
-}
-
-float3 ApplySpotLights(float3 normal, float3 worldPos, int count)
-{
-	float3 world_nomral = normalize(mul(normal, (float3x3) cmWorldMat));
-	return ApplySpotLightsWorld(world_nomral, worldPos, count);
 }

@@ -1,8 +1,8 @@
 #include "global.fx"
-#include "spotlights.fx"
 #include "shadow.fx"
 #include "normalmap.fx"
 #include "lighting.fx"
+#include "spotlights.fx"
 
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
@@ -104,13 +104,13 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
 	
 	// Apply road detail normal map
-	float3 roadDetail = tex2D(FILTERTEXTURE2_SAMPLER, IN.world_pos.xy * 0.3).rgb * 2 - 1;
+	float3 roadDetail = tex2D(FILTERTEXTURE2_SAMPLER, IN.world_pos.xy * 0.7).rgb * 2 - 1;
 	float3 bitangent = cross(normal, float3(1, 0, 0));
 	float3 tangent = normalize(cross(bitangent, normal));
 	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);
 	normal = mul(normalize(roadDetail), tbn);
 	
-	float3 light = lightCount > 0 ? ApplySpotLights(normal, IN.world_pos.xyz, lightCount) : IN.color.rgb;
+	float3 light = lightCount > 0 ? ApplySpotLights(normal, IN.local_pos.xyz, lightCount, 30) : IN.color.rgb;
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	float3 albedo = diffuse_tex.rgb;

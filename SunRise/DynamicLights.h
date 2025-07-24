@@ -9,6 +9,7 @@
 #include "Hashes.h"
 #include "SmackableRenderConn.h"
 #include "Weather.h"
+#include "GridCuller.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
@@ -294,6 +295,13 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 	PopulateCarSpotLights();
 
 	std::sort(SpotLightBuffer, SpotLightBuffer + NumSpotLightBuffer, [](const SpotLightModel& a, const SpotLightModel& b) { return (int)a.Source < (int)b.Source; });
+
+	g_CellBuffer.Clear();
+	for (int i = 0; i < NumSpotLightBuffer; i++)
+	{
+		g_CellBuffer.AssignSpotLightToGrid(&SpotLightBuffer[i].Light);
+	}
+	g_CellBuffer.Sort();
 }
 
 inline bool DynamicallyLit(eEffect* effect)
@@ -319,38 +327,46 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	D3DXVec3TransformCoord(&bbox_max, &bbox_max, model->LocalToWorld);
 
 	auto meshCenter = (bbox_min + bbox_max) * 0.5f;
-	D3DXVECTOR3 halfExtents = (bbox_max - bbox_min) * 0.5f;
-	float radius = D3DXVec3Length(&halfExtents);
+	D3DXVECTOR3 diagonal = (bbox_max - bbox_min);
+	float radius = D3DXVec3Length(&diagonal) * 0.5f;
 	if (radius > 500)
 	{
 		return;
 	}
 
-	for (int i = 0; i < NumSpotLightBuffer && NumSpotLights < NUM_SPOTLIGHTS; i++)
+	auto lights = getLightsForMesh(meshCenter, radius);
+	for (int i = 0; i < numCandidateLights; i++)
 	{
-		auto spotlightModel = SpotLightBuffer[i];
-		auto spotlight = spotlightModel.Light;
+		auto spotlight = candidateLights[i];
 
-		if (ConeIntersectsSphere(spotlight.Position, spotlight.Direction, D3DXToRadian(90), spotlight.Range, meshCenter, radius))
+		if (spotlight && NumSpotLights < NUM_SPOTLIGHTS)
 		{
-			SpotLightShader s;
-			s.Position = spotlight.Position;
-			s.Direction = spotlight.Direction;
-			s.Color = spotlight.Color * spotlight.Intensity;
-			s.Range = spotlight.Range;
-			s.InnerCos = cosf(D3DXToRadian(spotlight.InnerAngle));
-			s.OuterCos = cosf(D3DXToRadian(spotlight.OuterAngle));
+			if (ConeIntersectsSphere(spotlight->Position, spotlight->Direction, D3DXToRadian(90), spotlight->Range, meshCenter, radius))
+			{
+				SpotLightShader s;
+				s.Position = spotlight->Position;
+				s.Direction = spotlight->Direction;
+				s.Color = spotlight->Color * spotlight->Intensity;
+				s.Range = spotlight->Range;
+				s.InnerCos = cosf(D3DXToRadian(spotlight->InnerAngle));
+				s.OuterCos = cosf(D3DXToRadian(spotlight->OuterAngle));
 
-			D3DXMATRIX worldToLocal;
-			D3DXMatrixInverse(&worldToLocal, NULL, model->LocalToWorld);
+				D3DXMATRIX worldToLocal;
+				D3DXMatrixInverse(&worldToLocal, NULL, model->LocalToWorld);
 
-			D3DXVec3TransformCoord(&s.Position, &s.Position, &worldToLocal);
+				D3DXVec3TransformCoord(&s.Position, &s.Position, &worldToLocal);
 
-			D3DXVec3TransformNormal(&s.Direction, &s.Direction, &worldToLocal);
-			D3DXVec3Normalize(&s.Direction, &s.Direction);
+				D3DXVec3TransformNormal(&s.Direction, &s.Direction, &worldToLocal);
+				D3DXVec3Normalize(&s.Direction, &s.Direction);
 
-			SpotLights[NumSpotLights] = s;
-			NumSpotLights++;
+				SpotLights[NumSpotLights] = s;
+				NumSpotLights++;
+			}
+		}
+
+		if (NumSpotLights >= NUM_SPOTLIGHTS)
+		{
+			//throw std::runtime_error("Too many spotlights for shader, increase NUM_SPOTLIGHTS");
 		}
 	}
 }

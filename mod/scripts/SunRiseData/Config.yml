@@ -9,3 +9,5 @@ Config:
 
   LightsOn: 0.75
   LightsOff: 0.25
+
+  LightCellSize: 128.0

@@ -9,12 +9,12 @@ HRESULT WINAPI D3DXCreateEffectFromResourceHook(const char* efxPath, LPDIRECT3DD
 	HRESULT result;
 
 	char FilenameBuf[256];
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	strcpy(FilenameBuf, "D:\\Programming\\NFSMW\\NFSMW_SunRise\\");
 	strcpy(FilenameBuf + 35, efxPath);
-#else
-	strcpy(FilenameBuf, efxPath);
-#endif
+//#else
+//	strcpy(FilenameBuf, efxPath);
+//#endif
 	char* LastUnderline = strrchr(FilenameBuf, '.');
 	LastUnderline[1] = 'f';
 	LastUnderline[2] = 'x';

@@ -8,10 +8,8 @@
 
 void Init()
 {
-#ifdef _DEBUG
 	auto skipFE = (int*)0x00926064;
 	*skipFE = 1;
-#endif 
 
 	InitConfig();
 	InitConsole();

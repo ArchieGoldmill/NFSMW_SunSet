@@ -22,7 +22,7 @@ float3 GetSpotlight(SpotLight light, float3 localNormal, float3 localPos, float3
 
 	float spotCos = dot(-L, light.Direction);
 	float diffuseAtten = smoothstep(light.OuterCos, light.InnerCos, spotCos);
-	float specAtten = spotCos * 5;
+	float specAtten = spotCos;
 	
 	float distAtten = saturate(1.0 - distance / light.Range);
 	distAtten *= distAtten;

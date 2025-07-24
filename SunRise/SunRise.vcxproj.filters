@@ -127,5 +127,8 @@
     <ClInclude Include="Rain.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="GridCuller.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

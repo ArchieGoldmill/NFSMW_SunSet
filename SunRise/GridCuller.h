@@ -1,0 +1,215 @@
+#pragma once
+#include <unordered_map>
+#include <vector>
+#include <cmath>
+#include <unordered_set>
+#include "Hashes.h"
+#include "Game.h"
+
+struct Int3
+{
+	int x, y, z;
+
+	Hash GetHash()
+	{
+		return std::hash<int>()(x) ^ std::hash<int>()(y << 1) ^ std::hash<int>()(z << 2);
+	}
+};
+
+struct Cell
+{
+	static const int NumLights = 64;
+
+	Hash Index;
+	SpotLight* Lights[NumLights];
+};
+
+Int3 worldToCell(const D3DXVECTOR3& pos)
+{
+	float cellSize = g_Config.LightCellSize;
+	return
+	{
+		static_cast<int>(std::floor(pos.x / cellSize)),
+		static_cast<int>(std::floor(pos.y / cellSize)),
+		static_cast<int>(std::floor(pos.z / cellSize))
+	};
+}
+
+struct CellBuffer
+{
+	static const int BufferSize = 512;
+
+	int Count = 0;
+	Cell Buffer[BufferSize];
+
+	CellBuffer()
+	{
+		this->Clear();
+	}
+
+	void AssignSpotLightToGrid(SpotLight* light)
+	{
+		float r = light->Range;
+		D3DXVECTOR3 min = light->Position - D3DXVECTOR3(r, r, r);
+		D3DXVECTOR3 max = light->Position + D3DXVECTOR3(r, r, r);
+
+		Int3 minCell = worldToCell(min);
+		Int3 maxCell = worldToCell(max);
+
+		for (int x = minCell.x; x <= maxCell.x; ++x)
+		{
+			for (int y = minCell.y; y <= maxCell.y; ++y)
+			{
+				for (int z = minCell.z; z <= maxCell.z; ++z)
+				{
+					Int3 cell = { x, y, z };
+					this->Add(cell, light);
+				}
+			}
+		}
+	}
+
+	void Clear()
+	{
+		Count = 0;
+		memset(Buffer, 0, sizeof(Buffer));
+	}
+
+	void Add(Int3 cell, SpotLight* light)
+	{
+		Cell* targetCell = nullptr;
+		Hash cellHash = cell.GetHash();
+
+		for (int i = 0; i < this->Count; i++)
+		{
+			if (Buffer[i].Index == cellHash)
+			{
+				targetCell = Buffer + i;
+				break;
+			}
+		}
+
+		if (targetCell == nullptr)
+		{
+			if (this->Count >= BufferSize)
+			{
+				throw std::runtime_error("Cell buffer is full");
+			}
+
+			targetCell = Buffer + this->Count;
+			targetCell->Index = cellHash;
+			this->Count++;
+		}
+
+		for (int i = 0; i < Cell::NumLights; i++)
+		{
+			if (targetCell->Lights[i] == nullptr)
+			{
+				targetCell->Lights[i] = light;
+				break;
+			}
+		}
+	}
+
+	void Sort()
+	{
+		std::sort(Buffer, Buffer + Count, [](const Cell& a, const Cell& b) { return a.Index < b.Index; });
+	}
+
+	Cell* Get(Int3 cell)
+	{
+		Hash target_hash = cell.GetHash();
+
+		int left = 0;
+		int right = Count - 1;
+		while (left <= right)
+		{
+			int mid = left + (right - left) / 2;
+			if (Buffer[mid].Index == target_hash)
+			{
+				return Buffer + mid;
+			}
+
+			else if (Buffer[mid].Index < target_hash)
+			{
+				left = mid + 1;
+			}
+			else {
+				right = mid - 1;
+			}
+		}
+
+		return NULL;
+	}
+};
+
+inline CellBuffer g_CellBuffer;
+
+SpotLight* candidateLights[256];
+int numCandidateLights = 0;
+SpotLight** getLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
+{
+	memset(candidateLights, 0, sizeof(candidateLights));
+	numCandidateLights = 0;
+
+	D3DXVECTOR3 min = meshCenter - D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
+	D3DXVECTOR3 max = meshCenter + D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
+
+	Int3 minCell = worldToCell(min);
+	Int3 maxCell = worldToCell(max);
+
+	for (int x = minCell.x; x <= maxCell.x; ++x)
+	{
+		for (int y = minCell.y; y <= maxCell.y; ++y)
+		{
+			for (int z = minCell.z; z <= maxCell.z; ++z)
+			{
+				Int3 index = { x, y, z };
+				auto cell = g_CellBuffer.Get(index);
+				if (cell)
+				{
+					for (int i = 0; i < Cell::NumLights; i++)
+					{
+						SpotLight* light = cell->Lights[i];
+						if (light && numCandidateLights < 256)
+						{
+							bool alreadyAdded = false;
+
+							for (int i = 0; i < numCandidateLights; i++)
+							{
+								auto s = candidateLights[i];
+								if (s == light)
+								{
+									alreadyAdded = true;
+									break;
+								}
+							}
+
+							if (!alreadyAdded)
+							{
+								candidateLights[numCandidateLights++] = light;
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//for (int i = 0; i < numCandidateLights; i++)
+	//{
+	//	SpotLight* light = candidateLights[i];
+	//	auto diff = light->Position - meshCenter;
+	//	float dist = D3DXVec3Length(&diff);
+	//	if (dist > (light->Range + meshRadius))
+	//	{
+	//		candidateLights[i] = NULL;
+	//	}
+	//}
+
+	return candidateLights;
+}

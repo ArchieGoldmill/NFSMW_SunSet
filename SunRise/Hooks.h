@@ -12,7 +12,6 @@
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
 {
-#ifdef _DEBUG
 	if (GetAsyncKeyState('F') & 1)
 	{
 		cusprintf("\nManual shader reload started:\n");
@@ -34,7 +33,6 @@ void CheckReloadShaders()
 			ReloadOnFocus = false;
 		}
 	}
-#endif
 }
 
 void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)

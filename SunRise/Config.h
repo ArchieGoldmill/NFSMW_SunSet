@@ -14,6 +14,7 @@ struct Config
 	float SunSet;
 	float LightsOn;
 	float LightsOff;
+	float LightCellSize;
 };
 
 inline Config g_Config;
@@ -36,6 +37,7 @@ void LoadConfig()
 	g_Config.SunSet = settings["SunSet"].as<float>();
 	g_Config.LightsOn = settings["LightsOn"].as<float>();
 	g_Config.LightsOff = settings["LightsOff"].as<float>();
+	g_Config.LightCellSize = settings["LightCellSize"].as<float>();
 }
 
 void InitConfig()

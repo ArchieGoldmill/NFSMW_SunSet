@@ -41,7 +41,7 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
 	cullInfo->SetuWorldCulling();
 
-	if(g_Config.ForceTime >= 0.0f)
+	if (g_Config.ForceTime >= 0.0f)
 	{
 		TimeOfDay::Instance->CurrentTime = g_Config.ForceTime;
 	}
@@ -85,14 +85,20 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 			D3DXHANDLE hTech = ShaderParamsMap[effect->id].Techniques[techName];
 			effect->D3DEffect->SetTechnique(hTech);
 		}
+		else
+		{
+			effect->D3DEffect->SetTechnique(effect->main_technique_handle);
+		}
 
 		eEffect::Current = effect;
-	}
 
-	effect->Start();
-	Game::Device->SetVertexDeclaration(effect->VertexDecl);
-	effect->D3DEffect->Begin(&effect->PassCount, 0);
-	effect->D3DEffect->BeginPass(0);
+		LastTechnique = techName;
+
+		effect->Start();
+		Game::Device->SetVertexDeclaration(effect->VertexDecl);
+		effect->D3DEffect->Begin(&effect->PassCount, 0);
+		effect->D3DEffect->BeginPass(0);
+	}
 
 	SetShaderParams(renderModel);
 }
@@ -131,24 +137,21 @@ void __fastcall SetEffectParams(eEffect* effect)
 {
 	effect->SetParams();
 
-	for (shader_type stype : { shader_type::WorldShader, shader_type::WorldNormalMap, shader_type::WorldReflectShader, shader_type::GlossyWindow, shader_type::CarShader, shader_type::billboardshader, shader_type::skyshader })
+	ShaderParams shaderParams;
+
+	shaderParams.Techniques[Technique_Unlit] = effect->D3DEffect->GetTechniqueByName("Unlit");
+	shaderParams.Techniques[Technique_LitPixel_8] = effect->D3DEffect->GetTechniqueByName("LitPixel_8");
+	shaderParams.Techniques[Technique_LitPixel_16] = effect->D3DEffect->GetTechniqueByName("LitPixel_16");
+	shaderParams.Techniques[Technique_LitPixel_24] = effect->D3DEffect->GetTechniqueByName("LitPixel_24");
+	shaderParams.Techniques[Technique_LitVertex] = effect->D3DEffect->GetTechniqueByName("LitVertex");
+	shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
+
+	for (int i = 0; i < (int)ShaderParam::count; i++)
 	{
-		ShaderParams shaderParams;
-
-		shaderParams.Techniques[Technique_Unlit] = effect->D3DEffect->GetTechniqueByName("Unlit");
-		shaderParams.Techniques[Technique_LitPixel_8] = effect->D3DEffect->GetTechniqueByName("LitPixel_8");
-		shaderParams.Techniques[Technique_LitPixel_16] = effect->D3DEffect->GetTechniqueByName("LitPixel_16");
-		shaderParams.Techniques[Technique_LitPixel_24] = effect->D3DEffect->GetTechniqueByName("LitPixel_24");
-		shaderParams.Techniques[Technique_LitVertex] = effect->D3DEffect->GetTechniqueByName("LitVertex");
-		shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
-
-		for(int i = 0; i < (int)ShaderParam::count; i++)
-		{
-			shaderParams.Params[i] = effect->D3DEffect->GetParameterByName(NULL, ShaderParamNames[i]);
-		}
-
-		ShaderParamsMap[effect->id] = shaderParams;
+		shaderParams.Params[i] = effect->D3DEffect->GetParameterByName(NULL, ShaderParamNames[i]);
 	}
+
+	ShaderParamsMap[effect->id] = shaderParams;
 }
 
 void InitHooks()

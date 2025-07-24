@@ -53,7 +53,10 @@ float3 ApplySpotLights(float3 normal, float3 localPos, int count, float shine)
 	for (int i = 0; i < count; ++i)
 	{
 		SpotLight spotlight = caSpotLights[i];
-		color += GetSpotlight(spotlight, normal, localPos, view, shine);
+		if (spotlight.Range > 0)
+		{
+			color += GetSpotlight(spotlight, normal, localPos, view, shine);
+		}
 	}
 	
 	float len = length(color);

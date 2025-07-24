@@ -75,6 +75,15 @@ private:
 		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t);
 		this->current.SpecularColor = LerpVector(a->SpecularColor, b->SpecularColor, t);
 		this->current.SpecularPower = std::lerp(a->SpecularPower, b->SpecularPower, t);
+
+		this->current.SkyBetaR = LerpVector(a->SkyBetaR, b->SkyBetaR, t);
+		this->current.SkyBetaM = LerpVector(a->SkyBetaM, b->SkyBetaM, t);
+		this->current.SkyRayleigh = std::lerp(a->SkyRayleigh, b->SkyRayleigh, t);
+		this->current.SkyRayleighAtt = std::lerp(a->SkyRayleighAtt, b->SkyRayleighAtt, t);
+		this->current.SkyMie = std::lerp(a->SkyMie, b->SkyMie, t);
+		this->current.SkyMieAtt = std::lerp(a->SkyMieAtt, b->SkyMieAtt, t);
+		this->current.SkyGamma = std::lerp(a->SkyGamma, b->SkyGamma, t);
+		this->current.SkyG = std::lerp(a->SkyG, b->SkyG, t);
 	}
 
 	void UpdateWeather()
@@ -177,8 +186,20 @@ private:
 
 		TimeOfDay::Instance->SunDirection = sunDirection;
 
+		D3DXVECTOR4 skyParams;
+		skyParams.x = this->current.SkyRayleigh;
+		skyParams.y = this->current.SkyRayleighAtt;
+		skyParams.z = this->current.SkyMie;
+		skyParams.w = this->current.SkyMieAtt;
+
+		this->current.SkyBetaM.w = this->current.SkyGamma;
+		this->current.SkyBetaR.w = this->current.SkyG;
+
 		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvSunDirection, &sunDirection);
+		e->SetVector(ShaderParam::cvSkyBetaM, &this->current.SkyBetaM);
+		e->SetVector(ShaderParam::cvSkyBetaR, &this->current.SkyBetaR);
+		e->SetVector(ShaderParam::cvSkyParams, &skyParams);
 	}
 
 	void UpdateRain()

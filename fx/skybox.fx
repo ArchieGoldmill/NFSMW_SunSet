@@ -1,13 +1,9 @@
-float4x4 WorldViewProj : WORLDVIEWPROJECTION;
-float4x4 cmWorldMat : LOCALWORLD;
-float4 ScreenOffset : SCREENOFFSET;
-int Cull_Mode : CULL_MODE;
-int BaseBlendState[5] : BLENDSTATE;
-int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
-int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
-int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
+#include "global.fx"
 
 float4 cvSunDirection;
+float4 cvSkyBetaR;
+float4 cvSkyBetaM;
+float4 cvSkyParams;
 
 struct VS_INPUT
 {
@@ -32,11 +28,11 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.local_position = IN.position.xyz;
 }
 
-#define Gamma 2.2
-#define Rayleigh 1.
-#define Mie 1.
-#define RayleighAtt 1.
-#define MieAtt 1.2
+#define Gamma cvSkyBetaM.w
+#define Rayleigh cvSkyParams.x
+#define Mie cvSkyParams.z
+#define RayleighAtt cvSkyParams.y
+#define MieAtt cvSkyParams.w
 
 float3 ACESFilm(float3 x)
 {
@@ -50,8 +46,8 @@ float3 ACESFilm(float3 x)
 
 float4 PS_Main(PS_INPUT IN) : COLOR
 {
-	float3 _betaR = float3(1.95e-2, 1.1e-1, 2.94e-1);
-	float3 _betaM = float3(4e-2, 4e-2, 4e-2);
+	float3 _betaR = cvSkyBetaR.rgb;
+	float3 _betaM = cvSkyBetaM.rgb;
 	
 	float3 D = normalize(IN.local_position);
 	float3 Ds = normalize(cvSunDirection.xyz);
@@ -66,7 +62,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 extinction = exp(-(_betaR * sR + _betaM * sM));
 
 	// scattering phase
-	float g = -0.9;
+	float g = cvSkyBetaR.w;
 	float g2 = g * g;
 	float fcos2 = cosine * cosine;
 	float miePhase = Mie * pow(1. + g2 + 2. * g * cosine, -1.5) * (1. - g2) / (2. + g2);
@@ -93,12 +89,7 @@ technique skybox<int shader = 1;>
 {
 	pass p0
 	{
-		CullMode = <Cull_Mode>;
-		AlphaTestEnable = (BaseBlendState[0]);
-		AlphaRef = (BaseBlendState[1]);
-		AlphaBlendEnable = (BaseBlendState[2]);
-		SrcBlend = (BaseBlendState[3]);
-		DestBlend = (BaseBlendState[4]);
+		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
 		PixelShader = compile ps_3_0 PS_Main();

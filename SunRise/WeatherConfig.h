@@ -6,10 +6,20 @@
 struct WeatherConfig
 {
 	float Time;
+
 	D3DXVECTOR4 DiffuseColor;
 	D3DXVECTOR4 AmbientColor;
 	D3DXVECTOR4 SpecularColor;
 	float SpecularPower;
+
+	D3DXVECTOR4 SkyBetaR;
+	D3DXVECTOR4 SkyBetaM;
+	float SkyRayleigh;
+	float SkyRayleighAtt;
+	float SkyMie;
+	float SkyMieAtt;
+	float SkyGamma;
+	float SkyG;
 };
 
 inline std::vector<WeatherConfig*> WeatherList;
@@ -36,10 +46,21 @@ void LoadWeatherConfig()
 		auto config = new WeatherConfig();
 
 		config->Time = node["Time"].as<float>();
+
 		config->DiffuseColor = ParseVec3To4(node["DiffuseColor"]);
 		config->AmbientColor = ParseVec3To4(node["AmbientColor"]);
 		config->SpecularColor = ParseVec3To4(node["SpecularColor"]);
 		config->SpecularPower = node["SpecularPower"].as<float>();
+
+		config->SkyBetaR = ParseVec3To4(node["SkyBetaR"]);
+		config->SkyBetaM = ParseVec3To4(node["SkyBetaM"]);
+
+		config->SkyRayleigh = node["SkyRayleigh"].as<float>();
+		config->SkyRayleighAtt = node["SkyRayleighAtt"].as<float>();
+		config->SkyMie = node["SkyMie"].as<float>();
+		config->SkyMieAtt = node["SkyMieAtt"].as<float>();
+		config->SkyGamma = node["SkyGamma"].as<float>();
+		config->SkyG = node["SkyG"].as<float>();
 
 		WeatherList.push_back(config);
 	}

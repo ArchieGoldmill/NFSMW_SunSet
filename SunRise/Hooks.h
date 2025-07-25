@@ -59,6 +59,11 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 TechniqueType LastTechnique = Technique_Invalid;
 void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 {
+	if (renderModel->Effect->id == shader_type::skyshader)
+	{
+		renderModel->DiffuseTextureInfo = TextureInfo::Get(Hashes::SR_STARS, false, false);
+	}
+
 	if (LastEffect == NULL)
 	{
 		LastTechnique = Technique_Invalid;
@@ -119,18 +124,6 @@ void __declspec(naked) SetCurrentPassHook()
 	}
 }
 
-void __declspec(naked) RenderWorldLightFlaresHook()
-{
-	__asm
-	{
-		pushad;
-		call RenderWorldLightFlares;
-		popad;
-
-		ret;
-	}
-}
-
 void __fastcall SetEffectParams(eEffect* effect)
 {
 	effect->SetParams();
@@ -154,11 +147,11 @@ void __fastcall SetEffectParams(eEffect* effect)
 
 void InitHooks()
 {
+	InitLightFlares();
+
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 
 	injector::MakeJMP(0x006E0254, SetCurrentPassHook);
-
-	injector::MakeJMP(0x00505F71, RenderWorldLightFlaresHook);
 
 	injector::MakeCALL(0x006C60D9, SetEffectParams);
 	injector::MakeCALL(0x006DB2B0, SetEffectParams);

@@ -1,13 +1,12 @@
 Flares:
     - Name: LampPost
-      Color: [1.0, 0.7, 0.5]
-      Intensity: 1.0
-      Size: 2.0
+      Intensity: 0.6
+      Size: 4.0
       Type: 0
+      Texture: LAMP_FLARE
+
     - Name: Chevron
-      Color: [1.0, 0.7, 0.5]
       Intensity: 1.0
       Size: 10.0
       Type: 3
-
-      
+      Texture: EA      

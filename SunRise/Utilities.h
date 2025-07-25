@@ -26,6 +26,42 @@
 	__asm pop ebx\
 }\
 
+#define SAVE_REGS_EDI __asm\
+{\
+	__asm push ebx\
+	__asm push ecx\
+	__asm push edx\
+	__asm push eax\
+	__asm push esi\
+}\
+
+#define RESTORE_REGS_EDI __asm\
+{\
+	__asm pop esi\
+	__asm pop eax\
+	__asm pop edx\
+	__asm pop ecx\
+	__asm pop ebx\
+}\
+
+#define SAVE_REGS_EDX __asm\
+{\
+	__asm push ebx\
+	__asm push ecx\
+	__asm push edi\
+	__asm push eax\
+	__asm push esi\
+}\
+
+#define RESTORE_REGS_EDX __asm\
+{\
+	__asm pop esi\
+	__asm pop eax\
+	__asm pop edi\
+	__asm pop ecx\
+	__asm pop ebx\
+}\
+
 bool WriteFileFromMemory(const char* FileName, const void* buffer, long size)
 {
 	FILE* fout = fopen(FileName, "wb");
@@ -38,27 +74,41 @@ bool WriteFileFromMemory(const char* FileName, const void* buffer, long size)
 	return 1;
 }
 
-inline bool ConeIntersectsSphere(const D3DXVECTOR3& coneTip, const D3DXVECTOR3& coneDir, float coneAngleRad, float coneRange, const D3DXVECTOR3& sphereCenter, float sphereRadius)
+inline bool ConeSphereIntersect(
+	const D3DXVECTOR3& coneApex,
+	const D3DXVECTOR3& coneDir,
+	float coneAngle,
+	float range,
+	const D3DXVECTOR3& sphereCenter,
+	float sphereRadius)
 {
-	D3DXVECTOR3 V = sphereCenter - coneTip;
+	D3DXVECTOR3 apexToCenter = coneApex - sphereCenter;
+	float distApexToCenterSq = D3DXVec3LengthSq(&apexToCenter);
 
-	float Vlen = D3DXVec3Length(&V);
+	// Early out: apex inside sphere
+	if (distApexToCenterSq <= sphereRadius * sphereRadius)
+		return true;
 
-	if (Vlen > (coneRange + sphereRadius))
-	{
+	// Early out: sphere too far from cone
+	float distApexToCenter = sqrtf(distApexToCenterSq);
+	if (distApexToCenter > range + sphereRadius)
 		return false;
-	}
 
-	D3DXVECTOR3 Vn = V / Vlen;
-	float cosTheta = cosf(coneAngleRad);
-	float cosAlpha = D3DXVec3Dot(&Vn, &coneDir);
+	float extend = range * (1 - cosf(coneAngle / 2));
+	extend = range * range / (range - extend) - range;
+	range += extend;
 
-	if (cosAlpha < cosTheta && Vlen > sphereRadius)
-	{
-		return false;
-	}
+	D3DXVECTOR3 CS = sphereCenter - coneApex;
+	float t = D3DXVec3Dot(&CS, &coneDir);
+	t = max(0.0f, min(range, t));
 
-	return true;
+	D3DXVECTOR3 axisPoint = coneApex + coneDir * t;
+	D3DXVECTOR3 diff = sphereCenter - axisPoint;
+	float distToAxis = D3DXVec3Length(&diff);
+
+	float coneRadiusAtT = t * tan(coneAngle);
+
+	return distToAxis <= coneRadiusAtT + sphereRadius;
 }
 
 bool StringEqual(const char* s1, const char* s2)
@@ -96,9 +146,9 @@ D3DXVECTOR3 ParseVec3(const YAML::Node& node)
 	return D3DXVECTOR3(node[0].as<float>(), node[1].as<float>(), node[2].as<float>());
 }
 
-D3DXVECTOR4 ParseVec3To4(const YAML::Node& node)
+D3DXVECTOR4 ParseVec3To4(const YAML::Node& node, float a = 0.0f)
 {
-	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), 0);
+	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), a);
 }
 
 inline std::string GetExeDirectory() {

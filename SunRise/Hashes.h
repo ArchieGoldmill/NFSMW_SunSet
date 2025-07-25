@@ -10,4 +10,5 @@ namespace Hashes
 
 	Hash SR_PUDDLE_MASK = 0x6271C54C;
 	Hash SR_ROAD_DETAIL = 0xA9E127FB;
+	Hash SR_STARS = 0xB0AA3E90;
 }

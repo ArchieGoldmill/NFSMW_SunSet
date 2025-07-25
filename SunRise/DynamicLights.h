@@ -334,14 +334,14 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 		return;
 	}
 
-	auto lights = getLightsForMesh(meshCenter, radius);
-	for (int i = 0; i < numCandidateLights; i++)
+	g_CellBuffer.GetLightsForMesh(meshCenter, radius);
+	for (int i = 0; i < g_CellBuffer.numCandidateLights; i++)
 	{
-		auto spotlight = candidateLights[i];
+		auto spotlight = g_CellBuffer.candidateLights[i];
 
 		if (spotlight && NumSpotLights < NUM_SPOTLIGHTS)
 		{
-			if (ConeIntersectsSphere(spotlight->Position, spotlight->Direction, D3DXToRadian(90), spotlight->Range, meshCenter, radius))
+			if (ConeSphereIntersect(spotlight->Position,spotlight->Direction, D3DXToRadian(spotlight->OuterAngle),spotlight->Range, meshCenter,radius))
 			{
 				SpotLightShader s;
 				s.Position = spotlight->Position;

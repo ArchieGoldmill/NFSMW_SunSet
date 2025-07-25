@@ -145,12 +145,15 @@ private:
 	{
 		this->InitTextures();
 
-		auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
-		int frame = (int)fmodf(this->Timer * 30.0f, 30);
+		if (this->PuddleMask)
+		{
+			auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
+			int frame = (int)fmodf(this->Timer * 30.0f, 30);
 
-		roadShader->SetTexture(shader_param::FILTERTEXTURE0, this->PuddleMask);
-		roadShader->SetTexture(shader_param::FILTERTEXTURE1, this->RainSplash[frame]);
-		roadShader->SetTexture(shader_param::FILTERTEXTURE2, this->RoadDetail);
+			roadShader->SetTexture(shader_param::FILTERTEXTURE0, this->PuddleMask);
+			roadShader->SetTexture(shader_param::FILTERTEXTURE1, this->RainSplash[frame]);
+			roadShader->SetTexture(shader_param::FILTERTEXTURE2, this->RoadDetail);
+		}
 	}
 
 	void UpdateSun()

@@ -2,6 +2,7 @@
 #include "eSolid.h"
 #include "eEffect.h"
 #include "MeshEntry.h"
+#include "TextureInfo.h"
 
 struct RenderModel
 {
@@ -14,11 +15,11 @@ struct RenderModel
 	void* LightMatertial;
 	D3DXMATRIX* LocalToWorld;
 	void* BlendMatricies;
-	void* DiffuseTextureInfo;
-	void* NormalTextureInfo;
-	void* HeightTextureInfo;
-	void* SpecularTextureInfo;
-	void* OpacityTextureInfo;
+	TextureInfo* DiffuseTextureInfo;
+	TextureInfo* NormalTextureInfo;
+	TextureInfo* HeightTextureInfo;
+	TextureInfo* SpecularTextureInfo;
+	TextureInfo* OpacityTextureInfo;
 	int unk2;
 	int UseLowLod;
 	int unk3;

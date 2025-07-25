@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include "Utilities.h"
+#include "eLightFlareParams.h"
+#include "TextureInfo.h"
 
 struct SpotLightShader
 {
@@ -41,7 +43,9 @@ struct FlareModel
 	float Intensity;
 	float Size;
 	eLightFlareType Type;
-	D3DXVECTOR3 Color;
+
+	Hash TextureName;
+	TextureInfo* Texture = NULL;
 };
 
 struct SpotLightModel

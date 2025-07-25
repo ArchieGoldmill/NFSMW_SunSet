@@ -130,5 +130,8 @@
     <ClInclude Include="GridCuller.h">
       <Filter>Features\DynamicLights</Filter>
     </ClInclude>
+    <ClInclude Include="eLightFlareParams.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -178,6 +178,7 @@
     <ClInclude Include="CarRenderInfo.h" />
     <ClInclude Include="GridCuller.h" />
     <ClInclude Include="Hashes.h" />
+    <ClInclude Include="eLightFlareParams.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="LightFlare.h" />
     <ClInclude Include="LightFlares.h" />

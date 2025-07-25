@@ -27,7 +27,7 @@ void LoadLightFlareConfig()
 		flare.Intensity = flareNode["Intensity"].as<float>();
 		flare.Size = flareNode["Size"].as<float>();
 		flare.Type = (eLightFlareType)flareNode["Type"].as<int>();
-		flare.Color = ParseVec3(flareNode["Color"]);
+		flare.TextureName = Game::bStringHash(flareNode["Texture"].as<std::string>().c_str());
 
 		FlareList.push_back(flare);
 	}

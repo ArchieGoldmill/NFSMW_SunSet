@@ -141,75 +141,64 @@ struct CellBuffer
 
 		return NULL;
 	}
-};
 
-inline CellBuffer g_CellBuffer;
-
-SpotLight* candidateLights[256];
-int numCandidateLights = 0;
-SpotLight** getLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
-{
-	memset(candidateLights, 0, sizeof(candidateLights));
-	numCandidateLights = 0;
-
-	D3DXVECTOR3 min = meshCenter - D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
-	D3DXVECTOR3 max = meshCenter + D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
-
-	Int3 minCell = worldToCell(min);
-	Int3 maxCell = worldToCell(max);
-
-	for (int x = minCell.x; x <= maxCell.x; ++x)
+	SpotLight* candidateLights[256];
+	int numCandidateLights = 0;
+	SpotLight** GetLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
 	{
-		for (int y = minCell.y; y <= maxCell.y; ++y)
-		{
-			for (int z = minCell.z; z <= maxCell.z; ++z)
-			{
-				Int3 index = { x, y, z };
-				auto cell = g_CellBuffer.Get(index);
-				if (cell)
-				{
-					for (int i = 0; i < Cell::NumLights; i++)
-					{
-						SpotLight* light = cell->Lights[i];
-						if (light && numCandidateLights < 256)
-						{
-							bool alreadyAdded = false;
+		memset(candidateLights, 0, sizeof(candidateLights));
+		numCandidateLights = 0;
 
-							for (int i = 0; i < numCandidateLights; i++)
+		D3DXVECTOR3 min = meshCenter - D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
+		D3DXVECTOR3 max = meshCenter + D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
+
+		Int3 minCell = worldToCell(min);
+		Int3 maxCell = worldToCell(max);
+
+		for (int x = minCell.x; x <= maxCell.x; ++x)
+		{
+			for (int y = minCell.y; y <= maxCell.y; ++y)
+			{
+				for (int z = minCell.z; z <= maxCell.z; ++z)
+				{
+					Int3 index = { x, y, z };
+					auto cell = this->Get(index);
+					if (cell)
+					{
+						for (int i = 0; i < Cell::NumLights; i++)
+						{
+							SpotLight* light = cell->Lights[i];
+							if (light && numCandidateLights < 256)
 							{
-								auto s = candidateLights[i];
-								if (s == light)
+								bool alreadyAdded = false;
+
+								for (int i = 0; i < numCandidateLights; i++)
 								{
-									alreadyAdded = true;
-									break;
+									auto s = candidateLights[i];
+									if (s == light)
+									{
+										alreadyAdded = true;
+										break;
+									}
+								}
+
+								if (!alreadyAdded)
+								{
+									candidateLights[numCandidateLights++] = light;
 								}
 							}
-
-							if (!alreadyAdded)
+							else
 							{
-								candidateLights[numCandidateLights++] = light;
+								break;
 							}
-						}
-						else
-						{
-							break;
 						}
 					}
 				}
 			}
 		}
+
+		return candidateLights;
 	}
+};
 
-	//for (int i = 0; i < numCandidateLights; i++)
-	//{
-	//	SpotLight* light = candidateLights[i];
-	//	auto diff = light->Position - meshCenter;
-	//	float dist = D3DXVec3Length(&diff);
-	//	if (dist > (light->Range + meshRadius))
-	//	{
-	//		candidateLights[i] = NULL;
-	//	}
-	//}
-
-	return candidateLights;
-}
+inline CellBuffer g_CellBuffer;

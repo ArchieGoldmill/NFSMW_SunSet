@@ -78,7 +78,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	
 	float4 diffuse_scale = DiffuseMin + vdotn * DiffuseRange;
 	
-	float3 light = lightCount > 0 ? ApplySpotLights(normal, IN.local_pos.xyz, lightCount, 10) : IN.color;
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, 150, IN.color.rgb);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(IN.normal, lightDir);
@@ -92,12 +92,14 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 envmap_scale = EnvmapMin.rgb + env_vdotn * EnvmapRange.rgb;
 	envmap_sample *= envmap_scale * 0.5;
 	
-	float3 finalLight = cvAmbientColor + (diffuse + specular) * shadow + light;
+	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;
-	final.xyz += envmap_sample * diffuse_scale.a;
 	final.rgb *= finalLight;
+	final.rgb += envmap_sample * diffuse_scale.a;
+	final.rgb += specular * shadow;
+	final.rgb += light.Specular;
 	
 	return final;
 }

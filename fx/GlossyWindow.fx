@@ -50,7 +50,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	float3 light = lightCount > 0 ? ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, -1) : IN.color;
+	SpotLightResult light = ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, -1, IN.color.rgb);
 	
 	float3 albedo = diffuse_tex.rgb;
 	float reflect = diffuse_tex.a;
@@ -62,11 +62,13 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	float3 specular = GetSpecular(IN.normal, lightDir, IN.local_pos.xyz);
 	
-	float3 finalLight = cvAmbientColor + (diffuse + specular) * shadow + light;
+	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
 	finalLight = lerp(finalLight, float3(30, 20, 10), reflect * cvDiffuseColor.w);
 	
 	float3 final = albedo;
 	final.rgb *= finalLight;
+	final.rgb += specular*shadow;
+	final.rgb += light.Specular;
 	
 	return float4(final, 1);
 }

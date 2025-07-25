@@ -1,5 +1,3 @@
-
-
 struct SpotLight
 {
 	float3 Position;
@@ -10,9 +8,15 @@ struct SpotLight
 	float InnerCos;
 };
 
+struct SpotLightResult
+{
+	float3 Diffuse;
+	float3 Specular;
+};
+
 SpotLight caSpotLights[24];
 
-float3 GetSpotlight(SpotLight light, float3 localNormal, float3 localPos, float3 view, float shine)
+SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPos, float3 view, float shine)
 {
 	float3 L = light.Position - localPos;
 	float distance = length(L);
@@ -39,15 +43,22 @@ float3 GetSpotlight(SpotLight light, float3 localNormal, float3 localPos, float3
 	}
 	else
 	{
-		spec = pow(NdotH, shine) * NdotL * specAtten;
+		spec = pow(NdotH, shine) * NdotL * specAtten * distAtten;
 	}
+	
+	SpotLightResult result;
+	
+	result.Diffuse = light.Color * diffuse * distAtten;
+	result.Specular = spec;
 
-	return light.Color * (diffuse + spec) * distAtten;
+	return result;
 }
 
-float3 ApplySpotLights(float3 normal, float3 localPos, int count, float shine)
+SpotLightResult ApplySpotLights(float3 normal, float3 localPos, int count, float shine)
 {
-	float3 color = float3(0, 0, 0);
+	SpotLightResult result;
+	result.Diffuse = float3(1, 1, 1) * 0.000001;
+	result.Specular = result.Diffuse;
 	
 	float3 view = normalize(LocalEyePos - localPos);
 	for (int i = 0; i < count; ++i)
@@ -55,13 +66,28 @@ float3 ApplySpotLights(float3 normal, float3 localPos, int count, float shine)
 		SpotLight spotlight = caSpotLights[i];
 		if (spotlight.Range > 0)
 		{
-			color += GetSpotlight(spotlight, normal, localPos, view, shine);
+			SpotLightResult current = GetSpotlight(spotlight, normal, localPos, view, shine);
+			result.Diffuse += current.Diffuse;
+			result.Specular += current.Specular;
 		}
 	}
 	
-	float len = length(color);
+	float len = length(result.Diffuse);
 	len = min(len, 4.0);
-	color = normalize(color) * len;
+	result.Diffuse = normalize(result.Diffuse) * len;
 	
-	return color;
+	return result;
+}
+
+SpotLightResult ApplySpotLights(float3 normal, float3 localPos, int count, float shine, float3 defaultResult)
+{
+	if (count > 0)
+	{
+		return ApplySpotLights(normal, localPos, count, shine);
+	}
+	
+	SpotLightResult result;
+	result.Diffuse = defaultResult;
+	result.Specular = float3(0, 0, 0);
+	return result;
 }

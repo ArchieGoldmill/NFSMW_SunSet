@@ -26,6 +26,7 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
 	OUT.local_position = IN.position.xyz;
+	OUT.uv = IN.tex.xy;
 }
 
 #define Gamma cvSkyBetaM.w
@@ -81,6 +82,19 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	color = ACESFilm(color);
 	
 	color = pow(color, float3(Gamma, Gamma, Gamma));
+	
+	float2 starsUV;
+	if (IN.uv.y > 0.08)
+	{
+		starsUV = IN.uv * 10;
+	}
+	else
+	{
+		starsUV = IN.local_position.xy / 1000;
+	}
+	
+	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
+	color += diffuse_tex.rgb;
 	
 	return float4(color, 1.0);
 }

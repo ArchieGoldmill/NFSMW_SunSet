@@ -7,7 +7,8 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT = VS_Base(IN);
-	OUT.color = float4(ApplySpotLights(OUT.normal, OUT.world_pos.xyz, 12, -1), 1);
+	SpotLightResult result = ApplySpotLights(OUT.normal, OUT.world_pos.xyz, 12, -1);
+	OUT.color = float4(result.Diffuse, 1);
 }
 
 float4 PS_Unlit(PS_INPUT IN) : COLOR

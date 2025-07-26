@@ -187,6 +187,7 @@
     <ClInclude Include="Rain.h" />
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="RideInfo.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Console.h" />
@@ -201,6 +202,15 @@
     <ClInclude Include="Weather.h" />
     <ClInclude Include="WeatherConfig.h" />
     <ClInclude Include="WorldModel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="rcdata1.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="volume.dds" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

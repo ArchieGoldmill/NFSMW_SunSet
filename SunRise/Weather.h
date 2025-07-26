@@ -5,6 +5,7 @@
 #include "TimeOfDay.h"
 #include "Utilities.h"
 #include "Rain.h"
+#include "resource.h"
 
 class Weather
 {
@@ -13,9 +14,14 @@ private:
 
 	float Timer = 0.0f;
 
-	TextureInfo* PuddleMask = nullptr;
-	TextureInfo* RoadDetail = nullptr;
+	TextureInfo* CarRainDrops = nullptr;
+	TextureInfo* CarRainSlide = nullptr;
+	TextureInfo* PuddleMask = NULL;
+	TextureInfo* RoadDetail = NULL;
 	TextureInfo* RainSplash[30];
+	LPDIRECT3DVOLUMETEXTURE9 NoiseTexture = NULL;
+
+	D3DXVECTOR4 rainParams = { 0, 0, 0, 0 };
 
 	float RoadWetness = 0.0f;
 	float RoadRainDrops = 0.0f;
@@ -125,10 +131,33 @@ private:
 		}
 	}
 
+	void LoadVolumeTexture()
+	{
+		if (!NoiseTexture)
+		{
+			HRSRC hRes = FindResource(Game::hModule, MAKEINTRESOURCE(IDR_RCDATA1), RT_RCDATA);
+			if (hRes)
+			{
+				HGLOBAL hResData = LoadResource(Game::hModule, hRes);
+				if (hResData)
+				{
+					void* pData = LockResource(hResData);
+					DWORD dataSize = SizeofResource(Game::hModule, hRes);
+
+					D3DXCreateVolumeTextureFromFileInMemory(Game::Device, pData, dataSize, &NoiseTexture);
+				}
+			}
+		}
+	}
+
 	void InitTextures()
 	{
+		this->LoadVolumeTexture();
+
 		if (!this->PuddleMask)
 		{
+			this->CarRainDrops = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_N, false, false);
+			this->CarRainSlide = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_SLIDE_N, false, false);
 			this->PuddleMask = TextureInfo::Get(Hashes::SR_PUDDLE_MASK, false, false);
 			this->RoadDetail = TextureInfo::Get(Hashes::SR_ROAD_DETAIL, false, false);
 
@@ -150,9 +179,17 @@ private:
 			auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
 			int frame = (int)fmodf(this->Timer * 30.0f, 30);
 
-			roadShader->SetTexture(shader_param::FILTERTEXTURE0, this->PuddleMask);
-			roadShader->SetTexture(shader_param::FILTERTEXTURE1, this->RainSplash[frame]);
-			roadShader->SetTexture(shader_param::FILTERTEXTURE2, this->RoadDetail);
+			roadShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->PuddleMask);
+			roadShader->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->RainSplash[frame]);
+			roadShader->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->RoadDetail);
+		}
+
+		if(this->CarRainDrops)
+		{
+			auto carShader = eEffect::Get(shader_type::CarShader);
+			carShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->NoiseTexture);
+			carShader->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->CarRainDrops);
+			carShader->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->CarRainSlide);
 		}
 	}
 
@@ -210,13 +247,19 @@ private:
 		bool isRaining = this->IsRaining();
 		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * (isRaining ? 0.5 : 0.1));
 
-		auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
-
-		D3DXVECTOR4 rainParams(0, 0, 0, 0);
 		rainParams.x = Rain::Instance->Intensity;
 		rainParams.y = RoadWetness;
 
+		if (isRaining)
+		{
+			rainParams.z = Timer;
+		}
+
+		auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
 		roadShader->SetVector(ShaderParam::cvRainParams, &rainParams);
+
+		auto carShader = eEffect::Get(shader_type::CarShader);
+		carShader->SetVector(ShaderParam::cvRainParams, &rainParams);
 	}
 
 	float GetTime()

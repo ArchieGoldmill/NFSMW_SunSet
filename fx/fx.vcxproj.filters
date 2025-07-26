@@ -29,6 +29,9 @@
     <FxCompile Include="lighting.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="car_rain.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

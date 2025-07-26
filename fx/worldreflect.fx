@@ -33,7 +33,7 @@ struct PS_INPUT
 };
 
 texture ReflectedTex : REFLECTEDTEX;
-sampler MISCMAP1_SAMPLER = sampler_state
+sampler REFLECTEDTEX_SAMPLER = sampler_state
 {
 	Texture = <ReflectedTex>;
 	AddressU = CLAMP;
@@ -43,10 +43,10 @@ sampler MISCMAP1_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
-texture FilterTexture0 : FILTERTEXTURE0;
-sampler2D FILTERTEXTURE0_SAMPLER = sampler_state
+texture MISCMAP1_TEXTURE;
+sampler2D MISCMAP1_SAMPLER = sampler_state
 {
-	texture = FilterTexture0;
+	texture = MISCMAP1_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
 	MIPFILTER = LINEAR;
@@ -54,10 +54,10 @@ sampler2D FILTERTEXTURE0_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
-texture FilterTexture1 : FILTERTEXTURE1;
-sampler2D FILTERTEXTURE1_SAMPLER = sampler_state
+texture MISCMAP2_TEXTURE;
+sampler2D MISCMAP2_SAMPLER = sampler_state
 {
-	texture = FilterTexture1;
+	texture = MISCMAP2_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
 	MIPFILTER = LINEAR;
@@ -65,10 +65,10 @@ sampler2D FILTERTEXTURE1_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
-texture FilterTexture2 : FILTERTEXTURE2;
-sampler2D FILTERTEXTURE2_SAMPLER = sampler_state
+texture MISCMAP3_TEXTURE;
+sampler2D MISCMAP3_SAMPLER = sampler_state
 {
-	texture = FilterTexture2;
+	texture = MISCMAP3_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
 	MIPFILTER = LINEAR;
@@ -115,7 +115,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
 	
 	// Apply road detail normal map
-	float3 roadDetail = tex2D(FILTERTEXTURE2_SAMPLER, IN.world_pos.xy * 0.7).rgb * 2 - 1;
+	float3 roadDetail = tex2D(MISCMAP3_SAMPLER, IN.world_pos.xy * 0.7).rgb * 2 - 1;
 	float3 bitangent = cross(normal, float3(1, 0, 0));
 	float3 tangent = normalize(cross(bitangent, normal));
 	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);
@@ -136,7 +136,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 specular = GetSpecular(normal, lightDir, IN.local_pos.xyz);
 	specular *= specMap;
 	
-	float puddle_mask = tex2D(FILTERTEXTURE0_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
+	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
 	
 	// Make puddles darker so reflection is more visible
 	albedo = lerp(albedo, albedo / 15, puddle_mask);
@@ -144,13 +144,13 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float4 reflection_uv = IN.reflection;
 	
 	// Distort reflection by rain drops
-	float2 rainDrops = tex2D(FILTERTEXTURE1_SAMPLER, IN.world_pos.xy).rg * 2 - 1;
+	float2 rainDrops = tex2D(MISCMAP2_SAMPLER, IN.world_pos.xy).rg * 2 - 1;
 	reflection_uv.xy += rainDrops * cvRainParams.x;
 	
 	// Distor reflection by normal map
 	reflection_uv.xy += normal.xy * 0.1;
 	
-	float3 reflection_sample = tex2Dproj(MISCMAP1_SAMPLER, reflection_uv).rgb;
+	float3 reflection_sample = tex2Dproj(REFLECTEDTEX_SAMPLER, reflection_uv).rgb;
 	reflection_sample *= puddle_mask;
 	
 	// Vertical surfaces should not reflect

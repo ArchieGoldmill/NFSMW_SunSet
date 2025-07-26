@@ -25,7 +25,12 @@ const char* ShaderParamNames[] =
 	"cvSkyBetaR",
 	"cvSkyBetaM",
 	"cvSkyParams",
-	"cvRainParams"
+	"cvRainParams",
+	"cfMetallicScale",
+
+	"MISCMAP1_TEXTURE",
+	"MISCMAP2_TEXTURE",
+	"MISCMAP3_TEXTURE",
 };
 
 enum class ShaderParam
@@ -39,6 +44,11 @@ enum class ShaderParam
 	cvSkyBetaM,
 	cvSkyParams,
 	cvRainParams,
+	cfMetallicScale,
+
+	MISCMAP1_TEXTURE,
+	MISCMAP2_TEXTURE,
+	MISCMAP3_TEXTURE,
 
 	count
 };
@@ -239,14 +249,22 @@ struct eEffect
 		_SetParams(this);
 	}
 
-	void SetTexture(shader_param param, TextureInfo* textureInfo)
+	void SetTexture(ShaderParam p, TextureInfo* textureInfo)
 	{
-		this->D3DEffect->SetTexture(this->Params[(int)param].handle, textureInfo->PlatInfo->D3DTexture);
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetTexture(handle, textureInfo->PlatInfo->D3DTexture);
+		}
 	}
 
-	void SetTexture(shader_param param, LPDIRECT3DVOLUMETEXTURE9 texture)
+	void SetTexture(ShaderParam p, LPDIRECT3DVOLUMETEXTURE9 texture)
 	{
-		this->D3DEffect->SetTexture(this->Params[(int)param].handle, texture);
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetTexture(handle, texture);
+		}
 	}
 
 	void SetVector(ShaderParam p, D3DXVECTOR4* v)
@@ -258,17 +276,21 @@ struct eEffect
 		}
 	}
 
-	void SetFloat(shader_param param, float f)
-	{
-		this->D3DEffect->SetFloat(this->Params[(int)param].handle, f);
-	}
-
 	void SetValue(ShaderParam p, void* val, int size)
 	{
 		auto handle = ShaderParamsMap[this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetValue(handle, val, size);
+		}
+	}
+
+	void SetFloat(ShaderParam p, float v)
+	{
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetFloat(handle, v);
 		}
 	}
 };

@@ -3,10 +3,23 @@
 #include "lighting.fx"
 #include "spotlights.fx"
 
+float4 TextureOffset : TEXTUREOFFSET;
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
 float3 cvAmbientColor;
 float4 cvDiffuseColor;
+
+texture WindowReflection : WINDOWREFLECTION;
+sampler reflected_sampler = sampler_state
+{
+	Texture = <WindowReflection>;
+	AddressU = 1;
+	AddressV = 1;
+	MipFilter = 0;
+	MinFilter = 0;
+	MagFilter = 0;
+	MaxAnisotropy = 0;
+};
 
 struct VS_INPUT
 {
@@ -36,7 +49,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 
 	OUT.position = world_position(IN.position);
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
-	OUT.uv = IN.tex.xy;
+	OUT.uv = IN.tex.xy + TextureOffset.xy;
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal = normalize(IN.normal);
 	OUT.world_pos = mul(IN.position, cmWorldMat);
@@ -50,25 +63,25 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, -1, IN.color.rgb);
+	SpotLightResult light = ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, 30, IN.color.rgb);
 	
 	float3 albedo = diffuse_tex.rgb;
-	float reflect = diffuse_tex.a;
+	float reflect_scale = diffuse_tex.a;
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(IN.normal, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(IN.normal, lightDir, IN.local_pos.xyz);
+	float3 specular = GetSpecular(IN.normal, lightDir, IN.local_pos.xyz, lerp(cvSpecularColor.w, 1, reflect_scale));
 	
 	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
-	finalLight = lerp(finalLight, float3(30, 20, 10), reflect * cvDiffuseColor.w);
+	finalLight = lerp(finalLight, float3(30, 20, 10) / 2, reflect_scale * cvDiffuseColor.w);
 	
 	float3 final = albedo;
 	final.rgb *= finalLight;
-	final.rgb += specular*shadow;
-	final.rgb += light.Specular;
+	final.rgb += specular * shadow * lerp(1, 5, reflect_scale);
+	final.rgb += light.Specular * reflect_scale;
 	
 	return float4(final, 1);
 }

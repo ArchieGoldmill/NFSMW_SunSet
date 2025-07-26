@@ -26,13 +26,14 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
 	OUT.local_position = IN.position.xyz;
+	OUT.local_position.z += 800;
 	OUT.uv = IN.tex.xy;
 }
 
 #define Gamma cvSkyBetaM.w
 #define Rayleigh cvSkyParams.x
-#define Mie cvSkyParams.z
 #define RayleighAtt cvSkyParams.y
+#define Mie cvSkyParams.z
 #define MieAtt cvSkyParams.w
 
 float3 ACESFilm(float3 x)
@@ -59,7 +60,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float sR = RayleighAtt / t;
 	float sM = MieAtt / t;
 
-	float cosine = clamp(dot(D, Ds), 0.0, 1.0);
+	float cosine = saturate(dot(D, Ds));
 	float3 extinction = exp(-(_betaR * sR + _betaM * sM));
 
 	// scattering phase
@@ -83,18 +84,18 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	
 	color = pow(color, float3(Gamma, Gamma, Gamma));
 	
-	float2 starsUV;
-	if (IN.uv.y > 0.08)
-	{
-		starsUV = IN.uv * 10;
-	}
-	else
-	{
-		starsUV = IN.local_position.xy / 1000;
-	}
+	//float2 starsUV;
+	//if (IN.uv.y > 0.08)
+	//{
+	//	starsUV = IN.uv;
+	//}
+	//else
+	//{
+	//	starsUV = IN.local_position.xy / 10000;
+	//}
 	
-	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
-	color += diffuse_tex.rgb;
+	//float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
+	//color += pow(diffuse_tex.rgb, 2);
 	
 	return float4(color, 1.0);
 }

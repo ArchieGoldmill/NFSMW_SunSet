@@ -49,7 +49,7 @@ SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPo
 	SpotLightResult result;
 	
 	result.Diffuse = light.Color * diffuse * distAtten;
-	result.Specular = spec;
+	result.Specular = light.Color * spec;
 
 	return result;
 }

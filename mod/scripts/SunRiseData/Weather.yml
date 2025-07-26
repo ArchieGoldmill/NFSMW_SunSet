@@ -45,19 +45,19 @@ Weather:
     SkyG: 1
 
   - Time: 0.5
-    DiffuseColor: [1.0, 0.8, 0.7]
-    AmbientColor: [0.5, 0.5, 0.5]
-    SpecularColor: [1.0, 0.7, 0.5]
+    DiffuseColor: [1, 0.925, 0.78]
+    AmbientColor: [0.6, 0.6, 0.6]
+    SpecularColor: [1, 0.996, 0.847]
     SpecularPower: 30.0
 
-    SkyBetaR: [0.0195, 0.01, 0.0294]
-    SkyBetaM: [0.04, 0.04, 0.04]
-    SkyMie: 1
-    SkyMieAtt: 1
-    SkyRayleigh: 1
-    SkyRayleighAtt: 1
-    SkyGamma: 1
-    SkyG: 1
+    SkyBetaR: [0.133, 0.173, 0.231]
+    SkyBetaM: [0.01, 0.01, 0.01]
+    SkyMie: 1.0
+    SkyMieAtt: 1.0
+    SkyRayleigh: 1.0
+    SkyRayleighAtt: 1.0
+    SkyGamma: 2.2
+    SkyG: -0.2
 
   - Time: 0.8
     DiffuseColor: [0.0, 0.0, 0.0]

@@ -54,16 +54,22 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 void __stdcall SetShaderParams(RenderModel* renderModel)
 {
 	SetDynamicLights(renderModel);
-}
 
-TechniqueType LastTechnique = Technique_Invalid;
-void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
-{
 	if (renderModel->Effect->id == shader_type::skyshader)
 	{
 		renderModel->DiffuseTextureInfo = TextureInfo::Get(Hashes::SR_STARS, false, false);
 	}
 
+	if (renderModel->Effect->id == shader_type::CarShader)
+	{
+		auto material = (float*)renderModel->LightMatertial;
+		renderModel->Effect->SetFloat(ShaderParam::cfMetallicScale, material[40]);
+	}
+}
+
+TechniqueType LastTechnique = Technique_Invalid;
+void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
+{
 	if (LastEffect == NULL)
 	{
 		LastTechnique = Technique_Invalid;

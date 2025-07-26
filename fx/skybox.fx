@@ -1,15 +1,19 @@
 #include "global.fx"
+#include "normalmap.fx"
 
 float4 cvSunDirection;
 float4 cvSkyBetaR;
 float4 cvSkyBetaM;
 float4 cvSkyParams;
+float4 cvCloudColor;
+float cfCloudScroll : CLOUDSCROLL;
 
 struct VS_INPUT
 {
 	float4 position : POSITION;
 	float3 normal : NORMAL;
-	float4 tex : TEXCOORD;
+	float2 tex : TEXCOORD0;
+	float2 tex1 : TEXCOORD1;
 	float4 color : COLOR;
 };
 
@@ -17,7 +21,7 @@ struct PS_INPUT
 {
 	float4 position : POSITION;
 	float3 normal : NORMAL0;
-	float2 uv : TEXCOORD0;
+	float4 uv : TEXCOORD0;
 	float3 local_position : TEXCOORD3;
 	float4 color : COLOR0;
 };
@@ -26,8 +30,8 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
 	OUT.local_position = IN.position.xyz;
-	OUT.local_position.z += 800;
-	OUT.uv = IN.tex.xy;
+	OUT.local_position.z += 2000;
+	OUT.uv = float4(IN.tex, IN.tex1);
 }
 
 #define Gamma cvSkyBetaM.w
@@ -78,24 +82,34 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	// sun
 	color += 0.47 * float3(1.6, 1.4, 1.0) * pow(cosine, 350.0) * extinction;
 	// sun haze
-	color += 0.4 * float3(0.8, 0.9, 1.0) * pow(cosine, 2.0) * extinction;
+	color += 0.4 * float3(0.8, 0.9, 1.0) * pow(cosine, 0.0) * extinction;
 	
 	color = ACESFilm(color);
 	
 	color = pow(color, float3(Gamma, Gamma, Gamma));
 	
-	//float2 starsUV;
-	//if (IN.uv.y > 0.08)
-	//{
-	//	starsUV = IN.uv;
-	//}
-	//else
-	//{
-	//	starsUV = IN.local_position.xy / 10000;
-	//}
+	// stars
+	if (Rayleigh < 0.2)
+	{
+		float2 starsUV;
+		if (IN.uv.y > 0.08)
+		{
+			starsUV = IN.uv;
+		}
+		else
+		{
+			starsUV = IN.local_position.xy / 10000;
+		}
 	
-	//float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
-	//color += pow(diffuse_tex.rgb, 2);
+		float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
+		color += pow(diffuse_tex.rgb, 2) * smoothstep(0.2, 0.1, Rayleigh);
+	}
+	
+	// clouds
+	float2 cloudUV = IN.uv.xy;
+	cloudUV.x += cfCloudScroll * 0.1;
+	float4 clouds = tex2D(NORMALMAP_SAMPLER, cloudUV) * cvCloudColor;
+	color += clouds.rgb * clouds.a;
 	
 	return float4(color, 1.0);
 }

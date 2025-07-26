@@ -10,14 +10,16 @@
 class Weather
 {
 private:
-	WeatherConfig current;
+	WeatherData current;
 
 	float Timer = 0.0f;
+	float rain = 0.0f;
 
 	TextureInfo* CarRainDrops = nullptr;
 	TextureInfo* CarRainSlide = nullptr;
 	TextureInfo* PuddleMask = NULL;
 	TextureInfo* RoadDetail = NULL;
+	TextureInfo* Clouds = NULL;
 	TextureInfo* RainSplash[30];
 	LPDIRECT3DVOLUMETEXTURE9 NoiseTexture = NULL;
 
@@ -85,7 +87,7 @@ private:
 		}
 	}
 
-	void LerpWeather(WeatherConfig* a, WeatherConfig* b, float t)
+	void LerpWeather(WeatherData* a, WeatherData* b, float t)
 	{
 		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t);
 		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t);
@@ -106,6 +108,8 @@ private:
 		this->current.FogEnd = std::lerp(a->FogEnd, b->FogEnd, t);
 		this->current.FogPower = std::lerp(a->FogPower, b->FogPower, t);
 		this->current.FogExponent = std::lerp(a->FogExponent, b->FogExponent, t);
+
+		this->current.CloudColor = LerpVector(a->CloudColor, b->CloudColor, t);
 	}
 
 	void UpdateWeather()
@@ -143,7 +147,22 @@ private:
 
 		if (a && b)
 		{
-			this->LerpWeather(a, b, t);
+			if (this->rain == 0.0f)
+			{
+				this->LerpWeather(&a->Main, &b->Main, t);
+			}
+			else if (this->rain == 1.0f)
+			{
+				this->LerpWeather(&a->Rain, &b->Rain, t);
+			}
+			else
+			{
+				this->LerpWeather(&a->Main, &b->Main, t);
+				auto mainCurrent = this->current;
+				this->LerpWeather(&a->Rain, &b->Rain, t);
+				auto rainCurrent = this->current;
+				this->LerpWeather(&mainCurrent, &rainCurrent, this->rain);
+			}
 		}
 	}
 
@@ -176,6 +195,7 @@ private:
 			this->CarRainSlide = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_SLIDE_N, false, false);
 			this->PuddleMask = TextureInfo::Get(Hashes::SR_PUDDLE_MASK, false, false);
 			this->RoadDetail = TextureInfo::Get(Hashes::SR_ROAD_DETAIL, false, false);
+			this->Clouds = TextureInfo::Get(Hashes::SR_CLOUDS, false, false);
 
 			char buff[256];
 			for (int i = 0; i < 30; i++)
@@ -200,12 +220,19 @@ private:
 			roadShader->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->RoadDetail);
 		}
 
-		if(this->CarRainDrops)
+		if (this->CarRainDrops)
 		{
 			auto carShader = eEffect::Get(shader_type::CarShader);
 			carShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->NoiseTexture);
 			carShader->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->CarRainDrops);
 			carShader->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->CarRainSlide);
+		}
+
+		if (this->Clouds)
+		{
+			auto skyShader = eEffect::Get(shader_type::skyshader);
+			skyShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->Clouds);
+			skyShader->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
 		}
 	}
 
@@ -262,6 +289,8 @@ private:
 	{
 		bool isRaining = this->IsRaining();
 		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * (isRaining ? 0.5 : 0.1));
+
+		MoveTowards(this->rain, isRaining > 0.0f ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
 
 		rainParams.x = Rain::Instance->Intensity;
 		rainParams.y = RoadWetness;

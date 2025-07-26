@@ -35,6 +35,7 @@ void CheckReloadShaders()
 	}
 }
 
+float GLobalTime = 0.3f;
 void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
 	cullInfo->SetuWorldCulling();
@@ -42,6 +43,16 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	if (g_Config.ForceTime >= 0.0f)
 	{
 		TimeOfDay::Instance->CurrentTime = g_Config.ForceTime;
+	}
+	else
+	{
+		GLobalTime += Game::DeltaTime * TimeOfDay::Instance->UpdateRate * 0.001;
+		if (GLobalTime > 1)
+		{
+			GLobalTime = 0;
+		}
+
+		TimeOfDay::Instance->CurrentTime = GLobalTime;
 	}
 
 	CheckReloadShaders();
@@ -57,7 +68,12 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 
 	if (renderModel->Effect->id == shader_type::skyshader)
 	{
-		renderModel->DiffuseTextureInfo = TextureInfo::Get(Hashes::SR_STARS, false, false);
+		auto starTexture = TextureInfo::Get(Hashes::SR_STARS, false, false);
+		if (starTexture)
+		{
+			renderModel->NormalTextureInfo = renderModel->DiffuseTextureInfo;
+			renderModel->DiffuseTextureInfo = starTexture;
+		}
 	}
 
 	if (renderModel->Effect->id == shader_type::CarShader)

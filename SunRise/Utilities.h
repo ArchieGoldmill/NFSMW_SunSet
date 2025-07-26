@@ -151,6 +151,11 @@ D3DXVECTOR4 ParseVec3To4(const YAML::Node& node, float a = 0.0f)
 	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), a);
 }
 
+D3DXVECTOR4 ParseVec4(const YAML::Node& node, float a = 0.0f)
+{
+	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), node[3].as<float>());
+}
+
 inline std::string GetExeDirectory() {
 	char path[MAX_PATH] = { 0 };
 	// Get the full path of the executable

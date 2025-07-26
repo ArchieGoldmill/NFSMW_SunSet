@@ -29,6 +29,7 @@ const char* ShaderParamNames[] =
 	"cfMetallicScale",
 	"cvFogValue",
 	"cvFogColor",
+	"cvCloudColor",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -49,6 +50,7 @@ enum class ShaderParam
 	cfMetallicScale,
 	cvFogValue,
 	cvFogColor,
+	cvCloudColor,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

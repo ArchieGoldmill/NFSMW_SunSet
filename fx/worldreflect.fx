@@ -3,6 +3,7 @@
 #include "normalmap.fx"
 #include "lighting.fx"
 #include "spotlights.fx"
+#include "fog.fx"
 
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
@@ -98,7 +99,8 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.normal = normalize(IN.normal);
 	OUT.world_pos = mul(IN.position, cmWorldMat);
 	OUT.local_pos = IN.position;
-	
+	OUT.local_pos.w = OUT.position.z;
+
 	float4 p = OUT.position;
 	p.y = -p.y;
 	p.xy += p.w;
@@ -165,6 +167,8 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	final += specular * shadow;
 	final += light.Specular;
 	final += reflection_sample * reflectance;
+	
+	APPLY_FOG
 	
 	return float4(final, 1);
 }

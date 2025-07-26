@@ -3,6 +3,7 @@
 #include "normalmap.fx"
 #include "lighting.fx"
 #include "spotlights.fx"
+#include "fog.fx"
 
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
@@ -36,11 +37,12 @@ PS_INPUT VS_Base(VS_INPUT IN)
 
 	OUT.position = world_position(IN.position);
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
-	OUT.uv = IN.tex.xy;
+	OUT.uv = IN.tex.xy + TextureOffset.xy;
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal = normalize(IN.normal);
 	OUT.world_pos = mul(IN.position, cmWorldMat);
 	OUT.local_pos = IN.position;
+	OUT.local_pos.w = OUT.position.z;
 	
 	return OUT;
 }
@@ -66,6 +68,8 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow;
 	final.rgb += light.Specular;
+	
+	APPLY_FOG
 
 	return final;
 }

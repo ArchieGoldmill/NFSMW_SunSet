@@ -20,6 +20,12 @@ struct WeatherConfig
 	float SkyMieAtt;
 	float SkyGamma;
 	float SkyG;
+
+	D3DXVECTOR4 FogColor;
+	float FogStart;
+	float FogEnd;
+	float FogPower;
+	float FogExponent;
 };
 
 inline std::vector<WeatherConfig*> WeatherList;
@@ -61,6 +67,12 @@ void LoadWeatherConfig()
 		config->SkyMieAtt = node["SkyMieAtt"].as<float>();
 		config->SkyGamma = node["SkyGamma"].as<float>();
 		config->SkyG = node["SkyG"].as<float>();
+
+		config->FogColor = ParseVec3To4(node["FogColor"]);
+		config->FogStart = node["FogStart"].as<float>();
+		config->FogEnd = node["FogEnd"].as<float>();
+		config->FogPower = node["FogPower"].as<float>();
+		config->FogExponent = node["FogExponent"].as<float>();
 
 		WeatherList.push_back(config);
 	}

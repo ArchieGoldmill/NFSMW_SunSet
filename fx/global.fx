@@ -6,6 +6,7 @@ int BaseBlendState[5] : BLENDSTATE;
 int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
 int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
 int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
+float4 TextureOffset : TEXTUREOFFSET;
 
 float4 world_position(float4 screen_pos)
 {

@@ -62,6 +62,14 @@ private:
 
 	void SetParams()
 	{
+		D3DXVECTOR4 fogValue =
+		{
+			this->current.FogEnd,
+			1.0f / (this->current.FogEnd - this->current.FogStart),
+			this->current.FogPower,
+			this->current.FogExponent
+		};
+
 		for (shader_type stype : { shader_type::WorldShader, shader_type::WorldNormalMap, shader_type::WorldReflectShader, shader_type::GlossyWindow, shader_type::CarShader, shader_type::billboardshader })
 		{
 			auto e = eEffect::Get(stype);
@@ -72,6 +80,8 @@ private:
 			e->SetVector(ShaderParam::cvDiffuseColor, &this->current.DiffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &this->current.AmbientColor);
 			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
+			e->SetVector(ShaderParam::cvFogColor, &this->current.FogColor);
+			e->SetVector(ShaderParam::cvFogValue, &fogValue);
 		}
 	}
 
@@ -90,6 +100,12 @@ private:
 		this->current.SkyMieAtt = std::lerp(a->SkyMieAtt, b->SkyMieAtt, t);
 		this->current.SkyGamma = std::lerp(a->SkyGamma, b->SkyGamma, t);
 		this->current.SkyG = std::lerp(a->SkyG, b->SkyG, t);
+
+		this->current.FogColor = LerpVector(a->FogColor, b->FogColor, t);
+		this->current.FogStart = std::lerp(a->FogStart, b->FogStart, t);
+		this->current.FogEnd = std::lerp(a->FogEnd, b->FogEnd, t);
+		this->current.FogPower = std::lerp(a->FogPower, b->FogPower, t);
+		this->current.FogExponent = std::lerp(a->FogExponent, b->FogExponent, t);
 	}
 
 	void UpdateWeather()

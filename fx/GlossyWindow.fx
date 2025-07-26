@@ -2,8 +2,8 @@
 #include "shadow.fx"
 #include "lighting.fx"
 #include "spotlights.fx"
+#include "fog.fx"
 
-float4 TextureOffset : TEXTUREOFFSET;
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
 float3 cvAmbientColor;
@@ -13,12 +13,6 @@ texture WindowReflection : WINDOWREFLECTION;
 sampler reflected_sampler = sampler_state
 {
 	Texture = <WindowReflection>;
-	AddressU = 1;
-	AddressV = 1;
-	MipFilter = 0;
-	MinFilter = 0;
-	MagFilter = 0;
-	MaxAnisotropy = 0;
 };
 
 struct VS_INPUT
@@ -26,7 +20,7 @@ struct VS_INPUT
 	float4 position : POSITION;
 	float3 normal : NORMAL;
 	float4 tangent : TANGENT;
-	float4 tex : TEXCOORD;
+	float2 tex : TEXCOORD;
 	float4 color : COLOR;
 };
 
@@ -49,12 +43,13 @@ PS_INPUT VS_Base(VS_INPUT IN)
 
 	OUT.position = world_position(IN.position);
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
-	OUT.uv = IN.tex.xy + TextureOffset.xy;
+	OUT.uv = IN.tex + TextureOffset.xy;
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal = normalize(IN.normal);
 	OUT.world_pos = mul(IN.position, cmWorldMat);
 	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
 	OUT.local_pos = IN.position;
+	OUT.local_pos.w = OUT.position.z;
 	
 	return OUT;
 }
@@ -78,10 +73,21 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
 	finalLight = lerp(finalLight, float3(30, 20, 10) / 2, reflect_scale * cvDiffuseColor.w);
 	
+	float3 viewDir = normalize(LocalEyePos.xyz - IN.local_pos.xyz);
+	float3 vR = reflect(viewDir, IN.normal);
+	
+	float2 vCylinderMap;
+	vCylinderMap.x = atan2(vR.y, vR.x);
+	vCylinderMap.y = IN.uv.y;
+	float4 reflection = tex2D(reflected_sampler, vCylinderMap);
+	
 	float3 final = albedo;
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * lerp(1, 5, reflect_scale);
 	final.rgb += light.Specular * reflect_scale;
+	final.rgb += reflection.rgb * reflect_scale;
+	
+	APPLY_FOG
 	
 	return float4(final, 1);
 }

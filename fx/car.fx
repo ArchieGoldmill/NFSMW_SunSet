@@ -4,6 +4,7 @@
 #include "lighting.fx"
 #include "spotlights.fx"
 #include "car_rain.fx"
+#include "fog.fx"
 
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 float4x4 WorldView : WORLDVIEW;
@@ -74,6 +75,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.world_pos = mul(IN.position, cmWorldMat);
 	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
 	OUT.local_pos = IN.position;
+	OUT.local_pos.w = OUT.position.z;
 	
 	return OUT;
 }
@@ -121,6 +123,8 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	final.rgb += envmap_sample * diffuse_scale.a;
 	final.rgb += specular * shadow;
 	final.rgb += light.Specular;
+	
+	APPLY_FOG
 	
 	return final;
 }

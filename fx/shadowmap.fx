@@ -2,12 +2,12 @@
 void VS_ShadowMap(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
-	OUT.uv = IN.tex.xy;
+	OUT.uv.xy = IN.tex.xy;
 }
 
 float4 PS_ShadowMap(PS_INPUT IN) : COLOR
 {
-	float4 v_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+	float4 v_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv.xy);
 	return v_tex;
 }
 

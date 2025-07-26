@@ -32,6 +32,9 @@
     <FxCompile Include="car_rain.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="fog.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

@@ -125,6 +125,7 @@
   <ItemGroup>
     <FxCompile Include="car.fx" />
     <FxCompile Include="car_rain.fx" />
+    <FxCompile Include="fog.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
     <FxCompile Include="lighting.fx" />

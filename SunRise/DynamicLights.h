@@ -20,19 +20,6 @@ int NumSpotLights;
 SpotLightModel SpotLightBuffer[NUM_SPOTLIGHTS_BUFFER];
 int NumSpotLightBuffer = 0;
 
-inline D3DXVECTOR3 GetCameraPos()
-{
-	auto camera = Game::GetPlayerCamera();
-	return camera->Position;
-}
-
-inline float GetCameraDistance(D3DXVECTOR3 pos)
-{
-	auto cameraPos = GetCameraPos();
-	D3DXVECTOR3 diff = pos - cameraPos;
-	return D3DXVec3Length(&diff);
-}
-
 void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare)
 {
 	if (NumSpotLightBuffer >= NUM_SPOTLIGHTS_BUFFER)
@@ -101,7 +88,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 				for (auto& pSpotLight : solidLights.Lights)
 				{
 					auto spotLight = CreateSpotLight(pSpotLight, matrix);
-					AddSpotLightToBuffer(spotLight, SpotLightSource::LampPost, solidLights.Flare);
+					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare);
 				}
 			}
 		}
@@ -439,8 +426,8 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 
 		if (PrelitTextures.contains(renderModel->DiffuseTextureInfo->NameHash))
 		{
-			auto brightness = PrelitTextures[renderModel->DiffuseTextureInfo->NameHash].Brightness;
-			renderModel->Effect->SetFloat(ShaderParam::cfBrightness, brightness);
+			auto brightness = PrelitTextures[renderModel->DiffuseTextureInfo->NameHash].Color;
+			renderModel->Effect->SetVector(ShaderParam::cvBrightness, &brightness);
 
 			return Technique_Prelit;
 		}

@@ -39,7 +39,7 @@ Prelit:
 
   - Name: ADS_BOXINGA_EA
     Brightness: 4.0
-    
+
   - Name: SGN_STEAKHOUSE_JF
     Brightness: 4.0
 
@@ -126,8 +126,19 @@ Prelit:
 
   - Name: SFX_TRACKBARRIERNEONARROW
     Brightness: 3.0
+
   - Name: SFX_TRACKBARRIERNEONARROW_SOLID
     Brightness: 1.0
+
+  - Name: ADS_AUTOZONE_BB_A_EA
+    Brightness: 8.0
+    
+  - Name: SGN_CT_CARWASH
+    Brightness: 8.0
+
+  - Name: ARC_ROLLERCOASTERB
+    Brightness: 15.0
+    Color: [0.8, 1.0, 0.5]
 
   - NameHash: 0x4494239C
     Brightness: 3.0

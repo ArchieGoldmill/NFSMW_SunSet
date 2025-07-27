@@ -34,7 +34,8 @@ enum class SpotLightSource
 	Helicopter,
 	Headlights,
 	Player_Breaklights,
-	Breaklights
+	Breaklights,
+	Blinking
 };
 
 struct FlareModel

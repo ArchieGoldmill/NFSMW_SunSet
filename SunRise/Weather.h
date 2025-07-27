@@ -54,6 +54,11 @@ public:
 		return this->LightIntensity > 0.0;
 	}
 
+	float GetRain()
+	{
+		return this->rain;
+	}
+
 private:
 
 	bool LightsOn()

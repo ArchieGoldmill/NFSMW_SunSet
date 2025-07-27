@@ -21,3 +21,16 @@ namespace Game
 	INLINE_FUNC(0x00460BF0, Hash, __cdecl, bStringHash, const char*);
 	INLINE_FUNC(0x0046EB40, Camera*, __cdecl, GetPlayerCamera);
 }
+
+inline D3DXVECTOR3 GetCameraPos()
+{
+	auto camera = Game::GetPlayerCamera();
+	return camera->Position;
+}
+
+inline float GetCameraDistance(D3DXVECTOR3 pos)
+{
+	auto cameraPos = GetCameraPos();
+	D3DXVECTOR3 diff = pos - cameraPos;
+	return D3DXVec3Length(&diff);
+}

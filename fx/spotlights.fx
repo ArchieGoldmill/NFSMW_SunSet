@@ -32,6 +32,7 @@ SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPo
 	distAtten *= distAtten;
 	
 	float dotL = dot(localNormal, L);
+	dotL = smoothstep(-0.5, 1.0, dotL);
 	float NdotL = saturate(dotL);
 	float3 diffuse = abs(dotL) * diffuseAtten;
 

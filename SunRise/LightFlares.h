@@ -4,6 +4,7 @@
 #include "eLightFlareParams.h"
 
 FlareModel* CurrentFlare = NULL;
+FlareModel RainFlare;
 void __stdcall RenderWorldLightFlares()
 {
 	bool isRoadReflection = RenderTarget::Current->ViewId == ViewId::Reflection;
@@ -11,8 +12,7 @@ void __stdcall RenderWorldLightFlares()
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
 		auto spotlight = SpotLightBuffer[i];
-
-		if (spotlight.Source == SpotLightSource::LampPost && spotlight.Flare)
+		if (spotlight.Flare && spotlight.Source == SpotLightSource::LampPost)
 		{
 			auto color = D3DCOLOR_COLORVALUE(spotlight.Light.Color.z, spotlight.Light.Color.y, spotlight.Light.Color.x, 0);
 			CurrentFlare = spotlight.Flare;
@@ -36,6 +36,16 @@ void __stdcall RenderWorldLightFlares()
 
 			Game::FlareRotation = 0;
 			Game::eRenderLightFlare(eView::PlayerView, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
+			if (RenderTarget::Current->ViewId == ViewId::Player1 && spotlight.Flare->TextureName == Game::bStringHash("LAMP_FLARE"))
+			{
+				auto cameraDist = GetCameraDistance(flare.Position);
+				intensity *= Smoothstep(1, 100, cameraDist) * g_Weather.GetRain() * 0.3;
+				if (intensity > 0)
+				{
+					CurrentFlare = &RainFlare;
+					Game::eRenderLightFlare(eView::PlayerView, &flare, Game::IdentityMatrix, intensity, 0, 0, 0, color, 15);
+				}
+			}
 			Game::FlareRotation = 240;
 		}
 	}
@@ -91,4 +101,6 @@ void InitLightFlares()
 	injector::MakeJMP(0x00505F71, RenderWorldLightFlaresHook);
 
 	injector::MakeJMP(0x00505A3C, GetFlareTextureHook);
+
+	RainFlare.TextureName = Game::bStringHash("LAMP_FLARE_RAIN");
 }

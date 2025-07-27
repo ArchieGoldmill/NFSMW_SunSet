@@ -107,7 +107,7 @@ technique LitVertex
 	}
 }
 
-float cfBrightness;
+float4 cvBrightness;
 
 void VS_Prelit(VS_INPUT IN, out PS_INPUT OUT)
 {
@@ -120,7 +120,9 @@ float4 PS_Prelit(PS_INPUT IN) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 
-	return diffuse_tex * IN.color * cfBrightness;
+	diffuse_tex.rgb *= cvBrightness.rgb * cvBrightness.a;
+	
+	return diffuse_tex * IN.color;
 }
 
 technique Prelit

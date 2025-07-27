@@ -7,7 +7,7 @@
 struct PrelitTexture
 {
 	Hash Name;
-	float Brightness;
+	D3DXVECTOR4 Color = { 1, 1, 1, 1 };
 };
 
 inline std::unordered_map<unsigned int, PrelitTexture> PrelitTextures;
@@ -39,7 +39,14 @@ void InitTextureConfig()
 			prelit.Name = node["NameHash"].as<Hash>();
 		}
 
-		prelit.Brightness = YmlGet(node, "Brightness", 1.0f);
+
+		auto colorNode = node["Color"];
+		if (colorNode.IsDefined())
+		{
+			prelit.Color = ParseVec3To4(colorNode);
+		}
+
+		prelit.Color.w = YmlGet(node, "Brightness", 1.0f);
 
 		PrelitTextures[prelit.Name] = prelit;
 	}

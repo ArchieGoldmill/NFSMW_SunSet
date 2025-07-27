@@ -11,8 +11,8 @@ CarBrakeLightsOn:
   Position: [0.0, 0.0, 0.0]
   Direction: [-1.0, 0.0, -0.5]
   Color: [1.0, 0.0, 0.0]
-  Intensity: 3.0
-  Range: 5.0
+  Intensity: 2.0
+  Range: 4.0
   InnerAngle: 25.0
   OuterAngle: 45.0
 
@@ -20,7 +20,7 @@ CarBrakeLightsOff:
   Position: [0.0, 0.0, 0.0]
   Direction: [-1.0, 0.0, -0.5]
   Color: [1.0, 0.0, 0.0]
-  Intensity: 2.0
+  Intensity: 1.0
   Range: 4.0
   InnerAngle: 25.0
   OuterAngle: 45.0
@@ -198,11 +198,11 @@ SolidLights:
     SpotLights:
       - Position: [0.0, 0.0, 5.1]
         Direction: [0.0, 0.0, -1.0]
-        Color: [1.0, 1.0, 1.0]
+        Color: [0.8, 0.9, 1.0]
         InnerAngle: 35.0
         OuterAngle: 65.0
         Intensity: 5.0
-        Range: 30.0
+        Range: 10.0
   - Solid: XO_STREETLIGHTD_1B_00
     Flare: LampPost
     SpotLights:
@@ -445,3 +445,30 @@ SolidLights:
         OuterAngle: 360.0
         Intensity: 5.0
         Range: 20.0
+
+  - Solid: XB_FERRISWHEEL_1A_00
+    SpotLights:
+      - Position: [0, 0, 26]
+        Direction: [0.0, 0.0, 1.0]
+        Color: [1.0, 0.5, 0.9]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 50.0
+
+  - Solid: XB_BLUESTRIPGASS_1A_00
+    SpotLights:
+      - Position: [-10, 6.5, 3]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.5, 0.9, 0.8]
+        InnerAngle: 160.0
+        OuterAngle: 170.0
+        Intensity: 2.0
+        Range: 30.0
+      - Position: [8, 6.1, 3]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.5, 0.9, 0.8]
+        InnerAngle: 160.0
+        OuterAngle: 170.0
+        Intensity: 2.0
+        Range: 30.0

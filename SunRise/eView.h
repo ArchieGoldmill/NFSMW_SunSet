@@ -78,6 +78,7 @@ struct eViewPlatInfo
 struct eView
 {
 	eViewPlatInfo* Pinfo;
+	int Id;
 
 	static inline auto Views = (eView*)0x009195E0;
 	static inline auto PlayerView = (eView*)0x00919650;

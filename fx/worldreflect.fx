@@ -115,17 +115,17 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 original_normal = IN.normal;
 	
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
-	
+
 	// Apply road detail normal map
 	float3 roadDetail = tex2D(MISCMAP3_SAMPLER, IN.world_pos.xy * 0.7).rgb * 2 - 1;
 	float3 bitangent = cross(normal, float3(1, 0, 0));
 	float3 tangent = normalize(cross(bitangent, normal));
 	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);
-	normal = mul(normalize(roadDetail), tbn);
+	normal = normalize(mul(normalize(roadDetail), tbn));
 	
-	float3 specMap = tex2D(SPECULARMAP_SAMPLER, IN.uv) * 2;
+	float specMap = tex2D(SPECULARMAP_SAMPLER, IN.uv).r * 2;
 
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(10, 60, specMap.r), IN.color.rgb);
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(10, 60, specMap), IN.color.rgb);
 
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	float3 albedo = diffuse_tex.rgb;
@@ -138,7 +138,8 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 specular = GetSpecular(normal, lightDir, IN.local_pos.xyz);
 	specular *= specMap;
 	
-	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
+	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r;
+	puddle_mask = max(puddle_mask, 0.1) * cvRainParams.y;
 	
 	// Make puddles darker so reflection is more visible
 	albedo = lerp(albedo, albedo / 15, puddle_mask);
@@ -159,7 +160,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float reflectance = dot(original_normal, float3(0, 0, 1));
 	
 	// Apply road detail in shadow
-	float shadowDetail = dot(normal, original_normal);
+	float shadowDetail = saturate(dot(normal, original_normal));
 	albedo *= lerp(shadowDetail, 1, shadow);
 	
 	float3 final = albedo;

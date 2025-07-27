@@ -4,8 +4,9 @@
 #include "eLightFlareParams.h"
 
 FlareModel* CurrentFlare = NULL;
-void RenderWorldLightFlares()
+void __stdcall RenderWorldLightFlares()
 {
+	bool isRoadReflection = RenderTarget::Current->ViewId == ViewId::Reflection;
 	CurrentFlare = NULL;
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
@@ -18,15 +19,23 @@ void RenderWorldLightFlares()
 
 			LightFlare flare;
 			flare.Position = spotlight.Light.Position;
-			flare.Direction = { 0, 0, 0 };
+			flare.Direction = { 0, 0, 1 };
 			flare.ReflectPosZ = 0;
 			flare.Tint = 0;
 			flare.NameHash = 0;
 			flare.Type = spotlight.Flare->Type;
 			flare.Flags = 0;
 
+			float size = spotlight.Flare->Size;
+			float intensity = spotlight.Flare->Intensity;
+			if (isRoadReflection)
+			{
+				size *= 0.25f;
+				intensity *= 0.25f;
+			}
+
 			Game::FlareRotation = 0;
-			Game::eRenderLightFlare(eView::PlayerView, &flare, (D3DXMATRIX*)0x00987AB0, spotlight.Flare->Intensity, 0, 0, 0.0, color, spotlight.Flare->Size);
+			Game::eRenderLightFlare(eView::PlayerView, &flare, (D3DXMATRIX*)0x00987AB0, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
 			Game::FlareRotation = 240;
 		}
 	}

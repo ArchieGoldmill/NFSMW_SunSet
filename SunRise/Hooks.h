@@ -62,17 +62,22 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	g_Weather.Update();
 }
 
+TextureInfo* StarsTexture = NULL;
+TextureInfo* PlainNormalTexture = NULL;
 void __stdcall SetShaderParams(RenderModel* renderModel)
 {
 	SetDynamicLights(renderModel);
 
 	if (renderModel->Effect->id == shader_type::skyshader)
 	{
-		auto starTexture = TextureInfo::Get(Hashes::SR_STARS, false, false);
-		if (starTexture)
+		if (StarsTexture)
 		{
 			renderModel->NormalTextureInfo = renderModel->DiffuseTextureInfo;
-			renderModel->DiffuseTextureInfo = starTexture;
+			renderModel->DiffuseTextureInfo = StarsTexture;
+		}
+		else
+		{
+			StarsTexture = TextureInfo::Get(Hashes::SR_STARS, false, false);
 		}
 	}
 
@@ -80,6 +85,18 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 	{
 		auto material = (float*)renderModel->LightMatertial;
 		renderModel->Effect->SetFloat(ShaderParam::cfMetallicScale, material[40]);
+	}
+
+	if (renderModel->DiffuseTextureInfo == renderModel->NormalTextureInfo)
+	{
+		if (PlainNormalTexture)
+		{
+			renderModel->NormalTextureInfo = PlainNormalTexture;
+		}
+		else
+		{
+			PlainNormalTexture = TextureInfo::Get(Hashes::SR_PLAIN_NORMAL, false, false);
+		}
 	}
 }
 
@@ -192,4 +209,7 @@ void InitHooks()
 	// Disable tunnel bloom
 	injector::MakeNOP(0x00504C65, 5);
 	injector::MakeNOP(0x00504C6F, 5);
+
+	// Disable car flare reflection
+	injector::WriteMemory<BYTE>(0x0074322E, 0);
 }

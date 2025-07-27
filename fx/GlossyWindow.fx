@@ -85,7 +85,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * lerp(1, 5, reflect_scale);
 	final.rgb += light.Specular * reflect_scale;
-	final.rgb += reflection.rgb * reflect_scale;
+	final.rgb += reflection.rgb * reflect_scale * (1 - cvDiffuseColor.w);
 	
 	APPLY_FOG
 	

@@ -44,6 +44,8 @@ void LoadSpotLightConfig()
 		solid.Name = lightNode["Solid"].as<std::string>();
 		solid.HashA = Game::bStringHash(solid.Name.c_str());
 
+		solid.Blink = YmlGet(lightNode, "Blink", 0);
+
 		auto nameB = lightNode["SolidLod"];
 		if (nameB.IsDefined())
 		{

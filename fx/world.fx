@@ -25,8 +25,6 @@ struct PS_INPUT
 	float3 normal : NORMAL0;
 	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
-	float4 world_pos : TEXCOORD1;
-	float3 world_nomral : TEXCOORD2;
 	float4 color : COLOR0;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
@@ -41,8 +39,6 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.uv = IN.tex.xy + TextureOffset.xy;
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal = normalize(IN.normal);
-	OUT.world_pos = mul(IN.position, cmWorldMat);
-	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
 	
@@ -66,8 +62,6 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	
 	float4 final = diffuse_tex;
 	final.rgb *= finalLight;
-	//final.rgb += specular * shadow;
-	//final.rgb += light.Specular;
 	
 	APPLY_FOG
 	

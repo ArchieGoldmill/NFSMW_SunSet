@@ -6,6 +6,7 @@
 enum TechniqueType
 {
 	Technique_Unlit,
+	Technique_Prelit,
 	Technique_LitPixel_8,
 	Technique_LitPixel_16,
 	Technique_LitPixel_24,
@@ -30,6 +31,7 @@ const char* ShaderParamNames[] =
 	"cvFogValue",
 	"cvFogColor",
 	"cvCloudColor",
+	"cfBrightness",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -51,6 +53,7 @@ enum class ShaderParam
 	cvFogValue,
 	cvFogColor,
 	cvCloudColor,
+	cfBrightness,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

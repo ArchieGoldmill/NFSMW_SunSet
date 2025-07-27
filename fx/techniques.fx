@@ -7,7 +7,7 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT = VS_Base(IN);
-	SpotLightResult result = ApplySpotLights(OUT.normal, OUT.world_pos.xyz, 12, -1);
+	SpotLightResult result = ApplySpotLights(OUT.normal, OUT.local_pos.xyz, 12, -1);
 	OUT.color = float4(result.Diffuse, 1);
 }
 
@@ -104,5 +104,32 @@ technique LitVertex
 
 		VertexShader = compile vs_3_0 VS_LitVertex();
 		PixelShader = compile ps_3_0 PS_Unlit();
+	}
+}
+
+float cfBrightness;
+
+void VS_Prelit(VS_INPUT IN, out PS_INPUT OUT)
+{
+	OUT.position = mul(IN.position, WorldViewProj);
+	OUT.color = IN.color;
+	OUT.uv.xy = IN.tex.xy + TextureOffset.xy;
+}
+
+float4 PS_Prelit(PS_INPUT IN) : COLOR
+{
+	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+
+	return diffuse_tex * IN.color * cfBrightness;
+}
+
+technique Prelit
+{
+	pass p0
+	{
+		COMMON_PASS_BODY
+
+		VertexShader = compile vs_3_0 VS_Prelit();
+		PixelShader = compile ps_3_0 PS_Prelit();
 	}
 }

@@ -88,6 +88,15 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 			// TODO use binary search
 			if (solidLights.HashA == model->NameHash || solidLights.HashB == model->NameHash)
 			{
+				if (solidLights.Blink)
+				{
+					int blink = Game::FlareBlink[solidLights.Blink - 1];
+					if (blink != -1)
+					{
+						continue;
+					}
+				}
+
 				for (auto& pSpotLight : solidLights.Lights)
 				{
 					auto spotLight = CreateSpotLight(pSpotLight, matrix);
@@ -321,7 +330,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	NumSpotLights = 0;
 	memset(&SpotLights, 0, sizeof(SpotLights));
 
-	if (!model->pSolid || model->pSolid->Volume > 100000.0f)
+	if (!model->pSolid || model->pSolid->Volume > 170,000.0f)
 	{
 		return;
 	}
@@ -347,7 +356,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 
 		if (spotlight && NumSpotLights < NUM_SPOTLIGHTS)
 		{
-			if (ConeSphereIntersect(spotlight->Position,spotlight->Direction, D3DXToRadian(spotlight->OuterAngle),spotlight->Range, meshCenter,radius))
+			if (ConeSphereIntersect(spotlight->Position, spotlight->Direction, D3DXToRadian(spotlight->OuterAngle), spotlight->Range, meshCenter, radius))
 			{
 				SpotLightShader s;
 				s.Position = spotlight->Position;
@@ -368,11 +377,6 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 				SpotLights[NumSpotLights] = s;
 				NumSpotLights++;
 			}
-		}
-
-		if (NumSpotLights >= NUM_SPOTLIGHTS)
-		{
-			//throw std::runtime_error("Too many spotlights for shader, increase NUM_SPOTLIGHTS");
 		}
 	}
 }
@@ -402,11 +406,20 @@ inline bool UseVertexLighting(RenderModel* model)
 TechniqueType GetTechnique(RenderModel* renderModel)
 {
 	TechniqueType technique = Technique_Invalid;
+
 	if (DynamicallyLit(renderModel))
 	{
 		if (RenderTarget::Current->ViewId == ViewId::ShadowMap)
 		{
 			return Technique_ShadowMap;
+		}
+
+		if (PrelitTextures.contains(renderModel->DiffuseTextureInfo->NameHash))
+		{
+			auto brightness = PrelitTextures[renderModel->DiffuseTextureInfo->NameHash].Brightness;
+			renderModel->Effect->SetFloat(ShaderParam::cfBrightness, brightness);
+			
+			return Technique_Prelit;
 		}
 
 		if (RenderTarget::Current->ViewId == ViewId::Player1)

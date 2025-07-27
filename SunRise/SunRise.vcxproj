@@ -194,6 +194,7 @@
     <ClInclude Include="SmackableRenderConn.h" />
     <ClInclude Include="Spotlight.h" />
     <ClInclude Include="SpotLightConfig.h" />
+    <ClInclude Include="TextureConfig.h" />
     <ClInclude Include="TextureInfo.h" />
     <ClInclude Include="TimeOfDay.h" />
     <ClInclude Include="Utilities.h" />

@@ -62,4 +62,5 @@ struct SolidLights
 	std::string Name;
 	FlareModel* Flare = NULL;
 	std::vector<SpotLight> Lights;
+	int Blink;
 };

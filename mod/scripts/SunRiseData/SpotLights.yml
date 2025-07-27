@@ -221,6 +221,15 @@ SolidLights:
         OuterAngle: 90.0
         Intensity: 5.0
         Range: 15.0
+  - Solid: XS_FWY_3FRAME_1B_EA_00
+    SpotLights:
+      - Position: [0.0, -0.5, 2.4]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 1.0, 1.0]
+        InnerAngle: 55.0
+        OuterAngle: 90.0
+        Intensity: 5.0
+        Range: 15.0
   - Solid: XO_IF_POWERLIGHTA_1A_LL_00
     Flare: LampPost
     SpotLights:
@@ -272,8 +281,40 @@ SolidLights:
         OuterAngle: 70.0
         Intensity: 5.0
         Range: 15.0
+  - Solid: XO_STREETLIGHT_ITALYJG_2B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -2.8, 8.3]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.6, 1.0, 0.8]
+        InnerAngle: 15.0
+        OuterAngle: 70.0
+        Intensity: 5.0
+        Range: 45.0
+  - Solid: XO_STREETLIGHT_ITALYJG_1B_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, -2.8, 8.3]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.8, 1.0, 0.6]
+        InnerAngle: 15.0
+        OuterAngle: 70.0
+        Intensity: 5.0
+        Range: 45.0
+  - Solid: XO_POLICEPOSTMM_1B_00
+    SolidLod: XO_POLICEPOSTMM_1C_00
+    Flare: LampPost
+    SpotLights:
+      - Position: [0.0, 0.0, 2.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 1.0, 1.0]
+        InnerAngle: 15.0
+        OuterAngle: 70.0
+        Intensity: 5.0
+        Range: 45.0
 
   - Solid: XO_SAWHORSE_1B_00
+    SolidLod: XO_SAWHORSE_1C_00
     SpotLights:
       - Position: [0.0, -1.4, 1.1]
         Direction: [0.0, 0.0, -1.0]
@@ -290,16 +331,6 @@ SolidLights:
         Intensity: 3.0
         Range: 5.0
 
-  # tunnel
-  # - Solid: XO_TUNNEL_LIGHT_RUNNING_1B_00
-  #   SpotLights:
-  #     - Position: [0.0, 0.5, 0.0]
-  #       Direction: [0.0, 0.5, -1.0]
-  #       Color: [0.7, 0.9, 1.0]
-  #       InnerAngle: 33.0
-  #       OuterAngle: 90.0
-  #       Intensity: 5.0
-  #       Range: 35.0
   - Solid: XO_TUNNEL_LIGHT_LONG_1B_00_DEINST1_Q10
     SpotLights:
       - Position: [0.0, 0.5, -2.0]
@@ -333,6 +364,7 @@ SolidLights:
         Range: 15.0
   - Solid: XS_MEDIANPOLE_1B_00
     Flare: Chevron
+    Blink: 2
     SpotLights:
       - Position: [0.0, 0.0, 2.1]
         Direction: [0.0, 0.0, -1.0]
@@ -352,7 +384,7 @@ SolidLights:
         Intensity: 5.0
         Range: 9.0
   - Solid: XS_MEDIANPOLEGREEN_1B_CK_00
-    Flare: ""
+    Blink: 3
     SpotLights:
       - Position: [0.0, 0.0, 2.1]
         Direction: [0.0, 0.0, -1.0]
@@ -361,3 +393,44 @@ SolidLights:
         OuterAngle: 360.0
         Intensity: 5.0
         Range: 5.0
+
+  - Solid: XO_GASSTATIONPRICESIGN_MM_1A_00
+    SolidLod: XO_GASSTATIONPRICESIGN_MM_1C_00
+    SpotLights:
+      - Position: [0.0, 0.0, 2.0]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 35.0
+
+  - Solid: XO_POPMACHINE_RUSH_1B_00
+    SpotLights:
+      - Position: [0.0, 0.0, 2.0]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.5, 0.7]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 5.0
+
+  - Solid: XO_POPMACHINE_FRISKY_1B_00
+    SpotLights:
+      - Position: [0.0, 0.0, 2.0]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.6, 1.0, 0.7]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 5.0
+
+  - Solid: XO_CARWASHTICKET_1B_EA_00
+    SpotLights:
+      - Position: [0.0, -1.0, 1.3]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.6, 1.0, 0.7]
+        InnerAngle: 50.0
+        OuterAngle: 60.0
+        Intensity: 5.0
+        Range: 4.0

@@ -4,6 +4,7 @@
 #include "WeatherConfig.h"
 #include "FlareConfig.h"
 #include "SpotLightConfig.h"
+#include "TextureConfig.h"
 
 struct Config
 {
@@ -49,4 +50,6 @@ void InitConfig()
 	LoadSpotLightConfig();
 
 	LoadWeatherConfig();
+
+	InitTextureConfig();
 }

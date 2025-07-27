@@ -13,7 +13,7 @@ struct TextureInfo
 	TexturePlatInfo* PlatInfo;
 	int unk[2];
 	char name[24];
-	unsigned int hash;
+	Hash NameHash;
 
 	static TextureInfo* Get(Hash hash, bool defaultIfNotFound, bool includeUnloaded)
 	{

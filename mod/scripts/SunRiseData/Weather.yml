@@ -1,7 +1,7 @@
 Weather:
   - Time: 0.0
     DiffuseColor: [0.0, 0.0, 0.0]
-    AmbientColor: [0.2, 0.2, 0.2]
+    AmbientColor: [0.2, 0.2, 0.25]
     SpecularColor: [0.0, 0.0, 0.0]
     SpecularPower: 0.0
 

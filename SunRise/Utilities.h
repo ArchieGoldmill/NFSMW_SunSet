@@ -94,9 +94,12 @@ inline bool ConeSphereIntersect(
 	if (distApexToCenter > range + sphereRadius)
 		return false;
 
-	float extend = range * (1 - cosf(coneAngle / 2));
-	extend = range * range / (range - extend) - range;
-	range += extend;
+	if (coneAngle < D3DXToRadian(75))
+	{
+		float extend = range * (1 - cosf(coneAngle / 2));
+		extend = range * range / (range - extend) - range;
+		range += extend;
+	}
 
 	D3DXVECTOR3 CS = sphereCenter - coneApex;
 	float t = D3DXVec3Dot(&CS, &coneDir);
@@ -192,4 +195,16 @@ inline void MoveTowards(float& a, float b, float step)
 			a = b;
 		}
 	}
+}
+
+template <typename T>
+inline T YmlGet(const YAML::Node& spot, const char* section, T def)
+{
+	auto node = spot[section];
+	if (node.IsDefined())
+	{
+		return node.as<T>();
+	}
+
+	return def;
 }

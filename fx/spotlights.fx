@@ -31,8 +31,9 @@ SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPo
 	float distAtten = saturate(1.0 - distance / light.Range);
 	distAtten *= distAtten;
 	
-	float NdotL = saturate(dot(localNormal, L));
-	float3 diffuse = NdotL * diffuseAtten;
+	float dotL = dot(localNormal, L);
+	float NdotL = saturate(dotL);
+	float3 diffuse = abs(dotL) * diffuseAtten;
 
 	float spec;
 	float NdotH = saturate(dot(localNormal, H));

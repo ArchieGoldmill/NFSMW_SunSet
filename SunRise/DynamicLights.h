@@ -10,6 +10,7 @@
 #include "SmackableRenderConn.h"
 #include "Weather.h"
 #include "GridCuller.h"
+#include "FrontEndRenderingCar.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
@@ -117,11 +118,17 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 	auto drawInfo = cullInfo->FirstDrawInfo;
 	while (drawInfo != cullInfo->CurrentDrawInfo)
 	{
+		auto matrix = drawInfo->Matrix;
+		if (!matrix)
+		{
+			matrix = Game::IdentityMatrix;
+		}
+
 		// Remove road reflected meshes (TODO: find better way)
-		if (drawInfo->Matrix && drawInfo->Matrix->_33 > 0)
+		if (matrix->_33 > 0)
 		{
 			auto model = (eModel*)(drawInfo->pModel & 0xFFFFFFFC);
-			PopulateFromModel(model, drawInfo->Matrix);
+			PopulateFromModel(model, matrix);
 		}
 
 		drawInfo++;
@@ -257,41 +264,57 @@ void AddHelicopterLight(D3DXVECTOR3 pos)
 	AddSpotLightToBuffer(spotLight, SpotLightSource::Helicopter, NULL);
 }
 
+void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, int renderUsage)
+{
+	D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
+
+	LightFlare* flare = carRenderInfo->LightFlares;
+
+	while ((void*)flare != &carRenderInfo->LightFlares)
+	{
+		bool isPlayer = renderUsage == 0;
+
+		AddCarHeadlight(carRenderInfo, matrix, flare, isPlayer);
+		AddCarBrakelight(carRenderInfo, matrix, flare, isPlayer);
+
+		flare = flare->Next;
+	}
+}
+
 void PopulateCarSpotLights()
 {
-	for (int i = 0; i < VehicleRenderConn::ListCount; i++)
+	if (Game::State == 6)
 	{
-		auto renderConn = VehicleRenderConn::List[i];
-		if (renderConn && !renderConn->Inactive)
+		for (int i = 0; i < VehicleRenderConn::ListCount; i++)
 		{
-			auto carRenderInfo = renderConn->pCarRenderInfo;
-			if (carRenderInfo)
+			auto renderConn = VehicleRenderConn::List[i];
+			if (renderConn && !renderConn->Inactive)
 			{
-				auto matrix = &renderConn->Matrix1;
-				D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
-
-				int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
-				if (renderUsage == 5)
+				auto carRenderInfo = renderConn->pCarRenderInfo;
+				if (carRenderInfo)
 				{
-					matrix = renderConn->Matrix;
-					pos = { matrix->_41, matrix->_42, matrix->_43 };
-					AddHelicopterLight(pos);
-				}
-				else
-				{
-					LightFlare* flare = carRenderInfo->LightFlares;
-
-					while ((void*)flare != &carRenderInfo->LightFlares)
+					int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
+					if (renderUsage == 5)
 					{
-						bool isPlayer = renderUsage == 0;
-
-						AddCarHeadlight(carRenderInfo, matrix, flare, isPlayer);
-						AddCarBrakelight(carRenderInfo, matrix, flare, isPlayer);
-
-						flare = flare->Next;
+						auto matrix = renderConn->Matrix;
+						D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
+						AddHelicopterLight(pos);
+					}
+					else
+					{
+						PopulateCarSpotLights(carRenderInfo, &renderConn->Matrix1, renderUsage);
 					}
 				}
 			}
+		}
+	}
+
+	if (Game::State == 3)
+	{
+		auto fecar = FrontEndRenderingCar::List;
+		if (fecar && fecar->pCarRenderInfo)
+		{
+			PopulateCarSpotLights(fecar->pCarRenderInfo, &fecar->BodyMatrix, fecar->mRideInfo.mMyCarRenderUsage);
 		}
 	}
 }
@@ -330,7 +353,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	NumSpotLights = 0;
 	memset(&SpotLights, 0, sizeof(SpotLights));
 
-	if (!model->pSolid || model->pSolid->Volume > 170,000.0f)
+	if (!model->pSolid || model->pSolid->Volume > 170, 000.0f)
 	{
 		return;
 	}
@@ -418,7 +441,7 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		{
 			auto brightness = PrelitTextures[renderModel->DiffuseTextureInfo->NameHash].Brightness;
 			renderModel->Effect->SetFloat(ShaderParam::cfBrightness, brightness);
-			
+
 			return Technique_Prelit;
 		}
 

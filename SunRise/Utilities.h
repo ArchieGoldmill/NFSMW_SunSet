@@ -82,36 +82,13 @@ inline bool ConeSphereIntersect(
 	const D3DXVECTOR3& sphereCenter,
 	float sphereRadius)
 {
-	D3DXVECTOR3 apexToCenter = coneApex - sphereCenter;
-	float distApexToCenterSq = D3DXVec3LengthSq(&apexToCenter);
+	auto diff = coneApex - sphereCenter;
+	float distSq = D3DXVec3LengthSq(&diff);
 
-	// Early out: apex inside sphere
-	if (distApexToCenterSq <= sphereRadius * sphereRadius)
-		return true;
+	float radiusSum = range + sphereRadius;
+	float radiusSumSq = radiusSum * radiusSum;
 
-	// Early out: sphere too far from cone
-	float distApexToCenter = sqrtf(distApexToCenterSq);
-	if (distApexToCenter > range + sphereRadius)
-		return false;
-
-	if (coneAngle < D3DXToRadian(75))
-	{
-		float extend = range * (1 - cosf(coneAngle / 2));
-		extend = range * range / (range - extend) - range;
-		range += extend;
-	}
-
-	D3DXVECTOR3 CS = sphereCenter - coneApex;
-	float t = D3DXVec3Dot(&CS, &coneDir);
-	t = max(0.0f, min(range, t));
-
-	D3DXVECTOR3 axisPoint = coneApex + coneDir * t;
-	D3DXVECTOR3 diff = sphereCenter - axisPoint;
-	float distToAxis = D3DXVec3Length(&diff);
-
-	float coneRadiusAtT = t * tan(coneAngle);
-
-	return distToAxis <= coneRadiusAtT + sphereRadius;
+	return distSq <= radiusSumSq;
 }
 
 bool StringEqual(const char* s1, const char* s2)

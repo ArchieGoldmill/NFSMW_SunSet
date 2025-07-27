@@ -120,6 +120,7 @@ SolidLights:
         Intensity: 5.0
         Range: 30.0
   - Solid: XO_STREETLIGHTM_1B_DW_00
+    SolidLod: XO_STREETLIGHTM_1C_DW_00
     Flare: LampPost
     SpotLights:
       - Position: [0.0, 0.0, 7.1]
@@ -214,22 +215,22 @@ SolidLights:
         Range: 30.0
   - Solid: XS_FWY_2FRAME_1B_EA_00
     SpotLights:
-      - Position: [0.0, -0.5, 2.4]
-        Direction: [0.0, 0.0, -1.0]
+      - Position: [0.0, -4.5, -2.0]
+        Direction: [0.0, 1.0, 1.0]
         Color: [1.0, 1.0, 1.0]
         InnerAngle: 55.0
-        OuterAngle: 90.0
+        OuterAngle: 60.0
         Intensity: 5.0
-        Range: 15.0
+        Range: 10.0
   - Solid: XS_FWY_3FRAME_1B_EA_00
     SpotLights:
-      - Position: [0.0, -0.5, 2.4]
-        Direction: [0.0, 0.0, -1.0]
+      - Position: [0.0, -4.5, -4.0]
+        Direction: [0.0, 1.0, 1.0]
         Color: [1.0, 1.0, 1.0]
         InnerAngle: 55.0
-        OuterAngle: 90.0
+        OuterAngle: 60.0
         Intensity: 5.0
-        Range: 15.0
+        Range: 10.0
   - Solid: XO_IF_POWERLIGHTA_1A_LL_00
     Flare: LampPost
     SpotLights:
@@ -434,3 +435,13 @@ SolidLights:
         OuterAngle: 60.0
         Intensity: 5.0
         Range: 4.0
+
+  - Solid: XO_CATSEYEORANGE_1A_00
+    SpotLights:
+      - Position: [0, 0, 2]
+        Direction: [0.0, 0.0, 1.0]
+        Color: [1.0, 1.0, 0.9]
+        InnerAngle: 359.0
+        OuterAngle: 360.0
+        Intensity: 5.0
+        Range: 20.0

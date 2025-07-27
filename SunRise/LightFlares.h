@@ -35,7 +35,7 @@ void __stdcall RenderWorldLightFlares()
 			}
 
 			Game::FlareRotation = 0;
-			Game::eRenderLightFlare(eView::PlayerView, &flare, (D3DXMATRIX*)0x00987AB0, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
+			Game::eRenderLightFlare(eView::PlayerView, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
 			Game::FlareRotation = 240;
 		}
 	}

@@ -94,15 +94,6 @@ Prelit:
   - Name: ADS_CINGULAR_BB_A_EA
     Brightness: 5.0
 
-  - Name: SGN_CT_CARWASH
-    Brightness: 8.0
-
-  - Name: ARC_CT_CARWASHIN
-    Brightness: 8.0
-
-  - Name: ARC_CT_CARWASH3
-    Brightness: 8.0
-
   - Name: SGN_STADIUMWOMBAT
     Brightness: 3.0
 

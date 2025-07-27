@@ -14,6 +14,8 @@ namespace Game
 	inline float& FlareRotation = *(float*)0x008F2920;
 	inline bool& LostFocus = *(bool*)0x00982C50;
 	inline auto FlareBlink = (int*)0x0091601C;
+	inline auto& State = *(int*)0x00925E90;
+	inline auto IdentityMatrix = (D3DXMATRIX*)0x00987AB0;
 
 	INLINE_FUNC(0x00505380, void, __cdecl, eRenderLightFlare, eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale);
 	INLINE_FUNC(0x00460BF0, Hash, __cdecl, bStringHash, const char*);

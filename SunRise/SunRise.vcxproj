@@ -173,6 +173,7 @@
     <ClInclude Include="eSolid.h" />
     <ClInclude Include="eView.h" />
     <ClInclude Include="FlareConfig.h" />
+    <ClInclude Include="FrontEndRenderingCar.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrandSceneryCullInfo.h" />
     <ClInclude Include="CarRenderInfo.h" />

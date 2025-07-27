@@ -139,6 +139,9 @@
     <ClInclude Include="TextureConfig.h">
       <Filter>Config</Filter>
     </ClInclude>
+    <ClInclude Include="FrontEndRenderingCar.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

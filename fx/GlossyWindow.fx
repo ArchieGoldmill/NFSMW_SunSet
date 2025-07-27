@@ -71,7 +71,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 specular = GetSpecular(IN.normal, lightDir, IN.local_pos.xyz, lerp(cvSpecularColor.w, 1, reflect_scale));
 	
 	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
-	finalLight = lerp(finalLight, float3(30, 20, 10) / 2, reflect_scale * cvDiffuseColor.w);
+	finalLight = lerp(finalLight, float3(30, 20, 15) / 4, reflect_scale * cvDiffuseColor.w);
 	
 	float3 viewDir = normalize(LocalEyePos.xyz - IN.local_pos.xyz);
 	float3 vR = reflect(viewDir, IN.normal);

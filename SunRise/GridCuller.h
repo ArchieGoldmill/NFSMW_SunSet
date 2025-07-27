@@ -93,6 +93,7 @@ struct CellBuffer
 		{
 			if (this->Count >= BufferSize)
 			{
+				// TODO
 				throw std::runtime_error("Cell buffer is full");
 			}
 
@@ -101,13 +102,20 @@ struct CellBuffer
 			this->Count++;
 		}
 
+		bool found = false;
 		for (int i = 0; i < Cell::NumLights; i++)
 		{
 			if (targetCell->Lights[i] == nullptr)
 			{
 				targetCell->Lights[i] = light;
+				found = true;
 				break;
 			}
+		}
+
+		if (!found)
+		{
+			throw std::runtime_error("Cell lights is full");
 		}
 	}
 

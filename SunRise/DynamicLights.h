@@ -15,7 +15,8 @@
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
 int NumSpotLights;
 
-SpotLightModel SpotLightBuffer[256];
+#define NUM_SPOTLIGHTS_BUFFER 512
+SpotLightModel SpotLightBuffer[NUM_SPOTLIGHTS_BUFFER];
 int NumSpotLightBuffer = 0;
 
 inline D3DXVECTOR3 GetCameraPos()
@@ -33,9 +34,9 @@ inline float GetCameraDistance(D3DXVECTOR3 pos)
 
 void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare)
 {
-	if (NumSpotLightBuffer > 255)
+	if (NumSpotLightBuffer >= NUM_SPOTLIGHTS_BUFFER)
 	{
-		return;
+		throw std::runtime_error("Light buffer is full");
 	}
 
 	// Make sure we dont add the same light twice (TODO: how that happens?)
@@ -319,6 +320,11 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 {
 	NumSpotLights = 0;
 	memset(&SpotLights, 0, sizeof(SpotLights));
+
+	if (!model->pSolid || model->pSolid->Volume > 100000.0f)
+	{
+		return;
+	}
 
 	auto bbox_min = model->pMeshEntry->bbox_min;
 	auto bbox_max = model->pMeshEntry->bbox_max;

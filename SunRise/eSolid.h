@@ -18,7 +18,9 @@ struct eSolid
 	int field_34;
 	int field_38;
 	int material_table;
-	int pad[24];
+	int pad[22];
+	float Volume;
+	float Density;
 	char name[0x40];
 };
 

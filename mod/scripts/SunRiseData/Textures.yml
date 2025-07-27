@@ -124,6 +124,11 @@ Prelit:
   - Name: SGN_ROSEWOODPOLICE_A_MM
     Brightness: 4.0
 
+  - Name: SFX_TRACKBARRIERNEONARROW
+    Brightness: 3.0
+  - Name: SFX_TRACKBARRIERNEONARROW_SOLID
+    Brightness: 1.0
+
   - NameHash: 0x4494239C
     Brightness: 3.0
 

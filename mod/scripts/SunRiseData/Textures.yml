@@ -132,8 +132,17 @@ Prelit:
 
   - Name: ADS_AUTOZONE_BB_A_EA
     Brightness: 8.0
-    
+
   - Name: SGN_CT_CARWASH
+    Brightness: 8.0
+
+  - Name: ARC_ROCKETDINER_GIRL
+    Brightness: 8.0
+
+  - Name: ANM_ROCKETGIRLLITE_LV
+    Brightness: 8.0
+
+  - Name: ARC_ROCKETDINER_ROCKET
     Brightness: 8.0
 
   - Name: ARC_ROLLERCOASTERB
@@ -180,4 +189,7 @@ Prelit:
     Brightness: 5.0
 
   - NameHash: 0x9414F03D
+    Brightness: 5.0
+
+  - NameHash: 0x89C26291
     Brightness: 5.0

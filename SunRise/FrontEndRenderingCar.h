@@ -12,4 +12,13 @@ struct FrontEndRenderingCar : bTNode<FrontEndRenderingCar>
 	int ViewID;
 	D3DXVECTOR4 Position;
 	D3DXMATRIX BodyMatrix;
+	D3DXMATRIX TireMatrices[4];
+	D3DXMATRIX BrakeMatrices[4];
+	eModel* OverrideModel;
+	int Visible;
+	int nPasses;
+	int Reflection;
+	int LightsOn;
+	int CopLightsOn;
+	BYTE padding[8];
 };

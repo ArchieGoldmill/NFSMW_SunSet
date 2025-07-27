@@ -34,9 +34,118 @@ HelicopterLight:
   InnerAngle: 5.0
   OuterAngle: 6.0
 
+FrontEndLights:
+  - Type: 1
+    Flare: LampPost
+    SpotLights:
+      - Position: [-1.1, 8.4, 4.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 44.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [2.0, 11.5, 4.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 44.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [-2.6, 7.0, 3.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 44.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [-6.1, 3.6, 3.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 44.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [-8.6, 0.8, 3.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 44.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [11, -6.1, 2.7]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 120.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [1.6, -10, 8]
+        Direction: [-0.1, 1.3, -1.0]
+        Color: [1.0, 1.0, 1.2]
+        InnerAngle: 11.0
+        OuterAngle: 33.0
+        Intensity: 3.0
+        Range: 20.0
+  - Type: 2
+    SpotLights:
+      - Position: [-8.3, 7.1, 4.1]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 144.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [8.0, -3.8, 4.1]
+        Direction: [-1.0, 1.0, -1.0]
+        Color: [1.0, 1.0, 1.0]
+        InnerAngle: 33.0
+        OuterAngle: 88.0
+        Intensity: 3.0
+        Range: 20.0
+  - Type: 3
+    Flare: LampPost
+    SpotLights:
+      - Position: [-7.6, 5.1, 3.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 77.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [4.35, 7.35, 3.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 77.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [-5, -7.5, 3.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 77.0
+        Intensity: 3.0
+        Range: 20.0
+      - Position: [7.6, -9.1, 3.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [1.0, 0.7, 0.5]
+        InnerAngle: 33.0
+        OuterAngle: 77.0
+        Intensity: 3.0
+        Range: 20.0
+  - Type: 5
+    SpotLights:
+      - Position: [3.5, 1.7, 5.5]
+        Direction: [0.0, 0.0, -1.0]
+        Color: [0.8, 0.9, 1.0]
+        InnerAngle: 33.0
+        OuterAngle: 77.0
+        Intensity: 3.0
+        Range: 20.0
+
 SolidLights:
   - Solid: XO_STREETLIGHTD2_1B_00
-    Flare: LampPost
     SpotLights:
       - Position: [0.0, -6.0, 12.7]
         Direction: [0.0, 0.0, -1.0]
@@ -351,7 +460,7 @@ SolidLights:
         InnerAngle: 150.0
         OuterAngle: 180.0
         Intensity: 5.0
-        Range: 10.0
+        Range: 15.0
   - Solid: XS_MEDIANPOLER_1B_00
     SolidLod: XS_MEDIANPOLER_1C_00
     Flare: Chevron

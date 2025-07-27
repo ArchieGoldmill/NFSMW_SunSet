@@ -11,6 +11,7 @@
 #include "Weather.h"
 #include "GridCuller.h"
 #include "FrontEndRenderingCar.h"
+#include "FEGeometryModels.h"
 
 #define NUM_SPOTLIGHTS 24
 SpotLightShader SpotLights[NUM_SPOTLIGHTS];
@@ -24,7 +25,10 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 {
 	if (NumSpotLightBuffer >= NUM_SPOTLIGHTS_BUFFER)
 	{
+#ifdef _DEBUG
 		throw std::runtime_error("Light buffer is full");
+#endif
+		return;
 	}
 
 	// Make sure we dont add the same light twice (TODO: how that happens?)
@@ -299,9 +303,31 @@ void PopulateCarSpotLights()
 	if (Game::State == 3)
 	{
 		auto fecar = FrontEndRenderingCar::List;
-		if (fecar && fecar->pCarRenderInfo)
+		if (fecar && fecar->pCarRenderInfo && fecar->Visible)
 		{
 			PopulateCarSpotLights(fecar->pCarRenderInfo, &fecar->BodyMatrix, fecar->mRideInfo.mMyCarRenderUsage);
+		}
+	}
+}
+
+void PopulateFrontEndSpotlights()
+{
+	if (!g_Weather.WorldLightsOn())
+	{
+		return;
+	}
+
+	auto garageTypePtr = (int**)(0x0091CAE0);
+	auto garageType = (*garageTypePtr)[6];
+
+	if (FrontEndLights.contains(garageType))
+	{
+		auto& lights = FrontEndLights[garageType].Lights;
+		for (auto& spotLight : lights)
+		{
+			auto newSpotLight = spotLight;
+			newSpotLight.Color *= g_Weather.GetLightIntensity();
+			AddSpotLightToBuffer(newSpotLight, SpotLightSource::LampPost, FrontEndLights[garageType].Flare);
 		}
 	}
 }
@@ -310,7 +336,15 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 {
 	NumSpotLightBuffer = 0;
 
-	PopulateWorldSpotLights(cullInfo);
+	if (Game::State == 6)
+	{
+		PopulateWorldSpotLights(cullInfo);
+	}
+
+	if (Game::State == 3)
+	{
+		PopulateFrontEndSpotlights();
+	}
 
 	PopulateCarSpotLights();
 

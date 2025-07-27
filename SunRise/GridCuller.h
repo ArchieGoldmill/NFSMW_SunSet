@@ -18,7 +18,7 @@ struct Int3
 
 struct Cell
 {
-	static const int NumLights = 64;
+	static const int NumLights = 128;
 
 	Hash Index;
 	SpotLight* Lights[NumLights];
@@ -93,8 +93,10 @@ struct CellBuffer
 		{
 			if (this->Count >= BufferSize)
 			{
-				// TODO
+#ifdef _DEBUG
 				throw std::runtime_error("Cell buffer is full");
+#endif
+				return;
 			}
 
 			targetCell = Buffer + this->Count;
@@ -113,10 +115,12 @@ struct CellBuffer
 			}
 		}
 
+#ifdef _DEBUG
 		if (!found)
 		{
 			throw std::runtime_error("Cell lights is full");
 		}
+#endif
 	}
 
 	void Sort()

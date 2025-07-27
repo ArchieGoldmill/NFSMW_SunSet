@@ -14,6 +14,8 @@ float4 DiffuseRange : DIFFUSERANGE;
 float4 EnvmapRange : ENVMAPANGE;
 float EnvmapPower : ENVMAPPOWER;
 float cfMetallicScale;
+float SpecularPower : SPECULARPOWER;
+float4 SpecularRange : SPECULARRANGE;
 
 float3 cvAmbientColor;
 float3 cvDiffuseColor;
@@ -114,6 +116,9 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 envmap_scale = envmapMin.rgb + env_vdotn * EnvmapRange.rgb;
 	envmap_sample *= envmap_scale * 0.5;
 	
+	float spec_vdotn = pow(vdotn, SpecularPower);
+	float3 spec_scale = specularMin + spec_vdotn * SpecularRange.rgb;
+	
 	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
 	
 	float4 final = diffuse_tex;
@@ -121,8 +126,8 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	final.rgb *= finalLight;
 	final.rgb *= max(0.8, noise_sample.r);
 	final.rgb += envmap_sample * diffuse_scale.a;
-	final.rgb += specular * shadow;
-	final.rgb += light.Specular;
+	final.rgb += specular * shadow * spec_scale;
+	final.rgb += light.Specular * spec_scale;
 	
 	APPLY_FOG
 	

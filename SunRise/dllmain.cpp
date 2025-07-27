@@ -9,9 +9,6 @@
 
 void Init()
 {
-	auto skipFE = (int*)0x00926064;
-	*skipFE = 1;
-
 	InitConfig();
 	InitConsole();
 	InitShaderLoader();

@@ -72,12 +72,8 @@ void LoadWeatherConfig()
 
 	WeatherList.clear();
 
-#ifdef _DEBUG 
-	YAML::Node weatherRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Weather.yml");
-#else
 	auto dir = GetExeDirectory();
-	YAML::Node weatherRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Weather.yml");
-#endif
+	YAML::Node weatherRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\Weather.yml");
 
 	const auto& list = weatherRoot["Weather"];
 	for (const auto& node : list)

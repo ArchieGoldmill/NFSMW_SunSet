@@ -1,8 +1,0 @@
-Config:
-  ForceTime: 0.0
-
-  LightsOn: 0.775
-  LightsOff: 0.25
-
-  Console: true
-  ShaderLoader: true

@@ -18,18 +18,16 @@ struct Config
 
 	bool Console;
 	bool ShaderLoader;
+	bool LiveReload;
+	int HK_ShaderReload;
 };
 
 inline Config g_Config;
 
 void LoadConfig()
 {
-#ifdef _DEBUG 
-	YAML::Node settingsRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Config.yml");
-#else
 	auto dir = GetExeDirectory();
-	YAML::Node settingsRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Config.yml");
-#endif
+	YAML::Node settingsRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\Config.yml");
 
 	const auto& settings = settingsRoot["Config"];
 
@@ -42,6 +40,8 @@ void LoadConfig()
 	g_Config.LightCellSize = 128.0f;
 	g_Config.Console = settings["Console"].as<bool>();
 	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
+	g_Config.LiveReload = settings["LiveReload"].as<bool>();
+	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
 }
 
 void InitConfig()

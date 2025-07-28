@@ -12,30 +12,35 @@
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
 {
-	if (GetAsyncKeyState('F') & 1)
+	if (g_Config.HK_ShaderReload)
 	{
-		cusprintf("\nManual shader reload started:\n");
-		Game::ReloadShaders = true;
-
-		InitConfig();
-	}
-
-	if (Game::LostFocus)
-	{
-		ReloadOnFocus = true;
-	}
-	else
-	{
-		if (ReloadOnFocus)
+		if (GetAsyncKeyState(g_Config.HK_ShaderReload) & 1)
 		{
+			cusprintf("\nManual shader reload started:\n");
+			Game::ReloadShaders = true;
+
 			InitConfig();
-			cusprintf("\nConfig reload on focus\n");
-			ReloadOnFocus = false;
+		}
+	}
+
+	if (g_Config.LiveReload)
+	{
+		if (Game::LostFocus)
+		{
+			ReloadOnFocus = true;
+		}
+		else
+		{
+			if (ReloadOnFocus)
+			{
+				InitConfig();
+				cusprintf("\nConfig reloaded\n");
+				ReloadOnFocus = false;
+			}
 		}
 	}
 }
 
-float GLobalTime = 0.3f;
 void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
 	cullInfo->SetuWorldCulling();
@@ -46,13 +51,11 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	}
 	else
 	{
-		GLobalTime += Game::DeltaTime * TimeOfDay::Instance->UpdateRate * 0.001;
-		if (GLobalTime > 1)
+		TimeOfDay::Instance->CurrentTime += Game::DeltaTime * TimeOfDay::Instance->UpdateRate * 0.001;
+		if (TimeOfDay::Instance->CurrentTime > 1)
 		{
-			GLobalTime = 0;
+			TimeOfDay::Instance->CurrentTime = 0;
 		}
-
-		TimeOfDay::Instance->CurrentTime = GLobalTime;
 	}
 
 	CheckReloadShaders();
@@ -213,4 +216,9 @@ void InitHooks()
 
 	// Disable car flare reflection
 	injector::WriteMemory<BYTE>(0x0074322E, 0);
+
+	// Disable vanilla time propagation
+	injector::WriteMemory<unsigned short>(0x0076938E, 0x74EB);
+
+	//injector::MakeNOP(0x006C2206, 10);
 }

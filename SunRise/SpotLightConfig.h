@@ -41,12 +41,8 @@ void LoadSpotLightConfig()
 	SolidLightsList.clear();
 	FrontEndLights.clear();
 
-#ifdef _DEBUG 
-	YAML::Node spotlightsRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\SpotLights.yml");
-#else
 	auto dir = GetExeDirectory();
-	YAML::Node spotlightsRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\SpotLights.yml");
-#endif
+	YAML::Node spotlightsRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\SpotLights.yml");
 
 	ParseSpotLight(CarHeadlighsConfig, spotlightsRoot["CarHeadLights"]);
 	ParseSpotLight(CarBrakeLightsOnConfig, spotlightsRoot["CarBrakeLightsOn"]);

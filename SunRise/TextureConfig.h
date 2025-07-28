@@ -49,12 +49,8 @@ void InitTextureConfig()
 	PrelitTextures.clear();
 	AlphaTextures.clear();
 
-#ifdef _DEBUG 
-	YAML::Node texturesRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Textures.yml");
-#else
 	auto dir = GetExeDirectory();
-	YAML::Node texturesRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Textures.yml");
-#endif
+	YAML::Node texturesRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\Textures.yml");
 
 	PopulateTextureMap(PrelitTextures, texturesRoot, "Prelit");
 	PopulateTextureMap(AlphaTextures, texturesRoot, "Alpha");

@@ -193,3 +193,18 @@ Prelit:
 
   - NameHash: 0x89C26291
     Brightness: 5.0
+
+Alpha:
+  - Name: SUPRA_INTERIOR
+    Brightness: 20.0
+    Color: [1.0, 1.0, 1.0]
+  - Name: SUPRA_KIT00_BRAKELIGHT_OFF
+    Brightness: 5.0
+    Color: [1.0, 0.0, 0.0]
+  - Name: SUPRA_KIT00_BRAKELIGHT_ON
+    Brightness: 5.0
+    Color: [1.0, 0.0, 0.0]
+  - Name: SUPRA_KIT00_HEADLIGHT_ON
+    Brightness: 10.0
+    Color: [0.6, 0.8, 1.0]
+    

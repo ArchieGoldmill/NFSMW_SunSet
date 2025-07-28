@@ -4,5 +4,5 @@ Config:
   LightsOn: 0.775
   LightsOff: 0.25
 
-  Console: false
+  Console: true
   ShaderLoader: true

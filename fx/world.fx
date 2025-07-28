@@ -63,6 +63,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float4 final = diffuse_tex;
 	final.rgb *= finalLight;
 	
+	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG
 	
 	return final;

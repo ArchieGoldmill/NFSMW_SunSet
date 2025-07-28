@@ -129,6 +129,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	final.rgb += specular * shadow * spec_scale;
 	final.rgb += light.Specular * spec_scale;
 	
+	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG
 	
 	return final;

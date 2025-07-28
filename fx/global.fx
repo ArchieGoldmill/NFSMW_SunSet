@@ -7,6 +7,7 @@ int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
 int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
 int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
 float4 TextureOffset : TEXTUREOFFSET;
+float4 cvBrightness;
 
 float4 world_position(float4 screen_pos)
 {
@@ -39,3 +40,5 @@ sampler DIFFUSEMAP_SAMPLER = sampler_state
 	AlphaBlendEnable = (BaseBlendState[2]); \
 	SrcBlend = (BaseBlendState[3]); \
 	DestBlend = (BaseBlendState[4]);
+
+#define APPLY_ALPHA_EMISSIVE final.rgb = lerp(final.rgb, final.rgb * cvBrightness.rgb * cvBrightness.a, saturate(cvBrightness.a * diffuse_tex.a));

@@ -11,19 +11,11 @@ struct PrelitTexture
 };
 
 inline std::unordered_map<unsigned int, PrelitTexture> PrelitTextures;
+inline std::unordered_map<unsigned int, PrelitTexture> AlphaTextures;
 
-void InitTextureConfig()
+void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& textures, const YAML::Node& texturesRoot, const char* section)
 {
-	PrelitTextures.clear();
-
-#ifdef _DEBUG 
-	YAML::Node texturesRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Textures.yml");
-#else
-	auto dir = GetExeDirectory();
-	YAML::Node texturesRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Textures.yml");
-#endif
-
-	auto prelit = texturesRoot["Prelit"];
+	auto prelit = texturesRoot[section];
 	for (const auto& node : prelit)
 	{
 		PrelitTexture prelit;
@@ -48,6 +40,22 @@ void InitTextureConfig()
 
 		prelit.Color.w = YmlGet(node, "Brightness", 1.0f);
 
-		PrelitTextures[prelit.Name] = prelit;
+		textures[prelit.Name] = prelit;
 	}
+}
+
+void InitTextureConfig()
+{
+	PrelitTextures.clear();
+	AlphaTextures.clear();
+
+#ifdef _DEBUG 
+	YAML::Node texturesRoot = YAML::LoadFile("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\scripts\\SunRiseData\\Textures.yml");
+#else
+	auto dir = GetExeDirectory();
+	YAML::Node texturesRoot = YAML::LoadFile(dir + "\\scripts\\SunRiseData\\Textures.yml");
+#endif
+
+	PopulateTextureMap(PrelitTextures, texturesRoot, "Prelit");
+	PopulateTextureMap(AlphaTextures, texturesRoot, "Alpha");
 }

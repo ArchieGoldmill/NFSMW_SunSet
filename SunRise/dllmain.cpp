@@ -10,7 +10,12 @@
 void Init()
 {
 	InitConfig();
-	InitConsole();
+
+	if (g_Config.Console)
+	{
+		InitConsole();
+	}
+
 	InitShaderLoader();
 	InitHooks();
 	InitAmbientShadow();

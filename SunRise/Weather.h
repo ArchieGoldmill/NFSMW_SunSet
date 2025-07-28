@@ -19,7 +19,6 @@ private:
 	TextureInfo* CarRainSlide = nullptr;
 	TextureInfo* PuddleMask = NULL;
 	TextureInfo* RoadDetail = NULL;
-	TextureInfo* Clouds = NULL;
 	TextureInfo* RainSplash[30];
 	LPDIRECT3DVOLUMETEXTURE9 NoiseTexture = NULL;
 
@@ -200,7 +199,6 @@ private:
 			this->CarRainSlide = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_SLIDE_N, false, false);
 			this->PuddleMask = TextureInfo::Get(Hashes::SR_PUDDLE_MASK, false, false);
 			this->RoadDetail = TextureInfo::Get(Hashes::SR_ROAD_DETAIL, false, false);
-			this->Clouds = TextureInfo::Get(Hashes::SR_CLOUDS, false, false);
 
 			char buff[256];
 			for (int i = 0; i < 30; i++)
@@ -231,13 +229,6 @@ private:
 			carShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->NoiseTexture);
 			carShader->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->CarRainDrops);
 			carShader->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->CarRainSlide);
-		}
-
-		if (this->Clouds)
-		{
-			auto skyShader = eEffect::Get(shader_type::skyshader);
-			skyShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->Clouds);
-			skyShader->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
 		}
 	}
 
@@ -288,6 +279,7 @@ private:
 		e->SetVector(ShaderParam::cvSkyBetaM, &this->current.SkyBetaM);
 		e->SetVector(ShaderParam::cvSkyBetaR, &this->current.SkyBetaR);
 		e->SetVector(ShaderParam::cvSkyParams, &skyParams);
+		e->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
 	}
 
 	void UpdateRain()

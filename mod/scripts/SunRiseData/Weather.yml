@@ -14,7 +14,7 @@ Weather:
     SkyRayleigh: 0.0
     SkyRayleighAtt: 1.3
     SkyGamma: 3.2
-    SkyG: -0.99
+    SkyG: -0.999
 
     FogStart: 150.0
     FogEnd: 1000.0
@@ -37,7 +37,7 @@ Weather:
       SkyRayleigh: 0.0
       SkyRayleighAtt: 1.3
       SkyGamma: 4.2
-      SkyG: -0.99
+      SkyG: -0.999
 
       FogStart: 75.0
       FogEnd: 150.0
@@ -60,7 +60,7 @@ Weather:
     SkyRayleigh: 0.1
     SkyRayleighAtt: 1.
     SkyGamma: 3.2
-    SkyG: -0.99
+    SkyG: -0.999
 
     FogStart: 150.0
     FogEnd: 1000.0
@@ -83,7 +83,7 @@ Weather:
       SkyRayleigh: 0.1
       SkyRayleighAtt: 1.
       SkyGamma: 3.2
-      SkyG: -0.99
+      SkyG: -0.999
 
       FogStart: 75.0
       FogEnd: 150.0
@@ -159,7 +159,7 @@ Weather:
     FogEnd: 1000.0
     FogPower: 0.7
     FogExponent: 0.8
-    FogColor: [0.58, 0.725, 0.9]
+    FogColor: [0.443, 0.529, 0.631]
 
     Rain:
       DiffuseColor: [0.1, 0.1, 0.1]
@@ -293,7 +293,7 @@ Weather:
     SkyRayleigh: 0.0
     SkyRayleighAtt: 1.
     SkyGamma: 3.2
-    SkyG: -0.99
+    SkyG: -0.999
 
     FogStart: 150.0
     FogEnd: 1000.0
@@ -316,7 +316,7 @@ Weather:
       SkyRayleigh: 0.0
       SkyRayleighAtt: 1.
       SkyGamma: 3.2
-      SkyG: -0.99
+      SkyG: -0.999
 
       FogStart: 75.0
       FogEnd: 150.0

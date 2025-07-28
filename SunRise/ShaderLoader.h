@@ -2,32 +2,27 @@
 #include <d3dx9.h>
 #include "Injector/injector.hpp"
 #include "Utilities.h"
-#include "Console.h"
+#include "Config.h"
 
 HRESULT WINAPI D3DXCreateEffectFromResourceHook(const char* efxPath, LPDIRECT3DDEVICE9 pDevice, HMODULE hSrcModule, LPCSTR pSrcResource, D3DXMACRO* pDefines, LPD3DXINCLUDE pInclude, DWORD Flags, LPD3DXEFFECTPOOL pPool, LPD3DXEFFECT* ppEffect, LPD3DXBUFFER* ppCompilationErrors)
 {
 	HRESULT result;
 
 	char FilenameBuf[256];
-//#ifdef _DEBUG
+#ifdef _DEBUG
 	strcpy(FilenameBuf, "D:\\Programming\\NFSMW\\NFSMW_SunRise\\");
 	strcpy(FilenameBuf + 35, efxPath);
-//#else
-//	strcpy(FilenameBuf, efxPath);
-//#endif
+#else
+	strcpy(FilenameBuf, efxPath);
+#endif
 	char* LastUnderline = strrchr(FilenameBuf, '.');
 	LastUnderline[1] = 'f';
 	LastUnderline[2] = 'x';
 	LastUnderline[3] = '\0';
 
 	char IdiPath[256];
-	//#ifdef _DEBUG
-	//	strcpy(IdiPath, "D:\\Programming\\\NFSMW\\\NFSMW_CustomShaders\\\mod\\\Binary\\");
-	//	strcpy(IdiPath + 52, pSrcResource);
-	//#else
 	strcpy(IdiPath, "shaders\\");
 	strcpy(IdiPath + 8, pSrcResource);
-	//#endif	
 
 	if (FileExists(FilenameBuf))
 	{
@@ -102,5 +97,8 @@ void __declspec(naked) D3DXCreateEffectFromResourceCave()
 
 void InitShaderLoader()
 {
-	injector::MakeJMP(0x006C60D2, D3DXCreateEffectFromResourceCave);
+	if (g_Config.ShaderLoader)
+	{
+		injector::MakeJMP(0x006C60D2, D3DXCreateEffectFromResourceCave);
+	}
 }

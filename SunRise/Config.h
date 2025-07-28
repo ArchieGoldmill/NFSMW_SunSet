@@ -9,13 +9,15 @@
 struct Config
 {
 	float ForceTime;
-	float LightMaxDistance;
 	float LightLodDistance;
 	float SunRise;
 	float SunSet;
 	float LightsOn;
 	float LightsOff;
 	float LightCellSize;
+
+	bool Console;
+	bool ShaderLoader;
 };
 
 inline Config g_Config;
@@ -32,13 +34,14 @@ void LoadConfig()
 	const auto& settings = settingsRoot["Config"];
 
 	g_Config.ForceTime = settings["ForceTime"].as<float>();
-	g_Config.LightLodDistance = settings["LightLodDistance"].as<float>();
-	g_Config.LightMaxDistance = settings["LightMaxDistance"].as<float>();
-	g_Config.SunRise = settings["SunRise"].as<float>();
-	g_Config.SunSet = settings["SunSet"].as<float>();
+	g_Config.LightLodDistance = 150.0f;
+	g_Config.SunRise = 0.2f;
+	g_Config.SunSet = 0.8f;
 	g_Config.LightsOn = settings["LightsOn"].as<float>();
 	g_Config.LightsOff = settings["LightsOff"].as<float>();
-	g_Config.LightCellSize = settings["LightCellSize"].as<float>();
+	g_Config.LightCellSize = 128.0f;
+	g_Config.Console = settings["Console"].as<bool>();
+	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
 }
 
 void InitConfig()

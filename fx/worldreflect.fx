@@ -138,8 +138,9 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 specular = GetSpecular(normal, lightDir, IN.local_pos.xyz);
 	specular *= specMap;
 	
-	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r;
-	puddle_mask = max(puddle_mask, 0.1) * cvRainParams.y;
+	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
+	float reflMin = 1 - smoothstep(0, 0.2, length(cvDiffuseColor.rgb));
+	puddle_mask = max(puddle_mask, 0.05 * reflMin);
 	
 	// Make puddles darker so reflection is more visible
 	albedo = lerp(albedo, albedo / 15, puddle_mask);

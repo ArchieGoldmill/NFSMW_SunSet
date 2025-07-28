@@ -80,7 +80,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 color = inScatter * (1.0 - extinction);
 
 	// sun
-	color += 0.47 * float3(1.6, 1.4, 1.0) * pow(cosine, 350.0) * extinction;
+	color += 0.47 * float3(1.6, 1.4, 1.0) * pow(cosine, 350.0) * extinction * Rayleigh;
 	// sun haze
 	color += 0.4 * float3(0.8, 0.9, 1.0) * pow(cosine, 0.0) * extinction;
 	

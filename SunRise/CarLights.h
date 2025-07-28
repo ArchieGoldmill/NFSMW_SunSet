@@ -1,0 +1,112 @@
+#pragma once
+#include "CarRenderInfo.h"
+#include "SpotLight.h"
+#include "Config.h"
+#include "VehicleRenderConn.h"
+#include "FrontEndRenderingCar.h"
+#include "HelicopterLight.h"
+
+void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& temp, float offset, D3DXMATRIX* matrix, SpotLightSource source)
+{
+	LightFlare* flares[2];
+	int num = 0;
+
+	LightFlare* flare = carRenderInfo->LightFlares;
+	while ((void*)flare != &carRenderInfo->LightFlares && num < 2)
+	{
+		if (flare->NameHash == flareHash)
+		{
+			flares[num] = flare;
+			num++;
+		}
+
+		flare = flare->Next;
+	}
+
+	if (num > 0)
+	{
+		D3DXVECTOR3 pos;
+
+		if (num == 1)
+		{
+			pos = flares[0]->Position;
+		}
+
+		if (num == 2)
+		{
+			pos = (flares[0]->Position + flares[1]->Position) * 0.5;
+		}
+
+		SpotLight spotLight = temp;
+
+		pos.x += offset;
+		D3DXVec3TransformCoord(&spotLight.Position, &pos, matrix);
+
+		D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
+		D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
+
+		AddSpotLightToBuffer(spotLight, source, NULL);
+	}
+}
+
+void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix)
+{
+	D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
+
+	LightFlare* flare = carRenderInfo->LightFlares;
+
+	int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
+	bool isPlayer = renderUsage == 0;
+
+	auto headlightOn = carRenderInfo->IsLightOn(VehicleFX_HEADLIGHTS);
+	if (headlightOn)
+	{
+		SpotLightSource source = isPlayer ? SpotLightSource::Player_Headlights : SpotLightSource::Headlights;
+		PopulateCarLight(carRenderInfo, Hashes::LEFT_HEADLIGHT, CarHeadlighsConfig, 0.3, matrix, source);
+		PopulateCarLight(carRenderInfo, Hashes::RIGHT_HEADLIGHT, CarHeadlighsConfig, 0.3, matrix, source);
+	}
+
+	auto brakelightOn = carRenderInfo->IsLightOn(VehicleFX_BRAKELIGHTS);
+	SpotLight temp = brakelightOn ? CarBrakeLightsOnConfig : CarBrakeLightsOffConfig;
+	SpotLightSource source = isPlayer ? SpotLightSource::Player_Breaklights : SpotLightSource::Breaklights;
+	PopulateCarLight(carRenderInfo, Hashes::LEFT_BRAKELIGHT, temp, -0.1, matrix, source);
+	PopulateCarLight(carRenderInfo, Hashes::RIGHT_BRAKELIGHT, temp, -0.1, matrix, source);
+}
+
+void PopulateCarSpotLights()
+{
+	if (Game::State == 6)
+	{
+		for (int i = 0; i < VehicleRenderConn::ListCount; i++)
+		{
+			auto renderConn = VehicleRenderConn::List[i];
+			if (renderConn && !renderConn->Inactive)
+			{
+				auto carRenderInfo = renderConn->pCarRenderInfo;
+				if (carRenderInfo)
+				{
+					int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
+					if (renderUsage == 5)
+					{
+						auto matrix = renderConn->Matrix;
+						D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
+						AddHelicopterLight(pos);
+					}
+					else
+					{
+						PopulateCarSpotLights(carRenderInfo, &renderConn->Matrix1);
+					}
+				}
+			}
+		}
+	}
+
+	if (Game::State == 3)
+	{
+		auto fecar = FrontEndRenderingCar::List;
+		if (fecar && fecar->pCarRenderInfo && fecar->Visible)
+		{
+			PopulateCarSpotLights(fecar->pCarRenderInfo, &fecar->BodyMatrix);
+		}
+	}
+}

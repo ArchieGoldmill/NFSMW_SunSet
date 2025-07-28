@@ -145,8 +145,17 @@
     <ClInclude Include="AmbientShadow.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="FEGeometryModels.h">
-      <Filter>SDK</Filter>
+    <ClInclude Include="HelicopterLight.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="CarLights.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="LightsBuffer.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldLights.h">
+      <Filter>Features\DynamicLights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

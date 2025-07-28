@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="AmbientShadow.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CarLights.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="DynamicLights.h" />
     <ClInclude Include="eEffect.h" />
@@ -181,10 +182,11 @@
     <ClInclude Include="GridCuller.h" />
     <ClInclude Include="Hashes.h" />
     <ClInclude Include="eLightFlareParams.h" />
-    <ClInclude Include="FEGeometryModels.h" />
+    <ClInclude Include="HelicopterLight.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="LightFlare.h" />
     <ClInclude Include="LightFlares.h" />
+    <ClInclude Include="LightsBuffer.h" />
     <ClInclude Include="MeshEntry.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Rain.h" />
@@ -205,6 +207,7 @@
     <ClInclude Include="ViewId.h" />
     <ClInclude Include="Weather.h" />
     <ClInclude Include="WeatherConfig.h" />
+    <ClInclude Include="WorldLights.h" />
     <ClInclude Include="WorldModel.h" />
   </ItemGroup>
   <ItemGroup>

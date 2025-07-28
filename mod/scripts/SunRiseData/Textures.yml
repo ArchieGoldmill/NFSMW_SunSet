@@ -207,4 +207,13 @@ Alpha:
   - Name: SUPRA_KIT00_HEADLIGHT_ON
     Brightness: 10.0
     Color: [0.6, 0.8, 1.0]
-    
+
+  - Name: BMWM3GTRE46_KIT00_BRAKELIGHT_OFF
+    Brightness: 5.0
+    Color: [1.0, 0.5, 0.5]
+  - Name: BMWM3GTRE46_KIT00_BRAKELIGHT_ON
+    Brightness: 5.0
+    Color: [1.0, 1.0, 1.0]
+  - Name: BMWM3GTRE46_KIT00_HEADLIGHT_ON
+    Brightness: 20.0
+    Color: [0.6, 0.8, 1.0]

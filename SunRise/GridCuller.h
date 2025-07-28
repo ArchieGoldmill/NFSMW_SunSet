@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include "Hashes.h"
 #include "Game.h"
+#include "SpotLight.h"
 
 struct Int3
 {
@@ -21,7 +22,7 @@ struct Cell
 	static const int NumLights = 128;
 
 	Hash Index;
-	SpotLight* Lights[NumLights];
+	SpotLightModel* Lights[NumLights];
 };
 
 Int3 worldToCell(const D3DXVECTOR3& pos)
@@ -47,8 +48,10 @@ struct CellBuffer
 		this->Clear();
 	}
 
-	void AssignSpotLightToGrid(SpotLight* light)
+	void AssignSpotLightToGrid(SpotLightModel* model)
 	{
+		auto light = &model->Light;
+
 		float r = light->Range;
 		D3DXVECTOR3 min = light->Position - D3DXVECTOR3(r, r, r);
 		D3DXVECTOR3 max = light->Position + D3DXVECTOR3(r, r, r);
@@ -63,7 +66,7 @@ struct CellBuffer
 				for (int z = minCell.z; z <= maxCell.z; ++z)
 				{
 					Int3 cell = { x, y, z };
-					this->Add(cell, light);
+					this->Add(cell, model);
 				}
 			}
 		}
@@ -75,7 +78,7 @@ struct CellBuffer
 		memset(Buffer, 0, sizeof(Buffer));
 	}
 
-	void Add(Int3 cell, SpotLight* light)
+	void Add(Int3 cell, SpotLightModel* light)
 	{
 		Cell* targetCell = nullptr;
 		Hash cellHash = cell.GetHash();
@@ -154,9 +157,9 @@ struct CellBuffer
 		return NULL;
 	}
 
-	SpotLight* candidateLights[256];
+	SpotLightModel* candidateLights[256];
 	int numCandidateLights = 0;
-	SpotLight** GetLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
+	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
 	{
 		memset(candidateLights, 0, sizeof(candidateLights));
 		numCandidateLights = 0;
@@ -179,7 +182,7 @@ struct CellBuffer
 					{
 						for (int i = 0; i < Cell::NumLights; i++)
 						{
-							SpotLight* light = cell->Lights[i];
+							SpotLightModel* light = cell->Lights[i];
 							if (light && numCandidateLights < 256)
 							{
 								bool alreadyAdded = false;
@@ -209,7 +212,7 @@ struct CellBuffer
 			}
 		}
 
-		return candidateLights;
+		std::sort(candidateLights, candidateLights + numCandidateLights, [](SpotLightModel* a, SpotLightModel* b) { return (int)a->Source < (int)b->Source; });
 	}
 };
 

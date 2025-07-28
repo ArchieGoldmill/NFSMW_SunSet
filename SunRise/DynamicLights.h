@@ -342,7 +342,7 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 	g_CellBuffer.Clear();
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
-		g_CellBuffer.AssignSpotLightToGrid(&SpotLightBuffer[i].Light);
+		g_CellBuffer.AssignSpotLightToGrid(SpotLightBuffer + i);
 	}
 	g_CellBuffer.Sort();
 }
@@ -385,8 +385,8 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	g_CellBuffer.GetLightsForMesh(meshCenter, radius);
 	for (int i = 0; i < g_CellBuffer.numCandidateLights; i++)
 	{
-		auto spotlight = g_CellBuffer.candidateLights[i];
-
+		auto lightmodel = g_CellBuffer.candidateLights[i];
+		auto spotlight = &lightmodel->Light;
 		if (spotlight && NumSpotLights < NUM_SPOTLIGHTS)
 		{
 			if (ConeSphereIntersect(spotlight->Position, spotlight->Direction, D3DXToRadian(spotlight->OuterAngle), spotlight->Range, meshCenter, radius))

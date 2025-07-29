@@ -6,3 +6,6 @@ Config:
 
   Console: false
   ShaderLoader: true
+
+  LiveReload: false
+  HK_ShaderReload: 0

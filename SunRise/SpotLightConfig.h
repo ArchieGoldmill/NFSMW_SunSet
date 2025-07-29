@@ -41,8 +41,7 @@ void LoadSpotLightConfig()
 	SolidLightsList.clear();
 	FrontEndLights.clear();
 
-	auto dir = GetExeDirectory();
-	YAML::Node spotlightsRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\SpotLights.yml");
+	YAML::Node spotlightsRoot = YAML::LoadFile(GetConfigFolder("SpotLights.yml"));
 
 	ParseSpotLight(CarHeadlighsConfig, spotlightsRoot["CarHeadLights"]);
 	ParseSpotLight(CarBrakeLightsOnConfig, spotlightsRoot["CarBrakeLightsOn"]);

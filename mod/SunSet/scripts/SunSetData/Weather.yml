@@ -253,7 +253,7 @@ Weather:
     FogEnd: 1000.0
     FogPower: 0.7
     FogExponent: 0.8
-    FogColor: [0.58, 0.725, 0.9]
+    FogColor: [0.298, 0.38, 0.471]
 
     Rain:
       DiffuseColor: [0.0, 0.0, 0.0]

@@ -26,8 +26,7 @@ inline Config g_Config;
 
 void LoadConfig()
 {
-	auto dir = GetExeDirectory();
-	YAML::Node settingsRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\Config.yml");
+	YAML::Node settingsRoot = YAML::LoadFile(GetConfigFolder("Config.yml"));
 
 	const auto& settings = settingsRoot["Config"];
 

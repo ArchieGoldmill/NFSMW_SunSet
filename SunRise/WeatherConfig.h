@@ -73,7 +73,7 @@ void LoadWeatherConfig()
 	WeatherList.clear();
 
 	auto dir = GetExeDirectory();
-	YAML::Node weatherRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\Weather.yml");
+	YAML::Node weatherRoot = YAML::LoadFile(GetConfigFolder("Weather.yml"));
 
 	const auto& list = weatherRoot["Weather"];
 	for (const auto& node : list)

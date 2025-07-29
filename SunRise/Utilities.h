@@ -190,3 +190,13 @@ inline float Smoothstep(float edge0, float edge1, float x) {
 	x = std::clamp((x - edge0) / (edge1 - edge0), 0.0f, 1.0f);
 	return x * x * (3 - 2 * x);
 }
+
+inline std::string GetConfigFolder(const char* fileName)
+{
+#ifdef _DEBUG
+	return std::string("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\SunSet\\scripts\\SunSetData\\") + fileName;
+#endif
+
+	auto dir = GetExeDirectory();
+	return std::string(dir + "\\scripts\\SunSetData\\") + fileName;
+}

@@ -363,3 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 SunRise/vcpkg_installed/*
+
+*.zip
+
+*textures.bin

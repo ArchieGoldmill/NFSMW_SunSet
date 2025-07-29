@@ -49,8 +49,7 @@ void InitTextureConfig()
 	PrelitTextures.clear();
 	AlphaTextures.clear();
 
-	auto dir = GetExeDirectory();
-	YAML::Node texturesRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\Textures.yml");
+	YAML::Node texturesRoot = YAML::LoadFile(GetConfigFolder("Textures.yml"));
 
 	PopulateTextureMap(PrelitTextures, texturesRoot, "Prelit");
 	PopulateTextureMap(AlphaTextures, texturesRoot, "Alpha");

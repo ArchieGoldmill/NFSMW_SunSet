@@ -10,8 +10,7 @@ void LoadLightFlareConfig()
 {
 	FlareList.clear();
 
-	auto dir = GetExeDirectory();
-	YAML::Node flaresRoot = YAML::LoadFile(dir + "\\scripts\\SunSetData\\Flares.yml");
+	YAML::Node flaresRoot = YAML::LoadFile(GetConfigFolder("Flares.yml"));
 
 	const auto& flares = flaresRoot["Flares"];
 

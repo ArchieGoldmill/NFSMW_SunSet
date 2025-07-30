@@ -55,11 +55,9 @@ struct VS_INPUT
 struct PS_INPUT
 {
 	float4 position : POSITION;
-	float3 normal : NORMAL0;
+	float4 normal : NORMAL0;
 	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
-	float4 world_pos : TEXCOORD1;
-	float3 world_nomral : TEXCOORD2;
 	float4 color : COLOR0;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
@@ -73,9 +71,8 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
 	OUT.uv = IN.tex.xy;
 	OUT.tangent = normalize(IN.tangent);
-	OUT.normal = normalize(IN.normal);
-	OUT.world_pos = mul(IN.position, cmWorldMat);
-	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
+	OUT.normal.xyz = normalize(IN.normal);
+	OUT.normal.w = saturate(IN.color.x * 1.2);
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
 	
@@ -85,15 +82,18 @@ PS_INPUT VS_Base(VS_INPUT IN)
 float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float3 envmapMin, specularMin;
-	float3 normal = ApplyRainDrops(IN.local_pos.xyz, normalize(IN.normal), envmapMin, specularMin);
+	float3 normal = ApplyRainDrops(IN.local_pos.xyz, normalize(IN.normal.xyz), envmapMin, specularMin);
 	
 	float3 view = LocalEyePos.xyz - IN.local_pos.xyz;
+	float viewLen = length(view);
 	float3 nview = normalize(view);
 	
 	float3 noise_sample = tex3Dbias(MISCMAP1_SAMPLER, float4(IN.local_pos.xyz * 50, -3)).xyz;
 	float3 flakeNoise = noise_sample * 2 - 1;
-	float flake = 1 - smoothstep(0.0, 5.0, length(view));
-	flake *= cfMetallicScale * 0.1;
+	
+	float flake = saturate(viewLen * -0.25 + 1.2);
+	flake *= 0.04 * cfMetallicScale;
+	
 	float3 flake_normal = normalize(normal + flakeNoise * flake);
 	
 	float vdotn = dot(nview, normal);
@@ -105,7 +105,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, 150, IN.color.rgb);
 	
 	float3 lightDir = normalize(LocalLightVec);
-	float ndotl = dot(IN.normal, lightDir);
+	float ndotl = dot(IN.normal.xyz, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
@@ -123,8 +123,9 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;
+	final.rgb *= IN.normal.w;
 	final.rgb *= finalLight;
-	final.rgb *= max(0.8, noise_sample.r);
+	final.rgb += lerp(0.0, 0.05, flakeNoise.r * cfMetallicScale) * saturate(1.2 - viewLen * 0.1);
 	final.rgb += envmap_sample * diffuse_scale.a;
 	final.rgb += specular * shadow * spec_scale;
 	final.rgb += light.Specular * spec_scale;

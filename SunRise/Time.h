@@ -10,7 +10,7 @@ void ForceTime()
 	}
 	else
 	{
-		TimeOfDay::Instance->CurrentTime += Game::DeltaTime * TimeOfDay::Instance->UpdateRate * 0.001;
+		TimeOfDay::Instance->CurrentTime += Game::DeltaTime / TimeOfDay::Instance->UpdateRate;
 		if (TimeOfDay::Instance->CurrentTime > 1)
 		{
 			TimeOfDay::Instance->CurrentTime = 0;
@@ -27,8 +27,6 @@ TimeOfDay* __fastcall CreateTimeOfDay(TimeOfDay* tod)
 
 void TimeSetting()
 {
-	// Thanks to nlg
-
 	// VOTimeOfDay::Act(char const *,uint)
 	injector::WriteMemory<DWORD>(0x89BB44, 0x50F7A0, true); // change code location
 	injector::MakeRangedNOP(0x50F7AE, 0x50F7B6, true); // cleanup

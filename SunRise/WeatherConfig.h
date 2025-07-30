@@ -37,30 +37,29 @@ struct WeatherConfig
 
 inline std::vector<WeatherConfig*> WeatherList;
 
-void LoadWeatherData(WeatherData* config, const YAML::Node& node)
+void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* cfg)
 {
-	config->DiffuseColor = ParseVec3To4(node["DiffuseColor"]);
-	config->AmbientColor = ParseVec3To4(node["AmbientColor"]);
-	config->SpecularColor = ParseVec3To4(node["SpecularColor"]);
-	config->SpecularPower = node["SpecularPower"].as<float>();
+	config->DiffuseColor = ParseVec3To4(node["DiffuseColor"], cfg->DiffuseColor);
+	config->AmbientColor = ParseVec3To4(node["AmbientColor"], cfg->AmbientColor);
+	config->SpecularColor = ParseVec3To4(node["SpecularColor"], cfg->SpecularColor);
+	config->SpecularPower = YmlGet<float>(node, "SpecularPower", cfg->SpecularPower);
 
-	config->SkyBetaR = ParseVec3To4(node["SkyBetaR"]);
-	config->SkyBetaM = ParseVec3To4(node["SkyBetaM"]);
+	config->SkyBetaR = ParseVec3To4(node["SkyBetaR"], cfg->SkyBetaR);
+	config->SkyBetaM = ParseVec3To4(node["SkyBetaM"], cfg->SkyBetaM);
 
-	config->SkyRayleigh = node["SkyRayleigh"].as<float>();
-	config->SkyRayleighAtt = node["SkyRayleighAtt"].as<float>();
-	config->SkyMie = node["SkyMie"].as<float>();
-	config->SkyMieAtt = node["SkyMieAtt"].as<float>();
-	config->SkyGamma = node["SkyGamma"].as<float>();
-	config->SkyG = node["SkyG"].as<float>();
+	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
+	config->SkyRayleighAtt = YmlGet<float>(node, "SkyRayleighAtt", cfg->SkyRayleighAtt);
+	config->SkyMieAtt = YmlGet<float>(node, "SkyMieAtt", cfg->SkyMieAtt);
+	config->SkyGamma = YmlGet<float>(node, "SkyGamma", cfg->SkyGamma);
+	config->SkyG = YmlGet<float>(node, "SkyG", cfg->SkyG);
 
-	config->FogColor = ParseVec3To4(node["FogColor"]);
-	config->FogStart = node["FogStart"].as<float>();
-	config->FogEnd = node["FogEnd"].as<float>();
-	config->FogPower = node["FogPower"].as<float>();
-	config->FogExponent = node["FogExponent"].as<float>();
+	config->FogColor = ParseVec3To4(node["FogColor"], cfg->FogColor);
+	config->FogStart = YmlGet<float>(node, "FogStart", cfg->FogStart);
+	config->FogEnd = YmlGet<float>(node, "FogEnd", cfg->FogEnd);
+	config->FogPower = YmlGet<float>(node, "FogPower", cfg->FogPower);
+	config->FogExponent = YmlGet<float>(node, "FogExponent", cfg->FogExponent);
 
-	config->CloudColor = ParseVec4(node["CloudColor"]);
+	config->CloudColor = ParseVec4(node["CloudColor"], cfg->CloudColor);
 }
 
 void LoadWeatherConfig()
@@ -81,10 +80,10 @@ void LoadWeatherConfig()
 		auto config = new WeatherConfig();
 
 		config->Time = node["Time"].as<float>();
-		LoadWeatherData(&config->Main, node);
+		LoadWeatherData(&config->Main, node, &config->Main);
 
 		auto rainNode = node["Rain"];
-		LoadWeatherData(&config->Rain, rainNode);
+		LoadWeatherData(&config->Rain, rainNode, &config->Main);
 
 		WeatherList.push_back(config);
 	}

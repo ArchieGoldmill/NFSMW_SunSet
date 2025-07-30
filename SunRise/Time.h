@@ -10,7 +10,7 @@ void ForceTime()
 	}
 	else
 	{
-		TimeOfDay::Instance->CurrentTime += Game::DeltaTime / TimeOfDay::Instance->UpdateRate;
+		TimeOfDay::Instance->CurrentTime += Game::DeltaTime * 0.016666668 * TimeOfDay::Instance->UpdateRate * 0.050000001;
 		if (TimeOfDay::Instance->CurrentTime > 1)
 		{
 			TimeOfDay::Instance->CurrentTime = 0;

@@ -131,7 +131,7 @@ D3DXVECTOR4 ParseVec3To4(const YAML::Node& node, float a = 0.0f)
 	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), a);
 }
 
-D3DXVECTOR4 ParseVec4(const YAML::Node& node, float a = 0.0f)
+D3DXVECTOR4 ParseVec4(const YAML::Node& node)
 {
 	return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), node[3].as<float>());
 }
@@ -181,6 +181,26 @@ inline T YmlGet(const YAML::Node& spot, const char* section, T def)
 	if (node.IsDefined())
 	{
 		return node.as<T>();
+	}
+
+	return def;
+}
+
+D3DXVECTOR4 ParseVec3To4(const YAML::Node& node, D3DXVECTOR4& def)
+{
+	if (node.IsDefined())
+	{
+		return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), 0.0f);
+	}
+
+	return def;
+}
+
+D3DXVECTOR4 ParseVec4(const YAML::Node& node, D3DXVECTOR4& def)
+{
+	if (node.IsDefined())
+	{
+		return D3DXVECTOR4(node[0].as<float>(), node[1].as<float>(), node[2].as<float>(), node[3].as<float>());
 	}
 
 	return def;

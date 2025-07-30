@@ -157,6 +157,9 @@
     <ClInclude Include="WorldLights.h">
       <Filter>Features\DynamicLights</Filter>
     </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

@@ -14,6 +14,12 @@ struct TimeOfDay
 
 	D3DXVECTOR4 SunPosition;
 	D3DXVECTOR4 SunDirection;
+
+	void Ctor()
+	{
+		FUNC(0x00770D70, void, __thiscall, _Ctor, TimeOfDay*);
+		_Ctor(this);
+	}
 };
 
 ASSERT_SIZE(TimeOfDay, 0x190);

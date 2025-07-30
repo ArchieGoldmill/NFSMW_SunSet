@@ -9,6 +9,7 @@
 struct Config
 {
 	float ForceTime;
+	float TimeUpdateRate;
 	float LightLodDistance;
 	float SunRise;
 	float SunSet;
@@ -31,6 +32,7 @@ void LoadConfig()
 	const auto& settings = settingsRoot["Config"];
 
 	g_Config.ForceTime = settings["ForceTime"].as<float>();
+	g_Config.TimeUpdateRate = settings["TimeUpdateRate"].as<float>();
 	g_Config.LightLodDistance = 150.0f;
 	g_Config.SunRise = 0.2f;
 	g_Config.SunSet = 0.8f;

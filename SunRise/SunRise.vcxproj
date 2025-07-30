@@ -203,6 +203,7 @@
     <ClInclude Include="SpotLightConfig.h" />
     <ClInclude Include="TextureConfig.h" />
     <ClInclude Include="TextureInfo.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="TimeOfDay.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VehicleRenderConn.h" />

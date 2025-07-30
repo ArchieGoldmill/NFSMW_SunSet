@@ -1,13 +1,12 @@
 #pragma once
 #include "Injector/injector.hpp"
-#include "Game.h"
-#include "Console.h"
 #include "GrandSceneryCullInfo.h"
 #include "DynamicLights.h"
 #include "RenderModel.h"
 #include "RenderTarget.h"
 #include "LightFlares.h"
 #include "Weather.h"
+#include "Time.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -45,18 +44,7 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
 	cullInfo->SetuWorldCulling();
 
-	if (g_Config.ForceTime >= 0.0f)
-	{
-		TimeOfDay::Instance->CurrentTime = g_Config.ForceTime;
-	}
-	else
-	{
-		TimeOfDay::Instance->CurrentTime += Game::DeltaTime * TimeOfDay::Instance->UpdateRate * 0.001;
-		if (TimeOfDay::Instance->CurrentTime > 1)
-		{
-			TimeOfDay::Instance->CurrentTime = 0;
-		}
-	}
+	ForceTime();
 
 	CheckReloadShaders();
 
@@ -191,6 +179,7 @@ void __fastcall SetEffectParams(eEffect* effect)
 void InitHooks()
 {
 	InitLightFlares();
+	InitTime();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 

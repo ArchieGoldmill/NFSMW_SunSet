@@ -145,6 +145,10 @@ Prelit:
   - Name: ARC_ROCKETDINER_ROCKET
     Brightness: 8.0
 
+  - Name: ARROW_GPS
+    Brightness: 3.0
+    Color: [1.0, 1.0, 1.0]
+
   - Name: ARC_ROLLERCOASTERB
     Brightness: 15.0
     Color: [0.8, 1.0, 0.5]

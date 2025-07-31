@@ -95,14 +95,15 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 		if (IN.uv.y > 0.08)
 		{
 			starsUV = IN.uv;
+			starsUV.y *= 4;
 		}
 		else
 		{
-			starsUV = IN.local_position.xy / 10000;
+			starsUV = IN.local_position.xy / 5000;
 		}
 	
 		float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
-		color += pow(diffuse_tex.rgb, 2) * smoothstep(0.2, 0.1, Rayleigh);
+		color += pow(diffuse_tex.rgb, 2.2) * smoothstep(0.2, 0.1, Rayleigh);
 	}
 	
 	// clouds

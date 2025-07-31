@@ -58,6 +58,16 @@ public:
 		return this->rain;
 	}
 
+	float GetCarLightsPower()
+	{
+		return this->current.CarLightsPower;
+	}
+	
+	float GetTextureLightPower()
+	{
+		return this->current.TextureLightPower;
+	}
+
 private:
 
 	bool LightsOn()
@@ -112,6 +122,9 @@ private:
 		this->current.FogEnd = std::lerp(a->FogEnd, b->FogEnd, t);
 		this->current.FogPower = std::lerp(a->FogPower, b->FogPower, t);
 		this->current.FogExponent = std::lerp(a->FogExponent, b->FogExponent, t);
+
+		this->current.CarLightsPower = std::lerp(a->CarLightsPower, b->CarLightsPower, t);
+		this->current.TextureLightPower = std::lerp(a->TextureLightPower, b->TextureLightPower, t);
 
 		this->current.CloudColor = LerpVector(a->CloudColor, b->CloudColor, t);
 	}

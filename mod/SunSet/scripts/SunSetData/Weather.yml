@@ -7,6 +7,9 @@ Weather:
 
     CloudColor: [1.0, 1.0, 1.2, 0.1]
 
+    CarLightsPower: 1.0
+    TextureLightPower: 1.0
+
     SkyBetaR: [0.2, 0.2, 0.2]
     SkyBetaM: [0.01, 0.01, 0.01]
     SkyMie: 0.2
@@ -36,6 +39,8 @@ Weather:
 
     CloudColor: [1.0, 1.0, 1.2, 0.1]
 
+    CarLightsPower: 1.0
+
     SkyBetaR: [0.3, 0.3, 0.3]
     SkyBetaM: [0.01, 0.01, 0.01]
     SkyMie: 0.2
@@ -63,6 +68,8 @@ Weather:
 
     CloudColor: [1.0, 1.0, 1.0, 0.1]
 
+    CarLightsPower: 1.0
+
     SkyBetaR: [0.133, 0.173, 0.231]
     SkyBetaM: [0.04, 0.04, 0.04]
     SkyMie: 1.0
@@ -84,12 +91,14 @@ Weather:
       FogColor: [0.1, 0.1, 0.1]
 
   - Time: 0.3
-    DiffuseColor: [1, 0.925, 0.78]
-    AmbientColor: [0.6, 0.6, 0.6]
-    SpecularColor: [1, 0.996, 0.847]
-    SpecularPower: 30.0
+    DiffuseColor: [0.85, 0.80, 0.75]
+    AmbientColor: [0.50, 0.55, 0.65]
+    SpecularColor: [0.8, 0.85, 1.0]
+    SpecularPower: 40.0
 
     CloudColor: [1.0, 1.0, 1.0, 0.1]
+
+    CarLightsPower: 0.3
 
     SkyBetaR: [0.133, 0.173, 0.231]
     SkyBetaM: [0.01, 0.01, 0.01]
@@ -126,12 +135,15 @@ Weather:
       FogColor: [0.58, 0.725, 0.9]
 
   - Time: 0.5
-    DiffuseColor: [1, 0.925, 0.78]
-    AmbientColor: [0.6, 0.6, 0.6]
+    DiffuseColor: [0.95, 0.93, 0.88]
+    AmbientColor: [0.45, 0.50, 0.55]
     SpecularColor: [1, 0.996, 0.847]
     SpecularPower: 30.0
 
     CloudColor: [1.0, 1.0, 1.0, 0.1]
+
+    CarLightsPower: 0.1
+    TextureLightPower: 0.4
 
     SkyBetaR: [0.133, 0.173, 0.231]
     SkyBetaM: [0.01, 0.01, 0.01]
@@ -163,12 +175,14 @@ Weather:
       FogColor: [0.2, 0.2, 0.2]
 
   - Time: 0.75
-    DiffuseColor: [0.7, 0.6, 0.5]
-    AmbientColor: [0.5, 0.5, 0.5]
-    SpecularColor: [0, 0.0, 0.0]
+    DiffuseColor: [1.0, 0.5, 0.2]
+    AmbientColor: [0.25, 0.30, 0.40]
+    SpecularColor: [1.0, 0.6, 0.3]
     SpecularPower: 30.0
 
     CloudColor: [1.0, 1.0, 1.0, 0.1]
+
+    CarLightsPower: 0.3
 
     SkyBetaR: [0.133, 0.173, 0.231]
     SkyBetaM: [0.01, 0.01, 0.01]
@@ -201,6 +215,8 @@ Weather:
     SpecularPower: 0.0
 
     CloudColor: [1.0, 1.0, 1.2, 0.1]
+
+    CarLightsPower: 1.0
 
     SkyBetaR: [0.133, 0.173, 0.231]
     SkyBetaM: [0.04, 0.04, 0.04]

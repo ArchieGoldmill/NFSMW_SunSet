@@ -27,7 +27,19 @@ void __declspec(naked) DrawAmbientShadowHook()
 	}
 }
 
+void __cdecl NormalizeShadowShift(D3DXVECTOR3* dest, D3DXVECTOR3* v)
+{
+	dest->x = 0;
+	dest->y = 0;
+	dest->z = 1;
+}
+
+TimeOfDay* fakeTod = new TimeOfDay();
 void InitAmbientShadow()
 {
+	// Disable helicopter ambient shadow
 	injector::MakeJMP(0x0074E812, DrawAmbientShadowHook);
+
+	// Disable shadow shift
+	injector::MakeCALL(0x00744084, NormalizeShadowShift);
 }

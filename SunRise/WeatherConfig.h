@@ -26,6 +26,9 @@ struct WeatherData
 	float FogEnd;
 	float FogPower;
 	float FogExponent;
+
+	float CarLightsPower = 1.0;
+	float TextureLightPower = 1.0;
 };
 
 struct WeatherConfig
@@ -58,6 +61,9 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->FogEnd = YmlGet<float>(node, "FogEnd", cfg->FogEnd);
 	config->FogPower = YmlGet<float>(node, "FogPower", cfg->FogPower);
 	config->FogExponent = YmlGet<float>(node, "FogExponent", cfg->FogExponent);
+
+	config->CarLightsPower = YmlGet<float>(node, "CarLightsPower", cfg->CarLightsPower);
+	config->TextureLightPower = YmlGet<float>(node, "TextureLightPower", cfg->TextureLightPower);
 
 	config->CloudColor = ParseVec4(node["CloudColor"], cfg->CloudColor);
 }

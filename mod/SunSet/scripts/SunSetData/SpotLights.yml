@@ -361,6 +361,7 @@ SolidLights:
         Intensity: 5.0
         Range: 15.0
   - Solid: XO_IRONLAMPSTANDINGB_1B_00
+    SolidLod: XO_IRONLAMPSTANDINGB_1C_00
     Flare: LampPost
     SpotLights:
       - Position: [0.0, 0.0, 5.1]

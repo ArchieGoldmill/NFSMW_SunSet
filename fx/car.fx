@@ -125,7 +125,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	final *= diffuse_scale;
 	final.rgb *= IN.normal.w;
 	final.rgb *= finalLight;
-	final.rgb += lerp(0.0, 0.05, flakeNoise.r * cfMetallicScale) * saturate(1.2 - viewLen * 0.1);
+	final.rgb += lerp(0.0, 0.05, flakeNoise.r * cfMetallicScale) * saturate(1.2 - viewLen * 0.15);
 	final.rgb += envmap_sample * diffuse_scale.a;
 	final.rgb += specular * shadow * spec_scale;
 	final.rgb += light.Specular * spec_scale;

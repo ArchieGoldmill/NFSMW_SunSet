@@ -5,6 +5,7 @@
 #include "VehicleRenderConn.h"
 #include "FrontEndRenderingCar.h"
 #include "HelicopterLight.h"
+#include "Weather.h"
 
 void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& temp, float offset, D3DXMATRIX* matrix, SpotLightSource source)
 {
@@ -38,6 +39,7 @@ void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& t
 		}
 
 		SpotLight spotLight = temp;
+		spotLight.Color *= g_Weather.GetCarLightsPower();
 
 		pos.x += offset;
 		D3DXVec3TransformCoord(&spotLight.Position, &pos, matrix);

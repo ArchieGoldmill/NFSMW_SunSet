@@ -157,6 +157,7 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 			brightness = alphaTex->second.Color;
 		}
 
+		brightness.w *= g_Weather.GetTextureLightPower();
 		renderModel->Effect->SetVector(ShaderParam::cvBrightness, &brightness);
 
 		if (prelit)

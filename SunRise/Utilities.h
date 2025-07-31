@@ -220,3 +220,15 @@ inline std::string GetConfigFolder(const char* fileName)
 	auto dir = GetExeDirectory();
 	return std::string(dir + "\\scripts\\SunSetData\\") + fileName;
 }
+
+inline bool FileExists(const char* fileName)
+{
+	FILE* fin = fopen(fileName, "rb");
+	if (fin == NULL)
+	{
+		return false;
+	}
+
+	fclose(fin);
+	return true;
+}

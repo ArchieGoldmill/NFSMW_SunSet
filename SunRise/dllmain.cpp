@@ -1,14 +1,54 @@
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
+#include <fstream>
 #include "Console.h"
 #include "ShaderLoader.h"
 #include "Hooks.h"
 #include "Config.h"
 #include "AmbientShadow.h"
 
+bool CheckFiles()
+{
+	if (FileExists("XNFS-ShaderLoader-MW.asi"))
+	{
+		MessageBoxA(NULL, "XNFS-ShaderLoader-MW.asi detected, please remove it for proper shader loading.", ModName, MB_ICONEXCLAMATION);
+		return false;
+	}
+
+	if (!FileExists("TexWizard.asi"))
+	{
+		MessageBoxA(NULL, "TexWizard.asi not found, please follow the install guide to fix the issue.", ModName, MB_ICONEXCLAMATION);
+		return false;
+	}
+
+	if (!FileExists("TexWizard.json"))
+	{
+		MessageBoxA(NULL, "TexWizard.json not found, please follow the install guide to fix the issue.", ModName, MB_ICONEXCLAMATION);
+		return false;
+	}
+
+	std::ifstream file("TexWizard.json");
+	std::ostringstream buffer;
+	buffer << file.rdbuf();
+	std::string content = buffer.str();
+	std::string keyword = "TexturePacks\\\\SunSet";
+	if (content.find(keyword) == std::string::npos) 
+	{
+		MessageBoxA(NULL, "SunSet texture pack not found in TexWizard.json, please follow the install guide to fix the issue.", ModName, MB_ICONEXCLAMATION);
+		return false;
+	}
+
+	return true;
+}
+
 void Init()
 {
+	if (!CheckFiles())
+	{
+		return;
+	}
+
 	InitConfig();
 
 	if (g_Config.Console)
@@ -36,7 +76,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 		}
 		else
 		{
-			MessageBoxA(NULL, "This .exe is not supported.\nPlease use v1.3 English speed.exe (5,75 MB (6.029.312 bytes)).", "NFSMW - Sun Set", MB_ICONERROR);
+			MessageBoxA(NULL, "This .exe is not supported.\nPlease use v1.3 English speed.exe (5,75 MB (6.029.312 bytes)).", ModName, MB_ICONERROR);
 			return FALSE;
 		}
 	}

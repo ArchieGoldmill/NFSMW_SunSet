@@ -2,18 +2,6 @@
 #include <stdio.h>
 #include <Windows.h>
 
-bool FileExists(const char* fileName)
-{
-	FILE* fin = fopen(fileName, "rb");
-	if (fin == NULL)
-	{
-		return false;
-	}
-
-	fclose(fin);
-	return true;
-}
-
 bool ConsoleExists(void)
 {
 	CONSOLE_SCREEN_BUFFER_INFO csbi;

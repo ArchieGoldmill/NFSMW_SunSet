@@ -6,6 +6,8 @@
 #include "SpotLightConfig.h"
 #include "TextureConfig.h"
 
+inline const char* ModName = "NFSMW - Sun Set 1.1";
+
 struct Config
 {
 	float ForceTime;
@@ -38,7 +40,7 @@ void LoadConfig()
 	g_Config.SunSet = 0.8f;
 	g_Config.LightsOn = settings["LightsOn"].as<float>();
 	g_Config.LightsOff = settings["LightsOff"].as<float>();
-	g_Config.LightCellSize = 128.0f;
+	g_Config.LightCellSize = 64;
 	g_Config.Console = settings["Console"].as<bool>();
 	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
 	g_Config.LiveReload = settings["LiveReload"].as<bool>();

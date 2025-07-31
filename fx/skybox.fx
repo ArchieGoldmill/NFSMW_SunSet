@@ -57,7 +57,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	
 	float3 D = normalize(IN.local_position);
 	float3 Ds = normalize(cvSunDirection.xyz);
-	
+
 	float t = max(0.001, D.z) + max(-D.z, -0.001);
 
 	// optical depth -> zenithAngle

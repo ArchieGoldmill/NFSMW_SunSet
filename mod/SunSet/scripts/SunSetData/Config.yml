@@ -7,6 +7,6 @@ Config:
 
   Console: true               # Show console window.
   ShaderLoader: true          # Use build in shader loader, place shaders in the game\shaders folder.
-
+  X360Effects: false          # Enable light trails.
   LiveReload: false           # Live reload config files when game loses focus.
   HK_ShaderReload: 0          # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.

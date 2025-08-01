@@ -210,4 +210,10 @@ void InitHooks()
 
 	// Disable vanilla time propagation
 	injector::WriteMemory<unsigned short>(0x0076938E, 0x74EB);
+
+	if (g_Config.X360Effects)
+	{
+		injector::MakeNOP(0x006C1841, 5);
+		Game::X360EffectsEnable = true;
+	}
 }

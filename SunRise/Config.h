@@ -22,6 +22,7 @@ struct Config
 	bool Console;
 	bool ShaderLoader;
 	bool LiveReload;
+	bool X360Effects;
 	int HK_ShaderReload;
 };
 
@@ -44,6 +45,7 @@ void LoadConfig()
 	g_Config.Console = settings["Console"].as<bool>();
 	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
 	g_Config.LiveReload = settings["LiveReload"].as<bool>();
+	g_Config.X360Effects = settings["X360Effects"].as<bool>();
 	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
 }
 

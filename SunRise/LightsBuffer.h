@@ -7,6 +7,11 @@ int NumSpotLightBuffer = 0;
 
 void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare)
 {
+	if (spotLight.Color == D3DXVECTOR3(0, 0, 0))
+	{
+		return;
+	}
+
 	if (NumSpotLightBuffer >= NUM_SPOTLIGHTS_BUFFER)
 	{
 #ifdef _DEBUG

@@ -28,7 +28,7 @@ D3DXVECTOR3 GetPlayerPos()
 	return { 0, 0, 0 };
 }
 
-void AddHelicopterLight(D3DXVECTOR3 pos)
+void AddHelicopterLight(D3DXMATRIX* matrix)
 {
 	auto playerPos = GetPlayerPos();
 	if (playerPos == D3DXVECTOR3(0, 0, 0))
@@ -36,18 +36,20 @@ void AddHelicopterLight(D3DXVECTOR3 pos)
 		return;
 	}
 
-	SpotLight spotLight = HelicopterLightConfig;
+	SpotLight spotLight = HelicopterLightConfig.Light;
+
+	D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
 
 	spotLight.Direction = playerPos - pos;
 	float range = D3DXVec3Length(&spotLight.Direction);
 	if (range > spotLight.Range)
 	{
-		return;
+		spotLight.Color = D3DXVECTOR3(0, 0, 0);
 	}
 
 	D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
 
-	spotLight.Position = pos;
+	D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 
-	AddSpotLightToBuffer(spotLight, SpotLightSource::Helicopter, NULL);
+	AddSpotLightToBuffer(spotLight, SpotLightSource::Helicopter, HelicopterLightConfig.Flare);
 }

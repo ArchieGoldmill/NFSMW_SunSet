@@ -26,7 +26,8 @@ CarBrakeLightsOff:
   OuterAngle: 45.0
 
 HelicopterLight:
-  Position: [0.0, 0.0, 0.0]
+  Flare: Helicopter
+  Position: [2.6, 0.0, -0.7]
   Direction: [0.0, 0.0, 0.0]
   Color: [1.0, 1.0, 1.0]
   Intensity: 3.0

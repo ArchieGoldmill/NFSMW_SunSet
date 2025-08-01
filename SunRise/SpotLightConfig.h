@@ -10,7 +10,7 @@ inline std::vector<SolidLights> SolidLightsList;
 inline SpotLight CarHeadlighsConfig;
 inline SpotLight CarBrakeLightsOnConfig;
 inline SpotLight CarBrakeLightsOffConfig;
-inline SpotLight HelicopterLightConfig;
+inline SpotLightModel HelicopterLightConfig;
 
 void ParseSpotLight(SpotLight& spotLight, const YAML::Node& spot)
 {
@@ -23,13 +23,19 @@ void ParseSpotLight(SpotLight& spotLight, const YAML::Node& spot)
 	spotLight.Range = spot["Range"].as<float>();
 }
 
-FlareModel* GetFlareModel(std::string& flareName)
+FlareModel* GetFlareModel(const YAML::Node& lightNode)
 {
-	for (int i = 0; i < FlareList.size(); i++)
+	auto flareNode = lightNode["Flare"];
+	if (flareNode.IsDefined())
 	{
-		if (FlareList[i].Name == flareName)
+		auto flareName = flareNode.as<std::string>();
+
+		for (int i = 0; i < FlareList.size(); i++)
 		{
-			return &FlareList[i];
+			if (FlareList[i].Name == flareName)
+			{
+				return &FlareList[i];
+			}
 		}
 	}
 
@@ -46,7 +52,10 @@ void LoadSpotLightConfig()
 	ParseSpotLight(CarHeadlighsConfig, spotlightsRoot["CarHeadLights"]);
 	ParseSpotLight(CarBrakeLightsOnConfig, spotlightsRoot["CarBrakeLightsOn"]);
 	ParseSpotLight(CarBrakeLightsOffConfig, spotlightsRoot["CarBrakeLightsOff"]);
-	ParseSpotLight(HelicopterLightConfig, spotlightsRoot["HelicopterLight"]);
+
+	auto heliNode = spotlightsRoot["HelicopterLight"];
+	ParseSpotLight(HelicopterLightConfig.Light, heliNode);
+	HelicopterLightConfig.Flare = GetFlareModel(heliNode);
 
 	const auto& spotLights = spotlightsRoot["SolidLights"];
 	for (const auto& lightNode : spotLights)
@@ -63,12 +72,7 @@ void LoadSpotLightConfig()
 			solid.HashB = Game::bStringHash(nameB.as<std::string>().c_str());
 		}
 
-		auto flareNode = lightNode["Flare"];
-		if (flareNode.IsDefined())
-		{
-			auto flareName = flareNode.as<std::string>();
-			solid.Flare = GetFlareModel(flareName);
-		}
+		solid.Flare = GetFlareModel(lightNode);
 
 		const auto& spotLights = lightNode["SpotLights"];
 		for (const auto& spot : spotLights)
@@ -87,12 +91,8 @@ void LoadSpotLightConfig()
 	{
 		int type = felightNode["Type"].as<int>();
 		const auto& spotLights = felightNode["SpotLights"];
-		auto flareNode = felightNode["Flare"];
-		if (flareNode.IsDefined())
-		{
-			auto flareName = flareNode.as<std::string>();
-			FrontEndLights[type].Flare = GetFlareModel(flareName);
-		}
+
+		FrontEndLights[type].Flare = GetFlareModel(felightNode);
 
 		for (const auto& spot : spotLights)
 		{

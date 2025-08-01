@@ -12,7 +12,7 @@ void __stdcall RenderWorldLightFlares()
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
 		auto spotlight = SpotLightBuffer[i];
-		if (spotlight.Flare && spotlight.Source == SpotLightSource::LampPost)
+		if (spotlight.Flare && (spotlight.Source == SpotLightSource::LampPost || spotlight.Source == SpotLightSource::Helicopter))
 		{
 			auto color = D3DCOLOR_COLORVALUE(spotlight.Light.Color.z, spotlight.Light.Color.y, spotlight.Light.Color.x, 0);
 			CurrentFlare = spotlight.Flare;

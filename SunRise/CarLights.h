@@ -90,9 +90,7 @@ void PopulateCarSpotLights()
 					int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
 					if (renderUsage == 5)
 					{
-						auto matrix = renderConn->Matrix;
-						D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
-						AddHelicopterLight(pos);
+						AddHelicopterLight(renderConn->Matrix);
 					}
 					else
 					{

@@ -1,12 +1,18 @@
 Flares:
-    - Name: LampPost
-      Intensity: 2
-      Size: 3.0
-      Type: 1
-      Texture: LAMP_FLARE
+  - Name: LampPost
+    Intensity: 2
+    Size: 3.0
+    Type: 1
+    Texture: LAMP_FLARE
 
-    - Name: Chevron
-      Intensity: 1.0
-      Size: 1.5
-      Type: 0
-      Texture: CHEVRON_FLARE      
+  - Name: Chevron
+    Intensity: 1.0
+    Size: 1.5
+    Type: 0
+    Texture: CHEVRON_FLARE
+
+  - Name: Helicopter
+    Intensity: 2
+    Size: 3.0
+    Type: 0
+    Texture: LAMP_FLARE_RAIN

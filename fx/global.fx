@@ -8,6 +8,7 @@ int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
 int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
 float4 TextureOffset : TEXTUREOFFSET;
 float4 cvBrightness;
+float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
 float4 world_position(float4 screen_pos)
 {
@@ -20,6 +21,12 @@ float4 screen_position(float4 screen_pos)
 {
 	screen_pos.xy += ScreenOffset.xy;
 	return screen_pos;
+}
+
+float4 GetVertexColor(float4 color)
+{
+	color.rgb *= 4;
+	return saturate(color);
 }
 
 texture diffusemap : DiffuseMap;

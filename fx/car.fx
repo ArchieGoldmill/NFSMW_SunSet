@@ -6,7 +6,6 @@
 #include "car_rain.fx"
 #include "fog.fx"
 
-float4 LocalLightVec : LOCALLIGHTDIRVEC;
 float4x4 WorldView : WORLDVIEW;
 
 float4 DiffuseMin : DIFFUSEMIN;
@@ -55,10 +54,11 @@ struct VS_INPUT
 struct PS_INPUT
 {
 	float4 position : POSITION;
-	float4 normal : NORMAL0;
+	float3 normal : NORMAL0;
 	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
 	float4 color : COLOR0;
+	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
 };
@@ -72,9 +72,9 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.uv = IN.tex.xy;
 	OUT.tangent = normalize(IN.tangent);
 	OUT.normal.xyz = normalize(IN.normal);
-	OUT.normal.w = saturate(IN.color.x * 1.2);
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
+	OUT.color = saturate(IN.color * 1.2);
 	
 	return OUT;
 }
@@ -102,7 +102,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	
 	float4 diffuse_scale = DiffuseMin + vdotn * DiffuseRange;
 	
-	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, 150, IN.color.rgb);
+	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, 150, IN.spotlight.rgb);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(IN.normal.xyz, lightDir);
@@ -123,7 +123,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;
-	final.rgb *= IN.normal.w;
+	final.rgb *= IN.color.r;
 	final.rgb *= finalLight;
 	final.rgb += lerp(0.0, 0.05, flakeNoise.r * cfMetallicScale) * saturate(1.2 - viewLen * 0.15);
 	final.rgb += envmap_sample * diffuse_scale.a;

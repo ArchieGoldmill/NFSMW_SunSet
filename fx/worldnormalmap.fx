@@ -5,8 +5,6 @@
 #include "spotlights.fx"
 #include "fog.fx"
 
-float4 LocalLightVec : LOCALLIGHTDIRVEC;
-
 float3 cvAmbientColor;
 float3 cvDiffuseColor;
 
@@ -27,6 +25,7 @@ struct PS_INPUT
 	float2 uv : TEXCOORD0;
 	float4 world_pos : TEXCOORD1;
 	float4 color : COLOR0;
+	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD2;
 };
@@ -43,6 +42,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.world_pos = mul(IN.position, cmWorldMat);
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
+	OUT.color = GetVertexColor(IN.color);
 	
 	return OUT;
 }
@@ -51,7 +51,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.color.rgb);
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
@@ -65,9 +65,10 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
 	
 	float4 final = diffuse_tex;
+	final *= IN.color;
 	final.rgb *= finalLight;
-	final.rgb += specular * shadow;
-	final.rgb += light.Specular;
+	final.rgb += specular * shadow * diffuse_tex.a;
+	final.rgb += light.Specular * diffuse_tex.a;
 	
 	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG

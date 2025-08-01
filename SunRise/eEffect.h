@@ -7,11 +7,13 @@ enum TechniqueType
 {
 	Technique_Unlit,
 	Technique_Prelit,
+	Technique_LitPixel_4,
 	Technique_LitPixel_8,
 	Technique_LitPixel_16,
 	Technique_LitPixel_24,
 	Technique_LitVertex,
 	Technique_ShadowMap,
+	Technique_Water,
 	Technique_Count,
 	Technique_Invalid = -1
 };
@@ -30,12 +32,16 @@ const char* ShaderParamNames[] =
 	"cfMetallicScale",
 	"cvFogValue",
 	"cvFogColor",
+	"cvFogSunColor",
 	"cvCloudColor",
 	"cvBrightness",
+	"cvWaterColor",
+	"cfTimeTicker",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
 	"MISCMAP3_TEXTURE",
+	"MISCMAP4_TEXTURE",
 };
 
 enum class ShaderParam
@@ -52,12 +58,16 @@ enum class ShaderParam
 	cfMetallicScale,
 	cvFogValue,
 	cvFogColor,
+	cvFogSunColor,
 	cvCloudColor,
 	cvBrightness,
+	cvWaterColor,
+	cfTimeTicker,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,
 	MISCMAP3_TEXTURE,
+	MISCMAP4_TEXTURE,
 
 	count
 };
@@ -270,6 +280,15 @@ struct eEffect
 	void SetTexture(ShaderParam p, LPDIRECT3DVOLUMETEXTURE9 texture)
 	{
 		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetTexture(handle, texture);
+		}
+	}
+
+	void SetTexture(shader_param p, IDirect3DTexture9* texture)
+	{
+		auto handle = this->Params[(int)p].handle;
 		if (handle)
 		{
 			this->D3DEffect->SetTexture(handle, texture);

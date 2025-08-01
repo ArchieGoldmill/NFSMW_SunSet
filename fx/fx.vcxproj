@@ -134,6 +134,7 @@
     <FxCompile Include="skybox.fx" />
     <FxCompile Include="spotlights.fx" />
     <FxCompile Include="tree.fx" />
+    <FxCompile Include="water.fx" />
     <FxCompile Include="world.fx" />
     <FxCompile Include="worldnormalmap.fx" />
     <FxCompile Include="worldreflect.fx" />

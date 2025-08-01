@@ -20,8 +20,10 @@ struct WeatherData
 	float SkyG;
 
 	D3DXVECTOR4 CloudColor;
+	D3DXVECTOR4 WaterColor;
 
 	D3DXVECTOR4 FogColor;
+	D3DXVECTOR4 FogSunColor;
 	float FogStart;
 	float FogEnd;
 	float FogPower;
@@ -52,11 +54,13 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 
 	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
 	config->SkyRayleighAtt = YmlGet<float>(node, "SkyRayleighAtt", cfg->SkyRayleighAtt);
+	config->SkyMie = YmlGet<float>(node, "SkyMie", cfg->SkyMie);
 	config->SkyMieAtt = YmlGet<float>(node, "SkyMieAtt", cfg->SkyMieAtt);
 	config->SkyGamma = YmlGet<float>(node, "SkyGamma", cfg->SkyGamma);
 	config->SkyG = YmlGet<float>(node, "SkyG", cfg->SkyG);
 
 	config->FogColor = ParseVec3To4(node["FogColor"], cfg->FogColor);
+	config->FogSunColor = ParseVec3To4(node["FogSunColor"], cfg->FogSunColor);
 	config->FogStart = YmlGet<float>(node, "FogStart", cfg->FogStart);
 	config->FogEnd = YmlGet<float>(node, "FogEnd", cfg->FogEnd);
 	config->FogPower = YmlGet<float>(node, "FogPower", cfg->FogPower);
@@ -66,6 +70,7 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->TextureLightPower = YmlGet<float>(node, "TextureLightPower", cfg->TextureLightPower);
 
 	config->CloudColor = ParseVec4(node["CloudColor"], cfg->CloudColor);
+	config->WaterColor = ParseVec3To4(node["WaterColor"], cfg->WaterColor);
 }
 
 void LoadWeatherConfig()

@@ -162,11 +162,13 @@ void __fastcall SetEffectParams(eEffect* effect)
 
 	shaderParams.Techniques[Technique_Unlit] = effect->D3DEffect->GetTechniqueByName("Unlit");
 	shaderParams.Techniques[Technique_Prelit] = effect->D3DEffect->GetTechniqueByName("Prelit");
+	shaderParams.Techniques[Technique_LitPixel_4] = effect->D3DEffect->GetTechniqueByName("LitPixel_4");
 	shaderParams.Techniques[Technique_LitPixel_8] = effect->D3DEffect->GetTechniqueByName("LitPixel_8");
 	shaderParams.Techniques[Technique_LitPixel_16] = effect->D3DEffect->GetTechniqueByName("LitPixel_16");
 	shaderParams.Techniques[Technique_LitPixel_24] = effect->D3DEffect->GetTechniqueByName("LitPixel_24");
 	shaderParams.Techniques[Technique_LitVertex] = effect->D3DEffect->GetTechniqueByName("LitVertex");
 	shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
+	shaderParams.Techniques[Technique_Water] = effect->D3DEffect->GetTechniqueByName("Water");
 
 	for (int i = 0; i < (int)ShaderParam::count; i++)
 	{
@@ -208,6 +210,4 @@ void InitHooks()
 
 	// Disable vanilla time propagation
 	injector::WriteMemory<unsigned short>(0x0076938E, 0x74EB);
-
-	//injector::MakeNOP(0x006C2206, 10);
 }

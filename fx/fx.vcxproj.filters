@@ -35,6 +35,7 @@
     <FxCompile Include="fog.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="water.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

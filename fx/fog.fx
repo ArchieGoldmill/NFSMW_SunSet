@@ -1,4 +1,5 @@
 float4 cvFogColor;
+float4 cvFogSunColor;
 float4 cvFogValue;
 
 float CalculateFog(float distance)
@@ -18,11 +19,20 @@ float CalculateFog(float distance)
 	return result;
 }
 
-float3 ApplyFogColor(float3 color, float factor)
+float3 ApplyFogColor(float3 color, float factor, float3 local_pos)
 {
-	return lerp(cvFogColor.rgb, color.rgb, factor);
+	float3 lightDir = normalize(LocalLightVec);
+	
+	float3 view = normalize(local_pos - LocalEyePos.xyz);
+	
+	float toSun = saturate(dot(view, lightDir));
+	toSun = smoothstep(0.7, 1.0, toSun);
+	
+	float3 fogColor = lerp(cvFogColor.rgb, cvFogSunColor.rgb, toSun);
+	
+	return lerp(fogColor, color.rgb, factor);
 }
 
 #define APPLY_FOG\
 	float fog = CalculateFog(IN.local_pos.w);\
-	final.rgb = ApplyFogColor(final.rgb, fog);
+	final.rgb = ApplyFogColor(final.rgb, fog, IN.local_pos.xyz);

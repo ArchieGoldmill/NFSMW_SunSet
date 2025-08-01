@@ -2,11 +2,11 @@ Config:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.
   TimeUpdateRate: 1.0         # Update rate for the game time, 1.0 is vanilla rate.
 
-  LightsOn: 0.775             # Time when world lights are enabled.
-  LightsOff: 0.25             # Time when world lights are disabled.
+  LightsOn: 0.72              # Time when world lights are enabled.
+  LightsOff: 0.28             # Time when world lights are disabled.
 
-  Console: true              # Show console window.
+  Console: true               # Show console window.
   ShaderLoader: true          # Use build in shader loader, place shaders in the game\shaders folder.
 
-  LiveReload: true           # Live reload config files when game loses focus.
-  HK_ShaderReload: 70          # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
+  LiveReload: false           # Live reload config files when game loses focus.
+  HK_ShaderReload: 0          # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.

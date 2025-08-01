@@ -15,6 +15,7 @@ private:
 	float Timer = 0.0f;
 	float rain = 0.0f;
 
+	TextureInfo* Water = nullptr;
 	TextureInfo* CarRainDrops = nullptr;
 	TextureInfo* CarRainSlide = nullptr;
 	TextureInfo* PuddleMask = NULL;
@@ -39,6 +40,7 @@ public:
 		this->UpdateSun();
 		this->SetParams();
 		this->UpdateRain();
+		this->UpdateWater();
 
 		MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime);
 	}
@@ -97,6 +99,7 @@ private:
 			e->SetVector(ShaderParam::cvAmbientColor, &this->current.AmbientColor);
 			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
 			e->SetVector(ShaderParam::cvFogColor, &this->current.FogColor);
+			e->SetVector(ShaderParam::cvFogSunColor, &this->current.FogSunColor);
 			e->SetVector(ShaderParam::cvFogValue, &fogValue);
 		}
 	}
@@ -118,6 +121,7 @@ private:
 		this->current.SkyG = std::lerp(a->SkyG, b->SkyG, t);
 
 		this->current.FogColor = LerpVector(a->FogColor, b->FogColor, t);
+		this->current.FogSunColor = LerpVector(a->FogSunColor, b->FogSunColor, t);
 		this->current.FogStart = std::lerp(a->FogStart, b->FogStart, t);
 		this->current.FogEnd = std::lerp(a->FogEnd, b->FogEnd, t);
 		this->current.FogPower = std::lerp(a->FogPower, b->FogPower, t);
@@ -127,6 +131,7 @@ private:
 		this->current.TextureLightPower = std::lerp(a->TextureLightPower, b->TextureLightPower, t);
 
 		this->current.CloudColor = LerpVector(a->CloudColor, b->CloudColor, t);
+		this->current.WaterColor = LerpVector(a->WaterColor, b->WaterColor, t);
 	}
 
 	void UpdateWeather()
@@ -208,6 +213,7 @@ private:
 
 		if (!this->PuddleMask)
 		{
+			this->Water = TextureInfo::Get(Hashes::SR_PCAWATER0, false, false);
 			this->CarRainDrops = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_N, false, false);
 			this->CarRainSlide = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_SLIDE_N, false, false);
 			this->PuddleMask = TextureInfo::Get(Hashes::SR_PUDDLE_MASK, false, false);
@@ -315,6 +321,19 @@ private:
 
 		auto carShader = eEffect::Get(shader_type::CarShader);
 		carShader->SetVector(ShaderParam::cvRainParams, &rainParams);
+	}
+
+	void UpdateWater()
+	{
+		if (this->Water && Game::ReflectionTexture)
+		{
+			auto waterShader = eEffect::Get(shader_type::WorldShader);
+			waterShader->SetVector(ShaderParam::cvRainParams, &rainParams);
+			waterShader->SetVector(ShaderParam::cvWaterColor, &this->current.WaterColor);
+			waterShader->SetTexture(ShaderParam::MISCMAP4_TEXTURE, this->Water);
+			waterShader->SetFloat(ShaderParam::cfTimeTicker, this->Timer);
+			waterShader->SetTexture(shader_param::REFLECTEDTEX, Game::ReflectionTexture);
+		}
 	}
 
 	float GetTime()

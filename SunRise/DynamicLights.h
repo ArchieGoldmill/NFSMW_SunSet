@@ -140,6 +140,11 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 			return Technique_ShadowMap;
 		}
 
+		if (renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_)
+		{
+			return Technique_Water;
+		}
+
 		D3DXVECTOR4 brightness = { 0,0,0,0 };
 
 		bool prelit = false;
@@ -177,6 +182,10 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 			if (NumSpotLights == 0)
 			{
 				technique = Technique_Unlit;
+			}
+			else if (NumSpotLights <= 4)
+			{
+				technique = Technique_LitPixel_4;
 			}
 			else if (NumSpotLights <= 8)
 			{

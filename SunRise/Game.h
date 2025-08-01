@@ -3,6 +3,9 @@
 #include "LightFlare.h"
 #include "eView.h"
 #include "Camera.h"
+#include "MeshEntry.h"
+#include "eSolid.h"
+#include "eEffect.h"
 
 namespace Game
 {
@@ -16,6 +19,7 @@ namespace Game
 	inline auto FlareBlink = (int*)0x0091601C;
 	inline auto& State = *(int*)0x00925E90;
 	inline auto IdentityMatrix = (D3DXMATRIX*)0x00987AB0;
+	inline auto& ReflectionTexture = *(IDirect3DTexture9**)0x00982A6C;
 
 	INLINE_FUNC(0x00505380, void, __cdecl, eRenderLightFlare, eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale);
 	INLINE_FUNC(0x00460BF0, Hash, __cdecl, bStringHash, const char*);

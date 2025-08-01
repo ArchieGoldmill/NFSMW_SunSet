@@ -4,8 +4,6 @@
 #include "spotlights.fx"
 #include "fog.fx"
 
-float4 LocalLightVec : LOCALLIGHTDIRVEC;
-
 float3 cvAmbientColor;
 float4 cvDiffuseColor;
 
@@ -33,6 +31,7 @@ struct PS_INPUT
 	float4 world_pos : TEXCOORD1;
 	float3 world_nomral : TEXCOORD2;
 	float4 color : COLOR0;
+	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
 };
@@ -50,6 +49,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
+	OUT.color = GetVertexColor(IN.color);
 	
 	return OUT;
 }
@@ -58,7 +58,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, 30, IN.color.rgb);
+	SpotLightResult light = ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, 30, IN.spotlight.rgb);
 	
 	float3 albedo = diffuse_tex.rgb;
 	float reflect_scale = smoothstep(0, 0.2, diffuse_tex.a);
@@ -83,6 +83,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float4 reflection = tex2D(reflected_sampler, vCylinderMap);
 	
 	float3 final = albedo;
+	final *= IN.color;
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * reflect_scale;
 	final.rgb += light.Specular * reflect_scale;

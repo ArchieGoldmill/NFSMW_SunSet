@@ -1,19 +1,24 @@
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT = VS_Base(IN);
-	OUT.color = float4(0.0, 0.0, 0.0, 1);
+	OUT.spotlight = float4(0.0, 0.0, 0.0, 1);
 }
 
 void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT = VS_Base(IN);
 	SpotLightResult result = ApplySpotLights(OUT.normal, OUT.local_pos.xyz, 12, -1);
-	OUT.color = float4(result.Diffuse, 1);
+	OUT.spotlight = float4(result.Diffuse, 1);
 }
 
 float4 PS_Unlit(PS_INPUT IN) : COLOR
 {
 	return PS_LitPixel(IN, 0);
+}
+
+float4 PS_LitPixel_4(PS_INPUT IN) : COLOR
+{
+	return PS_LitPixel(IN, 4);
 }
 
 float4 PS_LitPixel_8(PS_INPUT IN) : COLOR
@@ -49,6 +54,17 @@ technique world<int shader = 1; >
 
 		VertexShader = compile vs_3_0 VS_Stub();
 		PixelShader = compile ps_3_0 PS_Stub();
+	}
+}
+
+technique LitPixel_4
+{
+	pass p0
+	{
+		COMMON_PASS_BODY
+
+		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_LitPixel_4();
 	}
 }
 

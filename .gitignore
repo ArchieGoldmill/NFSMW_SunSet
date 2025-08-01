@@ -78,7 +78,6 @@ StyleCopReport.xml
 *.obj
 *.iobj
 *.pch
-*.pdb
 *.ipdb
 *.pgc
 *.pgd
@@ -366,4 +365,4 @@ SunRise/vcpkg_installed/*
 
 *.zip
 
-*textures.bin
+*/textures.bin

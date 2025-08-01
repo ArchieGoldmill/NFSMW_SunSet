@@ -16,6 +16,11 @@ inline std::unordered_map<unsigned int, PrelitTexture> AlphaTextures;
 void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& textures, const YAML::Node& texturesRoot, const char* section)
 {
 	auto prelit = texturesRoot[section];
+	if (!prelit.IsDefined())
+	{
+		return;
+	}
+
 	for (const auto& node : prelit)
 	{
 		PrelitTexture prelit;

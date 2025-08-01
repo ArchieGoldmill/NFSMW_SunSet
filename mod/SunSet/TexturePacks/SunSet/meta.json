@@ -1,5 +1,20 @@
 {
-  "textures":
-  [
+  "textures": [
+    [
+      "ORG_WIDETREE_A_MM",
+      "ORG_WIDETREE_A_MM_T"
+    ],
+    [
+      "ORG_CYPRESS_B_MM",
+      "ORG_CYPRESS_B_MM_T"
+    ],
+    [
+      "ORG_CYPRESS_A_MM",
+      "ORG_CYPRESS_A_MM_T"
+    ],
+    [
+      "ORG_CT_FARMTREES1",
+      "ORG_CT_FARMTREES1_T"
+    ]
   ]
 }

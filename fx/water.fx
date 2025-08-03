@@ -37,8 +37,9 @@ void VS_Water(VS_INPUT IN, out PS_INPUT OUT)
 	
 	float4 p = OUT.position;
 	p.y = -p.y;
+	OUT.shadow_tex = p;
 	
-	OUT.local_pos.xyz = p.xyw;
+	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
 }
 
@@ -49,15 +50,13 @@ float4 PS_Water(PS_INPUT IN) : COLOR
 
 	float3 normal = normalize(component1 + component2);
 	
-	float2 screenUV = IN.local_pos.xy / IN.local_pos.z * 0.5 + 0.5;
+	float2 screenUV = IN.shadow_tex.xy / IN.shadow_tex.w * 0.5 + 0.5;
 	float4 reflectionSampleMain = tex2D(REFLECTEDTEX_SAMPLER, saturate(screenUV + normal.rg * 0.003));
 	float4 reflectionSample = tex2D(REFLECTEDTEX_SAMPLER, saturate(screenUV + normal.rg * 0.1));
 	
 	float4 final = reflectionSample * 0.5 + reflectionSampleMain * 0.6;
 	final.rgb *= cvWaterColor.rgb;
 	final.a = 1;
-	
-	APPLY_FOG
 	
 	float3 view = normalize(IN.tangent);
 	float3 lightDir = normalize(LocalLightVec.xyz);
@@ -68,6 +67,8 @@ float4 PS_Water(PS_INPUT IN) : COLOR
 	float3 specular = (specularFactor + specularFactor1) / 2 * max(float3(0.2, 0.2, 0.2), cvSpecularColor.rgb);
 	
 	final.rgb += specular;
+	
+	APPLY_FOG
 	
 	return final;
 }

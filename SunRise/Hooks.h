@@ -17,8 +17,6 @@ void CheckReloadShaders()
 		{
 			cusprintf("\nManual shader reload started:\n");
 			Game::ReloadShaders = true;
-
-			InitConfig();
 		}
 	}
 
@@ -216,4 +214,6 @@ void InitHooks()
 		injector::MakeNOP(0x006C1841, 5);
 		Game::X360EffectsEnable = true;
 	}
+
+	//injector::MakeNOP(0x006C2206, 10);
 }

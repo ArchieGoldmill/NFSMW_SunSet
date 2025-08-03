@@ -309,6 +309,17 @@ private:
 		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * (isRaining ? 0.5 : 0.1));
 
 		MoveTowards(this->rain, isRaining > 0.0f ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
+		if (g_Config.Editor)
+		{
+			if (*Game::ForceRain)
+			{
+				this->rain = 1;
+			}
+			else
+			{
+				this->rain = 0;
+			}
+		}
 
 		rainParams.x = Rain::Instance->Intensity;
 		rainParams.y = RoadWetness;

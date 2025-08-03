@@ -78,6 +78,12 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 inScatter = (1. + fcos2) * float3(rayleighPhase + _betaM / _betaR * miePhase);
 
 	float3 color = inScatter * (1.0 - extinction);
+	
+	// clouds
+	float2 cloudUV = IN.uv.xy;
+	cloudUV.x += cfCloudScroll * 0.1;
+	float4 clouds = tex2D(NORMALMAP_SAMPLER, cloudUV) * cvCloudColor;
+	color = lerp(color, clouds.rgb, clouds.a);
 
 	// sun
 	color += 0.47 * float3(1.6, 1.4, 1.0) * pow(cosine, 350.0) * extinction * Rayleigh;
@@ -105,13 +111,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 		float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
 		color += pow(diffuse_tex.rgb, 2.2) * smoothstep(0.2, 0.1, Rayleigh);
 	}
-	
-	// clouds
-	float2 cloudUV = IN.uv.xy;
-	cloudUV.x += cfCloudScroll * 0.1;
-	float4 clouds = tex2D(NORMALMAP_SAMPLER, cloudUV) * cvCloudColor;
-	color += clouds.rgb * clouds.a;
-	
+
 	return float4(color, 1.0);
 }
 

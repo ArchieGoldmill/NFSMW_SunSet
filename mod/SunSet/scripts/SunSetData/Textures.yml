@@ -152,6 +152,12 @@ Prelit:
   - Name: ARC_ROLLERCOASTERB
     Brightness: 15.0
     Color: [0.8, 1.0, 0.5]
+    NightOnly: true
+
+  - Name: PAN_CITY04_KT
+    Brightness: 50.0
+    Color: [1.0, 0.5, 0.0]
+    NightOnly: true
 
   - NameHash: 0x4494239C
     Brightness: 3.0

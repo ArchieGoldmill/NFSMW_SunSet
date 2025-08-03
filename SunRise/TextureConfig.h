@@ -8,6 +8,7 @@ struct PrelitTexture
 {
 	Hash Name;
 	D3DXVECTOR4 Color = { 1, 1, 1, 1 };
+	bool NightOnly = false;
 };
 
 inline std::unordered_map<unsigned int, PrelitTexture> PrelitTextures;
@@ -44,6 +45,7 @@ void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& texture
 		}
 
 		prelit.Color.w = YmlGet(node, "Brightness", 1.0f);
+		prelit.NightOnly = YmlGet(node, "NightOnly", false);
 
 		textures[prelit.Name] = prelit;
 	}

@@ -152,8 +152,12 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		auto prelitTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
 		if (prelitTex != PrelitTextures.end())
 		{
-			brightness = prelitTex->second.Color;
-			prelit = true;
+			prelit = prelitTex->second.NightOnly ? g_Weather.LightsOn() : true;
+
+			if (prelit)
+			{
+				brightness = prelitTex->second.Color;
+			}
 		}
 
 		auto alphaTex = AlphaTextures.find(renderModel->DiffuseTextureInfo->NameHash);

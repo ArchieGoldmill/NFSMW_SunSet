@@ -12,7 +12,7 @@ namespace UI
 
 		if (ImGui::Begin("Sun Set Editor", nullptr, ImGuiWindowFlags_NoResize))
 		{
-			Game::EnableInput = !ImGui::IsWindowFocused();
+			*Game::EnableInput = !ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow);
 
 			if (SelectableButton("Weather", { 200, 30 }, CurrentTab == 0))
 			{

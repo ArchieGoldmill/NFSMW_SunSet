@@ -52,6 +52,9 @@ namespace UI
 							isRain = true;
 						}
 
+						ImGui::SameLine();
+						ImGui::Checkbox("Force rain", Game::ForceRain);
+
 						if (ImGui::BeginChild("##MaterialList", ImGui::GetContentRegionAvail(), false, 0))
 						{
 							auto weather = isRain ? &CurrentWeather->Rain : &CurrentWeather->Main;

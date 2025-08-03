@@ -1,284 +1,433 @@
 Weather:
-  - Time: 0.0
-    DiffuseColor: [0.0, 0.0, 0.0]
-    AmbientColor: [0.325, 0.325, 0.37]
-    SpecularColor: [0.0, 0.0, 0.0]
-    SpecularPower: 0.0
-
-    CloudColor: [1.0, 1.0, 1.2, 0.1]
-    WaterColor: [1.0, 1.0, 1.0]
-
-    CarLightsPower: 1.0
-    TextureLightPower: 1.0
-
-    SkyBetaR: [0.2, 0.2, 0.2]
-    SkyBetaM: [0.01, 0.01, 0.01]
-    SkyMie: 0.2
+  - Time: 0
+    DiffuseColor: [0, 0, 0]
+    AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+    SpecularColor: [0, 0, 0]
+    SpecularPower: 0
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1, 0.172999993]
+    WaterColor: [0.45588237, 0.679930925, 1]
+    CarLightsPower: 1
+    TextureLightPower: 1
+    SkyBetaR: [0.200000003, 0.200000003, 0.200000003]
+    SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+    SkyMie: 0.200000003
     SkyMieAtt: 1
-    SkyRayleigh: 0.0
-    SkyRayleighAtt: 1.3
-    SkyGamma: 3.2
-    SkyG: -0.999
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.0, 0.0, 0.0]
-    FogSunColor: [0.0, 0.0, 0.0]
-
+    SkyRayleigh: 0
+    SkyRayleighAtt: 1.29999995
+    SkyGamma: 3.20000005
+    SkyG: -0.999000013
+    FogColor: [0, 0, 0]
+    FogSunColor: [0, 0, 0]
+    FogStart: 150
+    FogEnd: 1000
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      SkyGamma: 4.2
-
-      FogStart: 150.0
-      FogEnd: 300.0
-
-  - Time: 0.2
-    DiffuseColor: [0.0, 0.0, 0.0]
-    AmbientColor: [0.325, 0.325, 0.37]
-    SpecularColor: [0.0, 0.0, 0.0]
-    SpecularPower: 0.0
-
-    CloudColor: [1.0, 1.0, 1.2, 0.1]
-    WaterColor: [1.0, 1.0, 1.0]
-
-    CarLightsPower: 1.0
-    TextureLightPower: 1.0
-
-    SkyBetaR: [0.2, 0.2, 0.2]
-    SkyBetaM: [0.01, 0.01, 0.01]
-    SkyMie: 0.2
+      DiffuseColor: [0, 0, 0]
+      AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+      SpecularColor: [0, 0, 0]
+      SpecularPower: 0
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1, 0.172999993]
+      WaterColor: [0.45588237, 0.679930925, 1]
+      CarLightsPower: 1
+      TextureLightPower: 1
+      SkyBetaR: [0.200000003, 0.200000003, 0.200000003]
+      SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+      SkyMie: 0.200000018
+      SkyMieAtt: 1
+      SkyRayleigh: 0
+      SkyRayleighAtt: 1.29999995
+      SkyGamma: 4.19999981
+      SkyG: -0.999000013
+      FogColor: [0, 0, 0]
+      FogSunColor: [0, 0, 0]
+      FogStart: 150
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
+  - Time: 0.200000003
+    DiffuseColor: [0, 0, 0]
+    AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+    SpecularColor: [0, 0, 0]
+    SpecularPower: 0
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1.20000005, 0.100000001]
+    WaterColor: [0.568627477, 0.822375953, 1]
+    CarLightsPower: 1
+    TextureLightPower: 1
+    SkyBetaR: [0.200000003, 0.200000003, 0.200000003]
+    SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+    SkyMie: 0.200000003
     SkyMieAtt: 1
-    SkyRayleigh: 0.0
-    SkyRayleighAtt: 1.3
-    SkyGamma: 3.2
-    SkyG: -0.999
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.0, 0.0, 0.0]
-    FogSunColor: [0.0, 0.0, 0.0]
-
+    SkyRayleigh: 0
+    SkyRayleighAtt: 1.29999995
+    SkyGamma: 3.20000005
+    SkyG: -0.999000013
+    FogColor: [0, 0, 0]
+    FogSunColor: [0, 0, 0]
+    FogStart: 150
+    FogEnd: 1000
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      SkyGamma: 4.2
-
-      FogStart: 150.0
-      FogEnd: 300.0
-
-  - Time: 0.21
-    DiffuseColor: [0.0, 0.0, 0.0]
-    AmbientColor: [0.325, 0.325, 0.37]
-    SpecularColor: [0.0, 0.0, 0.0]
-    SpecularPower: 0.0
-
-    CloudColor: [1.0, 1.0, 1.2, 0.1]
-    WaterColor: [1.0, 1.0, 1.0]
-
-    CarLightsPower: 1.0
-    TextureLightPower: 1.0
-
-    SkyBetaR: [1.95e-2, 1.1e-1, 2.94e-1]
-    SkyBetaM: [0.01, 0.01, 0.01]
-    SkyMie: 1.0
-    SkyMieAtt: 1.0
-    SkyRayleigh: 0.1
-    SkyRayleighAtt: 1.2
-    SkyGamma: 2.2
-    SkyG: -0.7
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.2, 0.1, 0.05]
-    FogSunColor: [1.5, 0.9, 0.6]
-
+      DiffuseColor: [0, 0, 0]
+      AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+      SpecularColor: [0, 0, 0]
+      SpecularPower: 0
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1.20000005, 0.100000001]
+      WaterColor: [1, 1, 1]
+      CarLightsPower: 1
+      TextureLightPower: 1
+      SkyBetaR: [0.200000003, 0.200000003, 0.200000003]
+      SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+      SkyMie: 0
+      SkyMieAtt: 1
+      SkyRayleigh: 0
+      SkyRayleighAtt: 1.29999995
+      SkyGamma: 4.19999981
+      SkyG: -0.999000013
+      FogColor: [0, 0, 0]
+      FogSunColor: [0, 0, 0]
+      FogStart: 150
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
+  - Time: 0.209999993
+    DiffuseColor: [0, 0, 0]
+    AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+    SpecularColor: [0, 0, 0]
+    SpecularPower: 0
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1.20000005, 0.100000001]
+    WaterColor: [1, 1, 1]
+    CarLightsPower: 1
+    TextureLightPower: 1
+    SkyBetaR: [0.0195000004, 0.109999999, 0.294]
+    SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+    SkyMie: 1
+    SkyMieAtt: 1
+    SkyRayleigh: 0.100000001
+    SkyRayleighAtt: 1.20000005
+    SkyGamma: 2.20000005
+    SkyG: -0.699999988
+    FogColor: [0.259803951, 0.224294424, 0.15919362]
+    FogSunColor: [1.5, 0.899999976, 0.600000024]
+    FogStart: 150
+    FogEnd: 1000
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      SkyGamma: 4.2
-
-      FogStart: 150.0
-      FogEnd: 300.0
-
+      DiffuseColor: [0, 0, 0]
+      AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+      SpecularColor: [0, 0, 0]
+      SpecularPower: 0
+      DiffuseIntensity: 1
+      CloudColor: [0.892156839, 0.534059227, 0.472318351, 0.259000003]
+      WaterColor: [1, 1, 1]
+      CarLightsPower: 0.499999911
+      TextureLightPower: 1
+      SkyBetaR: [0.0195000004, 0.109999999, 0.294]
+      SkyBetaM: [0.00490194559, 0.00490194559, 0.00490194559]
+      SkyMie: 0.199999928
+      SkyMieAtt: 1
+      SkyRayleigh: 0.100000001
+      SkyRayleighAtt: 1.20000005
+      SkyGamma: 3
+      SkyG: -0.699999988
+      FogColor: [0.112745106, 0.072584264, 0.0525038466]
+      FogSunColor: [0.735294104, 0.533448696, 0.432525903]
+      FogStart: 150
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
   - Time: 0.25
-    DiffuseColor: [0.3, 0.2, 0.1]
-    AmbientColor: [0.6, 0.6, 0.6]
-    SpecularColor: [0.0, 0.0, 0.0]
-    SpecularPower: 0.0
-
-    CloudColor: [1.0, 1.0, 1.2, 0.1]
-    WaterColor: [1.0, 1.0, 1.0]
-
-    CarLightsPower: 1.0
-    TextureLightPower: 1.0
-
-    SkyBetaR: [1.95e-2, 1.1e-1, 2.94e-1]
-    SkyBetaM: [0.01, 0.01, 0.01]
-    SkyMie: 1.0
-    SkyMieAtt: 1.0
-    SkyRayleigh: 0.1
-    SkyRayleighAtt: 1.2
-    SkyGamma: 2.2
-    SkyG: -0.9
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.3, 0.2, 0.1]
-    FogSunColor: [1.0, 0.6, 0.4]
-
+    DiffuseColor: [0.300000012, 0.235294119, 0.100000001]
+    AmbientColor: [0.583333373, 0.49065268, 0.417483687]
+    SpecularColor: [0, 0, 0]
+    SpecularPower: 0
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1.20000005, 0.100000001]
+    WaterColor: [1, 1, 1]
+    CarLightsPower: 1
+    TextureLightPower: 1
+    SkyBetaR: [0.0195000004, 0.109999999, 0.294]
+    SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+    SkyMie: 1
+    SkyMieAtt: 1
+    SkyRayleigh: 0.100000001
+    SkyRayleighAtt: 1.20000005
+    SkyGamma: 2.20000005
+    SkyG: -0.949999988
+    FogColor: [0.300000012, 0.200000003, 0.100000001]
+    FogSunColor: [1, 0.600000024, 0.400000006]
+    FogStart: 150
+    FogEnd: 1000
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      SkyGamma: 4.2
-
-      FogStart: 150.0
-      FogEnd: 300.0
-
-  - Time: 0.3
-    DiffuseColor: [1.4, 1.2, 1.0]
-    AmbientColor: [0.7, 0.75, 0.85]
-    SpecularColor: [1.8, 1.6, 1.4]
-    SpecularPower: 50.0
-
-    CloudColor: [1.0, 1.0, 1.2, 0.1]
-    WaterColor: [1.0, 1.0, 1.0]
-
-    CarLightsPower: 1.0
-    TextureLightPower: 1.0
-
-    SkyBetaR: [0.133, 0.173, 0.231]
-    SkyBetaM: [0.01, 0.01, 0.01]
-    SkyMie: 1.0
-    SkyMieAtt: 1.0
-    SkyRayleigh: 0.4
-    SkyRayleighAtt: 1.2
-    SkyGamma: 2.2
-    SkyG: -0.999
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.38, 0.425, 0.5]
-    FogSunColor: [0.38, 0.425, 0.5]
-
+      DiffuseColor: [0.300000012, 0.200000003, 0.100000001]
+      AmbientColor: [0.600000024, 0.600000024, 0.600000024]
+      SpecularColor: [0, 0, 0]
+      SpecularPower: 0
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1.20000005, 0.100000001]
+      WaterColor: [1, 1, 1]
+      CarLightsPower: 0.399999917
+      TextureLightPower: 1
+      SkyBetaR: [0, 0.0743420273, 0.225490212]
+      SkyBetaM: [0, 0, 0]
+      SkyMie: -7.4505806e-08
+      SkyMieAtt: 1
+      SkyRayleigh: 0.100000001
+      SkyRayleighAtt: 1.20000005
+      SkyGamma: 3
+      SkyG: -0.899999976
+      FogColor: [0.300000012, 0.200000003, 0.100000001]
+      FogSunColor: [1, 0.600000024, 0.400000006]
+      FogStart: 150
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
+  - Time: 0.264999986
+    DiffuseColor: [0.700980425, 0.964821279, 1]
+    AmbientColor: [0.699999988, 0.75, 0.850000024]
+    SpecularColor: [1.79999995, 1.60000002, 1.39999998]
+    SpecularPower: 50
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1.20000005, 0.100000001]
+    WaterColor: [1, 1, 1]
+    CarLightsPower: 1
+    TextureLightPower: 1
+    SkyBetaR: [0.133000001, 0.172999993, 0.231000006]
+    SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+    SkyMie: 1
+    SkyMieAtt: 1
+    SkyRayleigh: 0.400000006
+    SkyRayleighAtt: 1.20000005
+    SkyGamma: 2.20000005
+    SkyG: -0.999000013
+    FogColor: [0.379999995, 0.425000012, 0.5]
+    FogSunColor: [0.379999995, 0.425000012, 0.5]
+    FogStart: 150
+    FogEnd: 1000
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      SkyGamma: 4.2
-
-      FogStart: 75.0
-      FogEnd: 150.0
-      FogColor: [0.38, 0.425, 0.5]
-      FogSunColor: [0.38, 0.425, 0.5]
-
+      DiffuseColor: [0.225490212, 0.184592485, 0.143694744]
+      AmbientColor: [0.699999988, 0.75, 0.850000024]
+      SpecularColor: [1.79999995, 1.60000002, 1.39999998]
+      SpecularPower: 50
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1.20000005, 0.100000001]
+      WaterColor: [1, 1, 1]
+      CarLightsPower: 0.299999923
+      TextureLightPower: 1
+      SkyBetaR: [0.133000001, 0.172999993, 0.231000006]
+      SkyBetaM: [0.00490194559, 0.00490194559, 0.00490194559]
+      SkyMie: 1.49011612e-08
+      SkyMieAtt: 1
+      SkyRayleigh: 0.400000006
+      SkyRayleighAtt: 1.20000005
+      SkyGamma: 4.19999981
+      SkyG: -0.999000013
+      FogColor: [0.379999995, 0.425000012, 0.5]
+      FogSunColor: [0.379999995, 0.425000012, 0.5]
+      FogStart: 75
+      FogEnd: 150
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
   - Time: 0.5
-    DiffuseColor: [1.1, 1.0, 0.9]
-    AmbientColor: [0.8, 0.75, 0.65]
-    SpecularColor: [1.0, 0.7, 0.5]
-    SpecularPower: 40.0
-
-    CloudColor: [1.0, 1.0, 1.0, 0.1]
-    WaterColor: [1.0, 1.0, 1.0]
-
-    CarLightsPower: 0.1
-    TextureLightPower: 0.4
-
-    SkyBetaR: [0.133, 0.173, 0.231]
-    SkyBetaM: [0.01, 0.01, 0.01]
-    SkyMie: 1.0
-    SkyMieAtt: 1
-    SkyRayleigh: 0.8
-    SkyRayleighAtt: 1.0
-    SkyGamma: 2.2
-    SkyG: -0.999
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.58, 0.725, 0.9]
-    FogSunColor: [1.0, 0.6, 0.4]
-
+    DiffuseColor: [0.960784316, 0.960784316, 0.960784316]
+    AmbientColor: [0.495098054, 0.474611729, 0.395593047]
+    SpecularColor: [1, 0.794694304, 0.563725471]
+    SpecularPower: 40
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1, 0.298000008]
+    WaterColor: [0.25663203, 0.27537486, 0.29411763]
+    CarLightsPower: 0.100000001
+    TextureLightPower: 0.5
+    SkyBetaR: [0.0341455117, 0.100858405, 0.142156839]
+    SkyBetaM: [0.0399999991, 0.0399999991, 0.0399999991]
+    SkyMie: 1
+    SkyMieAtt: 0.700000465
+    SkyRayleigh: 1.10000002
+    SkyRayleighAtt: 1.50000012
+    SkyGamma: 2.20000005
+    SkyG: -0.999000013
+    FogColor: [0.540417135, 0.694228232, 0.84803921]
+    FogSunColor: [1, 0.600000024, 0.400000006]
+    FogStart: 150
+    FogEnd: 700
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      DiffuseColor: [0.1, 0.1, 0.1]
-      SpecularColor: [0, 0.0, 0.0]
-
+      DiffuseColor: [0.340758353, 0.350842237, 0.426470578]
+      AmbientColor: [0.544117689, 0.544117689, 0.544117689]
+      SpecularColor: [0, 0, 0]
+      SpecularPower: 40
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1, 0.100000001]
+      WaterColor: [1, 1, 1]
+      CarLightsPower: 0.300000012
+      TextureLightPower: 0.700000048
+      SkyBetaR: [0.100000001, 0.100000001, 0.100000001]
+      SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+      SkyMie: 0
+      SkyMieAtt: 0
+      SkyRayleigh: 0.800000012
+      SkyRayleighAtt: 1
+      SkyGamma: 3.20000005
+      SkyG: -0.800000012
+      FogColor: [0.200000003, 0.200000003, 0.25]
+      FogSunColor: [0.200000003, 0.200000003, 0.25]
+      FogStart: 150
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
+  - Time: 0.699999988
+    DiffuseColor: [0.960784316, 0.960784316, 0.960784316]
+    AmbientColor: [0.495098054, 0.474611729, 0.395593047]
+    SpecularColor: [1, 0.794694304, 0.563725471]
+    SpecularPower: 40
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1, 0.298000008]
+    WaterColor: [0.25663203, 0.27537486, 0.29411763]
+    CarLightsPower: 0.100000001
+    TextureLightPower: 0.700000048
+    SkyBetaR: [0.0341455117, 0.100858405, 0.142156839]
+    SkyBetaM: [0.0399999991, 0.0399999991, 0.0399999991]
+    SkyMie: 0.599999905
+    SkyMieAtt: 0.700000465
+    SkyRayleigh: 0.299999923
+    SkyRayleighAtt: 1.30000007
+    SkyGamma: 2.20000005
+    SkyG: -0.999000013
+    FogColor: [0.666089952, 0.744809747, 0.823529422]
+    FogSunColor: [1, 0.869281054, 0.80392158]
+    FogStart: 150
+    FogEnd: 700
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
+    Rain:
+      DiffuseColor: [0.100000001, 0.100000001, 0.100000001]
+      AmbientColor: [0.382352948, 0.382352948, 0.382352948]
+      SpecularColor: [0, 0, 0]
+      SpecularPower: 40
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1, 0.100000001]
+      WaterColor: [1, 1, 1]
       CarLightsPower: 0.5
-
-      SkyBetaR: [0.1, 0.1, 0.1]
-      SkyMie: 0.0
-      SkyMieAtt: 0.0
-      SkyGamma: 3.2
-      SkyG: -0.8
-
-      FogStart: 159.0
-      FogEnd: 300.0
-      FogColor: [0.2, 0.2, 0.25]
-      FogSunColor: [0.2, 0.2, 0.25]
-
-  - Time: 0.75
-    DiffuseColor: [1.0, 0.5, 0.2]
-    AmbientColor: [0.25, 0.30, 0.40]
-    SpecularColor: [1.0, 0.6, 0.3]
-    SpecularPower: 30.0
-
-    CloudColor: [1.0, 1.0, 1.0, 0.1]
-    WaterColor: [1.0, 1.0, 1.0]
-
-    CarLightsPower: 0.3
-
-    SkyBetaR: [1.95e-2, 1.1e-1, 2.94e-1]
-    SkyBetaM: [0.01, 0.01, 0.01]
-    SkyMie: 1.0
-    SkyMieAtt: 1
-    SkyRayleigh: 0.1
-    SkyRayleighAtt: 3.0
-    SkyGamma: 2.2
-    SkyG: -0.99
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.43, 0.38, 0.34]
-    FogSunColor: [0.5, 0.43, 0.34]
-
+      TextureLightPower: 0.800000072
+      SkyBetaR: [0.100000001, 0.100000001, 0.100000001]
+      SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+      SkyMie: 0
+      SkyMieAtt: 0
+      SkyRayleigh: 0.800000012
+      SkyRayleighAtt: 1
+      SkyGamma: 3.20000005
+      SkyG: -0.800000012
+      FogColor: [0.200000003, 0.200000003, 0.25]
+      FogSunColor: [0.200000003, 0.200000003, 0.25]
+      FogStart: 159
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
+  - Time: 0.730000019
+    DiffuseColor: [1, 0.5, 0.200000003]
+    AmbientColor: [0.25, 0.300000012, 0.400000006]
+    SpecularColor: [1, 0.600000024, 0.300000012]
+    SpecularPower: 30
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1, 0.100000001]
+    WaterColor: [1, 1, 1]
+    CarLightsPower: 0.300000012
+    TextureLightPower: 1
+    SkyBetaR: [0.0195000004, 0.109999999, 0.294]
+    SkyBetaM: [0.0833333135, 0.0833333135, 0.0833333135]
+    SkyMie: 0.199999928
+    SkyMieAtt: 0.199999928
+    SkyRayleigh: 0.100000001
+    SkyRayleighAtt: 2.00000095
+    SkyGamma: 2.20000005
+    SkyG: -0.999000013
+    FogColor: [0.441176474, 0.278979182, 0.149221465]
+    FogSunColor: [0.55392158, 0.348916322, 0.143911019]
+    FogStart: 150
+    FogEnd: 1000
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      DiffuseColor: [0.0, 0.0, 0.0]
+      DiffuseColor: [0, 0, 0]
+      AmbientColor: [0.25, 0.300000012, 0.400000006]
+      SpecularColor: [1, 0.600000024, 0.300000012]
+      SpecularPower: 30
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1, 0.100000001]
+      WaterColor: [1, 1, 1]
       CarLightsPower: 0.5
-
-      FogStart: 150.0
-      FogEnd: 300.0
-      FogPower: 0.7
-      FogExponent: 0.8
-      FogColor: [0.4, 0.4, 0.4]
-
-  - Time: 0.8
-    DiffuseColor: [0.0, 0.0, 0.0]
-    AmbientColor: [0.3, 0.3, 0.3]
-    SpecularColor: [0.0, 0.0, 0.0]
-    SpecularPower: 0.0
-
-    CloudColor: [1.0, 1.0, 1.2, 0.1]
-
-    CarLightsPower: 1.0
-
-    SkyBetaR: [0.133, 0.173, 0.231]
-    SkyBetaM: [0.04, 0.04, 0.04]
-    SkyMie: 0.1
-    SkyMieAtt: 5.0
-    SkyRayleigh: 0.0
-    SkyRayleighAtt: 1.
-    SkyGamma: 3.2
-    SkyG: -0.999
-
-    FogStart: 150.0
-    FogEnd: 1000.0
-    FogPower: 0.7
-    FogExponent: 0.8
-    FogColor: [0.0, 0.0, 0.0]
-    FogSunColor: [0.0, 0.0, 0.0]
-
+      TextureLightPower: 1
+      SkyBetaR: [0.0195000004, 0.109999999, 0.294]
+      SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+      SkyMie: -7.4505806e-08
+      SkyMieAtt: 1
+      SkyRayleigh: 0.100000001
+      SkyRayleighAtt: 3
+      SkyGamma: 2.20000005
+      SkyG: -0.99000001
+      FogColor: [0.509803891, 0.369563699, 0.244905785]
+      FogSunColor: [0.338235319, 0.280204743, 0.205594018]
+      FogStart: 150
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012
+  - Time: 0.800000012
+    DiffuseColor: [0, 0, 0]
+    AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+    SpecularColor: [0, 0, 0]
+    SpecularPower: 0
+    DiffuseIntensity: 1
+    CloudColor: [1, 1, 1, 0.172999993]
+    WaterColor: [0.45588237, 0.679930925, 1]
+    CarLightsPower: 1
+    TextureLightPower: 1
+    SkyBetaR: [0.200000003, 0.200000003, 0.200000003]
+    SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+    SkyMie: 0.200000003
+    SkyMieAtt: 1
+    SkyRayleigh: 0
+    SkyRayleighAtt: 1.29999995
+    SkyGamma: 3.20000005
+    SkyG: -0.999000013
+    FogColor: [0, 0, 0]
+    FogSunColor: [0, 0, 0]
+    FogStart: 150
+    FogEnd: 1000
+    FogPower: 0.699999988
+    FogExponent: 0.800000012
     Rain:
-      FogStart: 75.0
-      FogEnd: 150.0
+      DiffuseColor: [0, 0, 0]
+      AmbientColor: [0.324999988, 0.324999988, 0.370000005]
+      SpecularColor: [0, 0, 0]
+      SpecularPower: 0
+      DiffuseIntensity: 1
+      CloudColor: [1, 1, 1.20000005, 0.100000001]
+      WaterColor: [1, 1, 1]
+      CarLightsPower: 1
+      TextureLightPower: 1
+      SkyBetaR: [0.200000003, 0.200000003, 0.200000003]
+      SkyBetaM: [0.00999999978, 0.00999999978, 0.00999999978]
+      SkyMie: 0
+      SkyMieAtt: 1
+      SkyRayleigh: 0
+      SkyRayleighAtt: 1.29999995
+      SkyGamma: 4.19999981
+      SkyG: -0.999000013
+      FogColor: [0, 0, 0]
+      FogSunColor: [0, 0, 0]
+      FogStart: 150
+      FogEnd: 300
+      FogPower: 0.699999988
+      FogExponent: 0.800000012

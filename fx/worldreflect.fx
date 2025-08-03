@@ -118,6 +118,8 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 
 	// Apply road detail normal map
 	float3 roadDetail = tex2D(MISCMAP3_SAMPLER, IN.world_pos.xy * 0.7).rgb * 2 - 1;
+	float3 flatNormal = float3(0.5, 0.5, 1.0);
+	roadDetail = lerp(flatNormal, roadDetail, dot(IN.normal, float3(0, 0, 1)));
 	float3 bitangent = cross(normal, float3(1, 0, 0));
 	float3 tangent = normalize(cross(bitangent, normal));
 	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);

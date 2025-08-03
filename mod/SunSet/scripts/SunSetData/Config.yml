@@ -3,10 +3,12 @@ Config:
   TimeUpdateRate: 1.0         # Update rate for the game time, 1.0 is vanilla rate.
 
   LightsOn: 0.72              # Time when world lights are enabled.
-  LightsOff: 0.28             # Time when world lights are disabled.
+  LightsOff: 0.25             # Time when world lights are disabled.
 
   Console: true               # Show console window.
   ShaderLoader: true          # Use build in shader loader, place shaders in the game\shaders folder.
+  ShaderCompiler: true
   X360Effects: false          # Enable light trails.
   LiveReload: false           # Live reload config files when game loses focus.
+  Editor: false               # Enable UI for editing.
   HK_ShaderReload: 0          # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.

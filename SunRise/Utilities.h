@@ -232,3 +232,22 @@ inline bool FileExists(const char* fileName)
 	fclose(fin);
 	return true;
 }
+
+inline YAML::Node SerializeVector3(const D3DXVECTOR4& vec) {
+	YAML::Node node(YAML::NodeType::Sequence);
+	node.push_back(vec.x);
+	node.push_back(vec.y);
+	node.push_back(vec.z);
+	node.SetStyle(YAML::EmitterStyle::Flow);
+	return node;
+}
+
+inline YAML::Node SerializeVector4(const D3DXVECTOR4& vec) {
+	YAML::Node node(YAML::NodeType::Sequence);
+	node.push_back(vec.x);
+	node.push_back(vec.y);
+	node.push_back(vec.z);
+	node.push_back(vec.w);
+	node.SetStyle(YAML::EmitterStyle::Flow);
+	return node;
+}

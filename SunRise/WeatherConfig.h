@@ -83,7 +83,6 @@ void LoadWeatherConfig()
 
 	WeatherList.clear();
 
-	auto dir = GetExeDirectory();
 	YAML::Node weatherRoot = YAML::LoadFile(GetConfigFolder("Weather.yml"));
 
 	const auto& list = weatherRoot["Weather"];
@@ -99,4 +98,60 @@ void LoadWeatherConfig()
 
 		WeatherList.push_back(config);
 	}
+}
+
+void SaveWeatherData(YAML::Node& node, WeatherData* data)
+{
+	node["DiffuseColor"] = SerializeVector3(data->DiffuseColor);
+	node["AmbientColor"] = SerializeVector3(data->AmbientColor);
+	node["SpecularColor"] = SerializeVector3(data->SpecularColor);
+	node["SpecularPower"] = data->SpecularPower;
+	node["DiffuseIntensity"] = data->DiffuseColor.w;
+
+	node["CloudColor"] = SerializeVector4(data->CloudColor);
+	node["WaterColor"] = SerializeVector3(data->WaterColor);
+
+	node["CarLightsPower"] = data->CarLightsPower;
+	node["TextureLightPower"] = data->TextureLightPower;
+
+	node["SkyBetaR"] = SerializeVector3(data->SkyBetaR);
+	node["SkyBetaM"] = SerializeVector3(data->SkyBetaM);
+	node["SkyMie"] = data->SkyMie;
+	node["SkyMieAtt"] = data->SkyMieAtt;
+	node["SkyRayleigh"] = data->SkyRayleigh;
+	node["SkyRayleighAtt"] = data->SkyRayleighAtt;
+	node["SkyGamma"] = data->SkyGamma;
+	node["SkyG"] = data->SkyG;
+
+	node["FogColor"] = SerializeVector3(data->FogColor);
+	node["FogSunColor"] = SerializeVector3(data->FogSunColor);
+	node["FogStart"] = data->FogStart;
+	node["FogEnd"] = data->FogEnd;
+	node["FogPower"] = data->FogPower;
+	node["FogExponent"] = data->FogExponent;
+}
+
+void SaveWeatherConfig()
+{
+	YAML::Node weatherList;
+	for (auto weather : WeatherList)
+	{
+		YAML::Node weatherNode;
+
+		weatherNode["Time"] = weather->Time;
+		SaveWeatherData(weatherNode, &weather->Main);
+
+		YAML::Node rainNode;
+		SaveWeatherData(rainNode, &weather->Rain);
+		weatherNode["Rain"] = rainNode;
+
+		weatherList.push_back(weatherNode);
+	}
+
+	YAML::Node weatherRoot;
+	weatherRoot["Weather"] = weatherList;
+
+	std::ofstream fout(GetConfigFolder("Weather.yml"));
+	fout << weatherRoot;
+	fout.close();
 }

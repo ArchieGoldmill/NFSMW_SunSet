@@ -35,7 +35,10 @@ namespace UI
 
 			if (ImGui::Button("Save"))
 			{
-
+				if (CurrentTab == 0)
+				{
+					SaveWeatherConfig();
+				}
 			}
 
 			ImGui::SameLine();

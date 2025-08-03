@@ -7,6 +7,7 @@
 namespace UI
 {
 	WeatherConfig* CurrentWeather = NULL;
+	bool isRain = false;
 
 	void DrawWeather()
 	{
@@ -28,20 +29,9 @@ namespace UI
 						char tiemBuffer[32];
 						sprintf(tiemBuffer, "%.2f", weather->Time);
 
-						bool selected = CurrentWeather == weather;
-						if (selected)
-						{
-							ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.2f, 0.6f, 1.0f, 1.0f));
-						}
-
-						if (ImGui::Button(tiemBuffer, { 100, 20 }))
+						if (SelectableButton(tiemBuffer, { 100, 20 }, CurrentWeather == weather))
 						{
 							CurrentWeather = weather;
-						}
-
-						if (selected)
-						{
-							ImGui::PopStyleColor();
 						}
 					}
 				}
@@ -50,9 +40,21 @@ namespace UI
 				{
 					if (CurrentWeather)
 					{
+
+						if (SelectableButton("Main", { 0, 0 }, !isRain))
+						{
+							isRain = false;
+						}
+
+						ImGui::SameLine();
+						if (SelectableButton("Rain", { 0, 0 }, isRain))
+						{
+							isRain = true;
+						}
+
 						if (ImGui::BeginChild("##MaterialList", ImGui::GetContentRegionAvail(), false, 0))
 						{
-							auto weather = &CurrentWeather->Main;
+							auto weather = isRain ? &CurrentWeather->Rain : &CurrentWeather->Main;
 
 							InputFloat("Time", &CurrentWeather->Time);
 

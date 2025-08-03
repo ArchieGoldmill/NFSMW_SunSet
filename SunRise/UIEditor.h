@@ -3,6 +3,8 @@
 
 namespace UI
 {
+	int CurrentTab = 0;
+
 	void Draw()
 	{
 		ImVec2 windowSize(700, 1000);
@@ -12,18 +14,21 @@ namespace UI
 		{
 			Game::EnableInput = !ImGui::IsWindowFocused();
 
-			if (ImGui::Button("Weather", { 200, 30 }))
+			if (SelectableButton("Weather", { 200, 30 }, CurrentTab == 0))
 			{
+				CurrentTab = 0;
 			}
 
 			ImGui::SameLine();
-			if (ImGui::Button("Textures", { 200, 30 }))
+			if (SelectableButton("Textures", { 200, 30 }, CurrentTab == 1))
 			{
+				CurrentTab = 1;
 			}
 
 			ImGui::SameLine();
-			if (ImGui::Button("Spotlights", { 200, 30 }))
+			if (SelectableButton("Spotlights", { 200, 30 }, CurrentTab == 2))
 			{
+				CurrentTab = 2;
 			}
 
 			ImGui::Text("");
@@ -36,11 +41,17 @@ namespace UI
 			ImGui::SameLine();
 			if (ImGui::Button("Reset"))
 			{
-				CurrentWeather = NULL;
-				LoadWeatherConfig();
+				if (CurrentTab == 0)
+				{
+					CurrentWeather = NULL;
+					LoadWeatherConfig();
+				}
 			}
 
-			DrawWeather();
+			if (CurrentTab == 0)
+			{
+				DrawWeather();
+			}
 		}
 		ImGui::End();
 	}

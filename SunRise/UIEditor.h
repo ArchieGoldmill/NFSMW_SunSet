@@ -19,17 +19,17 @@ namespace UI
 				CurrentTab = 0;
 			}
 
-			ImGui::SameLine();
-			if (SelectableButton("Textures", { 200, 30 }, CurrentTab == 1))
-			{
-				CurrentTab = 1;
-			}
+			//ImGui::SameLine();
+			//if (SelectableButton("Textures", { 200, 30 }, CurrentTab == 1))
+			//{
+			//	CurrentTab = 1;
+			//}
 
-			ImGui::SameLine();
-			if (SelectableButton("Spotlights", { 200, 30 }, CurrentTab == 2))
-			{
-				CurrentTab = 2;
-			}
+			//ImGui::SameLine();
+			//if (SelectableButton("Spotlights", { 200, 30 }, CurrentTab == 2))
+			//{
+			//	CurrentTab = 2;
+			//}
 
 			ImGui::Text("");
 

@@ -70,13 +70,13 @@ public:
 		return this->current.TextureLightPower;
 	}
 
-private:
-
 	bool LightsOn()
 	{
 		float time = this->GetTime();
 		return (time > g_Config.LightsOn || time < g_Config.LightsOff);
 	}
+
+private:
 
 	void SetParams()
 	{
@@ -92,10 +92,12 @@ private:
 		{
 			auto e = eEffect::Get(stype);
 
-			this->current.DiffuseColor.w = this->LightsOn() ? 1.0f : 0.0f;
+			this->current.AmbientColor.w = this->LightsOn() ? 1.0f : 0.0f;
 			this->current.SpecularColor.w = this->current.SpecularPower;
+			D3DXVECTOR4 diffuseColor = this->current.DiffuseColor * this->current.DiffuseColor.w;
+			diffuseColor.w = 0;
 
-			e->SetVector(ShaderParam::cvDiffuseColor, &this->current.DiffuseColor);
+			e->SetVector(ShaderParam::cvDiffuseColor, &diffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &this->current.AmbientColor);
 			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
 			e->SetVector(ShaderParam::cvFogColor, &this->current.FogColor);

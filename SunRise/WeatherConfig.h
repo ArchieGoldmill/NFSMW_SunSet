@@ -48,6 +48,7 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->AmbientColor = ParseVec3To4(node["AmbientColor"], cfg->AmbientColor);
 	config->SpecularColor = ParseVec3To4(node["SpecularColor"], cfg->SpecularColor);
 	config->SpecularPower = YmlGet<float>(node, "SpecularPower", cfg->SpecularPower);
+	config->DiffuseColor.w = YmlGet<float>(node, "DiffuseIntensity", cfg->DiffuseColor.w);
 
 	config->SkyBetaR = ParseVec3To4(node["SkyBetaR"], cfg->SkyBetaR);
 	config->SkyBetaM = ParseVec3To4(node["SkyBetaM"], cfg->SkyBetaM);

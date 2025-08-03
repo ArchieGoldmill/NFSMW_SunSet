@@ -1,0 +1,112 @@
+#pragma once
+#include "imgui/imgui.h"
+#include "WeatherConfig.h"
+#include "UICommon.h"
+#include "TimeOfDay.h"
+
+namespace UI
+{
+	WeatherConfig* CurrentWeather = NULL;
+
+	void DrawWeather()
+	{
+		ImGui::SliderFloat("Time", &TimeOfDay::Instance->CurrentTime, 0.0f, 1.0f);
+		ImGui::SameLine();
+		InputFloat("Update Rate", &TimeOfDay::Instance->UpdateRate);
+
+		if (ImGui::BeginTable("WeatherEditorTable", 2, ImGuiTableFlags_BordersInnerV))
+		{
+			ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed, 120.0f);
+			ImGui::TableSetupColumn("Data", ImGuiTableColumnFlags_WidthStretch);
+
+			ImGui::TableNextRow();
+			{
+				ImGui::TableSetColumnIndex(0);
+				{
+					for (auto weather : WeatherList)
+					{
+						char tiemBuffer[32];
+						sprintf(tiemBuffer, "%.2f", weather->Time);
+
+						bool selected = CurrentWeather == weather;
+						if (selected)
+						{
+							ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.2f, 0.6f, 1.0f, 1.0f));
+						}
+
+						if (ImGui::Button(tiemBuffer, { 100, 20 }))
+						{
+							CurrentWeather = weather;
+						}
+
+						if (selected)
+						{
+							ImGui::PopStyleColor();
+						}
+					}
+				}
+
+				ImGui::TableSetColumnIndex(1);
+				{
+					if (CurrentWeather)
+					{
+						if (ImGui::BeginChild("##MaterialList", ImGui::GetContentRegionAvail(), false, 0))
+						{
+							auto weather = &CurrentWeather->Main;
+
+							InputFloat("Time", &CurrentWeather->Time);
+
+							ImGui::SameLine();
+							if (ImGui::Button("Set"))
+							{
+								TimeOfDay::Instance->CurrentTime = CurrentWeather->Time;
+							}
+
+							ImGui::Text("");
+
+							ImGui::ColorEdit3("Ambient color", (float*)&weather->AmbientColor, ImGuiColorEditFlags_Float);
+							ImGui::ColorEdit3("Diffuse color", (float*)&weather->DiffuseColor, ImGuiColorEditFlags_Float);
+							ImGui::ColorEdit3("Specular color", (float*)&weather->SpecularColor, ImGuiColorEditFlags_Float);
+							InputFloat("Diffuse intensity", &weather->DiffuseColor.w);
+							InputFloat("Specular power", &weather->SpecularPower);
+
+							ImGui::Text("");
+
+							ImGui::ColorEdit4("Cloud color", (float*)&weather->CloudColor, ImGuiColorEditFlags_Float);
+							ImGui::ColorEdit3("Water color", (float*)&weather->WaterColor, ImGuiColorEditFlags_Float);
+
+							ImGui::Text("");
+
+							InputFloat("Car lights power", &weather->CarLightsPower);
+							InputFloat("Texture light power", &weather->TextureLightPower);
+
+							ImGui::Text("");
+
+							ImGui::ColorEdit3("Sky Beta R", (float*)&weather->SkyBetaR, ImGuiColorEditFlags_Float);
+							ImGui::ColorEdit3("Sky Beta M", (float*)&weather->SkyBetaM, ImGuiColorEditFlags_Float);
+							InputFloat("Sky Mie", &weather->SkyMie);
+							InputFloat("Sky Mie Att", &weather->SkyMieAtt);
+							InputFloat("Sky Rayleigh", &weather->SkyRayleigh);
+							InputFloat("Sky Rayleigh Att", &weather->SkyRayleighAtt);
+							InputFloat("Sky Gamma", &weather->SkyGamma);
+							InputFloat("Sky G", &weather->SkyG);
+
+							ImGui::Text("");
+
+							InputFloat("Fog start", &weather->FogStart);
+							InputFloat("Fog end", &weather->FogEnd);
+							InputFloat("Fog power", &weather->FogPower);
+							InputFloat("Fog exponent", &weather->FogExponent);
+							ImGui::ColorEdit3("Fog color", (float*)&weather->FogColor, ImGuiColorEditFlags_Float);
+							ImGui::ColorEdit3("Fog sun color", (float*)&weather->FogSunColor, ImGuiColorEditFlags_Float);
+
+							ImGui::EndChild();
+						}
+					}
+				}
+			}
+
+			ImGui::EndTable();
+		}
+	}
+}

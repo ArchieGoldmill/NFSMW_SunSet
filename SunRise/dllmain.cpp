@@ -7,6 +7,7 @@
 #include "Hooks.h"
 #include "Config.h"
 #include "AmbientShadow.h"
+#include "UI.h"
 
 bool CheckFiles()
 {
@@ -59,6 +60,7 @@ void Init()
 	InitShaderLoader();
 	InitHooks();
 	InitAmbientShadow();
+	InitUI();
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)

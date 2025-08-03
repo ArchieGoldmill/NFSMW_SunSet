@@ -1,5 +1,4 @@
 #pragma once
-#include <yaml-cpp/yaml.h>
 #include "Game.h"
 #include "WeatherConfig.h"
 #include "FlareConfig.h"
@@ -21,8 +20,10 @@ struct Config
 
 	bool Console;
 	bool ShaderLoader;
+	bool ShaderCompiler;
 	bool LiveReload;
 	bool X360Effects;
+	bool Editor;
 	int HK_ShaderReload;
 };
 
@@ -44,9 +45,16 @@ void LoadConfig()
 	g_Config.LightCellSize = 64;
 	g_Config.Console = settings["Console"].as<bool>();
 	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
+	g_Config.ShaderCompiler = settings["ShaderCompiler"].as<bool>();
 	g_Config.LiveReload = settings["LiveReload"].as<bool>();
 	g_Config.X360Effects = settings["X360Effects"].as<bool>();
+	g_Config.Editor = settings["Editor"].as<bool>();
 	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
+
+	if (g_Config.Editor)
+	{
+		g_Config.LiveReload = false;
+	}
 }
 
 void InitConfig()

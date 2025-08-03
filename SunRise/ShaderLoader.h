@@ -24,7 +24,7 @@ HRESULT WINAPI D3DXCreateEffectFromResourceHook(const char* efxPath, LPDIRECT3DD
 	strcpy(IdiPath, "shaders\\");
 	strcpy(IdiPath + 8, pSrcResource);
 
-	if (FileExists(FilenameBuf))
+	if (FileExists(FilenameBuf) && g_Config.ShaderCompiler)
 	{
 		ID3DXEffectCompiler* pEffectCompiler;
 		ID3DXBuffer* pBuffer, * pEffectBuffer;

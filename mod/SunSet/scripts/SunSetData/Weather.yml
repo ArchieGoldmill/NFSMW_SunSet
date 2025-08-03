@@ -161,7 +161,7 @@ Weather:
     FogPower: 0.7
     FogExponent: 0.8
     FogColor: [0.38, 0.425, 0.5]
-    FogSunColor: [1.0, 0.6, 0.4]
+    FogSunColor: [0.38, 0.425, 0.5]
 
     Rain:
       SkyGamma: 4.2
@@ -172,7 +172,7 @@ Weather:
       FogSunColor: [0.38, 0.425, 0.5]
 
   - Time: 0.5
-    DiffuseColor: [2.2, 2.0, 1.7]
+    DiffuseColor: [1.1, 1.0, 0.9]
     AmbientColor: [0.8, 0.75, 0.65]
     SpecularColor: [1.0, 0.7, 0.5]
     SpecularPower: 40.0
@@ -223,6 +223,7 @@ Weather:
     SpecularPower: 30.0
 
     CloudColor: [1.0, 1.0, 1.0, 0.1]
+    WaterColor: [1.0, 1.0, 1.0]
 
     CarLightsPower: 0.3
 
@@ -240,7 +241,7 @@ Weather:
     FogPower: 0.7
     FogExponent: 0.8
     FogColor: [0.43, 0.38, 0.34]
-    FogSunColor: [1.0, 0.6, 0.4]
+    FogSunColor: [0.5, 0.43, 0.34]
 
     Rain:
       DiffuseColor: [0.0, 0.0, 0.0]

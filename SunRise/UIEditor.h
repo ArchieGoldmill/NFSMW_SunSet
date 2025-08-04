@@ -8,7 +8,7 @@ namespace UI
 	void Draw()
 	{
 		ImVec2 windowSize(700, 1000);
-		ImGui::SetNextWindowSize(windowSize, ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
 
 		if (ImGui::Begin("Sun Set Editor", nullptr, ImGuiWindowFlags_NoResize))
 		{

@@ -1,4 +1,4 @@
-Prelit:
+Textures:
   - Name: SGN_NEONROLLING_A_LL
 
   - Name: SGN_NEON_OUTLINE
@@ -90,6 +90,7 @@ Prelit:
 
   - Name: SFX_CATSEYE_A
     Brightness: 12.0
+    Color: [1.0, 0.0, 0.0]
 
   - Name: ADS_CINGULAR_BB_A_EA
     Brightness: 5.0
@@ -159,47 +160,47 @@ Prelit:
     Color: [1.0, 0.5, 0.0]
     NightOnly: true
 
-  - NameHash: 0x4494239C
+  - Name: "0x4494239C"
     Brightness: 3.0
 
-  - NameHash: 0x964A28BF
+  - Name: "0x964A28BF"
     Brightness: 8.0
 
-  - NameHash: 0xCC51EF0B
+  - Name: "0xCC51EF0B"
     Brightness: 8.0
 
-  - NameHash: 0xEA9C2659
+  - Name: "0xEA9C2659"
     Brightness: 5.0
 
-  - NameHash: 0x4A58FE16
+  - Name: "0x4A58FE16"
     Brightness: 5.0
 
-  - NameHash: 0xA03B5211
+  - Name: "0xA03B5211"
     Brightness: 5.0
 
-  - NameHash: 0x4A5871B5
+  - Name: "0x4A5871B5"
     Brightness: 5.0
 
-  - NameHash: 0xF4F99C8B
+  - Name: "0xF4F99C8B"
     Brightness: 5.0
 
-  - NameHash: 0x48814018
+  - Name: "0x48814018"
     Brightness: 5.0
 
-  - NameHash: 0x5D013360
+  - Name: "0x5D013360"
     Brightness: 5.0
 
-  - NameHash: 0x5F9B9E8A
+  - Name: "0x5F9B9E8A"
     Brightness: 5.0
 
-  - NameHash: 0xAAA4780A
+  - Name: "0xAAA4780A"
     Brightness: 5.0
 
-  - NameHash: 0x465462E9
+  - Name: "0x465462E9"
     Brightness: 5.0
 
-  - NameHash: 0x9414F03D
+  - Name: "0x9414F03D"
     Brightness: 5.0
 
-  - NameHash: 0x89C26291
+  - Name: "0x89C26291"
     Brightness: 5.0

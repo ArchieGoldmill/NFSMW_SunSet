@@ -134,6 +134,11 @@ namespace UI
 					{
 						ImGui::Text("");
 
+						if (ImGui::Button("Place at camera"))
+						{
+							CurrentLight->Position = GetCameraPos();
+						}
+
 						ImGui::PushItemWidth(120);
 						{
 							ImGui::Text("Position");
@@ -157,6 +162,9 @@ namespace UI
 						ImGui::Text("");
 
 						ImGui::ColorEdit3("Color", (float*)&CurrentLight->Color, ImGuiColorEditFlags_Float);
+
+						ImGui::Text("");
+
 						InputFloat("Range", &CurrentLight->Range);
 						InputFloat("Intensity", &CurrentLight->Intensity);
 						InputFloat("Inner angle", &CurrentLight->InnerAngle);

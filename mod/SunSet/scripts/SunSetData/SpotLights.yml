@@ -164,14 +164,14 @@ SolidLights:
         InnerAngle: 35.0
         OuterAngle: 65.0
         Intensity: 5.0
-        Range: 30.0
+        Range: 25.0
       - Position: [0.0, 3.85, 9.9]
         Direction: [0.0, 0.5, -1.0]
         Color: [1.0, 0.7, 0.5]
         InnerAngle: 35.0
         OuterAngle: 65.0
         Intensity: 5.0
-        Range: 30.0
+        Range: 25.0
   - Solid: XO_LIGHTPOSTB_WALL_1B_00
     Flare: LampPost
     SpotLights:
@@ -278,8 +278,8 @@ SolidLights:
         Direction: [0.0, 0.0, -1.0]
         Color: [1.0, 1.0, 1.0]
         InnerAngle: 35.0
-        OuterAngle: 65.0
-        Intensity: 5.0
+        OuterAngle: 55.0
+        Intensity: 4.0
         Range: 30.0
   - Solid: XO_LIGHTPOLEA_1B_00
     Flare: LampPost
@@ -324,6 +324,7 @@ SolidLights:
         Intensity: 5.0
         Range: 30.0
   - Solid: XS_FWY_2FRAME_1B_EA_00
+    SolidLod: XS_FWY_2FRAME_1Z_EA_00
     SpotLights:
       - Position: [0.0, -4.5, -2.0]
         Direction: [0.0, 1.0, 1.0]
@@ -333,6 +334,7 @@ SolidLights:
         Intensity: 5.0
         Range: 10.0
   - Solid: XS_FWY_3FRAME_1B_EA_00
+    SolidLod: XS_FWY_3FRAME_1Z_EA_00
     SpotLights:
       - Position: [0.0, -4.5, -4.0]
         Direction: [0.0, 1.0, 1.0]
@@ -546,16 +548,6 @@ SolidLights:
         OuterAngle: 60.0
         Intensity: 5.0
         Range: 4.0
-
-  - Solid: XO_CATSEYEORANGE_1A_00
-    SpotLights:
-      - Position: [0, 0, 2]
-        Direction: [0.0, 0.0, 1.0]
-        Color: [1.0, 1.0, 0.9]
-        InnerAngle: 359.0
-        OuterAngle: 360.0
-        Intensity: 5.0
-        Range: 20.0
 
   - Solid: XB_FERRISWHEEL_1A_00
     SpotLights:

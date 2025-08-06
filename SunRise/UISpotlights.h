@@ -128,6 +128,9 @@ namespace UI
 						ImGui::Text("");
 						const char* BlinkItems[] = { "None", "1", "2", "3" };
 						ImGui::Combo("Blink", &CurrentSolid->Blink, BlinkItems, 4);
+
+						ImGui::Text("");
+						ImGui::Checkbox("Always on", &CurrentSolid->AlwaysOn);
 					}
 
 					if (CurrentLight)

@@ -74,6 +74,7 @@ void LoadSpotLightConfig()
 		solid.HashB = Game::bStringHash(solid.NameB.c_str());
 
 		solid.Blink = YmlGet(lightNode, "Blink", 0);
+		solid.AlwaysOn = YmlGet(lightNode, "AlwaysOn", false);
 
 		solid.Flare = GetFlareModel(lightNode);
 
@@ -141,6 +142,7 @@ void SaveSpotLightConfig()
 		node["Solid"] = solidLight.NameA;
 		node["SolidLod"] = solidLight.NameB;
 		node["Blink"] = solidLight.Blink;
+		node["AlwaysOn"] = solidLight.AlwaysOn;
 		node["Flare"] = solidLight.Flare ? solidLight.Flare->Name : "";
 		node["SpotLights"] = spotlights;
 

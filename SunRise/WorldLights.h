@@ -5,14 +5,17 @@
 #include "LightsBuffer.h"
 #include "WorldModel.h"
 
-SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix)
+SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix, bool alwaysOn)
 {
 	SpotLight spotLight = pSpotLight;
 
 	D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 	D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
 	D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
-	spotLight.Color *= g_Weather.GetLightIntensity();
+	if (!alwaysOn)
+	{
+		spotLight.Color *= g_Weather.GetLightIntensity();
+	}
 
 	return spotLight;
 }
@@ -37,7 +40,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 
 				for (auto& pSpotLight : solidLights.Lights)
 				{
-					auto spotLight = CreateSpotLight(pSpotLight, matrix);
+					auto spotLight = CreateSpotLight(pSpotLight, matrix, solidLights.AlwaysOn);
 					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare);
 				}
 			}

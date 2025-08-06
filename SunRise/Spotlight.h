@@ -65,4 +65,5 @@ struct SolidLights
 	FlareModel* Flare = NULL;
 	std::vector<SpotLight> Lights;
 	int Blink;
+	bool AlwaysOn = false;
 };

@@ -24,7 +24,6 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 	{
 		for (auto& solidLights : SolidLightsList)
 		{
-			// TODO use binary search
 			if (solidLights.HashA == model->NameHash || solidLights.HashB == model->NameHash)
 			{
 				if (solidLights.Blink)

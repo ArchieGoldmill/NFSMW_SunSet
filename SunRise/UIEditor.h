@@ -1,6 +1,7 @@
 #pragma once
 #include "UIWeather.h"
 #include "UITextures.h"
+#include "UISpotlights.h"
 
 namespace UI
 {
@@ -8,7 +9,7 @@ namespace UI
 
 	void Draw()
 	{
-		ImVec2 windowSize(700, 1000);
+		ImVec2 windowSize(750, 1000);
 		ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
 
 		if (ImGui::Begin("Sun Set Editor", nullptr, ImGuiWindowFlags_NoResize))
@@ -26,51 +27,42 @@ namespace UI
 				CurrentTab = 1;
 			}
 
-			//ImGui::SameLine();
-			//if (SelectableButton("Spotlights", { 200, 30 }, CurrentTab == 2))
-			//{
-			//	CurrentTab = 2;
-			//}
+			ImGui::SameLine();
+			if (SelectableButton("Spotlights", { 200, 30 }, CurrentTab == 2))
+			{
+				CurrentTab = 2;
+			}
 
 			ImGui::Text("");
 
 			if (ImGui::Button("Save", { 60, 20 }))
 			{
-				if (CurrentTab == 0)
+				switch (CurrentTab)
 				{
-					SaveWeatherConfig();
-				}
-
-				if (CurrentTab == 1)
-				{
-					SaveTextureConfig();
+				case 0: SaveWeatherConfig(); break;
+				case 1: SaveTextureConfig(); break;
+				case 2: SaveSpotLightConfig(); break;
 				}
 			}
 
 			ImGui::SameLine();
 			if (ImGui::Button("Reset", { 60, 20 }))
 			{
-				if (CurrentTab == 0)
+				switch (CurrentTab)
 				{
-					CurrentWeather = NULL;
-					LoadWeatherConfig();
-				}
-
-				if (CurrentTab == 1)
-				{
-					CurrentTexture = NULL;
-					InitTextureConfig();
+				case 0: LoadWeatherConfig(); break;
+				case 1: InitTextureConfig(); break;
+				case 2: LoadSpotLightConfig(); break;
 				}
 			}
 
-			if (CurrentTab == 0)
-			{
-				DrawWeather();
-			}
+			ImGui::Text("");
 
-			if (CurrentTab == 1)
+			switch (CurrentTab)
 			{
-				DrawTextures();
+			case 0: DrawWeather(); break;
+			case 1: DrawTextures(); break;
+			case 2: DrawSpotlights(); break;
 			}
 		}
 		ImGui::End();

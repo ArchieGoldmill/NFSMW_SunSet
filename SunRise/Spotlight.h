@@ -60,7 +60,8 @@ struct SolidLights
 {
 	Hash HashA = 0;
 	Hash HashB = 0;
-	std::string Name;
+	std::string NameA;
+	std::string NameB;
 	FlareModel* Flare = NULL;
 	std::vector<SpotLight> Lights;
 	int Blink;

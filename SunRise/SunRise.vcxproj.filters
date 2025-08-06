@@ -271,6 +271,9 @@
     <ClInclude Include="UITextures.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="UISpotlights.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

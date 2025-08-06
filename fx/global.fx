@@ -1,34 +1,18 @@
 float4x4 WorldViewProj : WORLDVIEWPROJECTION;
 float4x4 cmWorldMat : LOCALWORLD;
-float4 ScreenOffset : SCREENOFFSET;
 int Cull_Mode : CULL_MODE;
 int BaseBlendState[5] : BLENDSTATE;
 int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
 int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
 int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
 float4 TextureOffset : TEXTUREOFFSET;
-float4 cvBrightness;
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
 float4 world_position(float4 screen_pos)
 {
 	float4 p = mul(screen_pos, WorldViewProj);
-	p.xy += ScreenOffset.xy * p.w;
 	return p;
 }
-
-float4 screen_position(float4 screen_pos)
-{
-	screen_pos.xy += ScreenOffset.xy;
-	return screen_pos;
-}
-
-float4 GetVertexColor(float4 color)
-{
-	color.rgb *= 4;
-	return saturate(color);
-}
-
 texture diffusemap : DiffuseMap;
 sampler DIFFUSEMAP_SAMPLER = sampler_state
 {

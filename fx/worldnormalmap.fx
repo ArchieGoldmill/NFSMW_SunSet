@@ -5,9 +5,6 @@
 #include "spotlights.fx"
 #include "fog.fx"
 
-float3 cvAmbientColor;
-float3 cvDiffuseColor;
-
 struct VS_INPUT
 {
 	float4 position : POSITION;
@@ -62,10 +59,10 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	float3 specular = GetSpecular(normal, lightDir, IN.local_pos.xyz);
 	
-	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
+	float3 finalLight = IN.color.rgb + diffuse * shadow + light.Diffuse;
 	
 	float4 final = diffuse_tex;
-	final *= IN.color;
+	final.a *= IN.color.a;
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * diffuse_tex.a;
 	final.rgb += light.Specular * diffuse_tex.a;

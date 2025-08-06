@@ -16,9 +16,6 @@ float cfMetallicScale;
 float SpecularPower : SPECULARPOWER;
 float4 SpecularRange : SPECULARRANGE;
 
-float3 cvAmbientColor;
-float3 cvDiffuseColor;
-
 texture EnvMapTex : EnvMapTexture;
 samplerCUBE ENVIROMAP_SAMPLER = sampler_state
 {
@@ -119,7 +116,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float spec_vdotn = pow(vdotn, SpecularPower);
 	float3 spec_scale = specularMin + spec_vdotn * SpecularRange.rgb;
 	
-	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
+	float3 finalLight = cvAmbientColor.rgb + diffuse * shadow + light.Diffuse;
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;

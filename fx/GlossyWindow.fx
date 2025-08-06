@@ -4,9 +4,6 @@
 #include "spotlights.fx"
 #include "fog.fx"
 
-float4 cvAmbientColor;
-float3 cvDiffuseColor;
-
 texture WindowReflection : WINDOWREFLECTION;
 sampler reflected_sampler = sampler_state
 {
@@ -70,7 +67,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	float3 specular = GetSpecular(IN.normal, lightDir, IN.local_pos.xyz, lerp(cvSpecularColor.w, 1, reflect_scale));
 	
-	float3 finalLight = cvAmbientColor + diffuse * shadow + light.Diffuse;
+	float3 finalLight = IN.color.rgb + diffuse * shadow + light.Diffuse;
 	finalLight = lerp(finalLight, float3(1, 0.8, 0.6) * 5, reflect_scale * cvAmbientColor.w);
 	albedo = lerp(albedo, albedo.rrr, reflect_scale * cvAmbientColor.w);
 	
@@ -83,7 +80,6 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float4 reflection = tex2D(reflected_sampler, vCylinderMap);
 	
 	float3 final = albedo;
-	final *= IN.color;
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * reflect_scale;
 	final.rgb += light.Specular * reflect_scale;

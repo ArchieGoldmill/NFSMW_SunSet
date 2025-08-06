@@ -5,8 +5,6 @@
 #include "spotlights.fx"
 #include "fog.fx"
 
-float3 cvAmbientColor;
-float3 cvDiffuseColor;
 float2 cvRainParams;
 
 struct VS_INPUT
@@ -117,9 +115,9 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
 
 	// Apply road detail normal map
-	float3 roadDetail = tex2D(MISCMAP3_SAMPLER, IN.world_pos.xy * 0.7).rgb * 2 - 1;
-	float3 flatNormal = float3(0.5, 0.5, 1.0);
-	roadDetail = lerp(flatNormal, roadDetail, dot(IN.normal, float3(0, 0, 1)));
+	float3 roadDetail = tex2Dbias(MISCMAP3_SAMPLER, float4(IN.world_pos.xy * 0.6, 0, -1)).rgb * 2 - 1;
+	float3 flatNormal = float3(0.0, 0.0, 1.0);
+	roadDetail = lerp(flatNormal, roadDetail, IN.normal.z);
 	float3 bitangent = cross(normal, float3(1, 0, 0));
 	float3 tangent = normalize(cross(bitangent, normal));
 	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);
@@ -130,7 +128,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(10, 60, specMap), IN.spotlight.rgb);
 
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
-	float3 albedo = diffuse_tex.rgb;
+	float3 albedo = diffuse_tex.rgb + roadDetail.r * 0.2;
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(normal, lightDir);
@@ -167,8 +165,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	albedo *= lerp(shadowDetail, 1, shadow);
 	
 	float3 final = albedo;
-	final *= IN.color.rgb;
-	final *= cvAmbientColor + diffuse * shadow + light.Diffuse;
+	final *= IN.color.rgb + diffuse * shadow + light.Diffuse;
 	final += specular * shadow;
 	final += light.Specular;
 	final += reflection_sample * reflectance;

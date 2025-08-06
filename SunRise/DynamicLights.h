@@ -160,8 +160,8 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 			}
 		}
 
-		auto alphaTex = AlphaTextures.find(renderModel->DiffuseTextureInfo->NameHash);
-		if (alphaTex != AlphaTextures.end())
+		auto alphaTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
+		if (alphaTex != PrelitTextures.end() && alphaTex->second.AlphaMask)
 		{
 			brightness = alphaTex->second.Color;
 		}

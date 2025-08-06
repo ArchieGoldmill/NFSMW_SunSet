@@ -100,8 +100,12 @@ void SubInitUI()
 
 void InitUI()
 {
-	if (g_Config.Editor)
+	if (!g_Config.Editor)
 	{
-		std::thread(SubInitUI).detach();
+		return;
 	}
+
+	injector::MakeNOP(0x006E6CAE, 7);
+
+	std::thread(SubInitUI).detach();
 }

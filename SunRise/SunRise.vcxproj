@@ -236,6 +236,7 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="UICommon.h" />
     <ClInclude Include="UIEditor.h" />
+    <ClInclude Include="UITextures.h" />
     <ClInclude Include="UIWeather.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VehicleRenderConn.h" />

@@ -251,3 +251,8 @@ inline YAML::Node SerializeVector4(const D3DXVECTOR4& vec) {
 	node.SetStyle(YAML::EmitterStyle::Flow);
 	return node;
 }
+
+bool StartsWith0x(const std::string& str)
+{
+	return str.size() > 2 && str.size() <= 10 && str[0] == '0' && (str[1] == 'x' || str[1] == 'X');
+}

@@ -1,206 +1,336 @@
 Textures:
-  - Name: SGN_NEONROLLING_A_LL
-
-  - Name: SGN_NEON_OUTLINE
-
-  - Name: SGN_NEONROLLING_B_LL
-
   - Name: OBJ_MOVIEPOSTEROCTO_JF
-    Brightness: 5.0
-
-  - Name: ADS_FITNESSA_BB_EA
-    Brightness: 5.0
-
-  - Name: ADS_LOTTOA_BB_EA
-    Brightness: 5.0
-
-  - Name: SGN_NEON_OUTLINE
-
-  - Name: ADS_EDGE_BB_C_EA
-    Brightness: 8.0
-
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_NEONROLLING_A_LL
+    Brightness: 1
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_NEONROLLING_B_LL
+    Brightness: 1
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
   - Name: ADS_CINGULAR_BB_F_EA
-    Brightness: 8.0
-
-  - Name: ADS_BKING_BB_A
-    Brightness: 8.0
-
-  - Name: ADS_AXEB_BB_A_EA
-    Brightness: 8.0
-
-  - Name: SGN_BOBSLOBSTER_
-    Brightness: 8.0
-
-  - Name: ADS_TOROGASA_BB_EA
-    Brightness: 8.0
-
-  - Name: OBJ_MOVIEPOSTERKONO_JF
-    Brightness: 8.0
-
-  - Name: ADS_BOXINGA_EA
-    Brightness: 4.0
-
-  - Name: SGN_STEAKHOUSE_JF
-    Brightness: 4.0
-
-  - Name: SGN_COFFEESHOPBRAZIL_JF
-    Brightness: 4.0
-
-  - Name: SGN_ROSECORE
-    Brightness: 4.0
-
-  - Name: SGN_TICKER
-    Brightness: 4.0
-
-  - Name: SGN_SLTOWER
-    Brightness: 6.0
-
-  - Name: SGN_CONVBANNER
-    Brightness: 6.0
-
-  - Name: SGN_SEAFOODA
-    Brightness: 6.0
-
-  - Name: SGN_ETHNIC_HOTEL_RJ
-    Brightness: 3.0
-
-  - Name: SGN_CT_SEW
-    Brightness: 3.0
-
-  - Name: SGN_CITYEAST_RISTORANTE
-    Brightness: 7.0
-
-  - Name: ARC_LB_GASNEWSTRIP
-    Brightness: 7.0
-
-  - Name: ADS_LOTTOB_BB_EA
-    Brightness: 7.0
-
-  - Name: OBJ_POPMACHINE2
-    Brightness: 7.0
-
-  - Name: OBJ_POPMACHINE
-    Brightness: 7.0
-
-  - Name: SGN_SAFEHOUSEG
-    Brightness: 5.0
-
-  - Name: OBJ_CHECKPOINT_SCROLL
-    Brightness: 2.0
-
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
   - Name: SFX_CATSEYE_A
-    Brightness: 12.0
-    Color: [1.0, 0.0, 0.0]
-
-  - Name: ADS_CINGULAR_BB_A_EA
-    Brightness: 5.0
-
-  - Name: SGN_STADIUMWOMBAT
-    Brightness: 3.0
-
-  - Name: SGN_STADIUMTEXT
-    Brightness: 5.0
-
-  - Name: ADS_EDGE_BB_A_EA
-    Brightness: 8.0
-
-  - Name: SGN_SPORTSCENTRE_VC
-    Brightness: 8.0
-
-  - Name: SGN_ROSEWOODUNIVERSITY
-    Brightness: 4.0
-
-  - Name: OBJ_SCOREBOARD
-    Brightness: 4.0
-
-  - Name: SGN_MANNSIGN
-    Brightness: 4.0
-
-  - Name: ADS_AXE_BB_A_EA
-    Brightness: 4.0
-
-  - Name: SGN_PARKA_LL
-    Brightness: 4.0
-
-  - Name: SGN_ROSEWOODPOLICE_A_MM
-    Brightness: 4.0
-
-  - Name: SFX_TRACKBARRIERNEONARROW
-    Brightness: 3.0
-
-  - Name: SFX_TRACKBARRIERNEONARROW_SOLID
-    Brightness: 1.0
-
-  - Name: ADS_AUTOZONE_BB_A_EA
-    Brightness: 8.0
-
-  - Name: SGN_CT_CARWASH
-    Brightness: 8.0
-
-  - Name: ARC_ROCKETDINER_GIRL
-    Brightness: 8.0
-
-  - Name: ANM_ROCKETGIRLLITE_LV
-    Brightness: 8.0
-
-  - Name: ARC_ROCKETDINER_ROCKET
-    Brightness: 8.0
-
+    Brightness: 12
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 0, 0]
+  - Name: ADS_BKING_BB_A
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
   - Name: ARROW_GPS
-    Brightness: 3.0
-    Color: [1.0, 1.0, 1.0]
-
+    Brightness: 3
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_EDGE_BB_C_EA
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_NEON_OUTLINE
+    Brightness: 1
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_ROSECORE
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_LOTTOA_BB_EA
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_FITNESSA_BB_EA
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_PARKA_LL
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_CITYEAST_RISTORANTE
+    Brightness: 7
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_AXEB_BB_A_EA
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: OBJ_POPMACHINE2
+    Brightness: 7
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0xEA9C2659
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SFX_TRACKBARRIERNEONARROW_SOLID
+    Brightness: 1
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_ETHNIC_HOTEL_RJ
+    Brightness: 3
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_BOBSLOBSTER_
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_TOROGASA_BB_EA
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_AXE_BB_A_EA
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: OBJ_MOVIEPOSTERKONO_JF
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x964A28BF
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_SEAFOODA
+    Brightness: 6
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_BOXINGA_EA
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x4A58FE16
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_STEAKHOUSE_JF
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_COFFEESHOPBRAZIL_JF
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
   - Name: ARC_ROLLERCOASTERB
-    Brightness: 15.0
-    Color: [0.8, 1.0, 0.5]
+    Brightness: 15
     NightOnly: true
-
+    AlphaMask: false
+    Color: [0.800000012, 1, 0.5]
+  - Name: SGN_TICKER
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_SLTOWER
+    Brightness: 6
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_CONVBANNER
+    Brightness: 6
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x5F9B9E8A
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_CT_SEW
+    Brightness: 3
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_CT_CARWASH
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ARC_LB_GASNEWSTRIP
+    Brightness: 7
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x48814018
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_LOTTOB_BB_EA
+    Brightness: 7
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: OBJ_POPMACHINE
+    Brightness: 7
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_SAFEHOUSEG
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: OBJ_CHECKPOINT_SCROLL
+    Brightness: 2
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_CINGULAR_BB_A_EA
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_STADIUMWOMBAT
+    Brightness: 3
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x4494239C
+    Brightness: 3
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ARC_ROCKETDINER_ROCKET
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_STADIUMTEXT
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_EDGE_BB_A_EA
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_SPORTSCENTRE_VC
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_MANNSIGN
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_ROSEWOODUNIVERSITY
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ANM_ROCKETGIRLLITE_LV
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: OBJ_SCOREBOARD
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SGN_ROSEWOODPOLICE_A_MM
+    Brightness: 4
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: SFX_TRACKBARRIERNEONARROW
+    Brightness: 3
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x4A5871B5
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ADS_AUTOZONE_BB_A_EA
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: ARC_ROCKETDINER_GIRL
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
   - Name: PAN_CITY04_KT
-    Brightness: 50.0
-    Color: [1.0, 0.5, 0.0]
+    Brightness: 50
     NightOnly: true
-
-  - Name: "0x4494239C"
-    Brightness: 3.0
-
-  - Name: "0x964A28BF"
-    Brightness: 8.0
-
-  - Name: "0xCC51EF0B"
-    Brightness: 8.0
-
-  - Name: "0xEA9C2659"
-    Brightness: 5.0
-
-  - Name: "0x4A58FE16"
-    Brightness: 5.0
-
-  - Name: "0xA03B5211"
-    Brightness: 5.0
-
-  - Name: "0x4A5871B5"
-    Brightness: 5.0
-
-  - Name: "0xF4F99C8B"
-    Brightness: 5.0
-
-  - Name: "0x48814018"
-    Brightness: 5.0
-
-  - Name: "0x5D013360"
-    Brightness: 5.0
-
-  - Name: "0x5F9B9E8A"
-    Brightness: 5.0
-
-  - Name: "0xAAA4780A"
-    Brightness: 5.0
-
-  - Name: "0x465462E9"
-    Brightness: 5.0
-
-  - Name: "0x9414F03D"
-    Brightness: 5.0
-
-  - Name: "0x89C26291"
-    Brightness: 5.0
+    AlphaMask: false
+    Color: [1, 0.5, 0]
+  - Name: 0xCC51EF0B
+    Brightness: 8
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0xA03B5211
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0xF4F99C8B
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x5D013360
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0xAAA4780A
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x465462E9
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x9414F03D
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]
+  - Name: 0x89C26291
+    Brightness: 5
+    NightOnly: false
+    AlphaMask: false
+    Color: [1, 1, 1]

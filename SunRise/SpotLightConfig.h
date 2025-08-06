@@ -70,14 +70,10 @@ void LoadSpotLightConfig()
 		solid.NameA = lightNode["Solid"].as<std::string>();
 		solid.HashA = Game::bStringHash(solid.NameA.c_str());
 
-		solid.Blink = YmlGet(lightNode, "Blink", 0);
+		solid.NameB = lightNode["SolidLod"].as<std::string>();
+		solid.HashB = Game::bStringHash(solid.NameB.c_str());
 
-		auto nameB = lightNode["SolidLod"];
-		if (nameB.IsDefined())
-		{
-			solid.NameB = nameB.as<std::string>();
-			solid.HashB = Game::bStringHash(solid.NameB.c_str());
-		}
+		solid.Blink = YmlGet(lightNode, "Blink", 0);
 
 		solid.Flare = GetFlareModel(lightNode);
 

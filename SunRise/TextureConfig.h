@@ -42,12 +42,7 @@ void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& texture
 		prelit.Name = node["Name"].as<std::string>();
 		prelit.ParseTextureName();
 
-		auto colorNode = node["Color"];
-		if (colorNode.IsDefined())
-		{
-			prelit.Color = ParseVec3To4(colorNode);
-		}
-
+		prelit.Color = ParseVec3To4(node["Color"]);
 		prelit.Color.w = YmlGet(node, "Brightness", 1.0f);
 		prelit.NightOnly = YmlGet(node, "NightOnly", false);
 		prelit.AlphaMask = YmlGet(node, "AlphaMask", false);

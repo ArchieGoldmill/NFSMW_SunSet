@@ -64,7 +64,7 @@ public:
 	{
 		return this->current.CarLightsPower;
 	}
-	
+
 	float GetTextureLightPower()
 	{
 		return this->current.TextureLightPower;
@@ -113,14 +113,10 @@ private:
 		this->current.SpecularColor = LerpVector(a->SpecularColor, b->SpecularColor, t);
 		this->current.SpecularPower = std::lerp(a->SpecularPower, b->SpecularPower, t);
 
-		this->current.SkyBetaR = LerpVector(a->SkyBetaR, b->SkyBetaR, t);
-		this->current.SkyBetaM = LerpVector(a->SkyBetaM, b->SkyBetaM, t);
+		this->current.SkyBeta = LerpVector(a->SkyBeta, b->SkyBeta, t);
 		this->current.SkyRayleigh = std::lerp(a->SkyRayleigh, b->SkyRayleigh, t);
-		this->current.SkyRayleighAtt = std::lerp(a->SkyRayleighAtt, b->SkyRayleighAtt, t);
 		this->current.SkyMie = std::lerp(a->SkyMie, b->SkyMie, t);
-		this->current.SkyMieAtt = std::lerp(a->SkyMieAtt, b->SkyMieAtt, t);
-		this->current.SkyGamma = std::lerp(a->SkyGamma, b->SkyGamma, t);
-		this->current.SkyG = std::lerp(a->SkyG, b->SkyG, t);
+		this->current.SkyBrightness = std::lerp(a->SkyBrightness, b->SkyBrightness, t);
 
 		this->current.FogColor = LerpVector(a->FogColor, b->FogColor, t);
 		this->current.FogSunColor = LerpVector(a->FogSunColor, b->FogSunColor, t);
@@ -260,15 +256,20 @@ private:
 		float sunTime;
 		float sunRise = g_Config.SunRise;
 		float sunSet = g_Config.SunSet;
+		float nightFactor = 0.0f;
 
 		if (time >= sunRise && time <= sunSet)
 		{
 			sunTime = ConvertRange(time, sunRise, sunSet, 0, 1.0f);
+			nightFactor = 1.0f;
 		}
 		else
 		{
 			sunTime = time >= sunSet ? ConvertRange(time, sunSet, 1.0f, 0, 0.5f) : ConvertRange(time, 0.0f, sunRise, 0.5f, 1.0f);
 		}
+
+		float offset = 0.1;
+		sunTime = ConvertRange(sunTime, 0, 1, -offset, 1 + offset);
 
 		D3DXVECTOR4 sunDirection(0, 0, 0, 0);
 
@@ -288,19 +289,16 @@ private:
 
 		D3DXVECTOR4 skyParams;
 		skyParams.x = this->current.SkyRayleigh;
-		skyParams.y = this->current.SkyRayleighAtt;
-		skyParams.z = this->current.SkyMie;
-		skyParams.w = this->current.SkyMieAtt;
-
-		this->current.SkyBetaM.w = this->current.SkyGamma;
-		this->current.SkyBetaR.w = this->current.SkyG;
+		skyParams.y = this->current.SkyMie;
+		skyParams.z = this->current.SkyBrightness;
+		skyParams.w = nightFactor;
 
 		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvSunDirection, &sunDirection);
-		e->SetVector(ShaderParam::cvSkyBetaM, &this->current.SkyBetaM);
-		e->SetVector(ShaderParam::cvSkyBetaR, &this->current.SkyBetaR);
+		e->SetVector(ShaderParam::cvSkyBeta, &this->current.SkyBeta);
 		e->SetVector(ShaderParam::cvSkyParams, &skyParams);
 		e->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
+		e->SetFloat(ShaderParam::cfTimeTicker, this->Timer);
 	}
 
 	void UpdateRain()

@@ -10,14 +10,10 @@ struct WeatherData
 	D3DXVECTOR4 SpecularColor;
 	float SpecularPower;
 
-	D3DXVECTOR4 SkyBetaR;
-	D3DXVECTOR4 SkyBetaM;
+	D3DXVECTOR4 SkyBeta;
 	float SkyRayleigh;
-	float SkyRayleighAtt;
 	float SkyMie;
-	float SkyMieAtt;
-	float SkyGamma;
-	float SkyG;
+	float SkyBrightness;
 
 	D3DXVECTOR4 CloudColor;
 	D3DXVECTOR4 WaterColor;
@@ -50,15 +46,10 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->SpecularPower = YmlGet<float>(node, "SpecularPower", cfg->SpecularPower);
 	config->DiffuseColor.w = YmlGet<float>(node, "DiffuseIntensity", cfg->DiffuseColor.w);
 
-	config->SkyBetaR = ParseVec3To4(node["SkyBetaR"], cfg->SkyBetaR);
-	config->SkyBetaM = ParseVec3To4(node["SkyBetaM"], cfg->SkyBetaM);
-
+	config->SkyBeta = ParseVec3To4(node["SkyBeta"], cfg->SkyBeta);
 	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
-	config->SkyRayleighAtt = YmlGet<float>(node, "SkyRayleighAtt", cfg->SkyRayleighAtt);
 	config->SkyMie = YmlGet<float>(node, "SkyMie", cfg->SkyMie);
-	config->SkyMieAtt = YmlGet<float>(node, "SkyMieAtt", cfg->SkyMieAtt);
-	config->SkyGamma = YmlGet<float>(node, "SkyGamma", cfg->SkyGamma);
-	config->SkyG = YmlGet<float>(node, "SkyG", cfg->SkyG);
+	config->SkyBrightness = YmlGet<float>(node, "SkyBrightness", cfg->SkyBrightness);
 
 	config->FogColor = ParseVec3To4(node["FogColor"], cfg->FogColor);
 	config->FogSunColor = ParseVec3To4(node["FogSunColor"], cfg->FogSunColor);
@@ -114,14 +105,10 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["CarLightsPower"] = data->CarLightsPower;
 	node["TextureLightPower"] = data->TextureLightPower;
 
-	node["SkyBetaR"] = SerializeVector3(data->SkyBetaR);
-	node["SkyBetaM"] = SerializeVector3(data->SkyBetaM);
+	node["SkyBeta"] = SerializeVector3(data->SkyBeta);
 	node["SkyMie"] = data->SkyMie;
-	node["SkyMieAtt"] = data->SkyMieAtt;
 	node["SkyRayleigh"] = data->SkyRayleigh;
-	node["SkyRayleighAtt"] = data->SkyRayleighAtt;
-	node["SkyGamma"] = data->SkyGamma;
-	node["SkyG"] = data->SkyG;
+	node["SkyBrightness"] = data->SkyBrightness;
 
 	node["FogColor"] = SerializeVector3(data->FogColor);
 	node["FogSunColor"] = SerializeVector3(data->FogSunColor);

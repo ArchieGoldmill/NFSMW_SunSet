@@ -87,14 +87,10 @@ namespace UI
 
 							ImGui::Text("");
 
-							ImGui::ColorEdit3("Sky Beta R", (float*)&weather->SkyBetaR, ImGuiColorEditFlags_Float);
-							ImGui::ColorEdit3("Sky Beta M", (float*)&weather->SkyBetaM, ImGuiColorEditFlags_Float);
+							ImGui::ColorEdit3("Sky Beta", (float*)&weather->SkyBeta, ImGuiColorEditFlags_Float);
 							InputFloat("Sky Mie", &weather->SkyMie);
-							InputFloat("Sky Mie Att", &weather->SkyMieAtt);
 							InputFloat("Sky Rayleigh", &weather->SkyRayleigh);
-							InputFloat("Sky Rayleigh Att", &weather->SkyRayleighAtt);
-							InputFloat("Sky Gamma", &weather->SkyGamma);
-							InputFloat("Sky G", &weather->SkyG);
+							InputFloat("Sky Brightness", &weather->SkyBrightness);
 
 							ImGui::Text("");
 

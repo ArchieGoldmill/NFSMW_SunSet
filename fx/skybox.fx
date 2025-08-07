@@ -2,11 +2,10 @@
 #include "normalmap.fx"
 
 float4 cvSunDirection;
-float4 cvSkyBetaR;
-float4 cvSkyBetaM;
 float4 cvSkyParams;
 float4 cvCloudColor;
-float cfCloudScroll : CLOUDSCROLL;
+float4 cvSkyBeta;
+float cfTimeTicker;
 
 struct VS_INPUT
 {
@@ -30,7 +29,7 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
 	OUT.local_position = IN.position.xyz;
-	//OUT.local_position.z -= 300;
+	OUT.local_position.z += 300;
 	OUT.uv = float4(IN.tex, IN.tex1);
 }
 
@@ -66,14 +65,11 @@ float3 renderSky(in float3 viewDir, in float3 lightDir)
 	const float kScaleOverScaleDepth = kScale / kScaleDepth;
 	const float kCameraHeight = 0.0;
 
-	const float kRAYLEIGH = 0.005;
-	const float kMIE = 0.01;
+	const float kRAYLEIGH = cvSkyParams.x * cvSkyParams.w;
+	const float kMIE = cvSkyParams.y;
 	
 	const float kR4PI = kRAYLEIGH * 4.0 * PI;
 	
-	const float3 k_lambda_variance = float3(0.0, 0.0, 0.0);
-	const float3 k_lambda = float3(0.65, .57, 0.475) - k_lambda_variance;
-
 	const float kM4PI = kMIE * 4.0 * PI;
 	
 	viewDir = normalize(viewDir);
@@ -99,10 +95,10 @@ float3 renderSky(in float3 viewDir, in float3 lightDir)
 	float3 sampleRay = viewDir * sampleLength;
 	float3 samplePoint = cameraPos + sampleRay * 0.5;
 	
-	float3 invLambda = pow(k_lambda, float3(-4.0, -4.0, -4.0));
+	float3 invLambda = pow(cvSkyBeta.rgb, float3(-4.0, -4.0, -4.0));
 	float3 front = float3(0.0, 0.0, 0.0);
 	
-	const float brightness = 20.0; // = lightDir.y <= 0.0 ? 1.0 : 20.0;
+	const float brightness = lerp(1.3, cvSkyParams.z, cvSkyParams.w);
 
 	{
 		float height = length(samplePoint);
@@ -154,11 +150,12 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	}
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
-	color += pow(diffuse_tex.rgb, 2.2) * smoothstep(0.2, 0.1, 1);
+	float stars_scale = cvSkyParams.w > 0 ? smoothstep(-0.1, -0.3, sun.y) : 1;
+	color += pow(diffuse_tex.rgb, 2.2) * stars_scale;
 	
 	// clouds
 	float2 cloudUV = IN.uv.xy;
-	cloudUV.x += cfCloudScroll * 0.1;
+	cloudUV.x += cfTimeTicker * 0.005;
 	float4 clouds = tex2D(NORMALMAP_SAMPLER, cloudUV) * cvCloudColor;
 	color = lerp(color, clouds.rgb, clouds.a);
 	

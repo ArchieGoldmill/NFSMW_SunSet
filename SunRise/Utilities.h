@@ -106,9 +106,10 @@ bool StringEqual(const char* s1, const char* s2)
 	return strcmp(s1, s2) != 0;
 }
 
-inline float ConvertRange(float value, float srcMin, float srcMax, float destMin, float destMax)
+inline float ConvertRange(float value, float inMin, float inMax, float outMin, float outMax) 
 {
-	return destMin + (value - srcMin) * (destMax - destMin) / (srcMax - srcMin);
+	float scaled = (value - inMin) / (inMax - inMin);
+	return outMin + (scaled * (outMax - outMin));
 }
 
 inline D3DXVECTOR4 LerpVector(D3DXVECTOR4 a, D3DXVECTOR4 b, float t)

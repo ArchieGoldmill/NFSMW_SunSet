@@ -26,7 +26,7 @@ float3 ApplyFogColor(float3 color, float factor, float3 local_pos)
 	float3 view = normalize(local_pos - LocalEyePos.xyz);
 	
 	float toSun = saturate(dot(view, lightDir));
-	toSun = smoothstep(0.7, 1.0, toSun);
+	toSun = smoothstep(0.6, 1.0, toSun);
 	
 	float3 fogColor = lerp(cvFogColor.rgb, cvFogSunColor.rgb, toSun);
 	

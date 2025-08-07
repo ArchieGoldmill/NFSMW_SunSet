@@ -123,7 +123,7 @@ float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
 	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);
 	normal = normalize(mul(normalize(roadDetail), tbn));
 	
-	float specMap = tex2D(SPECULARMAP_SAMPLER, IN.uv).r * 2;
+	float specMap = tex2D(SPECULARMAP_SAMPLER, IN.uv).r;
 
 	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(10, 60, specMap), IN.spotlight.rgb);
 

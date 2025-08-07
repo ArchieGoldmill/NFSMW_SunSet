@@ -9,13 +9,11 @@ namespace UI
 
 	void Draw()
 	{
-		ImVec2 windowSize(750, 1000);
+		ImVec2 windowSize(800, 1000);
 		ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
 
 		if (ImGui::Begin("Sun Set Editor", nullptr, ImGuiWindowFlags_NoResize))
 		{
-			*Game::EnableInput = !ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow);
-
 			if (SelectableButton("Weather", { 200, 30 }, CurrentTab == 0))
 			{
 				CurrentTab = 0;
@@ -50,9 +48,19 @@ namespace UI
 			{
 				switch (CurrentTab)
 				{
-				case 0: LoadWeatherConfig(); break;
-				case 1: InitTextureConfig(); break;
-				case 2: LoadSpotLightConfig(); break;
+				case 0: 
+					LoadWeatherConfig(); 
+					CurrentWeather = NULL; 
+					break;
+				case 1: 
+					InitTextureConfig(); 
+					CurrentTexture = NULL;
+					break;
+				case 2: 
+					LoadSpotLightConfig(); 
+					CurrentSolid = NULL;
+					CurrentLight = NULL;
+					break;
 				}
 			}
 

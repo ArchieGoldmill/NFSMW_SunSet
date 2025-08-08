@@ -66,9 +66,9 @@ HRESULT WINAPI D3DXCreateEffectFromResourceHook(const char* efxPath, LPDIRECT3DD
 	if (FileExists(IdiPath))
 	{
 		result = D3DXCreateEffectFromFileA(pDevice, IdiPath, pDefines, pInclude, Flags, pPool, ppEffect, ppCompilationErrors);
-		if (SUCCEEDED(result))
+		if (SUCCEEDED(result) && !g_Config.ShaderCompiler)
 		{
-			//cusprintf("%s : successfully loaded!\n", IdiPath);
+			cusprintf("%s : successfully loaded!\n", IdiPath);
 		}
 	}
 	else

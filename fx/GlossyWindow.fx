@@ -51,7 +51,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	return OUT;
 }
 
-float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
+float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	

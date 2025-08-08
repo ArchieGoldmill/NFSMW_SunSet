@@ -44,7 +44,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	return OUT;
 }
 
-float4 PS_LitPixel(PS_INPUT IN, int lightCount) : COLOR
+float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
 	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
 	

@@ -11,31 +11,6 @@ void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.spotlight = float4(result.Diffuse, 1);
 }
 
-float4 PS_Unlit(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 0);
-}
-
-float4 PS_LitPixel_4(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 4);
-}
-
-float4 PS_LitPixel_8(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 8);
-}
-
-float4 PS_LitPixel_16(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 16);
-}
-
-float4 PS_LitPixel_24(PS_INPUT IN) : COLOR
-{
-	return PS_LitPixel(IN, 24);
-}
-
 void VS_Stub(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
@@ -64,7 +39,7 @@ technique LitPixel_4
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel_4();
+		PixelShader = compile ps_3_0 PS_LitPixel(4);
 	}
 }
 
@@ -75,7 +50,7 @@ technique LitPixel_8
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel_8();
+		PixelShader = compile ps_3_0 PS_LitPixel(8);
 	}
 }
 
@@ -86,7 +61,7 @@ technique LitPixel_16
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel_16();
+		PixelShader = compile ps_3_0 PS_LitPixel(16);
 	}
 }
 
@@ -97,7 +72,7 @@ technique LitPixel_24
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel_24();
+		PixelShader = compile ps_3_0 PS_LitPixel(24);
 	}
 }
 
@@ -108,7 +83,7 @@ technique Unlit
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_Unlit();
+		PixelShader = compile ps_3_0 PS_LitPixel(0);
 	}
 }
 
@@ -119,7 +94,7 @@ technique LitVertex
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_LitVertex();
-		PixelShader = compile ps_3_0 PS_Unlit();
+		PixelShader = compile ps_3_0 PS_LitPixel(0);
 	}
 }
 

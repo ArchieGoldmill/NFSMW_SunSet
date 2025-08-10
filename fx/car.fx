@@ -43,8 +43,7 @@ struct VS_INPUT
 {
 	float4 position : POSITION;
 	float3 normal : NORMAL;
-	float4 tangent : TANGENT;
-	float4 tex : TEXCOORD;
+	float2 tex : TEXCOORD;
 	float4 color : COLOR;
 };
 
@@ -52,7 +51,6 @@ struct PS_INPUT
 {
 	float4 position : POSITION;
 	float3 normal : NORMAL0;
-	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
 	float4 color : COLOR0;
 	float4 spotlight : COLOR1;
@@ -64,10 +62,9 @@ PS_INPUT VS_Base(VS_INPUT IN)
 {
 	PS_INPUT OUT;
 
-	OUT.position = world_position(IN.position);
+	OUT.position = clip_pos(IN.position);
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
 	OUT.uv = IN.tex.xy;
-	OUT.tangent = normalize(IN.tangent);
 	OUT.normal.xyz = normalize(IN.normal);
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;

@@ -1,7 +1,7 @@
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT = VS_Base(IN);
-	OUT.spotlight = float4(0.0, 0.0, 0.0, 1);
+	OUT.spotlight = float4(0.0, 0.0, 0.0, 1.0);
 }
 
 void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)

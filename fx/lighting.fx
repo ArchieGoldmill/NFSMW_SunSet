@@ -1,3 +1,6 @@
+#ifndef LIGHTING_HEADER
+#define LIGHTING_HEADER
+
 float4 LocalEyePos : LOCALEYEPOS;
 
 float4 cvSpecularColor;
@@ -5,21 +8,27 @@ float4 cvBrightness;
 float4 cvAmbientColor;
 float4 cvDiffuseColor;
 
-float3 GetSpecular(float3 normal, float3 lightDir, float3 local_pos, float power)
+float3 GetSpecular(float3 normal, float3 lightDir, float3 view, float power)
 {
-	float3 view = normalize(LocalEyePos.xyz - local_pos);
 	float3 reflectDir = normalize(reflect(-lightDir, normal));
 	float specularFactor = pow(saturate(dot(reflectDir, view)), power);
-	return specularFactor * cvSpecularColor.rgb;
+	return specularFactor * cvSpecularColor;
 }
 
-float3 GetSpecular(float3 normal, float3 lightDir, float3 local_pos)
+float3 GetSpecular(float3 normal, float3 lightDir, float3 view)
 {
-	return GetSpecular(normal, lightDir, local_pos, cvSpecularColor.w);
+	return GetSpecular(normal, lightDir, view, cvSpecularColor.w);
 }
 
-float4 GetVertexColor(float4 color)
+float4 vertex_color(float4 color)
 {
-	color.rgb *= cvAmbientColor.rgb * 2;
+	color.rgb *= cvAmbientColor * 2;
 	return color;
 }
+
+float3 vertex_view(float3 local_pos)
+{
+	return LocalEyePos.xyz - local_pos;
+}
+
+#endif // LIGHTING_HEADER

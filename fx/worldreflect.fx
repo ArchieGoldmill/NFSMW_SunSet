@@ -28,6 +28,7 @@ struct PS_INPUT
 	float4 reflection : TEXCOORD4;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD2;
+	float3 view : TEXCOORD6;
 };
 
 texture ReflectedTex : REFLECTEDTEX;
@@ -89,16 +90,16 @@ PS_INPUT VS_Base(VS_INPUT IN)
 {
 	PS_INPUT OUT;
 
-	OUT.position = world_position(IN.position);
+	OUT.position = clip_pos(IN.position);
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
 	OUT.uv = IN.tex.xy;
-	OUT.tangent = normalize(IN.tangent);
-	OUT.normal = normalize(IN.normal);
+	OUT.tangent = IN.tangent;
+	OUT.normal = IN.normal;
 	OUT.world_pos = mul(IN.position, cmWorldMat);
-	OUT.local_pos = IN.position;
-	OUT.local_pos.w = OUT.position.z;
-	OUT.color = GetVertexColor(IN.color);
-
+	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
+	OUT.color = vertex_color(IN.color);
+	OUT.view = vertex_view(IN.position.xyz);
+	
 	float4 p = OUT.position;
 	p.y = -p.y;
 	p.xy += p.w;
@@ -110,9 +111,8 @@ PS_INPUT VS_Base(VS_INPUT IN)
 
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
-	float3 original_normal = IN.normal;
-	
-	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
+	float3 og_normal = normalize(IN.normal);
+	float3 normal = ApplyNormalMap(og_normal, normalize(IN.tangent), IN.uv);
 
 	// Apply road detail normal map
 	float3 roadDetail = tex2Dbias(MISCMAP3_SAMPLER, float4(IN.world_pos.xy * 0.6, 0, -1)).rgb * 2 - 1;
@@ -135,8 +135,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(normal, lightDir, IN.local_pos.xyz);
-	specular *= specMap;
+	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view)) * specMap;
 	
 	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
 	float reflMin = 1 - smoothstep(0, 0.2, length(cvDiffuseColor.rgb));
@@ -158,10 +157,10 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	reflection_sample *= puddle_mask;
 	
 	// Vertical surfaces should not reflect
-	float reflectance = dot(original_normal, float3(0, 0, 1));
+	float reflectance = dot(og_normal, float3(0, 0, 1));
 	
 	// Apply road detail in shadow
-	float shadowDetail = saturate(dot(normal, original_normal));
+	float shadowDetail = saturate(dot(normal, og_normal));
 	albedo *= lerp(shadowDetail, 1, shadow);
 	
 	float3 final = albedo;

@@ -54,10 +54,7 @@ float3 ApplyRainSlide(float3 position, float3 normal)
 	
 	float3 bitangent = cross(normal, float3(0, 0, 1)); // up vector
 	float3 tangent = normalize(cross(bitangent, normal));
-	float3x3 tbn =
-	{
-		tangent, cross(normal, tangent), normal
-	};
+	float3x3 tbn = { tangent, cross(normal, tangent), normal };
 
 	rain_slide_sample = rain_slide_sample * 2 - 1;
 	rain_slide_sample.z = sqrt(1 - dot(rain_slide_sample.xy, rain_slide_sample.xy));
@@ -68,21 +65,15 @@ float3 ApplyRainSlide(float3 position, float3 normal)
 
 float3 ApplyRainDrops(float3 position, float3 normal, out float3 envmapMin, out float3 specularMin)
 {
-	envmapMin = EnvmapMin.rgb;
-	specularMin = SpecularMin.rgb;
-
 	if (cvRainParams.x > 0.0)
 	{
 		normal = ApplyRainSlide(position, normal);
 		float3 bitangent = cross(normal, float3(1, 0, 0)); // forward vector
 		float3 tangent = normalize(cross(bitangent, normal));
 		
-		float3x3 tbn =
-		{
-			tangent, cross(normal, tangent), normal
-		};
+		float3x3 tbn = { tangent, cross(normal, tangent), normal };
 
-		float4 rain_drop_sample = tex2D(MISCMAP2_SAMPLER, position.xy * 2);	
+		float4 rain_drop_sample = tex2D(MISCMAP2_SAMPLER, position.xy * 2);
 
 		float3 rain_drop = rain_drop_sample.xyz;
 		float rainPower = saturate(rain_drop_sample.w);
@@ -98,8 +89,12 @@ float3 ApplyRainDrops(float3 position, float3 normal, out float3 envmapMin, out 
 		normal = lerp(normal, rain_drop, rainPower);
 
 		envmapMin = lerp(EnvmapMin.xyz, float3(1.5, 1.5, 1.5), rainPower);
-
 		specularMin = lerp(SpecularMin.xyz, float3(0.0, 0.0, 0.0), rainPower);
+	}
+	else
+	{
+		envmapMin = EnvmapMin.rgb;
+		specularMin = SpecularMin.rgb;
 	}
 	
 	return normal;

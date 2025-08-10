@@ -1,18 +1,27 @@
+#ifndef GLOBAL_HEADER
+#define GLOBAL_HEADER
+
 float4x4 WorldViewProj : WORLDVIEWPROJECTION;
 float4x4 cmWorldMat : LOCALWORLD;
+float4 TextureOffset : TEXTUREOFFSET;
+float4 LocalLightVec : LOCALLIGHTDIRVEC;
+
 int Cull_Mode : CULL_MODE;
 int BaseBlendState[5] : BLENDSTATE;
 int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
 int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
 int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
-float4 TextureOffset : TEXTUREOFFSET;
-float4 LocalLightVec : LOCALLIGHTDIRVEC;
 
-float4 world_position(float4 screen_pos)
+float4 clip_pos(float4 screen_pos)
 {
-	float4 p = mul(screen_pos, WorldViewProj);
-	return p;
+	return mul(screen_pos, WorldViewProj);
 }
+
+float2 uv_offset(float2 tex)
+{
+	return tex + TextureOffset.xy;
+}
+
 texture diffusemap : DiffuseMap;
 sampler DIFFUSEMAP_SAMPLER = sampler_state
 {
@@ -33,3 +42,5 @@ sampler DIFFUSEMAP_SAMPLER = sampler_state
 	DestBlend = (BaseBlendState[4]);
 
 #define APPLY_ALPHA_EMISSIVE final.rgb = lerp(final.rgb, final.rgb * cvBrightness.rgb * cvBrightness.a, saturate(cvBrightness.a * diffuse_tex.a));
+
+#endif // GLOBAL_HEADER

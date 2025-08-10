@@ -9,8 +9,8 @@ struct VS_INPUT
 {
 	float4 position : POSITION;
 	float3 normal : NORMAL;
-	float4 tangent : TANGENT;
-	float4 tex : TEXCOORD;
+	float3 tangent : TANGENT;
+	float2 tex : TEXCOORD;
 	float4 color : COLOR;
 };
 
@@ -20,7 +20,7 @@ struct PS_INPUT
 	float3 normal : NORMAL0;
 	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
-	float4 world_pos : TEXCOORD1;
+	float3 view : TEXCOORD1;
 	float4 color : COLOR0;
 	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
@@ -31,41 +31,39 @@ PS_INPUT VS_Base(VS_INPUT IN)
 {
 	PS_INPUT OUT;
 
-	OUT.position = world_position(IN.position);
+	OUT.position = clip_pos(IN.position);
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
-	OUT.uv = IN.tex.xy + TextureOffset.xy;
-	OUT.tangent = normalize(IN.tangent);
-	OUT.normal = normalize(IN.normal);
-	OUT.world_pos = mul(IN.position, cmWorldMat);
-	OUT.local_pos = IN.position;
-	OUT.local_pos.w = OUT.position.z;
-	OUT.color = GetVertexColor(IN.color);
+	OUT.uv = uv_offset(IN.tex);
+	OUT.tangent = IN.tangent;
+	OUT.normal = IN.normal;
+	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
+	OUT.color = vertex_color(IN.color);
+	OUT.view = vertex_view(IN.position.xyz);
 	
 	return OUT;
 }
 
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
-	float3 normal = ApplyNormalMap(IN.normal, IN.tangent, IN.uv);
-	
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
-	
-	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+	float3 normal = ApplyNormalMap(normalize(IN.normal), normalize(IN.tangent), IN.uv);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(normal, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(normal, lightDir, IN.local_pos.xyz);
+	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view));
+	SpotLightResult spotlight = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
 	
-	float3 finalLight = IN.color.rgb + diffuse * shadow + light.Diffuse;
+	float3 finalLight = IN.color.rgb + diffuse * shadow + spotlight.Diffuse;
+	
+	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
 	float4 final = diffuse_tex;
 	final.a *= IN.color.a;
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * diffuse_tex.a;
-	final.rgb += light.Specular * diffuse_tex.a;
+	final.rgb += spotlight.Specular * diffuse_tex.a;
 	
 	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG

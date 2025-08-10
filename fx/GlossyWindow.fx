@@ -25,8 +25,7 @@ struct PS_INPUT
 	float3 normal : NORMAL0;
 	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
-	float4 world_pos : TEXCOORD1;
-	float3 world_nomral : TEXCOORD2;
+	float3 view : TEXCOORD1;
 	float4 color : COLOR0;
 	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
@@ -36,43 +35,43 @@ struct PS_INPUT
 PS_INPUT VS_Base(VS_INPUT IN)
 {
 	PS_INPUT OUT;
-
-	OUT.position = world_position(IN.position);
+	
+	OUT.position = clip_pos(IN.position);
 	OUT.shadow_tex = vertex_shadow_tex(IN.position);
-	OUT.uv = IN.tex + TextureOffset.xy;
-	OUT.tangent = normalize(IN.tangent);
-	OUT.normal = normalize(IN.normal);
-	OUT.world_pos = mul(IN.position, cmWorldMat);
-	OUT.world_nomral = normalize(mul(OUT.normal, (float3x3) cmWorldMat));
-	OUT.local_pos = IN.position;
-	OUT.local_pos.w = OUT.position.z;
-	OUT.color = GetVertexColor(IN.color);
+	OUT.uv = uv_offset(IN.tex);
+	OUT.tangent = IN.tangent;
+	OUT.normal = IN.normal;
+	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
+	OUT.color = vertex_color(IN.color);
+	OUT.view = vertex_view(IN.position.xyz);
 	
 	return OUT;
 }
 
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
+	float3 normal = normalize(IN.normal);
+	float3 view = normalize(IN.view);
+	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(IN.normal, IN.local_pos.xyz, lightCount, 30, IN.spotlight.rgb);
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, 30, IN.spotlight.rgb);
 	
 	float3 albedo = diffuse_tex.rgb;
 	float reflect_scale = smoothstep(0, 0.2, diffuse_tex.a);
 	
 	float3 lightDir = normalize(LocalLightVec);
-	float ndotl = dot(IN.normal, lightDir);
+	float ndotl = dot(normal, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(IN.normal, lightDir, IN.local_pos.xyz, lerp(cvSpecularColor.w, 1, reflect_scale));
+	float3 specular = GetSpecular(normal, lightDir, view, lerp(cvSpecularColor.w, 1, reflect_scale));
 	
 	float3 finalLight = IN.color.rgb + diffuse * shadow + light.Diffuse;
 	finalLight = lerp(finalLight, float3(1, 0.8, 0.6) * 5, reflect_scale * cvAmbientColor.w);
 	albedo = lerp(albedo, albedo.rrr, reflect_scale * cvAmbientColor.w);
 	
-	float3 viewDir = normalize(LocalEyePos.xyz - IN.local_pos.xyz);
-	float3 vR = reflect(viewDir, IN.normal);
+	float3 vR = reflect(view, normal);
 	
 	float2 vCylinderMap;
 	vCylinderMap.x = atan2(vR.y, vR.x);

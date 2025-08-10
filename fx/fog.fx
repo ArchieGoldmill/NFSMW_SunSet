@@ -1,3 +1,6 @@
+#ifndef FOG_HEADER
+#define FOG_HEADER
+
 float4 cvFogColor;
 float4 cvFogSunColor;
 float4 cvFogValue;
@@ -36,3 +39,5 @@ float3 ApplyFogColor(float3 color, float factor, float3 local_pos)
 #define APPLY_FOG\
 	float fog = CalculateFog(IN.local_pos.w);\
 	final.rgb = ApplyFogColor(final.rgb, fog, IN.local_pos.xyz);
+
+#endif // FOG_HEADER

@@ -1,1 +1,69 @@
-#include "world.fx"
+#include "global.fx"
+#include "shadow.fx"
+#include "normalmap.fx"
+#include "lighting.fx"
+#include "spotlights.fx"
+#include "fog.fx"
+
+struct VS_INPUT
+{
+	float4 position : POSITION;
+	float3 normal : NORMAL;
+	float2 tex : TEXCOORD;
+	float4 color : COLOR;
+};
+
+struct PS_INPUT
+{
+	float4 position : POSITION;
+	float3 normal : NORMAL0;
+	float2 uv : TEXCOORD0;
+	float4 color : COLOR0;
+	float4 spotlight : COLOR1;
+	float4 local_pos : TEXCOORD4;
+	float3 view : TEXCOORD2;
+};
+
+PS_INPUT VS_Base(VS_INPUT IN)
+{
+	PS_INPUT OUT;
+
+	OUT.position = clip_pos(IN.position);
+	OUT.uv = uv_offset(IN.tex);
+	OUT.normal = IN.normal;
+	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
+	OUT.color = vertex_color(IN.color);
+	OUT.view = vertex_view(IN.position.xyz);
+	
+	return OUT;
+}
+
+float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
+{
+	float3 normal = normalize(IN.normal);
+	
+	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+	
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
+	
+	float3 lightDir = normalize(LocalLightVec);
+	float ndotl = abs(dot(normal, lightDir));
+	
+	float3 diffuse = ndotl * cvDiffuseColor.rgb;
+	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view));
+	
+	float3 finalLight = IN.color.rgb + diffuse + light.Diffuse;
+	
+	float4 final = diffuse_tex;
+	final.a *= IN.color.a;
+	final.rgb *= finalLight;
+	
+	APPLY_ALPHA_EMISSIVE
+	APPLY_FOG
+	
+	return final;
+}
+
+#include "techniques.fx"
+#include "water.fx"
+#include "shadowmap.fx"

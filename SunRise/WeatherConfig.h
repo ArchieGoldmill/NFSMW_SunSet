@@ -9,6 +9,8 @@ struct WeatherData
 	D3DXVECTOR4 AmbientColor;
 	D3DXVECTOR4 SpecularColor;
 	float SpecularPower;
+	float DiffuseIntensity;
+	float AmbientIntensity;
 
 	D3DXVECTOR4 SkyBeta;
 	float SkyRayleigh;
@@ -16,7 +18,9 @@ struct WeatherData
 	float SkyBrightness;
 
 	D3DXVECTOR4 CloudColor;
+
 	D3DXVECTOR4 WaterColor;
+	float WaterSpecularPower;
 
 	D3DXVECTOR4 FogColor;
 	D3DXVECTOR4 FogSunColor;
@@ -25,8 +29,8 @@ struct WeatherData
 	float FogPower;
 	float FogExponent;
 
-	float CarLightsPower = 1.0;
-	float TextureLightPower = 1.0;
+	float CarLightsPower;
+	float TextureLightPower;
 };
 
 struct WeatherConfig
@@ -44,7 +48,8 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->AmbientColor = ParseVec3To4(node["AmbientColor"], cfg->AmbientColor);
 	config->SpecularColor = ParseVec3To4(node["SpecularColor"], cfg->SpecularColor);
 	config->SpecularPower = YmlGet<float>(node, "SpecularPower", cfg->SpecularPower);
-	config->DiffuseColor.w = YmlGet<float>(node, "DiffuseIntensity", cfg->DiffuseColor.w);
+	config->DiffuseIntensity = YmlGet<float>(node, "DiffuseIntensity", cfg->DiffuseIntensity);
+	config->AmbientIntensity = YmlGet<float>(node, "AmbientIntensity", cfg->AmbientIntensity);
 
 	config->SkyBeta = ParseVec3To4(node["SkyBeta"], cfg->SkyBeta);
 	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
@@ -62,7 +67,9 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->TextureLightPower = YmlGet<float>(node, "TextureLightPower", cfg->TextureLightPower);
 
 	config->CloudColor = ParseVec4(node["CloudColor"], cfg->CloudColor);
+
 	config->WaterColor = ParseVec3To4(node["WaterColor"], cfg->WaterColor);
+	config->WaterSpecularPower = YmlGet<float>(node, "WaterSpecularPower", cfg->WaterSpecularPower);
 }
 
 void LoadWeatherConfig()
@@ -97,10 +104,13 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["AmbientColor"] = SerializeVector3(data->AmbientColor);
 	node["SpecularColor"] = SerializeVector3(data->SpecularColor);
 	node["SpecularPower"] = data->SpecularPower;
-	node["DiffuseIntensity"] = data->DiffuseColor.w;
+	node["DiffuseIntensity"] = data->DiffuseIntensity;
+	node["AmbientIntensity"] = data->AmbientIntensity;
 
 	node["CloudColor"] = SerializeVector4(data->CloudColor);
+
 	node["WaterColor"] = SerializeVector3(data->WaterColor);
+	node["WaterSpecularPower"] = data->WaterSpecularPower;
 
 	node["CarLightsPower"] = data->CarLightsPower;
 	node["TextureLightPower"] = data->TextureLightPower;

@@ -65,6 +65,7 @@ namespace UI
 							if (ImGui::Button("Set"))
 							{
 								TimeOfDay::Instance->CurrentTime = CurrentWeather->Time;
+								TimeOfDay::Instance->UpdateRate = 0;
 							}
 
 							ImGui::Text("");
@@ -72,13 +73,15 @@ namespace UI
 							ImGui::ColorEdit3("Ambient color", (float*)&weather->AmbientColor, ImGuiColorEditFlags_Float);
 							ImGui::ColorEdit3("Diffuse color", (float*)&weather->DiffuseColor, ImGuiColorEditFlags_Float);
 							ImGui::ColorEdit3("Specular color", (float*)&weather->SpecularColor, ImGuiColorEditFlags_Float);
-							InputFloat("Diffuse intensity", &weather->DiffuseColor.w);
+							InputFloat("Diffuse intensity", &weather->DiffuseIntensity);
+							InputFloat("Ambient intensity", &weather->AmbientIntensity);
 							InputFloat("Specular power", &weather->SpecularPower);
 
 							ImGui::Text("");
 
 							ImGui::ColorEdit4("Cloud color", (float*)&weather->CloudColor, ImGuiColorEditFlags_Float);
 							ImGui::ColorEdit3("Water color", (float*)&weather->WaterColor, ImGuiColorEditFlags_Float);
+							InputFloat("Water specular power", &weather->WaterSpecularPower);
 
 							ImGui::Text("");
 

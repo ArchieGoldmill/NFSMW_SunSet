@@ -3,7 +3,7 @@
 #include "fog.fx"
 
 float cfTimeTicker;
-float3 cvWaterColor;
+float4 cvWaterColor;
 
 texture MISCMAP4_TEXTURE;
 sampler2D MISCMAP4_SAMPLER = sampler_state
@@ -70,7 +70,7 @@ float4 PS_Water(PS_WATER IN) : COLOR
 	float3 reflectionSample = tex2D(REFLECTEDTEX_SAMPLER, saturate(screenUV + normal.rg * 0.1)).rgb;
 	
 	float3 lightDir = normalize(LocalLightVec);
-	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view));
+	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view), cvWaterColor.a);
 	
 	float4 final = float4(reflectionSample * 0.5 + reflectionSampleMain * 0.6, 1);
 	final.rgb *= cvWaterColor.rgb;

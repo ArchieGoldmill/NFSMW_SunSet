@@ -94,10 +94,8 @@ private:
 
 			this->current.AmbientColor.w = this->LightsOn() ? 1.0f : 0.0f;
 			this->current.SpecularColor.w = this->current.SpecularPower;
-			D3DXVECTOR4 diffuseColor = this->current.DiffuseColor * this->current.DiffuseColor.w;
-			diffuseColor.w = 0;
 
-			e->SetVector(ShaderParam::cvDiffuseColor, &diffuseColor);
+			e->SetVector(ShaderParam::cvDiffuseColor, &this->current.DiffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &this->current.AmbientColor);
 			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
 			e->SetVector(ShaderParam::cvFogColor, &this->current.FogColor);
@@ -108,8 +106,10 @@ private:
 
 	void LerpWeather(WeatherData* a, WeatherData* b, float t)
 	{
-		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t);
-		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t);
+		this->current.DiffuseIntensity = std::lerp(a->DiffuseIntensity, b->DiffuseIntensity, t);
+		this->current.AmbientIntensity = std::lerp(a->AmbientIntensity, b->AmbientIntensity, t);
+		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t) * this->current.DiffuseIntensity;
+		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t) * this->current.AmbientIntensity;
 		this->current.SpecularColor = LerpVector(a->SpecularColor, b->SpecularColor, t);
 		this->current.SpecularPower = std::lerp(a->SpecularPower, b->SpecularPower, t);
 
@@ -129,7 +129,9 @@ private:
 		this->current.TextureLightPower = std::lerp(a->TextureLightPower, b->TextureLightPower, t);
 
 		this->current.CloudColor = LerpVector(a->CloudColor, b->CloudColor, t);
+
 		this->current.WaterColor = LerpVector(a->WaterColor, b->WaterColor, t);
+		this->current.WaterSpecularPower = std::lerp(a->WaterSpecularPower, b->WaterSpecularPower, t);
 	}
 
 	void UpdateWeather()
@@ -338,6 +340,8 @@ private:
 	{
 		if (this->Water && Game::ReflectionTexture)
 		{
+			this->current.WaterColor.w = this->current.WaterSpecularPower;
+
 			auto waterShader = eEffect::Get(shader_type::WorldShader);
 			waterShader->SetVector(ShaderParam::cvRainParams, &rainParams);
 			waterShader->SetVector(ShaderParam::cvWaterColor, &this->current.WaterColor);

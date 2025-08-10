@@ -22,7 +22,6 @@ struct PS_INPUT
 	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
-	float3 view : TEXCOORD2;
 };
 
 PS_INPUT VS_Base(VS_INPUT IN)
@@ -35,7 +34,6 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.normal = IN.normal;
 	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
 	OUT.color = vertex_color(IN.color);
-	OUT.view = vertex_view(IN.position.xyz);
 	
 	return OUT;
 }
@@ -52,16 +50,13 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float ndotl = dot(normal, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
-	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view));
+	float3 diffuse = GetDiffuse(ndotl);
 	
 	float3 finalLight = IN.color.rgb + diffuse * shadow + spotlight.Diffuse;
 	
 	float4 final = diffuse_tex;
 	final.a *= IN.color.a;
 	final.rgb *= finalLight;
-	final.rgb += specular * shadow * diffuse_tex.a;
-	final.rgb += spotlight.Specular * diffuse_tex.a;
 	
 	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG

@@ -56,6 +56,7 @@ struct PS_INPUT
 	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
+	float3 view : TEXCOORD2;
 };
 
 PS_INPUT VS_Base(VS_INPUT IN)
@@ -68,7 +69,8 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.normal.xyz = normalize(IN.normal);
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
-	OUT.color = saturate(IN.color * 1.2);
+	OUT.color = IN.color;
+	OUT.view = vertex_view(IN.position.xyz);
 	
 	return OUT;
 }
@@ -78,7 +80,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 envmapMin, specularMin;
 	float3 normal = ApplyRainDrops(IN.local_pos.xyz, normalize(IN.normal.xyz), envmapMin, specularMin);
 	
-	float3 view = LocalEyePos.xyz - IN.local_pos.xyz;
+	float3 view = IN.view;
 	float viewLen = length(view);
 	float3 nview = normalize(view);
 	
@@ -96,14 +98,14 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float4 diffuse_scale = DiffuseMin + vdotn * DiffuseRange;
 	
-	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, 150, IN.spotlight.rgb);
+	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, SpecularPower * 5, IN.spotlight.rgb);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(IN.normal.xyz, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(flake_normal, lightDir, IN.local_pos.xyz);
+	float3 specular = GetSpecular(flake_normal, lightDir, nview, SpecularPower);
 	
 	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
 	float env_vdotn = pow(vdotn, EnvmapPower);
@@ -113,11 +115,10 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float spec_vdotn = pow(vdotn, SpecularPower);
 	float3 spec_scale = specularMin + spec_vdotn * SpecularRange.rgb;
 	
-	float3 finalLight = cvAmbientColor.rgb + diffuse * shadow + light.Diffuse;
+	float3 finalLight = IN.color.rgb * (cvAmbientColor.rgb + diffuse * shadow) + light.Diffuse;
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;
-	final.rgb *= IN.color.r;
 	final.rgb *= finalLight;
 	final.rgb += lerp(0.0, 0.05, flakeNoise.r * cfMetallicScale) * saturate(1.2 - viewLen * 0.15);
 	final.rgb += envmap_sample * diffuse_scale.a;

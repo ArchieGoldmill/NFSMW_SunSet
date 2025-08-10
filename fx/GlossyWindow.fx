@@ -48,10 +48,21 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	return OUT;
 }
 
+float3 GetWindowReflection(float3 nview, float3 normal, float2 uv, float alpha)
+{
+	float3 vR = reflect(nview, normal);
+	
+	float2 vCylinderMap;
+	vCylinderMap.x = atan2(vR.y, vR.x);
+	vCylinderMap.y = uv.y;
+	
+	return tex2D(reflected_sampler, vCylinderMap).rgb * alpha / 2;
+}
+
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
 	float3 normal = normalize(IN.normal);
-	float3 view = normalize(IN.view);
+	float3 nview = normalize(IN.view);
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
@@ -64,25 +75,24 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float ndotl = dot(normal, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
-	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(normal, lightDir, view, lerp(cvSpecularColor.w, 1, reflect_scale));
+	float3 diffuse = GetDiffuse(ndotl);
+	float3 specular = GetSpecular(normal, lightDir, nview, 10);
 	
 	float3 finalLight = IN.color.rgb + diffuse * shadow + light.Diffuse;
-	finalLight = lerp(finalLight, float3(1, 0.8, 0.6) * 5, reflect_scale * cvAmbientColor.w);
-	albedo = lerp(albedo, albedo.rrr, reflect_scale * cvAmbientColor.w);
 	
-	float3 vR = reflect(view, normal);
+	float3 windowGlowColor = float3(1, 0.8, 0.6) * 5;
+	float windowGlow = reflect_scale * cvAmbientColor.w;
 	
-	float2 vCylinderMap;
-	vCylinderMap.x = atan2(vR.y, vR.x);
-	vCylinderMap.y = IN.uv.y;
-	float4 reflection = tex2D(reflected_sampler, vCylinderMap);
+	finalLight = lerp(finalLight, windowGlowColor, windowGlow);
+	albedo = lerp(albedo, albedo.rrr, windowGlow);
+	
+	float3 reflection = GetWindowReflection(nview, normal, IN.uv, diffuse_tex.a);
 	
 	float3 final = albedo;
+	final.rgb += reflection * (1 - cvAmbientColor.w);
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * reflect_scale;
 	final.rgb += light.Specular * reflect_scale;
-	final.rgb += reflection.rgb * diffuse_tex.a * (1 - cvAmbientColor.w) * shadow;
 	
 	APPLY_FOG
 	

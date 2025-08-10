@@ -8,6 +8,22 @@ float4 cvBrightness;
 float4 cvAmbientColor;
 float4 cvDiffuseColor;
 
+texture SpecularMap : SPECULARMAPTEXTURE;
+sampler SPECULARMAP_SAMPLER = sampler_state
+{
+	Texture = <SpecularMap>;
+	AddressU = WRAP;
+	AddressV = WRAP;
+	MIPFILTER = LINEAR;
+	MINFILTER = LINEAR;
+	MAGFILTER = LINEAR;
+};
+
+float GetSpecularMap(float2 uv)
+{
+	return tex2D(SPECULARMAP_SAMPLER, uv).r;
+}
+
 float3 GetSpecular(float3 normal, float3 lightDir, float3 view, float power)
 {
 	float3 reflectDir = normalize(reflect(-lightDir, normal));
@@ -18,6 +34,12 @@ float3 GetSpecular(float3 normal, float3 lightDir, float3 view, float power)
 float3 GetSpecular(float3 normal, float3 lightDir, float3 view)
 {
 	return GetSpecular(normal, lightDir, view, cvSpecularColor.w);
+}
+
+float3 GetDiffuse(float ndotl)
+{
+	float halfLambert = saturate(ndotl);
+	return halfLambert * cvDiffuseColor.rgb;
 }
 
 float4 vertex_color(float4 color)

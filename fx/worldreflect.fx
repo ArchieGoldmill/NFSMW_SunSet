@@ -75,17 +75,6 @@ sampler2D MISCMAP3_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
-texture SpecularMap : SPECULARMAPTEXTURE;
-sampler SPECULARMAP_SAMPLER = sampler_state
-{
-	Texture = <SpecularMap>;
-	AddressU = WRAP;
-	AddressV = WRAP;
-	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
-};
-
 PS_INPUT VS_Base(VS_INPUT IN)
 {
 	PS_INPUT OUT;
@@ -123,7 +112,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3x3 tbn = float3x3(tangent, cross(normal, tangent), normal);
 	normal = normalize(mul(normalize(roadDetail), tbn));
 	
-	float specMap = tex2D(SPECULARMAP_SAMPLER, IN.uv).r;
+	float specMap = GetSpecularMap(IN.uv);
 
 	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(10, 60, specMap), IN.spotlight.rgb);
 
@@ -134,8 +123,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float ndotl = dot(normal, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
-	float3 diffuse = ndotl * cvDiffuseColor.rgb;
-	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view)) * specMap;
+	float3 diffuse = GetDiffuse(ndotl);
+	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view)) * saturate(specMap + 0.25);
 	
 	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
 	float reflMin = 1 - smoothstep(0, 0.2, length(cvDiffuseColor.rgb));
@@ -170,7 +159,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final += reflection_sample * reflectance;
 	
 	APPLY_FOG
-	
+
 	return float4(final, 1);
 }
 

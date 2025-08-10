@@ -48,10 +48,10 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 normal = ApplyNormalMap(normalize(IN.normal), normalize(IN.tangent), IN.uv);
 	
 	float3 lightDir = normalize(LocalLightVec);
-	float ndotl = dot(normal, lightDir);
+	float ndotl = saturate(dot(normal, lightDir));
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
-	float3 diffuse = ndotl * cvDiffuseColor.rgb;
+	float3 diffuse = GetDiffuse(ndotl);
 	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view));
 	SpotLightResult spotlight = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
 	
@@ -59,11 +59,13 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
+	float specMap = GetSpecularMap(IN.uv);
+	
 	float4 final = diffuse_tex;
 	final.a *= IN.color.a;
 	final.rgb *= finalLight;
-	final.rgb += specular * shadow * diffuse_tex.a;
-	final.rgb += spotlight.Specular * diffuse_tex.a;
+	final.rgb += specular * shadow * specMap;
+	final.rgb += spotlight.Specular * specMap;
 	
 	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG

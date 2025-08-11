@@ -15,8 +15,8 @@ D3DXVECTOR3 GetPlayerPos()
 			auto carRenderInfo = renderConn->pCarRenderInfo;
 			if (carRenderInfo)
 			{
-				int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
-				if (renderUsage == 0)
+				auto renderUsage = carRenderInfo->pRideInfo->mCarRenderUsage;
+				if (renderUsage == CarRenderUsage::Player)
 				{
 					auto matrix = &renderConn->Matrix1;
 					return { matrix->_41, matrix->_42, matrix->_43 };

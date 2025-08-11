@@ -1,6 +1,19 @@
 #pragma once
 #include "Utilities.h"
 
+enum class CarRenderUsage
+{
+	Player = 0,
+	RemotePlayer = 1,
+	AIRacer = 2,
+	AICop = 3,
+	AITraffic = 4,
+	AIHeli = 5,
+	NISCar = 6,
+	Ghost = 7,
+	Invalid = 8
+};
+
 struct RideInfo
 {
 	int Type;
@@ -29,7 +42,7 @@ struct RideInfo
 	char Padding_2FF[1];
 	void* PreviewPart;
 	int mMyCarLoaderHandle;
-	int mMyCarRenderUsage;
+	CarRenderUsage mCarRenderUsage;
 	char mSpecialLODBehavior;
 	char Padding_30D[3];
 };

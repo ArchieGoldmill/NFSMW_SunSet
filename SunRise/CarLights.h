@@ -6,6 +6,7 @@
 #include "FrontEndRenderingCar.h"
 #include "HelicopterLight.h"
 #include "Weather.h"
+#include "PVehicle.h"
 
 void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& temp, float offset, D3DXMATRIX* matrix, SpotLightSource source)
 {
@@ -57,8 +58,8 @@ void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix)
 
 	LightFlare* flare = carRenderInfo->LightFlares;
 
-	int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
-	bool isPlayer = renderUsage == 0;
+	auto renderUsage = carRenderInfo->pRideInfo->mCarRenderUsage;
+	bool isPlayer = renderUsage == CarRenderUsage::Player;
 
 	auto headlightOn = carRenderInfo->IsLightOn(VehicleFX_HEADLIGHTS);
 	if (headlightOn)
@@ -75,6 +76,25 @@ void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix)
 	PopulateCarLight(carRenderInfo, Hashes::RIGHT_BRAKELIGHT, temp, -0.1, matrix, source);
 }
 
+bool IsRoadBlockCar(VehicleRenderConn* renderConn)
+{
+	auto sim = (int*)renderConn->SimCon;
+	if (sim)
+	{
+		auto pVehicle = (PVehicle*)sim[0x12];
+		if (pVehicle)
+		{
+			auto aiVehicle = pVehicle->GetAIVehiclePtr();
+			if (aiVehicle)
+			{
+				return aiVehicle->GetRoadBlock() != NULL;
+			}
+		}
+	}
+
+	return false;
+}
+
 void PopulateCarSpotLights()
 {
 	if (Game::State == 6)
@@ -87,14 +107,23 @@ void PopulateCarSpotLights()
 				auto carRenderInfo = renderConn->pCarRenderInfo;
 				if (carRenderInfo)
 				{
-					int renderUsage = carRenderInfo->pRideInfo->mMyCarRenderUsage;
-					if (renderUsage == 5)
+					auto renderUsage = carRenderInfo->pRideInfo->mCarRenderUsage;
+					if (renderUsage == CarRenderUsage::AIHeli)
 					{
 						AddHelicopterLight(renderConn->Matrix);
 					}
 					else
 					{
-						PopulateCarSpotLights(carRenderInfo, &renderConn->Matrix1);
+						bool populate = true;
+						if (renderUsage == CarRenderUsage::AICop)
+						{
+							populate = !IsRoadBlockCar(renderConn);
+						}
+
+						if (populate)
+						{
+							PopulateCarSpotLights(carRenderInfo, &renderConn->Matrix1);
+						}
 					}
 				}
 			}

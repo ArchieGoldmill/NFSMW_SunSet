@@ -8,7 +8,7 @@ struct VehicleRenderConn
 
 	int vTable;
 	int field_4;
-	int field_8;
+	void* SimCon;
 	int field_C;
 	int field_10;
 	int field_14;

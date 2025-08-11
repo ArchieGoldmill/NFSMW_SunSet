@@ -274,6 +274,12 @@
     <ClInclude Include="UISpotlights.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="MotionBlur.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="PVehicle.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

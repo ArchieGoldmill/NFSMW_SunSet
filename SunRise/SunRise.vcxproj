@@ -218,7 +218,9 @@
     <ClInclude Include="minhook\hde\table64.h" />
     <ClInclude Include="minhook\MinHook.h" />
     <ClInclude Include="minhook\trampoline.h" />
+    <ClInclude Include="MotionBlur.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PVehicle.h" />
     <ClInclude Include="Rain.h" />
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="RenderTarget.h" />

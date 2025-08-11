@@ -7,6 +7,7 @@
 #include "LightFlares.h"
 #include "Weather.h"
 #include "Time.h"
+#include "MotionBlur.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -180,6 +181,7 @@ void InitHooks()
 {
 	InitLightFlares();
 	InitTime();
+	InitMotionBlur();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 
@@ -214,6 +216,9 @@ void InitHooks()
 		injector::MakeNOP(0x006C1841, 5);
 		Game::X360EffectsEnable = true;
 	}
+
+	// Improve reflection lods
+	injector::WriteMemory<uint32_t>(0x6BFEBD, 0x00006002, true);
 
 	//injector::MakeNOP(0x006C2206, 10);
 }

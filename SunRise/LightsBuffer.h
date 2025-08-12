@@ -5,7 +5,7 @@
 SpotLightModel SpotLightBuffer[NUM_SPOTLIGHTS_BUFFER];
 int NumSpotLightBuffer = 0;
 
-void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare)
+void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare, float flareIntecity = 1.0)
 {
 	if (spotLight.Color == D3DXVECTOR3(0, 0, 0))
 	{
@@ -53,6 +53,7 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 	spotLightModel.Light = spotLight;
 	spotLightModel.Source = source;
 	spotLightModel.Flare = flare;
+	spotLightModel.FlareIntecity = flareIntecity;
 
 	SpotLightBuffer[NumSpotLightBuffer] = spotLightModel;
 	NumSpotLightBuffer++;

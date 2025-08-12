@@ -8,6 +8,7 @@ namespace UI
 {
 	WeatherConfig* CurrentWeather = NULL;
 	bool isRain = false;
+	WeatherData CopyData;
 
 	void DrawWeather()
 	{
@@ -40,6 +41,7 @@ namespace UI
 				{
 					if (CurrentWeather)
 					{
+						auto weather = isRain ? &CurrentWeather->Rain : &CurrentWeather->Main;
 
 						if (SelectableButton("Main", { 0, 0 }, !isRain))
 						{
@@ -55,10 +57,23 @@ namespace UI
 						ImGui::SameLine();
 						ImGui::Checkbox("Force rain", Game::ForceRain);
 
-						if (ImGui::BeginChild("##MaterialList", ImGui::GetContentRegionAvail(), false, 0))
+						ImGui::SameLine();
+						ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 50);
+						if (ImGui::Button("Copy"))
 						{
-							auto weather = isRain ? &CurrentWeather->Rain : &CurrentWeather->Main;
+							CopyData = *weather;
+						}
 
+						ImGui::SameLine();
+						if (ImGui::Button("Paste"))
+						{
+							*weather = CopyData;
+						}
+
+						ImGui::Text("");
+
+						if (ImGui::BeginChild("##WeatherDataEditor", ImGui::GetContentRegionAvail(), false, 0))
+						{
 							InputFloat("Time", &CurrentWeather->Time);
 
 							ImGui::SameLine();

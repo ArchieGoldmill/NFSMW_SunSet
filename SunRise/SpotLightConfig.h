@@ -68,8 +68,8 @@ void LoadSpotLightConfig()
 	{
 		SolidLights solid;
 
-		solid.LodA.SetString(lightNode["Solid"].as<std::string>());
-		solid.LodB.SetString(lightNode["SolidLod"].as<std::string>());
+		solid.LodA.SetString(lightNode["SolidLodA"].as<std::string>());
+		solid.LodB.SetString(lightNode["SolidLodB"].as<std::string>());
 		solid.Blink = YmlGet(lightNode, "Blink", 0);
 		solid.AlwaysOn = YmlGet(lightNode, "AlwaysOn", false);
 		solid.Flare = GetFlareModel(lightNode);
@@ -135,8 +135,8 @@ void SaveSpotLightConfig()
 		SaveSpotlights(spotlights, solidLight.Lights);
 
 		YAML::Node node;
-		node["Solid"] = solidLight.LodA.GetString();
-		node["SolidLod"] = solidLight.LodB.GetString();
+		node["SolidLodA"] = solidLight.LodA.GetString();
+		node["SolidLodB"] = solidLight.LodB.GetString();
 		node["Blink"] = solidLight.Blink;
 		node["AlwaysOn"] = solidLight.AlwaysOn;
 		node["Flare"] = solidLight.Flare ? solidLight.Flare->Name : "";

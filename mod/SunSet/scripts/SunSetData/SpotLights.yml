@@ -143,9 +143,10 @@ FrontEndLights:
         Intensity: 3
         Range: 20
 SolidLights:
-  - Solid: XO_STREETLIGHTD2_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_STREETLIGHTD2_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, -6, 12.6999998]
@@ -155,9 +156,10 @@ SolidLights:
         OuterAngle: 75
         Intensity: 5
         Range: 30
-  - Solid: XO_LIGHTPOSTB_1A_00
-    SolidLod: ""
+  - SolidLodA: XO_LIGHTPOSTB_1A_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -3.8499999, 9.89999962]
@@ -174,9 +176,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 25
-  - Solid: XO_LIGHTPOSTB_WALL_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_LIGHTPOSTB_WALL_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -3.8499999, 8.69999981]
@@ -193,9 +196,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_TRAFFICLIGHTA_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_TRAFFICLIGHTA_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.39999962]
@@ -205,9 +209,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_TRAFFICLIGHTB_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_TRAFFICLIGHTB_1B_00
+    SolidLodB: XO_TRAFFICLIGHTB_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.10000038]
@@ -217,9 +222,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_STREETLIGHTG_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_STREETLIGHTG_1B_00
+    SolidLodB: XO_STREETLIGHTG_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 7]
@@ -229,9 +235,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_STREETLIGHTC_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_STREETLIGHTC_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.19999981]
@@ -241,9 +248,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_STREETLIGHTM_1B_DW_00
-    SolidLod: XO_STREETLIGHTM_1C_DW_00
+  - SolidLodA: XO_STREETLIGHTM_1B_DW_00
+    SolidLodB: XO_STREETLIGHTM_1C_DW_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 7.0999999]
@@ -253,9 +261,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_IRONLAMPHANGING_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_IRONLAMPHANGING_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -3.29999995, 7.4000001]
@@ -265,9 +274,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_STREETLIGHTJ_1B_00
-    SolidLod: XO_STREETLIGHTJ_1C_00
+  - SolidLodA: XO_STREETLIGHTJ_1B_00
+    SolidLodB: XO_STREETLIGHTJ_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 4.5]
@@ -277,9 +287,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_LIGHTPOSTA_1A_00
-    SolidLod: ""
+  - SolidLodA: XO_LIGHTPOSTA_1A_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -4.19999981, 9.5]
@@ -289,9 +300,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_STREETLIGHTCB_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_STREETLIGHTCB_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -6, 9.80000019]
@@ -301,9 +313,10 @@ SolidLights:
         OuterAngle: 55
         Intensity: 4
         Range: 30
-  - Solid: XO_LIGHTPOLEA_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_LIGHTPOLEA_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0.5, -0.5, 8.5]
@@ -313,9 +326,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_PARKLAMPA_1B_00
-    SolidLod: XO_PARKLAMPA_1C_00
+  - SolidLodA: XO_PARKLAMPA_1B_00
+    SolidLodB: XO_PARKLAMPA_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 4.5999999]
@@ -325,9 +339,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XO_IRONLAMPSTANDING_1B_00
-    SolidLod: XO_IRONLAMPSTANDING_1C_00
+  - SolidLodA: XO_IRONLAMPSTANDING_1B_00
+    SolidLodB: XO_IRONLAMPSTANDING_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 5.0999999]
@@ -337,9 +352,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 10
-  - Solid: XO_STREETLIGHTD_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_STREETLIGHTD_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -6, 12.8000002]
@@ -349,9 +365,10 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-  - Solid: XS_FWY_2FRAME_1B_EA_00
-    SolidLod: XS_FWY_2FRAME_1Z_EA_00
+  - SolidLodA: XS_FWY_2FRAME_1B_EA_00
+    SolidLodB: XS_FWY_2FRAME_1Z_EA_00
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, -4.5, -2]
@@ -361,9 +378,10 @@ SolidLights:
         OuterAngle: 60
         Intensity: 5
         Range: 10
-  - Solid: XS_FWY_3FRAME_1B_EA_00
-    SolidLod: XS_FWY_3FRAME_1Z_EA_00
+  - SolidLodA: XS_FWY_3FRAME_1B_EA_00
+    SolidLodB: XS_FWY_3FRAME_1Z_EA_00
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, -4.5, -4]
@@ -373,9 +391,10 @@ SolidLights:
         OuterAngle: 60
         Intensity: 5
         Range: 10
-  - Solid: XO_IF_POWERLIGHTA_1A_LL_00
-    SolidLod: ""
+  - SolidLodA: XO_IF_POWERLIGHTA_1A_LL_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -5.19999981, 7.69999981]
@@ -385,9 +404,10 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 15
-  - Solid: XO_CP_STREETLIGHT_1B_DW_00
-    SolidLod: ""
+  - SolidLodA: XO_CP_STREETLIGHT_1B_DW_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 7.0999999]
@@ -397,9 +417,10 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 15
-  - Solid: XO_IRONLAMPSTANDINGB_1B_00
-    SolidLod: XO_IRONLAMPSTANDINGB_1C_00
+  - SolidLodA: XO_IRONLAMPSTANDINGB_1B_00
+    SolidLodB: XO_IRONLAMPSTANDINGB_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 5.0999999]
@@ -409,9 +430,10 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 15
-  - Solid: XO_MEGALIGHTC_1B_00
-    SolidLod: XO_MEGALIGHTC_1C_00
+  - SolidLodA: XO_MEGALIGHTC_1B_00
+    SolidLodB: XO_MEGALIGHTC_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 40.0999985]
@@ -421,9 +443,10 @@ SolidLights:
         OuterAngle: 35
         Intensity: 5
         Range: 55
-  - Solid: XO_COURTLIGHTA_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_COURTLIGHTA_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 4.30000019]
@@ -433,9 +456,10 @@ SolidLights:
         OuterAngle: 70
         Intensity: 5
         Range: 15
-  - Solid: XO_STREETLIGHT_ITALYJG_2B_00
-    SolidLod: ""
+  - SolidLodA: XO_STREETLIGHT_ITALYJG_2B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.30000019]
@@ -445,9 +469,10 @@ SolidLights:
         OuterAngle: 70
         Intensity: 5
         Range: 45
-  - Solid: XO_STREETLIGHT_ITALYJG_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_STREETLIGHT_ITALYJG_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.30000019]
@@ -457,9 +482,10 @@ SolidLights:
         OuterAngle: 70
         Intensity: 5
         Range: 45
-  - Solid: XO_POLICEPOSTMM_1B_00
-    SolidLod: XO_POLICEPOSTMM_1C_00
+  - SolidLodA: XO_POLICEPOSTMM_1B_00
+    SolidLodB: XO_POLICEPOSTMM_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 2.5]
@@ -469,9 +495,10 @@ SolidLights:
         OuterAngle: 70
         Intensity: 5
         Range: 45
-  - Solid: XO_SAWHORSE_1B_00
-    SolidLod: XO_SAWHORSE_1C_00
+  - SolidLodA: XO_SAWHORSE_1B_00
+    SolidLodB: XO_SAWHORSE_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, -1.39999998, 1.10000002]
@@ -488,9 +515,10 @@ SolidLights:
         OuterAngle: 90
         Intensity: 3
         Range: 5
-  - Solid: XO_TUNNEL_LIGHT_LONG_1B_00_DEINST1_Q10
-    SolidLod: ""
+  - SolidLodA: XO_TUNNEL_LIGHT_LONG_1B_00_DEINST1_Q10
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, 0.5, -2]
@@ -500,9 +528,10 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 35
-  - Solid: XS_CHEVRCNRA_1_00
-    SolidLod: ""
+  - SolidLodA: XS_CHEVRCNRA_1_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: Chevron
     SpotLights:
       - Position: [-0.600000024, -0.600000024, 6.30000019]
@@ -512,9 +541,10 @@ SolidLights:
         OuterAngle: 180
         Intensity: 5
         Range: 15
-  - Solid: XS_MEDIANPOLER_1B_00
-    SolidLod: XS_MEDIANPOLER_1C_00
+  - SolidLodA: XS_MEDIANPOLER_1B_00
+    SolidLodB: XS_MEDIANPOLER_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: Chevron
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -524,9 +554,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 15
-  - Solid: XS_MEDIANPOLE_1B_00
-    SolidLod: ""
+  - SolidLodA: XS_MEDIANPOLE_1B_00
+    SolidLodB: ""
     Blink: 2
+    AlwaysOn: false
     Flare: Chevron
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -536,9 +567,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
-  - Solid: XS_MEDIANPOLE_1B_LZ_00
-    SolidLod: ""
+  - SolidLodA: XS_MEDIANPOLE_1B_LZ_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: Chevron
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -548,9 +580,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 9
-  - Solid: XS_MEDIANPOLEGREEN_1B_CK_00
-    SolidLod: ""
+  - SolidLodA: XS_MEDIANPOLEGREEN_1B_CK_00
+    SolidLodB: ""
     Blink: 3
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -560,9 +593,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
-  - Solid: XO_GASSTATIONPRICESIGN_MM_1A_00
-    SolidLod: XO_GASSTATIONPRICESIGN_MM_1C_00
+  - SolidLodA: XO_GASSTATIONPRICESIGN_MM_1A_00
+    SolidLodB: XO_GASSTATIONPRICESIGN_MM_1C_00
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2]
@@ -572,9 +606,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 35
-  - Solid: XO_POPMACHINE_RUSH_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_POPMACHINE_RUSH_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2]
@@ -584,9 +619,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
-  - Solid: XO_POPMACHINE_FRISKY_1B_00
-    SolidLod: ""
+  - SolidLodA: XO_POPMACHINE_FRISKY_1B_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2]
@@ -596,9 +632,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
-  - Solid: XO_CARWASHTICKET_1B_EA_00
-    SolidLod: ""
+  - SolidLodA: XO_CARWASHTICKET_1B_EA_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, -1, 1.29999995]
@@ -608,9 +645,10 @@ SolidLights:
         OuterAngle: 60
         Intensity: 5
         Range: 4
-  - Solid: XB_FERRISWHEEL_1A_00
-    SolidLod: ""
+  - SolidLodA: XB_FERRISWHEEL_1A_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 26]
@@ -620,9 +658,10 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 50
-  - Solid: XB_BLUESTRIPGASS_1A_00
-    SolidLod: ""
+  - SolidLodA: XB_BLUESTRIPGASS_1A_00
+    SolidLodB: ""
     Blink: 0
+    AlwaysOn: false
     Flare: ""
     SpotLights:
       - Position: [-10, 6.5, 3]

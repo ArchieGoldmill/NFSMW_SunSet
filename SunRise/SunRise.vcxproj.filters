@@ -280,6 +280,9 @@
     <ClInclude Include="PVehicle.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="HashField.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

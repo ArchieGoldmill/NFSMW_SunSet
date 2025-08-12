@@ -196,6 +196,7 @@
     <ClInclude Include="GridCuller.h" />
     <ClInclude Include="Hashes.h" />
     <ClInclude Include="eLightFlareParams.h" />
+    <ClInclude Include="HashField.h" />
     <ClInclude Include="HelicopterLight.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="imgui\imconfig.h" />

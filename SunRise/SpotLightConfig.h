@@ -67,15 +67,11 @@ void LoadSpotLightConfig()
 	for (const auto& lightNode : spotLights)
 	{
 		SolidLights solid;
-		solid.NameA = lightNode["Solid"].as<std::string>();
-		solid.HashA = Game::bStringHash(solid.NameA.c_str());
 
-		solid.NameB = lightNode["SolidLod"].as<std::string>();
-		solid.HashB = Game::bStringHash(solid.NameB.c_str());
-
+		solid.LodA.SetString(lightNode["Solid"].as<std::string>());
+		solid.LodB.SetString(lightNode["SolidLod"].as<std::string>());
 		solid.Blink = YmlGet(lightNode, "Blink", 0);
 		solid.AlwaysOn = YmlGet(lightNode, "AlwaysOn", false);
-
 		solid.Flare = GetFlareModel(lightNode);
 
 		const auto& spotLights = lightNode["SpotLights"];
@@ -139,8 +135,8 @@ void SaveSpotLightConfig()
 		SaveSpotlights(spotlights, solidLight.Lights);
 
 		YAML::Node node;
-		node["Solid"] = solidLight.NameA;
-		node["SolidLod"] = solidLight.NameB;
+		node["Solid"] = solidLight.LodA.GetString();
+		node["SolidLod"] = solidLight.LodB.GetString();
 		node["Blink"] = solidLight.Blink;
 		node["AlwaysOn"] = solidLight.AlwaysOn;
 		node["Flare"] = solidLight.Flare ? solidLight.Flare->Name : "";

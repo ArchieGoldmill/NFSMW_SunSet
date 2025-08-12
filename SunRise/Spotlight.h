@@ -5,6 +5,7 @@
 #include "Utilities.h"
 #include "eLightFlareParams.h"
 #include "TextureInfo.h"
+#include "HashField.h"
 
 struct SpotLightShader
 {
@@ -58,12 +59,14 @@ struct SpotLightModel
 
 struct SolidLights
 {
-	Hash HashA = 0;
-	Hash HashB = 0;
-	std::string NameA;
-	std::string NameB;
+	HashField LodA;
+	HashField LodB;
+
 	FlareModel* Flare = NULL;
+
 	std::vector<SpotLight> Lights;
+
 	int Blink;
+
 	bool AlwaysOn = false;
 };

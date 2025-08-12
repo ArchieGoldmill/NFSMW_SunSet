@@ -26,10 +26,8 @@ namespace UI
 					if (ImGui::Button("Add##Solid", { 60, 20 }))
 					{
 						SolidLights solidLights;
-						solidLights.NameA = "SOLID_A";
-						solidLights.HashA = Game::bStringHash(solidLights.NameA.c_str());
-						solidLights.NameB = "";
-						solidLights.HashB = Game::bStringHash(solidLights.NameA.c_str());
+						solidLights.LodA.SetString("SOLID_A");
+						solidLights.LodB.SetString("");
 						solidLights.Blink = 0;
 						solidLights.Flare = GetFlareModel("LampPost");
 
@@ -61,7 +59,7 @@ namespace UI
 						for (int i = 0; i < SolidLightsList.size(); i++)
 						{
 							auto& solidLights = SolidLightsList[i];
-							if (SelectableButton(solidLights.NameA.c_str(), { 200, 20 }, CurrentSolid == &solidLights))
+							if (SelectableButton(solidLights.LodA.GetChar(), {200, 20}, CurrentSolid == &solidLights))
 							{
 								CurrentSolidNum = i;
 								CurrentSolid = &solidLights;
@@ -111,18 +109,16 @@ namespace UI
 				{
 					if (CurrentSolid)
 					{
-						strcpy(SolidLodBufferA, CurrentSolid->NameA.c_str());
+						strcpy(SolidLodBufferA, CurrentSolid->LodA.GetChar());
 						if (ImGui::InputText("Lod A", SolidLodBufferA, 256))
 						{
-							CurrentSolid->NameA = SolidLodBufferA;
-							CurrentSolid->HashA = Game::bStringHash(SolidLodBufferA);
+							CurrentSolid->LodA.SetString(SolidLodBufferA);
 						}
 
-						strcpy(SolidLodBufferB, CurrentSolid->NameB.c_str());
+						strcpy(SolidLodBufferB, CurrentSolid->LodB.GetChar());
 						if (ImGui::InputText("Lod B", SolidLodBufferB, 256))
 						{
-							CurrentSolid->NameB = SolidLodBufferB;
-							CurrentSolid->HashB = Game::bStringHash(SolidLodBufferB);
+							CurrentSolid->LodB.SetString(SolidLodBufferB);
 						}
 
 						ImGui::Text("");

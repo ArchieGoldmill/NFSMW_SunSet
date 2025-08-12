@@ -55,7 +55,6 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.a *= IN.color.a;
 	final.rgb *= finalLight;
 	
-	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG
 	
 	return final;

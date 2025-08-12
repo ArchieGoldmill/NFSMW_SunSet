@@ -4,9 +4,9 @@ sampler NORMALMAP_SAMPLER = sampler_state
 	Texture = <NormalMapTexture>;
 	AddressU = WRAP;
 	AddressV = WRAP;
-	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
+	MIPFILTER = <BaseTextureFilterParam>;
+	MINFILTER = <BaseMinTextureFilter>;
+	MAGFILTER = <BaseMagTextureFilter>;
 };
 
 float3 ApplyNormalMap(float3 normal, float3 tangent, float2 uv)

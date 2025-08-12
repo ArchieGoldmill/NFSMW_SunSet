@@ -26,6 +26,11 @@ public:
 		return this->str.c_str();
 	}
 
+	Hash GetHash()
+	{
+		return this->hash;
+	}
+
 	bool operator == (Hash hash)
 	{
 		return this->hash == hash;

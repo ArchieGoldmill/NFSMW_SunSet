@@ -1,0 +1,32 @@
+void VS_Prelit(VS_INPUT IN, out PS_INPUT OUT)
+{
+	OUT.position = mul(IN.position, WorldViewProj);
+	OUT.color = IN.color;
+	OUT.uv.xy = IN.tex.xy + TextureOffset.xy;
+	OUT.local_pos = IN.position;
+	OUT.local_pos.w = OUT.position.z;
+}
+
+float4 PS_Prelit(PS_INPUT IN) : COLOR
+{
+	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
+	
+	float4 final = diffuse_tex;
+	final *= IN.color;
+	final.rgb *= cvEmissive.rgb;
+	
+	APPLY_FOG
+	
+	return final;
+}
+
+technique Prelit
+{
+	pass p0
+	{
+		COMMON_PASS_BODY
+
+		VertexShader = compile vs_3_0 VS_Prelit();
+		PixelShader = compile ps_3_0 PS_Prelit();
+	}
+}

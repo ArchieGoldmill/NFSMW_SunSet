@@ -41,6 +41,4 @@ sampler DIFFUSEMAP_SAMPLER = sampler_state
 	SrcBlend = (BaseBlendState[3]); \
 	DestBlend = (BaseBlendState[4]);
 
-#define APPLY_ALPHA_EMISSIVE final.rgb = lerp(final.rgb, final.rgb * cvBrightness.rgb * cvBrightness.a, saturate(cvBrightness.a * diffuse_tex.a));
-
 #endif // GLOBAL_HEADER

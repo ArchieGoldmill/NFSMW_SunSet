@@ -19,4 +19,5 @@ namespace Hashes
 
 	Hash ANM_WATERA_ = 0x636C197D;
 	Hash LAMP_FLARE = 0x4216A8F2;
+	Hash WHITE32X32 = 0xE2C7C5E2;
 }

@@ -48,9 +48,9 @@ sampler2D MISCMAP1_SAMPLER = sampler_state
 	texture = MISCMAP1_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
-	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
+	MIPFILTER = <BaseTextureFilterParam>;
+	MINFILTER = <BaseMinTextureFilter>;
+	MAGFILTER = <BaseMagTextureFilter>;
 };
 
 texture MISCMAP2_TEXTURE;
@@ -59,9 +59,9 @@ sampler2D MISCMAP2_SAMPLER = sampler_state
 	texture = MISCMAP2_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
-	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
+	MIPFILTER = <BaseTextureFilterParam>;
+	MINFILTER = <BaseMinTextureFilter>;
+	MAGFILTER = <BaseMagTextureFilter>;
 };
 
 texture MISCMAP3_TEXTURE;
@@ -70,9 +70,9 @@ sampler2D MISCMAP3_SAMPLER = sampler_state
 	texture = MISCMAP3_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
-	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
+	MIPFILTER = <BaseTextureFilterParam>;
+	MINFILTER = <BaseMinTextureFilter>;
+	MAGFILTER = <BaseMagTextureFilter>;
 };
 
 PS_INPUT VS_Base(VS_INPUT IN)
@@ -104,7 +104,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 normal = ApplyNormalMap(og_normal, normalize(IN.tangent), IN.uv);
 
 	// Apply road detail normal map
-	float3 roadDetail = tex2Dbias(MISCMAP3_SAMPLER, float4(IN.world_pos.xy * 0.6, 0, -1)).rgb * 2 - 1;
+	float3 roadDetail = tex2Dbias(MISCMAP3_SAMPLER, float4(IN.world_pos.xy * 0.6, 0, 0)).rgb * 2 - 1;
 	float3 flatNormal = float3(0.0, 0.0, 1.0);
 	roadDetail = lerp(flatNormal, roadDetail, IN.normal.z);
 	float3 bitangent = cross(normal, float3(1, 0, 0));
@@ -127,6 +127,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view)) * saturate(specMap + 0.25);
 	
 	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
+	puddle_mask = max(puddle_mask, 0.3);
+	puddle_mask *= cvRainParams.y;
 	float reflMin = 1 - smoothstep(0, 0.2, length(cvDiffuseColor.rgb));
 	puddle_mask = max(puddle_mask, 0.05 * reflMin);
 	

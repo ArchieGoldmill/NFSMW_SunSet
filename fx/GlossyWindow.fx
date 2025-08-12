@@ -3,6 +3,7 @@
 #include "lighting.fx"
 #include "spotlights.fx"
 #include "fog.fx"
+#include "emissive.fx"
 
 texture WindowReflection : WINDOWREFLECTION;
 sampler reflected_sampler = sampler_state
@@ -80,11 +81,23 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 finalLight = IN.color.rgb + diffuse * shadow + light.Diffuse;
 	
-	float3 windowGlowColor = float3(1, 0.8, 0.6) * 5;
-	float windowGlow = reflect_scale * cvAmbientColor.w;
+	float3 windowGlowColor;
+	float windowGlowMask;
+	if (cvEmissive.a > 0)
+	{
+		windowGlowMask = tex2D(EMISSIVE_SAMPLER, IN.uv).r;
+		windowGlowColor = cvEmissive.rgb;
+	}
+	else
+	{
+		windowGlowMask = reflect_scale;
+		windowGlowColor = float3(1, 0.8, 0.6) * 5;
+	}
 	
-	finalLight = lerp(finalLight, windowGlowColor, windowGlow);
-	albedo = lerp(albedo, albedo.rrr, windowGlow);
+	windowGlowMask *= cvAmbientColor.w;
+	
+	finalLight = lerp(finalLight, windowGlowColor, windowGlowMask);
+	albedo = lerp(albedo, albedo.rrr, windowGlowMask);
 	
 	float3 reflection = GetWindowReflection(nview, normal, IN.uv, diffuse_tex.a);
 	
@@ -99,5 +112,6 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	return float4(final, 1);
 }
 
+#include "prelit.fx"
 #include "techniques.fx"
 #include "shadowmap.fx"

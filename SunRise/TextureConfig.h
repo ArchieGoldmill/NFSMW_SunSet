@@ -8,9 +8,14 @@ struct PrelitTexture
 {
 	std::string Name;
 	Hash NameHash;
+
+	HashField Mask;
+	TextureInfo* MaskTexture = NULL;
+
 	D3DXVECTOR4 Color = { 1, 1, 1, 1 };
-	bool NightOnly = false;
-	bool AlphaMask = false;
+
+	bool AlwaysOn;
+	bool Prelit;
 
 	void ParseTextureName()
 	{
@@ -22,6 +27,22 @@ struct PrelitTexture
 		{
 			this->NameHash = Game::bStringHash(this->Name.c_str());
 		}
+	}
+
+	TextureInfo* GetMaskTexture()
+	{
+		auto hash = this->Mask.GetHash();
+		if (!hash || hash == -1)
+		{
+			hash = Hashes::WHITE32X32;
+		}
+
+		if (!this->MaskTexture)
+		{
+			this->MaskTexture = TextureInfo::Get(hash, false, false);
+		}
+
+		return this->MaskTexture;
 	}
 };
 
@@ -40,13 +61,13 @@ void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& texture
 		PrelitTexture prelit;
 
 		prelit.Name = node["Name"].as<std::string>();
-		prelit.ParseTextureName();
-
 		prelit.Color = ParseVec3To4(node["Color"]);
 		prelit.Color.w = YmlGet(node, "Brightness", 1.0f);
-		prelit.NightOnly = YmlGet(node, "NightOnly", false);
-		prelit.AlphaMask = YmlGet(node, "AlphaMask", false);
+		prelit.Mask.SetString(node["Mask"].as<std::string>());
+		prelit.AlwaysOn = YmlGet(node, "AlwaysOn", true);
+		prelit.Prelit = YmlGet(node, "Prelit", true);
 
+		prelit.ParseTextureName();
 		textures[prelit.NameHash] = prelit;
 	}
 }
@@ -69,9 +90,10 @@ void SaveTextureConfig()
 
 		node["Name"] = tex.second.Name;
 		node["Brightness"] = tex.second.Color.w;
-		node["NightOnly"] = tex.second.NightOnly;
-		node["AlphaMask"] = tex.second.AlphaMask;
 		node["Color"] = SerializeVector3(tex.second.Color);
+		node["Mask"] = tex.second.Mask.GetString();
+		node["AlwaysOn"] = tex.second.AlwaysOn;
+		node["Prelit"] = tex.second.Prelit;
 
 		list.push_back(node);
 	}

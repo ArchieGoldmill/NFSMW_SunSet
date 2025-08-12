@@ -33,7 +33,7 @@ const char* ShaderParamNames[] =
 	"cvFogColor",
 	"cvFogSunColor",
 	"cvCloudColor",
-	"cvBrightness",
+	"cvEmissive",
 	"cvWaterColor",
 	"cfTimeTicker",
 	"cbUseNormalMap",
@@ -42,6 +42,7 @@ const char* ShaderParamNames[] =
 	"MISCMAP2_TEXTURE",
 	"MISCMAP3_TEXTURE",
 	"MISCMAP4_TEXTURE",
+	"EMISSIVE_TEXTURE",
 };
 
 enum class ShaderParam
@@ -59,7 +60,7 @@ enum class ShaderParam
 	cvFogColor,
 	cvFogSunColor,
 	cvCloudColor,
-	cvBrightness,
+	cvEmissive,
 	cvWaterColor,
 	cfTimeTicker,
 	cbUseNormalMap,
@@ -68,6 +69,7 @@ enum class ShaderParam
 	MISCMAP2_TEXTURE,
 	MISCMAP3_TEXTURE,
 	MISCMAP4_TEXTURE,
+	EMISSIVE_TEXTURE,
 
 	count
 };
@@ -270,10 +272,13 @@ struct eEffect
 
 	void SetTexture(ShaderParam p, TextureInfo* textureInfo)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
-		if (handle)
+		if (textureInfo)
 		{
-			this->D3DEffect->SetTexture(handle, textureInfo->PlatInfo->D3DTexture);
+			auto handle = ShaderParamsMap[this->id].Params[(int)p];
+			if (handle)
+			{
+				this->D3DEffect->SetTexture(handle, textureInfo->PlatInfo->D3DTexture);
+			}
 		}
 	}
 
@@ -329,5 +334,10 @@ struct eEffect
 		{
 			this->D3DEffect->SetBool(handle, v);
 		}
+	}
+	
+	bool HasParam(ShaderParam p)
+	{
+		return ShaderParamsMap[this->id].Params[(int)p] != NULL;
 	}
 };

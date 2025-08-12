@@ -4,7 +4,6 @@
 float4 LocalEyePos : LOCALEYEPOS;
 
 float4 cvSpecularColor;
-float4 cvBrightness;
 float4 cvAmbientColor;
 float4 cvDiffuseColor;
 

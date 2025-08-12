@@ -5,6 +5,7 @@ namespace UI
 	PrelitTexture* CurrentTexture = NULL;
 	char FilterBuff[256] = { 0 };
 	char TextureNameBuff[256] = { 0 };
+	char TextureMaskBuffer[256] = { 0 };
 
 	void DrawTextures()
 	{
@@ -71,10 +72,23 @@ namespace UI
 				{
 					if (CurrentTexture)
 					{
+						ImGui::Checkbox("Prelit", &CurrentTexture->Prelit);
+
 						ImGui::ColorEdit3("Color", (float*)&CurrentTexture->Color, ImGuiColorEditFlags_Float);
 						InputFloat("Brightness", &CurrentTexture->Color.w);
-						ImGui::Checkbox("Alpha mask", &CurrentTexture->AlphaMask);
-						ImGui::Checkbox("Night only", &CurrentTexture->NightOnly);
+
+						ImGui::Checkbox("Always on", &CurrentTexture->AlwaysOn);
+
+						ImGui::BeginDisabled(CurrentTexture->Prelit);
+						{
+							strcpy(TextureMaskBuffer, CurrentTexture->Mask.GetChar());
+							if (ImGui::InputText("Mask texture", TextureMaskBuffer, 256))
+							{
+								CurrentTexture->Mask.SetString(TextureMaskBuffer);
+								CurrentTexture->MaskTexture = NULL;
+							}
+						}
+						ImGui::EndDisabled();
 					}
 				}
 			}

@@ -36,6 +36,9 @@
       <Filter>Header Files</Filter>
     </FxCompile>
     <FxCompile Include="water.fx" />
+    <FxCompile Include="emissive.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

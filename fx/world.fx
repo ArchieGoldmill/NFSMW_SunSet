@@ -4,6 +4,7 @@
 #include "lighting.fx"
 #include "spotlights.fx"
 #include "fog.fx"
+#include "emissive.fx"
 
 struct VS_INPUT
 {
@@ -57,13 +58,14 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float4 final = diffuse_tex;
 	final.a *= IN.color.a;
 	final.rgb *= finalLight;
+	final.rgb += GetEmissive(IN.uv);
 	
-	APPLY_ALPHA_EMISSIVE
 	APPLY_FOG
 	
 	return final;
 }
 
+#include "prelit.fx"
 #include "techniques.fx"
 #include "water.fx"
 #include "shadowmap.fx"

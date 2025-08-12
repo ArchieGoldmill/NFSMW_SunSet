@@ -42,8 +42,7 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 
 inline bool DynamicallyLit(eEffect* effect)
 {
-	auto id = effect->id;
-	return id == shader_type::WorldShader || id == shader_type::WorldReflectShader || id == shader_type::WorldNormalMap || id == shader_type::GlossyWindow || id == shader_type::CarShader || id == shader_type::billboardshader;
+	return effect->HasParam(ShaderParam::caSpotLights);
 }
 
 inline bool DynamicallyLit(RenderModel* model)
@@ -145,33 +144,40 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 			return Technique_Water;
 		}
 
-		D3DXVECTOR4 brightness = { 0,0,0,0 };
+		auto effect = renderModel->Effect;
 
-		bool prelit = false;
-
-		auto prelitTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
-		if (prelitTex != PrelitTextures.end())
+		if (effect->HasParam(ShaderParam::cvEmissive))
 		{
-			prelit = prelitTex->second.NightOnly ? g_Weather.LightsOn() : true;
+			D3DXVECTOR4 brightness = { 0, 0, 0, 0 };
+			bool prelit = false;
+			bool enabled = false;
 
-			if (prelit)
+			auto prelitTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
+			if (prelitTex != PrelitTextures.end() && prelitTex->second.Mask.GetHash())
 			{
-				brightness = prelitTex->second.Color;
+				prelit = prelitTex->second.Prelit;
+				enabled = prelitTex->second.AlwaysOn ? true : g_Weather.LightsOn();
+				if (enabled)
+				{
+					effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->second.GetMaskTexture());
+
+					brightness = prelitTex->second.Color;
+					brightness *= brightness.w;
+					if (prelit)
+					{
+						brightness *= g_Weather.GetTextureLightPower();
+					}
+
+					brightness.w = 1;
+				}
 			}
-		}
 
-		auto alphaTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
-		if (alphaTex != PrelitTextures.end() && alphaTex->second.AlphaMask)
-		{
-			brightness = alphaTex->second.Color;
-		}
+			effect->SetVector(ShaderParam::cvEmissive, &brightness);
 
-		brightness.w *= g_Weather.GetTextureLightPower();
-		renderModel->Effect->SetVector(ShaderParam::cvBrightness, &brightness);
-
-		if (prelit)
-		{
-			return Technique_Prelit;
+			if (prelit && enabled)
+			{
+				return Technique_Prelit;
+			}
 		}
 
 		if (RenderTarget::Current->ViewId == ViewId::Player1)

@@ -42,7 +42,7 @@ public:
 		this->UpdateRain();
 		this->UpdateWater();
 
-		MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime);
+		MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime * 2);
 	}
 
 	float GetLightIntensity()

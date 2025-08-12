@@ -27,7 +27,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 	{
 		for (auto& solidLights : SolidLightsList)
 		{
-			if (solidLights.LodA.GetHash() == model->NameHash || solidLights.LodB.GetHash() == model->NameHash)
+			if (solidLights.LodA == model->NameHash || solidLights.LodB == model->NameHash)
 			{
 				if (solidLights.Blink)
 				{
@@ -41,7 +41,8 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 				for (auto& pSpotLight : solidLights.Lights)
 				{
 					auto spotLight = CreateSpotLight(pSpotLight, matrix, solidLights.AlwaysOn);
-					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare);
+					float flareIntecity = solidLights.AlwaysOn ? 1.0f : g_Weather.GetLightIntensity();
+					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare, flareIntecity);
 				}
 			}
 		}

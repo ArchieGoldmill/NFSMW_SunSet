@@ -18,4 +18,5 @@ namespace Hashes
 	Hash SR_PCAWATER0 = 0x5E85E2CA;
 
 	Hash ANM_WATERA_ = 0x636C197D;
+	Hash LAMP_FLARE = 0x4216A8F2;
 }

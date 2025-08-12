@@ -60,15 +60,13 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 
 	if (renderModel->Effect->id == shader_type::skyshader)
 	{
-		if (StarsTexture)
-		{
-			renderModel->NormalTextureInfo = renderModel->DiffuseTextureInfo;
-			renderModel->DiffuseTextureInfo = StarsTexture;
-		}
-		else
+		if (!StarsTexture)
 		{
 			StarsTexture = TextureInfo::Get(Hashes::SR_STARS, false, false);
 		}
+
+		renderModel->NormalTextureInfo = renderModel->DiffuseTextureInfo;
+		renderModel->DiffuseTextureInfo = StarsTexture;
 	}
 
 	if (renderModel->Effect->id == shader_type::CarShader)
@@ -77,16 +75,20 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 		renderModel->Effect->SetFloat(ShaderParam::cfMetallicScale, material[40]);
 	}
 
-	if (renderModel->DiffuseTextureInfo == renderModel->NormalTextureInfo)
+	bool hasNormalMap = renderModel->NormalTextureInfo != renderModel->DiffuseTextureInfo;
+	if (!hasNormalMap)
 	{
-		if (PlainNormalTexture)
-		{
-			renderModel->NormalTextureInfo = PlainNormalTexture;
-		}
-		else
+		if (!PlainNormalTexture)
 		{
 			PlainNormalTexture = TextureInfo::Get(Hashes::SR_PLAIN_NORMAL, false, false);
 		}
+
+		renderModel->NormalTextureInfo = PlainNormalTexture;
+	}
+
+	if (renderModel->Effect->id == shader_type::CarShader)
+	{
+		renderModel->Effect->SetBool(ShaderParam::cbUseNormalMap, hasNormalMap);
 	}
 }
 

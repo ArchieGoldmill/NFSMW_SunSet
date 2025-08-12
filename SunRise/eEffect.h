@@ -36,6 +36,7 @@ const char* ShaderParamNames[] =
 	"cvBrightness",
 	"cvWaterColor",
 	"cfTimeTicker",
+	"cbUseNormalMap",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -61,6 +62,7 @@ enum class ShaderParam
 	cvBrightness,
 	cvWaterColor,
 	cfTimeTicker,
+	cbUseNormalMap,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,
@@ -317,6 +319,15 @@ struct eEffect
 		if (handle)
 		{
 			this->D3DEffect->SetFloat(handle, v);
+		}
+	}
+
+	void SetBool(ShaderParam p, bool v)
+	{
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetBool(handle, v);
 		}
 	}
 };

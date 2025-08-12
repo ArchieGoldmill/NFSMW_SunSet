@@ -15,6 +15,7 @@ float EnvmapPower : ENVMAPPOWER;
 float cfMetallicScale;
 float SpecularPower : SPECULARPOWER;
 float4 SpecularRange : SPECULARRANGE;
+bool cbUseNormalMap;
 
 texture EnvMapTex : EnvMapTexture;
 samplerCUBE ENVIROMAP_SAMPLER = sampler_state
@@ -69,16 +70,37 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.normal.xyz = normalize(IN.normal);
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
-	OUT.color = IN.color;
+	OUT.color = saturate(IN.color);
 	OUT.view = vertex_view(IN.position.xyz);
 	
 	return OUT;
 }
 
+float3 GetTangent(float3 normal, float2 uv, float3 local_pos)
+{
+	float3 dpdx = ddx(local_pos);
+	float3 dpdy = ddy(local_pos);
+	float2 duvdx = ddx(uv);
+	float2 duvdy = ddy(uv);
+
+	float r = 1.0 / (duvdx.x * duvdy.y - duvdx.y * duvdy.x);
+	float3 tangent = normalize((dpdx * duvdy.y - dpdy * duvdx.y) * r);
+
+	return normalize(tangent - normal * dot(normal, tangent));
+}
+
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
+	float3 normal = normalize(IN.normal);
+	
+	if (cbUseNormalMap)
+	{
+		float3 tangent = GetTangent(normal, IN.uv, IN.local_pos.xyz);
+		normal = ApplyNormalMap(normal, tangent, IN.uv);
+	}
+	
 	float3 envmapMin, specularMin;
-	float3 normal = ApplyRainDrops(IN.local_pos.xyz, normalize(IN.normal.xyz), envmapMin, specularMin);
+	normal = ApplyRainDrops(IN.local_pos.xyz, normal, envmapMin, specularMin);
 	
 	float3 view = IN.view;
 	float viewLen = length(view);

@@ -39,6 +39,9 @@
     <FxCompile Include="emissive.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="prelit.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

@@ -181,10 +181,12 @@
   <ItemGroup>
     <ClInclude Include="AmbientShadow.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CarBrakeGlow.h" />
     <ClInclude Include="CarLights.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="DynamicLights.h" />
     <ClInclude Include="eEffect.h" />
+    <ClInclude Include="eLightMaterial.h" />
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />
     <ClInclude Include="eView.h" />

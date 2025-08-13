@@ -131,6 +131,7 @@
     <FxCompile Include="GlossyWindow.fx" />
     <FxCompile Include="lighting.fx" />
     <FxCompile Include="normalmap.fx" />
+    <FxCompile Include="prelit.fx" />
     <FxCompile Include="shadowmap.fx" />
     <FxCompile Include="skybox.fx" />
     <FxCompile Include="spotlights.fx" />

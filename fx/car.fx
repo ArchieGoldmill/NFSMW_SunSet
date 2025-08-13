@@ -12,9 +12,10 @@ float4 DiffuseMin : DIFFUSEMIN;
 float4 DiffuseRange : DIFFUSERANGE;
 float4 EnvmapRange : ENVMAPANGE;
 float EnvmapPower : ENVMAPPOWER;
-float cfMetallicScale;
 float SpecularPower : SPECULARPOWER;
 float4 SpecularRange : SPECULARRANGE;
+float4 cvCarEmissive;
+float cfMetallicScale;
 bool cbUseNormalMap;
 
 texture EnvMapTex : EnvMapTexture;
@@ -89,6 +90,16 @@ float3 GetTangent(float3 normal, float2 uv, float3 local_pos)
 	return normalize(tangent - normal * dot(normal, tangent));
 }
 
+float3 GetEnvMap(const float3 envmapMin, const float vdotn, const float3 nview, const float3 normal)
+{
+	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
+	float env_vdotn = pow(vdotn, EnvmapPower);
+	float3 envmap_scale = envmapMin.rgb + env_vdotn * EnvmapRange.rgb;
+	envmap_sample *= envmap_scale * 0.5;
+	
+	return envmap_sample;
+}
+
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
 	float3 normal = normalize(IN.normal);
@@ -129,10 +140,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	float3 specular = GetSpecular(flake_normal, lightDir, nview, SpecularPower);
 	
-	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
-	float env_vdotn = pow(vdotn, EnvmapPower);
-	float3 envmap_scale = envmapMin.rgb + env_vdotn * EnvmapRange.rgb;
-	envmap_sample *= envmap_scale * 0.5;
+	float3 envmap_sample = GetEnvMap(envmapMin, vdotn, nview, normal);
 	
 	float spec_vdotn = pow(vdotn, SpecularPower);
 	float3 spec_scale = specularMin + spec_vdotn * SpecularRange.rgb;
@@ -146,6 +154,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb += envmap_sample * diffuse_scale.a;
 	final.rgb += specular * shadow * spec_scale;
 	final.rgb += light.Specular * spec_scale;
+	final.rgb = lerp(final.rgb, cvCarEmissive.rgb * diffuse_tex.rgb, cvCarEmissive.w);
 	
 	APPLY_FOG
 	

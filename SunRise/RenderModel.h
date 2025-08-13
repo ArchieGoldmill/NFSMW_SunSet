@@ -3,6 +3,7 @@
 #include "eEffect.h"
 #include "MeshEntry.h"
 #include "TextureInfo.h"
+#include "eLightMaterial.h"
 
 struct RenderModel
 {
@@ -12,7 +13,7 @@ struct RenderModel
 	int Flags;
 	eEffect* Effect;
 	void* LightContext;
-	void* LightMatertial;
+	eLightMaterial* LightMaterial;
 	D3DXMATRIX* LocalToWorld;
 	void* BlendMatricies;
 	TextureInfo* DiffuseTextureInfo;

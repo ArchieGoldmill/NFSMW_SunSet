@@ -1,0 +1,42 @@
+#pragma once
+#include "Hashes.h"
+
+struct eLightMaterial
+{
+	int platInfo;
+	eLightMaterial* Next;
+	eLightMaterial* Prev;
+	Hash NameHash;
+	int Version;
+	char Name[28];
+	float DiffuseMinLevel;
+	float DiffuseMinRed;
+	float DiffuseMinGreen;
+	float DiffuseMinBlue;
+	float DiffuseMaxLevel;
+	float DiffuseMaxRed;
+	float DiffuseMaxGreen;
+	float DiffuseMaxBlue;
+	float DiffuseMinAlpha;
+	float DiffuseMaxAlpha;
+	float SpecularPower;
+	float SpecularMinLevel;
+	float SpecularMinRed;
+	float SpecularMinGreen;
+	float SpecularMinBlue;
+	float SpecularMaxLevel;
+	float SpecularMaxRed;
+	float SpecularMaxGreen;
+	float SpecularMaxBlue;
+	float EnvmapPower;
+	float EnvmapMinLevel;
+	float EnvmapMinRed;
+	float EnvmapMinGreen;
+	float EnvmapMinBlue;
+	float EnvmapMaxLevel;
+	float EnvmapMaxRed;
+	float EnvmapMaxGreen;
+	float EnvmapMaxBlue;
+	float Metallic;
+	float SpecularHotSpot;
+};

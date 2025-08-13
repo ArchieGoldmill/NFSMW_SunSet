@@ -8,6 +8,7 @@
 #include "Weather.h"
 #include "Time.h"
 #include "MotionBlur.h"
+#include "CarBrakeGlow.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -86,8 +87,10 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 	{
 		effect->SetBool(ShaderParam::cbUseNormalMap, hasNormalMap);
 
-		auto material = (float*)renderModel->LightMatertial;
-		effect->SetFloat(ShaderParam::cfMetallicScale, material[40]);
+		auto material = renderModel->LightMaterial;
+		effect->SetFloat(ShaderParam::cfMetallicScale, material->Metallic);
+
+		ApplyCarBrakeGlow(renderModel);
 	}
 }
 

@@ -128,6 +128,46 @@ inline bool UseVertexLighting(RenderModel* model)
 	return cameraDistance1 > g_Config.LightLodDistance && cameraDistance2 > g_Config.LightLodDistance;
 }
 
+inline bool ApplyEmissive(RenderModel* renderModel)
+{
+	auto effect = renderModel->Effect;
+	if (effect->HasParam(ShaderParam::cvEmissive))
+	{
+		D3DXVECTOR4 brightness = { 0, 0, 0, 0 };
+		bool prelit = false;
+		bool enabled = false;
+
+		auto prelitTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
+		if (prelitTex != PrelitTextures.end() && prelitTex->second.Mask.GetHash())
+		{
+			prelit = prelitTex->second.Prelit;
+			enabled = prelitTex->second.AlwaysOn ? true : g_Weather.LightsOn();
+			if (enabled)
+			{
+				effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->second.GetMaskTexture());
+
+				brightness = prelitTex->second.Color;
+				brightness *= brightness.w;
+				if (prelit)
+				{
+					brightness *= g_Weather.GetTextureLightPower();
+				}
+
+				brightness.w = 1;
+			}
+		}
+
+		effect->SetVector(ShaderParam::cvEmissive, &brightness);
+
+		if (prelit && enabled)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 TechniqueType GetTechnique(RenderModel* renderModel)
 {
 	TechniqueType technique = Technique_Invalid;
@@ -144,47 +184,16 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 			return Technique_Water;
 		}
 
-		auto effect = renderModel->Effect;
-
-		if (effect->HasParam(ShaderParam::cvEmissive))
+		if (ApplyEmissive(renderModel))
 		{
-			D3DXVECTOR4 brightness = { 0, 0, 0, 0 };
-			bool prelit = false;
-			bool enabled = false;
-
-			auto prelitTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
-			if (prelitTex != PrelitTextures.end() && prelitTex->second.Mask.GetHash())
-			{
-				prelit = prelitTex->second.Prelit;
-				enabled = prelitTex->second.AlwaysOn ? true : g_Weather.LightsOn();
-				if (enabled)
-				{
-					effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->second.GetMaskTexture());
-
-					brightness = prelitTex->second.Color;
-					brightness *= brightness.w;
-					if (prelit)
-					{
-						brightness *= g_Weather.GetTextureLightPower();
-					}
-
-					brightness.w = 1;
-				}
-			}
-
-			effect->SetVector(ShaderParam::cvEmissive, &brightness);
-
-			if (prelit && enabled)
-			{
-				return Technique_Prelit;
-			}
+			return Technique_Prelit;
 		}
 
 		if (RenderTarget::Current->ViewId == ViewId::Player1)
 		{
 			PopulateShaderSpotlights(renderModel);
-			bool useVertexLighting = UseVertexLighting(renderModel);
-			if (useVertexLighting && NumSpotLights > 0)
+
+			if (UseVertexLighting(renderModel) && NumSpotLights > 0)
 			{
 				return Technique_LitVertex;
 			}

@@ -283,6 +283,12 @@
     <ClInclude Include="HashField.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="CarBrakeGlow.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="eLightMaterial.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

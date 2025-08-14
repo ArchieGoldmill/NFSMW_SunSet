@@ -50,6 +50,8 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 
 	PopulateSpotLights(cullInfo);
 
+	UpdateBrakeGLow();
+
 	g_Weather.Update();
 }
 

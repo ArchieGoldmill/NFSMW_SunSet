@@ -34,7 +34,7 @@ bool CheckFiles()
 	buffer << file.rdbuf();
 	std::string content = buffer.str();
 	std::string keyword = "TexturePacks\\\\SunSet";
-	if (content.find(keyword) == std::string::npos) 
+	if (content.find(keyword) == std::string::npos)
 	{
 		MessageBoxA(NULL, "SunSet texture pack not found in TexWizard.json, please follow the install guide to fix the issue.", ModName, MB_ICONEXCLAMATION);
 		return false;
@@ -51,6 +51,11 @@ void Init()
 	}
 
 	InitConfig();
+
+	if (g_Config.SkipFE)
+	{
+		Game::SkipFE = 1;
+	}
 
 	if (g_Config.Console)
 	{

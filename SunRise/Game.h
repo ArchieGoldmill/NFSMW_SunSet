@@ -24,6 +24,7 @@ namespace Game
 	inline auto& Window = *(HWND*)0x00982BF4;
 	inline auto ForceRain = (bool*)0x009B0A30;
 	inline auto& MotionBlurEnable = *(bool*)0x009017DC;
+	inline auto& SkipFE = *(int*)0x00926064;
 
 	INLINE_FUNC(0x00505380, void, __cdecl, eRenderLightFlare, eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale);
 	INLINE_FUNC(0x00460BF0, Hash, __cdecl, bStringHash, const char*);

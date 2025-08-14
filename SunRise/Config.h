@@ -24,6 +24,8 @@ struct Config
 	bool LiveReload;
 	bool X360Effects;
 	bool Editor;
+	bool SkipFE;
+
 	int HK_ShaderReload;
 };
 
@@ -49,6 +51,7 @@ void LoadConfig()
 	g_Config.LiveReload = settings["LiveReload"].as<bool>();
 	g_Config.X360Effects = settings["X360Effects"].as<bool>();
 	g_Config.Editor = settings["Editor"].as<bool>();
+	g_Config.SkipFE = settings["SkipFE"].as<bool>();
 	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
 
 	if (g_Config.Editor)

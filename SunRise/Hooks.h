@@ -226,5 +226,11 @@ void InitHooks()
 	// Improve reflection lods
 	injector::WriteMemory<uint32_t>(0x6BFEBD, 0x00006002, true);
 
+	// Remove road reflection blur
+	injector::WriteMemory<BYTE>(0x006DE596, 4);
+
+	// Remove blur lerp
+	injector::MakeNOP(0x006DBE28, 2);
+
 	//injector::MakeNOP(0x006C2206, 10);
 }

@@ -32,6 +32,7 @@ namespace Game
 	INLINE_FUNC(0x007A1FA0, int*, __cdecl, GarageMainScreen_GetInstance);
 	INLINE_FUNC(0x00750B10, void, __cdecl, VehicleConn_RenderCars, int, int);
 	INLINE_FUNC(0x006DBB20, void, __cdecl, DrawMotionBlur);
+	INLINE_FUNC(0x006E2F50, void, __cdecl, CommitRenderredModels);
 }
 
 inline D3DXVECTOR3 GetCameraPos()

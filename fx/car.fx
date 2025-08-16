@@ -145,7 +145,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float spec_vdotn = pow(vdotn, SpecularPower);
 	float3 spec_scale = specularMin + spec_vdotn * SpecularRange.rgb;
 	
-	float3 finalLight = IN.color.rgb * (cvAmbientColor.rgb + diffuse * shadow) + light.Diffuse;
+	float3 finalLight = IN.color.rgb * (cvAmbientColor.rgb + diffuse * shadow) * 0.5 + light.Diffuse;
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;

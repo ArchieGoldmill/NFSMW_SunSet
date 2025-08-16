@@ -19,6 +19,7 @@ void DrawBlur()
 {
 	Game::DrawMotionBlur();
 	Game::VehicleConn_RenderCars(RenderCarsParam1, RenderCarsParam2);
+	Game::CommitRenderredModels();
 }
 
 void InitMotionBlur()

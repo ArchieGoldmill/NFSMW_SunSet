@@ -132,9 +132,6 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float reflMin = 1 - smoothstep(0, 0.2, length(cvDiffuseColor.rgb));
 	puddle_mask = max(puddle_mask, 0.05 * reflMin);
 	
-	// Make puddles darker so reflection is more visible
-	albedo = lerp(albedo, albedo / 15, puddle_mask);
-	
 	float4 reflection_uv = IN.reflection;
 	
 	// Distort reflection by rain drops

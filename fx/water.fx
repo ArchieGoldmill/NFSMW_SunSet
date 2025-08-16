@@ -11,9 +11,9 @@ sampler2D MISCMAP4_SAMPLER = sampler_state
 	texture = MISCMAP4_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
-	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
+	MIPFILTER = <BaseTextureFilterParam>;
+	MINFILTER = <BaseMinTextureFilter>;
+	MAGFILTER = <BaseMagTextureFilter>;
 };
 
 texture ReflectedTex : REFLECTEDTEX;

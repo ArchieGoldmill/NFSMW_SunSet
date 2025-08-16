@@ -65,7 +65,7 @@ float3 ApplyRainSlide(float3 position, float3 normal)
 
 float3 ApplyRainDrops(float3 position, float3 normal, out float3 envmapMin, out float3 specularMin)
 {
-	if (cvRainParams.x > 0.0)
+	if (cvRainParams.y > 0.0)
 	{
 		normal = ApplyRainSlide(position, normal);
 		float3 bitangent = cross(normal, float3(1, 0, 0)); // forward vector
@@ -81,7 +81,7 @@ float3 ApplyRainDrops(float3 position, float3 normal, out float3 envmapMin, out 
 		rainMap = frac(rainMap - cvRainParams.z * (rainMap + 1));
 
 		float dot_final = pow(abs(dot(normal, float3(0, 0, 1))), 2);
-		rainPower *= dot_final * rainMap * cvRainParams.x;
+		rainPower *= dot_final * rainMap * cvRainParams.y;
 
 		rain_drop = rain_drop * 2 - 1;
 		rain_drop.z = sqrt(1 - dot(rain_drop.xy, rain_drop.xy));

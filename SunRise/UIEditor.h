@@ -50,7 +50,7 @@ namespace UI
 				{
 				case 0: 
 					LoadWeatherConfig(); 
-					CurrentWeather = NULL; 
+					Weather::Reset();
 					break;
 				case 1: 
 					InitTextureConfig(); 
@@ -68,7 +68,7 @@ namespace UI
 
 			switch (CurrentTab)
 			{
-			case 0: DrawWeather(); break;
+			case 0: Weather::Draw(); break;
 			case 1: Textures::Draw(); break;
 			case 2: DrawSpotlights(); break;
 			}

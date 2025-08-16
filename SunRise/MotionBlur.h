@@ -26,4 +26,7 @@ void InitMotionBlur()
 {
 	injector::MakeCALL(0x006DEE3F, RenderCars);
 	injector::MakeCALL(0x006DF1DC, DrawBlur);
+
+	// Restore blur from wide screen fix
+	injector::WriteMemory<BYTE>(0x006DF1D2, 0x74);
 }

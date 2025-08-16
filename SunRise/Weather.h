@@ -211,7 +211,10 @@ private:
 
 	void LoadSkyBoxTexture()
 	{
-		D3DXCreateCubeTextureFromFileA(Game::Device, "scripts\\SunSetData\\Textures\\SKYBOX.dds", &SkyCubeTexture);
+		if (!SkyCubeTexture)
+		{
+			D3DXCreateCubeTextureFromFileA(Game::Device, "scripts\\SunSetData\\Textures\\SKYBOX.dds", &SkyCubeTexture);
+		}
 	}
 
 	void CreateSkyBoxTexture()

@@ -70,7 +70,6 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 			StarsTexture = TextureInfo::Get(Hashes::SR_STARS, false, false);
 		}
 
-		renderModel->NormalTextureInfo = renderModel->DiffuseTextureInfo;
 		renderModel->DiffuseTextureInfo = StarsTexture;
 	}
 

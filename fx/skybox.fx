@@ -1,5 +1,6 @@
 #include "global.fx"
-#include "normalmap.fx"
+
+float4 LocalEyePos : LOCALEYEPOS;
 
 float4 cvSunDirection;
 float4 cvSkyParams;
@@ -21,8 +22,22 @@ struct PS_INPUT
 	float4 position : POSITION;
 	float3 normal : NORMAL0;
 	float4 uv : TEXCOORD0;
-	float3 local_position : TEXCOORD3;
+	float3 local_position : TEXCOORD1;
 	float4 color : COLOR0;
+	float3 view : TEXCOORD2;
+};
+
+texture MISCMAP1_TEXTURE;
+samplerCUBE MISCMAP1_SAMPLER = sampler_state
+{
+	texture = <MISCMAP1_TEXTURE>;
+	AddressU = CLAMP;
+	AddressV = CLAMP;
+	AddressW = CLAMP;
+	MIPFILTER = LINEAR;
+	MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MaxAnisotropy = 8;
 };
 
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
@@ -31,6 +46,7 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.local_position = IN.position.xyz;
 	OUT.local_position.z += 300;
 	OUT.uv = float4(IN.tex, IN.tex1);
+	OUT.view = LocalEyePos.xyz - IN.position.xyz;
 }
 
 #define PI (3.14159265)
@@ -65,8 +81,8 @@ float3 renderSky(in float3 viewDir, in float3 lightDir)
 	const float kScaleOverScaleDepth = kScale / kScaleDepth;
 	const float kCameraHeight = 0.0;
 
-	const float kRAYLEIGH = cvSkyParams.x * cvSkyParams.w;
-	const float kMIE = cvSkyParams.y;
+	const float kRAYLEIGH = cvSkyParams.x / 1000.0;
+	const float kMIE = cvSkyParams.y / 1000.0;
 	
 	const float kR4PI = kRAYLEIGH * 4.0 * PI;
 	
@@ -127,6 +143,18 @@ float3 renderSky(in float3 viewDir, in float3 lightDir)
 	return col;
 }
 
+float3 GetCloudView(float3 view)
+{
+	float angle = cfTimeTicker * 0.005;
+	float c = cos(angle);
+	float s = sin(angle);
+
+	float3x3 rotZ = float3x3(c, -s, 0, s, c, 0, 0, 0, 1);
+	float3 cloudDir = mul(normalize(view), rotZ);
+	
+	return cloudDir;
+}
+
 float4 PS_Main(PS_INPUT IN) : COLOR
 {
 	float3 dir = normalize(IN.local_position.xzy);
@@ -139,14 +167,14 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	
 	// stars
 	float2 starsUV;
-	if (IN.uv.y > 0.08)
+	if (IN.uv.y > 0.09)
 	{
-		starsUV = IN.uv;
+		starsUV = IN.uv.xy;
 		starsUV.y *= 4;
 	}
 	else
 	{
-		starsUV = IN.local_position.xy / 5000;
+		starsUV = IN.uv.zw * 4;
 	}
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
@@ -154,10 +182,12 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	color += pow(diffuse_tex.rgb, 2.2) * stars_scale;
 	
 	// clouds
-	float2 cloudUV = IN.uv.xy;
-	cloudUV.x += cfTimeTicker * 0.005;
-	float4 clouds = tex2D(NORMALMAP_SAMPLER, cloudUV) * cvCloudColor;
-	color = lerp(color, clouds.rgb, clouds.a);
+	float3 cloudDir = GetCloudView(IN.view);
+	float3 cloudTex = texCUBE(MISCMAP1_SAMPLER, cloudDir).rgb;
+	
+	float gray = dot(cloudTex, float3(0.299, 0.587, 0.114));
+	float3 clouds = float3(gray, gray, gray) * cvCloudColor.rgb;
+	color = lerp(color, clouds, cvCloudColor.a * gray);
 	
 	return float4(color, 1.0);
 }

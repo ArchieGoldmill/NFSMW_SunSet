@@ -302,6 +302,15 @@ struct eEffect
 		}
 	}
 
+	void SetTexture(ShaderParam p, IDirect3DCubeTexture9* texture)
+	{
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetTexture(handle, texture);
+		}
+	}
+
 	void SetVector(ShaderParam p, D3DXVECTOR4* v)
 	{
 		auto handle = ShaderParamsMap[this->id].Params[(int)p];

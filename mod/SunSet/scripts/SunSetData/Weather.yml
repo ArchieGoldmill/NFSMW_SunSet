@@ -141,7 +141,7 @@ Weather:
     CloudColor: [1, 1, 1, 0.301999986]
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
     WaterSpecularPower: 10
-    CarLightsPower: 0.100000001
+    CarLightsPower: 0.0500000007
     TextureLightPower: 0.5
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
     SkyMie: 1
@@ -163,7 +163,7 @@ Weather:
       CloudColor: [0.29411763, 0.29411763, 0.29411763, 1]
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
       WaterSpecularPower: 10
-      CarLightsPower: 0.100000001
+      CarLightsPower: 0.5
       TextureLightPower: 0.5
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
       SkyMie: 2.29999995

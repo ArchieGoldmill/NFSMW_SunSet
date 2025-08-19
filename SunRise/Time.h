@@ -59,4 +59,11 @@ void InitTime()
 {
 	TimeSetting();
 	injector::MakeCALL(0x006BF2C4, CreateTimeOfDay);
+
+	if (g_Config.RandomStartupTime)
+	{
+		srand(time(NULL));
+		float r = (rand() % 10) / 10.0f;
+		injector::WriteMemory<float>(0x00770F25, r);
+	}
 }

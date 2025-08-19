@@ -25,6 +25,7 @@ struct Config
 	bool X360Effects;
 	bool Editor;
 	bool SkipFE;
+	bool RandomStartupTime;
 
 	int HK_ShaderReload;
 };
@@ -45,6 +46,7 @@ void LoadConfig()
 	g_Config.LightsOn = settings["LightsOn"].as<float>();
 	g_Config.LightsOff = settings["LightsOff"].as<float>();
 	g_Config.LightCellSize = 64;
+
 	g_Config.Console = settings["Console"].as<bool>();
 	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
 	g_Config.ShaderCompiler = settings["ShaderCompiler"].as<bool>();
@@ -52,6 +54,8 @@ void LoadConfig()
 	g_Config.X360Effects = settings["X360Effects"].as<bool>();
 	g_Config.Editor = settings["Editor"].as<bool>();
 	g_Config.SkipFE = settings["SkipFE"].as<bool>();
+	g_Config.RandomStartupTime = settings["RandomStartupTime"].as<bool>();
+
 	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
 
 	if (g_Config.Editor)

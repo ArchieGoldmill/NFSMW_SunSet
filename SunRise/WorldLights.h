@@ -51,11 +51,6 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 
 void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 {
-	if (!g_Weather.WorldLightsOn())
-	{
-		return;
-	}
-
 	auto drawInfo = cullInfo->FirstDrawInfo;
 	while (drawInfo != cullInfo->CurrentDrawInfo)
 	{

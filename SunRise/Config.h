@@ -27,6 +27,9 @@ struct Config
 	bool SkipFE;
 	bool RandomStartupTime;
 
+	float WetnessTime;
+	float DryTime;
+
 	int HK_ShaderReload;
 };
 
@@ -57,6 +60,10 @@ void LoadConfig()
 	g_Config.RandomStartupTime = settings["RandomStartupTime"].as<bool>();
 
 	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
+
+	const auto& weather = settingsRoot["Weather"];
+	g_Config.WetnessTime = weather["WetnessTime"].as<float>();
+	g_Config.DryTime = weather["DryTime"].as<float>();
 
 	if (g_Config.Editor)
 	{

@@ -189,7 +189,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 clouds = float3(gray, gray, gray) * cvCloudColor.rgb;
 	color = lerp(color, clouds, cvCloudColor.a * gray);
 	
-	return float4(color, 1.0);
+	return float4(color * 2, 1.0);
 }
 
 technique skybox<int shader = 1;>

@@ -12,4 +12,10 @@ Config:
   LiveReload: false           # Live reload config files when game loses focus.
   Editor: false               # Enable UI for editing.
   SkipFE: false               # Allows to enter game faster by skipping all the frontend.
+  RandomStartupTime: false    # Random game time at start.
+  
   HK_ShaderReload: 0          # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
+
+Weather:
+  WetnessTime: 2.0            # Time for the road to get fully wet.
+  DryTime: 30.0               # Time for the road to get fully dry.

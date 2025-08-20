@@ -9,6 +9,7 @@
 #include "Time.h"
 #include "MotionBlur.h"
 #include "CarBrakeGlow.h"
+#include "DepthPrePass.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -53,6 +54,8 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	UpdateBrakeGLow();
 
 	g_Weather.Update();
+
+	DoDepthPrePass(cullInfo);
 }
 
 TextureInfo* StarsTexture = NULL;
@@ -104,8 +107,16 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 	}
 
 	auto effect = renderModel->Effect;
+	auto techName = Technique_Invalid;
 
-	auto techName = GetTechnique(renderModel);
+	if (DepthPrePasss)
+	{
+		techName = Technique_ZPrePass;
+	}
+	else
+	{
+		techName = GetTechnique(renderModel);
+	}
 
 	if (LastEffect != effect || LastTechnique != techName)
 	{
@@ -137,7 +148,10 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 		effect->D3DEffect->BeginPass(0);
 	}
 
-	SetShaderParams(renderModel);
+	if (!DepthPrePasss)
+	{
+		SetShaderParams(renderModel);
+	}
 }
 
 void __declspec(naked) SetCurrentPassHook()
@@ -173,6 +187,7 @@ void __fastcall SetEffectParams(eEffect* effect)
 	shaderParams.Techniques[Technique_LitVertex] = effect->D3DEffect->GetTechniqueByName("LitVertex");
 	shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
 	shaderParams.Techniques[Technique_Water] = effect->D3DEffect->GetTechniqueByName("Water");
+	shaderParams.Techniques[Technique_ZPrePass] = effect->D3DEffect->GetTechniqueByName("ZPrePass");
 
 	for (int i = 0; i < (int)ShaderParam::count; i++)
 	{
@@ -187,6 +202,7 @@ void InitHooks()
 	InitLightFlares();
 	InitTime();
 	InitMotionBlur();
+	InitDepthPrePass();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 
@@ -231,5 +247,10 @@ void InitHooks()
 	// Remove blur lerp
 	injector::MakeNOP(0x006DBE28, 2);
 
-	//injector::MakeNOP(0x006C2206, 10);
+	// Remove second sky stuff
+	injector::MakeNOP(0x006DF449, 5);
+
+#ifdef _DEBUG
+	injector::MakeNOP(0x006C2206, 10);
+#endif
 }

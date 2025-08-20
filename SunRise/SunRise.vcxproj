@@ -184,6 +184,7 @@
     <ClInclude Include="CarBrakeGlow.h" />
     <ClInclude Include="CarLights.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="DepthPrePass.h" />
     <ClInclude Include="DynamicLights.h" />
     <ClInclude Include="eEffect.h" />
     <ClInclude Include="eLightMaterial.h" />

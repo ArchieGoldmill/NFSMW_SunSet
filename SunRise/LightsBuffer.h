@@ -31,7 +31,7 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 	}
 
 	// Check that light is in camera view
-	auto playerView = eView::PlayerView;
+	auto playerView = eView::Player;
 
 	D3DXVECTOR3 range = { spotLight.Range, spotLight.Range, spotLight.Range };
 	D3DXVECTOR3 min = spotLight.Position - range;

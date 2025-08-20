@@ -11,9 +11,35 @@ struct TexturePlatInfo
 struct TextureInfo
 {
 	TexturePlatInfo* PlatInfo;
-	int unk[2];
-	char name[24];
+	TextureInfo* Prev;
+	TextureInfo* Next;
+	char DebugName[24];
 	Hash NameHash;
+	Hash ClassNameHash;
+	Hash ImageParentHash;
+	int32_t ImagePlacement;
+	int32_t PalettePlacement;
+	int32_t ImageSize;
+	int32_t PaletteSize;
+	int32_t BaseImageSize;
+	int16_t Width;
+	int16_t Height;
+	int8_t ShiftWidth;
+	int8_t ShiftHeight;
+	uint8_t ImageCompressionType;
+	uint8_t PaletteCompressionType;
+	int16_t NumPaletteEntries;
+	int8_t NumMipMapLevels;
+	int8_t TilableUV;
+	int8_t BiasLevel;
+	int8_t RenderingOrder;
+	int8_t ScrollType;
+	int8_t UsedFlag;
+	int8_t ApplyAlphaSorting;
+	int8_t AlphaUsageType;
+	int8_t AlphaBlendType;
+	int8_t Flags;
+	int8_t MipmapBiasType;
 
 	static TextureInfo* Get(Hash hash, bool defaultIfNotFound, bool includeUnloaded)
 	{

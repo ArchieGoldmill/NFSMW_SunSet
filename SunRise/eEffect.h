@@ -14,6 +14,7 @@ enum TechniqueType
 	Technique_LitVertex,
 	Technique_ShadowMap,
 	Technique_Water,
+	Technique_ZPrePass,
 	Technique_Count,
 	Technique_Invalid = -1
 };

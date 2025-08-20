@@ -61,6 +61,12 @@ struct WorldModel : bTNode<WorldModel>
 	int field_84;
 	int field_88;
 	int field_8C;
+
+	static void RenderAll(eView* view)
+	{
+		FUNC(0x007538D0, void, __cdecl, _RenderAll, eView*, int);
+		_RenderAll(view, 0);
+	}
 };
 
 ASSERT_SIZE(WorldModel, 0x90);

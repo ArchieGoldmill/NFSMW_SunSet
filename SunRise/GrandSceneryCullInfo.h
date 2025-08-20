@@ -1,6 +1,7 @@
 #pragma once
 #include "Utilities.h"
 #include "eModel.h"
+#include "eView.h"
 
 struct Scenery
 {
@@ -91,6 +92,12 @@ struct GrandSceneryCullInfo
 	{
 		FUNC(0x006BFDD0, void, __cdecl, _SetuWorldCulling, GrandSceneryCullInfo*);
 		_SetuWorldCulling(this);
+	}
+
+	void StuffScenery(eView* view, int flags)
+	{
+		FUNC(0x00723FA0, void, __thiscall, _SetuWorldCulling, GrandSceneryCullInfo*, eView*, int);
+		_SetuWorldCulling(this, view, flags);
 	}
 };
 

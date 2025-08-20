@@ -113,5 +113,6 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 }
 
 #include "prelit.fx"
+#include "prepass.fx"
 #include "techniques.fx"
 #include "shadowmap.fx"

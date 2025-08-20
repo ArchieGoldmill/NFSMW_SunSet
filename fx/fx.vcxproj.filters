@@ -42,12 +42,16 @@
     <FxCompile Include="prelit.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="filter.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shadow.fx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="prepass.fx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,4 +14,5 @@ struct RenderTarget
 	__declspec(align(0x04)) std::uint32_t resolution_y;
 
 	static inline RenderTarget*& Current = *reinterpret_cast<RenderTarget**>(0x00982A20);
+	static inline RenderTarget*& Player = *reinterpret_cast<RenderTarget**>(0x009196B0);
 };

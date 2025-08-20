@@ -39,7 +39,7 @@ void __stdcall RenderWorldLightFlares()
 			float flareRotation = Game::FlareRotation;
 			Game::FlareRotation = 0;
 			{
-				Game::eRenderLightFlare(eView::PlayerView, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
+				Game::eRenderLightFlare(eView::Player, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
 
 				if (RenderTarget::Current->ViewId == ViewId::Player1 && spotlight.Flare->TextureName == Hashes::LAMP_FLARE)
 				{
@@ -48,7 +48,7 @@ void __stdcall RenderWorldLightFlares()
 					if (intensity > 0)
 					{
 						CurrentFlare = &RainFlare;
-						Game::eRenderLightFlare(eView::PlayerView, &flare, Game::IdentityMatrix, intensity, 0, 0, 0, color, 15);
+						Game::eRenderLightFlare(eView::Player, &flare, Game::IdentityMatrix, intensity, 0, 0, 0, color, 15);
 					}
 				}
 			}

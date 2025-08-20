@@ -22,7 +22,7 @@ struct PS_INPUT
 	float4 position : POSITION;
 	float3 normal : NORMAL0;
 	float4 uv : TEXCOORD0;
-	float3 local_position : TEXCOORD1;
+	float4 local_pos : TEXCOORD1;
 	float4 color : COLOR0;
 	float3 view : TEXCOORD2;
 };
@@ -43,8 +43,8 @@ samplerCUBE MISCMAP1_SAMPLER = sampler_state
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
-	OUT.local_position = IN.position.xyz;
-	OUT.local_position.z += 300;
+	OUT.local_pos = IN.position;
+	OUT.local_pos.z += 300;
 	OUT.uv = float4(IN.tex, IN.tex1);
 	OUT.view = LocalEyePos.xyz - IN.position.xyz;
 }
@@ -157,7 +157,7 @@ float3 GetCloudView(float3 view)
 
 float4 PS_Main(PS_INPUT IN) : COLOR
 {
-	float3 dir = normalize(IN.local_position.xzy);
+	float3 dir = normalize(IN.local_pos.xzy);
 	float3 sun = normalize(cvSunDirection.xzy);
 	
 	float3 color = renderSky(dir, sun);
@@ -202,3 +202,5 @@ technique skybox<int shader = 1;>
 		PixelShader = compile ps_3_0 PS_Main();
 	}
 }
+
+#include "prepass.fx"

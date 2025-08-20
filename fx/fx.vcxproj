@@ -126,6 +126,7 @@
     <FxCompile Include="car.fx" />
     <FxCompile Include="car_rain.fx" />
     <FxCompile Include="emissive.fx" />
+    <FxCompile Include="filter.fx" />
     <FxCompile Include="fog.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
@@ -142,6 +143,7 @@
     <FxCompile Include="worldreflect.fx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="prepass.fx" />
     <ClInclude Include="shadow.fx" />
     <ClInclude Include="techniques.fx" />
   </ItemGroup>

@@ -46,7 +46,7 @@ struct eView
 	int Id;
 
 	static inline auto Views = (eView*)0x009195E0;
-	static inline auto PlayerView = (eView*)0x00919650;
+	static inline auto Player = (eView*)0x00919650;
 
 	visible_state GetVisibleState(D3DXVECTOR3* min, D3DXVECTOR3* max)
 	{

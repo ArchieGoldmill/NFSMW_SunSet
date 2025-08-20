@@ -7,14 +7,25 @@ void ForceTime()
 	if (g_Config.ForceTime >= 0.0f)
 	{
 		TimeOfDay::Instance->CurrentTime = g_Config.ForceTime;
+		return;
 	}
-	else
+
+	if (g_Config.RealTime)
 	{
-		TimeOfDay::Instance->CurrentTime += Game::DeltaTime * 0.016666668 * TimeOfDay::Instance->UpdateRate * 0.050000001;
-		if (TimeOfDay::Instance->CurrentTime > 1)
-		{
-			TimeOfDay::Instance->CurrentTime = 0;
-		}
+		std::time_t now = std::time(nullptr);
+		std::tm* localTime = std::localtime(&now);
+
+		int seconds = localTime->tm_hour * 60 * 60 + localTime->tm_min * 60 + localTime->tm_sec;
+		const float maxSeconds = 24 * 60.0f * 60.0f;
+		TimeOfDay::Instance->CurrentTime = seconds / maxSeconds;
+
+		return;
+	}
+
+	TimeOfDay::Instance->CurrentTime += Game::DeltaTime * 0.016666668 * TimeOfDay::Instance->UpdateRate * 0.050000001;
+	if (TimeOfDay::Instance->CurrentTime > 1)
+	{
+		TimeOfDay::Instance->CurrentTime = 0;
 	}
 }
 

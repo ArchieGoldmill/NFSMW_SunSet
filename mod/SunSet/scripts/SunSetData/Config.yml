@@ -13,6 +13,7 @@ Config:
   Editor: false               # Enable UI for editing.
   SkipFE: false               # Allows to enter game faster by skipping all the frontend.
   RandomStartupTime: false    # Random game time at start.
+  RealTime: false             # Use real time from PC in the game.
   
   HK_ShaderReload: 0          # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
 

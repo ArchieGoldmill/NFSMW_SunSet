@@ -26,6 +26,7 @@ struct Config
 	bool Editor;
 	bool SkipFE;
 	bool RandomStartupTime;
+	bool RealTime;
 
 	float WetnessTime;
 	float DryTime;
@@ -58,6 +59,7 @@ void LoadConfig()
 	g_Config.Editor = settings["Editor"].as<bool>();
 	g_Config.SkipFE = settings["SkipFE"].as<bool>();
 	g_Config.RandomStartupTime = settings["RandomStartupTime"].as<bool>();
+	g_Config.RealTime = settings["RealTime"].as<bool>();
 
 	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
 

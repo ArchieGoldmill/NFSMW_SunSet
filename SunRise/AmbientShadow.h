@@ -5,7 +5,7 @@
 
 int __stdcall ShouldDrawAmbientShadow(CarRenderInfo* carRenderInfo, eView* view)
 {
-	if (view->Id != 1 || carRenderInfo->pRideInfo->mCarRenderUsage == CarRenderUsage::AIHeli)
+	if (view->Id != ViewId::Player1 || carRenderInfo->pRideInfo->mCarRenderUsage == CarRenderUsage::AIHeli)
 	{
 		return 0x0074E843;
 	}

@@ -82,7 +82,11 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 
 void __stdcall SetRenderStateHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
 {
-	if (RenderTarget::Current->ViewId == ViewId::Player1 && eEffect::Current->id != shader_type::CarShader)
+	if (RenderTarget::Current->ViewId == ViewId::Reflection && eEffect::Current->id == shader_type::skyshader)
+	{
+		device->SetRenderState(state, false);
+	}
+	else if (RenderTarget::Current->ViewId == ViewId::Player1 && eEffect::Current->id != shader_type::CarShader)
 	{
 		device->SetRenderState(state, DepthPrePass);
 	}

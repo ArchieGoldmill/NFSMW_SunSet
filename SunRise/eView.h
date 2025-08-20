@@ -1,5 +1,6 @@
 #pragma once
 #include <d3dx9.h>
+#include "ViewId.h"
 
 enum class visible_state : std::uint8_t
 {
@@ -43,7 +44,7 @@ struct eViewPlatInfo
 struct eView
 {
 	eViewPlatInfo* Pinfo;
-	int Id;
+	ViewId Id;
 
 	static inline auto Views = (eView*)0x009195E0;
 	static inline auto Player = (eView*)0x00919650;

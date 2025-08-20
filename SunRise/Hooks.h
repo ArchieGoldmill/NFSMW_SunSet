@@ -54,7 +54,10 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 
 	g_Weather.Update();
 
-	DoDepthPrePass(cullInfo);
+	if (g_Config.DepthPrepass)
+	{
+		DoDepthPrePass(cullInfo);
+	}
 }
 
 TextureInfo* StarsTexture = NULL;
@@ -108,7 +111,7 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 	auto effect = renderModel->Effect;
 	auto techName = Technique_Invalid;
 
-	if (DepthPrePasss)
+	if (DepthPrePass)
 	{
 		techName = Technique_ZPrePass;
 	}
@@ -147,7 +150,7 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 		effect->D3DEffect->BeginPass(0);
 	}
 
-	if (!DepthPrePasss)
+	if (!DepthPrePass)
 	{
 		SetShaderParams(renderModel);
 	}
@@ -242,12 +245,6 @@ void InitHooks()
 
 	// Remove road reflection blur
 	injector::WriteMemory<BYTE>(0x006DE596, 4);
-
-	// Remove blur lerp
-	injector::MakeNOP(0x006DBE28, 2);
-
-	// Remove second sky stuff
-	injector::MakeNOP(0x006DF449, 5);
 
 #ifdef _DEBUG
 	injector::MakeNOP(0x006C2206, 10);

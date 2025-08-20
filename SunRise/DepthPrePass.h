@@ -53,13 +53,13 @@ void SetDepthRenderTarget()
 	Game::Device->SetViewport(&viewport);
 }
 
-bool DepthPrePasss = false;
+bool DepthPrePass = false;
 void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 {
 	InitPrepassTextures();
 	SetDepthRenderTarget();
 
-	DepthPrePasss = true;
+	DepthPrePass = true;
 
 	if (Game::State == 3)
 	{
@@ -75,7 +75,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	WorldModel::RenderAll(eView::Player);
 
 	Game::CommitRenderedModels();
-	DepthPrePasss = false;
+	DepthPrePass = false;
 
 	Game::Device->StretchRect(msaaRT, nullptr, resolvedSurf, nullptr, D3DTEXF_NONE);
 }
@@ -84,7 +84,7 @@ void __stdcall SetRenderStateHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE s
 {
 	if (RenderTarget::Current->ViewId == ViewId::Player1 && eEffect::Current->id != shader_type::CarShader)
 	{
-		device->SetRenderState(state, DepthPrePasss);
+		device->SetRenderState(state, DepthPrePass);
 	}
 	else
 	{
@@ -94,7 +94,7 @@ void __stdcall SetRenderStateHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE s
 
 void __cdecl SimpleAnimApplyHook(eModel* model, eSolid* solid, D3DXMATRIX* matrix)
 {
-	if (DepthPrePasss)
+	if (DepthPrePass)
 	{
 		Game::SimpleAnimApply(model, solid, matrix);
 	}
@@ -102,8 +102,11 @@ void __cdecl SimpleAnimApplyHook(eModel* model, eSolid* solid, D3DXMATRIX* matri
 
 void InitDepthPrePass()
 {
-	injector::MakeNOP(0x006C6983, 6);
-	injector::MakeCALL(0x006C6983, SetRenderStateHook);
+	if (g_Config.DepthPrepass)
+	{
+		injector::MakeNOP(0x006C6983, 6);
+		injector::MakeCALL(0x006C6983, SetRenderStateHook);
 
-	injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
+		injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
+	}
 }

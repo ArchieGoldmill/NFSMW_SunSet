@@ -59,9 +59,18 @@ void InitMotionBlur()
 	// Restore blur from wide screen fix
 	injector::WriteMemory<BYTE>(0x006DF1D2, 0x74);
 
-	injector::MakeNOP(0x006DBD7C, 6);
-	injector::MakeCALL(0x006DBD7C, CopyBufferForBlur);
+	// Remove blur lerp
+	injector::MakeNOP(0x006DBE28, 2);
 
-	injector::WriteMemory<BYTE>(0x006DBE9E, D3DBLEND_INVSRCALPHA);
-	injector::WriteMemory<BYTE>(0x006DBEA0, D3DBLEND_SRCALPHA);
+	// Remove second sky stuff
+	injector::MakeNOP(0x006DF449, 5);
+
+	if (g_Config.DepthPrepass)
+	{
+		injector::MakeNOP(0x006DBD7C, 6);
+		injector::MakeCALL(0x006DBD7C, CopyBufferForBlur);
+
+		injector::WriteMemory<BYTE>(0x006DBE9E, D3DBLEND_INVSRCALPHA);
+		injector::WriteMemory<BYTE>(0x006DBEA0, D3DBLEND_SRCALPHA);
+	}
 }

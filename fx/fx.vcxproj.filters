@@ -42,7 +42,7 @@
     <FxCompile Include="prelit.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
-    <FxCompile Include="filter.fx" />
+    <FxCompile Include="screenfilter.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

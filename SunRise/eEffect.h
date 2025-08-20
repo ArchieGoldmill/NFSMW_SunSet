@@ -2,6 +2,7 @@
 #include <d3dx9.h>
 #include <map>
 #include "TextureInfo.h"
+#include "Game.h"
 
 enum TechniqueType
 {
@@ -347,9 +348,99 @@ struct eEffect
 			this->D3DEffect->SetBool(handle, v);
 		}
 	}
-	
+
 	bool HasParam(ShaderParam p)
 	{
 		return ShaderParamsMap[this->id].Params[(int)p] != NULL;
+	}
+
+	void DrawFullScreenQuad(IDirect3DTexture9* texture, bool invert = false)
+	{
+		struct {
+			D3DXVECTOR3 position;
+			D3DCOLOR color;
+			D3DXVECTOR2 uv;
+		} vertices[4];
+
+		Game::Device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+
+		D3DSURFACE_DESC desc;
+
+		texture->GetLevelDesc(0u, &desc);
+
+		float w = static_cast<float>(desc.Width);
+		float h = static_cast<float>(desc.Height);
+
+		if ((desc.Width & 0x80000000) != 0)
+		{
+			w += 4.2949673e9f;
+		}
+
+		if ((desc.Height & 0x80000000) != 0)
+		{
+			h += 4.2949673e9f;
+		}
+
+		float inv_w = 0.5f / w;
+		float inv_h = 0.5f / h;
+
+		float uv00 = inv_w;
+		float uv10 = inv_w + 1.0f;
+		float uv20 = inv_w + 1.0f;
+		float uv30 = inv_w;
+
+		float uv11;
+		float uv31;
+		float uv21;
+		float uv01;
+
+		if (invert)
+		{
+			uv01 = inv_h + 1.0f;
+			uv11 = inv_h + 1.0f;
+			uv21 = inv_h;
+			uv31 = inv_h;
+		}
+		else
+		{
+			uv01 = inv_h;
+			uv11 = inv_h;
+			uv21 = inv_h + 1.0f;
+			uv31 = inv_h + 1.0f;
+		}
+
+		vertices[0].position.x = -1.0f;
+		vertices[0].position.y = +1.0f;
+		vertices[0].position.z = +0.0f;
+		vertices[0].color = 0xFFFFFFFF;
+		vertices[0].uv.x = uv00;
+		vertices[0].uv.y = uv01;
+
+		vertices[1].position.x = +1.0f;
+		vertices[1].position.y = +1.0f;
+		vertices[1].position.z = +0.0f;
+		vertices[1].color = 0xFFFFFFFF;
+		vertices[1].uv.x = uv10;
+		vertices[1].uv.y = uv11;
+
+		vertices[2].position.x = +1.0f;
+		vertices[2].position.y = -1.0f;
+		vertices[2].position.z = +0.0f;
+		vertices[2].color = 0xFFFFFFFF;
+		vertices[2].uv.x = uv20;
+		vertices[2].uv.y = uv21;
+
+		vertices[3].position.x = -1.0f;
+		vertices[3].position.y = -1.0f;
+		vertices[3].position.z = +0.0f;
+		vertices[3].color = 0xFFFFFFFF;
+		vertices[3].uv.x = uv30;
+		vertices[3].uv.y = uv31;
+
+		this->SetTexture(shader_param::DiffuseMap, texture);
+
+		this->D3DEffect->CommitChanges();
+
+		Game::Device->DrawPrimitiveUP(::D3DPT_TRIANGLEFAN, 2u, vertices, sizeof(vertices[0]));
 	}
 };

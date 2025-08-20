@@ -126,13 +126,13 @@
     <FxCompile Include="car.fx" />
     <FxCompile Include="car_rain.fx" />
     <FxCompile Include="emissive.fx" />
-    <FxCompile Include="filter.fx" />
     <FxCompile Include="fog.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
     <FxCompile Include="lighting.fx" />
     <FxCompile Include="normalmap.fx" />
     <FxCompile Include="prelit.fx" />
+    <FxCompile Include="screenfilter.fx" />
     <FxCompile Include="shadowmap.fx" />
     <FxCompile Include="skybox.fx" />
     <FxCompile Include="spotlights.fx" />

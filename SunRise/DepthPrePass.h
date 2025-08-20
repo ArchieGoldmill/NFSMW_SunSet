@@ -68,9 +68,6 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	DepthPrePasss = false;
 
 	Game::Device->StretchRect(msaaRT, nullptr, resolvedSurf, nullptr, D3DTEXF_NONE);
-
-	auto filterEffect = eEffect::Get(shader_type::FilterShader);
-	filterEffect->SetTexture(shader_param::HeightMapTexture, resolvedTex);
 }
 
 void __stdcall SetRenderStateHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)

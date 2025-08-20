@@ -5,7 +5,6 @@
 #include "Camera.h"
 #include "MeshEntry.h"
 #include "eModel.h"
-#include "eEffect.h"
 
 namespace Game
 {

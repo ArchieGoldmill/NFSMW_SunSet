@@ -21,7 +21,7 @@ float4 PS_Stub(PS_INPUT IN) : COLOR
 	return float4(0, 1, 0, 1);
 }
 
-technique world<int shader = 1; >
+technique world <int shader = 1; >
 {
 	pass p0
 	{

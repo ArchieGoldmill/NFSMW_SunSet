@@ -15,6 +15,8 @@ class FXCCompiler
 			("world.fx", "IDI_WORLD_FX"),
 			("worldnormalmap.fx", "IDI_WORLDNORMALMAP_FX"),
 			("worldreflect.fx", "IDI_WORLDREFLECT_FX"),
+			("filter.fx", "IDI_FILTER_FX"),
+			("screenfilter.fx", "IDI_SCREENFILTER_FX"),
 		};
 
 		string fxcPath = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x86\\fxc.exe";
@@ -67,7 +69,7 @@ class FXCCompiler
 
 		Console.WriteLine("Compilation finished.");
 
-		if(errors)
+		if (errors)
 		{
 			Console.ReadLine();
 		}

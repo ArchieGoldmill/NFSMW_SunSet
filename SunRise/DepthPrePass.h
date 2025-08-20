@@ -1,4 +1,5 @@
 #pragma once
+#include "GarageMainScreen.h"
 
 IDirect3DSurface9* msaaRT = nullptr;
 IDirect3DTexture9* resolvedTex = nullptr;
@@ -59,6 +60,15 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	SetDepthRenderTarget();
 
 	DepthPrePasss = true;
+
+	if (Game::State == 3)
+	{
+		auto manager = GarageMainScreen::GetInstance();
+		if (manager)
+		{
+			manager->HandleRender();
+		}
+	}
 
 	Game::StuffSky(eView::Player, 1.0, 0);
 	cullInfo->StuffScenery(eView::Player, 0x20);

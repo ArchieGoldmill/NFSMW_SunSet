@@ -29,7 +29,6 @@ namespace Game
 	INLINE_FUNC(0x00505380, void, __cdecl, eRenderLightFlare, eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale);
 	INLINE_FUNC(0x00460BF0, Hash, __cdecl, bStringHash, const char*);
 	INLINE_FUNC(0x0046EB40, Camera*, __cdecl, GetPlayerCamera);
-	INLINE_FUNC(0x007A1FA0, int*, __cdecl, GarageMainScreen_GetInstance);
 	INLINE_FUNC(0x00750B10, void, __cdecl, VehicleConn_RenderCars, int, int);
 	INLINE_FUNC(0x006DBB20, void, __cdecl, DrawMotionBlur);
 	INLINE_FUNC(0x006E2F50, void, __cdecl, CommitRenderedModels);

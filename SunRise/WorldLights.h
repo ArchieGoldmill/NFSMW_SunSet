@@ -4,6 +4,7 @@
 #include "Weather.h"
 #include "LightsBuffer.h"
 #include "WorldModel.h"
+#include "GarageMainScreen.h"
 
 SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix, bool alwaysOn)
 {
@@ -99,7 +100,7 @@ void PopulateFrontEndSpotlights()
 		return;
 	}
 
-	auto manager = Game::GarageMainScreen_GetInstance();
+	auto manager = (int*)GarageMainScreen::GetInstance();
 	if (!manager || manager[27])
 	{
 		return;

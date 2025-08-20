@@ -292,6 +292,9 @@
     <ClInclude Include="DepthPrePass.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="GarageMainScreen.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

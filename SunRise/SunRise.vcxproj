@@ -194,6 +194,7 @@
     <ClInclude Include="FlareConfig.h" />
     <ClInclude Include="FrontEndRenderingCar.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GarageMainScreen.h" />
     <ClInclude Include="GrandSceneryCullInfo.h" />
     <ClInclude Include="CarRenderInfo.h" />
     <ClInclude Include="GridCuller.h" />

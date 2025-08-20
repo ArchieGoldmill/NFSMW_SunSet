@@ -9,8 +9,11 @@ struct WeatherData
 	D3DXVECTOR4 AmbientColor;
 	D3DXVECTOR4 SpecularColor;
 	float SpecularPower;
+
 	float DiffuseIntensity;
 	float AmbientIntensity;
+	float CarDiffuseIntensity;
+	float CarAmbientIntensity;
 
 	D3DXVECTOR4 SkyBeta;
 	float SkyRayleigh;
@@ -48,8 +51,11 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->AmbientColor = ParseVec3To4(node["AmbientColor"], cfg->AmbientColor);
 	config->SpecularColor = ParseVec3To4(node["SpecularColor"], cfg->SpecularColor);
 	config->SpecularPower = YmlGet<float>(node, "SpecularPower", cfg->SpecularPower);
+
 	config->DiffuseIntensity = YmlGet<float>(node, "DiffuseIntensity", cfg->DiffuseIntensity);
 	config->AmbientIntensity = YmlGet<float>(node, "AmbientIntensity", cfg->AmbientIntensity);
+	config->CarDiffuseIntensity = YmlGet<float>(node, "CarDiffuseIntensity", cfg->CarDiffuseIntensity);
+	config->CarAmbientIntensity = YmlGet<float>(node, "CarAmbientIntensity", cfg->CarAmbientIntensity);
 
 	config->SkyBeta = ParseVec3To4(node["SkyBeta"], cfg->SkyBeta);
 	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
@@ -104,8 +110,12 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["AmbientColor"] = SerializeVector3(data->AmbientColor);
 	node["SpecularColor"] = SerializeVector3(data->SpecularColor);
 	node["SpecularPower"] = data->SpecularPower;
+
 	node["DiffuseIntensity"] = data->DiffuseIntensity;
 	node["AmbientIntensity"] = data->AmbientIntensity;
+
+	node["CarDiffuseIntensity"] = data->CarDiffuseIntensity;
+	node["CarAmbientIntensity"] = data->CarAmbientIntensity;
 
 	node["CloudColor"] = SerializeVector4(data->CloudColor);
 

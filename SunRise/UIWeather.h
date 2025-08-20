@@ -123,9 +123,17 @@ namespace UI
 								ImGui::ColorEdit3("Ambient color", (float*)&weather->AmbientColor, ImGuiColorEditFlags_Float);
 								ImGui::ColorEdit3("Diffuse color", (float*)&weather->DiffuseColor, ImGuiColorEditFlags_Float);
 								ImGui::ColorEdit3("Specular color", (float*)&weather->SpecularColor, ImGuiColorEditFlags_Float);
+								InputFloat("Specular power", &weather->SpecularPower);
+
+								ImGui::Text("");
+
 								InputFloat("Diffuse intensity", &weather->DiffuseIntensity);
 								InputFloat("Ambient intensity", &weather->AmbientIntensity);
-								InputFloat("Specular power", &weather->SpecularPower);
+
+								ImGui::Text("");
+
+								InputFloat("Car diffuse intensity", &weather->CarDiffuseIntensity);
+								InputFloat("Car ambient intensity", &weather->CarAmbientIntensity);
 
 								ImGui::Text("");
 

@@ -94,11 +94,16 @@ private:
 		{
 			auto e = eEffect::Get(stype);
 
-			this->current.AmbientColor.w = this->LightsOn() ? 1.0f : 0.0f;
 			this->current.SpecularColor.w = this->current.SpecularPower;
 
-			e->SetVector(ShaderParam::cvDiffuseColor, &this->current.DiffuseColor);
-			e->SetVector(ShaderParam::cvAmbientColor, &this->current.AmbientColor);
+			auto isCar = stype == shader_type::CarShader;
+			D3DXVECTOR4 diffuseColor = this->current.DiffuseColor * (isCar ? this->current.CarDiffuseIntensity : this->current.DiffuseIntensity);
+			D3DXVECTOR4 ambientColor = this->current.AmbientColor * (isCar ? this->current.CarAmbientIntensity : this->current.AmbientIntensity);
+
+			ambientColor.w = this->LightsOn() ? 1.0f : 0.0f;
+
+			e->SetVector(ShaderParam::cvDiffuseColor, &diffuseColor);
+			e->SetVector(ShaderParam::cvAmbientColor, &ambientColor);
 			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
 			e->SetVector(ShaderParam::cvFogColor, &this->current.FogColor);
 			e->SetVector(ShaderParam::cvFogSunColor, &this->current.FogSunColor);
@@ -110,8 +115,11 @@ private:
 	{
 		this->current.DiffuseIntensity = std::lerp(a->DiffuseIntensity, b->DiffuseIntensity, t);
 		this->current.AmbientIntensity = std::lerp(a->AmbientIntensity, b->AmbientIntensity, t);
-		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t) * this->current.DiffuseIntensity;
-		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t) * this->current.AmbientIntensity;
+		this->current.CarDiffuseIntensity = std::lerp(a->CarDiffuseIntensity, b->CarDiffuseIntensity, t);
+		this->current.CarAmbientIntensity = std::lerp(a->CarAmbientIntensity, b->CarAmbientIntensity, t);
+
+		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t);
+		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t);
 		this->current.SpecularColor = LerpVector(a->SpecularColor, b->SpecularColor, t);
 		this->current.SpecularPower = std::lerp(a->SpecularPower, b->SpecularPower, t);
 

@@ -6,6 +6,8 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 0
     AmbientIntensity: 1
+    CarDiffuseIntensity: 0
+    CarAmbientIntensity: 1
     CloudColor: [0.513840854, 0.592204392, 0.647058845, 0.0549999997]
     WaterColor: [1, 1, 1]
     WaterSpecularPower: 10
@@ -28,6 +30,8 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      CarDiffuseIntensity: 1
+      CarAmbientIntensity: 1
       CloudColor: [1, 1, 1, 0.133000001]
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
@@ -50,6 +54,8 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 1
     AmbientIntensity: 1
+    CarDiffuseIntensity: 1
+    CarAmbientIntensity: 1
     CloudColor: [1, 1, 1, 0.0549999997]
     WaterColor: [1, 1, 1]
     WaterSpecularPower: 10
@@ -72,6 +78,8 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      CarDiffuseIntensity: 1
+      CarAmbientIntensity: 1
       CloudColor: [1, 1, 1, 0.0979999974]
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
@@ -94,6 +102,8 @@ Weather:
     SpecularPower: 30
     DiffuseIntensity: 1
     AmbientIntensity: 1
+    CarDiffuseIntensity: 1
+    CarAmbientIntensity: 1
     CloudColor: [1, 1, 1, 0.501999974]
     WaterColor: [0.759803891, 0.759803891, 0.759803891]
     WaterSpecularPower: 300
@@ -116,6 +126,8 @@ Weather:
       SpecularPower: 50
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      CarDiffuseIntensity: 1
+      CarAmbientIntensity: 1
       CloudColor: [0.289215684, 0.289215684, 0.289215684, 1]
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 300
@@ -138,6 +150,8 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 0.799999714
     AmbientIntensity: 1.20000005
+    CarDiffuseIntensity: 0.799999714
+    CarAmbientIntensity: 1.20000005
     CloudColor: [1, 1, 1, 0.301999986]
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
     WaterSpecularPower: 10
@@ -160,6 +174,8 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 0.799999714
       AmbientIntensity: 1.20000005
+      CarDiffuseIntensity: 0.799999714
+      CarAmbientIntensity: 1.20000005
       CloudColor: [0.29411763, 0.29411763, 0.29411763, 1]
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
       WaterSpecularPower: 10
@@ -182,6 +198,8 @@ Weather:
     SpecularPower: 15
     DiffuseIntensity: 0
     AmbientIntensity: 1
+    CarDiffuseIntensity: 0
+    CarAmbientIntensity: 1
     CloudColor: [1, 0.815455556, 0.607843161, 0.368999988]
     WaterColor: [0.759803891, 0.759803891, 0.759803891]
     WaterSpecularPower: 150
@@ -204,6 +222,8 @@ Weather:
       SpecularPower: 15
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      CarDiffuseIntensity: 1
+      CarAmbientIntensity: 1
       CloudColor: [0.642156839, 0.535871327, 0.384034961, 1]
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 150
@@ -226,6 +246,8 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 0
     AmbientIntensity: 1
+    CarDiffuseIntensity: 0
+    CarAmbientIntensity: 1
     CloudColor: [0.622549057, 0.744665504, 1, 0.0590000004]
     WaterColor: [1, 1, 1]
     WaterSpecularPower: 10
@@ -248,6 +270,8 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      CarDiffuseIntensity: 1
+      CarAmbientIntensity: 1
       CloudColor: [1, 1, 1, 0.0979999974]
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10

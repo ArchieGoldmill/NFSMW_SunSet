@@ -5,7 +5,7 @@
 #include "SpotLightConfig.h"
 #include "TextureConfig.h"
 
-inline const char* ModName = "NFSMW - Sun Set 1.1";
+inline const char* ModName = "NFSMW - Sun Set 1.2";
 
 struct Config
 {

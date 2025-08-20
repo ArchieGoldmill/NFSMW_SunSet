@@ -61,13 +61,9 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 }
 
 TextureInfo* StarsTexture = NULL;
-TextureInfo* PlainNormalTexture = NULL;
-void __stdcall SetShaderParams(RenderModel* renderModel)
+void SetSkyTexture(RenderModel* renderModel)
 {
-	SetDynamicLights(renderModel);
-
 	auto effect = renderModel->Effect;
-
 	if (effect->id == shader_type::skyshader)
 	{
 		if (!StarsTexture)
@@ -77,6 +73,13 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 
 		renderModel->DiffuseTextureInfo = StarsTexture;
 	}
+}
+
+TextureInfo* PlainNormalTexture = NULL;
+void __stdcall SetShaderParams(RenderModel* renderModel)
+{
+	SetDynamicLights(renderModel);
+	SetSkyTexture(renderModel);
 
 	bool hasNormalMap = renderModel->NormalTextureInfo != renderModel->DiffuseTextureInfo;
 	if (!hasNormalMap)
@@ -89,6 +92,7 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 		renderModel->NormalTextureInfo = PlainNormalTexture;
 	}
 
+	auto effect = renderModel->Effect;
 	if (effect->id == shader_type::CarShader)
 	{
 		effect->SetBool(ShaderParam::cbUseNormalMap, hasNormalMap);
@@ -150,7 +154,11 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 		effect->D3DEffect->BeginPass(0);
 	}
 
-	if (!DepthPrePass)
+	if (DepthPrePass)
+	{
+		SetSkyTexture(renderModel);
+	}
+	else
 	{
 		SetShaderParams(renderModel);
 	}

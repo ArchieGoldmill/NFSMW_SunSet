@@ -42,9 +42,9 @@ void VS_ScreenFilter(VS_INPUT IN, out PS_INPUT OUT)
 float4 PS_ScreenFilter(PS_INPUT IN) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
-	float depth = tex2D(HEIGHTMAP_SAMPLER, IN.uv).r;
 	
-	diffuse_tex.a = 1 - smoothstep(0, 150, depth);
+	float depth = tex2D(HEIGHTMAP_SAMPLER, IN.uv).r;
+	diffuse_tex.a = smoothstep(150, 0, depth);
 	
 	return diffuse_tex;
 }

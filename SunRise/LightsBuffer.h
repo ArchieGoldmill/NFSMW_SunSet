@@ -36,7 +36,7 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 	D3DXVECTOR3 range = { spotLight.Range, spotLight.Range, spotLight.Range };
 	D3DXVECTOR3 min = spotLight.Position - range;
 
-	if (spotLight.Direction == D3DXVECTOR3(0, 0, -1) && spotLight.OuterAngle < 180 && spotLight.InnerAngle < 180)
+	if (spotLight.IsLampPost())
 	{
 		range.z = 0;
 	}

@@ -26,6 +26,11 @@ struct SpotLight
 	float Intensity;
 	float InnerAngle;
 	float OuterAngle;
+
+	bool IsLampPost()
+	{
+		return Direction == D3DXVECTOR3(0, 0, -1) && OuterAngle < 180 && InnerAngle < 180;
+	}
 };
 
 enum class SpotLightSource

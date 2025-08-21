@@ -53,8 +53,16 @@ struct CellBuffer
 		auto light = &model->Light;
 
 		float r = light->Range;
-		D3DXVECTOR3 min = light->Position - D3DXVECTOR3(r, r, r);
-		D3DXVECTOR3 max = light->Position + D3DXVECTOR3(r, r, r);
+		D3DXVECTOR3 range = { r, r, r };
+
+		D3DXVECTOR3 min = light->Position - range;
+
+		if (light->IsLampPost())
+		{
+			range.z = 0;
+		}
+
+		D3DXVECTOR3 max = light->Position + range;
 
 		Int3 minCell = worldToCell(min);
 		Int3 maxCell = worldToCell(max);

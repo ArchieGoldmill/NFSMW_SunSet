@@ -30,8 +30,6 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 
 	PopulateCarSpotLights();
 
-	std::sort(SpotLightBuffer, SpotLightBuffer + NumSpotLightBuffer, [](const SpotLightModel& a, const SpotLightModel& b) { return (int)a.Source < (int)b.Source; });
-
 	g_CellBuffer.Clear();
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{

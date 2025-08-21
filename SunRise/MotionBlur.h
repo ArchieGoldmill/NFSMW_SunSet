@@ -43,7 +43,7 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 	pEffect->BeginPass(0);
 
 	// Set depth texture
-	effect->SetTexture(shader_param::HeightMapTexture, resolvedTex);
+	effect->SetTexture(shader_param::HeightMapTexture, DepthTexture);
 	// Set filter 1 texture that holds back buffer
 	effect->DrawFullScreenQuad(*filterTexture1);
 

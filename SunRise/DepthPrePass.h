@@ -1,13 +1,13 @@
 #pragma once
 #include "GarageMainScreen.h"
 
-IDirect3DSurface9* msaaRT = nullptr;
-IDirect3DTexture9* resolvedTex = nullptr;
-IDirect3DSurface9* resolvedSurf = nullptr;
+IDirect3DSurface9* DepthRenderTarget = nullptr;
+IDirect3DTexture9* DepthTexture = nullptr;
+IDirect3DSurface9* DepthSurface = nullptr;
 
 void InitPrepassTextures()
 {
-	if (!msaaRT)
+	if (!DepthRenderTarget)
 	{
 		auto renderTarget = RenderTarget::Player;
 
@@ -18,7 +18,7 @@ void InitPrepassTextures()
 			Game::DeviceParams->MultiSampleType,
 			Game::DeviceParams->MultiSampleQuality,
 			FALSE,
-			&msaaRT,
+			&DepthRenderTarget,
 			nullptr
 		);
 
@@ -29,19 +29,46 @@ void InitPrepassTextures()
 			D3DUSAGE_RENDERTARGET,
 			D3DFMT_R32F,
 			D3DPOOL_DEFAULT,
-			&resolvedTex,
+			&DepthTexture,
 			nullptr
 		);
 
-		resolvedTex->GetSurfaceLevel(0, &resolvedSurf);
+		DepthTexture->GetSurfaceLevel(0, &DepthSurface);
 	}
+}
+
+void ResetPrepassTextures()
+{
+	__asm pushad;
+
+	if (DepthRenderTarget)
+	{
+		DepthRenderTarget->Release();
+		DepthRenderTarget = nullptr;
+	}
+
+	if (DepthTexture)
+	{
+		DepthTexture->Release();
+		DepthTexture = nullptr;
+	}
+
+	if (DepthSurface)
+	{
+		DepthSurface->Release();
+		DepthSurface = nullptr;
+	}
+
+	__asm popad;
 }
 
 void SetDepthRenderTarget()
 {
 	auto renderTarget = RenderTarget::Player;
-	Game::Device->SetRenderTarget(0, msaaRT);
+	Game::Device->SetRenderTarget(0, DepthRenderTarget);
 	Game::Device->SetDepthStencilSurface(renderTarget->d3d_depth_stencil);
+
+	Game::Device->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, 0);
 
 	D3DVIEWPORT9 viewport;
 	viewport.Height = renderTarget->resolution_y;
@@ -77,7 +104,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	Game::CommitRenderedModels();
 	DepthPrePass = false;
 
-	Game::Device->StretchRect(msaaRT, nullptr, resolvedSurf, nullptr, D3DTEXF_NONE);
+	Game::Device->StretchRect(DepthRenderTarget, nullptr, DepthSurface, nullptr, D3DTEXF_NONE);
 }
 
 void __stdcall SetRenderStateHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
@@ -112,5 +139,7 @@ void InitDepthPrePass()
 		injector::MakeCALL(0x006C6983, SetRenderStateHook);
 
 		injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
+
+		injector::MakeCALL(0x006BD622, ResetPrepassTextures);
 	}
 }

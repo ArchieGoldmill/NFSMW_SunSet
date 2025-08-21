@@ -88,6 +88,9 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 
 	DepthPrePass = true;
 
+	Game::StuffSky(eView::Player, 1.0, 0);
+	cullInfo->StuffScenery(eView::Player, 0x20);
+	WorldModel::RenderAll(eView::Player);
 	if (Game::State == 3)
 	{
 		auto manager = GarageMainScreen::GetInstance();
@@ -96,10 +99,6 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 			manager->HandleRender();
 		}
 	}
-
-	Game::StuffSky(eView::Player, 1.0, 0);
-	cullInfo->StuffScenery(eView::Player, 0x20);
-	WorldModel::RenderAll(eView::Player);
 
 	Game::CommitRenderedModels();
 	DepthPrePass = false;

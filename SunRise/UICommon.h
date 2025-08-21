@@ -3,11 +3,12 @@
 
 namespace UI
 {
-	void InputFloat(const char* label, float* v)
+	bool InputFloat(const char* label, float* v)
 	{
 		ImGui::PushItemWidth(150);
-		ImGui::InputFloat(label, v, 0.1, 0.3);
+		bool result = ImGui::InputFloat(label, v, 0.1, 0.3);
 		ImGui::PopItemWidth();
+		return result;
 	}
 
 	bool SelectableButton(const char* label, const ImVec2& size_arg, bool selected)

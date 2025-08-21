@@ -419,6 +419,11 @@ private:
 
 	bool IsRaining()
 	{
+		if (Game::State == 3)
+		{
+			return false;
+		}
+
 		return Rain::Instance->Intensity > 0.0f;
 	}
 };

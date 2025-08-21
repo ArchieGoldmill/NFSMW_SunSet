@@ -3,6 +3,7 @@
 #include "WeatherConfig.h"
 #include "UICommon.h"
 #include "TimeOfDay.h"
+#include "Game.h"
 
 namespace UI
 {
@@ -24,6 +25,8 @@ namespace UI
 			ImGui::SliderFloat("Time", &TimeOfDay::Instance->CurrentTime, 0.0f, 1.0f);
 			ImGui::SameLine();
 			InputFloat("Update Rate", &TimeOfDay::Instance->UpdateRate);
+
+			bool zeroWeatherSelected = CurrentWeather && CurrentWeather->Time == 0.0f;
 
 			if (ImGui::BeginTable("WeatherEditorTable", 2, ImGuiTableFlags_BordersInnerV))
 			{
@@ -48,12 +51,16 @@ namespace UI
 							}
 
 							ImGui::SameLine();
-							if (ImGui::Button("Remove", { 60, 20 }))
+							ImGui::BeginDisabled(zeroWeatherSelected);
 							{
-								delete WeatherList[WeatherIndex];
-								WeatherList.erase(WeatherList.begin() + WeatherIndex);
-								Reset();
+								if (ImGui::Button("Remove", { 60, 20 }))
+								{
+									delete WeatherList[WeatherIndex];
+									WeatherList.erase(WeatherList.begin() + WeatherIndex);
+									Reset();
+								}
 							}
+							ImGui::EndDisabled();
 						}
 						ImGui::EndDisabled();
 
@@ -92,6 +99,7 @@ namespace UI
 							ImGui::SameLine();
 							ImGui::Checkbox("Force rain", Game::ForceRain);
 
+
 							ImGui::SameLine();
 							ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 50);
 							if (ImGui::Button("Copy"))
@@ -109,7 +117,17 @@ namespace UI
 
 							if (ImGui::BeginChild("##WeatherDataEditor", ImGui::GetContentRegionAvail(), false, 0))
 							{
-								InputFloat("Time", &CurrentWeather->Time);
+								ImGui::BeginDisabled(zeroWeatherSelected);
+								{
+									if (InputFloat("Time", &CurrentWeather->Time))
+									{
+										if (CurrentWeather->Time >= 1.0f)
+										{
+											CurrentWeather->Time = 0.99;
+										}
+									}
+								}
+								ImGui::EndDisabled();
 
 								ImGui::SameLine();
 								if (ImGui::Button("Set"))

@@ -147,7 +147,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
-    Flare: ""
+    Flare: LampPost
     SpotLights:
       - Position: [0, -6, 12.6999998]
         Direction: [0, 0, -1]

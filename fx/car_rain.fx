@@ -63,7 +63,7 @@ float3 ApplyRainSlide(float3 position, float3 normal)
 	return lerp(normal, rain_slide_sample, power);
 }
 
-float3 ApplyRainDrops(float3 position, float3 normal, out float3 envmapMin, out float3 specularMin)
+float3 ApplyRainDrops(float3 position, float3 normal, out float rainPower)
 {
 	if (cvRainParams.y > 0.0)
 	{
@@ -76,7 +76,7 @@ float3 ApplyRainDrops(float3 position, float3 normal, out float3 envmapMin, out 
 		float4 rain_drop_sample = tex2D(MISCMAP2_SAMPLER, position.xy * 2);
 
 		float3 rain_drop = rain_drop_sample.xyz;
-		float rainPower = saturate(rain_drop_sample.w);
+		rainPower = saturate(rain_drop_sample.w);
 		float rainMap = rain_drop_sample.z;
 		rainMap = frac(rainMap - cvRainParams.z * (rainMap + 1));
 
@@ -87,14 +87,10 @@ float3 ApplyRainDrops(float3 position, float3 normal, out float3 envmapMin, out 
 		rain_drop.z = sqrt(1 - dot(rain_drop.xy, rain_drop.xy));
 		rain_drop = mul(normalize(rain_drop), tbn);
 		normal = lerp(normal, rain_drop, rainPower);
-
-		envmapMin = lerp(EnvmapMin.xyz, float3(1.5, 1.5, 1.5), rainPower);
-		specularMin = lerp(SpecularMin.xyz, float3(0.0, 0.0, 0.0), rainPower);
 	}
 	else
 	{
-		envmapMin = EnvmapMin.rgb;
-		specularMin = SpecularMin.rgb;
+		rainPower = 0;
 	}
 	
 	return normal;

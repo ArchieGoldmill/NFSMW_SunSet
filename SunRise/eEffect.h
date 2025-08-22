@@ -40,6 +40,7 @@ const char* ShaderParamNames[] =
 	"cvWaterColor",
 	"cfTimeTicker",
 	"cbUseNormalMap",
+	"cfVinylScale",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -68,6 +69,7 @@ enum class ShaderParam
 	cvWaterColor,
 	cfTimeTicker,
 	cbUseNormalMap,
+	cfVinylScale,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

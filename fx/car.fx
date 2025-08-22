@@ -16,6 +16,7 @@ float SpecularPower : SPECULARPOWER;
 float4 SpecularRange : SPECULARRANGE;
 float4 cvCarEmissive;
 float cfMetallicScale;
+float cfVinylScale;
 bool cbUseNormalMap;
 
 texture EnvMapTex : EnvMapTexture;
@@ -90,14 +91,11 @@ float3 GetTangent(float3 normal, float2 uv, float3 local_pos)
 	return normalize(tangent - normal * dot(normal, tangent));
 }
 
-float3 GetEnvMap(const float3 envmapMin, const float vdotn, const float3 nview, const float3 normal)
+float GetFlakeScale(float viewLen)
 {
-	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
-	float env_vdotn = pow(vdotn, EnvmapPower);
-	float3 envmap_scale = envmapMin.rgb + env_vdotn * EnvmapRange.rgb;
-	envmap_sample *= envmap_scale * 0.5;
-	
-	return envmap_sample;
+	float flake = saturate(viewLen * -0.25 + 1.2);
+	flake *= 0.04 * cfMetallicScale;
+	return flake;
 }
 
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
@@ -110,26 +108,29 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 		normal = ApplyNormalMap(normal, tangent, IN.uv);
 	}
 	
-	float3 envmapMin, specularMin;
-	normal = ApplyRainDrops(IN.local_pos.xyz, normal, envmapMin, specularMin);
+	float rainPower;
+	normal = ApplyRainDrops(IN.local_pos.xyz, normal, rainPower);
 	
-	float3 view = IN.view;
-	float viewLen = length(view);
-	float3 nview = normalize(view);
+	float viewLen = length(IN.view);
+	float3 nview = normalize(IN.view);
 	
 	float3 noise_sample = tex3Dbias(MISCMAP1_SAMPLER, float4(IN.local_pos.xyz * 50, -3)).xyz;
 	float3 flakeNoise = noise_sample * 2 - 1;
 	
-	float flake = saturate(viewLen * -0.25 + 1.2);
-	flake *= 0.04 * cfMetallicScale;
+	float flake = GetFlakeScale(viewLen);
 	
 	float3 flake_normal = normalize(normal + flakeNoise * flake);
 	
-	float vdotn = dot(nview, normal);
+	float vdotn = saturate(dot(nview, normal));
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
+	float vinyl = cfVinylScale * diffuse_tex.a;
+	flake_normal = lerp(flake_normal, normal, vinyl);
+	
 	float4 diffuse_scale = DiffuseMin + vdotn * DiffuseRange;
+	float4 vinyl_scale = float4(0.5, 0.5, 0.5, 0.5) + vdotn * float4(0.5, 0.5, 0.5, 0.5);
+	diffuse_scale = lerp(diffuse_scale, vinyl_scale, vinyl);
 	
 	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, SpecularPower * 100, IN.spotlight.rgb);
 	
@@ -140,17 +141,23 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	float3 specular = GetSpecular(flake_normal, lightDir, nview, SpecularPower);
 	
-	float3 envmap_sample = GetEnvMap(envmapMin, vdotn, nview, normal);
+	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
+	float env_vdotn = pow(vdotn, EnvmapPower);
+	float3 envmap_scale = EnvmapMin.rgb + env_vdotn * EnvmapRange.rgb;
+	envmap_sample *= envmap_scale * 0.5;
 	
 	float spec_vdotn = pow(vdotn, SpecularPower);
-	float3 spec_scale = specularMin + spec_vdotn * SpecularRange.rgb;
+	float3 spec_scale = SpecularMin.rgb + spec_vdotn * SpecularRange.rgb;
+	spec_scale = lerp(spec_scale, vinyl_scale.rgb, vinyl);
 	
 	float3 finalLight = IN.color.rgb * (cvAmbientColor.rgb + diffuse * shadow) + light.Diffuse;
+	
+	float metallic = 0.05 * flakeNoise.r * cfMetallicScale * saturate(1.2 - viewLen * 0.15) * (1 - vinyl);
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;
 	final.rgb *= finalLight;
-	final.rgb += lerp(0.0, 0.05, flakeNoise.r * cfMetallicScale) * saturate(1.2 - viewLen * 0.15);
+	final.rgb += metallic;
 	final.rgb += envmap_sample * diffuse_scale.a;
 	final.rgb += specular * shadow * spec_scale;
 	final.rgb += light.Specular * spec_scale;

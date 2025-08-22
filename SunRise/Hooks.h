@@ -9,6 +9,7 @@
 #include "Time.h"
 #include "MotionBlur.h"
 #include "CarBrakeGlow.h"
+#include "CarVinylMask.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -100,6 +101,7 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 		auto material = renderModel->LightMaterial;
 		effect->SetFloat(ShaderParam::cfMetallicScale, material->Metallic);
 
+		SetVinylScale(renderModel);
 		ApplyCarBrakeGlow(renderModel);
 	}
 }
@@ -213,6 +215,7 @@ void InitHooks()
 	InitTime();
 	InitMotionBlur();
 	InitDepthPrePass();
+	InitCarVinylMask();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 

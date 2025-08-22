@@ -25,6 +25,7 @@ private:
 	IDirect3DCubeTexture9* SkyCubeTexture = nullptr;
 
 	D3DXVECTOR4 rainParams = { 0, 0, 0, 0 };
+	D3DXVECTOR4 fogValue;
 
 	float RoadWetness = 0.0f;
 	float RoadRainDrops = 0.0f;
@@ -80,9 +81,16 @@ public:
 
 private:
 
+	void SetFog(eEffect* e)
+	{
+		e->SetVector(ShaderParam::cvFogColor, &this->current.FogColor);
+		e->SetVector(ShaderParam::cvFogSunColor, &this->current.FogSunColor);
+		e->SetVector(ShaderParam::cvFogValue, &fogValue);
+	}
+
 	void SetParams()
 	{
-		D3DXVECTOR4 fogValue =
+		fogValue =
 		{
 			this->current.FogEnd,
 			1.0f / (this->current.FogEnd - this->current.FogStart),
@@ -105,10 +113,11 @@ private:
 			e->SetVector(ShaderParam::cvDiffuseColor, &diffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &ambientColor);
 			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
-			e->SetVector(ShaderParam::cvFogColor, &this->current.FogColor);
-			e->SetVector(ShaderParam::cvFogSunColor, &this->current.FogSunColor);
-			e->SetVector(ShaderParam::cvFogValue, &fogValue);
+			this->SetFog(e);
 		}
+
+		auto worldPrelit = eEffect::Get(shader_type::WorldPrelitShader);
+		this->SetFog(worldPrelit);
 	}
 
 	void LerpWeather(WeatherData* a, WeatherData* b, float t)

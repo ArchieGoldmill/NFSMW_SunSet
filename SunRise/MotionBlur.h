@@ -79,4 +79,10 @@ void InitMotionBlur()
 		injector::WriteMemory<BYTE>(0x006DBE9E, D3DBLEND_INVSRCALPHA);
 		injector::WriteMemory<BYTE>(0x006DBEA0, D3DBLEND_SRCALPHA);
 	}
+
+	// Swap rain to blur
+	injector::WriteMemory<BYTE>(0x0050FE90, 0x2C);
+	injector::WriteMemory<BYTE>(0x0050FE9B, 0x2C);
+	injector::WriteMemory<BYTE>(0x0051BF51, 0x2C);
+	injector::WriteMemory<Hash>(0x0051BF25, 0x1C7D9D8D);
 }

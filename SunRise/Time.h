@@ -46,13 +46,11 @@ void TimeSetting()
 	injector::WriteMemoryRaw(0x50F7AE, LoadToEcx, sizeof(LoadToEcx), true);
 	injector::WriteMemory<unsigned char>(0x50F7BE, 0x08, true); // mov [ecx+8], edx
 
-
 	// VOTimeOfDay::Draw(void)
 	injector::WriteMemory<DWORD>(0x89BB4C, 0x51B5E0, true);
 	injector::WriteMemory<DWORD>(0x51B5F5, 0x999D1383, true); // "Time of Day"
 	char LoadToEcx2[] = { 0x8B, 0x0D, 0x2C, 0x39, 0x9B, 0x00, 0x90, 0x90, 0x90, 0x8B, 0x49, 0x08 }; // mov ecx,[009B392C]; mov ecx,[ecx+08]
 	injector::WriteMemoryRaw(0x51B617, LoadToEcx2, sizeof(LoadToEcx2), true);
-
 
 	// VOTimeOfDay::SetInitialValues(void)
 	char LoadTimeOfDay[] = { 0x8B, 0x15, 0x2C, 0x39, 0x9B, 0x00, 0x8B, 0x52, 0x08 }; // mov edx,[009B392C]; mov edx,[edx+08]

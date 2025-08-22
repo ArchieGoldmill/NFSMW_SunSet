@@ -35,6 +35,7 @@ namespace Game
 	INLINE_FUNC(0x006DE210, void, __cdecl, StuffSky, eView*, float, int);
 	INLINE_FUNC(0x0073D3C0, void, __cdecl, SimpleAnimApply, eModel*, eSolid*, D3DXMATRIX*);
 	INLINE_FUNC(0x0073AE60, D3DCOLOR, __cdecl, GetBlendColour, D3DCOLOR*, float*, int, int);
+	INLINE_FUNC(0x00652AD0, void*, __cdecl, malloc, size_t);
 }
 
 inline D3DXVECTOR3 GetCameraPos()

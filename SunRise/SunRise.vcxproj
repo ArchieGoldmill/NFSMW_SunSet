@@ -183,6 +183,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CarBrakeGlow.h" />
     <ClInclude Include="CarLights.h" />
+    <ClInclude Include="CarVinylMask.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="DepthPrePass.h" />
     <ClInclude Include="DynamicLights.h" />

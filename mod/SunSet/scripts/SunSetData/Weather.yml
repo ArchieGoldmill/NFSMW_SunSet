@@ -150,8 +150,8 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 0.799999714
     AmbientIntensity: 1.20000005
-    CarDiffuseIntensity: 0.799999714
-    CarAmbientIntensity: 1.20000005
+    CarDiffuseIntensity: 0.599999666
+    CarAmbientIntensity: 0.799999952
     CloudColor: [1, 1, 1, 0.301999986]
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
     WaterSpecularPower: 10
@@ -162,7 +162,7 @@ Weather:
     SkyRayleigh: 3
     SkyBrightness: 15
     FogColor: [0.540417135, 0.694228232, 0.84803921]
-    FogSunColor: [0.637254894, 0.464404732, 0.377979636]
+    FogSunColor: [0.540417135, 0.694228232, 0.84803921]
     FogStart: 150
     FogEnd: 700
     FogPower: 0.699999988

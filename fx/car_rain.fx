@@ -48,7 +48,7 @@ float3 ApplyRainSlide(float3 position, float3 normal)
 	}
 
 	offset = float2(0, time);
-	power = horiz_power * powerZY * cvRainParams.x * 0.15;
+	power = horiz_power * powerZY * cvRainParams.y * 0.15;
 
 	float3 rain_slide_sample = tex2D(MISCMAP3_SAMPLER, rain_uv * 2 + offset).xyz;
 	

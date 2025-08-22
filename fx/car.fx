@@ -143,11 +143,13 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
 	float env_vdotn = pow(vdotn, EnvmapPower);
-	float3 envmap_scale = EnvmapMin.rgb + env_vdotn * EnvmapRange.rgb;
+	float3 envmapMin = lerp(EnvmapMin.xyz, float3(1.5, 1.5, 1.5), rainPower);
+	float3 envmap_scale = envmapMin + env_vdotn * EnvmapRange.rgb;
 	envmap_sample *= envmap_scale * 0.5;
 	
 	float spec_vdotn = pow(vdotn, SpecularPower);
-	float3 spec_scale = SpecularMin.rgb + spec_vdotn * SpecularRange.rgb;
+	float3 specularMin = lerp(SpecularMin.xyz, float3(0.0, 0.0, 0.0), rainPower);
+	float3 spec_scale = specularMin + spec_vdotn * SpecularRange.rgb;
 	spec_scale = lerp(spec_scale, vinyl_scale.rgb, vinyl);
 	
 	float3 finalLight = IN.color.rgb * (cvAmbientColor.rgb + diffuse * shadow) + light.Diffuse;

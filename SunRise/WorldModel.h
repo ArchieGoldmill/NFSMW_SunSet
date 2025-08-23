@@ -62,10 +62,10 @@ struct WorldModel : bTNode<WorldModel>
 	int field_88;
 	int field_8C;
 
-	static void RenderAll(eView* view)
+	static void RenderAll(eView* view, int a = 0)
 	{
 		FUNC(0x007538D0, void, __cdecl, _RenderAll, eView*, int);
-		_RenderAll(view, 0);
+		_RenderAll(view, a);
 	}
 };
 

@@ -4,10 +4,12 @@
 
 struct eModel
 {
-	eModel* Next;
-	eModel* Prev;
-	Hash NameHash;
-	eSolid* pSolid;
+	eModel* Next = NULL;
+	eModel* Prev = NULL;
+	Hash NameHash = 0;
+	eSolid* pSolid = NULL;
+	void* pReplacementTextureTable = NULL;
+	int NumReplacementTextures = 0;
 
 	D3DXMATRIX* GetPivot()
 	{

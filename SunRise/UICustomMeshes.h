@@ -5,18 +5,23 @@ namespace UI
 {
 	namespace Meshes
 	{
-		CustomMesh* Current = NULL;
 		int CurrentNum = -1;
 		char NameBuff[256] = { 0 };
 
 		void Reset()
 		{
-			Current = NULL;
 			CurrentNum = -1;
+		}
+
+		CustomMesh* GetCurrent()
+		{
+			return CurrentNum >= 0 ? &CustomMeshes[CurrentNum] : NULL;
 		}
 
 		void Draw()
 		{
+			auto current = GetCurrent();
+
 			if (ImGui::BeginTable("CustomMeshesEditorTable", 2, ImGuiTableFlags_BordersInnerV))
 			{
 				ImGui::TableSetupColumn("Solids", ImGuiTableColumnFlags_WidthFixed, 220.0f);
@@ -33,20 +38,17 @@ namespace UI
 							customMesh.Position = { 0, 0, 0 };
 							customMesh.Rotation = { 0, 0, 0 };
 							customMesh.Scale = { 1, 1, 1 };
-							customMesh.Model.Next = NULL;
-							customMesh.Model.Prev = NULL;
-							customMesh.Model.pSolid = NULL;
 
 							CustomMeshes.push_back(customMesh);
 
 							CurrentNum = CustomMeshes.size() - 1;
-							Current = &CustomMeshes[CurrentNum];
+							current = GetCurrent();
 						}
 
 						ImGui::SameLine();
-						if (ImGui::Button("Remove##Solid", { 60, 20 }))
+						if (ImGui::Button("Remove", { 60, 20 }))
 						{
-							if (Current)
+							if (current)
 							{
 								CustomMeshes.erase(CustomMeshes.begin() + CurrentNum);
 								Reset();
@@ -60,12 +62,15 @@ namespace UI
 								auto& customMesh = CustomMeshes[i];
 
 								char nameBuff[128];
+								memset(nameBuff, ' ', 128);
 								sprintf(nameBuff, "%d. %s", i + 1, customMesh.Name.c_str());
+								int len = strlen(nameBuff);
+								nameBuff[len] = ' ';
+								nameBuff[127] = 0;
 
-								if (SelectableButton(nameBuff, { 200, 20 }, Current == &customMesh))
+								if (SelectableButton(nameBuff, { 200, 20 }, current == &customMesh))
 								{
 									CurrentNum = i;
-									Current = &customMesh;
 								}
 							}
 
@@ -75,22 +80,22 @@ namespace UI
 
 					ImGui::TableSetColumnIndex(1);
 					{
-						if (Current)
+						if (current)
 						{
-							Current->SetMatrix();
+							current->SetMatrix();
 
 							if (ImGui::Button("Place at camera"))
 							{
-								Current->Position = GetCameraPos();
+								current->Position = GetCameraPos();
 							}
 
 							ImGui::Text("");
 
-							strcpy(NameBuff, Current->Name.c_str());
+							strcpy(NameBuff, current->Name.c_str());
 							if (ImGui::InputText("Solid", NameBuff, 256))
 							{
-								Current->Name = NameBuff;
-								Current->Model.NameHash = Game::bStringHash(Current->Name.c_str());
+								current->Name = NameBuff;
+								current->Model.NameHash = Game::bStringHash(current->Name.c_str());
 							}
 
 							ImGui::Text("");
@@ -98,29 +103,29 @@ namespace UI
 							ImGui::PushItemWidth(120);
 							{
 								ImGui::Text("Position");
-								ImGui::InputFloat("##PosX", &Current->Position.x, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##PosX", &current->Position.x, 0.1, 1.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##PosY", &Current->Position.y, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##PosY", &current->Position.y, 0.1, 1.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##PosZ", &Current->Position.z, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##PosZ", &current->Position.z, 0.1, 1.0, "%.2f");
 
 								ImGui::Text("");
 
 								ImGui::Text("Rotation");
-								ImGui::InputFloat("##RotX", &Current->Rotation.x, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##RotX", &current->Rotation.x, 1.0, 2.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##RotY", &Current->Rotation.y, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##RotY", &current->Rotation.y, 1.0, 2.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##RotZ", &Current->Rotation.z, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##RotZ", &current->Rotation.z, 1.0, 2.0, "%.2f");
 
 								ImGui::Text("");
 
 								ImGui::Text("Scale");
-								ImGui::InputFloat("##ScaleX", &Current->Scale.x, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##ScaleX", &current->Scale.x, 0.1, 1.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##ScaleY", &Current->Scale.y, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##ScaleY", &current->Scale.y, 0.1, 1.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##ScaleZ", &Current->Scale.z, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##ScaleZ", &current->Scale.z, 0.1, 1.0, "%.2f");
 							}
 							ImGui::PopItemWidth();
 						}

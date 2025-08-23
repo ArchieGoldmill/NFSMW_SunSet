@@ -47,11 +47,7 @@ void LoadCustomMeshes()
 		mesh.Rotation = ParseVec3(node["Rotation"]);
 		mesh.Scale = ParseVec3(node["Scale"]);
 		mesh.SetMatrix();
-
 		mesh.Model.NameHash = Game::bStringHash(mesh.Name.c_str());
-		mesh.Model.Next = NULL;
-		mesh.Model.Prev = NULL;
-		mesh.Model.pSolid = NULL;
 
 		CustomMeshes.push_back(mesh);
 	}

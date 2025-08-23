@@ -1,5 +1,117 @@
 Meshes:
   - Solid: XO_STREETLIGHTD2_1B_00
-    Position: [0, -2.79999995, 8.30000019]
-    Rotation: [0, 0, 0]
+    Position: [-402.947693, 2959.71875, 190.293945]
+    Rotation: [0, 0, 50]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-436.562866, 2923.80029, 195.014923]
+    Rotation: [0, 0, 50]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-469.002472, 2888.07812, 200.849152]
+    Rotation: [0, 0, 50]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-493.356537, 2859.05151, 205.56366]
+    Rotation: [0, 0, 52]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-517.651733, 2825.89209, 211.673096]
+    Rotation: [0, 0, 52]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-543.573547, 2787.11646, 215.756134]
+    Rotation: [0, 0, 59]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-564.093384, 2749.26074, 222.330109]
+    Rotation: [0, 0, 59]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-576.386475, 2713.39136, 227.175171]
+    Rotation: [0, 0, 70]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-586.36322, 2673.11694, 231.534348]
+    Rotation: [0, 0, 81]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-589.020142, 2636.50171, 235.083267]
+    Rotation: [0, 0, 88]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-586.785828, 2597.49756, 237.78093]
+    Rotation: [0, 0, 97]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-577.682068, 2554.72192, 240.866379]
+    Rotation: [0, 0, 108]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-561.422791, 2520.56494, 242.117142]
+    Rotation: [0, 0, 125]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-536.794189, 2485.4917, 243.817596]
+    Rotation: [0, 0, 129]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-514.871033, 2465.68921, 244.784149]
+    Rotation: [0, 0, 133]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-388.003357, 2903.66406, 196.06955]
+    Rotation: [0, 0, 222]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-417.642273, 2875.08667, 197.12854]
+    Rotation: [0, 0, 226]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-445.718384, 2842.61426, 202.97345]
+    Rotation: [0, 0, 230]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-469.618622, 2812.8501, 208.411316]
+    Rotation: [0, 0, 237]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-488.688232, 2785.79395, 212.858765]
+    Rotation: [0, 0, 237]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-513.586365, 2747.53345, 218.448822]
+    Rotation: [0, 0, 245]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-533.190918, 2713.06836, 223.214661]
+    Rotation: [0, 0, 249]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-545.274963, 2684.28613, 227.277954]
+    Rotation: [0, 0, 264]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-549.931519, 2652.6875, 230.043533]
+    Rotation: [0, 0, 272]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-550.530334, 2619.61816, 233.500748]
+    Rotation: [0, 0, 277]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-546.80072, 2589.36987, 236.510696]
+    Rotation: [0, 0, 280]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-535.114258, 2554.24902, 239.090408]
+    Rotation: [0, 0, 296]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-518.603943, 2526.63794, 240.751587]
+    Rotation: [0, 0, 308]
+    Scale: [1, 1, 1]
+  - Solid: XO_STREETLIGHTD2_1B_00
+    Position: [-498.438995, 2502.19263, 242.705048]
+    Rotation: [0, 0, 318]
     Scale: [1, 1, 1]

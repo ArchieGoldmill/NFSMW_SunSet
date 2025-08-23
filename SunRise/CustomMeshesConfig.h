@@ -5,13 +5,15 @@ struct CustomMesh
 {
 	std::string Name;
 
-	D3DXVECTOR3 Position;
-	D3DXVECTOR3 Rotation;
-	D3DXVECTOR3 Scale;
+	D3DXVECTOR3 Position = { 0, 0, 0 };
+	D3DXVECTOR3 Rotation = { 0, 0, 0 };
+	D3DXVECTOR3 Scale = { 1, 1, 1 };
 
 	D3DXMATRIX Matrix;
 
 	eModel Model;
+
+	bool Selected = false;
 
 	void SetMatrix()
 	{

@@ -39,12 +39,6 @@ namespace UI
 							{
 								customMesh = *current;
 							}
-							else
-							{
-								customMesh.Position = { 0, 0, 0 };
-								customMesh.Rotation = { 0, 0, 0 };
-								customMesh.Scale = { 1, 1, 1 };
-							}
 
 							CustomMeshes.push_back(customMesh);
 
@@ -75,9 +69,12 @@ namespace UI
 								nameBuff[len] = ' ';
 								nameBuff[127] = 0;
 
+								customMesh.Selected = current == &customMesh;
+
 								if (SelectableButton(nameBuff, { 200, 20 }, current == &customMesh))
 								{
 									CurrentNum = i;
+									current = GetCurrent();
 								}
 							}
 
@@ -110,11 +107,11 @@ namespace UI
 							ImGui::PushItemWidth(120);
 							{
 								ImGui::Text("Position");
-								ImGui::InputFloat("##PosX", &current->Position.x, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##PosX", &current->Position.x, 0.1, 10.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##PosY", &current->Position.y, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##PosY", &current->Position.y, 0.1, 10.0, "%.2f");
 								ImGui::SameLine();
-								ImGui::InputFloat("##PosZ", &current->Position.z, 0.1, 1.0, "%.2f");
+								ImGui::InputFloat("##PosZ", &current->Position.z, 0.1, 10.0, "%.2f");
 
 								ImGui::Text("");
 

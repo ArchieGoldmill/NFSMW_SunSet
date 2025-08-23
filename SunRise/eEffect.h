@@ -342,6 +342,15 @@ struct eEffect
 		}
 	}
 
+	void SetFloat(shader_param p, float v)
+	{
+		auto handle = this->Params[(int)p].handle;
+		if (handle)
+		{
+			this->D3DEffect->SetFloat(handle, v);
+		}
+	}
+
 	void SetBool(ShaderParam p, bool v)
 	{
 		auto handle = ShaderParamsMap[this->id].Params[(int)p];

@@ -33,6 +33,10 @@ struct Config
 	float WetnessTime;
 	float DryTime;
 
+	float BlurMinSpeed;
+	float BlurMaxSpeed;
+	float BlurDepth;
+
 	int HK_ShaderReload;
 };
 
@@ -43,16 +47,8 @@ void LoadConfig()
 	YAML::Node settingsRoot = YAML::LoadFile(GetConfigFolder("Config.yml"));
 
 	const auto& settings = settingsRoot["Config"];
-
-	g_Config.ForceTime = settings["ForceTime"].as<float>();
-	g_Config.TimeUpdateRate = settings["TimeUpdateRate"].as<float>();
 	g_Config.LightLodDistance = 150.0f;
-	g_Config.SunRise = 0.2f;
-	g_Config.SunSet = 0.8f;
-	g_Config.LightsOn = settings["LightsOn"].as<float>();
-	g_Config.LightsOff = settings["LightsOff"].as<float>();
 	g_Config.LightCellSize = 64;
-
 	g_Config.Console = settings["Console"].as<bool>();
 	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
 	g_Config.ShaderCompiler = settings["ShaderCompiler"].as<bool>();
@@ -60,16 +56,28 @@ void LoadConfig()
 	g_Config.X360Effects = settings["X360Effects"].as<bool>();
 	g_Config.Editor = settings["Editor"].as<bool>();
 	g_Config.SkipFE = settings["SkipFE"].as<bool>();
-	g_Config.RandomStartupTime = settings["RandomStartupTime"].as<bool>();
-	g_Config.RealTime = settings["RealTime"].as<bool>();
 	g_Config.CarVinylPaintFix = settings["CarVinylPaintFix"].as<bool>();
 	g_Config.DepthPrepass = true;
 
-	g_Config.HK_ShaderReload = settings["HK_ShaderReload"].as<int>();
+	const auto& time = settingsRoot["Time"];
+	g_Config.WetnessTime = time["WetnessTime"].as<float>();
+	g_Config.DryTime = time["DryTime"].as<float>();
+	g_Config.ForceTime = time["ForceTime"].as<float>();
+	g_Config.TimeUpdateRate = time["TimeUpdateRate"].as<float>();
+	g_Config.LightsOn = time["LightsOn"].as<float>();
+	g_Config.LightsOff = time["LightsOff"].as<float>();
+	g_Config.RandomStartupTime = time["RandomStartupTime"].as<bool>();
+	g_Config.RealTime = time["RealTime"].as<bool>();
+	g_Config.SunRise = 0.2f;
+	g_Config.SunSet = 0.8f;
 
-	const auto& weather = settingsRoot["Weather"];
-	g_Config.WetnessTime = weather["WetnessTime"].as<float>();
-	g_Config.DryTime = weather["DryTime"].as<float>();
+	const auto& blur = settingsRoot["Blur"];
+	g_Config.BlurMinSpeed = blur["MinSpeed"].as<float>();
+	g_Config.BlurMaxSpeed = blur["MaxSpeed"].as<float>();
+	g_Config.BlurDepth = blur["Depth"].as<float>();
+
+	const auto& hotkeys = settingsRoot["Hotkeys"];
+	g_Config.HK_ShaderReload = hotkeys["ShaderReload"].as<int>();
 
 	if (g_Config.Editor)
 	{

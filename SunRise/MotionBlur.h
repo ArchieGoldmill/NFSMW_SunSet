@@ -51,6 +51,7 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 
 	// Set depth texture
 	effect->SetTexture(shader_param::HeightMapTexture, DepthTexture);
+	effect->SetFloat(shader_param::FILTERBLEND, g_Config.BlurDepth);
 	// Set filter 1 texture that holds back buffer
 	effect->DrawFullScreenQuad(filterTexture1);
 
@@ -73,6 +74,9 @@ void InitMotionBlur()
 {
 	injector::MakeCALL(0x006DEE3F, RenderCars);
 	injector::MakeCALL(0x006DF1DC, DrawBlur);
+
+	injector::WriteMemory(0x008F9B10, g_Config.BlurMinSpeed);
+	injector::WriteMemory(0x008F9B14, g_Config.BlurMaxSpeed);
 
 	// Restore blur from wide screen fix
 	injector::WriteMemory<BYTE>(0x006DF1D2, 0x74);

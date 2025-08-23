@@ -1,3 +1,4 @@
+float cfDepth : FILTERBLEND;
 
 texture diffusemap : DiffuseMap;
 sampler DIFFUSEMAP_SAMPLER = sampler_state
@@ -44,7 +45,7 @@ float4 PS_ScreenFilter(PS_INPUT IN) : COLOR
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
 	float depth = tex2D(HEIGHTMAP_SAMPLER, IN.uv).r;
-	diffuse_tex.a = smoothstep(150, 0, depth);
+	diffuse_tex.a = smoothstep(cfDepth, 0, depth);
 	
 	return diffuse_tex;
 }

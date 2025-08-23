@@ -70,7 +70,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb += GetEmissive(IN.uv);
 	
 	APPLY_FOG
-
+	
 	return final;
 }
 

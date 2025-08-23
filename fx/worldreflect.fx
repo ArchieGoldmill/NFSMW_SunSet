@@ -159,7 +159,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final += reflection_sample * reflectance;
 	
 	APPLY_FOG
-
+	
 	return float4(final, 1);
 }
 

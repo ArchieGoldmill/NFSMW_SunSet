@@ -301,6 +301,15 @@
     <ClInclude Include="UIWidgetMenu.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="CustomMeshes.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomMeshesConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="UICustomMeshes.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

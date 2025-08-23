@@ -4,6 +4,7 @@
 #include "FlareConfig.h"
 #include "SpotLightConfig.h"
 #include "TextureConfig.h"
+#include "CustomMeshesConfig.h"
 
 inline const char* ModName = "NFSMW - Sun Set 1.2";
 
@@ -95,5 +96,7 @@ void InitConfig()
 
 	LoadWeatherConfig();
 
-	InitTextureConfig();
+	LoadTextureConfig();
+
+	LoadCustomMeshes();
 }

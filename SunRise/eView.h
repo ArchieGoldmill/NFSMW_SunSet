@@ -1,6 +1,7 @@
 #pragma once
 #include <d3dx9.h>
 #include "ViewId.h"
+#include "eModel.h"
 
 enum class visible_state : std::uint8_t
 {
@@ -53,5 +54,11 @@ struct eView
 	{
 		FUNC(0x006CF2B0, visible_state, __thiscall, _GetVisibleState, eView*, D3DXVECTOR3*, D3DXVECTOR3*, void*);
 		return _GetVisibleState(this, min, max, 0);
+	}
+
+	void Render(eModel* model, D3DXMATRIX* matrix, void* lightContext, int flags, void* blendMatricies)
+	{
+		FUNC(0x006DA9B0, void, __thiscall, _Render, eView*, eModel*, D3DXMATRIX*, void*, int, void*);
+		_Render(this, model, matrix, lightContext, flags, blendMatricies);
 	}
 };

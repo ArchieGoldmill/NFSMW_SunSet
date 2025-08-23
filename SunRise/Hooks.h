@@ -10,6 +10,7 @@
 #include "MotionBlur.h"
 #include "CarBrakeGlow.h"
 #include "CarVinylMask.h"
+#include "CustomMeshes.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -219,6 +220,7 @@ void InitHooks()
 	InitMotionBlur();
 	InitDepthPrePass();
 	InitCarVinylMask();
+	InitCustomMeshes();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 

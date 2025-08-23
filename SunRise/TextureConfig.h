@@ -72,7 +72,7 @@ void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& texture
 	}
 }
 
-void InitTextureConfig()
+void LoadTextureConfig()
 {
 	PrelitTextures.clear();
 

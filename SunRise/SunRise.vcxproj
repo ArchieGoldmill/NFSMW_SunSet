@@ -185,6 +185,8 @@
     <ClInclude Include="CarLights.h" />
     <ClInclude Include="CarVinylMask.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="CustomMeshes.h" />
+    <ClInclude Include="CustomMeshesConfig.h" />
     <ClInclude Include="DepthPrePass.h" />
     <ClInclude Include="DynamicLights.h" />
     <ClInclude Include="eEffect.h" />
@@ -243,6 +245,7 @@
     <ClInclude Include="TimeOfDay.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UICommon.h" />
+    <ClInclude Include="UICustomMeshes.h" />
     <ClInclude Include="UIEditor.h" />
     <ClInclude Include="UISpotlights.h" />
     <ClInclude Include="UITextures.h" />

@@ -2,6 +2,7 @@
 #include "UIWeather.h"
 #include "UITextures.h"
 #include "UISpotlights.h"
+#include "UICustomMeshes.h"
 
 namespace UI
 {
@@ -14,21 +15,27 @@ namespace UI
 
 		if (ImGui::Begin("Sun Set Editor", nullptr, ImGuiWindowFlags_NoResize))
 		{
-			if (SelectableButton("Weather", { 200, 30 }, CurrentTab == 0))
+			if (SelectableButton("Weather", { 150, 30 }, CurrentTab == 0))
 			{
 				CurrentTab = 0;
 			}
 
 			ImGui::SameLine();
-			if (SelectableButton("Textures", { 200, 30 }, CurrentTab == 1))
+			if (SelectableButton("Textures", { 150, 30 }, CurrentTab == 1))
 			{
 				CurrentTab = 1;
 			}
 
 			ImGui::SameLine();
-			if (SelectableButton("Spotlights", { 200, 30 }, CurrentTab == 2))
+			if (SelectableButton("Spotlights", { 150, 30 }, CurrentTab == 2))
 			{
 				CurrentTab = 2;
+			}
+
+			ImGui::SameLine();
+			if (SelectableButton("Meshes", { 150, 30 }, CurrentTab == 3))
+			{
+				CurrentTab = 3;
 			}
 
 			ImGui::Text("");
@@ -40,6 +47,7 @@ namespace UI
 				case 0: SaveWeatherConfig(); break;
 				case 1: SaveTextureConfig(); break;
 				case 2: SaveSpotLightConfig(); break;
+				case 3: SaveCustomMeshes(); break;
 				}
 			}
 
@@ -53,13 +61,16 @@ namespace UI
 					Weather::Reset();
 					break;
 				case 1: 
-					InitTextureConfig(); 
+					LoadTextureConfig(); 
 					Textures::Reset();
 					break;
 				case 2: 
 					LoadSpotLightConfig(); 
-					CurrentSolid = NULL;
-					CurrentLight = NULL;
+					Spotlights::Reset();
+					break;
+				case 3:
+					LoadCustomMeshes();
+					Meshes::Reset();
 					break;
 				}
 			}
@@ -70,7 +81,8 @@ namespace UI
 			{
 			case 0: Weather::Draw(); break;
 			case 1: Textures::Draw(); break;
-			case 2: DrawSpotlights(); break;
+			case 2: Spotlights::Draw(); break;
+			case 3: Meshes::Draw(); break;
 			}
 		}
 		ImGui::End();

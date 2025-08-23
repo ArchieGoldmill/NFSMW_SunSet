@@ -10,6 +10,8 @@ struct TexturePlatInfo
 
 struct TextureInfo
 {
+	static inline auto& DefaultAlpha = *(TextureInfo**)0x00916040;
+
 	TexturePlatInfo* PlatInfo;
 	TextureInfo* Prev;
 	TextureInfo* Next;

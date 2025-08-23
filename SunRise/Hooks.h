@@ -82,7 +82,10 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 	SetDynamicLights(renderModel);
 	SetSkyTexture(renderModel);
 
-	bool hasNormalMap = renderModel->NormalTextureInfo && renderModel->NormalTextureInfo != renderModel->DiffuseTextureInfo;
+	bool hasNormalMap = renderModel->NormalTextureInfo && 
+		renderModel->NormalTextureInfo != renderModel->DiffuseTextureInfo && 
+		renderModel->NormalTextureInfo != TextureInfo::DefaultAlpha;
+
 	if (!hasNormalMap)
 	{
 		if (!PlainNormalTexture)

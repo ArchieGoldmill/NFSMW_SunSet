@@ -17,12 +17,16 @@ void CustomMeshesPrepass()
 
 	for (auto& customMesh : CustomMeshes)
 	{
-		if (!customMesh.Model.pSolid)
+		float dist = GetCameraDistance(customMesh.Position);
+		if (dist < 500)
 		{
-			customMesh.Model.pSolid = Game::eFindSolid(customMesh.Model.NameHash);
-		}
+			if (!customMesh.Model.pSolid)
+			{
+				customMesh.Model.pSolid = Game::eFindSolid(customMesh.Model.NameHash);
+			}
 
-		DrawCustomMesh(eView::Player, customMesh);
+			DrawCustomMesh(eView::Player, customMesh);
+		}
 	}
 }
 

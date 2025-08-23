@@ -8,10 +8,8 @@ void DrawCustomMesh(eView* view, CustomMesh& customMesh)
 	}
 }
 
-void CustomMeshesRenderHook()
+void CustomMeshesPrepass()
 {
-	__asm pushad;
-
 	for (auto& customMesh : CustomMeshes)
 	{
 		customMesh.Model.pSolid = NULL;
@@ -24,6 +22,16 @@ void CustomMeshesRenderHook()
 			customMesh.Model.pSolid = Game::eFindSolid(customMesh.Model.NameHash);
 		}
 
+		DrawCustomMesh(eView::Player, customMesh);
+	}
+}
+
+void CustomMeshesRenderHook()
+{
+	__asm pushad;
+
+	for (auto& customMesh : CustomMeshes)
+	{
 		DrawCustomMesh(eView::Player, customMesh);
 	}
 

@@ -35,9 +35,16 @@ namespace UI
 						{
 							CustomMesh customMesh;
 
-							customMesh.Position = { 0, 0, 0 };
-							customMesh.Rotation = { 0, 0, 0 };
-							customMesh.Scale = { 1, 1, 1 };
+							if (current)
+							{
+								customMesh = *current;
+							}
+							else
+							{
+								customMesh.Position = { 0, 0, 0 };
+								customMesh.Rotation = { 0, 0, 0 };
+								customMesh.Scale = { 1, 1, 1 };
+							}
 
 							CustomMeshes.push_back(customMesh);
 

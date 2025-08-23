@@ -1,5 +1,6 @@
 #pragma once
 #include "GarageMainScreen.h"
+#include "CustomMeshes.h"
 
 IDirect3DSurface9* DepthRenderTarget = nullptr;
 IDirect3DTexture9* DepthTexture = nullptr;
@@ -91,6 +92,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	Game::StuffSky(eView::Player, 1.0, 0);
 	cullInfo->StuffScenery(eView::Player, 0x20);
 	WorldModel::RenderAll(eView::Player);
+	CustomMeshesPrepass();
 	if (Game::State == 3)
 	{
 		auto manager = GarageMainScreen::GetInstance();

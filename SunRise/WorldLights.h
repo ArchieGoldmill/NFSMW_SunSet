@@ -50,6 +50,14 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 	}
 }
 
+void PopulateCustomMeshSpotLights()
+{
+	for (auto& customMesh : CustomMeshes)
+	{
+		PopulateFromModel(&customMesh.Model, &customMesh.Matrix);
+	}
+}
+
 void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 {
 	auto drawInfo = cullInfo->FirstDrawInfo;
@@ -91,6 +99,8 @@ void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
 
 		worldModel = worldModel->Next;
 	}
+
+	PopulateCustomMeshSpotLights();
 }
 
 void PopulateFrontEndSpotlights()

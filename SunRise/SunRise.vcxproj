@@ -247,6 +247,7 @@
     <ClInclude Include="UISpotlights.h" />
     <ClInclude Include="UITextures.h" />
     <ClInclude Include="UIWeather.h" />
+    <ClInclude Include="UIWidgetMenu.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VehicleRenderConn.h" />
     <ClInclude Include="ViewId.h" />

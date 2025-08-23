@@ -1,5 +1,6 @@
 #pragma once
 #include "DepthPrePass.h"
+#include "UIWidgetMenu.h"
 
 int RenderCarsParam1;
 int RenderCarsParam2;
@@ -57,6 +58,17 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 	pEffect->End();
 }
 
+unsigned int BlurToggleWidgetVT[15];
+void __fastcall AddToggleOptionHook(UIWidgetMenu* widgetMenu, int, FEToggleWidget* toggleWidget, bool a4)
+{
+	widgetMenu->AddToggleOption(toggleWidget, a4);
+
+	toggleWidget = (FEToggleWidget*)Game::malloc(0x5C);
+	toggleWidget->Ctor(true);
+	toggleWidget->vTable = BlurToggleWidgetVT;
+	widgetMenu->AddToggleOption(toggleWidget, a4);
+}
+
 void InitMotionBlur()
 {
 	injector::MakeCALL(0x006DEE3F, RenderCars);
@@ -81,8 +93,17 @@ void InitMotionBlur()
 	}
 
 	// Swap rain to blur
-	injector::WriteMemory<BYTE>(0x0050FE90, 0x2C);
-	injector::WriteMemory<BYTE>(0x0050FE9B, 0x2C);
-	injector::WriteMemory<BYTE>(0x0051BF51, 0x2C);
-	injector::WriteMemory<Hash>(0x0051BF25, 0x1C7D9D8D);
+	injector::MakeCALL(0x00529B29, AddToggleOptionHook);
+	for (int i = 0; i < 15; i++)
+	{
+		BlurToggleWidgetVT[i] = ((unsigned int*)0x0089BDB0)[i];
+	}
+
+	BlurToggleWidgetVT[1] = 0x0050FC00;
+	BlurToggleWidgetVT[3] = 0x0051BB80;
+
+	injector::WriteMemory<BYTE>(0x0050FC20, 0x2C);
+	injector::WriteMemory<BYTE>(0x0050FC2B, 0x2C);
+	injector::WriteMemory<BYTE>(0x0051BBC1, 0x2C);
+	injector::WriteMemory<Hash>(0x0051BB95, 0x1C7D9D8D);
 }

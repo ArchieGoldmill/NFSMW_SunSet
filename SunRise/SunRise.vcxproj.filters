@@ -298,6 +298,9 @@
     <ClInclude Include="CarVinylMask.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="UIWidgetMenu.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

@@ -1,3 +1,5 @@
+#define SPOT_SPECULAR
+
 #include "global.fx"
 #include "shadow.fx"
 #include "normalmap.fx"

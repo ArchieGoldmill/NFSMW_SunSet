@@ -67,7 +67,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, 30, IN.spotlight.rgb);
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
 	
 	float3 albedo = diffuse_tex.rgb;
 	float reflect_scale = smoothstep(0, 0.2, diffuse_tex.a);
@@ -78,8 +78,6 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 diffuse = GetDiffuse(ndotl);
 	float3 specular = GetSpecular(normal, lightDir, nview, 10);
-	
-	float3 finalLight = IN.color.rgb + diffuse * shadow + light.Diffuse;
 	
 	float3 windowGlowColor;
 	float windowGlowMask;
@@ -96,7 +94,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	windowGlowMask *= cvAmbientColor.w;
 	
-	finalLight = lerp(finalLight, windowGlowColor, windowGlowMask);
+	float3 finalLight = lerp(IN.color.rgb + diffuse * shadow, windowGlowColor, windowGlowMask) + light.Diffuse;
+	
 	albedo = lerp(albedo, albedo.rrr, windowGlowMask);
 	
 	float3 reflection = GetWindowReflection(nview, normal, IN.uv, diffuse_tex.a);

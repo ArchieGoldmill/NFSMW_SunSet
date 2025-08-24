@@ -22,37 +22,31 @@ SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPo
 	float distance = length(L);
 	L /= distance;
 
-	float3 H = normalize(L + view);
-
 	float spotCos = dot(-L, light.Direction);
 	float diffuseAtten = smoothstep(light.OuterCos, light.InnerCos, spotCos);
-	float specAtten = spotCos;
-	
+
 	float distAtten = saturate(1.0 - distance / light.Range);
 	distAtten *= distAtten;
-	
+
 	float dotL = dot(localNormal, L);
 	dotL = smoothstep(-0.5, 1.0, dotL);
-	float NdotL = saturate(dotL);
-	float3 diffuse = abs(dotL) * diffuseAtten;
-
-	float spec;
+	
+	float3 spec = float3(0, 0, 0);
+	
+	float3 lightScale = light.Color * dotL * distAtten;
+	
+#ifdef SPOT_SPECULAR
+	float3 H = normalize(L + view);
 	float NdotH = saturate(dot(localNormal, H));
-	
-	if (shine < 0 || specAtten < 0)
-	{
-		spec = float3(0, 0, 0);
-	}
-	else
-	{
-		spec = pow(NdotH, shine) * NdotL * specAtten * distAtten;
-	}
-	
+	spec = pow(NdotH, shine);
+	spec *= lightScale * saturate(spotCos);
+#endif
+
 	SpotLightResult result;
 	
-	result.Diffuse = light.Color * diffuse * distAtten;
-	result.Specular = light.Color * spec;
-
+	result.Diffuse = lightScale * diffuseAtten;
+	result.Specular = spec;
+	
 	return result;
 }
 

@@ -47,6 +47,9 @@ const char* ShaderParamNames[] =
 	"MISCMAP3_TEXTURE",
 	"MISCMAP4_TEXTURE",
 	"EMISSIVE_TEXTURE",
+
+	"BaseAddressU",
+	"BaseAddressV",
 };
 
 enum class ShaderParam
@@ -76,6 +79,9 @@ enum class ShaderParam
 	MISCMAP3_TEXTURE,
 	MISCMAP4_TEXTURE,
 	EMISSIVE_TEXTURE,
+
+	BaseAddressU,
+	BaseAddressV,
 
 	count
 };
@@ -339,6 +345,15 @@ struct eEffect
 		if (handle)
 		{
 			this->D3DEffect->SetFloat(handle, v);
+		}
+	}
+
+	void SetInt(ShaderParam p, int v)
+	{
+		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetInt(handle, v);
 		}
 	}
 

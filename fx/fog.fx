@@ -15,11 +15,7 @@ float CalculateFog(float distance)
 	float fog_intensity_dist = saturate((fog_end - distance) * fog_recip_end_minus_start);
 	fog_intensity_dist = pow((1.0 - fog_intensity_dist), fog_exponent) * dist_fog_power;
 
-	float result = fog_intensity_dist;
-
-	result = 1.0 - result;
-	
-	return result;
+	return 1.0 - fog_intensity_dist;
 }
 
 float3 ApplyFogColor(float3 color, float factor, float3 local_pos)
@@ -39,5 +35,4 @@ float3 ApplyFogColor(float3 color, float factor, float3 local_pos)
 #define APPLY_FOG\
 	float fog = CalculateFog(IN.local_pos.w);\
 	final.rgb = ApplyFogColor(final.rgb, fog, IN.local_pos.xyz);
-
 #endif // FOG_HEADER

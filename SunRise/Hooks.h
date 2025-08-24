@@ -82,8 +82,8 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 	SetDynamicLights(renderModel);
 	SetSkyTexture(renderModel);
 
-	bool hasNormalMap = renderModel->NormalTextureInfo && 
-		renderModel->NormalTextureInfo != renderModel->DiffuseTextureInfo && 
+	bool hasNormalMap = renderModel->NormalTextureInfo &&
+		renderModel->NormalTextureInfo != renderModel->DiffuseTextureInfo &&
 		renderModel->NormalTextureInfo != TextureInfo::DefaultAlpha;
 
 	if (!hasNormalMap)
@@ -97,6 +97,13 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 	}
 
 	auto effect = renderModel->Effect;
+	if (renderModel->DiffuseTextureInfo)
+	{
+		auto tilableUV = renderModel->DiffuseTextureInfo->TilableUV;
+		effect->SetInt(ShaderParam::BaseAddressU, (tilableUV & 1) ? D3DTADDRESS_WRAP : D3DTADDRESS_CLAMP);
+		effect->SetInt(ShaderParam::BaseAddressV, (tilableUV & 2) ? D3DTADDRESS_WRAP : D3DTADDRESS_CLAMP);
+	}
+
 	if (effect->id == shader_type::CarShader)
 	{
 		effect->SetBool(ShaderParam::cbUseNormalMap, hasNormalMap);
@@ -256,7 +263,7 @@ void InitHooks()
 	}
 
 	// Improve reflection lods
-	injector::WriteMemory<uint32_t>(0x6BFEBD, 0x00006002, true);
+	injector::WriteMemory<uint32_t>(0x006BFEBD, 0x00006002, true);
 
 	// Remove road reflection blur
 	injector::WriteMemory<BYTE>(0x006DE596, 4);

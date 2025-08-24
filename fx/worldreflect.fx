@@ -1,3 +1,5 @@
+#define SPOT_SPECULAR
+
 #include "global.fx"
 #include "shadow.fx"
 #include "normalmap.fx"
@@ -114,7 +116,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float specMap = GetSpecularMap(IN.uv);
 
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(10, 60, specMap), IN.spotlight.rgb);
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(50, 90, specMap), IN.spotlight.rgb);
 
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	float3 albedo = diffuse_tex.rgb + roadDetail.r * 0.2;

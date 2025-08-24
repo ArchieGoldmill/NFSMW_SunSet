@@ -11,6 +11,8 @@ int BaseBlendState[5] : BLENDSTATE;
 int BaseTextureFilterParam : BASETEXTUREFILTERPARAM;
 int BaseMinTextureFilter : BASEMINTEXTUREFILTER;
 int BaseMagTextureFilter : BASEMAGTEXTUREFILTER;
+int BaseAddressU;
+int BaseAddressV;
 
 float4 clip_pos(float4 screen_pos)
 {
@@ -26,8 +28,8 @@ texture diffusemap : DiffuseMap;
 sampler DIFFUSEMAP_SAMPLER = sampler_state
 {
 	texture = <diffusemap>;
-	AddressU = WRAP;
-	AddressV = WRAP;
+	AddressU = <BaseAddressU>;
+	AddressV = <BaseAddressV>;
 	MIPFILTER = <BaseTextureFilterParam>;
 	MINFILTER = <BaseMinTextureFilter>;
 	MAGFILTER = <BaseMagTextureFilter>;

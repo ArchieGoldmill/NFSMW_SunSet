@@ -60,7 +60,10 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb *= finalLight;
 	final.rgb += GetEmissive(IN.uv);
 	
-	APPLY_FOG
+	if (BaseBlendState[4] != 2)
+	{
+		APPLY_FOG
+	}
 	
 	return final;
 }

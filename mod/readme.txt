@@ -1,4 +1,4 @@
-NFS Most Wanted - Sun Set 1.2
+NFS Most Wanted - Sun Set 1.3
 
 Installation:
 1. Install TexWizard (https://github.com/R-033/texwizard/releases/tag/1.2).

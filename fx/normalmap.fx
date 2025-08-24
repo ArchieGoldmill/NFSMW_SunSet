@@ -2,8 +2,8 @@ texture NormalMapTexture : NormalMapTexture;
 sampler NORMALMAP_SAMPLER = sampler_state
 {
 	Texture = <NormalMapTexture>;
-	AddressU = WRAP;
-	AddressV = WRAP;
+	AddressU = <BaseAddressU>;
+	AddressV = <BaseAddressV>;
 	MIPFILTER = <BaseTextureFilterParam>;
 	MINFILTER = <BaseMinTextureFilter>;
 	MAGFILTER = <BaseMagTextureFilter>;

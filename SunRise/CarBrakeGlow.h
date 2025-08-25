@@ -4,7 +4,7 @@
 float BrakeGlow = 0;
 void UpdateBrakeGLow()
 {
-	if (Game::State == 6 && PVehicle::Player)
+	if (Game::State == 6 && PVehicle::Player && g_Config.BrakeGlow)
 	{
 		auto speed = PVehicle::Player->GetSpeed();
 		auto braking = PVehicle::Player->GetBraking();
@@ -24,7 +24,7 @@ void ApplyCarBrakeGlow(RenderModel* renderModel)
 {
 	D3DXVECTOR4 col = { 1, 1, 1, 0 };
 
-	if (Game::State == 6)
+	if (Game::State == 6 && g_Config.BrakeGlow)
 	{
 		if (renderModel->LightMaterial && renderModel->LightMaterial->NameHash == Hashes::BRAKEDISC)
 		{

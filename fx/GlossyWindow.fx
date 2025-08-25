@@ -9,6 +9,11 @@ texture WindowReflection : WINDOWREFLECTION;
 sampler reflected_sampler = sampler_state
 {
 	Texture = <WindowReflection>;
+	AddressU = WRAP;
+	AddressV = WRAP;
+	MIPFILTER = LINEAR;
+	MINFILTER = LINEAR;
+	MAGFILTER = LINEAR;
 };
 
 struct VS_INPUT
@@ -49,7 +54,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	return OUT;
 }
 
-float3 GetWindowReflection(float3 nview, float3 normal, float2 uv, float alpha)
+float3 GetWindowReflection(const float3 nview, const float3 normal, const float2 uv, const float alpha)
 {
 	float3 vR = reflect(nview, normal);
 	

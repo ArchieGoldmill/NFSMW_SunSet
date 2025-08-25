@@ -106,7 +106,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 
 inline void SetDynamicLights(RenderModel* model)
 {
-	if (DynamicallyLit(model))
+	if (DynamicallyLit(model) && NumSpotLights > 0)
 	{
 		model->Effect->SetValue(ShaderParam::caSpotLights, SpotLights, sizeof(SpotLights));
 	}
@@ -123,7 +123,7 @@ inline bool UseVertexLighting(RenderModel* model)
 	float cameraDistance1 = GetCameraDistance(bbox_min);
 	float cameraDistance2 = GetCameraDistance(bbox_max);
 
-	return cameraDistance1 > g_Config.LightLodDistance && cameraDistance2 > g_Config.LightLodDistance;
+	return cameraDistance1 > g_Config.LightLodDistance && cameraDistance2 > g_Config.LightLodDistance && NumSpotLights > 0;
 }
 
 inline bool ApplyEmissive(RenderModel* renderModel)
@@ -191,7 +191,7 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		{
 			PopulateShaderSpotlights(renderModel);
 
-			if (UseVertexLighting(renderModel) && NumSpotLights > 0)
+			if (UseVertexLighting(renderModel))
 			{
 				return Technique_LitVertex;
 			}

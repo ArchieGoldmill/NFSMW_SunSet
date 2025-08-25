@@ -30,6 +30,7 @@ struct Config
 	bool RealTime;
 	bool DepthPrepass;
 	bool CarVinylPaintFix;
+	bool BrakeGlow;
 
 	float WetnessTime;
 	float DryTime;
@@ -58,6 +59,7 @@ void LoadConfig()
 	g_Config.Editor = settings["Editor"].as<bool>();
 	g_Config.SkipFE = settings["SkipFE"].as<bool>();
 	g_Config.CarVinylPaintFix = settings["CarVinylPaintFix"].as<bool>();
+	g_Config.BrakeGlow = settings["BrakeGlow"].as<bool>();
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];

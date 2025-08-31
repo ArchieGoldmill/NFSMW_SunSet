@@ -209,6 +209,7 @@ void __fastcall SetEffectParams(eEffect* effect)
 	shaderParams.Techniques[Technique_LitVertex] = effect->D3DEffect->GetTechniqueByName("LitVertex");
 	shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
 	shaderParams.Techniques[Technique_Water] = effect->D3DEffect->GetTechniqueByName("Water");
+	shaderParams.Techniques[Technique_Invisible] = effect->D3DEffect->GetTechniqueByName("Invisible");
 	shaderParams.Techniques[Technique_ZPrePass] = effect->D3DEffect->GetTechniqueByName("ZPrePass");
 
 	for (int i = 0; i < (int)ShaderParam::count; i++)
@@ -217,6 +218,16 @@ void __fastcall SetEffectParams(eEffect* effect)
 	}
 
 	ShaderParamsMap[effect->id] = shaderParams;
+}
+
+void __cdecl NormalizeLightVec(D3DXVECTOR4* dest, D3DXVECTOR4* src)
+{
+	if (RenderTarget::Current->ViewId == ViewId::Reflection)
+	{
+		dest->z = -dest->z;
+	}
+
+	D3DXVec4Normalize(dest, src);
 }
 
 void InitHooks()
@@ -267,6 +278,8 @@ void InitHooks()
 
 	// Remove road reflection blur
 	injector::WriteMemory<BYTE>(0x006DE596, 4);
+
+	injector::MakeCALL(0x006C82B9, NormalizeLightVec);
 
 #ifdef _DEBUG
 	injector::MakeNOP(0x006C2206, 10);

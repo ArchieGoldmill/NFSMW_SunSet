@@ -170,6 +170,14 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 {
 	TechniqueType technique = Technique_Invalid;
 
+	if (RenderTarget::Current->ViewId == ViewId::Reflection && renderModel->pSolid)
+	{
+		if (renderModel->pSolid->NameHash == 0xD87699B3) // XW_FENCEMETALB_1A_00
+		{
+			return Technique_Invisible;
+		}
+	}
+
 	if (DynamicallyLit(renderModel))
 	{
 		if (RenderTarget::Current->ViewId == ViewId::ShadowMap)

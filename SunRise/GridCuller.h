@@ -25,7 +25,7 @@ struct Cell
 	SpotLightModel* Lights[NumLights];
 };
 
-Int3 worldToCell(const D3DXVECTOR3& pos)
+inline Int3 worldToCell(const D3DXVECTOR3& pos)
 {
 	float cellSize = g_Config.LightCellSize;
 	return

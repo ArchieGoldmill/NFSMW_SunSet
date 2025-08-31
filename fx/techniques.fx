@@ -97,3 +97,12 @@ technique LitVertex
 		PixelShader = compile ps_3_0 PS_LitPixel(0);
 	}
 }
+
+technique Invisible
+{
+	pass p0
+	{
+		VertexShader = null;
+		PixelShader = null;
+	}
+}

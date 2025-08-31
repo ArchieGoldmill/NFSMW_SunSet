@@ -6,7 +6,7 @@ struct eSolid
 	eSolid* Next;
 	eSolid* Prev;
 	int field_C;
-	int field_10;
+	Hash NameHash;
 	int field_14;
 	int field_18;
 	int field_1C;

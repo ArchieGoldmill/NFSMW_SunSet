@@ -14,6 +14,7 @@ enum TechniqueType
 	Technique_LitPixel_24,
 	Technique_LitVertex,
 	Technique_ShadowMap,
+	Technique_Invisible,
 	Technique_Water,
 	Technique_ZPrePass,
 	Technique_Count,

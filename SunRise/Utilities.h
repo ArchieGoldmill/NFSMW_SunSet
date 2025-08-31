@@ -74,21 +74,33 @@ bool WriteFileFromMemory(const char* FileName, const void* buffer, long size)
 	return 1;
 }
 
-inline bool ConeSphereIntersect(
-	const D3DXVECTOR3& coneApex,
-	const D3DXVECTOR3& coneDir,
-	float coneAngle,
-	float range,
-	const D3DXVECTOR3& sphereCenter,
-	float sphereRadius)
+inline bool ConeSphereIntersect(const D3DXVECTOR3& coneApex, const D3DXVECTOR3& coneDir, float coneAngle, float range, const D3DXVECTOR3& sphereCenter, float sphereRadius)
 {
-	auto diff = coneApex - sphereCenter;
-	float distSq = D3DXVec3LengthSq(&diff);
+	auto v = sphereCenter - coneApex;
+	float vlen = D3DXVec3Length(&v);
 
-	float radiusSum = range + sphereRadius;
-	float radiusSumSq = radiusSum * radiusSum;
+	if (vlen < sphereRadius)
+	{
+		return true;
+	}
 
-	return distSq <= radiusSumSq;
+	if (vlen > range + sphereRadius)
+	{
+		return false;
+	}
+
+	if (coneAngle < 3.14)
+	{
+		auto vnorm = v / vlen;
+
+		float cosv = D3DXVec3Dot(&vnorm, &coneDir);
+		if (cosv < 0)
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 bool StringEqual(const char* s1, const char* s2)
@@ -106,7 +118,7 @@ bool StringEqual(const char* s1, const char* s2)
 	return strcmp(s1, s2) != 0;
 }
 
-inline float ConvertRange(float value, float inMin, float inMax, float outMin, float outMax) 
+inline float ConvertRange(float value, float inMin, float inMax, float outMin, float outMax)
 {
 	float scaled = (value - inMin) / (inMax - inMin);
 	return outMin + (scaled * (outMax - outMin));

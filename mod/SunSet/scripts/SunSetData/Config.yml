@@ -1,5 +1,5 @@
 Config:
-  Console: false               # Show console window.
+  Console: false              # Show console window.
   ShaderLoader: true          # Use build in shader loader, place shaders in the game\shaders folder.
   ShaderCompiler: false       # Enable shader compiler, place shader sources in the game\fx folder.
   X360Effects: false          # Enable light trails.

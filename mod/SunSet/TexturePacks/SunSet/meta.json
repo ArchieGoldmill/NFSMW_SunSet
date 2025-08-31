@@ -15,6 +15,22 @@
     [
       "ORG_CT_FARMTREES1",
       "ORG_CT_FARMTREES1_T"
+    ],
+    [
+      "OBJ_WOOD01",
+      "OBJ_WOOD01_T"
+    ],
+    [
+      "ORG_CT_POPLARFLORA",
+      "ORG_CT_POPLARFLORA_T"
+    ],
+    [
+      "ORG_CT_FALLTREETOP1",
+      "ORG_CT_FALLTREETOP1_T"
+    ],
+    [
+      "TRNS_ALL_LZ_BOARDWALKA_01",
+      "TRNS_ALL_LZ_BOARDWALKA_01_T"
     ]
   ]
 }

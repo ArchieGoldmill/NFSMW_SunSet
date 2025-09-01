@@ -40,6 +40,7 @@ struct Config
 	float BlurDepth;
 
 	int HK_ShaderReload;
+	int HK_ToggleEditor;
 };
 
 inline Config g_Config;
@@ -81,6 +82,7 @@ void LoadConfig()
 
 	const auto& hotkeys = settingsRoot["Hotkeys"];
 	g_Config.HK_ShaderReload = hotkeys["ShaderReload"].as<int>();
+	g_Config.HK_ToggleEditor = hotkeys["ToggleEditor"].as<int>();
 
 	if (g_Config.Editor)
 	{

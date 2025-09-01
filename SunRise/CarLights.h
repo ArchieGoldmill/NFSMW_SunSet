@@ -8,7 +8,7 @@
 #include "Weather.h"
 #include "PVehicle.h"
 
-void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& temp, float offset, D3DXMATRIX* matrix, SpotLightSource source)
+void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& spotlightCfg, D3DXMATRIX* matrix, SpotLightSource source)
 {
 	LightFlare* flares[2];
 	int num = 0;
@@ -39,11 +39,11 @@ void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& t
 			pos = (flares[0]->Position + flares[1]->Position) * 0.5;
 		}
 
-		SpotLight spotLight = temp;
+		SpotLight spotLight = spotlightCfg;
 		spotLight.Color *= g_Weather.GetCarLightsPower();
+		spotLight.Position += pos;
 
-		pos.x += offset;
-		D3DXVec3TransformCoord(&spotLight.Position, &pos, matrix);
+		D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 
 		D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
 		D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
@@ -56,8 +56,6 @@ void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix)
 {
 	D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
 
-	LightFlare* flare = carRenderInfo->LightFlares;
-
 	auto renderUsage = carRenderInfo->pRideInfo->mCarRenderUsage;
 	bool isPlayer = renderUsage == CarRenderUsage::Player;
 
@@ -65,15 +63,22 @@ void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix)
 	if (headlightOn)
 	{
 		SpotLightSource source = isPlayer ? SpotLightSource::Player_Headlights : SpotLightSource::Headlights;
-		PopulateCarLight(carRenderInfo, Hashes::LEFT_HEADLIGHT, CarHeadlighsConfig, 0.3, matrix, source);
-		PopulateCarLight(carRenderInfo, Hashes::RIGHT_HEADLIGHT, CarHeadlighsConfig, 0.3, matrix, source);
+		PopulateCarLight(carRenderInfo, Hashes::LEFT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
+		PopulateCarLight(carRenderInfo, Hashes::RIGHT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
 	}
 
 	auto brakelightOn = carRenderInfo->IsLightOn(VehicleFX_BRAKELIGHTS);
 	SpotLight temp = brakelightOn ? CarBrakeLightsOnConfig : CarBrakeLightsOffConfig;
 	SpotLightSource source = isPlayer ? SpotLightSource::Player_Breaklights : SpotLightSource::Breaklights;
-	PopulateCarLight(carRenderInfo, Hashes::LEFT_BRAKELIGHT, temp, -0.1, matrix, source);
-	PopulateCarLight(carRenderInfo, Hashes::RIGHT_BRAKELIGHT, temp, -0.1, matrix, source);
+	PopulateCarLight(carRenderInfo, Hashes::LEFT_BRAKELIGHT, temp, matrix, source);
+	PopulateCarLight(carRenderInfo, Hashes::RIGHT_BRAKELIGHT, temp, matrix, source);
+
+	auto reverseOn = carRenderInfo->IsLightOn(VehicleFX_REVERSE);
+	if (reverseOn)
+	{
+		PopulateCarLight(carRenderInfo, Hashes::LEFT_REVERSE, CarReverseConfig, matrix, source);
+		PopulateCarLight(carRenderInfo, Hashes::RIGHT_REVERSE, CarReverseConfig, matrix, source);
+	}
 }
 
 bool IsRoadBlockCar(VehicleRenderConn* renderConn)

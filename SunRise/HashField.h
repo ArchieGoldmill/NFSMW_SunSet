@@ -16,22 +16,22 @@ public:
 		this->hash = Game::bStringHash(this->str.c_str());
 	}
 
-	std::string& GetString()
+	inline std::string& GetString()
 	{
 		return this->str;
 	}
 
-	const char* GetChar()
+	inline const char* GetChar()
 	{
 		return this->str.c_str();
 	}
 
-	Hash GetHash()
+	inline Hash GetHash()
 	{
 		return this->hash;
 	}
 
-	bool operator == (Hash hash)
+	inline bool operator == (Hash hash)
 	{
 		return this->hash == hash;
 	}

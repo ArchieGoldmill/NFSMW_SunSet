@@ -124,6 +124,10 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <Optimization>Full</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

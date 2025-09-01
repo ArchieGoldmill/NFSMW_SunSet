@@ -58,10 +58,7 @@ void Init()
 
 	InitConfig();
 
-	if (g_Config.SkipFE)
-	{
-		Game::SkipFE = 1;
-	}
+	Game::SkipFE = g_Config.SkipFE;
 
 	if (g_Config.Console)
 	{

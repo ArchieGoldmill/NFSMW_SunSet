@@ -21,7 +21,7 @@ Time:
 
 Blur:
   MinSpeed: 25.0              # Minimum speed for blur to activate.
-  MaxSpeed: 125.0             # Speed at wich blur get maximum strenght.
+  MaxSpeed: 325.0             # Speed at wich blur get maximum strenght.
   Depth: 150.0                # Maximum distance for object to be affected by blur.
 
 Hotkeys:

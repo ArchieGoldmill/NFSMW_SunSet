@@ -70,6 +70,25 @@ void __fastcall AddToggleOptionHook(UIWidgetMenu* widgetMenu, int, FEToggleWidge
 	widgetMenu->AddToggleOption(toggleWidget, a4);
 }
 
+void __declspec(naked) DisableBlurResetHook()
+{
+	static constexpr auto cExit1 = 0x00470288;
+	static constexpr auto cExit2 = 0x0047069E;
+
+	__asm
+	{
+		mov eax, 0x0091CAE4;
+		mov eax, [eax];
+		test eax, eax;
+		je updateEnabled;
+		jmp cExit2;
+
+	updateEnabled:
+		fld dword ptr ds : [0x0089096C] ;
+		jmp cExit1;
+	}
+}
+
 void InitMotionBlur()
 {
 	injector::MakeCALL(0x006DEE3F, RenderCars);
@@ -110,4 +129,7 @@ void InitMotionBlur()
 	injector::WriteMemory<BYTE>(0x0050FC2B, 0x2C);
 	injector::WriteMemory<BYTE>(0x0051BBC1, 0x2C);
 	injector::WriteMemory<Hash>(0x0051BB95, 0x1C7D9D8D);
+
+	// Disable blur reset
+	injector::MakeJMP(0x00470282, DisableBlurResetHook);
 }

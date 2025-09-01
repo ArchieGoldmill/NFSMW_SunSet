@@ -26,3 +26,4 @@ Blur:
 
 Hotkeys:
   ShaderReload: 0             # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
+  ToggleEditor: 114           # Hot key to toggle UI Editor visibility (F3 by default).

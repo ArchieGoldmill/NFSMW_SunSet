@@ -11,14 +11,26 @@ namespace UI
 			ImGui::Checkbox("Shader compiler", &g_Config.ShaderCompiler);
 			ImGui::Checkbox("X360 Effects", &g_Config.X360Effects);
 			ImGui::Checkbox("Live reload", &g_Config.LiveReload);
-			ImGui::Checkbox("Editor", &g_Config.Editor);
+			if (ImGui::Checkbox("Editor", &g_Config.Editor))
+			{
+				if (g_Config.Editor)
+				{
+					g_Config.LiveReload = false;
+				}
+			}
 			ImGui::Checkbox("Skip FE", &g_Config.SkipFE);
 			ImGui::Checkbox("Car vinyl paint fix", &g_Config.CarVinylPaintFix);
 			ImGui::Checkbox("Brake glow", &g_Config.BrakeGlow);
 
 			ImGui::Text("");
 			ImGui::Text("Time");
-			ImGui::InputFloat("Force time", &g_Config.ForceTime, 0.1, 0.2);
+			if (ImGui::InputFloat("Force time", &g_Config.ForceTime, 0.1, 0.2))
+			{
+				if (g_Config.ForceTime > 1)
+				{
+					g_Config.ForceTime = 1;
+				}
+			}
 			ImGui::InputFloat("Time update rate", &g_Config.TimeUpdateRate, 0.1, 0.2);
 			ImGui::InputFloat("Lights on", &g_Config.LightsOn, 0.1, 0.2);
 			ImGui::InputFloat("Lights off", &g_Config.LightsOff, 0.1, 0.2);

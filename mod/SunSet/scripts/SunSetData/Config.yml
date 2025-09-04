@@ -14,7 +14,7 @@ Time:
   TimeUpdateRate: 1.0         # Update rate for the game time, 1.0 is vanilla rate.
   LightsOn: 0.77              # Time when world lights are enabled.
   LightsOff: 0.27             # Time when world lights are disabled.
-  WetnessTime: 2.0            # Time for the road to get fully wet.
+  WetTime: 2.0            # Time for the road to get fully wet.
   DryTime: 30.0               # Time for the road to get fully dry.
   RandomStartupTime: false    # Random game time at start.
   RealTime: false             # Use real time from PC in the game.

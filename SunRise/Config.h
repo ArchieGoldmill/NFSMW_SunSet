@@ -32,7 +32,7 @@ struct Config
 	bool CarVinylPaintFix;
 	bool BrakeGlow;
 
-	float WetnessTime;
+	float WetTime;
 	float DryTime;
 
 	float BlurMinSpeed;
@@ -64,7 +64,7 @@ void LoadConfig()
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
-	g_Config.WetnessTime = time["WetnessTime"].as<float>();
+	g_Config.WetTime = time["WetTime"].as<float>();
 	g_Config.DryTime = time["DryTime"].as<float>();
 	g_Config.ForceTime = time["ForceTime"].as<float>();
 	g_Config.TimeUpdateRate = time["TimeUpdateRate"].as<float>();

@@ -377,7 +377,7 @@ private:
 	void UpdateRain()
 	{
 		bool isRaining = this->IsRaining();
-		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * 1.0 / (isRaining ? g_Config.WetnessTime : g_Config.DryTime));
+		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * 1.0 / (isRaining ? g_Config.WetTime : g_Config.DryTime));
 
 		MoveTowards(this->rain, isRaining > 0.0f ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
 		if (g_Config.Editor)

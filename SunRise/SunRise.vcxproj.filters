@@ -73,9 +73,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ShaderLoader.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="Hooks.h">
       <Filter>Features</Filter>
     </ClInclude>
@@ -311,6 +308,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="UIConfig.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderLoader.h">
       <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>

@@ -118,6 +118,11 @@ private:
 
 		auto worldPrelit = eEffect::Get(shader_type::WorldPrelitShader);
 		this->SetFog(worldPrelit);
+
+		auto glossyWindow = eEffect::Get(shader_type::GlossyWindow);
+		D3DXVECTOR4 windowGlowColor = g_Config.WindowGlowColor;
+		windowGlowColor *= g_Config.WindowGlowPower;
+		glossyWindow->SetVector(ShaderParam::cvWindowColor, &windowGlowColor);
 	}
 
 	void LerpWeather(WeatherData* a, WeatherData* b, float t)

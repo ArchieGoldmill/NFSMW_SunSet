@@ -41,6 +41,9 @@ struct Config
 
 	int HK_ShaderReload;
 	int HK_ToggleEditor;
+
+	D3DXVECTOR4 WindowGlowColor;
+	float WindowGlowPower;
 };
 
 inline Config g_Config;
@@ -84,6 +87,10 @@ void LoadConfig()
 	g_Config.HK_ShaderReload = hotkeys["ShaderReload"].as<int>();
 	g_Config.HK_ToggleEditor = hotkeys["ToggleEditor"].as<int>();
 
+	const auto& defaultParams = settingsRoot["DefaultParams"];
+	g_Config.WindowGlowColor = ParseVec3To4(defaultParams["WindowGlowColor"]);
+	g_Config.WindowGlowPower = defaultParams["WindowGlowPower"].as<float>();
+
 	if (g_Config.Editor)
 	{
 		g_Config.LiveReload = false;
@@ -125,10 +132,15 @@ void SaveConfig()
 	hotkeys["ShaderReload"] = g_Config.HK_ShaderReload;
 	hotkeys["ToggleEditor"] = g_Config.HK_ToggleEditor;
 
+	YAML::Node defaultParams;
+	defaultParams["WindowGlowColor"] = SerializeVector3(g_Config.WindowGlowColor);
+	defaultParams["WindowGlowPower"] = g_Config.WindowGlowPower;
+
 	root["Config"] = config;
 	root["Time"] = time;
 	root["Blur"] = blur;
 	root["Hotkeys"] = hotkeys;
+	root["DefaultParams"] = defaultParams;
 
 	std::ofstream fout(GetConfigFolder("Config.yml"));
 	fout << root;

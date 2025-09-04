@@ -42,6 +42,7 @@ const char* ShaderParamNames[] =
 	"cfTimeTicker",
 	"cbUseNormalMap",
 	"cfVinylScale",
+	"cvWindowColor",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -74,6 +75,7 @@ enum class ShaderParam
 	cfTimeTicker,
 	cbUseNormalMap,
 	cfVinylScale,
+	cvWindowColor,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

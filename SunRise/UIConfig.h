@@ -44,6 +44,11 @@ namespace UI
 			ImGui::InputFloat("Min speed", &g_Config.BlurMinSpeed, 0.1, 0.2);
 			ImGui::InputFloat("Max speed", &g_Config.BlurMaxSpeed, 0.1, 0.2);
 			ImGui::InputFloat("Depth", &g_Config.BlurDepth, 0.1, 0.2);
+
+			ImGui::Text("");
+			ImGui::Text("Default params");
+			ImGui::ColorEdit3("Window glow color", (float*)&g_Config.WindowGlowColor, ImGuiColorEditFlags_Float);
+			ImGui::InputFloat("Window glow power", &g_Config.WindowGlowPower, 0.1, 0.2);
 		}
 	}
 }

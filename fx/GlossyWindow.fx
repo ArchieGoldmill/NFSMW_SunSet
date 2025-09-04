@@ -5,6 +5,8 @@
 #include "fog.fx"
 #include "emissive.fx"
 
+float4 cvWindowColor;
+
 texture WindowReflection : WINDOWREFLECTION;
 sampler reflected_sampler = sampler_state
 {
@@ -94,7 +96,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	else
 	{
 		windowGlowMask = reflect_scale;
-		windowGlowColor = float3(1, 0.8, 0.6) * 5;
+		windowGlowColor = cvWindowColor.rgb;
 	}
 	
 	windowGlowMask *= cvAmbientColor.w;

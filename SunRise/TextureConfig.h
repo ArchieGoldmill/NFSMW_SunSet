@@ -48,14 +48,13 @@ struct PrelitTexture
 
 inline std::unordered_map<unsigned int, PrelitTexture> PrelitTextures;
 
-void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& textures, const YAML::Node& texturesRoot, const char* section)
+void LoadTextureConfig()
 {
-	auto prelit = texturesRoot[section];
-	if (!prelit.IsDefined())
-	{
-		return;
-	}
+	PrelitTextures.clear();
 
+	YAML::Node texturesRoot = YAML::LoadFile(GetConfigFolder("Textures.yml"));
+
+	auto prelit = texturesRoot["Textures"];
 	for (const auto& node : prelit)
 	{
 		PrelitTexture prelit;
@@ -68,17 +67,8 @@ void PopulateTextureMap(std::unordered_map<unsigned int, PrelitTexture>& texture
 		prelit.Prelit = YmlGet(node, "Prelit", true);
 
 		prelit.ParseTextureName();
-		textures[prelit.NameHash] = prelit;
+		PrelitTextures[prelit.NameHash] = prelit;
 	}
-}
-
-void LoadTextureConfig()
-{
-	PrelitTextures.clear();
-
-	YAML::Node texturesRoot = YAML::LoadFile(GetConfigFolder("Textures.yml"));
-
-	PopulateTextureMap(PrelitTextures, texturesRoot, "Textures");
 }
 
 void SaveTextureConfig()

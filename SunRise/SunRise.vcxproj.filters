@@ -310,6 +310,9 @@
     <ClInclude Include="UICustomMeshes.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="UIConfig.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

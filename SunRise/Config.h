@@ -90,6 +90,51 @@ void LoadConfig()
 	}
 }
 
+void SaveConfig()
+{
+	YAML::Node root;
+
+	YAML::Node config;
+	config["Console"] = g_Config.Console;
+	config["ShaderLoader"] = g_Config.ShaderLoader;
+	config["ShaderCompiler"] = g_Config.ShaderCompiler;
+	config["X360Effects"] = g_Config.X360Effects;
+	config["LiveReload"] = g_Config.LiveReload;
+	config["Editor"] = g_Config.Editor;
+	config["SkipFE"] = g_Config.SkipFE;
+	config["CarVinylPaintFix"] = g_Config.CarVinylPaintFix;
+	config["BrakeGlow"] = g_Config.BrakeGlow;
+
+	YAML::Node time;
+	time["ForceTime"] = g_Config.ForceTime;
+	time["TimeUpdateRate"] = g_Config.TimeUpdateRate;
+	time["LightsOn"] = g_Config.LightsOn;
+	time["LightsOff"] = g_Config.LightsOff;
+	time["WetTime"] = g_Config.WetTime;
+	time["DryTime"] = g_Config.DryTime;
+	time["DryTime"] = g_Config.DryTime;
+	time["RandomStartupTime"] = g_Config.RandomStartupTime;
+	time["RealTime"] = g_Config.RealTime;
+
+	YAML::Node blur;
+	blur["MinSpeed"] = g_Config.BlurMinSpeed;
+	blur["MaxSpeed"] = g_Config.BlurMaxSpeed;
+	blur["Depth"] = g_Config.BlurDepth;
+
+	YAML::Node hotkeys;
+	hotkeys["ShaderReload"] = g_Config.HK_ShaderReload;
+	hotkeys["ToggleEditor"] = g_Config.HK_ToggleEditor;
+
+	root["Config"] = config;
+	root["Time"] = time;
+	root["Blur"] = blur;
+	root["Hotkeys"] = hotkeys;
+
+	std::ofstream fout(GetConfigFolder("Config.yml"));
+	fout << root;
+	fout.close();
+}
+
 void InitConfig()
 {
 	LoadConfig();

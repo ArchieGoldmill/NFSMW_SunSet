@@ -249,6 +249,7 @@
     <ClInclude Include="TimeOfDay.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UICommon.h" />
+    <ClInclude Include="UIConfig.h" />
     <ClInclude Include="UICustomMeshes.h" />
     <ClInclude Include="UIEditor.h" />
     <ClInclude Include="UISpotlights.h" />

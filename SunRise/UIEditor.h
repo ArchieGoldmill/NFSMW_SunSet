@@ -3,6 +3,7 @@
 #include "UITextures.h"
 #include "UISpotlights.h"
 #include "UICustomMeshes.h"
+#include "UIConfig.h"
 
 namespace UI
 {
@@ -38,6 +39,12 @@ namespace UI
 				CurrentTab = 3;
 			}
 
+			ImGui::SameLine();
+			if (SelectableButton("Config", { 150, 30 }, CurrentTab == 4))
+			{
+				CurrentTab = 4;
+			}
+
 			ImGui::Text("");
 
 			if (ImGui::Button("Save", { 60, 20 }))
@@ -48,6 +55,7 @@ namespace UI
 				case 1: SaveTextureConfig(); break;
 				case 2: SaveSpotLightConfig(); break;
 				case 3: SaveCustomMeshes(); break;
+				case 4: SaveConfig(); break;
 				}
 			}
 
@@ -72,6 +80,9 @@ namespace UI
 					LoadCustomMeshes();
 					Meshes::Reset();
 					break;
+				case 4:
+					LoadConfig();
+					break;
 				}
 			}
 
@@ -83,6 +94,7 @@ namespace UI
 			case 1: Textures::Draw(); break;
 			case 2: Spotlights::Draw(); break;
 			case 3: Meshes::Draw(); break;
+			case 4: Cfg::Draw(); break;
 			}
 		}
 		ImGui::End();

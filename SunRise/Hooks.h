@@ -248,6 +248,7 @@ void InitHooks()
 
 	// Disable Texture Headlights
 	injector::WriteMemory<BYTE>(0x007429E0, 0xEB);
+	injector::WriteMemory<Hash>(0x00738180, 0x83000CC2);
 
 	// Disable sun direction
 	injector::MakeNOP(0x0076956E, 5);

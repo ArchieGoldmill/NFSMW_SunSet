@@ -6,6 +6,8 @@ namespace UI
 	{
 		void Draw()
 		{
+			ImGui::PushItemWidth(120);
+
 			ImGui::Checkbox("Console", &g_Config.Console);
 			ImGui::Checkbox("Shader loader", &g_Config.ShaderLoader);
 			ImGui::Checkbox("Shader compiler", &g_Config.ShaderCompiler);
@@ -31,7 +33,10 @@ namespace UI
 					g_Config.ForceTime = 1;
 				}
 			}
-			ImGui::InputFloat("Time update rate", &g_Config.TimeUpdateRate, 0.1, 0.2);
+			if (ImGui::InputFloat("Time update rate", &g_Config.TimeUpdateRate, 0.1, 0.2))
+			{
+				TimeOfDay::Instance->UpdateRate = g_Config.TimeUpdateRate;
+			}
 			ImGui::InputFloat("Lights on", &g_Config.LightsOn, 0.1, 0.2);
 			ImGui::InputFloat("Lights off", &g_Config.LightsOff, 0.1, 0.2);
 			ImGui::InputFloat("Wet time", &g_Config.WetTime, 0.1, 0.2);
@@ -45,10 +50,19 @@ namespace UI
 			ImGui::InputFloat("Max speed", &g_Config.BlurMaxSpeed, 0.1, 0.2);
 			ImGui::InputFloat("Depth", &g_Config.BlurDepth, 0.1, 0.2);
 
+			ImGui::PopItemWidth();
+
 			ImGui::Text("");
 			ImGui::Text("Default params");
 			ImGui::ColorEdit3("Window glow color", (float*)&g_Config.WindowGlowColor, ImGuiColorEditFlags_Float);
+			ImGui::PushItemWidth(120);
 			ImGui::InputFloat("Window glow power", &g_Config.WindowGlowPower, 0.1, 0.2);
+			ImGui::PopItemWidth();
+
+#ifdef _DEBUG
+			ImGui::Text("");
+			ImGui::Text("Spotlights: %d", NumSpotLightBuffer);
+#endif
 		}
 	}
 }

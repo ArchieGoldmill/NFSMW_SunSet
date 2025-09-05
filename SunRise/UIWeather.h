@@ -9,14 +9,12 @@ namespace UI
 {
 	namespace Weather
 	{
-		WeatherConfig* CurrentWeather = NULL;
 		int WeatherIndex = -1;
 		bool isRain = false;
 		WeatherData CopyData;
 
 		void Reset()
 		{
-			CurrentWeather = NULL;
 			WeatherIndex = -1;
 		}
 
@@ -26,7 +24,7 @@ namespace UI
 			ImGui::SameLine();
 			InputFloat("Update Rate", &TimeOfDay::Instance->UpdateRate);
 
-			bool zeroWeatherSelected = CurrentWeather && CurrentWeather->Time == 0.0f;
+			bool zeroWeatherSelected = WeatherIndex == 0;
 
 			if (ImGui::BeginTable("WeatherEditorTable", 2, ImGuiTableFlags_BordersInnerV))
 			{
@@ -37,7 +35,7 @@ namespace UI
 				{
 					ImGui::TableSetColumnIndex(0);
 					{
-						ImGui::BeginDisabled(CurrentWeather == NULL);
+						ImGui::BeginDisabled(WeatherIndex < 0);
 						{
 							if (ImGui::Button("Add", { 60, 20 }))
 							{
@@ -47,7 +45,6 @@ namespace UI
 
 								WeatherList.insert(WeatherList.begin() + WeatherIndex + 1, newWeather);
 								WeatherIndex++;
-								CurrentWeather = WeatherList[WeatherIndex];
 							}
 
 							ImGui::SameLine();
@@ -71,9 +68,8 @@ namespace UI
 							char tiemBuffer[32];
 							sprintf(tiemBuffer, "%.2f", weather->Time);
 
-							if (SelectableButton(tiemBuffer, { 100, 20 }, CurrentWeather == weather))
+							if (SelectableButton(tiemBuffer, { 100, 20 }, WeatherIndex == i))
 							{
-								CurrentWeather = weather;
 								WeatherIndex = i;
 							}
 						}
@@ -81,8 +77,10 @@ namespace UI
 
 					ImGui::TableSetColumnIndex(1);
 					{
-						if (CurrentWeather)
+						if (WeatherIndex >= 0)
 						{
+							auto CurrentWeather = WeatherList[WeatherIndex];
+
 							auto weather = isRain ? &CurrentWeather->Rain : &CurrentWeather->Main;
 
 							if (SelectableButton("Main", { 0, 0 }, !isRain))

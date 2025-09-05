@@ -69,7 +69,7 @@ SpotLightResult ApplySpotLights(float3 normal, float3 localPos, int count, float
 	}
 	
 	float len = length(result.Diffuse);
-	len = min(len, 4.0);
+	len = min(len, 2.0);
 	result.Diffuse = normalize(result.Diffuse) * len;
 	
 	return result;

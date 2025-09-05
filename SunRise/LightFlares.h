@@ -108,5 +108,7 @@ void InitLightFlares()
 
 	injector::MakeJMP(0x00505A3C, GetFlareTextureHook);
 
+	injector::MakeNOP(0x00742CB9, 8);
+
 	RainFlare.TextureName = Game::bStringHash("LAMP_FLARE_RAIN");
 }

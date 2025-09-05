@@ -64,7 +64,7 @@ float3 GetWindowReflection(const float3 nview, const float3 normal, const float2
 	vCylinderMap.x = atan2(vR.y, vR.x);
 	vCylinderMap.y = uv.y;
 	
-	return tex2D(reflected_sampler, vCylinderMap).rgb * alpha / 2;
+	return tex2D(reflected_sampler, vCylinderMap).rgb * alpha;
 }
 
 float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR

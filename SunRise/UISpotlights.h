@@ -5,9 +5,7 @@ namespace UI
 {
 	namespace Spotlights
 	{
-		SolidLights* CurrentSolid = NULL;
 		int CurrentSolidNum = -1;
-		SpotLight* CurrentLight = NULL;
 		int CurrentLightNum = -1;
 
 		char SolidLodBufferA[256] = { 0 };
@@ -15,9 +13,7 @@ namespace UI
 
 		void Reset()
 		{
-			CurrentSolid = NULL;
 			CurrentSolidNum = -1;
-			CurrentLight = NULL;
 			CurrentLightNum = -1;
 		}
 
@@ -57,10 +53,10 @@ namespace UI
 						ImGui::SameLine();
 						if (ImGui::Button("Remove##Solid", { 60, 20 }))
 						{
-							if (CurrentSolid)
+							if (CurrentSolidNum >= 0)
 							{
 								SolidLightsList.erase(SolidLightsList.begin() + CurrentSolidNum);
-								CurrentSolid = NULL;
+								CurrentSolidNum = -1;
 							}
 						}
 
@@ -69,11 +65,10 @@ namespace UI
 							for (int i = 0; i < SolidLightsList.size(); i++)
 							{
 								auto& solidLights = SolidLightsList[i];
-								if (SelectableButton(solidLights.LodA.GetChar(), { 200, 20 }, CurrentSolid == &solidLights))
+								if (SelectableButton(solidLights.LodA.GetChar(), { 200, 20 }, CurrentSolidNum == i))
 								{
 									CurrentSolidNum = i;
-									CurrentSolid = &solidLights;
-									CurrentLight = NULL;
+									CurrentLightNum = -1;
 								}
 							}
 
@@ -83,32 +78,33 @@ namespace UI
 
 					ImGui::TableSetColumnIndex(1);
 					{
-						if (CurrentSolid)
+						if (CurrentSolidNum >= 0)
 						{
+							auto CurrentSolid = &SolidLightsList[CurrentSolidNum];
+							auto& lights = CurrentSolid->Lights;
+
 							if (ImGui::Button("Add##Light", { 40, 20 }))
 							{
-								SpotLight spotlight = CurrentSolid->Lights[0];
-								CurrentSolid->Lights.push_back(spotlight);
+								lights.push_back(lights[0]);
 							}
 
 							ImGui::SameLine();
 							if (ImGui::Button("Remove##Light", { 60, 20 }))
 							{
-								if (CurrentSolid->Lights.size() > 1)
+								if (lights.size() > 1)
 								{
-									CurrentSolid->Lights.erase(CurrentSolid->Lights.begin() + CurrentLightNum);
-									CurrentLight = NULL;
+									lights.erase(lights.begin() + CurrentLightNum);
+									CurrentLightNum = -1;
 								}
 							}
 
 							char lightNameBuff[32];
-							for (int i = 0; i < CurrentSolid->Lights.size(); i++)
+							for (int i = 0; i < lights.size(); i++)
 							{
-								auto& ligt = CurrentSolid->Lights[i];
+								auto& ligt = lights[i];
 								sprintf(lightNameBuff, "Light #%d", i + 1);
-								if (SelectableButton(lightNameBuff, { 100, 20 }, CurrentLight == &ligt))
+								if (SelectableButton(lightNameBuff, { 100, 20 }, CurrentLightNum == i))
 								{
-									CurrentLight = &ligt;
 									CurrentLightNum = i;
 								}
 							}
@@ -117,8 +113,10 @@ namespace UI
 
 					ImGui::TableSetColumnIndex(2);
 					{
-						if (CurrentSolid)
+						if (CurrentSolidNum >= 0)
 						{
+							auto CurrentSolid = &SolidLightsList[CurrentSolidNum];
+
 							strcpy(SolidLodBufferA, CurrentSolid->LodA.GetChar());
 							if (ImGui::InputText("Lod A", SolidLodBufferA, 256))
 							{
@@ -139,8 +137,10 @@ namespace UI
 							ImGui::Checkbox("Always on", &CurrentSolid->AlwaysOn);
 						}
 
-						if (CurrentLight)
+						if (CurrentLightNum >= 0)
 						{
+							auto CurrentLight = &SolidLightsList[CurrentSolidNum].Lights[CurrentLightNum];
+
 							ImGui::Text("");
 
 							if (ImGui::Button("Place at camera"))

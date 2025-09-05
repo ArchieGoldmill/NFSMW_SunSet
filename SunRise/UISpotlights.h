@@ -8,8 +8,11 @@ namespace UI
 		int CurrentSolidNum = -1;
 		int CurrentLightNum = -1;
 
-		char SolidLodBufferA[256] = { 0 };
-		char SolidLodBufferB[256] = { 0 };
+		int currentFlare = 0;
+
+		char SolidLodBufferA[128] = { 0 };
+		char SolidLodBufferB[128] = { 0 };
+		char FlareNameBuffer[128] = { 0 };
 
 		void Reset()
 		{
@@ -118,13 +121,13 @@ namespace UI
 							auto CurrentSolid = &SolidLightsList[CurrentSolidNum];
 
 							strcpy(SolidLodBufferA, CurrentSolid->LodA.GetChar());
-							if (ImGui::InputText("Lod A", SolidLodBufferA, 256))
+							if (ImGui::InputText("Lod A", SolidLodBufferA, 128))
 							{
 								CurrentSolid->LodA.SetString(SolidLodBufferA);
 							}
 
 							strcpy(SolidLodBufferB, CurrentSolid->LodB.GetChar());
-							if (ImGui::InputText("Lod B", SolidLodBufferB, 256))
+							if (ImGui::InputText("Lod B", SolidLodBufferB, 128))
 							{
 								CurrentSolid->LodB.SetString(SolidLodBufferB);
 							}
@@ -132,6 +135,20 @@ namespace UI
 							ImGui::Text("");
 							const char* BlinkItems[] = { "None", "1", "2", "3" };
 							ImGui::Combo("Blink", &CurrentSolid->Blink, BlinkItems, 4);
+
+							ImGui::Text("");
+							if (CurrentSolid->Flare)
+							{
+								strcpy(FlareNameBuffer, CurrentSolid->Flare->Name.c_str());
+							}
+							else
+							{
+								FlareNameBuffer[0] = 0;
+							}
+							if (ImGui::InputText("Flare", FlareNameBuffer, 128))
+							{
+								CurrentSolid->Flare = GetFlareModel(FlareNameBuffer);
+							}
 
 							ImGui::Text("");
 							ImGui::Checkbox("Always on", &CurrentSolid->AlwaysOn);

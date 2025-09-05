@@ -134,7 +134,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float4 vinyl_scale = float4(0.5, 0.5, 0.5, 0.5) + vdotn * float4(0.5, 0.5, 0.5, 0.5);
 	diffuse_scale = lerp(diffuse_scale, vinyl_scale, vinyl);
 	
-	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, SpecularPower * 100, IN.spotlight.rgb);
+	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, SpecularPower * 100, IN.spotlight.rgb, 2.0);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(IN.normal.xyz, lightDir);

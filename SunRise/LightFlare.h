@@ -39,10 +39,25 @@ enum class eLightFlareType : std::uint8_t
 	count,
 };
 
+struct Color
+{
+	union
+	{
+		DWORD rgba;
+		struct
+		{
+			BYTE r;
+			BYTE g;
+			BYTE b;
+			BYTE a;
+		};
+	};
+};
+
 struct LightFlare : bTNode<LightFlare>
 {
 	int NameHash;
-	D3DCOLOR Tint;
+	Color Tint;
 	D3DXVECTOR3 Position;
 	float ReflectPosZ;
 	D3DXVECTOR3 Direction;

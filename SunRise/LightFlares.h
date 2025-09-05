@@ -21,7 +21,7 @@ void __stdcall RenderWorldLightFlares()
 			flare.Position = spotlight.Light.Position;
 			flare.Direction = { 0, 0, 1 };
 			flare.ReflectPosZ = 0;
-			flare.Tint = 0;
+			flare.Tint.rgba = 0;
 			flare.NameHash = 0;
 			flare.Type = spotlight.Flare->Type;
 			flare.Flags = 0;

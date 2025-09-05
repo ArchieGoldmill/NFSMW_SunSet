@@ -40,6 +40,13 @@ void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& s
 		}
 
 		SpotLight spotLight = spotlightCfg;
+		if (flares[0]->Tint.rgba)
+		{
+			spotLight.Color.x = flares[0]->Tint.r / 255.0f;
+			spotLight.Color.y = flares[0]->Tint.g / 255.0f;
+			spotLight.Color.z = flares[0]->Tint.b / 255.0f;
+		}
+
 		spotLight.Color *= g_Weather.GetCarLightsPower();
 		spotLight.Position += pos;
 

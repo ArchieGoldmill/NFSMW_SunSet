@@ -127,7 +127,8 @@ enum class shader_type : unsigned int
 	GlossyWindowDepth,
 	TreeDepthShader,
 	shadow_map_mesh_depth,
-	NormalMapNoFog
+	NormalMapNoFog,
+	_count
 };
 
 enum class shader_param : unsigned int
@@ -243,7 +244,7 @@ struct eEffectParam
 	D3DXHANDLE handle;
 };
 
-std::map<shader_type, ShaderParams> ShaderParamsMap;
+ShaderParams ShaderParamsMap[(int)shader_type::_count];
 
 struct eEffect
 {
@@ -289,7 +290,7 @@ struct eEffect
 	{
 		if (textureInfo)
 		{
-			auto handle = ShaderParamsMap[this->id].Params[(int)p];
+			auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 			if (handle)
 			{
 				this->D3DEffect->SetTexture(handle, textureInfo->PlatInfo->D3DTexture);
@@ -299,7 +300,7 @@ struct eEffect
 
 	void SetTexture(ShaderParam p, LPDIRECT3DVOLUMETEXTURE9 texture)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetTexture(handle, texture);
@@ -317,7 +318,7 @@ struct eEffect
 
 	void SetTexture(ShaderParam p, IDirect3DCubeTexture9* texture)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetTexture(handle, texture);
@@ -326,7 +327,7 @@ struct eEffect
 
 	void SetVector(ShaderParam p, D3DXVECTOR4* v)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetVector(handle, v);
@@ -335,7 +336,7 @@ struct eEffect
 
 	void SetValue(ShaderParam p, void* val, int size)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetValue(handle, val, size);
@@ -344,7 +345,7 @@ struct eEffect
 
 	void SetFloat(ShaderParam p, float v)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetFloat(handle, v);
@@ -353,7 +354,7 @@ struct eEffect
 
 	void SetInt(ShaderParam p, int v)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetInt(handle, v);
@@ -371,7 +372,7 @@ struct eEffect
 
 	void SetBool(ShaderParam p, bool v)
 	{
-		auto handle = ShaderParamsMap[this->id].Params[(int)p];
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
 			this->D3DEffect->SetBool(handle, v);
@@ -380,7 +381,7 @@ struct eEffect
 
 	bool HasParam(ShaderParam p)
 	{
-		return ShaderParamsMap[this->id].Params[(int)p] != NULL;
+		return ShaderParamsMap[(int)this->id].Params[(int)p] != NULL;
 	}
 
 	void DrawFullScreenQuad(IDirect3DTexture9* texture, bool invert = false)

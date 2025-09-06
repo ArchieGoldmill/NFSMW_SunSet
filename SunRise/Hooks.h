@@ -148,7 +148,7 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 
 		if (techName != Technique_Invalid)
 		{
-			D3DXHANDLE hTech = ShaderParamsMap[effect->id].Techniques[techName];
+			D3DXHANDLE hTech = ShaderParamsMap[(int)effect->id].Techniques[techName];
 			effect->D3DEffect->SetTechnique(hTech);
 		}
 		else
@@ -217,7 +217,7 @@ void __fastcall SetEffectParams(eEffect* effect)
 		shaderParams.Params[i] = effect->D3DEffect->GetParameterByName(NULL, ShaderParamNames[i]);
 	}
 
-	ShaderParamsMap[effect->id] = shaderParams;
+	ShaderParamsMap[(int)effect->id] = shaderParams;
 }
 
 void __cdecl NormalizeLightVec(D3DXVECTOR4* dest, D3DXVECTOR4* src)

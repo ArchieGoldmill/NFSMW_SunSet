@@ -6,7 +6,7 @@
 #include "TextureConfig.h"
 #include "CustomMeshesConfig.h"
 
-inline const char* ModName = "NFSMW - Sun Set 1.3";
+inline const char* ModName = "NFSMW - Sun Set 1.4";
 
 struct Config
 {

@@ -28,7 +28,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 	{
 		for (auto& solidLights : SolidLightsList)
 		{
-			if (solidLights.LodA == model->NameHash || solidLights.LodB == model->NameHash)
+			if (solidLights.LodA.hash == model->NameHash || solidLights.LodB.hash == model->NameHash)
 			{
 				if (solidLights.Blink)
 				{

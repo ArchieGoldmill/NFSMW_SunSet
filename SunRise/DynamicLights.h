@@ -11,7 +11,9 @@
 #include "WorldLights.h"
 
 #define NUM_SPOTLIGHTS 24
-SpotLightShader SpotLights[NUM_SPOTLIGHTS];
+D3DXVECTOR4 SP_Position_Range[NUM_SPOTLIGHTS];
+D3DXVECTOR4 SP_Direction_OuterCos[NUM_SPOTLIGHTS];
+D3DXVECTOR4 SP_Color_InnerCos[NUM_SPOTLIGHTS];
 int NumSpotLights;
 
 void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
@@ -40,7 +42,7 @@ void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
 
 inline bool DynamicallyLit(eEffect* effect)
 {
-	return effect->HasParam(ShaderParam::caSpotLights);
+	return effect->HasParam(ShaderParam::cvaSpPositionRange);
 }
 
 inline bool DynamicallyLit(RenderModel* model)
@@ -51,7 +53,9 @@ inline bool DynamicallyLit(RenderModel* model)
 inline void PopulateShaderSpotlights(RenderModel* model)
 {
 	NumSpotLights = 0;
-	memset(&SpotLights, 0, sizeof(SpotLights));
+	memset(&SP_Position_Range, 0, sizeof(SP_Position_Range));
+	memset(&SP_Direction_OuterCos, 0, sizeof(SP_Direction_OuterCos));
+	memset(&SP_Color_InnerCos, 0, sizeof(SP_Color_InnerCos));
 
 	if (!model->pSolid || model->pSolid->Volume > 170, 000.0f)
 	{
@@ -97,7 +101,10 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 				D3DXVec3TransformNormal(&s.Direction, &s.Direction, &worldToLocal);
 				D3DXVec3Normalize(&s.Direction, &s.Direction);
 
-				SpotLights[NumSpotLights] = s;
+				SP_Position_Range[NumSpotLights] = D3DXVECTOR4(s.Position, s.Range);
+				SP_Direction_OuterCos[NumSpotLights] = D3DXVECTOR4(s.Direction, s.OuterCos);
+				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color, s.InnerCos);
+
 				NumSpotLights++;
 			}
 		}
@@ -108,7 +115,10 @@ inline void SetDynamicLights(RenderModel* model)
 {
 	if (DynamicallyLit(model) && NumSpotLights > 0)
 	{
-		model->Effect->SetValue(ShaderParam::caSpotLights, SpotLights, sizeof(SpotLights));
+		auto effect = model->Effect;
+		effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, 24);
+		effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, 24);
+		effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, 24);
 	}
 }
 
@@ -136,7 +146,7 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 		bool enabled = false;
 
 		auto prelitTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
-		if (prelitTex != PrelitTextures.end() && prelitTex->second.Mask.GetHash())
+		if (prelitTex != PrelitTextures.end() && prelitTex->second.Mask.hash)
 		{
 			prelit = prelitTex->second.Prelit;
 			enabled = prelitTex->second.AlwaysOn ? true : g_Weather.LightsOn();

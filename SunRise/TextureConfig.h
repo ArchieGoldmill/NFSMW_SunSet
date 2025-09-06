@@ -31,7 +31,7 @@ struct PrelitTexture
 
 	TextureInfo* GetMaskTexture()
 	{
-		auto hash = this->Mask.GetHash();
+		auto hash = this->Mask.hash;
 		if (!hash || hash == -1)
 		{
 			hash = Hashes::WHITE32X32;

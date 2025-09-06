@@ -23,7 +23,6 @@ enum TechniqueType
 
 const char* ShaderParamNames[] =
 {
-	"caSpotLights",
 	"cvDiffuseColor",
 	"cvAmbientColor",
 	"cvSpecularColor",
@@ -43,6 +42,9 @@ const char* ShaderParamNames[] =
 	"cbUseNormalMap",
 	"cfVinylScale",
 	"cvWindowColor",
+	"cvaSpPositionRange",
+	"cvaSpDirectionOuterCos",
+	"cvaSpColorInnerCos",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -56,7 +58,6 @@ const char* ShaderParamNames[] =
 
 enum class ShaderParam
 {
-	caSpotLights,
 	cvDiffuseColor,
 	cvAmbientColor,
 	cvSpecularColor,
@@ -76,6 +77,9 @@ enum class ShaderParam
 	cbUseNormalMap,
 	cfVinylScale,
 	cvWindowColor,
+	cvaSpPositionRange,
+	cvaSpDirectionOuterCos,
+	cvaSpColorInnerCos,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,
@@ -334,12 +338,12 @@ struct eEffect
 		}
 	}
 
-	void SetValue(ShaderParam p, void* val, int size)
+	void SetVectorArray(ShaderParam p, D3DXVECTOR4* vs, UINT count)
 	{
 		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
 		if (handle)
 		{
-			this->D3DEffect->SetValue(handle, val, size);
+			this->D3DEffect->SetVectorArray(handle, vs, count);
 		}
 	}
 

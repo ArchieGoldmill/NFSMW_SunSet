@@ -13,7 +13,11 @@ struct Int3
 
 	Hash GetHash()
 	{
-		return std::hash<int>()(x) ^ std::hash<int>()(y << 1) ^ std::hash<int>()(z << 2);
+		int sx = x + 200;
+		int sy = y + 200;
+		int sz = z + 200;
+
+		return sx * 400 * 400 + sy * 400 + sz;
 	}
 };
 

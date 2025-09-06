@@ -1,31 +1,23 @@
-struct SpotLight
-{
-	float3 Position;
-	float Range;
-	float3 Direction;
-	float OuterCos;
-	float3 Color;
-	float InnerCos;
-};
-
 struct SpotLightResult
 {
 	float3 Diffuse;
 	float3 Specular;
 };
 
-SpotLight caSpotLights[24];
+float4 cvaSpPositionRange[24];
+float4 cvaSpDirectionOuterCos[24];
+float4 cvaSpColorInnerCos[24];
 
-SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPos, float3 view, float shine)
+SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3 localPos, const float3 view, const float shine)
 {
-	float3 L = light.Position - localPos;
+	float3 L = cvaSpPositionRange[i].xyz - localPos;
 	float distance = length(L);
 	L /= distance;
 
-	float spotCos = dot(-L, light.Direction);
-	float diffuseAtten = smoothstep(light.OuterCos, light.InnerCos, spotCos);
+	float spotCos = dot(-L, cvaSpDirectionOuterCos[i].xyz);
+	float diffuseAtten = smoothstep(cvaSpDirectionOuterCos[i].w, cvaSpColorInnerCos[i].w, spotCos);
 
-	float distAtten = saturate(1.0 - distance / light.Range);
+	float distAtten = saturate(1.0 - distance / cvaSpPositionRange[i].w);
 	distAtten *= distAtten;
 
 	float dotL = dot(localNormal, L);
@@ -33,7 +25,7 @@ SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPo
 	
 	float3 spec = float3(0, 0, 0);
 	
-	float3 lightScale = light.Color * dotL * distAtten;
+	float3 lightScale = cvaSpColorInnerCos[i].xyz * dotL * distAtten;
 	
 #ifdef SPOT_SPECULAR
 	float3 H = normalize(L + view);
@@ -50,7 +42,7 @@ SpotLightResult GetSpotlight(SpotLight light, float3 localNormal, float3 localPo
 	return result;
 }
 
-SpotLightResult ApplySpotLights1(float3 normal, float3 localPos, int count, float shine, float maxPower = 5.0)
+SpotLightResult ApplySpotLights1(const float3 normal, const float3 localPos, const int count, const float shine, float maxPower = 5.0)
 {
 	SpotLightResult result;
 	result.Diffuse = float3(1, 1, 1) * 0.000001;
@@ -59,10 +51,9 @@ SpotLightResult ApplySpotLights1(float3 normal, float3 localPos, int count, floa
 	float3 view = normalize(LocalEyePos - localPos);
 	for (int i = 0; i < count; ++i)
 	{
-		SpotLight spotlight = caSpotLights[i];
-		if (spotlight.Range > 0)
+		if (cvaSpPositionRange[i].w > 0)
 		{
-			SpotLightResult current = GetSpotlight(spotlight, normal, localPos, view, shine);
+			SpotLightResult current = GetSpotlight(i, normal, localPos, view, shine);
 			result.Diffuse += current.Diffuse;
 			result.Specular += current.Specular;
 		}
@@ -75,7 +66,7 @@ SpotLightResult ApplySpotLights1(float3 normal, float3 localPos, int count, floa
 	return result;
 }
 
-SpotLightResult ApplySpotLights(float3 normal, float3 localPos, const int count, float shine, float3 defaultResult, float maxPower = 10.0)
+SpotLightResult ApplySpotLights(const float3 normal, const float3 localPos, const int count, const float shine, const float3 defaultResult, float maxPower = 10.0)
 {
 	if (count > 0)
 	{

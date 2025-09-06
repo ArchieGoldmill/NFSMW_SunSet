@@ -3,13 +3,11 @@
 #include "Hashes.h"
 #include "Game.h"
 
-class HashField
+struct HashField
 {
-private:
 	Hash hash = 0;
 	std::string str = "";
 
-public:
 	void SetString(std::string str)
 	{
 		this->str = str;
@@ -24,15 +22,5 @@ public:
 	inline const char* GetChar()
 	{
 		return this->str.c_str();
-	}
-
-	inline Hash GetHash()
-	{
-		return this->hash;
-	}
-
-	inline bool operator == (Hash hash)
-	{
-		return this->hash == hash;
 	}
 };

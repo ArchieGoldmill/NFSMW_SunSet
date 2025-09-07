@@ -34,6 +34,8 @@ struct PS_INPUT
 	float2 uv : TEXCOORD0;
 };
 
+#include "godrays.fx"
+
 void VS_ScreenFilter(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = IN.position;
@@ -56,5 +58,11 @@ technique screenfilter <int shader = 1; >
 	{
 		VertexShader = compile vs_3_0 VS_ScreenFilter();
 		PixelShader = compile ps_3_0 PS_ScreenFilter();
+	}
+
+	pass p1
+	{
+		VertexShader = compile vs_3_0 VS_GodRays();
+		PixelShader = compile ps_3_0 PS_GodRays();
 	}
 }

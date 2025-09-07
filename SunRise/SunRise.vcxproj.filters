@@ -313,6 +313,9 @@
     <ClInclude Include="ShaderLoader.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="GodRays.h">
+      <Filter>Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

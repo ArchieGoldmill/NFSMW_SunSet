@@ -56,6 +56,12 @@ struct eView
 		return _GetVisibleState(this, min, max, 0);
 	}
 
+	visible_state GetVisibleState(D3DXVECTOR3* point)
+	{
+		FUNC(0x006BE8F0, visible_state, __thiscall, _GetVisibleState, eView*, D3DXVECTOR3*, int);
+		return _GetVisibleState(this, point, 0);
+	}
+
 	void Render(eModel* model, D3DXMATRIX* matrix, void* lightContext, int flags, void* blendMatricies)
 	{
 		FUNC(0x006DA9B0, void, __thiscall, _Render, eView*, eModel*, D3DXMATRIX*, void*, int, void*);

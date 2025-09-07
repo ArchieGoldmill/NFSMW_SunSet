@@ -26,10 +26,17 @@ namespace Game
 	inline auto& SkipFE = *(int*)0x00926064;
 	inline auto DeviceParams = (D3DPRESENT_PARAMETERS*)0x0093E82C;
 
+	inline auto& FilterSurface0 = *(IDirect3DSurface9**)0x0093DE60;
+	inline auto& FilterTexture0 = *(IDirect3DTexture9**)0x0093DEF8;
+	inline auto& FilterSurface1 = *(IDirect3DSurface9**)0x0093DE64;
+	inline auto& FilterTexture1 = *(IDirect3DTexture9**)0x0093DEFC;
+
+	inline auto& BackBuffer = *(IDirect3DSurface9**)0x00982A28;
+
 	INLINE_FUNC(0x00505380, void, __cdecl, eRenderLightFlare, eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale);
 	INLINE_FUNC(0x00460BF0, Hash, __cdecl, bStringHash, const char*);
 	INLINE_FUNC(0x0046EB40, Camera*, __cdecl, GetPlayerCamera);
-	INLINE_FUNC(0x00750B10, void, __cdecl, VehicleConn_RenderCars, int, int);
+	INLINE_FUNC(0x00750B10, void, __cdecl, VehicleConn_RenderCars, eView*, int);
 	INLINE_FUNC(0x006DBB20, void, __cdecl, DrawMotionBlur);
 	INLINE_FUNC(0x006E2F50, void, __cdecl, CommitRenderedModels);
 	INLINE_FUNC(0x006DE210, void, __cdecl, StuffSky, eView*, float, int);

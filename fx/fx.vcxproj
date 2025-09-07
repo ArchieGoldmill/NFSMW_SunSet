@@ -129,6 +129,7 @@
     <FxCompile Include="fog.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
+    <FxCompile Include="godrays.fx" />
     <FxCompile Include="lighting.fx" />
     <FxCompile Include="normalmap.fx" />
     <FxCompile Include="prelit.fx" />

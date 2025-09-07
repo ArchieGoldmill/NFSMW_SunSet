@@ -23,6 +23,7 @@ namespace UI
 			ImGui::Checkbox("Skip FE", &g_Config.SkipFE);
 			ImGui::Checkbox("Car vinyl paint fix", &g_Config.CarVinylPaintFix);
 			ImGui::Checkbox("Brake glow", &g_Config.BrakeGlow);
+			ImGui::Checkbox("God rays", &g_Config.GodRays);
 
 			ImGui::Text("");
 			ImGui::Text("Time");

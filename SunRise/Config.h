@@ -31,6 +31,7 @@ struct Config
 	bool DepthPrepass;
 	bool CarVinylPaintFix;
 	bool BrakeGlow;
+	bool GodRays;
 
 	float WetTime;
 	float DryTime;
@@ -64,6 +65,7 @@ void LoadConfig()
 	g_Config.SkipFE = settings["SkipFE"].as<bool>();
 	g_Config.CarVinylPaintFix = settings["CarVinylPaintFix"].as<bool>();
 	g_Config.BrakeGlow = settings["BrakeGlow"].as<bool>();
+	g_Config.GodRays = settings["GodRays"].as<bool>();
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
@@ -111,6 +113,7 @@ void SaveConfig()
 	config["SkipFE"] = g_Config.SkipFE;
 	config["CarVinylPaintFix"] = g_Config.CarVinylPaintFix;
 	config["BrakeGlow"] = g_Config.BrakeGlow;
+	config["GodRays"] = g_Config.GodRays;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

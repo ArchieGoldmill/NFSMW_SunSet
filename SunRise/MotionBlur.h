@@ -1,27 +1,26 @@
 #pragma once
 #include "DepthPrePass.h"
 #include "UIWidgetMenu.h"
+#include "GodRays.h"
 
-int RenderCarsParam1;
-int RenderCarsParam2;
-void __cdecl RenderCars(int a, int b)
+void __cdecl RenderCars(eView* view, int b)
 {
 	if (!Game::MotionBlurEnable)
 	{
-		Game::VehicleConn_RenderCars(a, b);
-	}
-	else
-	{
-		RenderCarsParam1 = a;
-		RenderCarsParam2 = b;
+		Game::VehicleConn_RenderCars(view, b);
 	}
 }
 
 void DrawBlur()
 {
-	Game::DrawMotionBlur();
-	Game::VehicleConn_RenderCars(RenderCarsParam1, RenderCarsParam2);
-	Game::CommitRenderedModels();
+	if (Game::MotionBlurEnable)
+	{
+		Game::DrawMotionBlur();
+		Game::VehicleConn_RenderCars(eView::Player, 0);
+		Game::CommitRenderedModels();
+	}
+
+	DrawGodRays();
 }
 
 void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* backBuffer, RECT* pSourceRect, IDirect3DSurface9* filterSurface0, RECT* pDestRect, D3DTEXTUREFILTERTYPE Filter)
@@ -32,11 +31,8 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 		return;
 	}
 
-	auto filterSurface1 = *(IDirect3DSurface9**)0x0093DE64;
-	auto filterTexture1 = *(IDirect3DTexture9**)0x0093DEFC;
-
 	// Copy back buffer to filter 1
-	Game::Device->StretchRect(backBuffer, nullptr, filterSurface1, nullptr, D3DTEXF_NONE);
+	Game::Device->StretchRect(backBuffer, nullptr, Game::FilterSurface1, nullptr, D3DTEXF_NONE);
 
 	// Set filter 0 as target
 	Game::Device->SetRenderTarget(0, filterSurface0);
@@ -46,6 +42,7 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 	auto pEffect = effect->D3DEffect;
 
 	UINT passes = 0;
+	Game::Device->SetVertexDeclaration(effect->VertexDecl);
 	pEffect->Begin(&passes, 0);
 	pEffect->BeginPass(0);
 
@@ -53,7 +50,7 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 	effect->SetTexture(shader_param::HeightMapTexture, DepthTexture);
 	effect->SetFloat(shader_param::FILTERBLEND, g_Config.BlurDepth);
 	// Set filter 1 texture that holds back buffer
-	effect->DrawFullScreenQuad(filterTexture1);
+	effect->DrawFullScreenQuad(Game::FilterTexture1);
 
 	pEffect->EndPass();
 	pEffect->End();
@@ -97,8 +94,8 @@ void InitMotionBlur()
 	injector::WriteMemory(0x008F9B10, g_Config.BlurMinSpeed);
 	injector::WriteMemory(0x008F9B14, g_Config.BlurMaxSpeed);
 
-	// Restore blur from wide screen fix
-	injector::WriteMemory<BYTE>(0x006DF1D2, 0x74);
+	// Disable blur check
+	injector::MakeNOP(0x006DF1D2, 2);
 
 	// Remove blur lerp
 	injector::MakeNOP(0x006DBE28, 2);

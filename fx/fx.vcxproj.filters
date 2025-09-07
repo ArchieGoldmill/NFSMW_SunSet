@@ -44,6 +44,9 @@
     </FxCompile>
     <FxCompile Include="screenfilter.fx" />
     <FxCompile Include="worldprelit.fx" />
+    <FxCompile Include="godrays.fx">
+      <Filter>Header Files</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

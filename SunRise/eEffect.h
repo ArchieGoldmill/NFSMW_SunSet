@@ -338,6 +338,15 @@ struct eEffect
 		}
 	}
 
+	void SetVector(shader_param p, D3DXVECTOR4* v)
+	{
+		auto handle = this->Params[(int)p].handle;
+		if (handle)
+		{
+			this->D3DEffect->SetVector(handle, v);
+		}
+	}
+
 	void SetVectorArray(ShaderParam p, D3DXVECTOR4* vs, UINT count)
 	{
 		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];

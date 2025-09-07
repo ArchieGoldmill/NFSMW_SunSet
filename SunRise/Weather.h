@@ -32,6 +32,8 @@ private:
 
 	float LightIntensity = 0.0f;
 
+	float NightFactor = 0.0f;
+
 public:
 
 	void Update()
@@ -77,6 +79,11 @@ public:
 	{
 		float time = this->GetTime();
 		return (time > g_Config.LightsOn || time < g_Config.LightsOff);
+	}
+
+	bool IsDay()
+	{
+		return NightFactor == 1.0;
 	}
 
 private:
@@ -329,12 +336,12 @@ private:
 		float sunTime;
 		float sunRise = g_Config.SunRise;
 		float sunSet = g_Config.SunSet;
-		float nightFactor = 0.0f;
+		NightFactor = 0;
 
 		if (time >= sunRise && time <= sunSet)
 		{
 			sunTime = ConvertRange(time, sunRise, sunSet, 0, 1.0f);
-			nightFactor = 1.0f;
+			NightFactor = 1.0f;
 		}
 		else
 		{
@@ -364,7 +371,7 @@ private:
 		skyParams.x = this->current.SkyRayleigh;
 		skyParams.y = this->current.SkyMie;
 		skyParams.z = this->current.SkyBrightness;
-		skyParams.w = nightFactor;
+		skyParams.w = NightFactor;
 
 		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvSunDirection, &sunDirection);

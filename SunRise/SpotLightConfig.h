@@ -171,7 +171,7 @@ void SaveSpotLightConfig()
 	SaveSpotLight(carBrakeLightsOff, CarBrakeLightsOffConfig);
 
 	YAML::Node carReverse;
-	SaveSpotLight(carBrakeLightsOff, CarReverseConfig);
+	SaveSpotLight(carReverse, CarReverseConfig);
 
 	YAML::Node helicopterLight;
 	helicopterLight["Flare"] = HelicopterLightConfig.Flare ? HelicopterLightConfig.Flare->Name : "";

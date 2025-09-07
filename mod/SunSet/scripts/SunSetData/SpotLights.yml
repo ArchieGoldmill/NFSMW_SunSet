@@ -1,5 +1,5 @@
 CarHeadLights:
-  Position: [0.1, 0, 0]
+  Position: [0.100000001, 0, 0]
   Direction: [1, 0, 0]
   Color: [1, 1, 1]
   InnerAngle: 25
@@ -7,7 +7,7 @@ CarHeadLights:
   Intensity: 3
   Range: 50
 CarBrakeLightsOn:
-  Position: [-0.1, 0, 0]
+  Position: [-0.100000001, 0, 0]
   Direction: [-1, 0, -0.5]
   Color: [1, 0, 0]
   InnerAngle: 25
@@ -15,7 +15,7 @@ CarBrakeLightsOn:
   Intensity: 2
   Range: 4
 CarBrakeLightsOff:
-  Position: [-0.1, 0, 0]
+  Position: [-0.100000001, 0, 0]
   Direction: [-1, 0, -0.5]
   Color: [1, 0, 0]
   InnerAngle: 25
@@ -23,7 +23,7 @@ CarBrakeLightsOff:
   Intensity: 1
   Range: 4
 CarReverse:
-  Position: [-0.1, 0, 0]
+  Position: [-0.100000001, 0, 0]
   Direction: [-1, 0, 0]
   Color: [1, 1, 1]
   InnerAngle: 1

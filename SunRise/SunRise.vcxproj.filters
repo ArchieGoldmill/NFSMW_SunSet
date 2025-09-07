@@ -311,7 +311,7 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="ShaderLoader.h">
-      <Filter>UI</Filter>
+      <Filter>Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

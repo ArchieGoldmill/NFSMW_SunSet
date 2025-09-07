@@ -64,8 +64,7 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 TextureInfo* StarsTexture = NULL;
 void SetSkyTexture(RenderModel* renderModel)
 {
-	auto effect = renderModel->Effect;
-	if (effect->id == shader_type::skyshader)
+	if (renderModel->Effect->id == shader_type::skyshader)
 	{
 		if (!StarsTexture)
 		{

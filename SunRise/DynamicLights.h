@@ -65,8 +65,13 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	auto bbox_min = model->pMeshEntry->bbox_min;
 	auto bbox_max = model->pMeshEntry->bbox_max;
 
-	D3DXVec3TransformCoord(&bbox_min, &bbox_min, model->LocalToWorld);
-	D3DXVec3TransformCoord(&bbox_max, &bbox_max, model->LocalToWorld);
+	bool worldSpace = true;
+	if (model->LocalToWorld != Game::IdentityMatrix)
+	{
+		D3DXVec3TransformCoord(&bbox_min, &bbox_min, model->LocalToWorld);
+		D3DXVec3TransformCoord(&bbox_max, &bbox_max, model->LocalToWorld);
+		worldSpace = false;
+	}
 
 	auto meshCenter = (bbox_min + bbox_max) * 0.5f;
 	D3DXVECTOR3 diagonal = (bbox_max - bbox_min);
@@ -76,7 +81,15 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 		return;
 	}
 
-	g_CellBuffer.GetLightsForMesh(meshCenter, radius);
+	if (worldSpace)
+	{
+		g_CellBuffer.GetLightsForMesh(bbox_min, bbox_max);
+	}
+	else
+	{
+		g_CellBuffer.GetLightsForMesh(meshCenter, radius);
+	}
+
 	for (int i = 0; i < g_CellBuffer.numCandidateLights; i++)
 	{
 		auto lightmodel = g_CellBuffer.candidateLights[i];

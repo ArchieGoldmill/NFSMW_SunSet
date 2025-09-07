@@ -171,25 +171,39 @@ struct CellBuffer
 
 	SpotLightModel* candidateLights[256];
 	int numCandidateLights = 0;
-	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
+	void ResetCandidateLigts()
 	{
 		memset(candidateLights, 0, sizeof(candidateLights));
 		numCandidateLights = 0;
+	}
 
+	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
+	{
 		D3DXVECTOR3 min = meshCenter - D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
 		D3DXVECTOR3 max = meshCenter + D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
 
+		ResetCandidateLigts();
+		GetLightsForMeshBase(min, max);
+	}
+
+	void GetLightsForMesh(const D3DXVECTOR3& min, const D3DXVECTOR3& max)
+	{
+		ResetCandidateLigts();
+		GetLightsForMeshBase(min, max);
+	}
+
+	void GetLightsForMeshBase(const D3DXVECTOR3& min, const D3DXVECTOR3& max)
+	{
 		Int3 minCell = worldToCell(min);
 		Int3 maxCell = worldToCell(max);
 
-		for (int x = minCell.x; x <= maxCell.x; ++x)
+		for (int x = minCell.x; x <= maxCell.x; x++)
 		{
-			for (int y = minCell.y; y <= maxCell.y; ++y)
+			for (int y = minCell.y; y <= maxCell.y; y++)
 			{
-				for (int z = minCell.z; z <= maxCell.z; ++z)
+				for (int z = minCell.z; z <= maxCell.z; z++)
 				{
-					Int3 index = { x, y, z };
-					auto cell = this->Get(index);
+					auto cell = this->Get({ x, y, z });
 					if (cell)
 					{
 						for (int i = 0; i < Cell::NumLights; i++)

@@ -1,4 +1,5 @@
 #include "global.fx"
+#include "hdr.fx"
 
 float4 LocalEyePos : LOCALEYEPOS;
 
@@ -187,9 +188,11 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	
 	float gray = dot(cloudTex, float3(0.299, 0.587, 0.114));
 	float3 clouds = float3(gray, gray, gray) * cvCloudColor.rgb;
-	color = lerp(color, clouds, cvCloudColor.a * gray);
+	color = lerp(color, clouds, cvCloudColor.a * pow(gray, 2));
 	
-	return float4(color * 2, 1.0);
+	color.rgb = CompressColourSpace(color.rgb);
+	
+	return float4(color, 1.0);
 }
 
 technique skybox<int shader = 1;>

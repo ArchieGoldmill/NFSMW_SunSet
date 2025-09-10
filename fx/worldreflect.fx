@@ -6,6 +6,7 @@
 #include "lighting.fx"
 #include "spotlights.fx"
 #include "fog.fx"
+#include "hdr.fx"
 
 float2 cvRainParams;
 
@@ -145,6 +146,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	reflection_uv.xy += normal.xy * 0.1;
 	
 	float3 reflection_sample = tex2Dproj(REFLECTEDTEX_SAMPLER, reflection_uv).rgb;
+	reflection_sample = DeCompressColourSpace(reflection_sample);
 	reflection_sample *= puddle_mask;
 	
 	// Vertical surfaces should not reflect
@@ -161,6 +163,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final += reflection_sample * reflectance;
 	
 	APPLY_FOG
+	
+	final.rgb = CompressColourSpace(final.rgb);
 	
 	return float4(final, 1);
 }

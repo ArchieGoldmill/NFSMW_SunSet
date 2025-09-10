@@ -4,6 +4,7 @@
 #include "spotlights.fx"
 #include "fog.fx"
 #include "emissive.fx"
+#include "hdr.fx"
 
 float4 cvWindowColor;
 
@@ -114,6 +115,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb += light.Specular * reflect_scale;
 	
 	APPLY_FOG
+	
+	final.rgb = CompressColourSpace(final.rgb);
 	
 	return float4(final, 1);
 }

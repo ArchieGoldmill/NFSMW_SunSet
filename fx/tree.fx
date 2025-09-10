@@ -4,6 +4,7 @@
 #include "lighting.fx"
 #include "spotlights.fx"
 #include "fog.fx"
+#include "hdr.fx"
 
 struct VS_INPUT
 {
@@ -56,6 +57,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb *= finalLight;
 	
 	APPLY_FOG
+	
+	final.rgb = CompressColourSpace(final.rgb);
 	
 	return final;
 }

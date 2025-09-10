@@ -7,6 +7,7 @@
 #include "spotlights.fx"
 #include "car_rain.fx"
 #include "fog.fx"
+#include "hdr.fx"
 
 float4x4 WorldView : WORLDVIEW;
 
@@ -144,6 +145,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 specular = GetSpecular(flake_normal, lightDir, nview, SpecularPower);
 	
 	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
+	envmap_sample = DeCompressColourSpace(envmap_sample);
 	float env_vdotn = pow(vdotn, EnvmapPower);
 	float3 envmapMin = lerp(EnvmapMin.xyz, float3(1.5, 1.5, 1.5), rainPower);
 	float3 envmap_scale = envmapMin + env_vdotn * EnvmapRange.rgb;
@@ -168,6 +170,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb = lerp(final.rgb, cvCarEmissive.rgb * diffuse_tex.rgb, cvCarEmissive.w);
 	
 	APPLY_FOG
+	
+	final.rgb = CompressColourSpace(final.rgb);
 	
 	return final;
 }

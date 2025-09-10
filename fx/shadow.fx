@@ -24,23 +24,23 @@ float GetShadow(float2 uv, float biased)
 	return depth;
 }
 
+const float2 poissonDisk[10] =
+{
+	float2(0, 0),
+	float2(-0.75, -0.61),
+	float2(0.35, -0.88),
+	float2(-0.92, 0.28),
+	float2(0.94, 0.34),
+	float2(-0.28, 0.91),
+	float2(0.25, 0.43),
+	float2(-0.49, -0.55),
+	float2(0.51, -0.15),
+	float2(0.02, 0.15)
+};
+
 float DoShadow10(float2 uv, float biased)
 {
 	float2 texelSize = ShadowMapScale * 2;
-	
-	float2 poissonDisk[10] =
-	{
-		float2(0, 0),
-		float2(-0.75, -0.61),
-		float2(0.35, -0.88),
-		float2(-0.92, 0.28),
-		float2(0.94, 0.34),
-		float2(-0.28, 0.91),
-		float2(0.25, 0.43),
-		float2(-0.49, -0.55),
-		float2(0.51, -0.15),
-		float2(0.02, 0.15)
-	};
 			
 	float sum = 0;
 	sum += GetShadow(uv + poissonDisk[0] * texelSize, biased);

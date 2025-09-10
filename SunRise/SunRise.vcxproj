@@ -235,6 +235,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="PVehicle.h" />
     <ClInclude Include="Rain.h" />
+    <ClInclude Include="Reflection.h" />
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="resource.h" />

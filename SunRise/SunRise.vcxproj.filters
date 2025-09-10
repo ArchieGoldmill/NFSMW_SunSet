@@ -316,6 +316,9 @@
     <ClInclude Include="GodRays.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="Reflection.h">
+      <Filter>Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

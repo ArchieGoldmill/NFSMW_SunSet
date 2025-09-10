@@ -6,7 +6,6 @@
 #include "ShaderLoader.h"
 #include "Hooks.h"
 #include "Config.h"
-#include "AmbientShadow.h"
 #include "UI.h"
 
 bool CheckFiles()
@@ -67,7 +66,6 @@ void Init()
 
 	InitShaderLoader();
 	InitHooks();
-	InitAmbientShadow();
 	UI::Init();
 }
 

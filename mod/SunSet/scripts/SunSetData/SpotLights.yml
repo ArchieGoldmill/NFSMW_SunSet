@@ -675,14 +675,27 @@ SolidLights:
       - Position: [-10, 6.5, 3]
         Direction: [0, 0, -1]
         Color: [0.5, 0.899999976, 0.800000012]
-        InnerAngle: 160
-        OuterAngle: 170
+        InnerAngle: 80
+        OuterAngle: 90
         Intensity: 2
         Range: 30
       - Position: [8, 6.0999999, 3]
         Direction: [0, 0, -1]
         Color: [0.5, 0.899999976, 0.800000012]
-        InnerAngle: 160
-        OuterAngle: 170
+        InnerAngle: 80
+        OuterAngle: 90
         Intensity: 2
+        Range: 30
+  - SolidLodA: XO_BLUESTRIPGASD_ROOF_1A_00
+    SolidLodB: XO_BLUESTRIPGASD_ROOF_1A_00
+    Blink: 0
+    AlwaysOn: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, -1.80000019]
+        Direction: [0, 0, -1]
+        Color: [0.686274529, 0.824682832, 1]
+        InnerAngle: 1
+        OuterAngle: 90
+        Intensity: 4
         Range: 30

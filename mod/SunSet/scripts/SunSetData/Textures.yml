@@ -24,7 +24,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ADS_AXEB_BB_A_EA
-    Brightness: 8
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -36,8 +36,8 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ARC_LB_GASNEWSTRIP
-    Brightness: 7
-    Color: [1, 1, 1]
+    Brightness: 12
+    Color: [0.990196049, 0.388312161, 0.388312161]
     Mask: ""
     AlwaysOn: false
     Prelit: true
@@ -64,6 +64,12 @@ Textures:
     Color: [0, 0, 0]
     Mask: ""
     AlwaysOn: true
+    Prelit: true
+  - Name: OBJ_CT_CARWASHLIGHTS
+    Brightness: 5
+    Color: [0.607843161, 0.826989651, 1]
+    Mask: ""
+    AlwaysOn: false
     Prelit: true
   - Name: SGN_ROSECORE
     Brightness: 4
@@ -126,13 +132,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: 0x4A5871B5
-    Brightness: 5
+    Brightness: 3.60000134
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
   - Name: 0x4A58FE16
-    Brightness: 5
+    Brightness: 3.70000124
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -150,13 +156,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ADS_CINGULAR_BB_A_EA
-    Brightness: 5
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
   - Name: ADS_CINGULAR_BB_F_EA
-    Brightness: 8
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -198,7 +204,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ADS_LOTTOB_BB_EA
-    Brightness: 7
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -210,7 +216,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ADS_BKING_BB_A
-    Brightness: 8
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -234,7 +240,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ADS_AUTOZONE_BB_A_EA
-    Brightness: 8
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -265,7 +271,7 @@ Textures:
     Prelit: true
   - Name: SFX_TRACKBARRIERNEONLOCKED
     Brightness: 5
-    Color: [1, 0.20588237, 0]
+    Color: [1, 0.823529422, 0]
     Mask: ""
     AlwaysOn: true
     Prelit: true
@@ -306,7 +312,7 @@ Textures:
     AlwaysOn: true
     Prelit: true
   - Name: SGN_CT_CARWASH
-    Brightness: 8
+    Brightness: 5.09999895
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -360,7 +366,7 @@ Textures:
     AlwaysOn: true
     Prelit: true
   - Name: ADS_TOROGASA_BB_EA
-    Brightness: 8
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -378,13 +384,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ADS_EDGE_BB_A_EA
-    Brightness: 8
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
   - Name: ADS_EDGE_BB_C_EA
-    Brightness: 8
+    Brightness: 6.099998
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true

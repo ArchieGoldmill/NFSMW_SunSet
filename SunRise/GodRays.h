@@ -18,7 +18,7 @@ D3DXVECTOR4 GetSunScreenUV()
 	sunNDC.y = 1.0f - sunNDC.y;
 
 	auto result = D3DXVECTOR4(sunNDC.x, sunNDC.y, 0, 0);
-	result.z = Smoothstep(-0.2, 0.0, sunDir.z);
+	result.z = Smoothstep(-0.2, 0.0, sunDir.z) * (sunClip.w > 0);
 
 	return result;
 }

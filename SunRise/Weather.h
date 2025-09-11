@@ -98,6 +98,11 @@ public:
 		bloom.x = this->current.BloomPower;
 		bloom.y = this->current.BloomThreshold;
 
+		if (!g_Config.Bloom)
+		{
+			bloom.x = 0;
+		}
+
 		return bloom;
 	}
 

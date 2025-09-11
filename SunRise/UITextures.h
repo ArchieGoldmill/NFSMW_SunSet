@@ -20,7 +20,7 @@ namespace UI
 			{
 				if (CurrentTexture)
 				{
-					PrelitTextures.erase(CurrentTexture->NameHash);
+					PrelitTextures.Remove(CurrentTexture->NameHash);
 					CurrentTexture = NULL;
 				}
 			}
@@ -38,9 +38,10 @@ namespace UI
 					newTex.Name = TextureNameBuff;
 					newTex.ParseTextureName();
 
-					PrelitTextures[newTex.NameHash] = newTex;
+					PrelitTextures.Add(newTex);
+					PrelitTextures.Sort();
 
-					CurrentTexture = &PrelitTextures[newTex.NameHash];
+					CurrentTexture = PrelitTextures.Get(newTex.NameHash);
 
 					TextureNameBuff[0] = 0;
 				}
@@ -59,16 +60,16 @@ namespace UI
 
 						if (ImGui::BeginChild("##MaterialList", ImGui::GetContentRegionAvail(), false, 0))
 						{
-							for (auto& texture : PrelitTextures)
+							for (auto& texture : PrelitTextures.GetList())
 							{
-								if (FilterBuff[0] && !strstr(texture.second.Name.c_str(), FilterBuff))
+								if (FilterBuff[0] && !strstr(texture.Name.c_str(), FilterBuff))
 								{
 									continue;
 								}
 
-								if (SelectableButton(texture.second.Name.c_str(), { 200, 20 }, CurrentTexture == &texture.second))
+								if (SelectableButton(texture.Name.c_str(), { 200, 20 }, CurrentTexture == &texture))
 								{
-									CurrentTexture = &texture.second;
+									CurrentTexture = &texture;
 								}
 							}
 

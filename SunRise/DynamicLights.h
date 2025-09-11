@@ -158,16 +158,16 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 		bool prelit = false;
 		bool enabled = false;
 
-		auto prelitTex = PrelitTextures.find(renderModel->DiffuseTextureInfo->NameHash);
-		if (prelitTex != PrelitTextures.end() && prelitTex->second.Mask.hash)
+		auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
+		if (prelitTex)
 		{
-			prelit = prelitTex->second.Prelit;
-			enabled = prelitTex->second.AlwaysOn ? true : g_Weather.LightsOn();
+			prelit = prelitTex->Prelit;
+			enabled = prelitTex->AlwaysOn ? true : g_Weather.LightsOn();
 			if (enabled)
 			{
-				effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->second.GetMaskTexture());
+				effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());
 
-				brightness = prelitTex->second.Color;
+				brightness = prelitTex->Color;
 				brightness *= brightness.w;
 				if (prelit)
 				{

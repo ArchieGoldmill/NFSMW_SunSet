@@ -3,54 +3,11 @@
 #include <unordered_set>
 #include <yaml-cpp/yaml.h>
 #include "Utilities.h"
-
-struct PrelitTexture
-{
-	std::string Name;
-	Hash NameHash;
-
-	HashField Mask;
-	TextureInfo* MaskTexture = NULL;
-
-	D3DXVECTOR4 Color = { 1, 1, 1, 1 };
-
-	bool AlwaysOn;
-	bool Prelit;
-
-	void ParseTextureName()
-	{
-		if (StartsWith0x(this->Name))
-		{
-			this->NameHash = std::stoul(this->Name, nullptr, 16);
-		}
-		else
-		{
-			this->NameHash = Game::bStringHash(this->Name.c_str());
-		}
-	}
-
-	TextureInfo* GetMaskTexture()
-	{
-		auto hash = this->Mask.hash;
-		if (!hash || hash == -1)
-		{
-			hash = Hashes::WHITE32X32;
-		}
-
-		if (!this->MaskTexture)
-		{
-			this->MaskTexture = TextureInfo::Get(hash, false, false);
-		}
-
-		return this->MaskTexture;
-	}
-};
-
-inline std::unordered_map<unsigned int, PrelitTexture> PrelitTextures;
+#include "PrelitTextures.h"
 
 void LoadTextureConfig()
 {
-	PrelitTextures.clear();
+	PrelitTextures.Clear();
 
 	YAML::Node texturesRoot = YAML::LoadFile(GetConfigFolder("Textures.yml"));
 
@@ -65,25 +22,27 @@ void LoadTextureConfig()
 		prelit.Mask.SetString(node["Mask"].as<std::string>());
 		prelit.AlwaysOn = YmlGet(node, "AlwaysOn", true);
 		prelit.Prelit = YmlGet(node, "Prelit", true);
-
 		prelit.ParseTextureName();
-		PrelitTextures[prelit.NameHash] = prelit;
+
+		PrelitTextures.Add(prelit);
 	}
+
+	PrelitTextures.Sort();
 }
 
 void SaveTextureConfig()
 {
 	YAML::Node list;
-	for (auto& tex : PrelitTextures)
+	for (auto& tex : PrelitTextures.GetList())
 	{
 		YAML::Node node;
 
-		node["Name"] = tex.second.Name;
-		node["Brightness"] = tex.second.Color.w;
-		node["Color"] = SerializeVector3(tex.second.Color);
-		node["Mask"] = tex.second.Mask.GetString();
-		node["AlwaysOn"] = tex.second.AlwaysOn;
-		node["Prelit"] = tex.second.Prelit;
+		node["Name"] = tex.Name;
+		node["Brightness"] = tex.Color.w;
+		node["Color"] = SerializeVector3(tex.Color);
+		node["Mask"] = tex.Mask.GetString();
+		node["AlwaysOn"] = tex.AlwaysOn;
+		node["Prelit"] = tex.Prelit;
 
 		list.push_back(node);
 	}

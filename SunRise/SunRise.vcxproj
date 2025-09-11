@@ -236,6 +236,7 @@
     <ClInclude Include="MotionBlur.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PostEffects.h" />
+    <ClInclude Include="PrelitTextures.h" />
     <ClInclude Include="PVehicle.h" />
     <ClInclude Include="Rain.h" />
     <ClInclude Include="Reflection.h" />

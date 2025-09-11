@@ -331,6 +331,9 @@
     <ClInclude Include="DirectResources.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="PrelitTextures.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

@@ -1,7 +1,7 @@
 #pragma once
-#include "DepthPrePass.h"
 #include "UIWidgetMenu.h"
-#include "GodRays.h"
+#include "PostEffects.h"
+#include "DepthPrePass.h"
 
 void __cdecl RenderCars(eView* view, int b)
 {
@@ -20,7 +20,7 @@ void DrawBlur()
 		Game::CommitRenderedModels();
 	}
 
-	DrawGodRays();
+	DrawPostEffects();
 }
 
 void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* backBuffer, RECT* pSourceRect, IDirect3DSurface9* filterSurface0, RECT* pDestRect, D3DTEXTUREFILTERTYPE Filter)
@@ -41,8 +41,10 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 	auto effect = eEffect::Get(shader_type::ScreenFilterShader);
 	auto pEffect = effect->D3DEffect;
 
-	UINT passes = 0;
 	Game::Device->SetVertexDeclaration(effect->VertexDecl);
+	effect->SetTechniqueByName("Depth");
+
+	UINT passes = 0;
 	pEffect->Begin(&passes, 0);
 	pEffect->BeginPass(0);
 

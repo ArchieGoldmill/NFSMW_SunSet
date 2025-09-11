@@ -1,5 +1,6 @@
 #pragma once
 #include "Injector/injector.hpp"
+#include "DirectResources.h"
 #include "GrandSceneryCullInfo.h"
 #include "DynamicLights.h"
 #include "RenderModel.h"
@@ -233,6 +234,7 @@ void __cdecl NormalizeLightVec(D3DXVECTOR4* dest, D3DXVECTOR4* src)
 
 void InitHooks()
 {
+	InitDirectResources();
 	InitLightFlares();
 	InitTime();
 	InitMotionBlur();

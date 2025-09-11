@@ -34,6 +34,11 @@ struct WeatherData
 
 	float CarLightsPower;
 	float TextureLightPower;
+
+	float BloomPower;
+	float BloomThreshold;
+
+	D3DXVECTOR4 GodRaysColor;
 };
 
 struct WeatherConfig
@@ -74,8 +79,13 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 
 	config->CloudColor = ParseVec4(node["CloudColor"], cfg->CloudColor);
 
+	config->GodRaysColor = ParseVec3To4(node["GodRaysColor"], cfg->GodRaysColor);
+
 	config->WaterColor = ParseVec3To4(node["WaterColor"], cfg->WaterColor);
 	config->WaterSpecularPower = YmlGet<float>(node, "WaterSpecularPower", cfg->WaterSpecularPower);
+
+	config->BloomPower = YmlGet<float>(node, "BloomPower", cfg->BloomPower);
+	config->BloomThreshold = YmlGet<float>(node, "BloomThreshold", cfg->BloomThreshold);
 }
 
 void LoadWeatherConfig()
@@ -117,6 +127,8 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["CarDiffuseIntensity"] = data->CarDiffuseIntensity;
 	node["CarAmbientIntensity"] = data->CarAmbientIntensity;
 
+	node["GodRaysColor"] = SerializeVector4(data->GodRaysColor);
+
 	node["CloudColor"] = SerializeVector4(data->CloudColor);
 
 	node["WaterColor"] = SerializeVector3(data->WaterColor);
@@ -124,6 +136,9 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 
 	node["CarLightsPower"] = data->CarLightsPower;
 	node["TextureLightPower"] = data->TextureLightPower;
+
+	node["BloomPower"] = data->BloomPower;
+	node["BloomThreshold"] = data->BloomThreshold;
 
 	node["SkyBeta"] = SerializeVector3(data->SkyBeta);
 	node["SkyMie"] = data->SkyMie;

@@ -178,6 +178,15 @@ namespace UI
 								ImGui::ColorEdit3("Fog color", (float*)&weather->FogColor, ImGuiColorEditFlags_Float);
 								ImGui::ColorEdit3("Fog sun color", (float*)&weather->FogSunColor, ImGuiColorEditFlags_Float);
 
+								ImGui::Text("");
+
+								InputFloat("Bloom power", &weather->BloomPower);
+								InputFloat("Bloom threshold", &weather->BloomThreshold);
+
+								ImGui::Text("");
+
+								ImGui::ColorEdit3("God rays color", (float*)&weather->GodRaysColor, ImGuiColorEditFlags_Float);
+
 								ImGui::EndChild();
 							}
 						}

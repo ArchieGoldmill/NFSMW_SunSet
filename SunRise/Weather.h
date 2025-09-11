@@ -86,6 +86,21 @@ public:
 		return NightFactor == 1.0;
 	}
 
+	D3DXVECTOR4 GetGodRaysColor()
+	{
+		return this->current.GodRaysColor;
+	}
+
+	D3DXVECTOR4 GetBloom()
+	{
+		D3DXVECTOR4 bloom;
+
+		bloom.x = this->current.BloomPower;
+		bloom.y = this->current.BloomThreshold;
+
+		return bloom;
+	}
+
 private:
 
 	void SetFog(eEffect* e)
@@ -163,6 +178,11 @@ private:
 
 		this->current.WaterColor = LerpVector(a->WaterColor, b->WaterColor, t);
 		this->current.WaterSpecularPower = std::lerp(a->WaterSpecularPower, b->WaterSpecularPower, t);
+
+		this->current.BloomPower = std::lerp(a->BloomPower, b->BloomPower, t);
+		this->current.BloomThreshold = std::lerp(a->BloomThreshold, b->BloomThreshold, t);
+
+		this->current.GodRaysColor = LerpVector(a->GodRaysColor, b->GodRaysColor, t);
 	}
 
 	void UpdateWeather()

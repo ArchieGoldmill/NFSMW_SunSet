@@ -32,6 +32,9 @@
     <Filter Include="ThirdParty\imgui">
       <UniqueIdentifier>{87da2fe6-f3c9-41b5-bda0-2bf7d452e516}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\PostEffects">
+      <UniqueIdentifier>{dad4cb40-5304-4232-90d9-b1b3f5baa2ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -313,10 +316,22 @@
     <ClInclude Include="ShaderLoader.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="GodRays.h">
+    <ClInclude Include="Reflection.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="Reflection.h">
+    <ClInclude Include="PostEffects.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="Bloom.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="Exposure.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="GodRays.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectResources.h">
       <Filter>Features</Filter>
     </ClInclude>
   </ItemGroup>

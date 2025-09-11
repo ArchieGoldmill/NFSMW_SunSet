@@ -17,6 +17,7 @@ enum TechniqueType
 	Technique_Invisible,
 	Technique_Water,
 	Technique_ZPrePass,
+
 	Technique_Count,
 	Technique_Invalid = -1
 };
@@ -45,6 +46,9 @@ const char* ShaderParamNames[] =
 	"cvaSpPositionRange",
 	"cvaSpDirectionOuterCos",
 	"cvaSpColorInnerCos",
+	"cvTexelSize",
+	"cvBloomParams",
+	"cvGodRaysColor",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -80,6 +84,9 @@ enum class ShaderParam
 	cvaSpPositionRange,
 	cvaSpDirectionOuterCos,
 	cvaSpColorInnerCos,
+	cvTexelSize,
+	cvBloomParams,
+	cvGodRaysColor,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,
@@ -395,6 +402,12 @@ struct eEffect
 	bool HasParam(ShaderParam p)
 	{
 		return ShaderParamsMap[(int)this->id].Params[(int)p] != NULL;
+	}
+
+	void SetTechniqueByName(LPCSTR pName)
+	{
+		auto tech = this->D3DEffect->GetTechniqueByName(pName);
+		this->D3DEffect->SetTechnique(tech);
 	}
 
 	void DrawFullScreenQuad(IDirect3DTexture9* texture, bool invert = false)

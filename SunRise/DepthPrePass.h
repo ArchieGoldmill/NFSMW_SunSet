@@ -2,66 +2,7 @@
 #include "GarageMainScreen.h"
 #include "CustomMeshes.h"
 
-IDirect3DSurface9* DepthRenderTarget = nullptr;
-IDirect3DTexture9* DepthTexture = nullptr;
-IDirect3DSurface9* DepthSurface = nullptr;
 
-void InitPrepassTextures()
-{
-	if (!DepthRenderTarget)
-	{
-		auto renderTarget = RenderTarget::Player;
-
-		Game::Device->CreateRenderTarget(
-			renderTarget->resolution_x,
-			renderTarget->resolution_y,
-			D3DFMT_R32F,
-			Game::DeviceParams->MultiSampleType,
-			Game::DeviceParams->MultiSampleQuality,
-			FALSE,
-			&DepthRenderTarget,
-			nullptr
-		);
-
-		Game::Device->CreateTexture(
-			renderTarget->resolution_x,
-			renderTarget->resolution_y,
-			1,
-			D3DUSAGE_RENDERTARGET,
-			D3DFMT_R32F,
-			D3DPOOL_DEFAULT,
-			&DepthTexture,
-			nullptr
-		);
-
-		DepthTexture->GetSurfaceLevel(0, &DepthSurface);
-	}
-}
-
-void ResetPrepassTextures()
-{
-	__asm pushad;
-
-	if (DepthRenderTarget)
-	{
-		DepthRenderTarget->Release();
-		DepthRenderTarget = nullptr;
-	}
-
-	if (DepthTexture)
-	{
-		DepthTexture->Release();
-		DepthTexture = nullptr;
-	}
-
-	if (DepthSurface)
-	{
-		DepthSurface->Release();
-		DepthSurface = nullptr;
-	}
-
-	__asm popad;
-}
 
 void SetDepthRenderTarget()
 {
@@ -141,6 +82,5 @@ void InitDepthPrePass()
 
 		injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
 
-		injector::MakeCALL(0x006BD622, ResetPrepassTextures);
 	}
 }

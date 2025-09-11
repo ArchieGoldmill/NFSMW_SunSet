@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AmbientShadow.h" />
+    <ClInclude Include="Bloom.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CarBrakeGlow.h" />
     <ClInclude Include="CarLights.h" />
@@ -192,12 +193,14 @@
     <ClInclude Include="CustomMeshes.h" />
     <ClInclude Include="CustomMeshesConfig.h" />
     <ClInclude Include="DepthPrePass.h" />
+    <ClInclude Include="DirectResources.h" />
     <ClInclude Include="DynamicLights.h" />
     <ClInclude Include="eEffect.h" />
     <ClInclude Include="eLightMaterial.h" />
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />
     <ClInclude Include="eView.h" />
+    <ClInclude Include="Exposure.h" />
     <ClInclude Include="FlareConfig.h" />
     <ClInclude Include="FrontEndRenderingCar.h" />
     <ClInclude Include="Game.h" />
@@ -233,6 +236,7 @@
     <ClInclude Include="minhook\trampoline.h" />
     <ClInclude Include="MotionBlur.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PostEffects.h" />
     <ClInclude Include="PVehicle.h" />
     <ClInclude Include="Rain.h" />
     <ClInclude Include="Reflection.h" />

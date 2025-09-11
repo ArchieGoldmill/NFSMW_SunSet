@@ -50,9 +50,6 @@
     <FxCompile Include="hdr.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
-    <FxCompile Include="exposure.fx">
-      <Filter>Header Files</Filter>
-    </FxCompile>
     <FxCompile Include="bloom.fx">
       <Filter>Header Files</Filter>
     </FxCompile>

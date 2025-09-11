@@ -127,7 +127,6 @@
     <FxCompile Include="car.fx" />
     <FxCompile Include="car_rain.fx" />
     <FxCompile Include="emissive.fx" />
-    <FxCompile Include="exposure.fx" />
     <FxCompile Include="fog.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />

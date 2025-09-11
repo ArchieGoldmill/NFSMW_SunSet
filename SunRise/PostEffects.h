@@ -14,4 +14,6 @@ void DrawPostEffects()
 
 	Game::Device->SetRenderTarget(0, rtBackup);
 	Game::Device->SetDepthStencilSurface(ppZStencilSurface);
+	ppZStencilSurface->Release();
+	rtBackup->Release();
 }

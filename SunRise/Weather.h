@@ -5,7 +5,6 @@
 #include "TimeOfDay.h"
 #include "Utilities.h"
 #include "Rain.h"
-#include "resource.h"
 
 class Weather
 {
@@ -21,8 +20,6 @@ private:
 	TextureInfo* PuddleMask = NULL;
 	TextureInfo* RoadDetail = NULL;
 	TextureInfo* RainSplash[30];
-	LPDIRECT3DVOLUMETEXTURE9 NoiseTexture = NULL;
-	IDirect3DCubeTexture9* SkyCubeTexture = nullptr;
 
 	D3DXVECTOR4 rainParams = { 0, 0, 0, 0 };
 	D3DXVECTOR4 fogValue;
@@ -244,75 +241,10 @@ private:
 		}
 	}
 
-	void LoadVolumeTexture()
-	{
-		if (!NoiseTexture)
-		{
-			HRSRC hRes = FindResource(Game::hModule, MAKEINTRESOURCE(IDR_RCDATA1), RT_RCDATA);
-			if (hRes)
-			{
-				HGLOBAL hResData = LoadResource(Game::hModule, hRes);
-				if (hResData)
-				{
-					void* pData = LockResource(hResData);
-					DWORD dataSize = SizeofResource(Game::hModule, hRes);
-
-					D3DXCreateVolumeTextureFromFileInMemory(Game::Device, pData, dataSize, &NoiseTexture);
-				}
-			}
-		}
-	}
-
-	void LoadSkyBoxTexture()
-	{
-		if (!SkyCubeTexture)
-		{
-			D3DXCreateCubeTextureFromFileA(Game::Device, "scripts\\SunSetData\\Textures\\SKYBOX.dds", &SkyCubeTexture);
-		}
-	}
-
-	void CreateSkyBoxTexture()
-	{
-		if (!this->SkyCubeTexture)
-		{
-			D3DXCreateCubeTexture(Game::Device, 1024, 1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &SkyCubeTexture);
-
-			D3DCUBEMAP_FACES faces[6] =
-			{
-				D3DCUBEMAP_FACE_POSITIVE_X,
-				D3DCUBEMAP_FACE_NEGATIVE_X,
-				D3DCUBEMAP_FACE_POSITIVE_Y,
-				D3DCUBEMAP_FACE_NEGATIVE_Y,
-				D3DCUBEMAP_FACE_POSITIVE_Z,
-				D3DCUBEMAP_FACE_NEGATIVE_Z
-			};
-
-			const char* filenames[6] =
-			{
-				"D:\\x+.jpg",
-				"D:\\x-.jpg",
-				"D:\\y+.jpg",
-				"D:\\y-.jpg",
-				"D:\\z+.jpg",
-				"D:\\z-.jpg",
-			};
-
-			for (int i = 0; i < 6; i++)
-			{
-				LPDIRECT3DSURFACE9 pSurface = nullptr;
-				SkyCubeTexture->GetCubeMapSurface(faces[i], 0, &pSurface);
-				D3DXLoadSurfaceFromFileA(pSurface, NULL, NULL, filenames[i], NULL, D3DX_DEFAULT, 0, NULL);
-				pSurface->Release();
-			}
-
-			D3DXSaveTextureToFileA("D:\\SKYBOX.dds", D3DXIFF_DDS, SkyCubeTexture, NULL);
-		}
-	}
-
 	void InitTextures()
 	{
-		this->LoadSkyBoxTexture();
-		this->LoadVolumeTexture();
+		LoadSkyBoxTexture();
+		LoadVolumeTexture();
 
 		if (!this->PuddleMask)
 		{
@@ -348,7 +280,7 @@ private:
 		if (this->CarRainDrops)
 		{
 			auto carShader = eEffect::Get(shader_type::CarShader);
-			carShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->NoiseTexture);
+			carShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, NoiseTexture);
 			carShader->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->CarRainDrops);
 			carShader->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->CarRainSlide);
 		}
@@ -405,9 +337,9 @@ private:
 		e->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
 		e->SetFloat(ShaderParam::cfTimeTicker, this->Timer);
 
-		if (this->SkyCubeTexture)
+		if (SkyCubeTexture)
 		{
-			e->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->SkyCubeTexture);
+			e->SetTexture(ShaderParam::MISCMAP1_TEXTURE, SkyCubeTexture);
 		}
 	}
 

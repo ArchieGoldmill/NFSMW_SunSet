@@ -2,17 +2,14 @@
 
 void SetVinylScale(RenderModel* renderModel)
 {
-	auto effect = renderModel->Effect;
+	float vinyl = 0;
 
 	if (g_Config.CarVinylPaintFix)
 	{
-		float vinyl = strstr(renderModel->DiffuseTextureInfo->DebugName, "DUMMY_SKIN") != NULL ? 1 : 0;
-		effect->SetFloat(ShaderParam::cfVinylScale, vinyl);
+		vinyl = strstr(renderModel->DiffuseTextureInfo->DebugName, "DUMMY_SKIN") != NULL ? 1 : 0;
 	}
-	else
-	{
-		effect->SetFloat(ShaderParam::cfVinylScale, 0);
-	}
+
+	renderModel->Effect->SetFloat(ShaderParam::cfVinylScale, vinyl);
 }
 
 D3DCOLOR GetBlendColourHook(D3DCOLOR* colors, float* coefs, int count, int blendAlpha)
@@ -41,12 +38,14 @@ void __declspec(naked) SkinColorResetHook()
 
 void InitCarVinylMask()
 {
-	if (g_Config.CarVinylPaintFix)
+	if (!g_Config.CarVinylPaintFix)
 	{
-		injector::MakeCALL(0x0073B2B2, GetBlendColourHook);
-
-		injector::MakeJMP(0x0073B140, SkinColorResetHook);
-
-		injector::MakeNOP(0x0073B234, 6);
+		return;
 	}
+
+	injector::MakeCALL(0x0073B2B2, GetBlendColourHook);
+
+	injector::MakeJMP(0x0073B140, SkinColorResetHook);
+
+	injector::MakeNOP(0x0073B234, 6);
 }

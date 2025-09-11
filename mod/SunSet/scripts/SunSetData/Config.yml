@@ -9,6 +9,7 @@ Config:
   CarVinylPaintFix: true      # Make vinyls to not be affected by car paint.
   BrakeGlow: true             # Enable brake rotor glow.
   GodRays: true               # Enable god rays effect.
+  Bloom: true                 # Enable bloom effect.
   
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

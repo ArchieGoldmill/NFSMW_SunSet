@@ -24,6 +24,7 @@ namespace UI
 			ImGui::Checkbox("Car vinyl paint fix", &g_Config.CarVinylPaintFix);
 			ImGui::Checkbox("Brake glow", &g_Config.BrakeGlow);
 			ImGui::Checkbox("God rays", &g_Config.GodRays);
+			ImGui::Checkbox("Bloom", &g_Config.Bloom);
 
 			ImGui::Text("");
 			ImGui::Text("Time");

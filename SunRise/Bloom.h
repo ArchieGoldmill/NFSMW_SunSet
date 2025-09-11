@@ -17,8 +17,6 @@ void ExtractBloom()
 	pEffect->Begin(&passes, 0);
 	pEffect->BeginPass(0);
 
-	auto bloomParams = g_Weather.GetBloom();
-	effect->SetVector(ShaderParam::cvBloomParams, &bloomParams);
 	effect->DrawFullScreenQuad(Game::FilterTexture1);
 
 	pEffect->EndPass();
@@ -84,7 +82,16 @@ void ApplyBloom()
 
 void DrawBloom()
 {
-	ExtractBloom();
-	BlurBloom();
+	auto bloomParams = g_Weather.GetBloom();
+
+	auto effect = eEffect::Get(shader_type::ScreenFilterShader);
+	effect->SetVector(ShaderParam::cvBloomParams, &bloomParams);
+
+	if (bloomParams.x > 0)
+	{
+		ExtractBloom();
+		BlurBloom();
+	}
+
 	ApplyBloom();
 }

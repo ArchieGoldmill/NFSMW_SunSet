@@ -32,6 +32,7 @@ struct Config
 	bool CarVinylPaintFix;
 	bool BrakeGlow;
 	bool GodRays;
+	bool Bloom;
 
 	float WetTime;
 	float DryTime;
@@ -66,6 +67,7 @@ void LoadConfig()
 	g_Config.CarVinylPaintFix = settings["CarVinylPaintFix"].as<bool>();
 	g_Config.BrakeGlow = settings["BrakeGlow"].as<bool>();
 	g_Config.GodRays = settings["GodRays"].as<bool>();
+	g_Config.Bloom = settings["Bloom"].as<bool>();
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
@@ -114,6 +116,7 @@ void SaveConfig()
 	config["CarVinylPaintFix"] = g_Config.CarVinylPaintFix;
 	config["BrakeGlow"] = g_Config.BrakeGlow;
 	config["GodRays"] = g_Config.GodRays;
+	config["Bloom"] = g_Config.Bloom;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

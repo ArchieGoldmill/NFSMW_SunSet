@@ -1,3 +1,5 @@
+#include "hdr.fx"
+
 float cfDepth : FILTERBLEND;
 
 texture diffusemap : DiffuseMap;
@@ -34,15 +36,13 @@ struct PS_INPUT
 	float2 uv : TEXCOORD0;
 };
 
-#include "godrays.fx"
-
 void VS_ScreenFilter(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = IN.position;
 	OUT.uv = IN.tex;
 }
 
-float4 PS_ScreenFilter(PS_INPUT IN) : COLOR
+float4 PS_Depth(PS_INPUT IN) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
@@ -52,17 +52,16 @@ float4 PS_ScreenFilter(PS_INPUT IN) : COLOR
 	return diffuse_tex;
 }
 
-technique screenfilter <int shader = 1; >
+technique Depth <int shader = 1; >
 {
 	pass p0
 	{
 		VertexShader = compile vs_3_0 VS_ScreenFilter();
-		PixelShader = compile ps_3_0 PS_ScreenFilter();
-	}
-
-	pass p1
-	{
-		VertexShader = compile vs_3_0 VS_GodRays();
-		PixelShader = compile ps_3_0 PS_GodRays();
+		PixelShader = compile ps_3_0 PS_Depth();
 	}
 }
+
+#include "godrays.fx"
+#include "blur.fx"
+#include "exposure.fx"
+#include "bloom.fx"

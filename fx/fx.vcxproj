@@ -123,13 +123,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <FxCompile Include="bloom.fx" />
     <FxCompile Include="car.fx" />
     <FxCompile Include="car_rain.fx" />
     <FxCompile Include="emissive.fx" />
+    <FxCompile Include="exposure.fx" />
     <FxCompile Include="fog.fx" />
     <FxCompile Include="global.fx" />
     <FxCompile Include="GlossyWindow.fx" />
     <FxCompile Include="godrays.fx" />
+    <FxCompile Include="hdr.fx" />
     <FxCompile Include="lighting.fx" />
     <FxCompile Include="normalmap.fx" />
     <FxCompile Include="prelit.fx" />
@@ -145,6 +148,7 @@
     <FxCompile Include="worldreflect.fx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blur.fx" />
     <ClInclude Include="prepass.fx" />
     <ClInclude Include="shadow.fx" />
     <ClInclude Include="techniques.fx" />

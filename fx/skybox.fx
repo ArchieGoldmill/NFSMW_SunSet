@@ -190,7 +190,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 clouds = float3(gray, gray, gray) * cvCloudColor.rgb;
 	color = lerp(color, clouds, cvCloudColor.a * pow(gray, 2));
 	
-	color.rgb = CompressColourSpace(color.rgb);
+	color.rgb = CompressColourSpace(color.rgb * 2);
 	
 	return float4(color, 1.0);
 }

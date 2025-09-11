@@ -1,50 +1,57 @@
-float4x4 WorldViewProj : WORLDVIEWPROJECTION;
 float4 cvSunDir : LIGHTDIR;
+float4 cvGodRaysColor;
 
-void VS_GodRays(VS_INPUT IN, out PS_INPUT OUT)
+float3 GetGodRaySample(float2 uv)
 {
-	OUT.position = IN.position;
-	OUT.uv = IN.tex;
+	float depth = tex2D(HEIGHTMAP_SAMPLER, uv).r;
+	float3 samp = float3(1, 1, 1) * step(4000, depth);
+	
+	float dist = distance(cvSunDir.xy, uv);
+	dist = smoothstep(0.5, 0.0, dist);
+	
+	return samp * dist;
 }
 
-float3 GodRays(float2 sun, float2 uv)
+float3 GetGodRays(float2 uv)
 {
-	float density = 1.0;
-	float weight = 0.002;
-	float decay = 1.0;
-	float exposure = 1.0;
-	const int numSamples = 100;
+	const int NUM_SAMPLES = 100;
 	
-	float3 fragColor = float3(0.0, 0.0, 0.0);
-
-	float2 deltaTextCoord = float2(uv - sun.xy);
-
-	float2 textCoord = uv.xy;
-	deltaTextCoord *= (1.0 / float(numSamples)) * density;
-	float illuminationDecay = 1.0;
-
-	for (int i = 0; i < numSamples; i++)
+	float2 texCoord = uv;
+	float Density = 1.0;
+	float Decay = 0.97;
+	float Weight = 0.02;
+	
+	float2 deltaTexCoord = (texCoord - cvSunDir.xy);
+	deltaTexCoord *= 1.0f / NUM_SAMPLES * Density;
+	float3 color = float3(0, 0, 0);
+	float illuminationDecay = 1.0f;
+	for (int i = 0; i < NUM_SAMPLES; i++)
 	{
-		textCoord -= deltaTextCoord;
+		texCoord -= deltaTexCoord;
 		
-		float depth = tex2D(HEIGHTMAP_SAMPLER, textCoord).r;
-		float3 samp = float3(1, 1, 1) * step(1000, depth);
-		
-		samp *= illuminationDecay * weight;
-		fragColor += samp;
-		illuminationDecay *= decay;
+		float3 sample = GetGodRaySample(texCoord);
+		sample *= illuminationDecay * Weight;
+		color += sample;
+		illuminationDecay *= Decay;
 	}
-
-	fragColor *= exposure;
-
-	return fragColor;
+	
+	return color * cvGodRaysColor.rgb;
 }
 
 float4 PS_GodRays(PS_INPUT IN) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	diffuse_tex.rgb += GodRays(cvSunDir.xy, IN.uv) * cvSunDir.z;
+	diffuse_tex.rgb += GetGodRays(IN.uv) * 0.3 * cvSunDir.z ;
 
 	return diffuse_tex;
+}
+
+technique GodRays
+{
+	pass p0
+	{
+		VertexShader = compile vs_3_0 VS_ScreenFilter();
+		PixelShader = compile ps_3_0 PS_GodRays();
+	}
 }

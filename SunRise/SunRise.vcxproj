@@ -200,7 +200,6 @@
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />
     <ClInclude Include="eView.h" />
-    <ClInclude Include="Exposure.h" />
     <ClInclude Include="FlareConfig.h" />
     <ClInclude Include="FrontEndRenderingCar.h" />
     <ClInclude Include="Game.h" />

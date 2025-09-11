@@ -325,9 +325,6 @@
     <ClInclude Include="Bloom.h">
       <Filter>Features\PostEffects</Filter>
     </ClInclude>
-    <ClInclude Include="Exposure.h">
-      <Filter>Features\PostEffects</Filter>
-    </ClInclude>
     <ClInclude Include="GodRays.h">
       <Filter>Features\PostEffects</Filter>
     </ClInclude>

@@ -63,5 +63,4 @@ technique Depth <int shader = 1; >
 
 #include "godrays.fx"
 #include "blur.fx"
-#include "exposure.fx"
 #include "bloom.fx"

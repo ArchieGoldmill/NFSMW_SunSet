@@ -1,6 +1,5 @@
 #pragma once
 #include "GodRays.h"
-#include "Exposure.h"
 #include "Bloom.h"
 
 void DrawPostEffects()
@@ -10,7 +9,6 @@ void DrawPostEffects()
 	Game::Device->GetRenderTarget(0, &rtBackup);
 	Game::Device->GetDepthStencilSurface(&ppZStencilSurface);
 
-	//CalculateExposure();
 	DrawBloom();
 	DrawGodRays();
 

@@ -17,7 +17,7 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
-  - Name: ADS_BKING_BB_A
+  - Name: ADS_CINGULAR_BB_F_EA
     Brightness: 8
     Color: [1, 1, 1]
     Mask: ""
@@ -29,7 +29,19 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
-  - Name: ADS_CINGULAR_BB_F_EA
+  - Name: ADS_BKING_BB_A
+    Brightness: 8
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+  - Name: ARROW_GPS
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+  - Name: ADS_EDGE_BB_C_EA
     Brightness: 8
     Color: [1, 1, 1]
     Mask: ""
@@ -43,18 +55,6 @@ Textures:
     Prelit: true
   - Name: SGN_NEON_OUTLINE
     Brightness: 1
-    Color: [1, 1, 1]
-    Mask: ""
-    AlwaysOn: true
-    Prelit: true
-  - Name: ADS_EDGE_BB_C_EA
-    Brightness: 8
-    Color: [1, 1, 1]
-    Mask: ""
-    AlwaysOn: true
-    Prelit: true
-  - Name: ARROW_GPS
-    Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -413,3 +413,15 @@ Textures:
     Mask: OBJ_BARRIERCONCRETE_01_E
     AlwaysOn: false
     Prelit: false
+  - Name: SFX_TRACKBARRIERLOCK
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+  - Name: SFX_TRACKBARRIERNEONLOCKED
+    Brightness: 5
+    Color: [1, 0.20588237, 0]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true

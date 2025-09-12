@@ -244,7 +244,7 @@ private:
 
 	void InitTextures()
 	{
-		LoadSkyBoxTexture();
+		CreateSkyBoxTexture();
 		LoadVolumeTexture();
 
 		if (!this->PuddleMask)

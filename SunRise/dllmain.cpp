@@ -28,12 +28,6 @@ bool CheckFiles()
 		return false;
 	}
 
-	if (!FileExists("SunSetData\\Textures\\SKYBOX.dds"))
-	{
-		MessageBoxA(NULL, "SKYBOX.dds not found, please follow the install guide to fix the issue.", ModName, MB_ICONEXCLAMATION);
-		return false;
-	}
-
 	std::ifstream file("TexWizard.json");
 	std::ostringstream buffer;
 	buffer << file.rdbuf();

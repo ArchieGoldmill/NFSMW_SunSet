@@ -40,14 +40,6 @@ void InitPrepassTextures()
 	}
 }
 
-void LoadSkyBoxTexture()
-{
-	if (!SkyCubeTexture)
-	{
-		D3DXCreateCubeTextureFromFileA(Game::Device, "scripts\\SunSetData\\Textures\\SKYBOX.dds", &SkyCubeTexture);
-	}
-}
-
 void LoadVolumeTexture()
 {
 	if (!NoiseTexture)
@@ -71,38 +63,55 @@ void CreateSkyBoxTexture()
 {
 	if (!SkyCubeTexture)
 	{
-		D3DXCreateCubeTexture(Game::Device, 1024, 1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &SkyCubeTexture);
-
-		D3DCUBEMAP_FACES faces[6] =
-		{
-			D3DCUBEMAP_FACE_POSITIVE_X,
-			D3DCUBEMAP_FACE_NEGATIVE_X,
-			D3DCUBEMAP_FACE_POSITIVE_Y,
-			D3DCUBEMAP_FACE_NEGATIVE_Y,
-			D3DCUBEMAP_FACE_POSITIVE_Z,
-			D3DCUBEMAP_FACE_NEGATIVE_Z
-		};
-
-		const char* filenames[6] =
-		{
-			"D:\\x+.jpg",
-			"D:\\x-.jpg",
-			"D:\\y+.jpg",
-			"D:\\y-.jpg",
-			"D:\\z+.jpg",
-			"D:\\z-.jpg",
-		};
-
-		for (int i = 0; i < 6; i++)
-		{
-			LPDIRECT3DSURFACE9 pSurface = nullptr;
-			SkyCubeTexture->GetCubeMapSurface(faces[i], 0, &pSurface);
-			D3DXLoadSurfaceFromFileA(pSurface, NULL, NULL, filenames[i], NULL, D3DX_DEFAULT, 0, NULL);
-			pSurface->Release();
-		}
-
-		D3DXSaveTextureToFileA("D:\\SKYBOX.dds", D3DXIFF_DDS, SkyCubeTexture, NULL);
+		return;
 	}
+
+	D3DCUBEMAP_FACES faces[6] =
+	{
+		D3DCUBEMAP_FACE_POSITIVE_X,
+		D3DCUBEMAP_FACE_NEGATIVE_X,
+		D3DCUBEMAP_FACE_POSITIVE_Y,
+		D3DCUBEMAP_FACE_NEGATIVE_Y,
+		D3DCUBEMAP_FACE_POSITIVE_Z,
+		D3DCUBEMAP_FACE_NEGATIVE_Z
+	};
+
+	const char* filenames[6] =
+	{
+		"SKYBOX_XPOS",
+		"SKYBOX_XNEG",
+		"SKYBOX_YPOS",
+		"SKYBOX_YNEG",
+		"SKYBOX_ZPOS",
+		"SKYBOX_ZNEG",
+	};
+
+	auto textureInfo = TextureInfo::Get(Game::bStringHash(filenames[0]), false, false);
+	if (!textureInfo)
+	{
+		return;
+	}
+
+	D3DXCreateCubeTexture(Game::Device, textureInfo->Width, 1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &SkyCubeTexture);
+
+	for (int i = 0; i < 6; i++)
+	{
+		LPDIRECT3DSURFACE9 pSurface = nullptr;
+		SkyCubeTexture->GetCubeMapSurface(faces[i], 0, &pSurface);
+
+		auto textureInfo = TextureInfo::Get(Game::bStringHash(filenames[i]), false, false);
+		auto texture = textureInfo->PlatInfo->D3DTexture;
+
+		LPDIRECT3DSURFACE9 pSrcSurface = nullptr;
+		texture->GetSurfaceLevel(0, &pSrcSurface);
+
+		D3DXLoadSurfaceFromSurface(pSurface, NULL, NULL, pSrcSurface, NULL, NULL, D3DX_DEFAULT, 0);
+
+		pSurface->Release();
+		pSrcSurface->Release();
+	}
+
+	//D3DXSaveTextureToFileA("D:\\SKYBOX.dds", D3DXIFF_DDS, SkyCubeTexture, NULL);
 }
 
 void ReleaseDirectResources()

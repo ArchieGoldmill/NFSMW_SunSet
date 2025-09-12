@@ -24,6 +24,7 @@ namespace Game
 	inline auto ForceRain = (bool*)0x009B0A30;
 	inline auto& MotionBlurEnable = *(int*)0x009017DC;
 	inline auto& SkipFE = *(int*)0x00926064;
+	inline auto& EnableParticleSystem = *(int*)0x008F86EC;
 	inline auto DeviceParams = (D3DPRESENT_PARAMETERS*)0x0093E82C;
 
 	inline auto& FilterSurface0 = *(IDirect3DSurface9**)0x0093DE60;

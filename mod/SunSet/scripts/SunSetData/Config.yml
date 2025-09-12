@@ -10,7 +10,8 @@ Config:
   BrakeGlow: true             # Enable brake rotor glow.
   GodRays: true               # Enable god rays effect.
   Bloom: true                 # Enable bloom effect.
-  
+  RealFeReflections: true     # Enable Real Front End reflections.
+
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.
   TimeUpdateRate: 1.0         # Update rate for the game time, 1.0 is vanilla rate.

@@ -2,8 +2,6 @@
 #include "GarageMainScreen.h"
 #include "CustomMeshes.h"
 
-
-
 void SetDepthRenderTarget()
 {
 	auto renderTarget = RenderTarget::Player;
@@ -22,6 +20,20 @@ void SetDepthRenderTarget()
 	Game::Device->SetViewport(&viewport);
 }
 
+void StuffFeScenery()
+{
+	if (Game::State == 3)
+	{
+		auto manager = GarageMainScreen::GetInstance();
+		if (manager)
+		{
+			Game::EnableParticleSystem = false;
+			manager->HandleRender();
+			Game::EnableParticleSystem = true;
+		}
+	}
+}
+
 bool DepthPrePass = false;
 void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 {
@@ -34,14 +46,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	cullInfo->StuffScenery(eView::Player, 0x20);
 	WorldModel::RenderAll(eView::Player);
 	CustomMeshesPrepass();
-	if (Game::State == 3)
-	{
-		auto manager = GarageMainScreen::GetInstance();
-		if (manager)
-		{
-			manager->HandleRender();
-		}
-	}
+	StuffFeScenery();
 
 	Game::CommitRenderedModels();
 	DepthPrePass = false;
@@ -81,6 +86,5 @@ void InitDepthPrePass()
 		injector::MakeCALL(0x006C6983, SetRenderStateHook);
 
 		injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
-
 	}
 }

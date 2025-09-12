@@ -36,7 +36,21 @@ void __declspec(naked) CarReflectionHook()
 	}
 }
 
+void DrawFeReflections()
+{
+	StuffFeScenery();
+	Game::CommitRenderedModels();
+}
+
 void InitReflection()
 {
 	injector::MakeJMP(0x007510C6, CarReflectionHook);
+
+	// Real front end reflections
+	if (g_Config.RealFeReflections)
+	{
+		injector::WriteMemory<BYTE>(0x006C5BB0, 0xEB);
+		injector::MakeCALL(0x006DE7CA, DrawFeReflections);
+		injector::MakeNOP(0x006DE66F, 6);
+	}
 }

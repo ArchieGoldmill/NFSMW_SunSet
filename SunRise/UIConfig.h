@@ -25,6 +25,11 @@ namespace UI
 			ImGui::Checkbox("Brake glow", &g_Config.BrakeGlow);
 			ImGui::Checkbox("God rays", &g_Config.GodRays);
 			ImGui::Checkbox("Bloom", &g_Config.Bloom);
+			ImGui::Checkbox("Real Front End reflections", &g_Config.RealFeReflections);
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("Requires game restart");
+			}
 
 			ImGui::Text("");
 			ImGui::Text("Time");

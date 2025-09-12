@@ -84,8 +84,8 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->WaterColor = ParseVec3To4(node["WaterColor"], cfg->WaterColor);
 	config->WaterSpecularPower = YmlGet<float>(node, "WaterSpecularPower", cfg->WaterSpecularPower);
 
-	config->BloomPower = YmlGet<float>(node, "BloomPower", cfg->BloomPower);
-	config->BloomThreshold = YmlGet<float>(node, "BloomThreshold", cfg->BloomThreshold);
+	config->BloomPower = YmlGet<float>(node, "BloomPower", 1.0f);
+	config->BloomThreshold = YmlGet<float>(node, "BloomThreshold", 1.5f);
 }
 
 void LoadWeatherConfig()

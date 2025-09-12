@@ -17,7 +17,10 @@ float4 PS_Prelit(PS_INPUT IN) : COLOR
 	final *= IN.color;
 	final.rgb *= cvEmissive.rgb;
 	
-	APPLY_FOG
+	if (BaseBlendState[4] != 2)
+	{
+		APPLY_FOG
+	}
 	
 	return final;
 }

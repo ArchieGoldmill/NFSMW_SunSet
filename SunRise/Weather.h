@@ -20,6 +20,7 @@ private:
 	TextureInfo* PuddleMask = NULL;
 	TextureInfo* RoadDetail = NULL;
 	TextureInfo* RainSplash[30];
+	TextureInfo* SkyNoise = NULL;
 
 	D3DXVECTOR4 rainParams = { 0, 0, 0, 0 };
 	D3DXVECTOR4 fogValue;
@@ -254,6 +255,7 @@ private:
 			this->CarRainSlide = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_SLIDE_N, false, false);
 			this->PuddleMask = TextureInfo::Get(Hashes::SR_PUDDLE_MASK, false, false);
 			this->RoadDetail = TextureInfo::Get(Hashes::SR_ROAD_DETAIL, false, false);
+			this->SkyNoise = TextureInfo::Get(Hashes::SKYNOISETEX, false, false);
 
 			char buff[256];
 			for (int i = 0; i < 30; i++)
@@ -336,12 +338,13 @@ private:
 		e->SetVector(ShaderParam::cvSkyBeta, &this->current.SkyBeta);
 		e->SetVector(ShaderParam::cvSkyParams, &skyParams);
 		e->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
-		e->SetFloat(ShaderParam::cfTimeTicker, this->Timer);
 
 		if (SkyCubeTexture)
 		{
 			e->SetTexture(ShaderParam::MISCMAP1_TEXTURE, SkyCubeTexture);
 		}
+
+		e->SetTexture(ShaderParam::SkyNoiseTexture, this->SkyNoise);
 	}
 
 	void UpdateRain()

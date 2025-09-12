@@ -146,7 +146,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	float3 specular = GetSpecular(flake_normal, lightDir, nview, SpecularPower);
 	
-	float3 hotSpot = GetSpecular(normal, lightDir, nview, 1000) * 10 * cfSpecularHotSpot * shadow;
+	float3 hotSpot = GetSpecular(normal, lightDir, nview, 200) * cfSpecularHotSpot * shadow;
 	float hotSpotIntensity = dot(hotSpot, 0.333);
 	
 	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;

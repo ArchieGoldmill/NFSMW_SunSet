@@ -7,7 +7,7 @@ float4 cvSunDirection;
 float4 cvSkyParams;
 float4 cvCloudColor;
 float4 cvSkyBeta;
-float cfTimeTicker;
+float cfTimeTicker : CLOUDSCROLL;
 
 struct VS_INPUT
 {
@@ -145,7 +145,7 @@ float3 RenderSky(in float3 viewDir, in float3 lightDir)
 
 float3 GetCloudView(float3 view)
 {
-	float angle = cfTimeTicker * 0.005;
+	float angle = cfTimeTicker * 0.2;
 	float c = cos(angle);
 	float s = sin(angle);
 

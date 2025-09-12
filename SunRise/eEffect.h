@@ -56,6 +56,7 @@ const char* ShaderParamNames[] =
 	"MISCMAP3_TEXTURE",
 	"MISCMAP4_TEXTURE",
 	"EMISSIVE_TEXTURE",
+	"SkyNoiseTexture",
 
 	"BaseAddressU",
 	"BaseAddressV",
@@ -95,6 +96,7 @@ enum class ShaderParam
 	MISCMAP3_TEXTURE,
 	MISCMAP4_TEXTURE,
 	EMISSIVE_TEXTURE,
+	SkyNoiseTexture,
 
 	BaseAddressU,
 	BaseAddressV,

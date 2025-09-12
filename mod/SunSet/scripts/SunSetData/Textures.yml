@@ -143,6 +143,12 @@ Textures:
     Mask: ""
     AlwaysOn: false
     Prelit: true
+  - Name: LICENSEPLATE
+    Brightness: 0.799999952
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
   - Name: SGN_STADIUMTEXT
     Brightness: 5
     Color: [1, 1, 1]

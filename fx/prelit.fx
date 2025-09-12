@@ -1,3 +1,5 @@
+#include "fog.fx"
+
 void VS_Prelit(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);

@@ -8,6 +8,7 @@
 #include "car_rain.fx"
 #include "fog.fx"
 #include "hdr.fx"
+#include "emissive.fx"
 
 float4x4 WorldView : WORLDVIEW;
 
@@ -184,3 +185,4 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 
 #include "techniques.fx"
 #include "shadowmap.fx"
+#include "prelit.fx"

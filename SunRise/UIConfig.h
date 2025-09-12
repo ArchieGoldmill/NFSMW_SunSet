@@ -31,6 +31,9 @@ namespace UI
 				ImGui::SetTooltip("Requires game restart");
 			}
 
+			ImGui::Checkbox("World vertex color", &g_Config.WorldVertexColor);
+			ImGui::Checkbox("Car vertex color", &g_Config.CarVertexColor);
+
 			ImGui::Text("");
 			ImGui::Text("Time");
 			if (ImGui::InputFloat("Force time", &g_Config.ForceTime, 0.1, 0.2))

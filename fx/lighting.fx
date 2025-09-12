@@ -44,7 +44,7 @@ float3 GetDiffuse(float ndotl)
 
 float4 vertex_color(float4 color)
 {
-	color.rgb = cvAmbientColor * 0.5;
+	color.rgb = lerp(0.5, color.rgb * 2, cvDiffuseColor.w) * cvAmbientColor.rgb;
 	return color;
 }
 

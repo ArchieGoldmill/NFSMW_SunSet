@@ -56,7 +56,6 @@ float mie_phase(const float c, const float cos2, const float mie_g, const float 
 {
 	float temp = 1.0 + mie_g2 - 2.0 * mie_g * c;
 	temp = smoothstep(0.0, 0.01, temp) * temp;
-    //temp = pow(temp, 1.5);
 	temp = max(temp, 0.0001);
 	return 1.5 * ((1.0 - mie_g2) / (2.0 + mie_g2)) * (1.0 + cos2) / temp;
 }
@@ -78,7 +77,7 @@ float3 RenderSky(in float3 viewDir, in float3 lightDir)
 	const float kInnerRadius2 = kInnerRadius * kInnerRadius;
 	
 	const float kScale = 1.0 / (kOuterRadius - kInnerRadius);
-	const float kScaleDepth = 0.225;
+	const float kScaleDepth = 0.2;
 	const float kScaleOverScaleDepth = kScale / kScaleDepth;
 	const float kCameraHeight = 0.0001;
 	
@@ -96,7 +95,7 @@ float3 RenderSky(in float3 viewDir, in float3 lightDir)
 
 	float depth = exp(kScaleOverScaleDepth * (-kCameraHeight));
 	
-    // angle between eye ray and camera height
+	// angle between eye ray and camera height
 	float startAngle = dot(viewDir, cameraPos) / height;
 	float startAngleScale = scale(startAngle);
 	float startOffset = depth * startAngleScale;
@@ -106,7 +105,7 @@ float3 RenderSky(in float3 viewDir, in float3 lightDir)
 
 	float3 pos = cameraPos + far * viewDir;
 
-    // Initialize the scattering loop variables
+	// Initialize the scattering loop variables
 	float sampleLength = far / 2.0;
 	float scaledLength = sampleLength * kScale;
 	float3 sampleRay = viewDir * sampleLength;
@@ -188,7 +187,7 @@ float3 GetStars(float3 sun, float4 uv)
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
 	float stars_scale = cvSkyParams.w > 0 ? smoothstep(-0.1, -0.3, sun.y) : 1;
 	
-	return pow(diffuse_tex.rgb, 1.8) * stars_scale;
+	return pow(diffuse_tex.rgb, 2.2) * stars_scale;
 }
 
 float4 PS_Main(PS_INPUT IN) : COLOR
@@ -206,7 +205,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float4 clouds = GetClouds(IN.view);
 	color = lerp(color, clouds.rgb, clouds.a);
 	
-	color.rgb = CompressColourSpace(color.rgb);
+	color.rgb = CompressColourSpace(color.rgb * 2);
 	
 	return float4(color, 1.0);
 }

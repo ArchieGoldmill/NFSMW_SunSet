@@ -34,6 +34,8 @@ struct Config
 	bool GodRays;
 	bool Bloom;
 	bool RealFeReflections;
+	bool WorldVertexColor;
+	bool CarVertexColor;
 
 	float WetTime;
 	float DryTime;
@@ -70,6 +72,8 @@ void LoadConfig()
 	g_Config.GodRays = settings["GodRays"].as<bool>();
 	g_Config.Bloom = settings["Bloom"].as<bool>();
 	g_Config.RealFeReflections = settings["RealFeReflections"].as<bool>();
+	g_Config.WorldVertexColor = settings["WorldVertexColor"].as<bool>();
+	g_Config.CarVertexColor = settings["CarVertexColor"].as<bool>();
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
@@ -120,6 +124,8 @@ void SaveConfig()
 	config["GodRays"] = g_Config.GodRays;
 	config["Bloom"] = g_Config.Bloom;
 	config["RealFeReflections"] = g_Config.RealFeReflections;
+	config["WorldVertexColor"] = g_Config.WorldVertexColor;
+	config["CarVertexColor"] = g_Config.CarVertexColor;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

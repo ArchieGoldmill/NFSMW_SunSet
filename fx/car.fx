@@ -76,7 +76,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.normal.xyz = normalize(IN.normal);
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;
-	OUT.color = saturate(IN.color);
+	OUT.color = lerp(float4(1, 1, 1, 1), saturate(IN.color), cvDiffuseColor.w);
 	OUT.view = vertex_view(IN.position.xyz);
 	
 	return OUT;
@@ -170,7 +170,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb += metallic;
 	final.rgb += envmap_sample * diffuse_scale.a;
 	final.rgb += specular * shadow * spec_scale;
-	final.rgb += hotSpot ;
+	final.rgb += hotSpot;
 	final.rgb += light.Specular * cfSpecularHotSpot;
 	final.rgb = lerp(final.rgb, cvCarEmissive.rgb * diffuse_tex.rgb, cvCarEmissive.w);
 	final.a += hotSpotIntensity;

@@ -133,6 +133,7 @@ private:
 			D3DXVECTOR4 ambientColor = this->current.AmbientColor * (isCar ? this->current.CarAmbientIntensity : this->current.AmbientIntensity);
 
 			ambientColor.w = this->LightsOn() ? 1.0f : 0.0f;
+			diffuseColor.w = (stype == shader_type::CarShader ? g_Config.CarVertexColor : g_Config.WorldVertexColor) * 1.0;
 
 			e->SetVector(ShaderParam::cvDiffuseColor, &diffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &ambientColor);

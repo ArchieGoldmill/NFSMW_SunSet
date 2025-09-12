@@ -11,6 +11,8 @@ Config:
   GodRays: true               # Enable god rays effect.
   Bloom: true                 # Enable bloom effect.
   RealFeReflections: true     # Enable Real Front End reflections.
+  WorldVertexColor: true      # Enable baked world vertex colors.
+  CarVertexColor: true        # Enable baked car vertex colors.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

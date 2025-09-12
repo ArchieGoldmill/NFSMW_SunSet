@@ -61,7 +61,7 @@ void LoadVolumeTexture()
 
 void CreateSkyBoxTexture()
 {
-	if (!SkyCubeTexture)
+	if (SkyCubeTexture)
 	{
 		return;
 	}
@@ -76,17 +76,17 @@ void CreateSkyBoxTexture()
 		D3DCUBEMAP_FACE_NEGATIVE_Z
 	};
 
-	const char* filenames[6] =
+	Hash textures[6] =
 	{
-		"SKYBOX_XPOS",
-		"SKYBOX_XNEG",
-		"SKYBOX_YPOS",
-		"SKYBOX_YNEG",
-		"SKYBOX_ZPOS",
-		"SKYBOX_ZNEG",
+		Hashes::SKYBOX_XPOS,
+		Hashes::SKYBOX_XNEG,
+		Hashes::SKYBOX_YPOS,
+		Hashes::SKYBOX_YNEG,
+		Hashes::SKYBOX_ZPOS,
+		Hashes::SKYBOX_ZNEG,
 	};
 
-	auto textureInfo = TextureInfo::Get(Game::bStringHash(filenames[0]), false, false);
+	auto textureInfo = TextureInfo::Get(textures[0], false, false);
 	if (!textureInfo)
 	{
 		return;
@@ -99,7 +99,7 @@ void CreateSkyBoxTexture()
 		LPDIRECT3DSURFACE9 pSurface = nullptr;
 		SkyCubeTexture->GetCubeMapSurface(faces[i], 0, &pSurface);
 
-		auto textureInfo = TextureInfo::Get(Game::bStringHash(filenames[i]), false, false);
+		auto textureInfo = TextureInfo::Get(textures[i], false, false);
 		auto texture = textureInfo->PlatInfo->D3DTexture;
 
 		LPDIRECT3DSURFACE9 pSrcSurface = nullptr;
@@ -110,8 +110,6 @@ void CreateSkyBoxTexture()
 		pSurface->Release();
 		pSrcSurface->Release();
 	}
-
-	//D3DXSaveTextureToFileA("D:\\SKYBOX.dds", D3DXIFF_DDS, SkyCubeTexture, NULL);
 }
 
 void ReleaseDirectResources()

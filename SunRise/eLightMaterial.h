@@ -1,8 +1,16 @@
 #pragma once
 #include "Hashes.h"
 
+struct bList
+{
+	bList* Next;
+	bList* Prev;
+};
+
 struct eLightMaterial
 {
+	inline static bList& List = *(bList*)0x0091C170;
+
 	int platInfo;
 	eLightMaterial* Next;
 	eLightMaterial* Prev;

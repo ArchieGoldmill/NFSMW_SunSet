@@ -19,6 +19,7 @@ float SpecularPower : SPECULARPOWER;
 float4 SpecularRange : SPECULARRANGE;
 float4 cvCarEmissive;
 float cfMetallicScale;
+float cfSpecularHotSpot;
 float cfVinylScale;
 bool cbUseNormalMap;
 
@@ -144,6 +145,9 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;
 	float3 specular = GetSpecular(flake_normal, lightDir, nview, SpecularPower);
 	
+	float3 hotSpot = GetSpecular(normal, lightDir, nview, 1000) * 10 * cfSpecularHotSpot * shadow;
+	float hotSpotIntensity = dot(hotSpot, 0.333);
+	
 	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
 	envmap_sample = DeCompressColourSpace(envmap_sample);
 	float env_vdotn = pow(vdotn, EnvmapPower);
@@ -166,8 +170,10 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb += metallic;
 	final.rgb += envmap_sample * diffuse_scale.a;
 	final.rgb += specular * shadow * spec_scale;
-	final.rgb += light.Specular * spec_scale;
+	final.rgb += hotSpot ;
+	final.rgb += light.Specular * cfSpecularHotSpot;
 	final.rgb = lerp(final.rgb, cvCarEmissive.rgb * diffuse_tex.rgb, cvCarEmissive.w);
+	final.a += hotSpotIntensity;
 	
 	APPLY_FOG
 	

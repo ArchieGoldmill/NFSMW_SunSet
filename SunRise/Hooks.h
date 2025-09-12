@@ -13,6 +13,7 @@
 #include "CarVinylMask.h"
 #include "Reflection.h"
 #include "AmbientShadow.h"
+#include "UpdateMaterials.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -57,6 +58,8 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	UpdateBrakeGLow();
 
 	g_Weather.Update();
+
+	UpdateMaterials();
 
 	if (g_Config.DepthPrepass)
 	{
@@ -112,6 +115,7 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 
 		auto material = renderModel->LightMaterial;
 		effect->SetFloat(ShaderParam::cfMetallicScale, material->Metallic);
+		effect->SetFloat(ShaderParam::cfSpecularHotSpot, material->SpecularHotSpot);
 
 		SetVinylScale(renderModel);
 		ApplyCarBrakeGlow(renderModel);

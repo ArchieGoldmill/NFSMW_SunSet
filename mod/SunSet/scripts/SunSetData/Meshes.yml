@@ -115,3 +115,11 @@ Meshes:
     Position: [-498.438995, 2502.19263, 242.705048]
     Rotation: [0, 0, 318]
     Scale: [1, 1, 1]
+  - Solid: XS_MEDIANPOLEGREEN_1B_CK_00
+    Position: [220.1427, 3759.17065, 188.860336]
+    Rotation: [0, 0, -109]
+    Scale: [1, 1, 1]
+  - Solid: XS_MEDIANPOLEGREEN_1B_CK_00
+    Position: [215.339752, 3766.09058, 188.812927]
+    Rotation: [0, 0, -40]
+    Scale: [1, 1, 1]

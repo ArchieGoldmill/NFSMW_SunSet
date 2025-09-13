@@ -6,7 +6,7 @@ Textures:
     AlwaysOn: true
     Prelit: true
   - Name: SGN_SLTOWER
-    Brightness: 6
+    Brightness: 4.50000143
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -22,6 +22,12 @@ Textures:
     Color: [1, 0.5, 0]
     Mask: ""
     AlwaysOn: false
+    Prelit: true
+  - Name: SGN_BANKOFROCKPORT_EA
+    Brightness: 4
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
     Prelit: true
   - Name: ADS_AXEB_BB_A_EA
     Brightness: 4
@@ -42,7 +48,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ADS_LOTTOA_BB_EA
-    Brightness: 5
+    Brightness: 3.50000143
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -108,7 +114,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: SGN_BOBSLOBSTER_
-    Brightness: 8
+    Brightness: 4.00000381
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -126,7 +132,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: OBJ_POPMACHINE2
-    Brightness: 7
+    Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -149,6 +155,12 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
+  - Name: SGN_GENERATOR
+    Brightness: 2.49999952
+    Color: [1, 0.676470578, 0]
+    Mask: SGN_GENERATOR_E
+    AlwaysOn: true
+    Prelit: false
   - Name: SGN_STADIUMTEXT
     Brightness: 5
     Color: [1, 1, 1]
@@ -179,6 +191,12 @@ Textures:
     Mask: ""
     AlwaysOn: false
     Prelit: true
+  - Name: ARC_BS_PANEL_01
+    Brightness: 4.99999762
+    Color: [0.754901946, 0.884659767, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
   - Name: 0x5D013360
     Brightness: 5
     Color: [1, 1, 1]
@@ -186,7 +204,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: ANM_ROCKETGIRLLITE_LV
-    Brightness: 8
+    Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -204,7 +222,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: SGN_TICKER
-    Brightness: 4
+    Brightness: 1.20000172
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -214,6 +232,12 @@ Textures:
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
+    Prelit: true
+  - Name: ARC_CEILINGLIGHT2
+    Brightness: 2.00000024
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
     Prelit: true
   - Name: SGN_CONVBANNER
     Brightness: 6
@@ -234,13 +258,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: OBJ_MOVIEPOSTERKONO_JF
-    Brightness: 8
+    Brightness: 3.10000467
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
   - Name: OBJ_POPMACHINE
-    Brightness: 7
+    Brightness: 3.70000315
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -258,7 +282,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: 0x964A28BF
-    Brightness: 8
+    Brightness: 3.80000401
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -288,13 +312,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
   - Name: OBJ_MOVIEPOSTEROCTO_JF
-    Brightness: 5
+    Brightness: 2.70000219
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
   - Name: ARC_ROCKETDINER_ROCKET
-    Brightness: 8
+    Brightness: 3.89999914
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -311,6 +335,12 @@ Textures:
     Mask: ""
     AlwaysOn: false
     Prelit: true
+  - Name: SGN_JILBERSON'S_RJ
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
   - Name: SGN_STEAKHOUSE_JF
     Brightness: 4
     Color: [1, 1, 1]
@@ -323,6 +353,12 @@ Textures:
     Mask: ""
     AlwaysOn: false
     Prelit: true
+  - Name: SGN_SOLOPETSTUFF
+    Brightness: 2.29999995
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
   - Name: ADS_FITNESSA_BB_EA
     Brightness: 5
     Color: [1, 1, 1]
@@ -330,14 +366,26 @@ Textures:
     AlwaysOn: true
     Prelit: true
   - Name: ADS_BOXINGA_EA
-    Brightness: 4
+    Brightness: 2.50000048
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
   - Name: SFX_CATSEYE_A
-    Brightness: 5.99999905
-    Color: [1, 0.470588207, 0]
+    Brightness: 15
+    Color: [1, 0.176470578, 0]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+  - Name: ARC_CHOPSHOP2_EA
+    Brightness: 8
+    Color: [1, 0.382352948, 0]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+  - Name: SGN_GROCERYSTORE_JF
+    Brightness: 3
+    Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
@@ -354,7 +402,7 @@ Textures:
     AlwaysOn: false
     Prelit: false
   - Name: ARC_ROCKETDINER_GIRL
-    Brightness: 8
+    Brightness: 3.99999905
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -366,7 +414,7 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: 0xCC51EF0B
-    Brightness: 8
+    Brightness: 5.00000286
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -408,13 +456,19 @@ Textures:
     AlwaysOn: false
     Prelit: false
   - Name: SGN_SAFEHOUSEG
-    Brightness: 5
-    Color: [1, 1, 1]
+    Brightness: 3.30000162
+    Color: [0.812572062, 1, 0.681372523]
     Mask: ""
     AlwaysOn: false
     Prelit: true
   - Name: 0xEA9C2659
-    Brightness: 5
+    Brightness: 3.40000153
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+  - Name: SGN_PARK_ENTER
+    Brightness: 2.10000014
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -436,4 +490,10 @@ Textures:
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
+    Prelit: true
+  - Name: SGN_PARK_EXIT
+    Brightness: 2.10000014
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
     Prelit: true

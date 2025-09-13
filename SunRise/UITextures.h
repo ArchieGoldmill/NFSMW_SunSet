@@ -57,6 +57,11 @@ namespace UI
 					ImGui::TableSetColumnIndex(0);
 					{
 						ImGui::InputText("Filter", FilterBuff, 256);
+						ImGui::SameLine();
+						if (ImGui::Button("x", { 20, 20 }))
+						{
+							FilterBuff[0] = 0;
+						}
 
 						if (ImGui::BeginChild("##MaterialList", ImGui::GetContentRegionAvail(), false, 0))
 						{

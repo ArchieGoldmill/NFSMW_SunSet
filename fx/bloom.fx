@@ -40,10 +40,6 @@ float4 PS_ApplyBloom(PS_INPUT IN) : COLOR
 		float3 bloom_tex = tex2D(FILTERTEXTURE0_SAMPLER, IN.uv).rgb;
 		hdrColor += bloom_tex * cvBloomParams.x;
 	}
-	
-	//hdrColor *= cfExposure;
-	//hdrColor = ACESFilm(hdrColor);
-	//hdrColor = tonemap(hdrColor);
 
 	return float4(hdrColor, 1);
 }

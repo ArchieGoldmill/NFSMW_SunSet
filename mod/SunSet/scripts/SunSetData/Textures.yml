@@ -114,10 +114,10 @@ Textures:
     AlwaysOn: false
     Prelit: true
   - Name: SGN_BOBSLOBSTER_
-    Brightness: 4.00000381
+    Brightness: 3.00000477
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
   - Name: SGN_CT_SEW
     Brightness: 3
@@ -345,7 +345,7 @@ Textures:
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
   - Name: SGN_CT_CARWASH
     Brightness: 5.09999895
@@ -375,7 +375,7 @@ Textures:
     Brightness: 15
     Color: [1, 0.176470578, 0]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
   - Name: ARC_CHOPSHOP2_EA
     Brightness: 8

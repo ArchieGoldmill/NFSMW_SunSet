@@ -26,6 +26,7 @@ namespace Game
 	inline auto& SkipFE = *(int*)0x00926064;
 	inline auto& EnableParticleSystem = *(int*)0x008F86EC;
 	inline auto DeviceParams = (D3DPRESENT_PARAMETERS*)0x0093E82C;
+	inline auto BlendState = (int*)0x0093DE20;
 
 	inline auto& FilterSurface0 = *(IDirect3DSurface9**)0x0093DE60;
 	inline auto& FilterTexture0 = *(IDirect3DTexture9**)0x0093DEF8;

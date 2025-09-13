@@ -54,7 +54,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	Game::Device->StretchRect(DepthRenderTarget, nullptr, DepthSurface, nullptr, D3DTEXF_NONE);
 }
 
-void __stdcall SetRenderStateHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
+void __stdcall SetZWriteEnabledHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
 {
 	if (RenderTarget::Current->ViewId == ViewId::Reflection && eEffect::Current->id == shader_type::skyshader)
 	{
@@ -78,13 +78,26 @@ void __cdecl SimpleAnimApplyHook(eModel* model, eSolid* solid, D3DXMATRIX* matri
 	}
 }
 
+void __cdecl SetTextureAlphaRefHook(unsigned int alphaTestEnable, unsigned int alphaTestRef)
+{
+	if (alphaTestEnable == 1 && DepthPrePass)
+	{
+		alphaTestRef += 10;
+	}
+
+	Game::BlendState[0] = alphaTestEnable;
+	Game::BlendState[1] = alphaTestRef;
+}
+
 void InitDepthPrePass()
 {
 	if (g_Config.DepthPrepass)
 	{
 		injector::MakeNOP(0x006C6983, 6);
-		injector::MakeCALL(0x006C6983, SetRenderStateHook);
+		injector::MakeCALL(0x006C6983, SetZWriteEnabledHook);
 
 		injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
+
+		injector::MakeCALL(0x006C6910, SetTextureAlphaRefHook);
 	}
 }

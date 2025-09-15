@@ -15,6 +15,7 @@ struct PrelitTexture
 
 	bool AlwaysOn;
 	bool Prelit;
+	bool IgnoreWeather;
 
 	void ParseTextureName()
 	{

@@ -22,6 +22,7 @@ void LoadTextureConfig()
 		prelit.Mask.SetString(node["Mask"].as<std::string>());
 		prelit.AlwaysOn = YmlGet(node, "AlwaysOn", true);
 		prelit.Prelit = YmlGet(node, "Prelit", true);
+		prelit.IgnoreWeather = YmlGet(node, "IgnoreWeather", false);
 		prelit.ParseTextureName();
 
 		PrelitTextures.Add(prelit);
@@ -43,6 +44,7 @@ void SaveTextureConfig()
 		node["Mask"] = tex.Mask.GetString();
 		node["AlwaysOn"] = tex.AlwaysOn;
 		node["Prelit"] = tex.Prelit;
+		node["IgnoreWeather"] = tex.IgnoreWeather;
 
 		list.push_back(node);
 	}

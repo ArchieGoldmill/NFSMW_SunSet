@@ -31,6 +31,10 @@
     [
       "TRNS_ALL_LZ_BOARDWALKA_01",
       "TRNS_ALL_LZ_BOARDWALKA_01_T"
+    ],
+    [
+      "LICENSEPLATE",
+      "LICENSEPLATE_T"
     ]
   ]
 }

@@ -87,6 +87,7 @@ namespace UI
 						if (CurrentTexture)
 						{
 							ImGui::Checkbox("Prelit", &CurrentTexture->Prelit);
+							ImGui::Checkbox("Ignore weather", &CurrentTexture->IgnoreWeather);
 
 							ImGui::ColorEdit3("Color", (float*)&CurrentTexture->Color, ImGuiColorEditFlags_Float);
 							InputFloat("Brightness", &CurrentTexture->Color.w);

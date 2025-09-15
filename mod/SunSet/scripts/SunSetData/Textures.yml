@@ -5,495 +5,585 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_SLTOWER
     Brightness: 4.50000143
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SFX_TRACKBARRIERLOCK
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: PAN_CITY04_KT
     Brightness: 50
     Color: [1, 0.5, 0]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_BANKOFROCKPORT_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_AXEB_BB_A_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_ROSEWOODUNIVERSITY
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ARC_LB_GASNEWSTRIP
     Brightness: 12
     Color: [0.990196049, 0.388312161, 0.388312161]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_LOTTOA_BB_EA
     Brightness: 3.50000143
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_PARKA_LL
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_STADIUMWOMBAT
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SFX_TRACKBARRIERNEONARROW_SOLID
     Brightness: 5
     Color: [0, 0, 0]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_CT_CARWASHLIGHTS
     Brightness: 5
     Color: [0.607843161, 0.826989651, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_ROSECORE
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_CHECKPOINT_SCROLL
     Brightness: 2
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x4494239C
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_NEONROLLING_A_LL
     Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_NEONROLLING_B_LL
     Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x465462E9
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_BOBSLOBSTER_
     Brightness: 3.00000477
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_CT_SEW
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x48814018
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_POPMACHINE2
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x4A5871B5
     Brightness: 3.60000134
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x4A58FE16
     Brightness: 3.70000124
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: LICENSEPLATE
     Brightness: 0.799999952
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_GENERATOR
     Brightness: 2.49999952
     Color: [1, 0.676470578, 0]
     Mask: SGN_GENERATOR_E
     AlwaysOn: true
     Prelit: false
+    IgnoreWeather: false
   - Name: SGN_STADIUMTEXT
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_ROSEWOODPOLICE_A_MM
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_CINGULAR_BB_A_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_CINGULAR_BB_F_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_MANNSIGN
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ARC_BS_PANEL_01
     Brightness: 4.99999762
     Color: [0.754901946, 0.884659767, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x5D013360
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ANM_ROCKETGIRLLITE_LV
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x5F9B9E8A
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_CITYEAST_RISTORANTE
     Brightness: 7
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_TICKER
     Brightness: 1.20000172
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_LOTTOB_BB_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ARC_CEILINGLIGHT2
     Brightness: 2.00000024
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_CONVBANNER
     Brightness: 6
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_BKING_BB_A
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x89C26291
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_MOVIEPOSTERKONO_JF
     Brightness: 3.10000467
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_POPMACHINE
     Brightness: 3.70000315
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_AUTOZONE_BB_A_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x9414F03D
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0x964A28BF
     Brightness: 3.80000401
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_COFFEESHOPBRAZIL_JF
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0xA03B5211
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SFX_TRACKBARRIERNEONLOCKED
     Brightness: 5
     Color: [1, 0.823529422, 0]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: ARROW_GPS
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_MOVIEPOSTEROCTO_JF
     Brightness: 2.70000219
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: ARC_ROCKETDINER_ROCKET
     Brightness: 3.89999914
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SFX_TRACKBARRIERNEONARROW
     Brightness: 10
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: 0xAAA4780A
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_JILBERSON'S_RJ
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_STEAKHOUSE_JF
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_CT_CARWASH
     Brightness: 5.09999895
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_SOLOPETSTUFF
     Brightness: 2.29999995
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_FITNESSA_BB_EA
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_BOXINGA_EA
     Brightness: 2.50000048
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SFX_CATSEYE_A
     Brightness: 15
     Color: [1, 0.176470578, 0]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ARC_CHOPSHOP2_EA
     Brightness: 8
     Color: [1, 0.382352948, 0]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_GROCERYSTORE_JF
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_SCOREBOARD
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: OBJ_BARRIERCONCRETE_01
     Brightness: 1
     Color: [1, 0.647058785, 0]
     Mask: OBJ_BARRIERCONCRETE_01_E
     AlwaysOn: false
     Prelit: false
+    IgnoreWeather: false
   - Name: ARC_ROCKETDINER_GIRL
     Brightness: 3.99999905
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
+  - Name: LICENSEPLATE_T
+    Brightness: 0.599999905
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_ROLLERCOASTERB
     Brightness: 15
     Color: [0.800000012, 1, 0.5]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0xCC51EF0B
     Brightness: 5.00000286
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_TOROGASA_BB_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_ETHNIC_HOTEL_RJ
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_AXE_BB_A_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_EDGE_BB_A_EA
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: ADS_EDGE_BB_C_EA
     Brightness: 6.099998
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: ARC_UC_TWINCONDO_VC
     Brightness: 5
     Color: [1, 0.801038027, 0.600000024]
     Mask: ARC_UC_TWINCONDO_VC_E
     AlwaysOn: false
     Prelit: false
+    IgnoreWeather: false
   - Name: SGN_SAFEHOUSEG
     Brightness: 3.30000162
     Color: [0.812572062, 1, 0.681372523]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0xEA9C2659
     Brightness: 3.40000153
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_PARK_ENTER
     Brightness: 2.10000014
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_SPORTSCENTRE_VC
     Brightness: 8
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: 0xF4F99C8B
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_SEAFOODA
     Brightness: 6
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
   - Name: SGN_PARK_EXIT
     Brightness: 2.10000014
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false

@@ -379,13 +379,13 @@ SolidLights:
     AlwaysOn: false
     Flare: ""
     SpotLights:
-      - Position: [0, -4.5, -2]
+      - Position: [0, -2.400002, -2.79999924]
         Direction: [0, 1, 1]
         Color: [1, 1, 1]
-        InnerAngle: 55
+        InnerAngle: 33
         OuterAngle: 60
         Intensity: 5
-        Range: 10
+        Range: 8
   - SolidLodA: XS_FWY_3FRAME_1B_EA_00
     SolidLodB: XS_FWY_3FRAME_1Z_EA_00
     Blink: 0
@@ -523,19 +523,6 @@ SolidLights:
         OuterAngle: 90
         Intensity: 3
         Range: 5
-  - SolidLodA: XO_TUNNEL_LIGHT_LONG_1B_00_DEINST1_Q10
-    SolidLodB: ""
-    Blink: 0
-    AlwaysOn: false
-    Flare: ""
-    SpotLights:
-      - Position: [0, 0.5, -2]
-        Direction: [0, 0.5, -1]
-        Color: [0.699999988, 0.899999976, 1]
-        InnerAngle: 33
-        OuterAngle: 90
-        Intensity: 5
-        Range: 35
   - SolidLodA: XS_CHEVRCNRA_1_00
     SolidLodB: ""
     Blink: 0
@@ -732,3 +719,98 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 25
+  - SolidLodA: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
+    SolidLodB: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
+    Blink: 0
+    AlwaysOn: true
+    Flare: ""
+    SpotLights:
+      - Position: [4326.5, 1529.80078, 25.5754166]
+        Direction: [0, 0, -1]
+        Color: [1, 0.948673606, 0.563725471]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 1
+        Range: 30
+      - Position: [4353.77686, 1458.74805, 19.8860931]
+        Direction: [0, 0, -1]
+        Color: [1, 0.948673606, 0.563725471]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 1
+        Range: 30
+      - Position: [4338.11426, 1482.51562, 24.35215]
+        Direction: [0, 0, -1]
+        Color: [1, 0.948673606, 0.563725471]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 1
+        Range: 30
+      - Position: [4330.51367, 1507.64478, 25.1030045]
+        Direction: [0, 0, -1]
+        Color: [1, 0.948673606, 0.563725471]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 1
+        Range: 30
+      - Position: [4316.31592, 1563.88013, 22.642086]
+        Direction: [0, 0, -1]
+        Color: [1, 0.948673606, 0.563725471]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 1
+        Range: 30
+  - SolidLodA: XO_CANOPYLIGHTA_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, -0.800000072]
+        Direction: [0, 0, -1]
+        Color: [1, 0.885813177, 0.514705896]
+        InnerAngle: 1
+        OuterAngle: 180
+        Intensity: 2
+        Range: 30
+  - SolidLodA: XO_TUNNEL_LIGHT_LONG_1B_00_DEINST1_Q10
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    Flare: ""
+    SpotLights:
+      - Position: [3505.84155, 3711.37695, 41.0633163]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 4
+        Range: 30
+      - Position: [3582.34473, 3671.78394, 40.6917496]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 4
+        Range: 30
+      - Position: [3563.32129, 3689.79858, 42.3632736]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 4
+        Range: 30
+      - Position: [3523.08447, 3709.62256, 42.9299812]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 4
+        Range: 30
+      - Position: [3479.73584, 3707.35425, 41.3299751]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 4
+        Range: 30

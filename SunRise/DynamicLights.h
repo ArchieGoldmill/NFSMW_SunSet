@@ -169,7 +169,11 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 
 				brightness = prelitTex->Color;
 				brightness *= brightness.w;
-				brightness *= g_Weather.GetTextureLightPower();
+				if (!prelitTex->IgnoreWeather)
+				{
+					brightness *= g_Weather.GetTextureLightPower();
+				}
+
 				brightness.w = 1;
 			}
 		}

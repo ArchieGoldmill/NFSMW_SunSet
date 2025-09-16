@@ -162,7 +162,7 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 		if (prelitTex)
 		{
 			prelit = prelitTex->Prelit;
-			enabled = prelitTex->AlwaysOn ? true : g_Weather.LightsOn();
+			enabled = prelitTex->AlwaysOn || g_Weather.LightsOn();
 			if (enabled)
 			{
 				effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());

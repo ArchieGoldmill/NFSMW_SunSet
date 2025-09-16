@@ -157,7 +157,7 @@ SolidLights:
     AlwaysOn: false
     Flare: LampPost
     SpotLights:
-      - Position: [0, -6, 12.6999998]
+      - Position: [0, -6, 12.9000006]
         Direction: [0, 0, -1]
         Color: [1, 0.899999976, 0.800000012]
         InnerAngle: 55
@@ -170,14 +170,14 @@ SolidLights:
     AlwaysOn: false
     Flare: LampPost
     SpotLights:
-      - Position: [0, -3.8499999, 9.89999962]
+      - Position: [0, -3.8499999, 10.2000008]
         Direction: [0, -0.5, -1]
         Color: [1, 0.699999988, 0.5]
         InnerAngle: 35
         OuterAngle: 65
         Intensity: 5
         Range: 25
-      - Position: [0, 3.8499999, 9.89999962]
+      - Position: [0, 3.8499999, 10.2000008]
         Direction: [0, 0.5, -1]
         Color: [1, 0.699999988, 0.5]
         InnerAngle: 35
@@ -813,4 +813,17 @@ SolidLights:
         InnerAngle: 15
         OuterAngle: 90
         Intensity: 4
+        Range: 30
+  - SolidLodA: XO_CT_RADIOSIGNRWRS_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, 1.90000033]
+        Direction: [0, 0, -1]
+        Color: [0.431372523, 0.765859187, 1]
+        InnerAngle: 15
+        OuterAngle: 55
+        Intensity: 3
         Range: 30

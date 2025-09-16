@@ -11,7 +11,7 @@ Config:
   GodRays: true               # Enable god rays effect.
   Bloom: true                 # Enable bloom effect.
   RealFeReflections: true     # Enable Real Front End reflections.
-  WorldVertexColor: true      # Enable baked world vertex colors.
+  WorldVertexColor: false     # Enable baked world vertex colors.
   CarVertexColor: true        # Enable baked car vertex colors.
 
 Time:

@@ -6,8 +6,6 @@
 #include "TextureConfig.h"
 #include "CustomMeshesConfig.h"
 
-inline const char* ModName = "NFSMW - Sun Set 1.5";
-
 struct Config
 {
 	float ForceTime;
@@ -59,7 +57,7 @@ void LoadConfig()
 	YAML::Node settingsRoot = YAML::LoadFile(GetConfigFolder("Config.yml"));
 
 	const auto& settings = settingsRoot["Config"];
-	g_Config.LightLodDistance = 150.0f;
+	g_Config.LightLodDistance = 300.0f;
 	g_Config.LightCellSize = 64;
 	g_Config.Console = settings["Console"].as<bool>();
 	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();

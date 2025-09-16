@@ -34,6 +34,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_FITNESSB_BB_EA
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: PAN_CITY04_KT
     Brightness: 50
     Color: [1, 0.5, 0]
@@ -62,6 +69,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: 0x1FF171DF
+    Brightness: 10
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: SGN_ROSEWOODUNIVERSITY
     Brightness: 4
     Color: [1, 1, 1]
@@ -132,6 +146,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_KNFSA_BB_EA
+    Brightness: 2.49999952
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_OFFICEHTECHA_VC
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]
@@ -139,6 +160,13 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
+  - Name: SGN_CREATIX
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: OBJ_CHECKPOINT_SCROLL
     Brightness: 2
     Color: [1, 1, 1]
@@ -150,7 +178,7 @@ Textures:
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
   - Name: SGN_NEONROLLING_A_LL
@@ -183,13 +211,6 @@ Textures:
     IgnoreWeather: false
   - Name: SGN_CT_SEW
     Brightness: 3
-    Color: [1, 1, 1]
-    Mask: ""
-    AlwaysOn: false
-    Prelit: true
-    IgnoreWeather: false
-  - Name: 0x48814018
-    Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -328,6 +349,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_CINGULAR_BB_B_EA
+    Brightness: 3.59999943
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ADS_CINGULAR_BB_F_EA
     Brightness: 4
     Color: [1, 1, 1]
@@ -349,6 +377,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_TUNERTRANS
+    Brightness: 2.59999943
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: 0x5D013360
     Brightness: 5
     Color: [1, 1, 1]
@@ -377,6 +412,13 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
+  - Name: SGN_IRONWORKA_LL
+    Brightness: 10
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_OFFICEY_VC
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]
@@ -384,6 +426,13 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
+  - Name: SGN_SIGNAL_ARROW
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: SGN_CITYEAST_RISTORANTE
     Brightness: 7
     Color: [1, 1, 1]
@@ -426,6 +475,13 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
+  - Name: OBJ_TUNNEL_LIGHT_A_MM
+    Brightness: 5
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ADS_BKING_BB_A
     Brightness: 4
     Color: [1, 1, 1]
@@ -433,6 +489,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_BKING_BB_B
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_ARCOTOWERBRICK__LZ
     Brightness: 4
     Color: [0.855000019, 0.613586307, 0.341999978]
@@ -440,6 +503,13 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
+  - Name: OBJ_MOVIEPOSTERDORIS_JF
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: true
   - Name: 0x89C26291
     Brightness: 5
     Color: [1, 1, 1]
@@ -461,6 +531,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: SGN_TC_STADIUMSIGN
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ADS_AUTOZONE_BB_A_EA
     Brightness: 4
     Color: [1, 1, 1]
@@ -524,6 +601,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: SGN_SIGNAL_CROSS_
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_BOWLBUILD_EA_LZ
     Brightness: 5
     Color: [0.619607866, 0.850980401, 1]
@@ -580,6 +664,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: SGN_RADIOSTATION
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_HTECHA_VC
     Brightness: 6
     Color: [0.5, 0.25, 0.310000062]
@@ -664,6 +755,13 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
+  - Name: OBJ_MOVIEMARQUEE_JF
+    Brightness: 3
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: true
   - Name: ADS_FITNESSA_BB_EA
     Brightness: 5
     Color: [1, 1, 1]
@@ -727,8 +825,15 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: OBJ_ETHNICSTREETLIGHT
+    Brightness: 10
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: true
   - Name: OBJ_BARRIERCONCRETE_01
-    Brightness: 1
+    Brightness: 3
     Color: [1, 0.647058785, 0]
     Mask: OBJ_BARRIERCONCRETE_01_E
     AlwaysOn: false
@@ -818,13 +923,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
-  - Name: ARC_UC_TWINCONDO_VC
-    Brightness: 5
-    Color: [1, 0.801038027, 0.600000024]
-    Mask: ARC_UC_TWINCONDO_VC_E
-    AlwaysOn: false
-    Prelit: false
-    IgnoreWeather: false
+  - Name: SGN_TRUCKSALEA_LL
+    Brightness: 4
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_UC_TWINCONDO_VC
     Brightness: 5
     Color: [1, 0.699999988, 0.5]
@@ -867,6 +972,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_CASTROL_BB_B
+    Brightness: 5
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: SGN_PARK_ENTER
     Brightness: 2.10000014
     Color: [1, 1, 1]
@@ -902,3 +1014,10 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: OBJ_SHOEBOX
+    Brightness: 55
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: true

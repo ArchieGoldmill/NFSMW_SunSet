@@ -151,6 +151,11 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 envmap_sample = texCUBE(ENVIROMAP_SAMPLER, mul(float4(reflect(-nview, normal), 0), WorldView).xyz).rgb;
 	envmap_sample = DeCompressColourSpace(envmap_sample);
+	
+	float3 F0 = float3(0.04, 0.04, 0.04);
+	float3 fresnel = F0 + (1.0 - F0) * pow(1.0 - vdotn, 5.0);
+	envmap_sample *= clamp(fresnel, 0.3, 1.0);
+	
 	float env_vdotn = pow(vdotn, EnvmapPower);
 	float3 envmapMin = lerp(EnvmapMin.xyz, float3(1.5, 1.5, 1.5), rainPower);
 	float3 envmap_scale = envmapMin + env_vdotn * EnvmapRange.rgb;
@@ -173,6 +178,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb += specular * shadow * spec_scale;
 	final.rgb += hotSpot;
 	final.rgb += light.Specular * cfSpecularHotSpot;
+	final.rgb += GetEmissive(IN.uv);
 	final.rgb = lerp(final.rgb, cvCarEmissive.rgb * diffuse_tex.rgb, cvCarEmissive.w);
 	final.a += hotSpotIntensity;
 	

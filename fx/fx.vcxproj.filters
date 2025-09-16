@@ -53,6 +53,7 @@
     <FxCompile Include="bloom.fx">
       <Filter>Header Files</Filter>
     </FxCompile>
+    <FxCompile Include="particles.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

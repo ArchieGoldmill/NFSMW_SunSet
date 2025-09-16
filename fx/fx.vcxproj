@@ -134,6 +134,7 @@
     <FxCompile Include="hdr.fx" />
     <FxCompile Include="lighting.fx" />
     <FxCompile Include="normalmap.fx" />
+    <FxCompile Include="particles.fx" />
     <FxCompile Include="prelit.fx" />
     <FxCompile Include="screenfilter.fx" />
     <FxCompile Include="shadowmap.fx" />

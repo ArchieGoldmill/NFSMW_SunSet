@@ -52,6 +52,8 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	DepthPrePass = false;
 
 	Game::Device->StretchRect(DepthRenderTarget, nullptr, DepthSurface, nullptr, D3DTEXF_NONE);
+
+	 eEffect::Get(shader_type::ParticlesShader)->SetTexture(shader_param::HeightMapTexture, DepthTexture);
 }
 
 void __stdcall SetZWriteEnabledHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)

@@ -72,10 +72,10 @@ public:
 		sorted = true;
 	}
 
-	std::vector<PrelitTexture>& GetList()
+	std::vector<PrelitTexture>& GetList(bool ignoreSort = false)
 	{
 #ifdef _DEBUG
-		if (!sorted)
+		if (!sorted && !ignoreSort)
 		{
 			throw "list is not sorted";
 		}

@@ -5,6 +5,19 @@
 #include "Utilities.h"
 #include "PrelitTextures.h"
 
+bool CheckTexture(Hash target)
+{
+	for (auto& tex : PrelitTextures.GetList(true))
+	{
+		if (tex.NameHash == target)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void LoadTextureConfig()
 {
 	PrelitTextures.Clear();
@@ -24,6 +37,11 @@ void LoadTextureConfig()
 		prelit.Prelit = YmlGet(node, "Prelit", true);
 		prelit.IgnoreWeather = YmlGet(node, "IgnoreWeather", false);
 		prelit.ParseTextureName();
+
+		if (CheckTexture(prelit.NameHash))
+		{
+			MessageBoxA(NULL, (std::string(prelit.Name) + " already added!").c_str(), ModName, MB_ICONEXCLAMATION);
+		}
 
 		PrelitTextures.Add(prelit);
 	}

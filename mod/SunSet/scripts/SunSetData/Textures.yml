@@ -307,13 +307,6 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
-  - Name: ARC_BUILDINGBRICKQ_LZ
-    Brightness: 5
-    Color: [0.620000005, 0.850000024, 1]
-    Mask: ARC_BUILDINGBRICKQ_LZ_M
-    AlwaysOn: false
-    Prelit: false
-    IgnoreWeather: false
   - Name: SGN_STADIUMTEXT
     Brightness: 5
     Color: [1, 1, 1]

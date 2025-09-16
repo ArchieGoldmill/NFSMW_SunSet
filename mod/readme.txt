@@ -12,11 +12,14 @@ Features:
 - Enhanced road reflections.
 - Car rain effects.
 - Dynamic ligting.
+- New motion blur effect.
 
 Distribution:
 You are NOT allowed to distribute or reupload this mod.
 
 For any questions and details on how to use - join my Discord server (https://discord.com/invite/DxC6Fyf).
+
+Thanks to CiPHER, Toru and everyone who helped with testing.
 
 Made by ARCHIE
 Enjoy)

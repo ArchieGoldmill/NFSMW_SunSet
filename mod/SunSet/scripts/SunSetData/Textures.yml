@@ -13,6 +13,20 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_BRICKBLD_YELLOW_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BRICKBLD_YELLOW_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_CITYBUILDA_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_CITYBUILDA_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: SFX_TRACKBARRIERLOCK
     Brightness: 3
     Color: [1, 1, 1]
@@ -26,6 +40,13 @@ Textures:
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_BRICKBLD_BROWN_LZ
+    Brightness: 5
+    Color: [0.619607866, 0.850980401, 1]
+    Mask: ARC_BRICKBLD_BROWN_LZ_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: SGN_BANKOFROCKPORT_EA
     Brightness: 4
@@ -90,12 +111,33 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_BRICKBLD_BLUE_LZ
+    Brightness: 5
+    Color: [0.619607866, 0.850980401, 1]
+    Mask: ARC_BRICKBLD_BLUE_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BLDING_E_B
+    Brightness: 5
+    Color: [0.619607866, 0.850980401, 1]
+    Mask: ARC_BLDING_E_B_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: SGN_ROSECORE
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_OFFICEHTECHA_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_OFFICEHTECHA_VC_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: OBJ_CHECKPOINT_SCROLL
     Brightness: 2
@@ -174,6 +216,27 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICK01_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICK01_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKEC_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKEC_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKIA_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKIA_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: LICENSEPLATE
     Brightness: 0.799999952
     Color: [1, 1, 1]
@@ -181,11 +244,74 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKKD_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKKD_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKKE_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKKE_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: SGN_GENERATOR
     Brightness: 2.49999952
     Color: [1, 0.676470578, 0]
     Mask: SGN_GENERATOR_E
     AlwaysOn: true
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKG_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKG_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKI_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC BUILDINGBRICKI_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKJ_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKJ_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKL_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKL_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKO_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKO_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKP_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKP_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICKQ_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGBRICKQ_LZ_M
+    AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
   - Name: SGN_STADIUMTEXT
@@ -251,6 +377,20 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_BRICKBLD_WHITE_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BRICKBLD_WHITE_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_OFFICEY_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_OFFICEY_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: SGN_CITYEAST_RISTORANTE
     Brightness: 7
     Color: [1, 1, 1]
@@ -286,12 +426,26 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_OFFICEGOLDTOWER_1A_BK
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_OFFICEGOLDTOWER_1A_BK_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: ADS_BKING_BB_A
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_ARCOTOWERBRICK__LZ
+    Brightness: 4
+    Color: [0.855000019, 0.613586307, 0.341999978]
+    Mask: ARC_ARCOTOWERBRICK__LZ_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: 0x89C26291
     Brightness: 5
@@ -335,6 +489,27 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_OFFICECT_A_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000858, 1]
+    Mask: ARC_OFFICECT_A_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_OFFICECT_B_VC
+    Brightness: 5
+    Color: [0.699999988, 0.52219975, 0.349999994]
+    Mask: ARC_OFFICECT_B_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_OFFICECT_C_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_OFFICECT_C_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: SGN_COFFEESHOPBRAZIL_JF
     Brightness: 4
     Color: [1, 1, 1]
@@ -342,12 +517,26 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_BUILDINGBRICK_LZ
+    Brightness: 5
+    Color: [0.25, 0.401334584, 0.5]
+    Mask: ARC_BUILDINGBRICK_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: 0xA03B5211
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_BOWLBUILD_EA_LZ
+    Brightness: 5
+    Color: [0.619607866, 0.850980401, 1]
+    Mask: ARC_BOWLBUILD_EA_LZ_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: SFX_TRACKBARRIERNEONLOCKED
     Brightness: 5
@@ -362,6 +551,20 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_CTOFFICEB_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_CTOFFICEB_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_CTOFFICED_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_CTOFFICED_VC_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: OBJ_MOVIEPOSTEROCTO_JF
     Brightness: 2.70000219
@@ -383,6 +586,27 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_HTECHA_VC
+    Brightness: 6
+    Color: [0.5, 0.25, 0.310000062]
+    Mask: ARC_HTECHA_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_HTECHB_VC
+    Brightness: 5
+    Color: [0.620000005, 1, 0.765294075]
+    Mask: ARC_HTECHB_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_HTECHH_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_HTECHH_LZ_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: 0xAAA4780A
     Brightness: 5
@@ -412,12 +636,40 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_CITYEASTBLD2WINDOWQUAD
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_CITYEASTBLD2WINDOWQUAD_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGSTEELB_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGSTEELB_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_HOTEL_02_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_HOTEL_02_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: SGN_SOLOPETSTUFF
     Brightness: 2.29999995
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_CAMPUS_RESIDENCE1_M
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_CAMPUS_RESIDENCE1_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: ADS_FITNESSA_BB_EA
     Brightness: 5
@@ -440,6 +692,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_OFFICEGOLDTOWER_1A
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_OFFICEGOLDTOWER_1A_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: ARC_CHOPSHOP2_EA
     Brightness: 8
     Color: [1, 0.382352948, 0]
@@ -447,11 +706,25 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_CITYEASTBLD4WINDOWQUAD
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_CITYEASTBLD4WINDOWQUAD_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: SGN_GROCERYSTORE_JF
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_GOLLDCOLUMN_LV
+    Brightness: 10
+    Color: [1, 0.705882311, 0]
+    Mask: ""
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
   - Name: OBJ_SCOREBOARD
@@ -489,6 +762,20 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_BUILDINGGLASSA_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGGLASSA_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_BUILDINGGLASSU_LZ
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_BUILDINGGLASSU_LZ_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
   - Name: 0xCC51EF0B
     Brightness: 5.00000286
     Color: [1, 1, 1]
@@ -502,6 +789,13 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
+    IgnoreWeather: false
+  - Name: ARC_FANCYBUILDINGB_M
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_FANCYBUILDINGB_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
   - Name: SGN_ETHNIC_HOTEL_RJ
     Brightness: 3
@@ -535,6 +829,34 @@ Textures:
     Brightness: 5
     Color: [1, 0.801038027, 0.600000024]
     Mask: ARC_UC_TWINCONDO_VC_E
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_UC_TWINCONDO_VC
+    Brightness: 5
+    Color: [1, 0.699999988, 0.5]
+    Mask: ARC_UC_TWINCONDO_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_GENBLDINGB_VC
+    Brightness: 5
+    Color: [0.620000005, 0.850000024, 1]
+    Mask: ARC_GENBLDINGB_VC_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_HTECHI
+    Brightness: 5
+    Color: [0.800000012, 0.447057962, 0]
+    Mask: ARC_HTECHI_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+  - Name: ARC_FLATTHINTOWER_A_RB_R
+    Brightness: 5
+    Color: [0.460784316, 1, 0.809688509]
+    Mask: ARC_FLATTHINTOWER_A_RB_M
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false

@@ -63,11 +63,12 @@ namespace UI
 			ImGui::PopItemWidth();
 
 			ImGui::Text("");
-			ImGui::Text("Default params");
-			ImGui::ColorEdit3("Window glow color", (float*)&g_Config.WindowGlowColor, ImGuiColorEditFlags_Float);
+			ImGui::Text("Window glow");
+			ImGui::ColorEdit3("Color", (float*)&g_Config.WindowGlowColor, ImGuiColorEditFlags_Float);
 			ImGui::PushItemWidth(120);
-			ImGui::InputFloat("Window glow power", &g_Config.WindowGlowPower, 0.1, 0.2);
+			ImGui::InputFloat("Power", &g_Config.WindowGlowPower, 0.1, 0.2);
 			ImGui::PopItemWidth();
+			ImGui::Checkbox("Override", &g_Config.WindowGlowOverride);
 
 #ifdef _DEBUG
 			ImGui::Text("");

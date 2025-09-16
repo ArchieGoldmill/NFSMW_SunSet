@@ -174,6 +174,11 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 					brightness *= g_Weather.GetTextureLightPower();
 				}
 
+				if (effect->id == shader_type::GlossyWindow && g_Config.WindowGlowOverride)
+				{
+					brightness = g_Weather.GetWindowGlowColor();
+				}
+
 				brightness.w = 1;
 			}
 		}
@@ -195,7 +200,7 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 
 	if (RenderTarget::Current->ViewId == ViewId::Reflection && renderModel->pSolid)
 	{
-		if (renderModel->pSolid->NameHash == 0xD87699B3) // XW_FENCEMETALB_1A_00
+		if (renderModel->pSolid->NameHash == Hashes::XW_FENCEMETALB_1A_00)
 		{
 			return Technique_Invisible;
 		}

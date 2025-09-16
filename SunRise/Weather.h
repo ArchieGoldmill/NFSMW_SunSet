@@ -104,6 +104,13 @@ public:
 		return bloom;
 	}
 
+	D3DXVECTOR4 GetWindowGlowColor()
+	{
+		D3DXVECTOR4 windowGlowColor = g_Config.WindowGlowColor;
+		windowGlowColor *= g_Config.WindowGlowPower;
+		return windowGlowColor;
+	}
+
 private:
 
 	void SetFog(eEffect* e)
@@ -146,8 +153,7 @@ private:
 		this->SetFog(worldPrelit);
 
 		auto glossyWindow = eEffect::Get(shader_type::GlossyWindow);
-		D3DXVECTOR4 windowGlowColor = g_Config.WindowGlowColor;
-		windowGlowColor *= g_Config.WindowGlowPower;
+		auto windowGlowColor = this->GetWindowGlowColor();
 		glossyWindow->SetVector(ShaderParam::cvWindowColor, &windowGlowColor);
 	}
 

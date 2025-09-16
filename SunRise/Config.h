@@ -6,7 +6,7 @@
 #include "TextureConfig.h"
 #include "CustomMeshesConfig.h"
 
-inline const char* ModName = "NFSMW - Sun Set 1.4";
+inline const char* ModName = "NFSMW - Sun Set 1.5";
 
 struct Config
 {
@@ -49,6 +49,7 @@ struct Config
 
 	D3DXVECTOR4 WindowGlowColor;
 	float WindowGlowPower;
+	bool WindowGlowOverride;
 };
 
 inline Config g_Config;
@@ -97,9 +98,10 @@ void LoadConfig()
 	g_Config.HK_ShaderReload = hotkeys["ShaderReload"].as<int>();
 	g_Config.HK_ToggleEditor = hotkeys["ToggleEditor"].as<int>();
 
-	const auto& defaultParams = settingsRoot["DefaultParams"];
-	g_Config.WindowGlowColor = ParseVec3To4(defaultParams["WindowGlowColor"]);
-	g_Config.WindowGlowPower = defaultParams["WindowGlowPower"].as<float>();
+	const auto& windowGlow = settingsRoot["WindowGlow"];
+	g_Config.WindowGlowColor = ParseVec3To4(windowGlow["Color"]);
+	g_Config.WindowGlowPower = windowGlow["Power"].as<float>();
+	g_Config.WindowGlowOverride = windowGlow["Override"].as<bool>();
 
 	if (g_Config.Editor)
 	{
@@ -147,15 +149,16 @@ void SaveConfig()
 	hotkeys["ShaderReload"] = g_Config.HK_ShaderReload;
 	hotkeys["ToggleEditor"] = g_Config.HK_ToggleEditor;
 
-	YAML::Node defaultParams;
-	defaultParams["WindowGlowColor"] = SerializeVector3(g_Config.WindowGlowColor);
-	defaultParams["WindowGlowPower"] = g_Config.WindowGlowPower;
+	YAML::Node windowGlow;
+	windowGlow["Color"] = SerializeVector3(g_Config.WindowGlowColor);
+	windowGlow["Power"] = g_Config.WindowGlowPower;
+	windowGlow["Override"] = g_Config.WindowGlowOverride;
 
 	root["Config"] = config;
 	root["Time"] = time;
 	root["Blur"] = blur;
 	root["Hotkeys"] = hotkeys;
-	root["DefaultParams"] = defaultParams;
+	root["WindowGlow"] = windowGlow;
 
 	std::ofstream fout(GetConfigFolder("Config.yml"));
 	fout << root;

@@ -13,6 +13,7 @@ namespace UI
 		char SolidLodBufferA[128] = { 0 };
 		char SolidLodBufferB[128] = { 0 };
 		char FlareNameBuffer[128] = { 0 };
+		char FilterBuff[128] = { 0 };
 
 		void Reset()
 		{
@@ -51,6 +52,9 @@ namespace UI
 
 							solidLights.Lights.push_back(spotLight);
 							SolidLightsList.push_back(solidLights);
+
+							CurrentSolidNum = SolidLightsList.size() - 1;
+							CurrentLightNum = 0;
 						}
 
 						ImGui::SameLine();
@@ -63,15 +67,28 @@ namespace UI
 							}
 						}
 
+						ImGui::InputText("Filter", FilterBuff, 128);
+						ImGui::SameLine();
+						if (ImGui::Button("x", { 20, 20 }))
+						{
+							FilterBuff[0] = 0;
+						}
+
 						if (ImGui::BeginChild("##SolidList", ImGui::GetContentRegionAvail(), false, 0))
 						{
 							for (int i = 0; i < SolidLightsList.size(); i++)
 							{
 								auto& solidLights = SolidLightsList[i];
+
+								if (FilterBuff[0] && !strstr(solidLights.LodA.GetChar(), FilterBuff))
+								{
+									continue;
+								}
+
 								if (SelectableButton(solidLights.LodA.GetChar(), { 200, 20 }, CurrentSolidNum == i))
 								{
 									CurrentSolidNum = i;
-									CurrentLightNum = -1;
+									CurrentLightNum = 0;
 								}
 							}
 
@@ -89,6 +106,7 @@ namespace UI
 							if (ImGui::Button("Add##Light", { 40, 20 }))
 							{
 								lights.push_back(lights[0]);
+								CurrentLightNum = lights.size() - 1;
 							}
 
 							ImGui::SameLine();

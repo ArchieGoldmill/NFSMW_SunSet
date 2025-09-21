@@ -5,9 +5,9 @@ namespace UI
 	namespace Textures
 	{
 		PrelitTexture* CurrentTexture = NULL;
-		char FilterBuff[256] = { 0 };
-		char TextureNameBuff[256] = { 0 };
-		char TextureMaskBuffer[256] = { 0 };
+		char FilterBuff[128] = { 0 };
+		char TextureNameBuff[128] = { 0 };
+		char TextureMaskBuffer[128] = { 0 };
 
 		void Reset()
 		{
@@ -26,7 +26,7 @@ namespace UI
 			}
 
 			ImGui::SameLine();
-			ImGui::InputText("Texture", TextureNameBuff, 256);
+			ImGui::InputText("Texture", TextureNameBuff, 128);
 
 			ImGui::SameLine();
 			if (ImGui::Button("Add", { 60, 20 }))
@@ -56,14 +56,14 @@ namespace UI
 				{
 					ImGui::TableSetColumnIndex(0);
 					{
-						ImGui::InputText("Filter", FilterBuff, 256);
+						ImGui::InputText("Filter", FilterBuff, 128);
 						ImGui::SameLine();
 						if (ImGui::Button("x", { 20, 20 }))
 						{
 							FilterBuff[0] = 0;
 						}
 
-						if (ImGui::BeginChild("##MaterialList", ImGui::GetContentRegionAvail(), false, 0))
+						if (ImGui::BeginChild("##TextureList", ImGui::GetContentRegionAvail(), false, 0))
 						{
 							for (auto& texture : PrelitTextures.GetList())
 							{
@@ -97,7 +97,7 @@ namespace UI
 							ImGui::BeginDisabled(CurrentTexture->Prelit);
 							{
 								strcpy(TextureMaskBuffer, CurrentTexture->Mask.GetChar());
-								if (ImGui::InputText("Mask texture", TextureMaskBuffer, 256))
+								if (ImGui::InputText("Mask texture", TextureMaskBuffer, 128))
 								{
 									CurrentTexture->Mask.SetString(TextureMaskBuffer);
 									CurrentTexture->MaskTexture = NULL;

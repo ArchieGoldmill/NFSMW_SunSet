@@ -1,6 +1,5 @@
 #pragma once
 #include "GarageMainScreen.h"
-#include "CustomMeshes.h"
 
 void SetDepthRenderTarget()
 {
@@ -45,7 +44,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	Game::StuffSky(eView::Player, 1.0, 0);
 	cullInfo->StuffScenery(eView::Player, 0x20);
 	WorldModel::RenderAll(eView::Player);
-	CustomMeshesPrepass();
+	CustomMeshes.DrawPrepass();
 	StuffFeScenery();
 
 	Game::CommitRenderedModels();

@@ -1,40 +1,10 @@
 #pragma once
 #include "eModel.h"
-
-struct CustomMesh
-{
-	std::string Name;
-
-	D3DXVECTOR3 Position = { 0, 0, 0 };
-	D3DXVECTOR3 Rotation = { 0, 0, 0 };
-	D3DXVECTOR3 Scale = { 1, 1, 1 };
-
-	D3DXMATRIX Matrix;
-
-	eModel Model;
-
-	bool Selected = false;
-
-	void SetMatrix()
-	{
-		D3DXMATRIX scale;
-		D3DXMatrixScaling(&scale, Scale.x, Scale.y, Scale.z);
-
-		D3DXMATRIX rot;
-		D3DXMatrixRotationYawPitchRoll(&rot, D3DXToRadian(Rotation.x), D3DXToRadian(Rotation.y), D3DXToRadian(Rotation.z));
-
-		D3DXMATRIX pos;
-		D3DXMatrixTranslation(&pos, Position.x, Position.y, Position.z);
-
-		Matrix = scale * rot * pos;
-	}
-};
-
-std::vector<CustomMesh> CustomMeshes;
+#include "CustomMeshes.h"
 
 void LoadCustomMeshes()
 {
-	CustomMeshes.clear();
+	CustomMeshes.Clear();
 
 	YAML::Node meshesRoot = YAML::LoadFile(GetConfigFolder("Meshes.yml"));
 
@@ -49,16 +19,15 @@ void LoadCustomMeshes()
 		mesh.Rotation = ParseVec3(node["Rotation"]);
 		mesh.Scale = ParseVec3(node["Scale"]);
 		mesh.SetMatrix();
-		mesh.Model.NameHash = Game::bStringHash(mesh.Name.c_str());
 
-		CustomMeshes.push_back(mesh);
+		CustomMeshes.Add(mesh);
 	}
 }
 
 void SaveCustomMeshes()
 {
 	YAML::Node list;
-	for (auto& mesh : CustomMeshes)
+	for (auto& mesh : CustomMeshes.GetList())
 	{
 		YAML::Node node;
 

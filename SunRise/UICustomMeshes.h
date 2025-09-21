@@ -15,7 +15,7 @@ namespace UI
 
 		CustomMesh* GetCurrent()
 		{
-			return CurrentNum >= 0 ? &CustomMeshes[CurrentNum] : NULL;
+			return CurrentNum >= 0 ? &CustomMeshes.Get(CurrentNum) : NULL;
 		}
 
 		void Draw()
@@ -40,9 +40,9 @@ namespace UI
 								customMesh = *current;
 							}
 
-							CustomMeshes.push_back(customMesh);
+							CustomMeshes.Add(customMesh);
 
-							CurrentNum = CustomMeshes.size() - 1;
+							CurrentNum = CustomMeshes.Size() - 1;
 							current = GetCurrent();
 						}
 
@@ -51,16 +51,16 @@ namespace UI
 						{
 							if (current)
 							{
-								CustomMeshes.erase(CustomMeshes.begin() + CurrentNum);
+								CustomMeshes.Remove(CurrentNum);
 								Reset();
 							}
 						}
 
 						if (ImGui::BeginChild("##CustomMeshesList", ImGui::GetContentRegionAvail(), false, 0))
 						{
-							for (int i = 0; i < CustomMeshes.size(); i++)
+							for (int i = 0; i < CustomMeshes.Size(); i++)
 							{
-								auto& customMesh = CustomMeshes[i];
+								auto& customMesh = CustomMeshes.Get(i);
 
 								char nameBuff[128];
 								memset(nameBuff, ' ', 128);
@@ -68,8 +68,6 @@ namespace UI
 								int len = strlen(nameBuff);
 								nameBuff[len] = ' ';
 								nameBuff[127] = 0;
-
-								customMesh.Selected = current == &customMesh;
 
 								if (SelectableButton(nameBuff, { 200, 20 }, current == &customMesh))
 								{
@@ -93,13 +91,23 @@ namespace UI
 								current->Position = GetCameraPos();
 							}
 
+							ImGui::SameLine();
+							if (ImGui::Button("Move camera"))
+							{
+								*Game::DebugCameraPos = current->Position;
+							}
+							if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+							{
+								ImGui::SetTooltip("Requires debug camera to be enabled");
+							}
+
 							ImGui::Text("");
 
 							strcpy(NameBuff, current->Name.c_str());
 							if (ImGui::InputText("Solid", NameBuff, 256))
 							{
 								current->Name = NameBuff;
-								current->Model.NameHash = Game::bStringHash(current->Name.c_str());
+								current->Model->NameHash = Game::bStringHash(current->Name.c_str());
 							}
 
 							ImGui::Text("");

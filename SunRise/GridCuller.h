@@ -42,7 +42,7 @@ inline Int3 worldToCell(const D3DXVECTOR3& pos)
 
 struct CellBuffer
 {
-	static const int BufferSize = 512;
+	static const int BufferSize = 1024;
 
 	int Count = 0;
 	Cell Buffer[BufferSize];

@@ -52,9 +52,12 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 
 void PopulateCustomMeshSpotLights()
 {
-	for (auto& customMesh : CustomMeshes)
+	for (auto& customMesh : CustomMeshes.GetList())
 	{
-		PopulateFromModel(&customMesh.Model, &customMesh.Matrix);
+		if (customMesh.IsValid())
+		{
+			PopulateFromModel(customMesh.Model, &customMesh.Matrix);
+		}
 	}
 }
 

@@ -55,6 +55,13 @@ Textures:
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
+  - Name: SFX_HEADLIGHTGLOW_TILED
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: true
   - Name: SGN_BANKOFROCKPORT_EA
     Brightness: 4
     Color: [1, 1, 1]
@@ -73,7 +80,7 @@ Textures:
     Brightness: 10
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: true
   - Name: SGN_ROSEWOODUNIVERSITY
@@ -355,7 +362,7 @@ Textures:
     Mask: ""
     AlwaysOn: true
     Prelit: true
-    IgnoreWeather: true
+    IgnoreWeather: false
   - Name: ADS_CINGULAR_BB_F_EA
     Brightness: 4
     Color: [1, 1, 1]
@@ -381,9 +388,16 @@ Textures:
     Brightness: 2.59999943
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: true
+  - Name: ARC_CAMPUS_PKD_ACCESS
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: false
   - Name: 0x5D013360
     Brightness: 5
     Color: [1, 1, 1]
@@ -454,6 +468,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ARC_CAMPUS_MB_ENTWALL
+    Brightness: 1
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: true
   - Name: ARC_CEILINGLIGHT2
     Brightness: 2.00000024
     Color: [1, 1, 1]
@@ -535,9 +556,9 @@ Textures:
     Brightness: 3
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
-    IgnoreWeather: true
+    IgnoreWeather: false
   - Name: ADS_AUTOZONE_BB_A_EA
     Brightness: 4
     Color: [1, 1, 1]
@@ -927,9 +948,9 @@ Textures:
     Brightness: 4
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
-    IgnoreWeather: true
+    IgnoreWeather: false
   - Name: ARC_UC_TWINCONDO_VC
     Brightness: 5
     Color: [1, 0.699999988, 0.5]
@@ -976,7 +997,7 @@ Textures:
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: true
   - Name: SGN_PARK_ENTER

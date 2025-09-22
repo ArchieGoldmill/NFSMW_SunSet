@@ -43,6 +43,15 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 				{
 					auto spotLight = CreateSpotLight(pSpotLight, matrix, solidLights.AlwaysOn);
 					float flareIntecity = solidLights.AlwaysOn ? 1.0f : g_Weather.GetLightIntensity();
+					if (solidLights.UseFirstLight)
+					{
+						spotLight.Color = solidLights.Lights[0].Color;
+						spotLight.Intensity = solidLights.Lights[0].Intensity;
+						spotLight.InnerAngle = solidLights.Lights[0].InnerAngle;
+						spotLight.OuterAngle = solidLights.Lights[0].OuterAngle;
+						spotLight.Range = solidLights.Lights[0].Range;
+					}
+
 					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare, flareIntecity);
 				}
 			}

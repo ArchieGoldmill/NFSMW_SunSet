@@ -74,6 +74,7 @@ void LoadSpotLightConfig()
 		solid.LodB.SetString(lightNode["SolidLodB"].as<std::string>());
 		solid.Blink = YmlGet(lightNode, "Blink", 0);
 		solid.AlwaysOn = YmlGet(lightNode, "AlwaysOn", false);
+		solid.UseFirstLight = YmlGet(lightNode, "UseFirstLight", false);
 		solid.Flare = GetFlareModel(lightNode);
 
 		const auto& spotLights = lightNode["SpotLights"];
@@ -141,6 +142,7 @@ void SaveSpotLightConfig()
 		node["SolidLodB"] = solidLight.LodB.GetString();
 		node["Blink"] = solidLight.Blink;
 		node["AlwaysOn"] = solidLight.AlwaysOn;
+		node["UseFirstLight"] = solidLight.UseFirstLight;
 		node["Flare"] = solidLight.Flare ? solidLight.Flare->Name : "";
 		node["SpotLights"] = spotlights;
 

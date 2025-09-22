@@ -155,6 +155,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -6, 12.9000006]
@@ -168,6 +169,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: true
     Flare: LampPost
     SpotLights:
       - Position: [0, -3.8499999, 10.2000008]
@@ -188,6 +190,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -3.8499999, 8.69999981]
@@ -208,6 +211,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.39999962]
@@ -221,6 +225,7 @@ SolidLights:
     SolidLodB: XO_TRAFFICLIGHTB_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.10000038]
@@ -234,6 +239,7 @@ SolidLights:
     SolidLodB: XO_STREETLIGHTG_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 7]
@@ -247,6 +253,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.19999981]
@@ -260,6 +267,7 @@ SolidLights:
     SolidLodB: XO_STREETLIGHTM_1C_DW_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 7.0999999]
@@ -273,6 +281,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -3.29999995, 7.4000001]
@@ -286,6 +295,7 @@ SolidLights:
     SolidLodB: XO_STREETLIGHTJ_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 4.5]
@@ -299,6 +309,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -4.19999981, 9.5]
@@ -312,6 +323,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -6, 9.80000019]
@@ -325,6 +337,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0.5, -0.5, 8.5]
@@ -338,6 +351,7 @@ SolidLights:
     SolidLodB: XO_PARKLAMPA_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 4.5999999]
@@ -351,6 +365,7 @@ SolidLights:
     SolidLodB: XO_IRONLAMPSTANDING_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 5.0999999]
@@ -364,6 +379,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -6, 12.8000002]
@@ -377,6 +393,7 @@ SolidLights:
     SolidLodB: XS_FWY_2FRAME_1Z_EA_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, -2.400002, -2.79999924]
@@ -390,6 +407,7 @@ SolidLights:
     SolidLodB: XS_FWY_3FRAME_1Z_EA_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, -4.5, -4]
@@ -403,6 +421,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -5.19999981, 7.69999981]
@@ -416,6 +435,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 7.0999999]
@@ -429,6 +449,7 @@ SolidLights:
     SolidLodB: XO_IRONLAMPSTANDINGB_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 5.0999999]
@@ -442,6 +463,7 @@ SolidLights:
     SolidLodB: XO_MEGALIGHTC_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 40.0999985]
@@ -455,6 +477,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 4.30000019]
@@ -468,6 +491,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.30000019]
@@ -481,6 +505,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, -2.79999995, 8.30000019]
@@ -494,6 +519,7 @@ SolidLights:
     SolidLodB: XO_POLICEPOSTMM_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 2.5]
@@ -507,6 +533,7 @@ SolidLights:
     SolidLodB: XO_SAWHORSE_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, -1.39999998, 1.10000002]
@@ -527,6 +554,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: Chevron
     SpotLights:
       - Position: [-0.600000024, -0.600000024, 6.30000019]
@@ -540,6 +568,7 @@ SolidLights:
     SolidLodB: XS_MEDIANPOLER_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: Chevron
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -553,6 +582,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 2
     AlwaysOn: false
+    UseFirstLight: false
     Flare: Chevron
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -566,6 +596,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: Chevron
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -579,6 +610,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 3
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2.0999999]
@@ -592,6 +624,7 @@ SolidLights:
     SolidLodB: XO_GASSTATIONPRICESIGN_MM_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2]
@@ -605,6 +638,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2]
@@ -618,6 +652,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 2]
@@ -631,6 +666,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, -1, 1.29999995]
@@ -644,6 +680,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 26]
@@ -657,6 +694,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [-10, 6.5, 3]
@@ -677,6 +715,7 @@ SolidLights:
     SolidLodB: XO_BLUESTRIPGASD_ROOF_1A_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, -1.80000019]
@@ -690,6 +729,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 10.2000027]
@@ -710,6 +750,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [1784.4823, 2510.29199, 156.917221]
@@ -723,6 +764,7 @@ SolidLights:
     SolidLodB: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
     Blink: 0
     AlwaysOn: true
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [4326.5, 1529.80078, 25.5754166]
@@ -764,6 +806,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: true
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [3505.84155, 3711.37695, 41.0633163]
@@ -805,6 +848,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 1.90000033]
@@ -818,6 +862,7 @@ SolidLights:
     SolidLodB: XO_MEGALIGHTA_1C_00
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 18.6000328]
@@ -831,6 +876,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 30]
@@ -844,6 +890,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 28.0999928]
@@ -857,6 +904,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [-0.699999928, 0, 2.10000014]
@@ -870,6 +918,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [1195.63135, 2245.08301, 160.670044]
@@ -890,6 +939,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [-0.5, -2.49999976, 4.89999771]
@@ -903,6 +953,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [0, 0, 0]
@@ -916,6 +967,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [-0.899999976, -11.2000065, 6.8999958]
@@ -929,6 +981,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [-18.9000359, -15.8999939, 12.4999638]
@@ -949,6 +1002,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [932.937866, 3506.47095, 202.174713]
@@ -962,6 +1016,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [865.282104, 3508.82764, 205.041656]
@@ -1010,6 +1065,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [894.822144, 3538.72021, 202.141693]
@@ -1051,6 +1107,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: LampPost
     SpotLights:
       - Position: [0, 0, 9.89995384]
@@ -1064,6 +1121,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
+    UseFirstLight: false
     Flare: ""
     SpotLights:
       - Position: [1.49011612e-08, 0, 15.8999767]
@@ -1073,113 +1131,346 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
-  - SolidLodA: TRN_CT_ROAD_HIGHWAY4_XX_CHOP_J13_R1
+  - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_J13_R0
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
+    UseFirstLight: true
     Flare: ""
     SpotLights:
-      - Position: [-65.3953552, 2163.90649, 233.29425]
+      - Position: [-73.1981201, 2164.85889, 232.768799]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 70
+      - Position: [-32.281456, 2154.60107, 233.146988]
+        Direction: [0, 0, -1]
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [-20.3010864, 2150.44312, 232.032333]
+        Range: 70
+      - Position: [-83.6929779, 2104.85571, 236.395462]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [12.8419189, 2137.29492, 232.881973]
+        Range: 70
+      - Position: [-41.3787918, 2106.88867, 235.262268]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [43.8220825, 2120.57251, 229.791061]
+        Range: 70
+      - Position: [4.27124023, 2140.48853, 231.769104]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [79.0479126, 2099.53784, 228.991074]
+        Range: 70
+      - Position: [38.8861694, 2122.7749, 231.934265]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [110.340454, 2080.26709, 228.457748]
+        Range: 70
+      - Position: [82.0288086, 2098.52197, 228.786575]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [95.6610107, 2062.91406, 228.991074]
+        Range: 70
+      - Position: [-4.31863403, 2102.85547, 233.719833]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [55.6011963, 2083.15771, 229.661377]
+        Range: 70
+      - Position: [33.6038208, 2090.81763, 232.189148]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [27.0883179, 2092.92383, 232.918198]
+        Range: 70
+      - Position: [78.7930298, 2072.68042, 229.389191]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
+        Color: [1, 0.911908865, 0.769607842]
+        InnerAngle: 15
         OuterAngle: 120
         Intensity: 2
-        Range: 50
-      - Position: [-4.34902954, 2101.0918, 234.224609]
-        Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
-        OuterAngle: 120
-        Intensity: 2
-        Range: 50
-      - Position: [-38.8434677, 2106.51709, 234.370804]
-        Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
-        OuterAngle: 120
-        Intensity: 2
-        Range: 50
-      - Position: [-78.7712784, 2105.73779, 236.900024]
-        Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 770
-        OuterAngle: 120
-        Intensity: 2
-        Range: 50
-  - SolidLodA: TRN_CT_ROAD_HIGHWAY4_XX_CHOP_J13_R3
+        Range: 70
+  - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_J13_R3
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
+    UseFirstLight: true
     Flare: ""
     SpotLights:
-      - Position: [130.921448, 2054.76953, 225.867889]
+      - Position: [115.1745, 2062.07349, 226.282074]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 50
+        Color: [1, 0.880911171, 0.710784316]
+        InnerAngle: 15
         OuterAngle: 120
-        Intensity: 3
-        Range: 50
-      - Position: [167.291138, 2031.72827, 225.0513]
+        Intensity: 1.69999993
+        Range: 70
+      - Position: [151.018982, 2038.02856, 224.682999]
         Direction: [0, 0, -1]
-        Color: [1, 1, 1]
-        InnerAngle: 50
+        Color: [1, 0.880911171, 0.710784316]
+        InnerAngle: 15
         OuterAngle: 120
-        Intensity: 3
+        Intensity: 2
+        Range: 70
+      - Position: [176.775879, 2022.71472, 223.099823]
+        Direction: [0, 0, -1]
+        Color: [1, 0.880911171, 0.710784316]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+  - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_I4_R2
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: LampPost
+    SpotLights:
+      - Position: [207.247925, 1992.0885, 222.714813]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
         Range: 50
+      - Position: [237.741943, 1966.99609, 221.390335]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [272.073975, 1944.3573, 218.968216]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [303.484192, 1921.01685, 217.591217]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [337.481995, 1900.10889, 216.853287]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [373.054962, 1881.61108, 216.694855]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [413.719452, 1877.12183, 215.988876]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [216.103577, 2011.23755, 222.438568]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [250.276611, 1989.5177, 220.971924]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [282.888489, 1967.12402, 218.851944]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [317.239929, 1945.87769, 216.980469]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [355.183594, 1932.68433, 215.367401]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [395.218597, 1925.40149, 213.870285]
+        Direction: [0, 0, -1]
+        Color: [0.995098054, 0.911168933, 0.775591135]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+  - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G4_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1352.50989, 4421.84473, 221.672623]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.5999999
+        Range: 70
+      - Position: [1402.97668, 4437.71484, 221.542603]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 120
+        Intensity: 1.5999999
+        Range: 70
+      - Position: [1453.20337, 4446.40381, 219.078674]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 120
+        Intensity: 1.5999999
+        Range: 70
+      - Position: [1510.01782, 4437.05615, 219.449951]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.5999999
+        Range: 70
+      - Position: [1359.34277, 4394.38623, 221.254379]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.5999999
+        Range: 70
+      - Position: [1408.47559, 4411.71094, 220.379669]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.5999999
+        Range: 70
+      - Position: [1459.33423, 4417.62354, 217.417633]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.5999999
+        Range: 70
+      - Position: [1499.22498, 4411.83447, 215.973022]
+        Direction: [0, 0, -1]
+        Color: [0.575595915, 0.847038567, 0.995098054]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.5999999
+        Range: 70
+  - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G9_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1554.88672, 4420.01074, 219.32309]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90
+      - Position: [1594.00708, 4400.05176, 221.582748]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 70
+      - Position: [1643.35913, 4376.4043, 227.231644]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90
+      - Position: [1579.91772, 4375.37451, 218.435455]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90
+      - Position: [1630.31982, 4351.62988, 223.664673]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90
+  - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G9_R3
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: LampPost
+    SpotLights:
+      - Position: [1745.40344, 4331.92285, 236.861145]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90
+      - Position: [1688.60742, 4355.4707, 231.527863]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90
+      - Position: [1671.72205, 4332.53857, 228.370621]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90
+      - Position: [1736.63, 4305.28711, 234.440369]
+        Direction: [0, 0, -1]
+        Color: [0.575999975, 0.847000003, 0.995000005]
+        InnerAngle: 80
+        OuterAngle: 100
+        Intensity: 1.60000014
+        Range: 90

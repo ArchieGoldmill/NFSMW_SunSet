@@ -75,4 +75,5 @@ struct SolidLights
 	int Blink;
 
 	bool AlwaysOn = false;
+	bool UseFirstLight = false;
 };

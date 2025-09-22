@@ -170,49 +170,63 @@ namespace UI
 
 							ImGui::Text("");
 							ImGui::Checkbox("Always on", &CurrentSolid->AlwaysOn);
-						}
+							ImGui::Checkbox("Use first light", &CurrentSolid->UseFirstLight);
 
-						if (CurrentLightNum >= 0)
-						{
-							auto CurrentLight = &SolidLightsList[CurrentSolidNum].Lights[CurrentLightNum];
 
-							ImGui::Text("");
-
-							if (ImGui::Button("Place at camera"))
+							if (CurrentLightNum >= 0)
 							{
-								CurrentLight->Position = GetCameraPos();
-							}
-
-							ImGui::PushItemWidth(120);
-							{
-								ImGui::Text("Position");
-								ImGui::InputFloat("##LightPosX", &CurrentLight->Position.x, 0.1, 1.0, "%.2f");
-								ImGui::SameLine();
-								ImGui::InputFloat("##LightPosY", &CurrentLight->Position.y, 0.1, 1.0, "%.2f");
-								ImGui::SameLine();
-								ImGui::InputFloat("##LightPosZ", &CurrentLight->Position.z, 0.1, 1.0, "%.2f");
+								auto CurrentLight = &SolidLightsList[CurrentSolidNum].Lights[CurrentLightNum];
 
 								ImGui::Text("");
 
-								ImGui::Text("Direction");
-								ImGui::InputFloat("##LightDirX", &CurrentLight->Direction.x, 0.1, 1.0, "%.2f");
+								if (ImGui::Button("Place at camera"))
+								{
+									CurrentLight->Position = GetCameraPos();
+								}
+
 								ImGui::SameLine();
-								ImGui::InputFloat("##LightDirY", &CurrentLight->Direction.y, 0.1, 1.0, "%.2f");
-								ImGui::SameLine();
-								ImGui::InputFloat("##LightDirZ", &CurrentLight->Direction.z, 0.1, 1.0, "%.2f");
+								if (ImGui::Button("Move camera"))
+								{
+									*Game::DebugCameraPos = CurrentLight->Position;
+								}
+								if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+								{
+									ImGui::SetTooltip("Requires debug camera to be enabled, make sure light is in world space");
+								}
+
+								ImGui::PushItemWidth(120);
+								{
+									ImGui::Text("Position");
+									ImGui::InputFloat("##LightPosX", &CurrentLight->Position.x, 0.1, 1.0, "%.2f");
+									ImGui::SameLine();
+									ImGui::InputFloat("##LightPosY", &CurrentLight->Position.y, 0.1, 1.0, "%.2f");
+									ImGui::SameLine();
+									ImGui::InputFloat("##LightPosZ", &CurrentLight->Position.z, 0.1, 1.0, "%.2f");
+
+									ImGui::Text("");
+
+									ImGui::Text("Direction");
+									ImGui::InputFloat("##LightDirX", &CurrentLight->Direction.x, 0.1, 1.0, "%.2f");
+									ImGui::SameLine();
+									ImGui::InputFloat("##LightDirY", &CurrentLight->Direction.y, 0.1, 1.0, "%.2f");
+									ImGui::SameLine();
+									ImGui::InputFloat("##LightDirZ", &CurrentLight->Direction.z, 0.1, 1.0, "%.2f");
+								}
+								ImGui::PopItemWidth();
+
+								ImGui::Text("");
+
+								ImGui::BeginDisabled(CurrentLightNum != 0 && CurrentSolid->UseFirstLight);
+								ImGui::ColorEdit3("Color", (float*)&CurrentLight->Color, ImGuiColorEditFlags_Float);
+
+								ImGui::Text("");
+
+								InputFloat("Range", &CurrentLight->Range);
+								InputFloat("Intensity", &CurrentLight->Intensity);
+								InputFloat("Inner angle", &CurrentLight->InnerAngle);
+								InputFloat("Outer angle", &CurrentLight->OuterAngle);
+								ImGui::EndDisabled();
 							}
-							ImGui::PopItemWidth();
-
-							ImGui::Text("");
-
-							ImGui::ColorEdit3("Color", (float*)&CurrentLight->Color, ImGuiColorEditFlags_Float);
-
-							ImGui::Text("");
-
-							InputFloat("Range", &CurrentLight->Range);
-							InputFloat("Intensity", &CurrentLight->Intensity);
-							InputFloat("Inner angle", &CurrentLight->InnerAngle);
-							InputFloat("Outer angle", &CurrentLight->OuterAngle);
 						}
 					}
 				}

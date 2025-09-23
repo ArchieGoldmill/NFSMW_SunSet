@@ -225,6 +225,7 @@ namespace UI
 								InputFloat("Intensity", &CurrentLight->Intensity);
 								InputFloat("Inner angle", &CurrentLight->InnerAngle);
 								InputFloat("Outer angle", &CurrentLight->OuterAngle);
+								InputFloat("Specular", &CurrentLight->Specular);
 								ImGui::EndDisabled();
 							}
 						}

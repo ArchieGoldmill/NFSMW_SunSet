@@ -10,11 +10,12 @@
 struct SpotLightShader
 {
 	D3DXVECTOR3 Position;
-	float Range;
 	D3DXVECTOR3 Direction;
-	float OuterCos;
 	D3DXVECTOR3 Color;
+	float Range;
 	float InnerCos;
+	float OuterCos;
+	float Specular;
 };
 
 struct SpotLight
@@ -26,6 +27,7 @@ struct SpotLight
 	float Intensity;
 	float InnerAngle;
 	float OuterAngle;
+	float Specular;
 
 	bool IsLampPost()
 	{

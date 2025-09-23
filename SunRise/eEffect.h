@@ -47,6 +47,7 @@ const char* ShaderParamNames[] =
 	"cvaSpPositionRange",
 	"cvaSpDirectionOuterCos",
 	"cvaSpColorInnerCos",
+	"cfaSpSpecular",
 	"cvTexelSize",
 	"cvBloomParams",
 	"cvGodRaysColor",
@@ -87,6 +88,7 @@ enum class ShaderParam
 	cvaSpPositionRange,
 	cvaSpDirectionOuterCos,
 	cvaSpColorInnerCos,
+	cfaSpSpecular,
 	cvTexelSize,
 	cvBloomParams,
 	cvGodRaysColor,
@@ -364,6 +366,15 @@ struct eEffect
 		if (handle)
 		{
 			this->D3DEffect->SetVectorArray(handle, vs, count);
+		}
+	}
+
+	void SetFloatArray(ShaderParam p, float* vs, UINT count)
+	{
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetFloatArray(handle, vs, count);
 		}
 	}
 

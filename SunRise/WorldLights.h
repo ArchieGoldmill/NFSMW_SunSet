@@ -6,17 +6,13 @@
 #include "WorldModel.h"
 #include "GarageMainScreen.h"
 
-SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix, bool alwaysOn)
+SpotLight CreateSpotLight(SpotLight& pSpotLight, D3DXMATRIX* matrix)
 {
 	SpotLight spotLight = pSpotLight;
 
 	D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 	D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
 	D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
-	if (!alwaysOn)
-	{
-		spotLight.Color *= g_Weather.GetLightIntensity();
-	}
 
 	return spotLight;
 }
@@ -41,7 +37,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 
 				for (auto& pSpotLight : solidLights.Lights)
 				{
-					auto spotLight = CreateSpotLight(pSpotLight, matrix, solidLights.AlwaysOn);
+					auto spotLight = CreateSpotLight(pSpotLight, matrix);
 					float flareIntecity = solidLights.AlwaysOn ? 1.0f : g_Weather.GetLightIntensity();
 					if (solidLights.UseFirstLight)
 					{
@@ -50,6 +46,12 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 						spotLight.InnerAngle = solidLights.Lights[0].InnerAngle;
 						spotLight.OuterAngle = solidLights.Lights[0].OuterAngle;
 						spotLight.Range = solidLights.Lights[0].Range;
+						spotLight.Specular = solidLights.Lights[0].Specular;
+					}
+
+					if (!solidLights.AlwaysOn)
+					{
+						spotLight.Color *= g_Weather.GetLightIntensity();
 					}
 
 					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare, flareIntecity);

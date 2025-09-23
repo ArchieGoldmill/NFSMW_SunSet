@@ -6,6 +6,7 @@ CarHeadLights:
   OuterAngle: 45
   Intensity: 3
   Range: 50
+  Specular: 1
 CarBrakeLightsOn:
   Position: [-0.100000001, 0, 0]
   Direction: [-1, 0, -0.5]
@@ -14,6 +15,7 @@ CarBrakeLightsOn:
   OuterAngle: 45
   Intensity: 2
   Range: 4
+  Specular: 1
 CarBrakeLightsOff:
   Position: [-0.100000001, 0, 0]
   Direction: [-1, 0, -0.5]
@@ -22,6 +24,7 @@ CarBrakeLightsOff:
   OuterAngle: 45
   Intensity: 1
   Range: 4
+  Specular: 1
 CarReverse:
   Position: [-0.100000001, 0, 0]
   Direction: [-1, 0, 0]
@@ -30,6 +33,7 @@ CarReverse:
   OuterAngle: 90
   Intensity: 5
   Range: 2
+  Specular: 1
 HelicopterLight:
   Flare: Helicopter
   Position: [2.5999999, 0, -0.699999988]
@@ -39,6 +43,7 @@ HelicopterLight:
   OuterAngle: 6
   Intensity: 3
   Range: 100
+  Specular: 1
 FrontEndLights:
   - Type: 1
     Flare: LampPost
@@ -50,6 +55,7 @@ FrontEndLights:
         OuterAngle: 44
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [2, 11.5, 4.0999999]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -57,6 +63,7 @@ FrontEndLights:
         OuterAngle: 44
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [-2.5999999, 7, 3.0999999]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -64,6 +71,7 @@ FrontEndLights:
         OuterAngle: 44
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [-6.0999999, 3.5999999, 3.0999999]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -71,6 +79,7 @@ FrontEndLights:
         OuterAngle: 44
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [-8.60000038, 0.800000012, 3.0999999]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -78,6 +87,7 @@ FrontEndLights:
         OuterAngle: 44
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [11, -6.0999999, 2.70000005]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -85,6 +95,7 @@ FrontEndLights:
         OuterAngle: 120
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [1.60000002, -10, 8]
         Direction: [-0.100000001, 1.29999995, -1]
         Color: [1, 1, 1.20000005]
@@ -92,6 +103,7 @@ FrontEndLights:
         OuterAngle: 33
         Intensity: 3
         Range: 20
+        Specular: 1
   - Type: 2
     Flare: ""
     SpotLights:
@@ -102,6 +114,7 @@ FrontEndLights:
         OuterAngle: 144
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [8, -3.79999995, 4.0999999]
         Direction: [-1, 1, -1]
         Color: [1, 1, 1]
@@ -109,6 +122,7 @@ FrontEndLights:
         OuterAngle: 88
         Intensity: 3
         Range: 20
+        Specular: 1
   - Type: 3
     Flare: LampPost
     SpotLights:
@@ -119,6 +133,7 @@ FrontEndLights:
         OuterAngle: 77
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [4.3499999, 7.3499999, 3.5]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -126,6 +141,7 @@ FrontEndLights:
         OuterAngle: 77
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [-5, -7.5, 3.5]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -133,6 +149,7 @@ FrontEndLights:
         OuterAngle: 77
         Intensity: 3
         Range: 20
+        Specular: 1
       - Position: [7.5999999, -9.10000038, 3.5]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
@@ -140,6 +157,7 @@ FrontEndLights:
         OuterAngle: 77
         Intensity: 3
         Range: 20
+        Specular: 1
   - Type: 5
     Flare: ""
     SpotLights:
@@ -150,6 +168,7 @@ FrontEndLights:
         OuterAngle: 77
         Intensity: 3
         Range: 20
+        Specular: 1
 SolidLights:
   - SolidLodA: XO_STREETLIGHTD2_1B_00
     SolidLodB: ""
@@ -165,6 +184,7 @@ SolidLights:
         OuterAngle: 75
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XO_LIGHTPOSTB_1A_00
     SolidLodB: ""
     Blink: 0
@@ -179,6 +199,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 25
+        Specular: 1
       - Position: [0, 3.8499999, 10.2000008]
         Direction: [0, 0.5, -1]
         Color: [1, 0.699999988, 0.5]
@@ -186,6 +207,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 25
+        Specular: 1
   - SolidLodA: XO_LIGHTPOSTB_WALL_1B_00
     SolidLodB: ""
     Blink: 0
@@ -200,6 +222,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
       - Position: [0, 3.8499999, 8.69999981]
         Direction: [0, 0.5, -1]
         Color: [1, 0.699999988, 0.5]
@@ -207,6 +230,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XO_TRAFFICLIGHTA_1B_00
     SolidLodB: ""
     Blink: 0
@@ -221,6 +245,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XO_TRAFFICLIGHTB_1B_00
     SolidLodB: XO_TRAFFICLIGHTB_1C_00
     Blink: 0
@@ -235,6 +260,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 3
         Range: 20
+        Specular: 1
   - SolidLodA: XO_STREETLIGHTG_1B_00
     SolidLodB: XO_STREETLIGHTG_1C_00
     Blink: 0
@@ -249,6 +275,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XO_STREETLIGHTC_1B_00
     SolidLodB: ""
     Blink: 0
@@ -263,6 +290,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 20
+        Specular: 1
   - SolidLodA: XO_STREETLIGHTM_1B_DW_00
     SolidLodB: XO_STREETLIGHTM_1C_DW_00
     Blink: 0
@@ -277,6 +305,7 @@ SolidLights:
         OuterAngle: 80
         Intensity: 3
         Range: 30
+        Specular: 1
   - SolidLodA: XO_IRONLAMPHANGING_1B_00
     SolidLodB: ""
     Blink: 0
@@ -291,6 +320,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: XO_STREETLIGHTJ_1B_00
     SolidLodB: XO_STREETLIGHTJ_1C_00
     Blink: 0
@@ -305,6 +335,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XO_LIGHTPOSTA_1A_00
     SolidLodB: ""
     Blink: 0
@@ -319,6 +350,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XO_STREETLIGHTCB_1B_00
     SolidLodB: ""
     Blink: 0
@@ -333,6 +365,7 @@ SolidLights:
         OuterAngle: 55
         Intensity: 4
         Range: 25.4999828
+        Specular: 1
   - SolidLodA: XO_LIGHTPOLEA_1B_00
     SolidLodB: ""
     Blink: 0
@@ -347,6 +380,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XO_PARKLAMPA_1B_00
     SolidLodB: XO_PARKLAMPA_1C_00
     Blink: 0
@@ -361,6 +395,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 3
         Range: 30
+        Specular: 1
   - SolidLodA: XO_IRONLAMPSTANDING_1B_00
     SolidLodB: XO_IRONLAMPSTANDING_1C_00
     Blink: 0
@@ -375,6 +410,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 10
+        Specular: 1
   - SolidLodA: XO_STREETLIGHTD_1B_00
     SolidLodB: ""
     Blink: 0
@@ -389,6 +425,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: XS_FWY_2FRAME_1B_EA_00
     SolidLodB: XS_FWY_2FRAME_1Z_EA_00
     Blink: 0
@@ -403,6 +440,7 @@ SolidLights:
         OuterAngle: 60
         Intensity: 5
         Range: 8
+        Specular: 1
   - SolidLodA: XS_FWY_3FRAME_1B_EA_00
     SolidLodB: XS_FWY_3FRAME_1Z_EA_00
     Blink: 0
@@ -417,6 +455,7 @@ SolidLights:
         OuterAngle: 60
         Intensity: 5
         Range: 10
+        Specular: 1
   - SolidLodA: XO_IF_POWERLIGHTA_1A_LL_00
     SolidLodB: ""
     Blink: 0
@@ -431,6 +470,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 15
+        Specular: 1
   - SolidLodA: XO_CP_STREETLIGHT_1B_DW_00
     SolidLodB: ""
     Blink: 0
@@ -445,6 +485,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 15
+        Specular: 1
   - SolidLodA: XO_IRONLAMPSTANDINGB_1B_00
     SolidLodB: XO_IRONLAMPSTANDINGB_1C_00
     Blink: 0
@@ -459,6 +500,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 5
         Range: 15
+        Specular: 1
   - SolidLodA: XO_MEGALIGHTC_1B_00
     SolidLodB: XO_MEGALIGHTC_1C_00
     Blink: 0
@@ -473,6 +515,7 @@ SolidLights:
         OuterAngle: 35
         Intensity: 5
         Range: 55
+        Specular: 1
   - SolidLodA: XO_COURTLIGHTA_1B_00
     SolidLodB: ""
     Blink: 0
@@ -487,6 +530,7 @@ SolidLights:
         OuterAngle: 70
         Intensity: 5
         Range: 15
+        Specular: 1
   - SolidLodA: XO_STREETLIGHT_ITALYJG_2B_00
     SolidLodB: ""
     Blink: 0
@@ -501,6 +545,7 @@ SolidLights:
         OuterAngle: 70
         Intensity: 2
         Range: 45
+        Specular: 1
   - SolidLodA: XO_STREETLIGHT_ITALYJG_1B_00
     SolidLodB: ""
     Blink: 0
@@ -515,6 +560,7 @@ SolidLights:
         OuterAngle: 70
         Intensity: 2
         Range: 45
+        Specular: 1
   - SolidLodA: XO_POLICEPOSTMM_1B_00
     SolidLodB: XO_POLICEPOSTMM_1C_00
     Blink: 0
@@ -529,6 +575,7 @@ SolidLights:
         OuterAngle: 70
         Intensity: 5
         Range: 45
+        Specular: 1
   - SolidLodA: XO_SAWHORSE_1B_00
     SolidLodB: XO_SAWHORSE_1C_00
     Blink: 0
@@ -543,6 +590,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 3
         Range: 5
+        Specular: 1
       - Position: [0, 1.39999998, 1.10000002]
         Direction: [0, 0, -1]
         Color: [1, 0.800000012, 0.600000024]
@@ -550,6 +598,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 3
         Range: 5
+        Specular: 1
   - SolidLodA: XS_CHEVRCNRA_1_00
     SolidLodB: ""
     Blink: 0
@@ -564,6 +613,7 @@ SolidLights:
         OuterAngle: 180
         Intensity: 5
         Range: 15
+        Specular: 1
   - SolidLodA: XS_MEDIANPOLER_1B_00
     SolidLodB: XS_MEDIANPOLER_1C_00
     Blink: 0
@@ -578,6 +628,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 15
+        Specular: 1
   - SolidLodA: XS_MEDIANPOLE_1B_00
     SolidLodB: ""
     Blink: 2
@@ -592,6 +643,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
+        Specular: 1
   - SolidLodA: XS_MEDIANPOLE_1B_LZ_00
     SolidLodB: ""
     Blink: 0
@@ -606,6 +658,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 9
+        Specular: 1
   - SolidLodA: XS_MEDIANPOLEGREEN_1B_CK_00
     SolidLodB: ""
     Blink: 3
@@ -620,6 +673,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
+        Specular: 1
   - SolidLodA: XO_GASSTATIONPRICESIGN_MM_1A_00
     SolidLodB: XO_GASSTATIONPRICESIGN_MM_1C_00
     Blink: 0
@@ -634,6 +688,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 35
+        Specular: 1
   - SolidLodA: XO_POPMACHINE_RUSH_1B_00
     SolidLodB: ""
     Blink: 0
@@ -648,6 +703,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
+        Specular: 1
   - SolidLodA: XO_POPMACHINE_FRISKY_1B_00
     SolidLodB: ""
     Blink: 0
@@ -662,6 +718,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 5
+        Specular: 1
   - SolidLodA: XO_CARWASHTICKET_1B_EA_00
     SolidLodB: ""
     Blink: 0
@@ -676,6 +733,7 @@ SolidLights:
         OuterAngle: 60
         Intensity: 5
         Range: 4
+        Specular: 1
   - SolidLodA: XB_FERRISWHEEL_1A_00
     SolidLodB: ""
     Blink: 0
@@ -690,6 +748,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 50
+        Specular: 1
   - SolidLodA: XB_BLUESTRIPGASS_1A_00
     SolidLodB: ""
     Blink: 0
@@ -704,6 +763,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [8, 6.0999999, 3]
         Direction: [0, 0, -1]
         Color: [0.5, 0.899999976, 0.800000012]
@@ -711,6 +771,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: XO_BLUESTRIPGASD_ROOF_1A_00
     SolidLodB: XO_BLUESTRIPGASD_ROOF_1A_00
     Blink: 0
@@ -725,6 +786,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 4
         Range: 30
+        Specular: 1
   - SolidLodA: XB_BUSSTATION_1A_00
     SolidLodB: ""
     Blink: 0
@@ -739,6 +801,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 1.60000277
         Range: 30
+        Specular: 1
       - Position: [0.0999790654, -25.1000576, 8.99999809]
         Direction: [0, 0, -1]
         Color: [0.460784316, 0.698673546, 1]
@@ -746,6 +809,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 0.900002599
         Range: 20
+        Specular: 1
   - SolidLodA: TRN_CT_TERRAIN_CITYCENTER_01_CHOP_I19_R7
     SolidLodB: ""
     Blink: 0
@@ -753,18 +817,19 @@ SolidLights:
     UseFirstLight: false
     Flare: ""
     SpotLights:
-      - Position: [1784.4823, 2510.29199, 156.917221]
-        Direction: [-0.199999988, -0.100000016, -1]
+      - Position: [1777.40247, 2503.45752, 150.175659]
+        Direction: [0, 0, -1]
         Color: [0.29411757, 1, 0]
         InnerAngle: 15
         OuterAngle: 90
-        Intensity: 5
+        Intensity: 3
         Range: 25
+        Specular: 0
   - SolidLodA: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
     SolidLodB: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
     Blink: 0
     AlwaysOn: true
-    UseFirstLight: false
+    UseFirstLight: true
     Flare: ""
     SpotLights:
       - Position: [4326.5, 1529.80078, 25.5754166]
@@ -774,6 +839,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 1
         Range: 30
+        Specular: 0
       - Position: [4353.77686, 1458.74805, 19.8860931]
         Direction: [0, 0, -1]
         Color: [1, 0.948673606, 0.563725471]
@@ -781,6 +847,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 1
         Range: 30
+        Specular: 1
       - Position: [4338.11426, 1482.51562, 24.35215]
         Direction: [0, 0, -1]
         Color: [1, 0.948673606, 0.563725471]
@@ -788,6 +855,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 1
         Range: 30
+        Specular: 1
       - Position: [4330.51367, 1507.64478, 25.1030045]
         Direction: [0, 0, -1]
         Color: [1, 0.948673606, 0.563725471]
@@ -795,6 +863,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 1
         Range: 30
+        Specular: 1
       - Position: [4316.31592, 1563.88013, 22.642086]
         Direction: [0, 0, -1]
         Color: [1, 0.948673606, 0.563725471]
@@ -802,11 +871,12 @@ SolidLights:
         OuterAngle: 360
         Intensity: 1
         Range: 30
+        Specular: 1
   - SolidLodA: XO_TUNNEL_LIGHT_LONG_1B_00_DEINST1_Q10
     SolidLodB: ""
     Blink: 0
     AlwaysOn: true
-    UseFirstLight: false
+    UseFirstLight: true
     Flare: ""
     SpotLights:
       - Position: [3505.84155, 3711.37695, 41.0633163]
@@ -816,6 +886,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 4
         Range: 30
+        Specular: 0
       - Position: [3582.34473, 3671.78394, 40.6917496]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -823,6 +894,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 4
         Range: 30
+        Specular: 1
       - Position: [3563.32129, 3689.79858, 42.3632736]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -830,6 +902,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 4
         Range: 30
+        Specular: 1
       - Position: [3523.08447, 3709.62256, 42.9299812]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -837,6 +910,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 4
         Range: 30
+        Specular: 1
       - Position: [3479.73584, 3707.35425, 41.3299751]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -844,6 +918,15 @@ SolidLights:
         OuterAngle: 90
         Intensity: 4
         Range: 30
+        Specular: 1
+      - Position: [3545.58154, 3703.4209, 40.6012955]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 4
+        Range: 30
+        Specular: 1
   - SolidLodA: XO_CT_RADIOSIGNRWRS_1B_00
     SolidLodB: ""
     Blink: 0
@@ -858,6 +941,7 @@ SolidLights:
         OuterAngle: 55
         Intensity: 3
         Range: 30
+        Specular: 1
   - SolidLodA: XO_MEGALIGHTA_1B_00
     SolidLodB: XO_MEGALIGHTA_1C_00
     Blink: 0
@@ -872,6 +956,7 @@ SolidLights:
         OuterAngle: 60
         Intensity: 5
         Range: 50
+        Specular: 1
   - SolidLodA: XO_FLOODLIGHTS_1A_AL_00
     SolidLodB: ""
     Blink: 0
@@ -886,6 +971,7 @@ SolidLights:
         OuterAngle: 45
         Intensity: 5
         Range: 150
+        Specular: 1
   - SolidLodA: XO_MEGALIGHTDAY_1A_00
     SolidLodB: ""
     Blink: 0
@@ -900,6 +986,7 @@ SolidLights:
         OuterAngle: 45
         Intensity: 5
         Range: 50
+        Specular: 1
   - SolidLodA: XO_BUSSHELTERB_1B_00
     SolidLodB: ""
     Blink: 0
@@ -914,6 +1001,7 @@ SolidLights:
         OuterAngle: 180
         Intensity: 1
         Range: 30
+        Specular: 1
   - SolidLodA: XS_CP_CAFE_1B_00_DEINST1_A7
     SolidLodB: ""
     Blink: 0
@@ -928,6 +1016,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 1.4000001
         Range: 10
+        Specular: 0
       - Position: [1175.45398, 2220.18188, 160.764313]
         Direction: [0, 0, -1]
         Color: [0.323529482, 1, 0]
@@ -935,6 +1024,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 10
+        Specular: 1
   - SolidLodA: XB_CARPARKDEALERSHIP_2B_EA_00
     SolidLodB: ""
     Blink: 0
@@ -949,6 +1039,7 @@ SolidLights:
         OuterAngle: 180
         Intensity: 5
         Range: 15
+        Specular: 0
   - SolidLodA: XS_CP_STEAKHOUSE_1B_00
     SolidLodB: ""
     Blink: 0
@@ -963,6 +1054,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 15
+        Specular: 0
   - SolidLodA: XB_CHOPSHOPA_1B_EA_00
     SolidLodB: ""
     Blink: 0
@@ -977,6 +1069,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 30
+        Specular: 0
   - SolidLodA: XB_CP_PARKGARAGE_1B_LL_00
     SolidLodB: ""
     Blink: 0
@@ -991,6 +1084,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 2
         Range: 15
+        Specular: 1
       - Position: [18.1999531, -15.3999729, 12.4999638]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -998,6 +1092,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 2
         Range: 15
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_CAMPUS_XX_CHOP_I11_0
     SolidLodB: ""
     Blink: 0
@@ -1012,6 +1107,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 10
+        Specular: 0
   - SolidLodA: TRN_CT_PROPS_CAMPUS_XX_CHOP_H18_R0
     SolidLodB: ""
     Blink: 0
@@ -1026,6 +1122,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 25
+        Specular: 0
       - Position: [893.639526, 3514.04126, 205.708405]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1033,6 +1130,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 30
+        Specular: 1
       - Position: [913.734741, 3520.29663, 205.041656]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1040,6 +1138,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 30
+        Specular: 1
       - Position: [934.927612, 3530.63867, 205.041626]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1047,6 +1146,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 30
+        Specular: 1
       - Position: [958.402832, 3544.38818, 205.108276]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1054,6 +1154,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 30
+        Specular: 1
       - Position: [976.325317, 3561.18335, 205.241608]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1061,6 +1162,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_CAMPUS_XX_CHOP_H18_R1
     SolidLodB: ""
     Blink: 0
@@ -1075,6 +1177,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 0
       - Position: [884.970825, 3573.45752, 203.555023]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1082,6 +1185,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [856.047241, 3547.56958, 204.811508]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1089,6 +1193,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [900.159912, 3602.29126, 203.335815]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1096,6 +1201,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [931.432617, 3622.10693, 205.076035]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1103,6 +1209,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: XS_STADIUMSCREEN_1A_00
     SolidLodB: ""
     Blink: 0
@@ -1117,6 +1224,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 30
+        Specular: 1
   - SolidLodA: XS_LOTTOA_1B_00
     SolidLodB: ""
     Blink: 0
@@ -1131,6 +1239,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_J13_R0
     SolidLodB: ""
     Blink: 0
@@ -1145,6 +1254,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 70
+        Specular: 0
       - Position: [-32.281456, 2154.60107, 233.146988]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1152,6 +1262,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [-83.6929779, 2104.85571, 236.395462]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1159,6 +1270,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [-41.3787918, 2106.88867, 235.262268]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1166,6 +1278,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [4.27124023, 2140.48853, 231.769104]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1173,6 +1286,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [38.8861694, 2122.7749, 231.934265]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1180,6 +1294,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [82.0288086, 2098.52197, 228.786575]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1187,6 +1302,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [-4.31863403, 2102.85547, 233.719833]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1194,6 +1310,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [33.6038208, 2090.81763, 232.189148]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1201,6 +1318,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [78.7930298, 2072.68042, 229.389191]
         Direction: [0, 0, -1]
         Color: [1, 0.911908865, 0.769607842]
@@ -1208,6 +1326,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_J13_R3
     SolidLodB: ""
     Blink: 0
@@ -1222,6 +1341,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.69999993
         Range: 70
+        Specular: 0
       - Position: [151.018982, 2038.02856, 224.682999]
         Direction: [0, 0, -1]
         Color: [1, 0.880911171, 0.710784316]
@@ -1229,6 +1349,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [176.775879, 2022.71472, 223.099823]
         Direction: [0, 0, -1]
         Color: [1, 0.880911171, 0.710784316]
@@ -1236,6 +1357,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_I4_R2
     SolidLodB: ""
     Blink: 0
@@ -1250,6 +1372,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.49999988
         Range: 50
+        Specular: 0
       - Position: [237.741943, 1966.99609, 221.390335]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1257,6 +1380,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [272.073975, 1944.3573, 218.968216]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1264,6 +1388,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [303.484192, 1921.01685, 217.591217]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1271,6 +1396,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [337.481995, 1900.10889, 216.853287]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1278,6 +1404,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [373.054962, 1881.61108, 216.694855]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1285,6 +1412,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [413.719452, 1877.12183, 215.988876]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1292,6 +1420,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [216.103577, 2011.23755, 222.438568]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1299,6 +1428,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [250.276611, 1989.5177, 220.971924]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1306,6 +1436,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [282.888489, 1967.12402, 218.851944]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1313,6 +1444,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [317.239929, 1945.87769, 216.980469]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1320,6 +1452,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [355.183594, 1932.68433, 215.367401]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1327,6 +1460,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [395.218597, 1925.40149, 213.870285]
         Direction: [0, 0, -1]
         Color: [0.995098054, 0.911168933, 0.775591135]
@@ -1334,6 +1468,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G4_R0
     SolidLodB: ""
     Blink: 0
@@ -1348,6 +1483,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.5999999
         Range: 70
+        Specular: 0
       - Position: [1402.97668, 4437.71484, 221.542603]
         Direction: [0, 0, -1]
         Color: [0.575595915, 0.847038567, 0.995098054]
@@ -1355,6 +1491,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.5999999
         Range: 70
+        Specular: 1
       - Position: [1453.20337, 4446.40381, 219.078674]
         Direction: [0, 0, -1]
         Color: [0.575595915, 0.847038567, 0.995098054]
@@ -1362,6 +1499,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.5999999
         Range: 70
+        Specular: 1
       - Position: [1510.01782, 4437.05615, 219.449951]
         Direction: [0, 0, -1]
         Color: [0.575595915, 0.847038567, 0.995098054]
@@ -1369,6 +1507,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.5999999
         Range: 70
+        Specular: 1
       - Position: [1359.34277, 4394.38623, 221.254379]
         Direction: [0, 0, -1]
         Color: [0.575595915, 0.847038567, 0.995098054]
@@ -1376,6 +1515,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.5999999
         Range: 70
+        Specular: 1
       - Position: [1408.47559, 4411.71094, 220.379669]
         Direction: [0, 0, -1]
         Color: [0.575595915, 0.847038567, 0.995098054]
@@ -1383,6 +1523,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.5999999
         Range: 70
+        Specular: 1
       - Position: [1459.33423, 4417.62354, 217.417633]
         Direction: [0, 0, -1]
         Color: [0.575595915, 0.847038567, 0.995098054]
@@ -1390,6 +1531,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.5999999
         Range: 70
+        Specular: 1
       - Position: [1499.22498, 4411.83447, 215.973022]
         Direction: [0, 0, -1]
         Color: [0.575595915, 0.847038567, 0.995098054]
@@ -1397,6 +1539,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.5999999
         Range: 70
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G9_R1
     SolidLodB: ""
     Blink: 0
@@ -1411,6 +1554,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 0
       - Position: [1594.00708, 4400.05176, 221.582748]
         Direction: [0, 0, -1]
         Color: [0.575999975, 0.847000003, 0.995000005]
@@ -1418,6 +1562,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 70
+        Specular: 1
       - Position: [1643.35913, 4376.4043, 227.231644]
         Direction: [0, 0, -1]
         Color: [0.575999975, 0.847000003, 0.995000005]
@@ -1425,6 +1570,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 1
       - Position: [1579.91772, 4375.37451, 218.435455]
         Direction: [0, 0, -1]
         Color: [0.575999975, 0.847000003, 0.995000005]
@@ -1432,6 +1578,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 1
       - Position: [1630.31982, 4351.62988, 223.664673]
         Direction: [0, 0, -1]
         Color: [0.575999975, 0.847000003, 0.995000005]
@@ -1439,6 +1586,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G9_R3
     SolidLodB: ""
     Blink: 0
@@ -1453,6 +1601,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 0
       - Position: [1688.60742, 4355.4707, 231.527863]
         Direction: [0, 0, -1]
         Color: [0.575999975, 0.847000003, 0.995000005]
@@ -1460,6 +1609,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 1
       - Position: [1671.72205, 4332.53857, 228.370621]
         Direction: [0, 0, -1]
         Color: [0.575999975, 0.847000003, 0.995000005]
@@ -1467,6 +1617,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 1
       - Position: [1736.63, 4305.28711, 234.440369]
         Direction: [0, 0, -1]
         Color: [0.575999975, 0.847000003, 0.995000005]
@@ -1474,6 +1625,7 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+        Specular: 1
   - SolidLodA: XO_FLOODLIGHTAS_1B_BC_00
     SolidLodB: ""
     Blink: 0
@@ -1488,6 +1640,7 @@ SolidLights:
         OuterAngle: 45
         Intensity: 3
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_CP_CR_TERRAIN_A_07_TUNNEL_LOWEND_CHOP_P23_R0
     SolidLodB: ""
     Blink: 0
@@ -1502,6 +1655,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 3
         Range: 25
+        Specular: 0
       - Position: [3759.50146, 1023.74182, 57.3408813]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1509,6 +1663,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 5
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_P27_R2
     SolidLodB: ""
     Blink: 0
@@ -1523,6 +1678,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 0
       - Position: [3776.78223, 729.499634, 19.4629364]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1530,6 +1686,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [3751.28931, 737.754395, 15.1839104]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1537,6 +1694,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 70
+        Specular: 1
       - Position: [3736.30811, 719.285461, 11.7040987]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1544,6 +1702,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3712.823, 730.684937, 7.27342224]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1551,6 +1710,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3698.36304, 708.549194, 3.56626844]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1558,6 +1718,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
   - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_P27_R0
     SolidLodB: ""
     Blink: 0
@@ -1572,6 +1733,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 0
       - Position: [3660.07983, 698.106445, -2.70659065]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1579,6 +1741,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3635.6958, 711.501648, -4.72490835]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1586,6 +1749,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3621.18726, 690.75238, -5.84168053]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1593,6 +1757,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3596.8396, 702.662842, -5.84168053]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1600,6 +1765,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3581.51245, 679.306152, -7.30834627]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1607,6 +1773,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
   - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_R34_R2
     SolidLodB: ""
     Blink: 0
@@ -1621,6 +1788,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 0
       - Position: [3544.15454, 669.169678, -7.84168243]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1628,6 +1796,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3517.99585, 685.181824, -6.90834999]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1635,6 +1804,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3505.93872, 656.069214, -7.70834923]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1642,6 +1812,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3478.19165, 678.296631, -6.24168396]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1649,6 +1820,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3466.88843, 644.910767, -6.24168396]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1656,6 +1828,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
       - Position: [3439.24536, 670.835327, -5.57502079]
         Direction: [0, 0, -1]
         Color: [0.75, 0.933823586, 1]
@@ -1663,10 +1836,11 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 35
+        Specular: 1
   - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_B19_R2
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
     UseFirstLight: true
     Flare: ""
     SpotLights:
@@ -1677,6 +1851,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 0
       - Position: [1868.65222, 940.051025, 119.614433]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1684,6 +1859,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1832.24316, 941.539062, 117.739273]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1691,10 +1867,11 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
   - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_B19_R0
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
     UseFirstLight: true
     Flare: ""
     SpotLights:
@@ -1705,6 +1882,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 0
       - Position: [1796.52075, 944.111572, 118.091034]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1712,6 +1890,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1760.83643, 935.51178, 113.771973]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1719,6 +1898,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1688.42041, 918.419067, 111.342026]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1726,6 +1906,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1695.2229, 908.85791, 111.270386]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1733,6 +1914,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1730.18225, 929.420776, 112.544708]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1740,10 +1922,11 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
   - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_D20_R0
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
     UseFirstLight: true
     Flare: ""
     SpotLights:
@@ -1754,6 +1937,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 0
       - Position: [1622.43066, 892.859314, 110.702225]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1761,6 +1945,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1597.6908, 901.73175, 113.207764]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1768,6 +1953,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1593.61292, 889.52417, 113.128723]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1775,6 +1961,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1550.64893, 905.4729, 115.619492]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1782,6 +1969,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1550.03833, 893.755859, 115.619492]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1789,6 +1977,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1510.0481, 892.826721, 117.619476]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1796,6 +1985,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [1512.70532, 905.421509, 117.619476]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1803,6 +1993,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
   - SolidLodA: TRN_TC_SOUTHWEST_TUNNELA_LOWEND_CHOP_O12_R1
     SolidLodB: ""
     Blink: 0
@@ -1817,6 +2008,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 0
       - Position: [1762.02686, -230.152466, 99.880249]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1824,6 +2016,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 1
       - Position: [1780.78589, -268.230225, 99.1291733]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1831,6 +2024,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 1
   - SolidLodA: TRN_TC_SOUTHWEST_TUNNELA_LOWEND_CHOP_B10_R1
     SolidLodB: ""
     Blink: 0
@@ -1845,6 +2039,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 0
       - Position: [1814.75562, -336.20697, 98.5880585]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1852,6 +2047,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 1
       - Position: [1830.81641, -369.541626, 101.211037]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1859,6 +2055,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 1
       - Position: [1857.22888, -419.277039, 105.409721]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1866,6 +2063,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 1
   - SolidLodA: TRN_TC_CITYCENTERTUNNEL_CHOP_D15_R2
     SolidLodB: ""
     Blink: 0
@@ -1873,17 +2071,18 @@ SolidLights:
     UseFirstLight: false
     Flare: ""
     SpotLights:
-      - Position: [1499.05164, 501.65097, 92.471405]
+      - Position: [1499.75146, 502.551025, 98.2713165]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
         InnerAngle: 15.1000004
         OuterAngle: 120
         Intensity: 2
         Range: 60
+        Specular: 0
   - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O8_R0
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
     UseFirstLight: true
     Flare: ""
     SpotLights:
@@ -1894,6 +2093,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 0
       - Position: [1434.67175, -310.302551, 109.083466]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1901,6 +2101,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 5
         Range: 30
+        Specular: 1
       - Position: [1465.38477, -321.307556, 105.895126]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1908,10 +2109,11 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 1
   - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O8_R1
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
     UseFirstLight: true
     Flare: ""
     SpotLights:
@@ -1922,6 +2124,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 0
       - Position: [1518.21619, -316.532837, 101.823486]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1929,6 +2132,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 1
       - Position: [1553.90222, -317.582031, 98.445755]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1936,6 +2140,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 1
       - Position: [1547.90906, -300.467834, 98.4457474]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1943,10 +2148,11 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 1
   - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O4_R1
     SolidLodB: ""
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
     UseFirstLight: true
     Flare: ""
     SpotLights:
@@ -1957,6 +2163,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 0
       - Position: [1609.22217, -290.860901, 93.9340668]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1964,6 +2171,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.50000012
         Range: 60
+        Specular: 1
   - SolidLodA: XO_CAGELIGHTC_1B_00
     SolidLodB: XO_CAGELIGHTC_1C_00
     Blink: 0
@@ -1978,6 +2186,7 @@ SolidLights:
         OuterAngle: 60
         Intensity: 1
         Range: 30
+        Specular: 0
   - SolidLodA: XO_CAGELIGHTC_1B_00_DEINST1_B1
     SolidLodB: ""
     Blink: 0
@@ -1992,6 +2201,7 @@ SolidLights:
         OuterAngle: 60
         Intensity: 1
         Range: 30
+        Specular: 0
       - Position: [578.593811, 16.5781631, 105.820747]
         Direction: [0, 0, -1]
         Color: [1, 0.847174168, 0.480392158]
@@ -1999,6 +2209,7 @@ SolidLights:
         OuterAngle: 60
         Intensity: 1
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_TC_SEWERA_01_AUX01_CHOP_B1_0
     SolidLodB: ""
     Blink: 0
@@ -2013,6 +2224,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 1.4000001
         Range: 30
+        Specular: 0
       - Position: [579.011414, -44.6385689, 101.19339]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2020,6 +2232,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [570.433472, -70.0045471, 99.9028091]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2027,6 +2240,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: XO_CAGELIGHTD_1B_00
     SolidLodB: ""
     Blink: 0
@@ -2041,6 +2255,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 40
+        Specular: 0
   - SolidLodA: XO_CAGELIGHTD_1B_00_DEINST1_B3
     SolidLodB: ""
     Blink: 0
@@ -2055,6 +2270,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 40
+        Specular: 0
       - Position: [663.966492, -396.204773, 101.154564]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2062,6 +2278,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 40
+        Specular: 1
       - Position: [704.913269, -406.507507, 101.100487]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2069,6 +2286,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 40
+        Specular: 1
   - SolidLodA: TRN_TC_SEWERA_01_CHOP_B3_R10
     SolidLodB: ""
     Blink: 0
@@ -2083,6 +2301,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 0
       - Position: [871.824951, -431.442932, 103.718262]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2090,6 +2309,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [872.10614, -401.496857, 103.318268]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2097,6 +2317,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [898.794678, -434.970795, 103.318268]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2104,6 +2325,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [903.196716, -405.692291, 103.318268]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2111,6 +2333,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_TC_SEWERA_01_CHOP_B4_R1
     SolidLodB: ""
     Blink: 0
@@ -2125,6 +2348,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 0
       - Position: [934.224976, -412.780609, 103.318283]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2132,6 +2356,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [950.556274, -452.657196, 103.318283]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2139,6 +2364,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [971.469421, -467.835663, 103.851608]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2146,6 +2372,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [994.062134, -487.369385, 103.851608]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2153,6 +2380,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [1015.63391, -466.705627, 103.984909]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2160,6 +2388,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [993.52594, -447.164551, 103.984909]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2167,6 +2396,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [966.701965, -427.873474, 103.984909]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2174,6 +2404,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_TC_SEWERROOFA_01_CHOP_B7_R1
     SolidLodB: ""
     Blink: 0
@@ -2188,6 +2419,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 2
         Range: 30
+        Specular: 0
   - SolidLodA: TRN_CP_OILREFINERY_TUNNELC_01_CHOP_R18_R0
     SolidLodB: ""
     Blink: 0
@@ -2202,6 +2434,7 @@ SolidLights:
         OuterAngle: 120.099998
         Intensity: 2
         Range: 30
+        Specular: 0
       - Position: [4134.67773, 2382.97534, 44.3275146]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2209,6 +2442,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [4136.70117, 2431.44507, 44.996933]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2216,6 +2450,7 @@ SolidLights:
         OuterAngle: 120.099998
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [4170.76562, 2501.32324, 44.3840103]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2223,6 +2458,7 @@ SolidLights:
         OuterAngle: 120.099998
         Intensity: 2
         Range: 30
+        Specular: 1
       - Position: [4145.53955, 2460.34033, 44.3309708]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2230,6 +2466,7 @@ SolidLights:
         OuterAngle: 120.099998
         Intensity: 2
         Range: 30
+        Specular: 1
   - SolidLodA: TRN_CP_CANNERYTUNNEL_01_CHOP_R19_R0
     SolidLodB: ""
     Blink: 0
@@ -2244,6 +2481,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 0
       - Position: [3634.59644, 2234.18799, 54.3581085]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2251,6 +2489,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [3599.65283, 2299.9751, 44.3928299]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2258,6 +2497,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [3562.3208, 2343.69482, 34.4918823]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2265,6 +2505,7 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1
       - Position: [3580.63599, 2322.4939, 39.847271]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -2272,3 +2513,4 @@ SolidLights:
         OuterAngle: 120
         Intensity: 2
         Range: 50
+        Specular: 1

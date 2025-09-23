@@ -7,6 +7,7 @@ struct SpotLightResult
 float4 cvaSpPositionRange[24];
 float4 cvaSpDirectionOuterCos[24];
 float4 cvaSpColorInnerCos[24];
+float cfaSpSpecular[24];
 
 SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3 localPos, const float3 view, const float shine)
 {
@@ -23,9 +24,9 @@ SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3
 	float dotL = dot(localNormal, L);
 	dotL = smoothstep(-0.5, 1.0, dotL);
 	
-	float3 spec = float3(0, 0, 0);
-	
 	float3 lightScale = cvaSpColorInnerCos[i].xyz * dotL * distAtten;
+	
+	float3 spec = float3(0, 0, 0);
 	
 #ifdef SPOT_SPECULAR
 	float3 H = normalize(L + view);
@@ -37,7 +38,7 @@ SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3
 	SpotLightResult result;
 	
 	result.Diffuse = lightScale * diffuseAtten;
-	result.Specular = spec;
+	result.Specular = spec * cfaSpSpecular[i];
 	
 	return result;
 }

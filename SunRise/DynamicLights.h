@@ -14,6 +14,8 @@
 D3DXVECTOR4 SP_Position_Range[NUM_SPOTLIGHTS];
 D3DXVECTOR4 SP_Direction_OuterCos[NUM_SPOTLIGHTS];
 D3DXVECTOR4 SP_Color_InnerCos[NUM_SPOTLIGHTS];
+float SP_Specular[NUM_SPOTLIGHTS];
+
 int NumSpotLights;
 
 void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
@@ -56,6 +58,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	memset(&SP_Position_Range, 0, sizeof(SP_Position_Range));
 	memset(&SP_Direction_OuterCos, 0, sizeof(SP_Direction_OuterCos));
 	memset(&SP_Color_InnerCos, 0, sizeof(SP_Color_InnerCos));
+	memset(&SP_Specular, 0, sizeof(SP_Specular));
 
 	if (!model->pSolid || model->pSolid->Volume > 170, 000.0f)
 	{
@@ -105,6 +108,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 				s.Range = spotlight->Range;
 				s.InnerCos = cosf(D3DXToRadian(spotlight->InnerAngle));
 				s.OuterCos = cosf(D3DXToRadian(spotlight->OuterAngle));
+				s.Specular = spotlight->Specular;
 
 				if (!worldSpace)
 				{
@@ -120,6 +124,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 				SP_Position_Range[NumSpotLights] = D3DXVECTOR4(s.Position, s.Range);
 				SP_Direction_OuterCos[NumSpotLights] = D3DXVECTOR4(s.Direction, s.OuterCos);
 				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color, s.InnerCos);
+				SP_Specular[NumSpotLights] = s.Specular;
 
 				NumSpotLights++;
 			}
@@ -135,6 +140,7 @@ inline void SetDynamicLights(RenderModel* model)
 		effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, 24);
 		effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, 24);
 		effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, 24);
+		effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, 24);
 	}
 }
 

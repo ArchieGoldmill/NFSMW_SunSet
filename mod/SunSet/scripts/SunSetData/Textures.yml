@@ -59,9 +59,9 @@ Textures:
     Brightness: 2
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
-    IgnoreWeather: true
+    IgnoreWeather: false
   - Name: SGN_BANKOFROCKPORT_EA
     Brightness: 4
     Color: [1, 1, 1]
@@ -402,7 +402,7 @@ Textures:
     Brightness: 2
     Color: [1, 1, 1]
     Mask: ARC_CAMPUS_PKD_ACCESS_E
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
   - Name: 0x5D013360
@@ -507,7 +507,7 @@ Textures:
     Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: true
   - Name: ADS_BKING_BB_A

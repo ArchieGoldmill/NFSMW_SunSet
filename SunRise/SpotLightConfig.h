@@ -22,6 +22,7 @@ void ParseSpotLight(SpotLight& spotLight, const YAML::Node& spot)
 	spotLight.OuterAngle = spot["OuterAngle"].as<float>();
 	spotLight.Intensity = spot["Intensity"].as<float>();
 	spotLight.Range = spot["Range"].as<float>();
+	spotLight.Specular = YmlGet(spot, "Specular", 1.0f);
 }
 
 FlareModel* GetFlareModel(std::string flareName)
@@ -116,6 +117,7 @@ void SaveSpotLight(YAML::Node& lightNode, SpotLight& light)
 	lightNode["OuterAngle"] = light.OuterAngle;
 	lightNode["Intensity"] = light.Intensity;
 	lightNode["Range"] = light.Range;
+	lightNode["Specular"] = light.Specular;
 }
 
 void SaveSpotlights(YAML::Node& spotlights, std::vector<SpotLight>& lights)

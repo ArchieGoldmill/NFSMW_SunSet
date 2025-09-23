@@ -91,7 +91,7 @@ inline bool ConeSphereIntersect(const D3DXVECTOR3& coneApex, const D3DXVECTOR3& 
 		return false;
 	}
 
-	if (coneAngle < 3.14)
+	if (coneAngle < 3.14 / 2)
 	{
 		auto vnorm = v / vlen;
 

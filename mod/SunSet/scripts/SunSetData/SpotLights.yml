@@ -233,8 +233,8 @@ SolidLights:
         Color: [1, 0.699999988, 0.5]
         InnerAngle: 35
         OuterAngle: 65
-        Intensity: 5
-        Range: 30
+        Intensity: 3
+        Range: 20
   - SolidLodA: XO_STREETLIGHTG_1B_00
     SolidLodB: XO_STREETLIGHTG_1C_00
     Blink: 0
@@ -256,13 +256,13 @@ SolidLights:
     UseFirstLight: false
     Flare: LampPost
     SpotLights:
-      - Position: [0, -2.79999995, 8.19999981]
+      - Position: [0, -2.79999995, 8.40000057]
         Direction: [0, -0.5, -1]
         Color: [1, 1, 1]
         InnerAngle: 35
         OuterAngle: 65
         Intensity: 5
-        Range: 30
+        Range: 20
   - SolidLodA: XO_STREETLIGHTM_1B_DW_00
     SolidLodB: XO_STREETLIGHTM_1C_DW_00
     Blink: 0
@@ -274,8 +274,8 @@ SolidLights:
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
         InnerAngle: 35
-        OuterAngle: 65
-        Intensity: 5
+        OuterAngle: 80
+        Intensity: 3
         Range: 30
   - SolidLodA: XO_IRONLAMPHANGING_1B_00
     SolidLodB: ""
@@ -289,7 +289,7 @@ SolidLights:
         Color: [1, 0.699999988, 0.5]
         InnerAngle: 35
         OuterAngle: 65
-        Intensity: 5
+        Intensity: 2
         Range: 30
   - SolidLodA: XO_STREETLIGHTJ_1B_00
     SolidLodB: XO_STREETLIGHTJ_1C_00
@@ -358,8 +358,8 @@ SolidLights:
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
         InnerAngle: 35
-        OuterAngle: 65
-        Intensity: 5
+        OuterAngle: 90
+        Intensity: 3
         Range: 30
   - SolidLodA: XO_IRONLAMPSTANDING_1B_00
     SolidLodB: XO_IRONLAMPSTANDING_1C_00
@@ -499,7 +499,7 @@ SolidLights:
         Color: [0.600000024, 1, 0.800000012]
         InnerAngle: 15
         OuterAngle: 70
-        Intensity: 5
+        Intensity: 2
         Range: 45
   - SolidLodA: XO_STREETLIGHT_ITALYJG_1B_00
     SolidLodB: ""
@@ -513,7 +513,7 @@ SolidLights:
         Color: [0.800000012, 1, 0.600000024]
         InnerAngle: 15
         OuterAngle: 70
-        Intensity: 5
+        Intensity: 2
         Range: 45
   - SolidLodA: XO_POLICEPOSTMM_1B_00
     SolidLodB: XO_POLICEPOSTMM_1C_00
@@ -1016,7 +1016,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
-    UseFirstLight: false
+    UseFirstLight: true
     Flare: ""
     SpotLights:
       - Position: [865.282104, 3508.82764, 205.041656]
@@ -1025,7 +1025,7 @@ SolidLights:
         InnerAngle: 15
         OuterAngle: 120
         Intensity: 3
-        Range: 30
+        Range: 25
       - Position: [893.639526, 3514.04126, 205.708405]
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
@@ -1065,7 +1065,7 @@ SolidLights:
     SolidLodB: ""
     Blink: 0
     AlwaysOn: false
-    UseFirstLight: false
+    UseFirstLight: true
     Flare: ""
     SpotLights:
       - Position: [894.822144, 3538.72021, 202.141693]
@@ -1474,3 +1474,801 @@ SolidLights:
         OuterAngle: 100
         Intensity: 1.60000014
         Range: 90
+  - SolidLodA: XO_FLOODLIGHTAS_1B_BC_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, 11.1000099]
+        Direction: [0, -1.50000012, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 45
+        Intensity: 3
+        Range: 30
+  - SolidLodA: TRN_CP_CR_TERRAIN_A_07_TUNNEL_LOWEND_CHOP_P23_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3743.5271, 1034.50085, 59.1075668]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 25
+      - Position: [3759.50146, 1023.74182, 57.3408813]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 5
+        Range: 30
+  - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_P27_R2
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3789.46753, 749.078552, 23.4159698]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3776.78223, 729.499634, 19.4629364]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [3751.28931, 737.754395, 15.1839104]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+      - Position: [3736.30811, 719.285461, 11.7040987]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3712.823, 730.684937, 7.27342224]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3698.36304, 708.549194, 3.56626844]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+  - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_P27_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3673.60132, 721.03064, 0.891870499]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3660.07983, 698.106445, -2.70659065]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3635.6958, 711.501648, -4.72490835]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3621.18726, 690.75238, -5.84168053]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3596.8396, 702.662842, -5.84168053]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3581.51245, 679.306152, -7.30834627]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+  - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_R34_R2
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3557.94409, 693.679443, -6.90834808]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3544.15454, 669.169678, -7.84168243]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3517.99585, 685.181824, -6.90834999]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3505.93872, 656.069214, -7.70834923]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3478.19165, 678.296631, -6.24168396]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3466.88843, 644.910767, -6.24168396]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+      - Position: [3439.24536, 670.835327, -5.57502079]
+        Direction: [0, 0, -1]
+        Color: [0.75, 0.933823586, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 35
+  - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_B19_R2
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1866.6698, 952.644592, 120.183746]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1868.65222, 940.051025, 119.614433]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1832.24316, 941.539062, 117.739273]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+  - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_B19_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1795.96887, 932.152954, 117.007187]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1796.52075, 944.111572, 118.091034]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1760.83643, 935.51178, 113.771973]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1688.42041, 918.419067, 111.342026]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1695.2229, 908.85791, 111.270386]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1730.18225, 929.420776, 112.544708]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+  - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_D20_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1656.14856, 896.66394, 109.034286]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1622.43066, 892.859314, 110.702225]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1597.6908, 901.73175, 113.207764]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1593.61292, 889.52417, 113.128723]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1550.64893, 905.4729, 115.619492]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1550.03833, 893.755859, 115.619492]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1510.0481, 892.826721, 117.619476]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [1512.70532, 905.421509, 117.619476]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+  - SolidLodA: TRN_TC_SOUTHWEST_TUNNELA_LOWEND_CHOP_O12_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1744.15308, -195.712402, 101.625076]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+      - Position: [1762.02686, -230.152466, 99.880249]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+      - Position: [1780.78589, -268.230225, 99.1291733]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+  - SolidLodA: TRN_TC_SOUTHWEST_TUNNELA_LOWEND_CHOP_B10_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1797.70776, -301.884888, 98.8619385]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+      - Position: [1814.75562, -336.20697, 98.5880585]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+      - Position: [1830.81641, -369.541626, 101.211037]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+      - Position: [1857.22888, -419.277039, 105.409721]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+  - SolidLodA: TRN_TC_CITYCENTERTUNNEL_CHOP_D15_R2
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [1499.05164, 501.65097, 92.471405]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15.1000004
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+  - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O8_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1430.24792, -326.610352, 109.0168]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+      - Position: [1434.67175, -310.302551, 109.083466]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 5
+        Range: 30
+      - Position: [1465.38477, -321.307556, 105.895126]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+  - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O8_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1483.75488, -320.990387, 105.460526]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+      - Position: [1518.21619, -316.532837, 101.823486]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+      - Position: [1553.90222, -317.582031, 98.445755]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+      - Position: [1547.90906, -300.467834, 98.4457474]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+  - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O4_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1578.14807, -301.137939, 95.1684952]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+      - Position: [1609.22217, -290.860901, 93.9340668]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 14.8999996
+        OuterAngle: 120
+        Intensity: 1.50000012
+        Range: 60
+  - SolidLodA: XO_CAGELIGHTC_1B_00
+    SolidLodB: XO_CAGELIGHTC_1C_00
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: LampPost
+    SpotLights:
+      - Position: [0, 0, -0.5]
+        Direction: [0, 0, -1]
+        Color: [1, 0.847174168, 0.480392158]
+        InnerAngle: 15
+        OuterAngle: 60
+        Intensity: 1
+        Range: 30
+  - SolidLodA: XO_CAGELIGHTC_1B_00_DEINST1_B1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: LampPost
+    SpotLights:
+      - Position: [578.182556, 46.2826805, 110.096886]
+        Direction: [0, 0, -1]
+        Color: [1, 0.847174168, 0.480392158]
+        InnerAngle: 15
+        OuterAngle: 60
+        Intensity: 1
+        Range: 30
+      - Position: [578.593811, 16.5781631, 105.820747]
+        Direction: [0, 0, -1]
+        Color: [1, 0.847174168, 0.480392158]
+        InnerAngle: 15
+        OuterAngle: 60
+        Intensity: 1
+        Range: 30
+  - SolidLodA: TRN_TC_SEWERA_01_AUX01_CHOP_B1_0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [558.094421, -44.125885, 100.473763]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.4000001
+        Range: 30
+      - Position: [579.011414, -44.6385689, 101.19339]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 30
+      - Position: [570.433472, -70.0045471, 99.9028091]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 30
+  - SolidLodA: XO_CAGELIGHTD_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: LampPost
+    SpotLights:
+      - Position: [0, 0, -0.200000018]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 40
+  - SolidLodA: XO_CAGELIGHTD_1B_00_DEINST1_B3
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: LampPost
+    SpotLights:
+      - Position: [630.034241, -372.989899, 101.164146]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 40
+      - Position: [663.966492, -396.204773, 101.154564]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 40
+      - Position: [704.913269, -406.507507, 101.100487]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 40
+  - SolidLodA: TRN_TC_SEWERA_01_CHOP_B3_R10
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [840.508423, -440.056793, 104.984901]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [871.824951, -431.442932, 103.718262]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [872.10614, -401.496857, 103.318268]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [898.794678, -434.970795, 103.318268]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [903.196716, -405.692291, 103.318268]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+  - SolidLodA: TRN_TC_SEWERA_01_CHOP_B4_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [925.305725, -442.309509, 103.318283]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [934.224976, -412.780609, 103.318283]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [950.556274, -452.657196, 103.318283]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [971.469421, -467.835663, 103.851608]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [994.062134, -487.369385, 103.851608]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [1015.63391, -466.705627, 103.984909]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [993.52594, -447.164551, 103.984909]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+      - Position: [966.701965, -427.873474, 103.984909]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+  - SolidLodA: TRN_TC_SEWERROOFA_01_CHOP_B7_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1156.2323, -565.491577, 104.118355]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 90
+        Intensity: 2
+        Range: 30
+  - SolidLodA: TRN_CP_OILREFINERY_TUNNELC_01_CHOP_R18_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [4129.98828, 2352.19971, 44.5514259]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120.099998
+        Intensity: 2
+        Range: 30
+      - Position: [4134.67773, 2382.97534, 44.3275146]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 30
+      - Position: [4136.70117, 2431.44507, 44.996933]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120.099998
+        Intensity: 2
+        Range: 30
+      - Position: [4170.76562, 2501.32324, 44.3840103]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120.099998
+        Intensity: 2
+        Range: 30
+      - Position: [4145.53955, 2460.34033, 44.3309708]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120.099998
+        Intensity: 2
+        Range: 30
+  - SolidLodA: TRN_CP_CANNERYTUNNEL_01_CHOP_R19_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3620.22632, 2270.23071, 48.7014542]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [3634.59644, 2234.18799, 54.3581085]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [3599.65283, 2299.9751, 44.3928299]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [3562.3208, 2343.69482, 34.4918823]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+      - Position: [3580.63599, 2322.4939, 39.847271]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50

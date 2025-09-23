@@ -123,3 +123,35 @@ Meshes:
     Position: [215.339752, 3766.09058, 188.812927]
     Rotation: [0, 0, -40]
     Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [1598.69568, -487.117004, 92.1892929]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [1574.07629, -493.601288, 92.2643433]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [1547.26233, -502.469421, 93.2266998]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [602.996216, -134.880966, 103.232262]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [608.144653, -149.827454, 103.515594]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [612.373047, -165.16217, 103.250389]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [615.113892, -181.241165, 103.158737]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]
+  - Solid: XO_CAGELIGHTC_1B_00
+    Position: [615.278564, -200.090958, 103.561676]
+    Rotation: [0, 0, 0]
+    Scale: [1, 1, 1]

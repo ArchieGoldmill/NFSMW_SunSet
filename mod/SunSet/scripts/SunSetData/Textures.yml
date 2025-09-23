@@ -76,6 +76,13 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_TOROGASB_BB_EA
+    Brightness: 4
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: false
   - Name: 0x1FF171DF
     Brightness: 10
     Color: [1, 1, 1]
@@ -303,7 +310,7 @@ Textures:
   - Name: ARC_BUILDINGBRICKI_LZ
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]
-    Mask: ARC BUILDINGBRICKI_LZ_M
+    Mask: ARC_BUILDINGBRICKI_LZ_M
     AlwaysOn: false
     Prelit: false
     IgnoreWeather: false
@@ -394,9 +401,9 @@ Textures:
   - Name: ARC_CAMPUS_PKD_ACCESS
     Brightness: 2
     Color: [1, 1, 1]
-    Mask: ""
+    Mask: ARC_CAMPUS_PKD_ACCESS_E
     AlwaysOn: true
-    Prelit: true
+    Prelit: false
     IgnoreWeather: false
   - Name: 0x5D013360
     Brightness: 5
@@ -566,6 +573,13 @@ Textures:
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
+  - Name: ADS_AUTOZONE_BB_B_EA
+    Brightness: 3.19999886
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: false
   - Name: 0x9414F03D
     Brightness: 5
     Color: [1, 1, 1]
@@ -669,6 +683,13 @@ Textures:
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
+    Prelit: true
+    IgnoreWeather: false
+  - Name: OBJ_LIGHTFIXTURE_WH
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
   - Name: ARC_ROCKETDINER_ROCKET

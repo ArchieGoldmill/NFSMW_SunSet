@@ -34,6 +34,7 @@ struct Config
 	bool RealFeReflections;
 	bool WorldVertexColor;
 	bool CarVertexColor;
+	bool TunnelWetnessFix;
 
 	float WetTime;
 	float DryTime;
@@ -73,6 +74,7 @@ void LoadConfig()
 	g_Config.RealFeReflections = settings["RealFeReflections"].as<bool>();
 	g_Config.WorldVertexColor = settings["WorldVertexColor"].as<bool>();
 	g_Config.CarVertexColor = settings["CarVertexColor"].as<bool>();
+	g_Config.TunnelWetnessFix = settings["TunnelWetnessFix"].as<bool>();
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
@@ -126,6 +128,7 @@ void SaveConfig()
 	config["RealFeReflections"] = g_Config.RealFeReflections;
 	config["WorldVertexColor"] = g_Config.WorldVertexColor;
 	config["CarVertexColor"] = g_Config.CarVertexColor;
+	config["TunnelWetnessFix"] = g_Config.TunnelWetnessFix;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

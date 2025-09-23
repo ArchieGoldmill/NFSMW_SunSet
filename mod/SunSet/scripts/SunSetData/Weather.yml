@@ -158,7 +158,7 @@ Weather:
       FogColor: [0.168012306, 0.211966008, 0.225490212]
       FogSunColor: [0.485294104, 0.391257852, 0.285467088]
       FogStart: 35
-      FogEnd: 700
+      FogEnd: 200
       FogPower: 0.49999997
       FogExponent: 0.800000012
   - Time: 0.5
@@ -211,8 +211,8 @@ Weather:
       SkyBrightness: 3
       FogColor: [0.29726547, 0.366770089, 0.436274529]
       FogSunColor: [0.296999991, 0.367000014, 0.43599999]
-      FogStart: 150
-      FogEnd: 700
+      FogStart: 30
+      FogEnd: 300
       FogPower: 0.699999988
       FogExponent: 0.800000012
   - Time: 0.730000019
@@ -265,8 +265,8 @@ Weather:
       SkyBrightness: 8
       FogColor: [0.480392158, 0.427061409, 0.315551698]
       FogSunColor: [0.602941155, 0.502451003, 0.452205867]
-      FogStart: 150
-      FogEnd: 700
+      FogStart: 30
+      FogEnd: 200
       FogPower: 0.49999997
       FogExponent: 0.800000012
   - Time: 0.800000012

@@ -2,9 +2,9 @@ CarHeadLights:
   Position: [0.100000001, 0, 0]
   Direction: [1, 0, 0]
   Color: [1, 1, 1]
-  InnerAngle: 25
-  OuterAngle: 45
-  Intensity: 3
+  InnerAngle: 10
+  OuterAngle: 50
+  Intensity: 2
   Range: 50
   Specular: 1
 CarBrakeLightsOn:
@@ -332,9 +332,9 @@ SolidLights:
         Direction: [0, 0, -1]
         Color: [0.899999976, 0.949999988, 1]
         InnerAngle: 35
-        OuterAngle: 65
-        Intensity: 5
-        Range: 30
+        OuterAngle: 60
+        Intensity: 3
+        Range: 15
         Specular: 1
   - SolidLodA: XO_LIGHTPOSTA_1A_00
     SolidLodB: ""
@@ -631,18 +631,18 @@ SolidLights:
         Specular: 1
   - SolidLodA: XS_MEDIANPOLE_1B_00
     SolidLodB: ""
-    Blink: 2
+    Blink: 1
     AlwaysOn: false
     UseFirstLight: false
     Flare: Chevron
     SpotLights:
-      - Position: [0, 0, 2.0999999]
+      - Position: [0, -0.0999999866, 2.0999999]
         Direction: [0, 0, -1]
         Color: [1, 0.800000012, 0.400000006]
         InnerAngle: 359
         OuterAngle: 360
-        Intensity: 5
-        Range: 5
+        Intensity: 3
+        Range: 7
         Specular: 1
   - SolidLodA: XS_MEDIANPOLE_1B_LZ_00
     SolidLodB: ""
@@ -701,7 +701,7 @@ SolidLights:
         Color: [1, 0.5, 0.699999988]
         InnerAngle: 359
         OuterAngle: 360
-        Intensity: 5
+        Intensity: 3
         Range: 5
         Specular: 1
   - SolidLodA: XO_POPMACHINE_FRISKY_1B_00
@@ -716,7 +716,7 @@ SolidLights:
         Color: [0.600000024, 1, 0.699999988]
         InnerAngle: 359
         OuterAngle: 360
-        Intensity: 5
+        Intensity: 3
         Range: 5
         Specular: 1
   - SolidLodA: XO_CARWASHTICKET_1B_EA_00
@@ -1363,7 +1363,7 @@ SolidLights:
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
-    Flare: LampPost
+    Flare: ""
     SpotLights:
       - Position: [207.247925, 1992.0885, 222.714813]
         Direction: [0, 0, -1]

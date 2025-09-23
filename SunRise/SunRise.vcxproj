@@ -253,6 +253,7 @@
     <ClInclude Include="TextureInfo.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="TimeOfDay.h" />
+    <ClInclude Include="TrackPath.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UICommon.h" />
     <ClInclude Include="UIConfig.h" />
@@ -275,10 +276,19 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\mod\SunSet\scripts\SunSetData\Config.yml" />
+    <None Include="..\mod\SunSet\scripts\SunSetData\Flares.yml" />
+    <None Include="..\mod\SunSet\scripts\SunSetData\Meshes.yml" />
+    <None Include="..\mod\SunSet\scripts\SunSetData\SpotLights.yml" />
+    <None Include="..\mod\SunSet\scripts\SunSetData\Textures.yml" />
+    <None Include="..\mod\SunSet\scripts\SunSetData\Weather.yml" />
     <None Include="rcdata1.bin" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="volume.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\mod\readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1029,7 +1029,7 @@ Textures:
     Prelit: true
     IgnoreWeather: false
   - Name: SGN_SPORTSCENTRE_VC
-    Brightness: 8
+    Brightness: 5.99999905
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false

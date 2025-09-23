@@ -49,6 +49,7 @@ namespace UI
 							spotLight.Intensity = 5;
 							spotLight.InnerAngle = 15;
 							spotLight.OuterAngle = 45;
+							spotLight.Specular = 1;
 
 							solidLights.Lights.push_back(spotLight);
 							SolidLightsList.push_back(solidLights);

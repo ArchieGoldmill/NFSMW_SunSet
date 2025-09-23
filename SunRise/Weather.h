@@ -27,10 +27,9 @@ private:
 
 	float RoadWetness = 0.0f;
 	float RoadRainDrops = 0.0f;
-
 	float LightIntensity = 0.0f;
-
 	float NightFactor = 0.0f;
+	float TunnelWetness = 0.0f;
 
 public:
 
@@ -357,6 +356,14 @@ private:
 	{
 		bool isRaining = this->IsRaining();
 		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * 1.0 / (isRaining ? g_Config.WetTime : g_Config.DryTime));
+		if (g_Config.TunnelWetnessFix)
+		{
+			MoveTowards(this->TunnelWetness, Rain::Instance->NumParticles > 0 ? 1.0 : 0.0, Game::DeltaTime);
+		}
+		else
+		{
+			this->TunnelWetness = 1.0f;
+		}
 
 		MoveTowards(this->rain, isRaining > 0.0f ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
 		if (g_Config.Editor)
@@ -372,7 +379,7 @@ private:
 		}
 
 		rainParams.x = Rain::Instance->Intensity;
-		rainParams.y = RoadWetness;
+		rainParams.y = RoadWetness * this->TunnelWetness;
 
 		if (isRaining)
 		{

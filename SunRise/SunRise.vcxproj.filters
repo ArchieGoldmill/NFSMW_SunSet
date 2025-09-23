@@ -35,6 +35,9 @@
     <Filter Include="Features\PostEffects">
       <UniqueIdentifier>{dad4cb40-5304-4232-90d9-b1b3f5baa2ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mod">
+      <UniqueIdentifier>{7e8ec91f-c63c-4eca-a642-a21795a959ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -337,6 +340,9 @@
     <ClInclude Include="UpdateMaterials.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="TrackPath.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -347,10 +353,33 @@
     <None Include="rcdata1.bin">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\mod\SunSet\scripts\SunSetData\Config.yml">
+      <Filter>Mod</Filter>
+    </None>
+    <None Include="..\mod\SunSet\scripts\SunSetData\Flares.yml">
+      <Filter>Mod</Filter>
+    </None>
+    <None Include="..\mod\SunSet\scripts\SunSetData\Meshes.yml">
+      <Filter>Mod</Filter>
+    </None>
+    <None Include="..\mod\SunSet\scripts\SunSetData\SpotLights.yml">
+      <Filter>Mod</Filter>
+    </None>
+    <None Include="..\mod\SunSet\scripts\SunSetData\Textures.yml">
+      <Filter>Mod</Filter>
+    </None>
+    <None Include="..\mod\SunSet\scripts\SunSetData\Weather.yml">
+      <Filter>Mod</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="volume.dds">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\mod\readme.txt">
+      <Filter>Mod</Filter>
+    </Text>
   </ItemGroup>
 </Project>

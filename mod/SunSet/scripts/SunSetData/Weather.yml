@@ -195,8 +195,8 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 0.799999714
       AmbientIntensity: 1.20000005
-      CarDiffuseIntensity: 0.799999714
-      CarAmbientIntensity: 1.20000005
+      CarDiffuseIntensity: 0.599999666
+      CarAmbientIntensity: 0.799999952
       GodRaysColor: [0, 0, 0, 0]
       CloudColor: [0.29411763, 0.29411763, 0.29411763, 1]
       WaterColor: [0.372548997, 0.372548997, 0.372548997]

@@ -5,8 +5,9 @@ struct Rain
 {
 	inline static Rain*& Instance = *(Rain**)0x009196B8;
 
-	int unk1[0x90];
-	int HasTrackPath;
+	int unk1[0x8F];
+	int IsInTunnel;
+	int IsUnderOverpass;
 	TrackPath* pTrackPath;
 	int unk2[0xF];
 	int NumParticles;

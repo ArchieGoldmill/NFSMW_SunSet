@@ -358,7 +358,7 @@ private:
 		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * 1.0 / (isRaining ? g_Config.WetTime : g_Config.DryTime));
 		if (g_Config.TunnelWetnessFix)
 		{
-			MoveTowards(this->TunnelWetness, Rain::Instance->NumParticles > 0 ? 1.0 : 0.0, Game::DeltaTime);
+			MoveTowards(this->TunnelWetness, Rain::Instance->IsInTunnel ? 0.0 : 1.0, Game::DeltaTime);
 		}
 		else
 		{
@@ -378,7 +378,9 @@ private:
 			}
 		}
 
-		rainParams.x = Rain::Instance->Intensity;
+		bool covered = Rain::Instance->IsInTunnel || Rain::Instance->IsUnderOverpass;
+
+		rainParams.x = Rain::Instance->Intensity * !covered;
 		rainParams.y = RoadWetness * this->TunnelWetness;
 
 		if (isRaining)

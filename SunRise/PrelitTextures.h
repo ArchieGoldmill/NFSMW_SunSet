@@ -11,11 +11,13 @@ struct PrelitTexture
 	HashField Mask;
 	TextureInfo* MaskTexture = NULL;
 
-	D3DXVECTOR4 Color = { 1, 1, 1, 1 };
+	D3DXVECTOR3 Color = { 1, 1, 1 };
+	float Brightness = 1.0f;
 
 	bool AlwaysOn;
 	bool Prelit;
 	bool IgnoreWeather;
+	bool UseVertexColor;
 
 	void ParseTextureName()
 	{

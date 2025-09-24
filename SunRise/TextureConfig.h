@@ -30,12 +30,13 @@ void LoadTextureConfig()
 		PrelitTexture prelit;
 
 		prelit.Name = node["Name"].as<std::string>();
-		prelit.Color = ParseVec3To4(node["Color"]);
-		prelit.Color.w = YmlGet(node, "Brightness", 1.0f);
+		prelit.Color = ParseVec3(node["Color"]);
+		prelit.Brightness = YmlGet(node, "Brightness", 1.0f);
 		prelit.Mask.SetString(node["Mask"].as<std::string>());
 		prelit.AlwaysOn = YmlGet(node, "AlwaysOn", true);
 		prelit.Prelit = YmlGet(node, "Prelit", true);
 		prelit.IgnoreWeather = YmlGet(node, "IgnoreWeather", false);
+		prelit.UseVertexColor = YmlGet(node, "UseVertexColor", true);
 		prelit.ParseTextureName();
 
 		if (CheckTexture(prelit.NameHash))
@@ -57,12 +58,13 @@ void SaveTextureConfig()
 		YAML::Node node;
 
 		node["Name"] = tex.Name;
-		node["Brightness"] = tex.Color.w;
+		node["Brightness"] = tex.Brightness;
 		node["Color"] = SerializeVector3(tex.Color);
 		node["Mask"] = tex.Mask.GetString();
 		node["AlwaysOn"] = tex.AlwaysOn;
 		node["Prelit"] = tex.Prelit;
 		node["IgnoreWeather"] = tex.IgnoreWeather;
+		node["UseVertexColor"] = tex.UseVertexColor;
 
 		list.push_back(node);
 	}

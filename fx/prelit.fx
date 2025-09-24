@@ -4,6 +4,7 @@ void VS_Prelit(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT.position = mul(IN.position, WorldViewProj);
 	OUT.color = IN.color;
+	OUT.color.rgb = lerp(float3(1, 1, 1), IN.color.rgb, cvEmissive.a);
 	OUT.uv.xy = IN.tex.xy + TextureOffset.xy;
 	OUT.local_pos = IN.position;
 	OUT.local_pos.w = OUT.position.z;

@@ -90,9 +90,10 @@ namespace UI
 							ImGui::Checkbox("Ignore weather", &CurrentTexture->IgnoreWeather);
 
 							ImGui::ColorEdit3("Color", (float*)&CurrentTexture->Color, ImGuiColorEditFlags_Float);
-							InputFloat("Brightness", &CurrentTexture->Color.w);
+							InputFloat("Brightness", &CurrentTexture->Brightness);
 
 							ImGui::Checkbox("Always on", &CurrentTexture->AlwaysOn);
+							ImGui::Checkbox("Use vertex color", &CurrentTexture->UseVertexColor);
 
 							ImGui::BeginDisabled(CurrentTexture->Prelit);
 							{

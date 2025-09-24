@@ -163,7 +163,8 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 	auto effect = renderModel->Effect;
 	if (effect->HasParam(ShaderParam::cvEmissive))
 	{
-		D3DXVECTOR4 brightness = { 0, 0, 0, 0 };
+		D3DXVECTOR4 color = { 0, 0, 0, 0 };
+
 		bool prelit = false;
 		bool enabled = false;
 
@@ -171,28 +172,35 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 		if (prelitTex)
 		{
 			prelit = prelitTex->Prelit;
+
 			enabled = prelitTex->AlwaysOn || g_Weather.LightsOn();
 			if (enabled)
 			{
-				effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());
+				color = D3DXVECTOR4(prelitTex->Color, 1) * prelitTex->Brightness;
 
-				brightness = prelitTex->Color;
-				brightness *= brightness.w;
 				if (!prelitTex->IgnoreWeather)
 				{
-					brightness *= g_Weather.GetTextureLightPower();
+					color *= g_Weather.GetTextureLightPower();
 				}
 
 				if (effect->id == shader_type::GlossyWindow && g_Config.WindowGlowOverride)
 				{
-					brightness = g_Weather.GetWindowGlowColor();
+					color = g_Weather.GetWindowGlowColor();
 				}
 
-				brightness.w = 1;
+				if (prelit)
+				{
+					color.w = prelitTex->UseVertexColor ? 1.0 : 0.0;
+				}
+				else
+				{
+					effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());
+					color.w = 1;
+				}
 			}
 		}
 
-		effect->SetVector(ShaderParam::cvEmissive, &brightness);
+		effect->SetVector(ShaderParam::cvEmissive, &color);
 
 		if (prelit && enabled)
 		{

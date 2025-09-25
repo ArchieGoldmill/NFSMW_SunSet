@@ -48,13 +48,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: PAN_CITY04_KT
-    Brightness: 50
-    Color: [1, 0.5, 0]
-    Mask: ""
+    Brightness: 5
+    Color: [1, 0.235294104, 0]
+    Mask: PAN_CITY04_KT_E
     AlwaysOn: false
-    Prelit: true
+    Prelit: false
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: ARC_BRICKBLD_BROWN_LZ
     Brightness: 5
     Color: [0.619607866, 0.850980401, 1]
@@ -67,10 +67,10 @@ Textures:
     Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
-    IgnoreWeather: false
-    UseVertexColor: true
+    IgnoreWeather: true
+    UseVertexColor: false
   - Name: SGN_BANKOFROCKPORT_EA
     Brightness: 1.10000002
     Color: [1, 1, 1]
@@ -151,6 +151,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: true
+  - Name: ARC_BRIDGETYPE01_B1
+    Brightness: 2
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: OBJ_CT_CARWASHLIGHTS
     Brightness: 5
     Color: [0.607843161, 0.826989651, 1]
@@ -200,13 +208,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: SGN_CREATIX
-    Brightness: 3
+    Brightness: 1.10000002
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
-    IgnoreWeather: true
-    UseVertexColor: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: OBJ_CHECKPOINT_SCROLL
     Brightness: 2
     Color: [1, 1, 1]
@@ -216,13 +224,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: 0x4494239C
-    Brightness: 3
+    Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: SGN_NEONROLLING_A_LL
     Brightness: 1
     Color: [1, 1, 1]
@@ -248,13 +256,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: SGN_BOBSLOBSTER_
-    Brightness: 3.00000477
+    Brightness: 0.699999928
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: SGN_CT_SEW
     Brightness: 1
     Color: [1, 1, 1]
@@ -335,6 +343,14 @@ Textures:
     Prelit: false
     IgnoreWeather: false
     UseVertexColor: true
+  - Name: ARC_LI_STPL02
+    Brightness: 22
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: SGN_GENERATOR
     Brightness: 2.49999952
     Color: [1, 0.676470578, 0]
@@ -427,7 +443,7 @@ Textures:
     Brightness: 1.30000007
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
@@ -464,13 +480,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: 0x5D013360
-    Brightness: 5
+    Brightness: 1.10000002
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: ANM_ROCKETGIRLLITE_LV
     Brightness: 3
     Color: [1, 1, 1]
@@ -480,13 +496,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: 0x5F9B9E8A
-    Brightness: 5
+    Brightness: 1.20000005
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: ARC_BRICKBLD_WHITE_LZ
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]
@@ -496,13 +512,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: SGN_IRONWORKA_LL
-    Brightness: 10
+    Brightness: 5
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
-    IgnoreWeather: true
-    UseVertexColor: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: ARC_OFFICEY_VC
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]
@@ -520,18 +536,18 @@ Textures:
     IgnoreWeather: true
     UseVertexColor: false
   - Name: SGN_CITYEAST_RISTORANTE
-    Brightness: 7
-    Color: [1, 1, 1]
+    Brightness: 1.70000017
+    Color: [1, 0.544117689, 0.544117689]
     Mask: ""
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: SGN_TICKER
     Brightness: 1.10000169
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
@@ -592,12 +608,12 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: ADS_BKING_BB_B
-    Brightness: 3
+    Brightness: 1.20000005
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
-    IgnoreWeather: true
+    IgnoreWeather: false
     UseVertexColor: false
   - Name: ARC_ARCOTOWERBRICK__LZ
     Brightness: 4
@@ -611,9 +627,9 @@ Textures:
     Brightness: 0.799999952
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
-    IgnoreWeather: true
+    IgnoreWeather: false
     UseVertexColor: false
   - Name: 0x89C26291
     Brightness: 5
@@ -627,7 +643,7 @@ Textures:
     Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
@@ -640,13 +656,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: SGN_TC_STADIUMSIGN
-    Brightness: 3
-    Color: [1, 1, 1]
-    Mask: ""
+    Brightness: 2
+    Color: [1, 0.352941155, 0]
+    Mask: SGN_TC_STADIUMSIGN_E
     AlwaysOn: false
-    Prelit: true
+    Prelit: false
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: SGN_CAMPUSTERRACE
     Brightness: 0.799999952
     Color: [1, 1, 1]
@@ -664,10 +680,10 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: ADS_AUTOZONE_BB_B_EA
-    Brightness: 3.19999886
+    Brightness: 1.10000002
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: true
+    AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
@@ -787,7 +803,7 @@ Textures:
     Brightness: 0.899999976
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
@@ -928,7 +944,7 @@ Textures:
     IgnoreWeather: true
     UseVertexColor: false
   - Name: ADS_FITNESSA_BB_EA
-    Brightness: 5
+    Brightness: 1.10000002
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: true
@@ -1075,7 +1091,7 @@ Textures:
     Brightness: 1.20000005
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
@@ -1115,18 +1131,18 @@ Textures:
     Brightness: 1.30000007
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
   - Name: SGN_TRUCKSALEA_LL
-    Brightness: 4
+    Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: ARC_UC_TWINCONDO_VC
     Brightness: 5
     Color: [1, 0.699999988, 0.5]
@@ -1135,6 +1151,14 @@ Textures:
     Prelit: false
     IgnoreWeather: false
     UseVertexColor: true
+  - Name: OBJ_LGT_001
+    Brightness: 1
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: ARC_GENBLDINGB_VC
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]
@@ -1176,12 +1200,12 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: ADS_CASTROL_BB_B
-    Brightness: 5
+    Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
-    IgnoreWeather: true
+    IgnoreWeather: false
     UseVertexColor: false
   - Name: SGN_PARK_ENTER
     Brightness: 1

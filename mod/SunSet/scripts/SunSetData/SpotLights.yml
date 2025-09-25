@@ -418,7 +418,7 @@ SolidLights:
     UseFirstLight: false
     Flare: LampPost
     SpotLights:
-      - Position: [0, -6, 12.8000002]
+      - Position: [0, -6, 13.000001]
         Direction: [0, 0, -1]
         Color: [1, 0.699999988, 0.5]
         InnerAngle: 35
@@ -517,7 +517,7 @@ SolidLights:
         Range: 55
         Specular: 1
   - SolidLodA: XO_COURTLIGHTA_1B_00
-    SolidLodB: ""
+    SolidLodB: XO_COURTLIGHTA_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -971,7 +971,7 @@ SolidLights:
         OuterAngle: 45
         Intensity: 5
         Range: 150
-        Specular: 1
+        Specular: 0
   - SolidLodA: XO_MEGALIGHTDAY_1A_00
     SolidLodB: ""
     Blink: 0
@@ -2627,3 +2627,321 @@ SolidLights:
         Intensity: 4
         Range: 30
         Specular: 0
+  - SolidLodA: TRN_TC_STADIUM_POLICE_AUX01_CHOP_M12_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [1104.31348, -164.902374, 114.082146]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 60
+        Specular: 0
+  - SolidLodA: XO_STREETLIGHTI_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: LampPost
+    SpotLights:
+      - Position: [-1.49011612e-08, -2.89999938, 8.19999504]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 5
+        OuterAngle: 45
+        Intensity: 2
+        Range: 30
+        Specular: 1
+      - Position: [-1.49011612e-08, 2.9000001, 8.19999504]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 45
+        Intensity: 5
+        Range: 30
+        Specular: 1
+  - SolidLodA: XO_CEILINGLITA_1B_00_DEINST1_I2
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [-182.285645, 3094.48584, 196.371399]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 50
+        Specular: 0
+      - Position: [-167.508789, 3120.79932, 195.071564]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 70
+        Specular: 0
+      - Position: [-179.139832, 3150.48022, 195.071564]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 70
+        Specular: 0
+      - Position: [-204.176514, 3110.98096, 195.73822]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 70
+        Specular: 0
+  - SolidLodA: TRN_CP_CR_TERRAIN_A_09_LOWEND_CHOP_D16_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3284.76025, 1074.78711, 72.9726715]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 50
+        Specular: 0
+      - Position: [3299.43188, 1075.63513, 73.5054474]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+        Specular: 0
+      - Position: [3314.86011, 1076.51978, 73.3937073]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+        Specular: 0
+      - Position: [3329.91626, 1077.67102, 73.5156403]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+        Specular: 0
+      - Position: [3345.62305, 1078.2981, 73.1831436]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+        Specular: 0
+      - Position: [3363.7019, 1079.68042, 72.8007355]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+        Specular: 0
+      - Position: [3378.09351, 1080.95142, 73.3006134]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+        Specular: 0
+  - SolidLodA: TRN_CP_CR_TERRAIN_A_09_LOWEND_CHOP_D16_R2
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3463.03125, 1079.8761, 73.4206238]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.39999986
+        Range: 40
+        Specular: 0
+      - Position: [3478.96631, 1080.32544, 72.4109497]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 70
+        Specular: 0
+      - Position: [3495.40771, 1081.43042, 71.213501]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 70
+        Specular: 0
+      - Position: [3511.33618, 1081.98242, 70.0661316]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 70
+        Specular: 0
+      - Position: [3526.46655, 1082.49023, 68.8735657]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 70
+        Specular: 0
+      - Position: [3542.39868, 1083.02136, 68.2816772]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 70
+        Specular: 0
+      - Position: [3557.00366, 1083.5, 67.0136414]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 70
+        Specular: 0
+      - Position: [3570.01562, 1083.92651, 65.8838806]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1.49999988
+        Range: 70
+        Specular: 0
+  - SolidLodA: TRN_CP_IL_ROAD_A_07_LOWEND_CHOP_P30_R0
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3990.7124, -218.606079, 12.6415262]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 100
+        Intensity: 2
+        Range: 30
+        Specular: 0
+      - Position: [3972.89404, -225.928345, 12.6041842]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 30
+        Specular: 0
+      - Position: [3954.12964, -234.279053, 12.6041842]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 30
+        Specular: 0
+      - Position: [3940.52295, -240.48999, 12.4708509]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 30
+        Specular: 0
+  - SolidLodA: XO_STREETLIGHTCN_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: LampPost
+    SpotLights:
+      - Position: [-1.49011612e-08, -2.79999948, 8.39999866]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 15
+        OuterAngle: 80
+        Intensity: 2
+        Range: 50
+        Specular: 1
+  - SolidLodA: TRN_TC_ROAD_STADIUM_LOWEND_CHOP_E4_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [775.138184, -778.858887, 120.612946]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 110
+        OuterAngle: 120
+        Intensity: 2
+        Range: 60
+        Specular: 0
+  - SolidLodA: TRN_TC_ROAD_STADIUM_LOWEND_CHOP_E2_R1
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [1052.94861, -728.979126, 114.900871]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 70
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+        Specular: 0
+      - Position: [1089.6438, -781.608093, 114.40126]
+        Direction: [0, 0, -1]
+        Color: [1, 1, 1]
+        InnerAngle: 70
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+        Specular: 0
+  - SolidLodA: XO_STREETLIGHTDRIFT_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: LampPost
+    SpotLights:
+      - Position: [-1.49011612e-08, -3.299999, 9.40000248]
+        Direction: [0, 0, -1]
+        Color: [0.588235259, 0.588235259, 1]
+        InnerAngle: 15
+        OuterAngle: 80
+        Intensity: 3
+        Range: 30
+        Specular: 1

@@ -89,7 +89,8 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 
 	bool hasNormalMap = renderModel->NormalTextureInfo &&
 		renderModel->NormalTextureInfo != renderModel->DiffuseTextureInfo &&
-		renderModel->NormalTextureInfo != TextureInfo::DefaultAlpha;
+		renderModel->NormalTextureInfo != TextureInfo::DefaultAlpha &&
+		renderModel->NormalTextureInfo->NameHash != Hashes::WINDOWREFLECTION;
 
 	if (!hasNormalMap)
 	{

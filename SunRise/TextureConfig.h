@@ -43,8 +43,10 @@ void LoadTextureConfig()
 		{
 			MessageBoxA(NULL, (std::string(prelit.Name) + " already added!").c_str(), ModName, MB_ICONEXCLAMATION);
 		}
-
-		PrelitTextures.Add(prelit);
+		else
+		{
+			PrelitTextures.Add(prelit);
+		}
 	}
 
 	PrelitTextures.Sort();

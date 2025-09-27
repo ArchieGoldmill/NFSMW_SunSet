@@ -79,3 +79,42 @@ struct SolidLights
 	bool AlwaysOn = false;
 	bool UseFirstLight = false;
 };
+
+inline bool ConeSphereIntersect(const SpotLightShader& localLight, SpotLight* worldLight, MeshEntry* mesh, const D3DXVECTOR3& sphereCenter, float sphereRadius)
+{
+	auto localApex = localLight.Position;
+
+	if ((localApex.x >= mesh->bbox_min.x && localApex.x <= mesh->bbox_max.x) &&
+		(localApex.y >= mesh->bbox_min.y && localApex.y <= mesh->bbox_max.y) &&
+		(localApex.z >= mesh->bbox_min.z && localApex.z <= mesh->bbox_max.z))
+	{
+		return true;
+	}
+
+	auto v = sphereCenter - worldLight->Position;
+	float vlen = D3DXVec3Length(&v);
+
+	if (vlen > worldLight->Range + sphereRadius)
+	{
+		return false;
+	}
+
+	if (worldLight->OuterAngle < 180)
+	{
+		float sinA = sphereRadius / vlen;
+		auto vnorm = v / vlen;
+		float cosv = D3DXVec3Dot(&vnorm, &worldLight->Direction);
+
+		float ac = acos(cosv);
+		float as = asin(sinA);
+
+		float diff = ac - as;
+
+		if (D3DXToRadian(worldLight->OuterAngle) < diff)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}

@@ -76,35 +76,6 @@ bool WriteFileFromMemory(const char* FileName, const void* buffer, long size)
 	return 1;
 }
 
-inline bool ConeSphereIntersect(const D3DXVECTOR3& coneApex, const D3DXVECTOR3& coneDir, float coneAngle, float range, const D3DXVECTOR3& sphereCenter, float sphereRadius)
-{
-	auto v = sphereCenter - coneApex;
-	float vlen = D3DXVec3Length(&v);
-
-	if (vlen < sphereRadius)
-	{
-		return true;
-	}
-
-	if (vlen > range + sphereRadius)
-	{
-		return false;
-	}
-
-	if (coneAngle < 3.14 / 2)
-	{
-		auto vnorm = v / vlen;
-
-		float cosv = D3DXVec3Dot(&vnorm, &coneDir);
-		if (cosv < 0)
-		{
-			return false;
-		}
-	}
-
-	return true;
-}
-
 bool StringEqual(const char* s1, const char* s2)
 {
 	if (s1 == NULL && s2 == NULL)

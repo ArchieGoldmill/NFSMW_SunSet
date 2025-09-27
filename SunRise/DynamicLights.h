@@ -99,28 +99,28 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 		auto spotlight = &lightmodel->Light;
 		if (spotlight && NumSpotLights < NUM_SPOTLIGHTS)
 		{
-			if (ConeSphereIntersect(spotlight->Position, spotlight->Direction, D3DXToRadian(spotlight->OuterAngle), spotlight->Range, meshCenter, radius))
+			SpotLightShader s;
+			s.Position = spotlight->Position;
+			s.Direction = spotlight->Direction;
+			s.Color = spotlight->Color * spotlight->Intensity;
+			s.Range = spotlight->Range;
+			s.InnerCos = cosf(D3DXToRadian(spotlight->InnerAngle));
+			s.OuterCos = cosf(D3DXToRadian(spotlight->OuterAngle));
+			s.Specular = spotlight->Specular;
+
+			if (!worldSpace)
 			{
-				SpotLightShader s;
-				s.Position = spotlight->Position;
-				s.Direction = spotlight->Direction;
-				s.Color = spotlight->Color * spotlight->Intensity;
-				s.Range = spotlight->Range;
-				s.InnerCos = cosf(D3DXToRadian(spotlight->InnerAngle));
-				s.OuterCos = cosf(D3DXToRadian(spotlight->OuterAngle));
-				s.Specular = spotlight->Specular;
+				D3DXMATRIX worldToLocal;
+				D3DXMatrixInverse(&worldToLocal, NULL, model->LocalToWorld);
 
-				if (!worldSpace)
-				{
-					D3DXMATRIX worldToLocal;
-					D3DXMatrixInverse(&worldToLocal, NULL, model->LocalToWorld);
+				D3DXVec3TransformCoord(&s.Position, &s.Position, &worldToLocal);
 
-					D3DXVec3TransformCoord(&s.Position, &s.Position, &worldToLocal);
+				D3DXVec3TransformNormal(&s.Direction, &s.Direction, &worldToLocal);
+				D3DXVec3Normalize(&s.Direction, &s.Direction);
+			}
 
-					D3DXVec3TransformNormal(&s.Direction, &s.Direction, &worldToLocal);
-					D3DXVec3Normalize(&s.Direction, &s.Direction);
-				}
-
+			if (ConeSphereIntersect(s, spotlight, model->pMeshEntry, meshCenter, radius))
+			{
 				SP_Position_Range[NumSpotLights] = D3DXVECTOR4(s.Position, s.Range);
 				SP_Direction_OuterCos[NumSpotLights] = D3DXVECTOR4(s.Direction, s.OuterCos);
 				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color, s.InnerCos);
@@ -223,16 +223,16 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		}
 	}
 
+	if (renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_)
+	{
+		return Technique_Water;
+	}
+
 	if (DynamicallyLit(renderModel))
 	{
 		if (RenderTarget::Current->ViewId == ViewId::ShadowMap)
 		{
 			return Technique_ShadowMap;
-		}
-
-		if (renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_)
-		{
-			return Technique_Water;
 		}
 
 		if (ApplyEmissive(renderModel))

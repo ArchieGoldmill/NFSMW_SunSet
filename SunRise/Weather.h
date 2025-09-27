@@ -92,9 +92,13 @@ public:
 	{
 		D3DXVECTOR4 bloom;
 
+		auto renderTarget = RenderTarget::Player;
+
 		bloom.x = this->current.BloomPower;
 		bloom.y = this->current.BloomThreshold;
-
+		bloom.z = renderTarget->resolution_x;
+		bloom.w = renderTarget->resolution_y;
+		
 		if (!g_Config.Bloom)
 		{
 			bloom.x = 0;

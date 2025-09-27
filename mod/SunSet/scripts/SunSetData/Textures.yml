@@ -439,6 +439,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
+  - Name: ADS_CINGULAR_BB_D_EA
+    Brightness: 1
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: ADS_CINGULAR_BB_F_EA
     Brightness: 1.30000007
     Color: [1, 1, 1]
@@ -464,7 +472,7 @@ Textures:
     IgnoreWeather: true
     UseVertexColor: false
   - Name: ADS_TUNERTRANS
-    Brightness: 1.50000012
+    Brightness: 0.899999976
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -888,13 +896,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: SGN_CT_CARWASH
-    Brightness: 5.09999895
+    Brightness: 1.10000002
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: ARC_CITYEASTBLD2WINDOWQUAD
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]

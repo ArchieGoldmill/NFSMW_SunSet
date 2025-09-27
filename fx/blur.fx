@@ -74,7 +74,7 @@ float4 PS_BlurH(PS_INPUT IN) : COLOR0
 {
     float4 result = float4(0, 0, 0, 0);
 
-    float2 size = float2(2560.0, 1440.0);
+	float2 size = cvBloomParams.zw;
 
     for (int i = 0; i < 32; ++i)
     {
@@ -88,7 +88,7 @@ float4 PS_BlurV(PS_INPUT IN) : COLOR0
 {
     float4 result = float4(0, 0, 0, 0);
 
-    float2 size = float2(2560.0, 1440.0);
+	float2 size = cvBloomParams.zw;
 
     for (int i = 0; i < 32; ++i)
     {

@@ -690,7 +690,7 @@ SolidLights:
         Range: 35
         Specular: 1
   - SolidLodA: XO_POPMACHINE_RUSH_1B_00
-    SolidLodB: ""
+    SolidLodB: XO_POPMACHINE_RUSH_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -705,7 +705,7 @@ SolidLights:
         Range: 5
         Specular: 1
   - SolidLodA: XO_POPMACHINE_FRISKY_1B_00
-    SolidLodB: ""
+    SolidLodB: XO_POPMACHINE_FRISKY_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -720,7 +720,7 @@ SolidLights:
         Range: 5
         Specular: 1
   - SolidLodA: XO_CARWASHTICKET_1B_EA_00
-    SolidLodB: ""
+    SolidLodB: XO_CARWASHTICKET_1C_EA_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1001,7 +1001,7 @@ SolidLights:
         OuterAngle: 180
         Intensity: 1
         Range: 30
-        Specular: 1
+        Specular: 0
   - SolidLodA: XS_CP_CAFE_1B_00_DEINST1_A7
     SolidLodB: ""
     Blink: 0

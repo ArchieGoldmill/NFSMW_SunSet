@@ -14,10 +14,10 @@ Weather:
     WaterSpecularPower: 10
     CarLightsPower: 1
     TextureLightPower: 1
-    BloomPower: 1
-    BloomThreshold: 1.49999976
+    BloomPower: 1.50000012
+    BloomThreshold: 2
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-    SkyMie: 5
+    SkyMie: 0.799999952
     SkyRayleigh: 0.0299999993
     SkyBrightness: 10
     FogColor: [0.0513264127, 0.0688819066, 0.117647052]
@@ -68,8 +68,8 @@ Weather:
     WaterSpecularPower: 10
     CarLightsPower: 1
     TextureLightPower: 1
-    BloomPower: 1
-    BloomThreshold: 1.50000012
+    BloomPower: 1.50000012
+    BloomThreshold: 2
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
     SkyMie: 1
     SkyRayleigh: 0.0299999993
@@ -109,7 +109,7 @@ Weather:
       FogExponent: 0.800000012
   - Time: 0.25999999
     DiffuseColor: [0, 0, 0]
-    AmbientColor: [0.411380231, 0.4612903, 0.524509788]
+    AmbientColor: [0.630526721, 0.698373914, 0.784313738]
     SpecularColor: [1, 0.760092258, 0.372548997]
     SpecularPower: 30
     DiffuseIntensity: 1
@@ -162,11 +162,11 @@ Weather:
       FogPower: 0.49999997
       FogExponent: 0.800000012
   - Time: 0.5
-    DiffuseColor: [1, 0.82107842, 0.642156839]
+    DiffuseColor: [1, 0.822376013, 0.568627477]
     AmbientColor: [0.62305361, 0.782865703, 0.985294104]
     SpecularColor: [1, 0.964677036, 0.759803891]
     SpecularPower: 40
-    DiffuseIntensity: 1.79999995
+    DiffuseIntensity: 2.49999952
     AmbientIntensity: 1
     CarDiffuseIntensity: 0.599999666
     CarAmbientIntensity: 0.799999952
@@ -177,7 +177,7 @@ Weather:
     CarLightsPower: 0.0500000007
     TextureLightPower: 0.600000024
     BloomPower: 1
-    BloomThreshold: 1.5
+    BloomThreshold: 2
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
     SkyMie: 1
     SkyRayleigh: 3
@@ -284,8 +284,8 @@ Weather:
     WaterSpecularPower: 10
     CarLightsPower: 1
     TextureLightPower: 1
-    BloomPower: 1
-    BloomThreshold: 1.5
+    BloomPower: 1.50000012
+    BloomThreshold: 2
     SkyBeta: [0.818627477, 0.818627477, 0.818627477]
     SkyMie: 1
     SkyRayleigh: 0.0299999993

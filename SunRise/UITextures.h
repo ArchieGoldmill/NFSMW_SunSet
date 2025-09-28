@@ -21,6 +21,7 @@ namespace UI
 				if (CurrentTexture)
 				{
 					PrelitTextures.Remove(CurrentTexture->NameHash);
+					PrelitTextures.PopulateUiList();
 					CurrentTexture = NULL;
 				}
 			}
@@ -40,6 +41,7 @@ namespace UI
 
 					PrelitTextures.Add(newTex);
 					PrelitTextures.Sort();
+					PrelitTextures.PopulateUiList();
 
 					CurrentTexture = PrelitTextures.Get(newTex.NameHash);
 
@@ -65,16 +67,16 @@ namespace UI
 
 						if (ImGui::BeginChild("##TextureList", ImGui::GetContentRegionAvail(), false, 0))
 						{
-							for (auto& texture : PrelitTextures.GetList())
+							for (auto texture : PrelitTextures.GetUiList())
 							{
-								if (FilterBuff[0] && !strstr(texture.Name.c_str(), FilterBuff))
+								if (FilterBuff[0] && !strstr(texture->Name.c_str(), FilterBuff))
 								{
 									continue;
 								}
 
-								if (SelectableButton(texture.Name.c_str(), { 200, 20 }, CurrentTexture == &texture))
+								if (SelectableButton(texture->Name.c_str(), { 200, 20 }, CurrentTexture == texture))
 								{
-									CurrentTexture = &texture;
+									CurrentTexture = texture;
 								}
 							}
 

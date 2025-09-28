@@ -179,4 +179,9 @@ void InitConfig()
 	LoadTextureConfig();
 
 	LoadCustomMeshes();
+
+	if (g_Config.Editor)
+	{
+		PrelitTextures.PopulateUiList();
+	}
 }

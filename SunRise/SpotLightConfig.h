@@ -88,6 +88,8 @@ void LoadSpotLightConfig()
 		}
 
 		SolidLightsList.push_back(solid);
+
+		std::sort(SolidLightsList.begin(), SolidLightsList.end(), [](const SolidLights& a, const SolidLights& b) { return a.LodA.str < b.LodA.str; });
 	}
 
 	const auto& frontEndLights = spotlightsRoot["FrontEndLights"];

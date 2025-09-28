@@ -334,14 +334,14 @@
     <ClInclude Include="DirectResources.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="PrelitTextures.h">
-      <Filter>Features\DynamicLights</Filter>
-    </ClInclude>
     <ClInclude Include="UpdateMaterials.h">
       <Filter>Features</Filter>
     </ClInclude>
     <ClInclude Include="TrackPath.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="PrelitTextures.h">
+      <Filter>Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

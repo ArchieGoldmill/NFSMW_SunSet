@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "Hashes.h"
+#include "Config.h"
 
 struct PrelitTexture
 {
@@ -53,6 +54,7 @@ struct PrelitTextureContainer
 private:
 	bool sorted = true;
 	std::vector<PrelitTexture> list;
+	std::vector<PrelitTexture*> uilist;
 
 public:
 
@@ -72,6 +74,23 @@ public:
 	{
 		std::sort(this->list.begin(), this->list.end(), [](const PrelitTexture& a, const PrelitTexture& b) { return a.NameHash < b.NameHash; });
 		sorted = true;
+	}
+
+	void PopulateUiList()
+	{
+		uilist.clear();
+
+		for (int i = 0; i < this->list.size(); i++)
+		{
+			this->uilist.push_back(&this->list[i]);
+		}
+
+		std::sort(uilist.begin(), uilist.end(), [](const PrelitTexture* a, const PrelitTexture* b) { return a->Name < b->Name; });
+	}
+
+	std::vector<PrelitTexture*>& GetUiList()
+	{
+		return this->uilist;
 	}
 
 	std::vector<PrelitTexture>& GetList(bool ignoreSort = false)

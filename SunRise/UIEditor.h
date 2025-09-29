@@ -12,9 +12,10 @@ namespace UI
 	void Draw()
 	{
 		ImVec2 windowSize(800, 1000);
-		ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
+		ImGui::SetNextWindowSize(windowSize, ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSizeConstraints(ImVec2(800, 400), ImVec2(800, FLT_MAX));
 
-		if (ImGui::Begin("Sun Set Editor", nullptr, ImGuiWindowFlags_NoResize))
+		if (ImGui::Begin("Sun Set Editor", nullptr))
 		{
 			if (SelectableButton("Weather", { 150, 30 }, CurrentTab == 0))
 			{
@@ -64,16 +65,16 @@ namespace UI
 			{
 				switch (CurrentTab)
 				{
-				case 0: 
-					LoadWeatherConfig(); 
+				case 0:
+					LoadWeatherConfig();
 					Weather::Reset();
 					break;
-				case 1: 
-					LoadTextureConfig(); 
+				case 1:
+					LoadTextureConfig();
 					Textures::Reset();
 					break;
-				case 2: 
-					LoadSpotLightConfig(); 
+				case 2:
+					LoadSpotLightConfig();
 					Spotlights::Reset();
 					break;
 				case 3:

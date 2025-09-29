@@ -98,7 +98,7 @@ public:
 		bloom.y = this->current.BloomThreshold;
 		bloom.z = renderTarget->resolution_x;
 		bloom.w = renderTarget->resolution_y;
-		
+
 		if (!g_Config.Bloom)
 		{
 			bloom.x = 0;
@@ -158,6 +158,12 @@ private:
 		auto glossyWindow = eEffect::Get(shader_type::GlossyWindow);
 		auto windowGlowColor = this->GetWindowGlowColor();
 		glossyWindow->SetVector(ShaderParam::cvWindowColor, &windowGlowColor);
+
+		for (int i = 0; i < (int)shader_type::_count; i++)
+		{
+			auto e = eEffect::Get((shader_type)i);
+			e->SetFloat(ShaderParam::cfShadowsEnabled, Game::DrawShadows ? 1.0 : 0.0);
+		}
 	}
 
 	void LerpWeather(WeatherData* a, WeatherData* b, float t)
@@ -315,6 +321,15 @@ private:
 		else
 		{
 			sunTime = time >= sunSet ? ConvertRange(time, sunSet, 1.0f, 0, 0.5f) : ConvertRange(time, 0.0f, sunRise, 0.5f, 1.0f);
+		}
+
+		if (g_Config.DisableNightShadows)
+		{
+			Game::DrawShadows = NightFactor > 0;
+		}
+		else
+		{
+			Game::DrawShadows = true;
 		}
 
 		float offset = 0.1;

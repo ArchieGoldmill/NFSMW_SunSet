@@ -14,6 +14,7 @@ Config:
   WorldVertexColor: false     # Enable baked world vertex colors.
   CarVertexColor: true        # Enable baked car vertex colors.
   TunnelWetnessFix: true      # Dynamically removes puddles from the tunnels.
+  DisableNightShadows: true   # Disable shadowmap rendering at night to improve performance.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

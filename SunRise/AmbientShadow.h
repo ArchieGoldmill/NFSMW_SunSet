@@ -34,6 +34,18 @@ void __cdecl NormalizeShadowShift(D3DXVECTOR3* dest, D3DXVECTOR3* v)
 	dest->z = 1;
 }
 
+void __declspec(naked) DrawAmbientShadowMap()
+{
+	static constexpr auto cExit = 0x006E51CF;
+
+	__asm
+	{
+		mov dword ptr ds:[0x00903328], 0;
+
+		jmp cExit;
+	}
+}
+
 TimeOfDay* fakeTod = new TimeOfDay();
 void InitAmbientShadow()
 {
@@ -42,4 +54,7 @@ void InitAmbientShadow()
 
 	// Disable shadow shift
 	injector::MakeCALL(0x00744084, NormalizeShadowShift);
+
+	// Disable ambient shadow from shadow map
+	injector::MakeJMP(0x006E51C9, DrawAmbientShadowMap);
 }

@@ -15,6 +15,7 @@ namespace Game
 	inline float& DeltaTime = *(float*)0x009259BC;
 	inline float& FlareRotation = *(float*)0x008F2920;
 	inline bool& LostFocus = *(bool*)0x00982C50;
+	inline bool& DrawShadows = *(bool*)0x008FAED0;
 	inline auto FlareBlink = (int*)0x0091601C;
 	inline auto& State = *(int*)0x00925E90;
 	inline auto IdentityMatrix = (D3DXMATRIX*)0x00987AB0;
@@ -25,6 +26,7 @@ namespace Game
 	inline auto& MotionBlurEnable = *(int*)0x009017DC;
 	inline auto& SkipFE = *(int*)0x00926064;
 	inline auto& EnableParticleSystem = *(int*)0x008F86EC;
+	inline auto DrawCarShadow = (int*)0x00903328;
 	inline auto DeviceParams = (D3DPRESENT_PARAMETERS*)0x0093E82C;
 	inline auto BlendState = (int*)0x0093DE20;
 	inline auto DebugCameraPos = (D3DXVECTOR3*)0x008EE260;

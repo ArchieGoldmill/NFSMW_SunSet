@@ -1,5 +1,6 @@
 float4x4 matShadowMapWVP : SHADOWTRANSFORM;
 float ShadowMapScale : SHADOWMAPSCALE;
+float cfShadowsEnabled;
 
 texture ShadowMapTex : SHADOWMAP;
 sampler SHADOWMAP_SAMPLER = sampler_state
@@ -59,21 +60,24 @@ float DoShadow10(float2 uv, float biased)
 
 float DoShadow(float4 clipPos, float ndotl)
 {
-	float shadow = 1;
+	float shadow = 1.0;
 	
-	if (ndotl <= 0)
+	if (cfShadowsEnabled > 0)
 	{
-		shadow = 0.0;
-	}
-	else
-	{
-		float2 uv = clipPos.xy / clipPos.w;
-		float biased = clipPos.z / clipPos.w - 0.0001 * (1 - ndotl);
-		shadow = DoShadow10(uv, biased);
+		if (ndotl <= 0)
+		{
+			shadow = 0.0;
+		}
+		else
+		{
+			float2 uv = clipPos.xy / clipPos.w;
+			float biased = clipPos.z / clipPos.w - 0.0001 * (1 - ndotl);
+			shadow = DoShadow10(uv, biased);
 		
-		float fY = clipPos.y / clipPos.w;
-		float fade = saturate((fY + 0.3) * 2);
-		shadow = saturate(shadow + (1 - fade));
+			float fY = clipPos.y / clipPos.w;
+			float fade = saturate((fY + 0.3) * 2);
+			shadow = saturate(shadow + (1 - fade));
+		}
 	}
 	
 	return shadow;

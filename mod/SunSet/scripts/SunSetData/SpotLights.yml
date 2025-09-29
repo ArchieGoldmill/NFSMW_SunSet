@@ -1864,6 +1864,29 @@ SolidLights:
         Intensity: 5
         Range: 50
         Specular: 1
+  - SolidLodA: XB_ROSEWOODBURGERKING_1B_MM_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3.299999, 9.29999924, 7.79999495]
+        Direction: [0, 0, -1]
+        Color: [0.291690737, 0.412361324, 0.975490212]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+        Specular: 0
+      - Position: [6.29995632, -12.8000107, 7.59999514]
+        Direction: [0, 0, -1]
+        Color: [0.291690737, 0.412361324, 0.975490212]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+        Specular: 0
   - SolidLodA: XO_BLUESTRIPGASD_ROOF_1A_00
     SolidLodB: XO_BLUESTRIPGASD_ROOF_1A_00
     Blink: 0
@@ -2674,6 +2697,36 @@ SolidLights:
         Intensity: 1
         Range: 30
         Specular: 0
+  - SolidLodA: XS_BURGERKINGSTOREFRONT_2B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [-2.79999948, 0, -5.89999676]
+        Direction: [0, 0, -1]
+        Color: [0.104671299, 0.4102889, 0.970588207]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 1
+        Range: 50
+        Specular: 0
+  - SolidLodA: XS_CAMPUSTERRACE_1B_JM_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, 1.60000026]
+        Direction: [0, 0, -1]
+        Color: [1, 0.470588207, 0]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 30
+        Specular: 0
   - SolidLodA: XS_CHEVRCNRA_1_00
     SolidLodB: ""
     Blink: 0
@@ -2741,6 +2794,21 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 15
+        Specular: 0
+  - SolidLodA: XS_CT_FISH_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [2.89999962, 0.0999999866, -2.00000024]
+        Direction: [0, 0, -1]
+        Color: [1, 0.823529422, 0.823529422]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 4
+        Range: 8
         Specular: 0
   - SolidLodA: XS_ETHNICF_1B_DW_00
     SolidLodB: ""
@@ -2914,6 +2982,44 @@ SolidLights:
         OuterAngle: 110
         Intensity: 1
         Range: 40
+        Specular: 0
+  - SolidLodA: XS_OPERAHOUSE_1B_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [11, 2.5999999, -7.29999542]
+        Direction: [0, 0, -1]
+        Color: [0.736854553, 0.995098054, 0.556084216]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+        Specular: 1
+      - Position: [-11, -17.4000301, -7.29999542]
+        Direction: [0, 0, -1]
+        Color: [0.736854553, 0.995098054, 0.556084216]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 70
+        Specular: 1
+  - SolidLodA: XS_ROSEWOODUNIVERSITY_1B_JM_00
+    SolidLodB: ""
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: LampPost
+    SpotLights:
+      - Position: [0, 0, 8.79997635]
+        Direction: [0, 0, -1]
+        Color: [1, 0.147058845, 0]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 15
         Specular: 0
   - SolidLodA: XS_SLTOWERSIGN_1B_00
     SolidLodB: ""

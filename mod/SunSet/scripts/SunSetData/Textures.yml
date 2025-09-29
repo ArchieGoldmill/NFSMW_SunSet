@@ -583,6 +583,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
+  - Name: SGN_SANDWICHES_JF
+    Brightness: 1.20000005
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: SGN_CONVBANNER
     Brightness: 1.19999981
     Color: [1, 1, 1]
@@ -1093,6 +1101,54 @@ Textures:
     Mask: ""
     AlwaysOn: false
     Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
+  - Name: PAN_TC_BUILD1_SA
+    Brightness: 2
+    Color: [0.980392158, 0.747450054, 0.485390246]
+    Mask: PAN_TC_BUILD8_SA_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+    UseVertexColor: false
+  - Name: PAN_TC_BUILD2_SA
+    Brightness: 2
+    Color: [1, 0.929642439, 0.700980425]
+    Mask: PAN_TC_BUILD2_SA_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+    UseVertexColor: false
+  - Name: PAN_TC_BUILD3_SA
+    Brightness: 2
+    Color: [0.965686262, 0.816712141, 0.459174365]
+    Mask: PAN_TC_BUILD3_SA_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+    UseVertexColor: false
+  - Name: PAN_TC_BUILD4_SA
+    Brightness: 2
+    Color: [1, 0.803200722, 0.681372523]
+    Mask: PAN_TC_BUILD4_SA_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+    UseVertexColor: false
+  - Name: PAN_TC_BUILD7_SA
+    Brightness: 2
+    Color: [0.990196049, 0.851431549, 0.597029924]
+    Mask: PAN_TC_BUILD7_SA_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+    UseVertexColor: false
+  - Name: PAN_TC_BUILD8_SA
+    Brightness: 2
+    Color: [0.995098054, 0.811314821, 0.697544277]
+    Mask: PAN_TC_BUILD8_SA_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: false
     UseVertexColor: false
   - Name: ADS_TOROGASA_BB_EA

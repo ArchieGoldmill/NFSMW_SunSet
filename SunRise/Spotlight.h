@@ -68,7 +68,6 @@ struct SpotLightModel
 struct SolidLights
 {
 	HashField LodA;
-	HashField LodB;
 
 	FlareModel* Flare = NULL;
 

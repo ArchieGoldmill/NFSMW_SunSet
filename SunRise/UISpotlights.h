@@ -11,7 +11,6 @@ namespace UI
 		int currentFlare = 0;
 
 		char SolidLodBufferA[128] = { 0 };
-		char SolidLodBufferB[128] = { 0 };
 		char FlareNameBuffer[128] = { 0 };
 		char FilterBuff[128] = { 0 };
 
@@ -37,7 +36,6 @@ namespace UI
 						{
 							SolidLights solidLights;
 							solidLights.LodA.SetString("SOLID_A");
-							solidLights.LodB.SetString("");
 							solidLights.Blink = 0;
 							solidLights.Flare = GetFlareModel("LampPost");
 
@@ -143,12 +141,6 @@ namespace UI
 							if (ImGui::InputText("Lod A", SolidLodBufferA, 128))
 							{
 								CurrentSolid->LodA.SetString(SolidLodBufferA);
-							}
-
-							strcpy(SolidLodBufferB, CurrentSolid->LodB.GetChar());
-							if (ImGui::InputText("Lod B", SolidLodBufferB, 128))
-							{
-								CurrentSolid->LodB.SetString(SolidLodBufferB);
 							}
 
 							ImGui::Text("");

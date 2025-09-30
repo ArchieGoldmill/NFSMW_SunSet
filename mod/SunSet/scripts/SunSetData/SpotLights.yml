@@ -171,7 +171,6 @@ FrontEndLights:
         Specular: 1
 SolidLights:
   - SolidLodA: TRN_CP_CANNERYTUNNEL_01_CHOP_R19_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -218,7 +217,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: TRN_CP_CR_TERRAIN_A_07_TUNNEL_LOWEND_CHOP_P23_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -241,7 +239,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_CP_CR_TERRAIN_A_09_LOWEND_CHOP_D16_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -304,7 +301,6 @@ SolidLights:
         Range: 60
         Specular: 0
   - SolidLodA: TRN_CP_CR_TERRAIN_A_09_LOWEND_CHOP_D16_R2
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -375,7 +371,6 @@ SolidLights:
         Range: 70
         Specular: 0
   - SolidLodA: TRN_CP_IL_ROAD_A_07_LOWEND_CHOP_P30_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -414,7 +409,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_P27_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -469,7 +463,6 @@ SolidLights:
         Range: 35
         Specular: 1
   - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_P27_R2
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -524,7 +517,6 @@ SolidLights:
         Range: 35
         Specular: 1
   - SolidLodA: TRN_CP_IT_TERRAIN_A_14_LOWEND_CHOP_R34_R2
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -587,7 +579,6 @@ SolidLights:
         Range: 35
         Specular: 1
   - SolidLodA: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
-    SolidLodB: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -634,7 +625,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_CP_OILREFINERY_TUNNELC_01_CHOP_R18_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -681,7 +671,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_CAMPUS_XX_CHOP_H18_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -736,7 +725,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_CAMPUS_XX_CHOP_H18_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -783,7 +771,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_CAMPUS_XX_CHOP_I11_0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: false
@@ -798,7 +785,6 @@ SolidLights:
         Range: 10
         Specular: 0
   - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G4_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -869,7 +855,6 @@ SolidLights:
         Range: 70
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G9_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -916,7 +901,6 @@ SolidLights:
         Range: 90
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHLANDS_XX_CHOP_G9_R3
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -955,7 +939,6 @@ SolidLights:
         Range: 90
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_I4_R2
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1066,7 +1049,6 @@ SolidLights:
         Range: 70
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_J13_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1153,7 +1135,6 @@ SolidLights:
         Range: 70
         Specular: 1
   - SolidLodA: TRN_CT_PROPS_HIGHWAY4_XX_CHOP_J13_R3
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1184,7 +1165,6 @@ SolidLights:
         Range: 70
         Specular: 1
   - SolidLodA: TRN_CT_TERRAIN_CITYCENTER_01_CHOP_I19_R7
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1199,7 +1179,6 @@ SolidLights:
         Range: 25
         Specular: 0
   - SolidLodA: TRN_TC_CITYCENTERTUNNEL_CHOP_D15_R2
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1214,7 +1193,6 @@ SolidLights:
         Range: 60
         Specular: 0
   - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_B19_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1269,7 +1247,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_B19_R2
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1300,7 +1277,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_D20_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1371,7 +1347,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: TRN_TC_ROAD_STADIUM_LOWEND_CHOP_E2_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1394,7 +1369,6 @@ SolidLights:
         Range: 70
         Specular: 0
   - SolidLodA: TRN_TC_ROAD_STADIUM_LOWEND_CHOP_E4_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1409,7 +1383,6 @@ SolidLights:
         Range: 60
         Specular: 0
   - SolidLodA: TRN_TC_SEWERA_01_AUX01_CHOP_B1_0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -1440,7 +1413,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_TC_SEWERA_01_CHOP_B3_R10
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -1487,7 +1459,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_TC_SEWERA_01_CHOP_B4_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -1558,7 +1529,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: TRN_TC_SEWERROOFA_01_CHOP_B7_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -1573,7 +1543,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: TRN_TC_SOUTHWEST_TUNNELA_LOWEND_CHOP_B10_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1612,7 +1581,6 @@ SolidLights:
         Range: 60
         Specular: 1
   - SolidLodA: TRN_TC_SOUTHWEST_TUNNELA_LOWEND_CHOP_O12_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1643,7 +1611,6 @@ SolidLights:
         Range: 60
         Specular: 1
   - SolidLodA: TRN_TC_STADIUM_POLICE_AUX01_CHOP_M12_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1658,7 +1625,6 @@ SolidLights:
         Range: 60
         Specular: 0
   - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O4_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1681,7 +1647,6 @@ SolidLights:
         Range: 60
         Specular: 1
   - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O8_R0
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1712,7 +1677,6 @@ SolidLights:
         Range: 60
         Specular: 1
   - SolidLodA: TRN_TC_STADIUM_TUNNELA_LOWEND_CHOP_O8_R1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -1751,7 +1715,6 @@ SolidLights:
         Range: 60
         Specular: 1
   - SolidLodA: XB_BLUESTRIPGASS_1A_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1774,7 +1737,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XB_BUSSTATION_1A_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1797,7 +1759,6 @@ SolidLights:
         Range: 20
         Specular: 1
   - SolidLodA: XB_CARPARKDEALERSHIP_2B_EA_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1812,7 +1773,6 @@ SolidLights:
         Range: 15
         Specular: 0
   - SolidLodA: XB_CHOPSHOPA_1B_EA_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1827,7 +1787,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: XB_CP_PARKGARAGE_1B_LL_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1850,7 +1809,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XB_FERRISWHEEL_1A_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1865,7 +1823,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: XB_ROSEWOODBURGERKING_1B_MM_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -1888,7 +1845,6 @@ SolidLights:
         Range: 70
         Specular: 0
   - SolidLodA: XO_BLUESTRIPGASD_ROOF_1A_00
-    SolidLodB: XO_BLUESTRIPGASD_ROOF_1A_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1903,7 +1859,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_BUSSHELTERB_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1918,7 +1873,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: XO_CAGELIGHTC_1B_00
-    SolidLodB: XO_CAGELIGHTC_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1933,7 +1887,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: XO_CAGELIGHTC_1B_00_DEINST1_B1
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -1956,7 +1909,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_CAGELIGHTD_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -1971,7 +1923,6 @@ SolidLights:
         Range: 40
         Specular: 0
   - SolidLodA: XO_CAGELIGHTD_1B_00_DEINST1_B3
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -2002,7 +1953,6 @@ SolidLights:
         Range: 40
         Specular: 1
   - SolidLodA: XO_CARWASHTICKET_1B_EA_00
-    SolidLodB: XO_CARWASHTICKET_1C_EA_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2017,7 +1967,6 @@ SolidLights:
         Range: 4
         Specular: 1
   - SolidLodA: XO_CEILINGLITA_1B_00_DEINST1_I2
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -2056,7 +2005,6 @@ SolidLights:
         Range: 70
         Specular: 0
   - SolidLodA: XO_COURTLIGHTA_1B_00
-    SolidLodB: XO_COURTLIGHTA_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2071,7 +2019,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XO_CP_STREETLIGHT_1B_DW_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2086,7 +2033,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XO_CT_RADIOSIGNRWRS_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2101,7 +2047,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_FLOODLIGHTAS_1B_BC_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2116,7 +2061,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_FLOODLIGHTS_1A_AL_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2131,7 +2075,6 @@ SolidLights:
         Range: 150
         Specular: 0
   - SolidLodA: XO_GASSTATIONPRICESIGN_MM_1A_00
-    SolidLodB: XO_GASSTATIONPRICESIGN_MM_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2146,7 +2089,6 @@ SolidLights:
         Range: 35
         Specular: 1
   - SolidLodA: XO_IF_POWERLIGHTA_1A_LL_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2161,7 +2103,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XO_IRONLAMPHANGING_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2176,7 +2117,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_IRONLAMPSTANDINGB_1B_00
-    SolidLodB: XO_IRONLAMPSTANDINGB_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2191,7 +2131,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XO_IRONLAMPSTANDING_1B_00
-    SolidLodB: XO_IRONLAMPSTANDING_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2206,7 +2145,6 @@ SolidLights:
         Range: 10
         Specular: 1
   - SolidLodA: XO_LIGHTPOLEA_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2221,7 +2159,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_LIGHTPOSTA_1A_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2236,7 +2173,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_LIGHTPOSTB_1A_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -2259,7 +2195,6 @@ SolidLights:
         Range: 25
         Specular: 1
   - SolidLodA: XO_LIGHTPOSTB_WALL_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2282,7 +2217,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_MEGALIGHTA_1B_00
-    SolidLodB: XO_MEGALIGHTA_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2297,7 +2231,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: XO_MEGALIGHTC_1B_00
-    SolidLodB: XO_MEGALIGHTC_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2312,7 +2245,6 @@ SolidLights:
         Range: 55
         Specular: 1
   - SolidLodA: XO_MEGALIGHTDAY_1A_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2327,7 +2259,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: XO_PARKLAMPA_1B_00
-    SolidLodB: XO_PARKLAMPA_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2342,7 +2273,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_POLICEPOSTMM_1B_00
-    SolidLodB: XO_POLICEPOSTMM_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2357,7 +2287,6 @@ SolidLights:
         Range: 45
         Specular: 1
   - SolidLodA: XO_POPMACHINE_FRISKY_1B_00
-    SolidLodB: XO_POPMACHINE_FRISKY_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2372,7 +2301,6 @@ SolidLights:
         Range: 5
         Specular: 1
   - SolidLodA: XO_POPMACHINE_RUSH_1B_00
-    SolidLodB: XO_POPMACHINE_RUSH_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2387,7 +2315,6 @@ SolidLights:
         Range: 5
         Specular: 1
   - SolidLodA: XO_SAWHORSE_1B_00
-    SolidLodB: XO_SAWHORSE_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2410,7 +2337,6 @@ SolidLights:
         Range: 5
         Specular: 1
   - SolidLodA: XO_STREETLIGHTCB_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2425,7 +2351,6 @@ SolidLights:
         Range: 25.4999828
         Specular: 1
   - SolidLodA: XO_STREETLIGHTCN_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2440,7 +2365,6 @@ SolidLights:
         Range: 50
         Specular: 1
   - SolidLodA: XO_STREETLIGHTC_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2455,7 +2379,6 @@ SolidLights:
         Range: 20
         Specular: 1
   - SolidLodA: XO_STREETLIGHTD2_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2470,7 +2393,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_STREETLIGHTDRIFT_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2485,7 +2407,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_STREETLIGHTD_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2500,7 +2421,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_STREETLIGHTG_1B_00
-    SolidLodB: XO_STREETLIGHTG_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2515,7 +2435,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_STREETLIGHTI_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: true
@@ -2538,7 +2457,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_STREETLIGHTJ_1B_00
-    SolidLodB: XO_STREETLIGHTJ_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2553,7 +2471,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XO_STREETLIGHTM_1B_DW_00
-    SolidLodB: XO_STREETLIGHTM_1C_DW_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2568,7 +2485,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_STREETLIGHT_ITALYJG_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2583,7 +2499,6 @@ SolidLights:
         Range: 45
         Specular: 1
   - SolidLodA: XO_STREETLIGHT_ITALYJG_2B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2598,7 +2513,6 @@ SolidLights:
         Range: 45
         Specular: 1
   - SolidLodA: XO_TRAFFICLIGHTA_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2613,7 +2527,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XO_TRAFFICLIGHTB_1B_00
-    SolidLodB: XO_TRAFFICLIGHTB_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2628,7 +2541,6 @@ SolidLights:
         Range: 20
         Specular: 1
   - SolidLodA: XO_TUNNEL_LIGHT_LONG_1B_00_DEINST1_Q10
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: true
     UseFirstLight: true
@@ -2683,7 +2595,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XS_BANKOFROCKPORT_CK_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2698,7 +2609,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: XS_BURGERKINGSTOREFRONT_2B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2713,7 +2623,6 @@ SolidLights:
         Range: 50
         Specular: 0
   - SolidLodA: XS_CAMPUSTERRACE_1B_JM_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2728,7 +2637,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: XS_CHEVRCNRA_1_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2743,7 +2651,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XS_CP_CAFE_1B_00
-    SolidLodB: XS_CP_CAFE_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2758,7 +2665,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XS_CP_CAFE_1B_00_DEINST1_A7
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2781,7 +2687,6 @@ SolidLights:
         Range: 10
         Specular: 1
   - SolidLodA: XS_CP_STEAKHOUSE_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2796,7 +2701,6 @@ SolidLights:
         Range: 15
         Specular: 0
   - SolidLodA: XS_CT_FISH_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2811,7 +2715,6 @@ SolidLights:
         Range: 8
         Specular: 0
   - SolidLodA: XS_ETHNICF_1B_DW_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2826,7 +2729,6 @@ SolidLights:
         Range: 20
         Specular: 0
   - SolidLodA: XS_FWY_2FRAME_1B_EA_00
-    SolidLodB: XS_FWY_2FRAME_1Z_EA_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2841,7 +2743,6 @@ SolidLights:
         Range: 8
         Specular: 1
   - SolidLodA: XS_FWY_3FRAME_1B_EA_00
-    SolidLodB: XS_FWY_3FRAME_1Z_EA_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2856,7 +2757,6 @@ SolidLights:
         Range: 10
         Specular: 1
   - SolidLodA: XS_LATESHOW_2B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2871,7 +2771,6 @@ SolidLights:
         Range: 30
         Specular: 0
   - SolidLodA: XS_LIVEMUSICALTHEATER_1B_00_DEINST1_T5
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2894,7 +2793,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XS_LOTTOA_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2909,7 +2807,6 @@ SolidLights:
         Range: 30
         Specular: 1
   - SolidLodA: XS_MEDIANPOLEGREEN_1B_CK_00
-    SolidLodB: ""
     Blink: 3
     AlwaysOn: false
     UseFirstLight: false
@@ -2924,7 +2821,6 @@ SolidLights:
         Range: 5
         Specular: 1
   - SolidLodA: XS_MEDIANPOLER_1B_00
-    SolidLodB: XS_MEDIANPOLER_1C_00
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2939,7 +2835,6 @@ SolidLights:
         Range: 15
         Specular: 1
   - SolidLodA: XS_MEDIANPOLE_1B_00
-    SolidLodB: ""
     Blink: 1
     AlwaysOn: false
     UseFirstLight: false
@@ -2954,7 +2849,6 @@ SolidLights:
         Range: 7
         Specular: 1
   - SolidLodA: XS_MEDIANPOLE_1B_LZ_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2969,7 +2863,6 @@ SolidLights:
         Range: 9
         Specular: 1
   - SolidLodA: XS_MUSICALTHEATRE_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -2984,7 +2877,6 @@ SolidLights:
         Range: 40
         Specular: 0
   - SolidLodA: XS_OPERAHOUSE_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -3007,7 +2899,6 @@ SolidLights:
         Range: 70
         Specular: 1
   - SolidLodA: XS_ROSEWOODUNIVERSITY_1B_JM_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -3022,7 +2913,6 @@ SolidLights:
         Range: 15
         Specular: 0
   - SolidLodA: XS_SLTOWERSIGN_1B_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
@@ -3037,7 +2927,6 @@ SolidLights:
         Range: 30
         Specular: -0.100000001
   - SolidLodA: XS_STADIUMSCREEN_1A_00
-    SolidLodB: ""
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false

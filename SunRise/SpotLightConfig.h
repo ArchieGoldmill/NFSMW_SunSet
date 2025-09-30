@@ -72,7 +72,6 @@ void LoadSpotLightConfig()
 		SolidLights solid;
 
 		solid.LodA.SetString(lightNode["SolidLodA"].as<std::string>());
-		solid.LodB.SetString(lightNode["SolidLodB"].as<std::string>());
 		solid.Blink = YmlGet(lightNode, "Blink", 0);
 		solid.AlwaysOn = YmlGet(lightNode, "AlwaysOn", false);
 		solid.UseFirstLight = YmlGet(lightNode, "UseFirstLight", false);
@@ -143,7 +142,6 @@ void SaveSpotLightConfig()
 
 		YAML::Node node;
 		node["SolidLodA"] = solidLight.LodA.GetString();
-		node["SolidLodB"] = solidLight.LodB.GetString();
 		node["Blink"] = solidLight.Blink;
 		node["AlwaysOn"] = solidLight.AlwaysOn;
 		node["UseFirstLight"] = solidLight.UseFirstLight;

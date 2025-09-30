@@ -18,19 +18,11 @@ float SP_Specular[NUM_SPOTLIGHTS];
 
 int NumSpotLights;
 
-void PopulateSpotLights(GrandSceneryCullInfo* cullInfo)
+void PopulateSpotLights()
 {
-	NumSpotLightBuffer = 0;
+	PopulateWorldSpotLights();
 
-	if (Game::State == 6)
-	{
-		PopulateWorldSpotLights(cullInfo);
-	}
-
-	if (Game::State == 3)
-	{
-		PopulateFrontEndSpotlights();
-	}
+	PopulateFrontEndSpotlights();
 
 	PopulateCarSpotLights();
 

@@ -34,7 +34,7 @@ namespace UI
 			ImGui::Checkbox("World vertex color", &g_Config.WorldVertexColor);
 			ImGui::Checkbox("Car vertex color", &g_Config.CarVertexColor);
 			ImGui::Checkbox("Tunnel wetness fix", &g_Config.TunnelWetnessFix);
-			ImGui::Checkbox("Disable hight shadows", &g_Config.DisableNightShadows);
+			ImGui::Checkbox("Disable night shadows", &g_Config.DisableNightShadows);
 
 			ImGui::Text("");
 			ImGui::Text("Time");

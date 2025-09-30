@@ -47,13 +47,15 @@ void CheckReloadShaders()
 
 void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
+	NumSpotLightBuffer = 0;
+
 	cullInfo->SetuWorldCulling();
+
+	PopulateSpotLights();
 
 	ForceTime();
 
 	CheckReloadShaders();
-
-	PopulateSpotLights(cullInfo);
 
 	UpdateBrakeGLow();
 
@@ -251,6 +253,8 @@ void InitHooks()
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 
+	injector::MakeCALL(0x00731B63, DrawScenery);
+
 	injector::MakeJMP(0x006E0254, SetCurrentPassHook);
 
 	injector::MakeCALL(0x006C60D9, SetEffectParams);
@@ -283,9 +287,6 @@ void InitHooks()
 		injector::MakeNOP(0x006C1841, 5);
 		Game::X360EffectsEnable = true;
 	}
-
-	// Improve reflection lods
-	injector::WriteMemory<uint32_t>(0x006BFEBD, 0x00006002, true);
 
 	// Remove road reflection blur
 	injector::WriteMemory<BYTE>(0x006DE596, 4);

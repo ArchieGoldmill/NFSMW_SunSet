@@ -24,7 +24,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 	{
 		for (auto& solidLights : SolidLightsList)
 		{
-			if (solidLights.LodA.hash == model->NameHash || solidLights.LodB.hash == model->NameHash)
+			if (solidLights.LodA.hash == model->NameHash)
 			{
 				if (solidLights.Blink)
 				{
@@ -72,75 +72,95 @@ void PopulateCustomMeshSpotLights()
 	}
 }
 
-void PopulateWorldSpotLights(GrandSceneryCullInfo* cullInfo)
+void PopulateWorldSpotLights()
 {
-	auto drawInfo = cullInfo->FirstDrawInfo;
-	while (drawInfo != cullInfo->CurrentDrawInfo)
+	if (Game::State == 6)
 	{
-		auto matrix = drawInfo->Matrix;
-		if (!matrix)
+		auto worldModel = WorldModel::List.Next;
+		while ((int)worldModel != (int)&WorldModel::List)
 		{
-			matrix = Game::IdentityMatrix;
+			auto spaceNode = worldModel->pSpaceNode;
+			D3DXMATRIX* matrix = spaceNode ? &spaceNode->Matrix1 : &worldModel->Matrix;
+
+			eModel* model = worldModel->pModel;
+			if (!model && worldModel->Heirarchy)
+			{
+				auto nodes = &worldModel->Heirarchy->Node;
+				model = nodes[worldModel->HeirarchyIndex].pModel;
+			}
+
+			if (model && model->pSolid && matrix)
+			{
+				PopulateFromModel(model, matrix);
+			}
+
+			worldModel = worldModel->Next;
 		}
 
-		// Remove road reflected meshes (TODO: find better way)
-		if (matrix->_33 > 0)
-		{
-			auto model = (eModel*)(drawInfo->pModel & 0xFFFFFFFC);
-			PopulateFromModel(model, matrix);
-		}
-
-		drawInfo++;
+		PopulateCustomMeshSpotLights();
 	}
+}
 
-	auto worldModel = WorldModel::List.Next;
-	while ((int)worldModel != (int)&WorldModel::List)
+void __fastcall DrawScenery(SceneryPack* pack, int, SceneryCullInfo* cull_info)
+{
+	pack->DrawScenery(cull_info);
+
+	if (Game::State == 6)
 	{
-		auto spaceNode = worldModel->pSpaceNode;
-		D3DXMATRIX* matrix = spaceNode ? &spaceNode->Matrix1 : &worldModel->Matrix;
-
-		eModel* model = worldModel->pModel;
-		if (!model && worldModel->Heirarchy)
+		for (int i = 0; i < pack->instCount; i++)
 		{
-			auto nodes = &worldModel->Heirarchy->Node;
-			model = nodes[worldModel->HeirarchyIndex].pModel;
-		}
+			auto& instance = pack->instances[i];
 
-		if (model && model->pSolid && matrix)
-		{
-			PopulateFromModel(model, matrix);
-		}
+			if ((cull_info->Flags & (instance.flags ^ 0xFFFFFF60) & 0x80000FF) == 0)
+			{
+				D3DXMATRIX matrix;
 
-		worldModel = worldModel->Next;
+				instance.SetRotation(&matrix);
+				instance.SetPosition(&matrix);
+
+				auto& info = pack->infos[instance.SceneryInfoNumber];
+
+				for (int j = 0; j < 4; j++)
+				{
+					auto model = info.models[j];
+					if (model)
+					{
+						PopulateFromModel(model, &matrix);
+						break;
+					}
+				}
+			}
+		}
 	}
-
-	PopulateCustomMeshSpotLights();
 }
 
 void PopulateFrontEndSpotlights()
 {
-	if (!g_Weather.WorldLightsOn())
+	if (Game::State == 3)
 	{
-		return;
-	}
-
-	auto manager = (int*)GarageMainScreen::GetInstance();
-	if (!manager || manager[27])
-	{
-		return;
-	}
-
-	auto garageTypePtr = (int**)(0x0091CAE0);
-	auto garageType = (*garageTypePtr)[6];
-
-	if (FrontEndLights.contains(garageType))
-	{
-		auto& lights = FrontEndLights[garageType].Lights;
-		for (auto& spotLight : lights)
+		if (!g_Weather.WorldLightsOn())
 		{
-			auto newSpotLight = spotLight;
-			newSpotLight.Color *= g_Weather.GetLightIntensity();
-			AddSpotLightToBuffer(newSpotLight, SpotLightSource::LampPost, FrontEndLights[garageType].Flare);
+			return;
+		}
+
+		auto manager = (int*)GarageMainScreen::GetInstance();
+		if (!manager || manager[27])
+		{
+			return;
+		}
+
+		auto garageTypePtr = (int**)(0x0091CAE0);
+		auto garageType = (*garageTypePtr)[6];
+
+		if (FrontEndLights.contains(garageType))
+		{
+			auto& lights = FrontEndLights[garageType].Lights;
+			for (auto& spotLight : lights)
+			{
+				auto newSpotLight = spotLight;
+				newSpotLight.Color *= g_Weather.GetLightIntensity();
+				AddSpotLightToBuffer(newSpotLight, SpotLightSource::LampPost, FrontEndLights[garageType].Flare);
+			}
 		}
 	}
 }

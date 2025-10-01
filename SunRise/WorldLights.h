@@ -105,28 +105,37 @@ void __fastcall DrawScenery(SceneryPack* pack, int, SceneryCullInfo* cull_info)
 {
 	pack->DrawScenery(cull_info);
 
-	if (Game::State == 6)
+	if (Game::State == 6 && cull_info->View->Id == ViewId::Player1)
 	{
 		for (int i = 0; i < pack->instCount; i++)
 		{
 			auto& instance = pack->instances[i];
+			auto flags = instance.flags;
 
-			if ((cull_info->Flags & (instance.flags ^ 0xFFFFFF60) & 0x80000FF) == 0)
+			if ((flags & 0x100) == 0)
 			{
-				D3DXMATRIX matrix;
-
-				instance.SetRotation(&matrix);
-				instance.SetPosition(&matrix);
-
-				auto& info = pack->infos[instance.SceneryInfoNumber];
-
-				for (int j = 0; j < 4; j++)
+				if ((flags & 0x8000000) != 0 || (flags & 0x40) != 0)
 				{
-					auto model = info.models[j];
-					if (model)
+					flags |= 0x8000040u;
+				}
+
+				if ((cull_info->Flags & (flags ^ 0xFFFFFF60) & 0x80000FF) == 0)
+				{
+					D3DXMATRIX matrix;
+
+					instance.SetRotation(&matrix);
+					instance.SetPosition(&matrix);
+
+					auto& info = pack->infos[instance.SceneryInfoNumber];
+
+					for (int j = 0; j < 4; j++)
 					{
-						PopulateFromModel(model, &matrix);
-						break;
+						auto model = info.models[j];
+						if (model)
+						{
+							PopulateFromModel(model, &matrix);
+							break;
+						}
 					}
 				}
 			}

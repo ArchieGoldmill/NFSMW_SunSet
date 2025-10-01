@@ -415,6 +415,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
+  - Name: ADS_EVOSPORT_BB_EA
+    Brightness: 1
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: SGN_ROSEWOODPOLICE_A_MM
     Brightness: 0.899999976
     Color: [1, 1, 1]
@@ -503,6 +511,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: true
+  - Name: SGN_CITYEAST_SAFEHOUSE
+    Brightness: 1
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: 0x5F9B9E8A
     Brightness: 1.20000005
     Color: [1, 1, 1]
@@ -542,6 +558,14 @@ Textures:
     AlwaysOn: true
     Prelit: true
     IgnoreWeather: true
+    UseVertexColor: false
+  - Name: OBJ_VENDMACH
+    Brightness: 0.699999928
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
     UseVertexColor: false
   - Name: SGN_CITYEAST_RISTORANTE
     Brightness: 1.70000017
@@ -631,6 +655,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
+  - Name: OBJ_GUARDRAILSA
+    Brightness: 15
+    Color: [1, 0.588235259, 0]
+    Mask: OBJ_GUARDRAILSA_E
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: ARC_ARCOTOWERBRICK__LZ
     Brightness: 4
     Color: [0.855000019, 0.613586307, 0.341999978]
@@ -671,6 +703,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: true
+  - Name: SGN_HOSPITALROSE_VC
+    Brightness: 1.09999979
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: SGN_TC_STADIUMSIGN
     Brightness: 2
     Color: [1, 0.352941155, 0]
@@ -1071,6 +1111,14 @@ Textures:
     Prelit: true
     IgnoreWeather: true
     UseVertexColor: true
+  - Name: SGN_HOSPITALROSE02_BS
+    Brightness: 1.20000005
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: ARC_ROLLERCOASTERB
     Brightness: 15
     Color: [0.800000012, 1, 0.5]
@@ -1255,6 +1303,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: false
+  - Name: SGN_HOSPITALROOFTOP_VC
+    Brightness: 1
+    Color: [1, 1, 1]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: 0xEA9C2659
     Brightness: 3.40000153
     Color: [1, 1, 1]
@@ -1296,13 +1352,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: SGN_SEAFOODA
-    Brightness: 3.40000248
+    Brightness: 0.699999928
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
     Prelit: true
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: SGN_PARK_EXIT
     Brightness: 1
     Color: [1, 1, 1]

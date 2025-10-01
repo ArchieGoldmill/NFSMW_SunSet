@@ -44,7 +44,7 @@ Weather:
       BloomPower: 1
       BloomThreshold: 1.50000024
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-      SkyMie: 1
+      SkyMie: 0.799999952
       SkyRayleigh: 0
       SkyBrightness: 10
       FogColor: [0.0410899855, 0.043189019, 0.0490196347]
@@ -71,7 +71,7 @@ Weather:
     BloomPower: 1.50000012
     BloomThreshold: 2
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-    SkyMie: 1
+    SkyMie: 0.199999928
     SkyRayleigh: 0.0299999993
     SkyBrightness: 10
     FogColor: [0.171424448, 0.201306969, 0.284313738]
@@ -98,7 +98,7 @@ Weather:
       BloomPower: 1
       BloomThreshold: 1.50000024
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-      SkyMie: 1
+      SkyMie: 0.199999928
       SkyRayleigh: 0
       SkyBrightness: 10
       FogColor: [0.0396482348, 0.0421289019, 0.0490196347]
@@ -287,7 +287,7 @@ Weather:
     BloomPower: 1.50000012
     BloomThreshold: 2
     SkyBeta: [0.818627477, 0.818627477, 0.818627477]
-    SkyMie: 1
+    SkyMie: 0.199999928
     SkyRayleigh: 0.0299999993
     SkyBrightness: 10
     FogColor: [0.194492519, 0.216971204, 0.279411793]
@@ -314,7 +314,7 @@ Weather:
       BloomPower: 1
       BloomThreshold: 1.5
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-      SkyMie: 1
+      SkyMie: 0.199999928
       SkyRayleigh: 0
       SkyBrightness: 10
       FogColor: [0.0396482348, 0.0421289019, 0.0490196347]

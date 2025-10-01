@@ -1721,7 +1721,7 @@ SolidLights:
     Flare: ""
     SpotLights:
       - Position: [-10, 6.5, 3]
-        Direction: [0, 0, -1]
+        Direction: [0, 1.49011612e-08, -1]
         Color: [0.5, 0.899999976, 0.800000012]
         InnerAngle: 80
         OuterAngle: 90
@@ -1766,10 +1766,10 @@ SolidLights:
     SpotLights:
       - Position: [-0.5, -2.49999976, 4.89999771]
         Direction: [0, 0, -1]
-        Color: [0.313725471, 1, 0.878892601]
+        Color: [0, 0.470588207, 1]
         InnerAngle: 15
-        OuterAngle: 180
-        Intensity: 5
+        OuterAngle: 120
+        Intensity: 3
         Range: 15
         Specular: 0
   - SolidLodA: XB_CHOPSHOPA_1B_EA_00
@@ -1857,7 +1857,7 @@ SolidLights:
         OuterAngle: 90
         Intensity: 4
         Range: 30
-        Specular: 1
+        Specular: 0
   - SolidLodA: XO_BUSSHELTERB_1B_00
     Blink: 0
     AlwaysOn: false
@@ -1958,14 +1958,14 @@ SolidLights:
     UseFirstLight: false
     Flare: ""
     SpotLights:
-      - Position: [0, -1, 1.29999995]
-        Direction: [0, 0, -1]
+      - Position: [0, 7.4505806e-08, 0.899999857]
+        Direction: [0, -0.800000072, -1]
         Color: [0.600000024, 1, 0.699999988]
-        InnerAngle: 50
-        OuterAngle: 60
+        InnerAngle: 15
+        OuterAngle: 45
         Intensity: 5
         Range: 4
-        Specular: 1
+        Specular: 0
   - SolidLodA: XO_CEILINGLITA_1B_00_DEINST1_I2
     Blink: 0
     AlwaysOn: false
@@ -2299,7 +2299,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 5
-        Specular: 1
+        Specular: 0
   - SolidLodA: XO_POPMACHINE_RUSH_1B_00
     Blink: 0
     AlwaysOn: false
@@ -2313,7 +2313,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 5
-        Specular: 1
+        Specular: 0
   - SolidLodA: XO_SAWHORSE_1B_00
     Blink: 0
     AlwaysOn: false
@@ -2346,10 +2346,10 @@ SolidLights:
         Direction: [0, 0, -1]
         Color: [1, 1, 1]
         InnerAngle: 35
-        OuterAngle: 55
-        Intensity: 4
-        Range: 25.4999828
-        Specular: 1
+        OuterAngle: 80
+        Intensity: 3
+        Range: 25
+        Specular: 0.5
   - SolidLodA: XO_STREETLIGHTCN_1B_00
     Blink: 0
     AlwaysOn: false
@@ -2374,10 +2374,10 @@ SolidLights:
         Direction: [0, -0.5, -1]
         Color: [1, 1, 1]
         InnerAngle: 35
-        OuterAngle: 65
-        Intensity: 5
-        Range: 20
-        Specular: 1
+        OuterAngle: 70
+        Intensity: 2
+        Range: 25
+        Specular: 0.499999911
   - SolidLodA: XO_STREETLIGHTD2_1B_00
     Blink: 0
     AlwaysOn: false
@@ -2389,9 +2389,9 @@ SolidLights:
         Color: [1, 0.899999976, 0.800000012]
         InnerAngle: 55
         OuterAngle: 75
-        Intensity: 5
+        Intensity: 4
         Range: 30
-        Specular: 1
+        Specular: 0.5
   - SolidLodA: XO_STREETLIGHTDRIFT_1B_00
     Blink: 0
     AlwaysOn: false
@@ -2594,6 +2594,20 @@ SolidLights:
         Intensity: 4
         Range: 30
         Specular: 1
+  - SolidLodA: XO_VENDMACHB_1B_00
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, 1.00000012]
+        Direction: [0, 0, -1]
+        Color: [1, 0.983275652, 0.857843161]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 3
+        Range: 5
+        Specular: 0
   - SolidLodA: XS_BANKOFROCKPORT_CK_1B_00
     Blink: 0
     AlwaysOn: false
@@ -2645,11 +2659,11 @@ SolidLights:
       - Position: [-0.600000024, -0.600000024, 6.30000019]
         Direction: [0, 0, -1]
         Color: [1, 0.800000012, 0.400000006]
-        InnerAngle: 150
+        InnerAngle: 30
         OuterAngle: 180
-        Intensity: 5
+        Intensity: 4
         Range: 15
-        Specular: 1
+        Specular: 0.5
   - SolidLodA: XS_CP_CAFE_1B_00
     Blink: 0
     AlwaysOn: false
@@ -2756,6 +2770,48 @@ SolidLights:
         Intensity: 5
         Range: 10
         Specular: 1
+  - SolidLodA: XS_HOSPITALPILLAR_1A_00
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, 6.09999895]
+        Direction: [0, 0, -1]
+        Color: [0.336577296, 0.723942339, 0.995098054]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 20
+        Specular: 0
+  - SolidLodA: XS_HOSPITALROSE02_1B_00
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, 1.60000026]
+        Direction: [0, 0, -1]
+        Color: [0.600345969, 0.352941155, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 2
+        Range: 5
+        Specular: 0
+  - SolidLodA: XS_HOSPITALROSE_1A_00
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, -0.5, 1.10000265]
+        Direction: [0, 0, -1]
+        Color: [0.751297593, 0.436274529, 1]
+        InnerAngle: 15
+        OuterAngle: 120
+        Intensity: 3
+        Range: 15
+        Specular: 0
   - SolidLodA: XS_LATESHOW_2B_00
     Blink: 0
     AlwaysOn: false

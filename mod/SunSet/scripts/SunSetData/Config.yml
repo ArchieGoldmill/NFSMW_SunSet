@@ -20,7 +20,7 @@ Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.
   TimeUpdateRate: 1.0         # Update rate for the game time, 1.0 is vanilla rate.
   LightsOn: 0.77              # Time when world lights are enabled.
-  LightsOff: 0.27             # Time when world lights are disabled.
+  LightsOff: 0.24             # Time when world lights are disabled.
   WetTime: 2.0                # Time for the road to get fully wet.
   DryTime: 30.0               # Time for the road to get fully dry.
   RandomStartupTime: false    # Random game time at start.

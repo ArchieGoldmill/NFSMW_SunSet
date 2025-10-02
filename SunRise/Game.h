@@ -22,7 +22,7 @@ namespace Game
 	inline auto& ReflectionTexture = *(IDirect3DTexture9**)0x00982A6C;
 	inline auto& X360EffectsEnable = *(int*)0x009017E0;
 	inline auto& Window = *(HWND*)0x00982BF4;
-	inline auto ForceRain = (bool*)0x009B0A30;
+	inline auto& ForceRain = *(bool*)0x009B0A30;
 	inline auto& MotionBlurEnable = *(int*)0x009017DC;
 	inline auto& SkipFE = *(int*)0x00926064;
 	inline auto& EnableParticleSystem = *(int*)0x008F86EC;
@@ -49,6 +49,7 @@ namespace Game
 	INLINE_FUNC(0x0073AE60, D3DCOLOR, __cdecl, GetBlendColour, D3DCOLOR*, float*, int, int);
 	INLINE_FUNC(0x00652AD0, void*, __cdecl, malloc, size_t);
 	INLINE_FUNC(0x00505340, eSolid*, __cdecl, eFindSolid, Hash);
+	INLINE_FUNC(0x0045DA70, float, __cdecl, fRandom, float);
 }
 
 inline D3DXVECTOR3 GetCameraPos()

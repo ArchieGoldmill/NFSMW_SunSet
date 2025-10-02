@@ -95,7 +95,7 @@ namespace UI
 							}
 
 							ImGui::SameLine();
-							ImGui::Checkbox("Force rain", Game::ForceRain);
+							ImGui::Checkbox("Force rain", &Game::ForceRain);
 
 
 							ImGui::SameLine();

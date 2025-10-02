@@ -5,6 +5,7 @@
 #include "TimeOfDay.h"
 #include "Utilities.h"
 #include "Rain.h"
+#include "HeavyRain.h"
 
 class Weather
 {
@@ -239,7 +240,7 @@ private:
 
 		if (a && b)
 		{
-			if (this->rain == 0.0f)
+			if (this->rain == 0.0f || !g_Rain.IsHeavy())
 			{
 				this->LerpWeather(&a->Main, &b->Main, t);
 			}
@@ -374,7 +375,7 @@ private:
 	void UpdateRain()
 	{
 		bool isRaining = this->IsRaining();
-		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime * 1.0 / (isRaining ? g_Config.WetTime : g_Config.DryTime));
+		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime / (isRaining ? g_Config.WetTime : g_Config.DryTime));
 		if (g_Config.TunnelWetnessFix)
 		{
 			MoveTowards(this->TunnelWetness, Rain::Instance->IsInTunnel ? 0.0 : 1.0, Game::DeltaTime);
@@ -387,7 +388,7 @@ private:
 		MoveTowards(this->rain, isRaining > 0.0f ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
 		if (g_Config.Editor)
 		{
-			if (*Game::ForceRain)
+			if (Game::ForceRain)
 			{
 				this->rain = 1;
 			}

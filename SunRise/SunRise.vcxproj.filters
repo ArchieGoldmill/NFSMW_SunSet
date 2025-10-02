@@ -343,6 +343,9 @@
     <ClInclude Include="PrelitTextures.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="HeavyRain.h">
+      <Filter>Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

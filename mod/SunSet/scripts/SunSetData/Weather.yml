@@ -129,7 +129,7 @@ Weather:
     SkyRayleigh: 5
     SkyBrightness: 8
     FogColor: [0.168012306, 0.211966008, 0.225490212]
-    FogSunColor: [0.485294104, 0.391257852, 0.285467088]
+    FogSunColor: [0.852941155, 0.54796797, 0.2048731]
     FogStart: 35
     FogEnd: 700
     FogPower: 0.49999997
@@ -198,23 +198,23 @@ Weather:
       CarDiffuseIntensity: 0.599999666
       CarAmbientIntensity: 0.799999952
       GodRaysColor: [0, 0, 0, 0]
-      CloudColor: [0.29411763, 0.29411763, 0.29411763, 1]
+      CloudColor: [0.480392158, 0.480392158, 0.480392158, 1]
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
       WaterSpecularPower: 10
       CarLightsPower: 0.5
       TextureLightPower: 0.5
       BloomPower: 1
       BloomThreshold: 1.5
-      SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-      SkyMie: 2.29999995
+      SkyBeta: [0.936274529, 0.848154604, 0.743512094]
+      SkyMie: 0.399999917
       SkyRayleigh: 5
       SkyBrightness: 3
-      FogColor: [0.29726547, 0.366770089, 0.436274529]
-      FogSunColor: [0.296999991, 0.367000014, 0.43599999]
+      FogColor: [0.392637432, 0.429161906, 0.465686262]
+      FogSunColor: [0.393000007, 0.42899999, 0.465999991]
       FogStart: 30
       FogEnd: 300
       FogPower: 0.699999988
-      FogExponent: 0.800000012
+      FogExponent: 0.599999964
   - Time: 0.730000019
     DiffuseColor: [0.470588207, 0.221453264, 0]
     AmbientColor: [1, 0.875865042, 0.799019575]
@@ -237,7 +237,7 @@ Weather:
     SkyRayleigh: 5
     SkyBrightness: 8
     FogColor: [0.480392158, 0.427061409, 0.315551698]
-    FogSunColor: [0.602941155, 0.502451003, 0.452205867]
+    FogSunColor: [0.818627477, 0.355139852, 0.068218939]
     FogStart: 150
     FogEnd: 700
     FogPower: 0.49999997
@@ -252,17 +252,17 @@ Weather:
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
-      CloudColor: [0.642156839, 0.535871327, 0.384034961, 1]
+      CloudColor: [0.426470578, 0.381708354, 0.317762375, 1]
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 150
       CarLightsPower: 0.5
       TextureLightPower: 0.5
       BloomPower: 1
       BloomThreshold: 1.5
-      SkyBeta: [0.426470578, 0.391423255, 0.347029984]
+      SkyBeta: [0.367647052, 0.358106047, 0.346020758]
       SkyMie: 1.50000012
       SkyRayleigh: 5
-      SkyBrightness: 8
+      SkyBrightness: 3
       FogColor: [0.480392158, 0.427061409, 0.315551698]
       FogSunColor: [0.602941155, 0.502451003, 0.452205867]
       FogStart: 30

@@ -6,6 +6,7 @@
 #include "RenderModel.h"
 #include "RenderTarget.h"
 #include "LightFlares.h"
+#include "HeavyRain.h"
 #include "Weather.h"
 #include "Time.h"
 #include "MotionBlur.h"
@@ -60,6 +61,8 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	UpdateBrakeGLow();
 
 	g_Weather.Update();
+
+	g_Rain.Update();
 
 	UpdateMaterials();
 
@@ -250,6 +253,7 @@ void InitHooks()
 	InitCustomMeshes();
 	InitReflection();
 	InitAmbientShadow();
+	InitHeavyRain();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 

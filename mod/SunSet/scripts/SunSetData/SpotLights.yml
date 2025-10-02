@@ -1764,13 +1764,13 @@ SolidLights:
     UseFirstLight: false
     Flare: ""
     SpotLights:
-      - Position: [-0.5, -2.49999976, 4.89999771]
+      - Position: [-0.5, -2.49999976, 2.30000019]
         Direction: [0, 0, -1]
         Color: [0, 0.470588207, 1]
-        InnerAngle: 15
-        OuterAngle: 120
+        InnerAngle: 359
+        OuterAngle: 360
         Intensity: 3
-        Range: 15
+        Range: 14.4000168
         Specular: 0
   - SolidLodA: XB_CHOPSHOPA_1B_EA_00
     Blink: 0

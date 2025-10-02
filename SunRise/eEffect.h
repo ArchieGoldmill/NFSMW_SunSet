@@ -52,6 +52,7 @@ const char* ShaderParamNames[] =
 	"cvBloomParams",
 	"cvGodRaysColor",
 	"cfShadowsEnabled",
+	"cvLightning",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -94,6 +95,7 @@ enum class ShaderParam
 	cvBloomParams,
 	cvGodRaysColor,
 	cfShadowsEnabled,
+	cvLightning,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

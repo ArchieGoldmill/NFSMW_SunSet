@@ -7,6 +7,7 @@ float4 cvSunDirection;
 float4 cvSkyParams;
 float4 cvCloudColor;
 float4 cvSkyBeta;
+float4 cvLightning;
 float cfTimeTicker : CLOUDSCROLL;
 
 struct VS_INPUT
@@ -35,6 +36,18 @@ samplerCUBE MISCMAP1_SAMPLER = sampler_state
 	AddressU = CLAMP;
 	AddressV = CLAMP;
 	AddressW = CLAMP;
+	MIPFILTER = LINEAR;
+	MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MaxAnisotropy = 8;
+};
+
+texture MISCMAP2_TEXTURE;
+sampler2D MISCMAP2_SAMPLER = sampler_state
+{
+	texture = MISCMAP2_TEXTURE;
+	AddressU = WRAP;
+	AddressV = WRAP;
 	MIPFILTER = LINEAR;
 	MINFILTER = ANISOTROPIC;
 	MAGFILTER = ANISOTROPIC;
@@ -190,6 +203,23 @@ float3 GetStars(float3 sun, float4 uv)
 	return pow(diffuse_tex.rgb, 2.2) * stars_scale;
 }
 
+float3 GetLightning(float4 uv)
+{
+	float3 lightning = float3(0, 0, 0);
+	
+	if (cvLightning.x > 0)
+	{
+		float2 luv = uv.xy;
+
+		lightning = tex2D(MISCMAP2_SAMPLER, luv).rgb;
+		
+		lightning *= cvLightning.x;
+		lightning += float3(0.875, 0.831, 1) * cvLightning.y / 2;
+	}
+	
+	return lightning;
+}
+
 float4 PS_Main(PS_INPUT IN) : COLOR
 {
 	float3 dir = normalize(IN.local_pos.xzy);
@@ -206,6 +236,8 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	color = lerp(color, clouds.rgb, clouds.a);
 	
 	color.rgb = CompressColourSpace(color.rgb * 2);
+	
+	color.rgb += GetLightning(IN.uv);
 	
 	return float4(color, 1.0);
 }

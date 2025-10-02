@@ -15,13 +15,14 @@ private:
 	float Timer = 0.0f;
 	float rain = 0.0f;
 
-	TextureInfo* Water = nullptr;
-	TextureInfo* CarRainDrops = nullptr;
-	TextureInfo* CarRainSlide = nullptr;
+	TextureInfo* Water = NULL;
+	TextureInfo* CarRainDrops = NULL;
+	TextureInfo* CarRainSlide = NULL;
 	TextureInfo* PuddleMask = NULL;
 	TextureInfo* RoadDetail = NULL;
 	TextureInfo* RainSplash[30];
 	TextureInfo* SkyNoise = NULL;
+	TextureInfo* Lightning[2] = { NULL, NULL };
 
 	D3DXVECTOR4 rainParams = { 0, 0, 0, 0 };
 	D3DXVECTOR4 fogValue;
@@ -146,6 +147,8 @@ private:
 
 			ambientColor.w = this->LightsOn() ? 1.0f : 0.0f;
 			diffuseColor.w = (stype == shader_type::CarShader ? g_Config.CarVertexColor : g_Config.WorldVertexColor) * 1.0;
+
+			ambientColor += D3DXVECTOR4(0.875, 0.831, 1, 0) * g_Rain.GetDiffuse();
 
 			e->SetVector(ShaderParam::cvDiffuseColor, &diffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &ambientColor);
@@ -272,6 +275,8 @@ private:
 			this->PuddleMask = TextureInfo::Get(Hashes::SR_PUDDLE_MASK, false, false);
 			this->RoadDetail = TextureInfo::Get(Hashes::SR_ROAD_DETAIL, false, false);
 			this->SkyNoise = TextureInfo::Get(Hashes::SKYNOISETEX, false, false);
+			this->Lightning[0] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE0, false, false);
+			this->Lightning[1] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE1, false, false);
 
 			char buff[256];
 			for (int i = 0; i < 30; i++)
@@ -370,12 +375,15 @@ private:
 		}
 
 		e->SetTexture(ShaderParam::SkyNoiseTexture, this->SkyNoise);
+
+		e->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->Lightning[g_Rain.GetLightningTex()]);
 	}
 
 	void UpdateRain()
 	{
 		bool isRaining = this->IsRaining();
 		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime / (isRaining ? g_Config.WetTime : g_Config.DryTime));
+
 		if (g_Config.TunnelWetnessFix)
 		{
 			MoveTowards(this->TunnelWetness, Rain::Instance->IsInTunnel ? 0.0 : 1.0, Game::DeltaTime);

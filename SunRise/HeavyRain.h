@@ -61,9 +61,7 @@ public:
 
 	void UpdateLightning()
 	{
-		auto e = eEffect::Get(shader_type::skyshader);
-
-		if (this->isRaining && this->isHeavy)
+		if (this->IsRaining() && this->IsHeavy() && Game::State == 6)
 		{
 			MoveTowards(this->lightningTimeOut, 0, Game::DeltaTime);
 
@@ -101,12 +99,13 @@ public:
 			lightningParams = { 0, 0, 0, 0 };
 		}
 
+		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvLightning, &lightningParams);
 	}
 
 	bool IsRaining()
 	{
-		return this->isRaining;
+		return this->isRaining || Game::ForceRain;
 	}
 
 	bool IsHeavy()

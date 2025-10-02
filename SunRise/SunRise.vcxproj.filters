@@ -38,6 +38,9 @@
     <Filter Include="Mod">
       <UniqueIdentifier>{7e8ec91f-c63c-4eca-a642-a21795a959ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Weather">
+      <UniqueIdentifier>{cdbdcb78-6cd1-4045-a8fe-4e08cd20c0fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -159,9 +162,6 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="Weather.h">
-      <Filter>Features</Filter>
     </ClInclude>
     <ClInclude Include="TimeOfDay.h">
       <Filter>SDK</Filter>
@@ -343,8 +343,11 @@
     <ClInclude Include="PrelitTextures.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="Weather.h">
+      <Filter>Features\Weather</Filter>
+    </ClInclude>
     <ClInclude Include="HeavyRain.h">
-      <Filter>Features</Filter>
+      <Filter>Features\Weather</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

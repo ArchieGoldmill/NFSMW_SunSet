@@ -6,6 +6,17 @@
 #include "TextureConfig.h"
 #include "CustomMeshesConfig.h"
 
+struct RainConfig
+{
+	float DryTime;
+	float DryTimeRandom;
+	float LightTime;
+	float LightTimeRandom;
+	float HeavyTime;
+	float HeavyTimeRandom;
+	float LightningTimeOut;
+};
+
 struct Config
 {
 	float ForceTime;
@@ -50,6 +61,8 @@ struct Config
 	D3DXVECTOR4 WindowGlowColor;
 	float WindowGlowPower;
 	bool WindowGlowOverride;
+
+	RainConfig Rain;
 };
 
 inline Config g_Config;
@@ -99,6 +112,15 @@ void LoadConfig()
 	const auto& hotkeys = settingsRoot["Hotkeys"];
 	g_Config.HK_ShaderReload = hotkeys["ShaderReload"].as<int>();
 	g_Config.HK_ToggleEditor = hotkeys["ToggleEditor"].as<int>();
+
+	const auto& rain = settingsRoot["Rain"];
+	g_Config.Rain.DryTime = rain["DryTime"].as<float>();
+	g_Config.Rain.DryTimeRandom = rain["DryTimeRandom"].as<float>();
+	g_Config.Rain.LightTime = rain["LightTime"].as<float>();
+	g_Config.Rain.LightTimeRandom = rain["LightTimeRandom"].as<float>();
+	g_Config.Rain.HeavyTime = rain["HeavyTime"].as<float>();
+	g_Config.Rain.HeavyTimeRandom = rain["HeavyTimeRandom"].as<float>();
+	g_Config.Rain.LightningTimeOut = rain["LightningTimeOut"].as<float>();
 
 	const auto& windowGlow = settingsRoot["WindowGlow"];
 	g_Config.WindowGlowColor = ParseVec3To4(windowGlow["Color"]);
@@ -152,6 +174,15 @@ void SaveConfig()
 	YAML::Node hotkeys;
 	hotkeys["ShaderReload"] = g_Config.HK_ShaderReload;
 	hotkeys["ToggleEditor"] = g_Config.HK_ToggleEditor;
+
+	YAML::Node rain;
+	rain["DryTime"] = g_Config.Rain.DryTime;
+	rain["DryTimeRandom"] = g_Config.Rain.DryTimeRandom;
+	rain["LightTime"] = g_Config.Rain.LightTime;
+	rain["LightTimeRandom"] = g_Config.Rain.LightTimeRandom;
+	rain["HeavyTime"] = g_Config.Rain.HeavyTime;
+	rain["HeavyTimeRandom"] = g_Config.Rain.HeavyTimeRandom;
+	rain["LightningTimeOut"] = g_Config.Rain.LightningTimeOut;
 
 	YAML::Node windowGlow;
 	windowGlow["Color"] = SerializeVector3(g_Config.WindowGlowColor);

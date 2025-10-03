@@ -5,13 +5,18 @@ class RainManager
 private:
 	float timer = 0;
 	float target = 0;
+	float rain = 0;
+	float roadWetness = 0;
+	float tunnelWetness = 0;
+
 	bool isHeavy = true;
 	bool isRaining = true;
 
-	float lightningTimeOut = 15;
-	float lightningAnimTime = 0.0;
+	float lightningTimeOut = 20;
+	float lightningAnimTime = 0;
 
 	D3DXVECTOR4 lightningParams = { 0, 0, 0, 0 };
+	D3DXVECTOR4 rainParams = { 0, 0, 0, 0 };
 
 	int lightningTex = 0;
 
@@ -27,12 +32,57 @@ public:
 		return this->lightningTex;
 	}
 
+	float GetRain()
+	{
+		return this->rain;
+	}
+
+	float GetTimer()
+	{
+		return this->timer;
+	}
+
+	bool IsRaining()
+	{
+		if (Game::State == 3)
+		{
+			return false;
+		}
+
+		return this->isRaining || Game::ForceRain;
+	}
+
+	bool IsHeavy()
+	{
+		return this->isHeavy || Game::ForceRain;
+	}
+
 	void Update()
 	{
-		this->UpdateLightning();
-
 		this->timer += Game::DeltaTime;
 
+		MoveTowards(this->rain, this->IsRaining() && this->IsHeavy() ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
+		if (g_Config.Editor)
+		{
+			if (Game::ForceRain)
+			{
+				this->rain = 1;
+			}
+			else
+			{
+				this->rain = 0;
+			}
+		}
+
+		this->UpdateLightning();
+		this->UpdateRainState();
+		this->UpdateShaders();
+	}
+
+private:
+
+	void UpdateRainState()
+	{
 		if (this->timer > this->target)
 		{
 			this->timer = 0;
@@ -45,16 +95,16 @@ public:
 
 				if (this->isHeavy)
 				{
-					this->target = (3 + Game::fRandom(3)) * 60;
+					this->target = (g_Config.Rain.HeavyTime + Game::fRandom(g_Config.Rain.HeavyTimeRandom)) * 60;
 				}
 				else
 				{
-					this->target = (1 + Game::fRandom(1)) * 60;
+					this->target = (g_Config.Rain.LightTime + Game::fRandom(g_Config.Rain.LightTimeRandom)) * 60;
 				}
 			}
 			else
 			{
-				this->target = (10 + Game::fRandom(5)) * 60;
+				this->target = (g_Config.Rain.DryTime + Game::fRandom(g_Config.Rain.DryTimeRandom)) * 60;
 			}
 		}
 	}
@@ -84,7 +134,7 @@ public:
 					lightningParams = { 0, 0, 0, 0 };
 
 					this->lightningAnimTime = 0.0;
-					this->lightningTimeOut = 15;
+					this->lightningTimeOut = g_Config.Rain.LightningTimeOut;
 
 					this->lightningTex++;
 					if (this->lightningTex > 1)
@@ -103,18 +153,39 @@ public:
 		e->SetVector(ShaderParam::cvLightning, &lightningParams);
 	}
 
-	bool IsRaining()
+	void UpdateShaders()
 	{
-		return this->isRaining || Game::ForceRain;
-	}
+		bool isRaining = this->IsRaining();
+		MoveTowards(this->roadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime / (isRaining ? g_Config.WetTime : g_Config.DryTime));
 
-	bool IsHeavy()
-	{
-		return this->isHeavy || Game::ForceRain;
+		if (g_Config.TunnelWetnessFix)
+		{
+			MoveTowards(this->tunnelWetness, Rain::Instance->IsInTunnel ? 0.0 : 1.0, Game::DeltaTime);
+		}
+		else
+		{
+			this->tunnelWetness = 1.0f;
+		}
+
+		bool covered = Rain::Instance->IsInTunnel || Rain::Instance->IsUnderOverpass;
+
+		rainParams.x = Rain::Instance->Intensity * !covered;
+		rainParams.y = this->roadWetness * this->tunnelWetness;
+
+		if (isRaining)
+		{
+			rainParams.z = this->GetTimer();
+		}
+
+		auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
+		roadShader->SetVector(ShaderParam::cvRainParams, &rainParams);
+
+		auto carShader = eEffect::Get(shader_type::CarShader);
+		carShader->SetVector(ShaderParam::cvRainParams, &rainParams);
 	}
 };
 
-RainManager g_Rain;
+inline RainManager g_Rain;
 
 float __cdecl GetRandomRain(float x, float y)
 {

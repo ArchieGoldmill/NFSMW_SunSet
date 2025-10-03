@@ -35,7 +35,16 @@ Hotkeys:
   ShaderReload: 0             # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
   ToggleEditor: 114           # Hot key to toggle UI Editor visibility (F3 by default).
 
+Rain:
+  DryTime: 10.0               # Time in minutes between rains.
+  DryTimeRandom: 5.0          # Random part is added to the dry time.
+  LightTime: 1.0              # Time in minutes for the light rain to last.
+  LightTimeRandom: 1.0        # Random part is added to the light time.
+  HeavyTime: 3.0              # Time in minutes for the heavy rain to last.
+  HeavyTimeRandom: 3.0        # Random part is added to the heavy time.
+  LightningTimeOut: 15.0      # Time in seconds between lightning strikes.
+
 WindowGlow:
-  Override: true
-  Color: [1, 0.8, 0.6]
-  Power: 5
+  Override: true              # Use window color from config, rather then from texture properties.
+  Color: [1.0, 0.8, 0.6]      # Window glow color at night.
+  Power: 5                    # Window glow color multiplier.

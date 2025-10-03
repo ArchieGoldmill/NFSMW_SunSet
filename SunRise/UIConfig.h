@@ -6,76 +6,90 @@ namespace UI
 	{
 		void Draw()
 		{
-			ImGui::PushItemWidth(120);
-
-			ImGui::Checkbox("Console", &g_Config.Console);
-			ImGui::Checkbox("Shader loader", &g_Config.ShaderLoader);
-			ImGui::Checkbox("Shader compiler", &g_Config.ShaderCompiler);
-			ImGui::Checkbox("X360 Effects", &g_Config.X360Effects);
-			ImGui::Checkbox("Live reload", &g_Config.LiveReload);
-			if (ImGui::Checkbox("Editor", &g_Config.Editor))
+			if (ImGui::BeginChild("##ConfigScroller", ImGui::GetContentRegionAvail(), false, 0))
 			{
-				if (g_Config.Editor)
+				ImGui::PushItemWidth(120);
+
+				ImGui::Checkbox("Console", &g_Config.Console);
+				ImGui::Checkbox("Shader loader", &g_Config.ShaderLoader);
+				ImGui::Checkbox("Shader compiler", &g_Config.ShaderCompiler);
+				ImGui::Checkbox("X360 Effects", &g_Config.X360Effects);
+				ImGui::Checkbox("Live reload", &g_Config.LiveReload);
+				if (ImGui::Checkbox("Editor", &g_Config.Editor))
 				{
-					g_Config.LiveReload = false;
+					if (g_Config.Editor)
+					{
+						g_Config.LiveReload = false;
+					}
 				}
-			}
-			ImGui::Checkbox("Skip FE", &g_Config.SkipFE);
-			ImGui::Checkbox("Car vinyl paint fix", &g_Config.CarVinylPaintFix);
-			ImGui::Checkbox("Brake glow", &g_Config.BrakeGlow);
-			ImGui::Checkbox("God rays", &g_Config.GodRays);
-			ImGui::Checkbox("Bloom", &g_Config.Bloom);
-			ImGui::Checkbox("Real Front End reflections", &g_Config.RealFeReflections);
-			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
-			{
-				ImGui::SetTooltip("Requires game restart");
-			}
-
-			ImGui::Checkbox("World vertex color", &g_Config.WorldVertexColor);
-			ImGui::Checkbox("Car vertex color", &g_Config.CarVertexColor);
-			ImGui::Checkbox("Tunnel wetness fix", &g_Config.TunnelWetnessFix);
-			ImGui::Checkbox("Disable night shadows", &g_Config.DisableNightShadows);
-
-			ImGui::Text("");
-			ImGui::Text("Time");
-			if (ImGui::InputFloat("Force time", &g_Config.ForceTime, 0.1, 0.2))
-			{
-				if (g_Config.ForceTime > 1)
+				ImGui::Checkbox("Skip FE", &g_Config.SkipFE);
+				ImGui::Checkbox("Car vinyl paint fix", &g_Config.CarVinylPaintFix);
+				ImGui::Checkbox("Brake glow", &g_Config.BrakeGlow);
+				ImGui::Checkbox("God rays", &g_Config.GodRays);
+				ImGui::Checkbox("Bloom", &g_Config.Bloom);
+				ImGui::Checkbox("Real Front End reflections", &g_Config.RealFeReflections);
+				if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
 				{
-					g_Config.ForceTime = 1;
+					ImGui::SetTooltip("Requires game restart");
 				}
-			}
-			if (ImGui::InputFloat("Time update rate", &g_Config.TimeUpdateRate, 0.1, 0.2))
-			{
-				TimeOfDay::Instance->UpdateRate = g_Config.TimeUpdateRate;
-			}
-			ImGui::InputFloat("Lights on", &g_Config.LightsOn, 0.1, 0.2);
-			ImGui::InputFloat("Lights off", &g_Config.LightsOff, 0.1, 0.2);
-			ImGui::InputFloat("Wet time", &g_Config.WetTime, 0.1, 0.2);
-			ImGui::InputFloat("Dry time", &g_Config.DryTime, 0.1, 0.2);
-			ImGui::Checkbox("Random startup time", &g_Config.RandomStartupTime);
-			ImGui::Checkbox("Real time", &g_Config.RealTime);
 
-			ImGui::Text("");
-			ImGui::Text("Blur");
-			ImGui::InputFloat("Min speed", &g_Config.BlurMinSpeed, 0.1, 0.2);
-			ImGui::InputFloat("Max speed", &g_Config.BlurMaxSpeed, 0.1, 0.2);
-			ImGui::InputFloat("Depth", &g_Config.BlurDepth, 0.1, 0.2);
+				ImGui::Checkbox("World vertex color", &g_Config.WorldVertexColor);
+				ImGui::Checkbox("Car vertex color", &g_Config.CarVertexColor);
+				ImGui::Checkbox("Tunnel wetness fix", &g_Config.TunnelWetnessFix);
+				ImGui::Checkbox("Disable night shadows", &g_Config.DisableNightShadows);
 
-			ImGui::PopItemWidth();
+				ImGui::Text("");
+				ImGui::Text("Time");
+				if (ImGui::InputFloat("Force time", &g_Config.ForceTime, 0.1, 0.2))
+				{
+					if (g_Config.ForceTime > 1)
+					{
+						g_Config.ForceTime = 1;
+					}
+				}
+				if (ImGui::InputFloat("Time update rate", &g_Config.TimeUpdateRate, 0.1, 0.2))
+				{
+					TimeOfDay::Instance->UpdateRate = g_Config.TimeUpdateRate;
+				}
+				ImGui::InputFloat("Lights on", &g_Config.LightsOn, 0.1, 0.2);
+				ImGui::InputFloat("Lights off", &g_Config.LightsOff, 0.1, 0.2);
+				ImGui::InputFloat("Wet time", &g_Config.WetTime, 0.1, 0.2);
+				ImGui::InputFloat("Dry time", &g_Config.DryTime, 0.1, 0.2);
+				ImGui::Checkbox("Random startup time", &g_Config.RandomStartupTime);
+				ImGui::Checkbox("Real time", &g_Config.RealTime);
 
-			ImGui::Text("");
-			ImGui::Text("Window glow");
-			ImGui::ColorEdit3("Color", (float*)&g_Config.WindowGlowColor, ImGuiColorEditFlags_Float);
-			ImGui::PushItemWidth(120);
-			ImGui::InputFloat("Power", &g_Config.WindowGlowPower, 0.1, 0.2);
-			ImGui::PopItemWidth();
-			ImGui::Checkbox("Override", &g_Config.WindowGlowOverride);
+				ImGui::Text("");
+				ImGui::Text("Blur");
+				ImGui::InputFloat("Min speed", &g_Config.BlurMinSpeed, 0.1, 0.2);
+				ImGui::InputFloat("Max speed", &g_Config.BlurMaxSpeed, 0.1, 0.2);
+				ImGui::InputFloat("Depth", &g_Config.BlurDepth, 0.1, 0.2);
+
+				ImGui::Text("");
+				ImGui::Text("Rain");
+				ImGui::InputFloat("Dry time ", &g_Config.Rain.DryTime, 0.1, 0.2);
+				ImGui::InputFloat("Dry time random", &g_Config.Rain.DryTimeRandom, 0.1, 0.2);
+				ImGui::InputFloat("Light time ", &g_Config.Rain.LightTime, 0.1, 0.2);
+				ImGui::InputFloat("Light time random", &g_Config.Rain.LightTimeRandom, 0.1, 0.2);
+				ImGui::InputFloat("Heavy time ", &g_Config.Rain.HeavyTime, 0.1, 0.2);
+				ImGui::InputFloat("Heavy time random", &g_Config.Rain.HeavyTimeRandom, 0.1, 0.2);
+				ImGui::InputFloat("Lightning time out", &g_Config.Rain.LightningTimeOut, 0.1, 0.2);
+
+				ImGui::PopItemWidth();
+
+				ImGui::Text("");
+				ImGui::Text("Window glow");
+				ImGui::ColorEdit3("Color", (float*)&g_Config.WindowGlowColor, ImGuiColorEditFlags_Float);
+				ImGui::PushItemWidth(120);
+				ImGui::InputFloat("Power", &g_Config.WindowGlowPower, 0.1, 0.2);
+				ImGui::PopItemWidth();
+				ImGui::Checkbox("Override", &g_Config.WindowGlowOverride);
 
 #ifdef _DEBUG
-			ImGui::Text("");
-			ImGui::Text("Spotlights: %d", NumSpotLightBuffer);
+				ImGui::Text("");
+				ImGui::Text("Spotlights: %d", NumSpotLightBuffer);
 #endif
+				ImGui::EndChild();
+			}
 		}
 	}
 }

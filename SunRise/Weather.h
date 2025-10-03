@@ -12,9 +12,6 @@ class Weather
 private:
 	WeatherData current;
 
-	float Timer = 0.0f;
-	float rain = 0.0f;
-
 	TextureInfo* Water = NULL;
 	TextureInfo* CarRainDrops = NULL;
 	TextureInfo* CarRainSlide = NULL;
@@ -24,26 +21,20 @@ private:
 	TextureInfo* SkyNoise = NULL;
 	TextureInfo* Lightning[2] = { NULL, NULL };
 
-	D3DXVECTOR4 rainParams = { 0, 0, 0, 0 };
 	D3DXVECTOR4 fogValue;
 
-	float RoadWetness = 0.0f;
 	float RoadRainDrops = 0.0f;
 	float LightIntensity = 0.0f;
 	float NightFactor = 0.0f;
-	float TunnelWetness = 0.0f;
 
 public:
 
 	void Update()
 	{
-		this->Timer += Game::DeltaTime;
-
 		this->UpdateWeather();
 		this->UpdateTextures();
 		this->UpdateSun();
 		this->SetParams();
-		this->UpdateRain();
 		this->UpdateWater();
 
 		MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime * 2);
@@ -57,11 +48,6 @@ public:
 	bool WorldLightsOn()
 	{
 		return this->LightIntensity > 0.0;
-	}
-
-	float GetRain()
-	{
-		return this->rain;
 	}
 
 	float GetCarLightsPower()
@@ -243,11 +229,13 @@ private:
 
 		if (a && b)
 		{
-			if (this->rain == 0.0f || !g_Rain.IsHeavy())
+			float rain = g_Rain.GetRain();
+
+			if (rain == 0.0f)
 			{
 				this->LerpWeather(&a->Main, &b->Main, t);
 			}
-			else if (this->rain == 1.0f)
+			else if (rain == 1.0f)
 			{
 				this->LerpWeather(&a->Rain, &b->Rain, t);
 			}
@@ -257,7 +245,7 @@ private:
 				auto mainCurrent = this->current;
 				this->LerpWeather(&a->Rain, &b->Rain, t);
 				auto rainCurrent = this->current;
-				this->LerpWeather(&mainCurrent, &rainCurrent, this->rain);
+				this->LerpWeather(&mainCurrent, &rainCurrent, rain);
 			}
 		}
 	}
@@ -294,7 +282,7 @@ private:
 		if (this->PuddleMask)
 		{
 			auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
-			int frame = (int)fmodf(this->Timer * 30.0f, 30);
+			int frame = (int)fmodf(g_Rain.GetTimer() * 30.0f, 30);
 
 			roadShader->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->PuddleMask);
 			roadShader->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->RainSplash[frame]);
@@ -379,50 +367,6 @@ private:
 		e->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->Lightning[g_Rain.GetLightningTex()]);
 	}
 
-	void UpdateRain()
-	{
-		bool isRaining = this->IsRaining();
-		MoveTowards(this->RoadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime / (isRaining ? g_Config.WetTime : g_Config.DryTime));
-
-		if (g_Config.TunnelWetnessFix)
-		{
-			MoveTowards(this->TunnelWetness, Rain::Instance->IsInTunnel ? 0.0 : 1.0, Game::DeltaTime);
-		}
-		else
-		{
-			this->TunnelWetness = 1.0f;
-		}
-
-		MoveTowards(this->rain, isRaining > 0.0f ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
-		if (g_Config.Editor)
-		{
-			if (Game::ForceRain)
-			{
-				this->rain = 1;
-			}
-			else
-			{
-				this->rain = 0;
-			}
-		}
-
-		bool covered = Rain::Instance->IsInTunnel || Rain::Instance->IsUnderOverpass;
-
-		rainParams.x = Rain::Instance->Intensity * !covered;
-		rainParams.y = RoadWetness * this->TunnelWetness;
-
-		if (isRaining)
-		{
-			rainParams.z = Timer;
-		}
-
-		auto roadShader = eEffect::Get(shader_type::WorldReflectShader);
-		roadShader->SetVector(ShaderParam::cvRainParams, &rainParams);
-
-		auto carShader = eEffect::Get(shader_type::CarShader);
-		carShader->SetVector(ShaderParam::cvRainParams, &rainParams);
-	}
-
 	void UpdateWater()
 	{
 		if (this->Water && Game::ReflectionTexture)
@@ -432,7 +376,7 @@ private:
 			auto waterShader = eEffect::Get(shader_type::WorldShader);
 			waterShader->SetVector(ShaderParam::cvWaterColor, &this->current.WaterColor);
 			waterShader->SetTexture(ShaderParam::MISCMAP4_TEXTURE, this->Water);
-			waterShader->SetFloat(ShaderParam::cfTimeTicker, this->Timer);
+			waterShader->SetFloat(ShaderParam::cfTimeTicker, g_Rain.GetTimer());
 			waterShader->SetTexture(shader_param::REFLECTEDTEX, Game::ReflectionTexture);
 		}
 	}
@@ -440,16 +384,6 @@ private:
 	float GetTime()
 	{
 		return TimeOfDay::Instance->CurrentTime;
-	}
-
-	bool IsRaining()
-	{
-		if (Game::State == 3)
-		{
-			return false;
-		}
-
-		return Rain::Instance->Intensity > 0.0f;
 	}
 };
 

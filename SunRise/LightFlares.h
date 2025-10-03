@@ -44,7 +44,7 @@ void __stdcall RenderWorldLightFlares()
 				if (RenderTarget::Current->ViewId == ViewId::Player1 && spotlight.Flare->TextureName == Hashes::LAMP_FLARE)
 				{
 					auto cameraDist = GetCameraDistance(flare.Position);
-					intensity *= Smoothstep(1, 100, cameraDist) * g_Weather.GetRain() * 0.3;
+					intensity *= Smoothstep(1, 100, cameraDist) * g_Rain.GetRain() * 0.3;
 					if (intensity > 0)
 					{
 						CurrentFlare = &RainFlare;

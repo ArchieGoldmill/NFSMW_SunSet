@@ -65,7 +65,6 @@ struct PS_INPUT
 	float4 local_pos : TEXCOORD4;
 	float3 view : TEXCOORD2;
 	float3 world_pos : TEXCOORD5;
-	float3 world_normal : TEXCOORD6;
 };
 
 PS_INPUT VS_Base(VS_INPUT IN)
@@ -81,7 +80,6 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.color = lerp(float4(1, 1, 1, 1), saturate(IN.color), cvDiffuseColor.w);
 	OUT.view = vertex_view(IN.position.xyz);
 	OUT.world_pos = ToWorldPos(IN.position);
-	OUT.world_normal = ToWorldNormal(normalize(IN.normal));
 	
 	return OUT;
 }
@@ -140,7 +138,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float4 vinyl_scale = float4(0.5, 0.5, 0.5, 0.5) + vdotn * float4(0.5, 0.5, 0.5, 0.5);
 	diffuse_scale = lerp(diffuse_scale, vinyl_scale, vinyl);
 	
-	SpotLightResult light = ApplySpotLights(normalize(IN.world_normal.xyz), IN.world_pos.xyz, lightCount, SpecularPower * 100, 2.0);
+	SpotLightResult light = ApplySpotLights(ToWorldNormal(normal), IN.world_pos.xyz, lightCount, SpecularPower * 100, 2);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(IN.normal.xyz, lightDir);

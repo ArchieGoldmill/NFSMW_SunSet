@@ -46,12 +46,7 @@ SpotLightResult GetSpotlight(const int i, const float3 normal, const float3 pos,
 	return result;
 }
 
-//float3 CompressLight(float3 colour)
-//{
-//	return colour / (0.5 + colour);
-//}
-
-SpotLightResult ApplySpotLights1(const float3 normal, const float3 pos, const int count, const float shine, float maxPower = 5.0)
+SpotLightResult ApplySpotLights1(const float3 normal, const float3 pos, const int count, const float shine, const float maxPower)
 {
 	SpotLightResult result;
 	result.Diffuse = 0;
@@ -68,12 +63,14 @@ SpotLightResult ApplySpotLights1(const float3 normal, const float3 pos, const in
 		}
 	}
 	
-	//result.Diffuse = CompressLight(result.Diffuse);
-	
+	float len = length(result.Diffuse);
+	len = min(len, maxPower);
+	result.Diffuse = normalize(result.Diffuse) * len;
+
 	return result;
 }
 
-SpotLightResult ApplySpotLights(const float3 normal, const float3 pos, const int count, const float shine, float maxPower = 10.0)
+SpotLightResult ApplySpotLights(const float3 normal, const float3 pos, const int count, const float shine, const float maxPower = 4.5)
 {
 	if (count > 0)
 	{

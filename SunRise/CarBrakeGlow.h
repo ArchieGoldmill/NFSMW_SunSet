@@ -9,7 +9,7 @@ void UpdateBrakeGLow()
 		auto speed = PVehicle::Player->GetSpeed();
 		auto braking = PVehicle::Player->GetBraking();
 
-		if (speed > 0 && braking > 0)
+		if (speed > 0.001 && braking > 0.001)
 		{
 			MoveTowards(BrakeGlow, 6, Game::DeltaTime * 0.5);
 		}

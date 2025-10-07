@@ -52,6 +52,7 @@ const char* ShaderParamNames[] =
 	"cvGodRaysColor",
 	"cfShadowsEnabled",
 	"cvLightning",
+	"cmWorldIT",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -95,6 +96,7 @@ enum class ShaderParam
 	cvGodRaysColor,
 	cfShadowsEnabled,
 	cvLightning,
+	cmWorldIT,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,
@@ -414,6 +416,15 @@ struct eEffect
 		if (handle)
 		{
 			this->D3DEffect->SetBool(handle, v);
+		}
+	}
+
+	void SetMatrix(ShaderParam p, D3DXMATRIX* m)
+	{
+		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetMatrix(handle, m);
 		}
 	}
 

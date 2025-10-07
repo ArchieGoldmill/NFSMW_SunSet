@@ -7,17 +7,6 @@
 #include "TextureInfo.h"
 #include "HashField.h"
 
-struct SpotLightShader
-{
-	D3DXVECTOR3 Position;
-	D3DXVECTOR3 Direction;
-	D3DXVECTOR3 Color;
-	float Range;
-	float InnerCos;
-	float OuterCos;
-	float Specular;
-};
-
 struct SpotLight
 {
 	D3DXVECTOR3 Position;
@@ -79,17 +68,8 @@ struct SolidLights
 	bool UseFirstLight = false;
 };
 
-inline bool ConeSphereIntersect(const SpotLightShader& localLight, SpotLight* worldLight, MeshEntry* mesh, const D3DXVECTOR3& sphereCenter, float sphereRadius)
+inline bool ConeSphereIntersect(SpotLight* worldLight, const D3DXVECTOR3& sphereCenter, float sphereRadius)
 {
-	auto localApex = localLight.Position;
-
-	if ((localApex.x >= mesh->bbox_min.x && localApex.x <= mesh->bbox_max.x) &&
-		(localApex.y >= mesh->bbox_min.y && localApex.y <= mesh->bbox_max.y) &&
-		(localApex.z >= mesh->bbox_min.z && localApex.z <= mesh->bbox_max.z))
-	{
-		return true;
-	}
-
 	auto v = sphereCenter - worldLight->Position;
 	float vlen = D3DXVec3Length(&v);
 

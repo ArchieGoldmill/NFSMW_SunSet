@@ -88,34 +88,14 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	for (int i = 0; i < g_CellBuffer.numCandidateLights; i++)
 	{
 		auto lightmodel = g_CellBuffer.candidateLights[i];
-		auto spotlight = &lightmodel->Light;
-		if (spotlight && NumSpotLights < NUM_SPOTLIGHTS)
+		auto& s = lightmodel->Light;
+		if (NumSpotLights < NUM_SPOTLIGHTS)
 		{
-			SpotLightShader s;
-			s.Position = spotlight->Position;
-			s.Direction = spotlight->Direction;
-			s.Color = spotlight->Color * spotlight->Intensity;
-			s.Range = spotlight->Range;
-			s.InnerCos = cosf(D3DXToRadian(spotlight->InnerAngle));
-			s.OuterCos = cosf(D3DXToRadian(spotlight->OuterAngle));
-			s.Specular = spotlight->Specular;
-
-			if (!worldSpace)
-			{
-				D3DXMATRIX worldToLocal;
-				D3DXMatrixInverse(&worldToLocal, NULL, model->LocalToWorld);
-
-				D3DXVec3TransformCoord(&s.Position, &s.Position, &worldToLocal);
-
-				D3DXVec3TransformNormal(&s.Direction, &s.Direction, &worldToLocal);
-				D3DXVec3Normalize(&s.Direction, &s.Direction);
-			}
-
-			if (ConeSphereIntersect(s, spotlight, model->pMeshEntry, meshCenter, radius))
+			if (ConeSphereIntersect(&s, meshCenter, radius))
 			{
 				SP_Position_Range[NumSpotLights] = D3DXVECTOR4(s.Position, s.Range);
-				SP_Direction_OuterCos[NumSpotLights] = D3DXVECTOR4(s.Direction, s.OuterCos);
-				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color, s.InnerCos);
+				SP_Direction_OuterCos[NumSpotLights] = D3DXVECTOR4(s.Direction, cosf(D3DXToRadian(s.OuterAngle)));
+				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color * s.Intensity, cosf(D3DXToRadian(s.InnerAngle)));
 				SP_Specular[NumSpotLights] = s.Specular;
 
 				NumSpotLights++;
@@ -133,6 +113,19 @@ inline void SetDynamicLights(RenderModel* model)
 		effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, 24);
 		effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, 24);
 		effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, 24);
+
+		if (model->LocalToWorld != Game::IdentityMatrix)
+		{
+			D3DXMATRIX worldIT;
+			D3DXMatrixInverse(&worldIT, nullptr, model->LocalToWorld);
+			D3DXMatrixTranspose(&worldIT, &worldIT);
+
+			effect->SetMatrix(ShaderParam::cmWorldIT, &worldIT);
+		}
+		else
+		{
+			effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
+		}
 	}
 }
 

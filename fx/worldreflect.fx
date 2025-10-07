@@ -25,7 +25,7 @@ struct PS_INPUT
 	float3 normal : NORMAL0;
 	float3 tangent : TEXCOORD5;
 	float2 uv : TEXCOORD0;
-	float4 world_pos : TEXCOORD1;
+	float3 world_pos : TEXCOORD1;
 	float4 color : COLOR0;
 	float4 reflection : TEXCOORD4;
 	float4 shadow_tex : TEXCOORD3;
@@ -86,7 +86,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.uv = IN.tex.xy;
 	OUT.tangent = IN.tangent;
 	OUT.normal = IN.normal;
-	OUT.world_pos = mul(IN.position, cmWorldMat);
+	OUT.world_pos = ToWorldPos(IN.position);
 	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
 	OUT.color = vertex_color(IN.color);
 	OUT.view = vertex_view(IN.position.xyz);
@@ -116,7 +116,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float specMap = GetSpecularMap(IN.uv);
 
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, lerp(50, 90, specMap));
+	SpotLightResult light = ApplySpotLights(ToWorldNormal(normal), IN.world_pos.xyz, lightCount, lerp(50, 90, specMap));
 
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	float3 albedo = diffuse_tex.rgb + roadDetail.r * 0.2;

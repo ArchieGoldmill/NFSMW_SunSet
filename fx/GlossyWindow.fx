@@ -38,6 +38,8 @@ struct PS_INPUT
 	float4 color : COLOR0;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
+	float3 world_pos : TEXCOORD6;
+	float3 world_normal : TEXCOORD7;
 };
 
 PS_INPUT VS_Base(VS_INPUT IN)
@@ -52,6 +54,8 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
 	OUT.color = vertex_color(IN.color);
 	OUT.view = vertex_view(IN.position.xyz);
+	OUT.world_pos = ToWorldPos(IN.position);
+	OUT.world_normal = ToWorldNormal(normalize(IN.normal));
 	
 	return OUT;
 }
@@ -74,7 +78,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1);
+	SpotLightResult light = ApplySpotLights(normalize(IN.world_normal.xyz), IN.world_pos.xyz, lightCount, -1);
 	
 	float3 albedo = diffuse_tex.rgb;
 	float reflect_scale = smoothstep(0, 0.2, diffuse_tex.a);

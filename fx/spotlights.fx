@@ -1,3 +1,5 @@
+float4x4 cmWorldIT;
+
 struct SpotLightResult
 {
 	float3 Diffuse;
@@ -9,9 +11,9 @@ float4 cvaSpDirectionOuterCos[24];
 float4 cvaSpColorInnerCos[24];
 float cfaSpSpecular[24];
 
-SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3 localPos, const float3 view, const float shine)
+SpotLightResult GetSpotlight(const int i, const float3 normal, const float3 pos, const float3 view, const float shine)
 {
-	float3 L = cvaSpPositionRange[i].xyz - localPos;
+	float3 L = cvaSpPositionRange[i].xyz - pos;
 	float distance = length(L);
 	L /= distance;
 
@@ -21,7 +23,7 @@ SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3
 	float distAtten = saturate(1.0 - distance / cvaSpPositionRange[i].w);
 	distAtten *= distAtten;
 
-	float dotL = dot(localNormal, L);
+	float dotL = dot(normal, L);
 	dotL = smoothstep(-0.5, 1.0, dotL);
 	
 	float3 lightScale = cvaSpColorInnerCos[i].xyz * dotL * distAtten;
@@ -30,7 +32,7 @@ SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3
 	
 #ifdef SPOT_SPECULAR
 	float3 H = normalize(L + view);
-	float NdotH = saturate(dot(localNormal, H));
+	float NdotH = saturate(dot(normal, H));
 	spec = pow(NdotH, shine);
 	spec *= lightScale * saturate(spotCos);
 #endif
@@ -43,39 +45,54 @@ SpotLightResult GetSpotlight(const int i, const float3 localNormal, const float3
 	return result;
 }
 
-SpotLightResult ApplySpotLights1(const float3 normal, const float3 localPos, const int count, const float shine, float maxPower = 5.0)
+float3 CompressLight(float3 colour)
+{
+	return colour / (0.5 + colour);
+}
+
+SpotLightResult ApplySpotLights1(const float3 normal, const float3 pos, const int count, const float shine, float maxPower = 5.0)
 {
 	SpotLightResult result;
-	result.Diffuse = float3(1, 1, 1) * 0.000001;
-	result.Specular = result.Diffuse;
+	result.Diffuse = 0;
+	result.Specular = 0;
 	
-	float3 view = normalize(LocalEyePos - localPos);
+	float3 view = normalize(LocalEyePos - pos);
 	for (int i = 0; i < count; ++i)
 	{
 		if (cvaSpPositionRange[i].w > 0)
 		{
-			SpotLightResult current = GetSpotlight(i, normal, localPos, view, shine);
+			SpotLightResult current = GetSpotlight(i, normal, pos, view, shine);
 			result.Diffuse += current.Diffuse;
 			result.Specular += current.Specular;
 		}
 	}
 	
-	float len = length(result.Diffuse);
-	len = min(len, maxPower);
-	result.Diffuse = normalize(result.Diffuse) * len;
+	//result.Diffuse = CompressLight(result.Diffuse);
 	
 	return result;
 }
 
-SpotLightResult ApplySpotLights(const float3 normal, const float3 localPos, const int count, const float shine, float maxPower = 10.0)
+SpotLightResult ApplySpotLights(const float3 normal, const float3 pos, const int count, const float shine, float maxPower = 10.0)
 {
 	if (count > 0)
 	{
-		return ApplySpotLights1(normal, localPos, count, shine, maxPower);
+		return ApplySpotLights1(normal, pos, count, shine, maxPower);
 	}
 	
 	SpotLightResult result;
 	result.Diffuse = float3(0, 0, 0);
 	result.Specular = float3(0, 0, 0);
+	
 	return result;
+}
+
+float3 ToWorldNormal(float3 normal)
+{
+	float3 world_normal = mul(normal, (float3x3) cmWorldIT);
+	return normalize(world_normal);
+}
+
+float3 ToWorldPos(float4 position)
+{
+	return mul(position, cmWorldMat).xyz;
 }

@@ -26,6 +26,7 @@ struct PS_INPUT
 	float4 color : COLOR0;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD2;
+	float3 world_pos : TEXCOORD6;
 };
 
 PS_INPUT VS_Base(VS_INPUT IN)
@@ -40,6 +41,7 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
 	OUT.color = vertex_color(IN.color);
 	OUT.view = vertex_view(IN.position.xyz);
+	OUT.world_pos = ToWorldPos(IN.position);
 	
 	return OUT;
 }
@@ -54,7 +56,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 diffuse = GetDiffuse(ndotl);
 	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view));
-	SpotLightResult spotlight = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1);
+	
+	SpotLightResult spotlight = ApplySpotLights(ToWorldNormal(normal), IN.world_pos.xyz, lightCount, -1);
 	
 	float3 finalLight = IN.color.rgb + diffuse * shadow + spotlight.Diffuse;
 	

@@ -218,7 +218,6 @@ void __fastcall SetEffectParams(eEffect* effect)
 	shaderParams.Techniques[Technique_LitPixel_8] = effect->D3DEffect->GetTechniqueByName("LitPixel_8");
 	shaderParams.Techniques[Technique_LitPixel_16] = effect->D3DEffect->GetTechniqueByName("LitPixel_16");
 	shaderParams.Techniques[Technique_LitPixel_24] = effect->D3DEffect->GetTechniqueByName("LitPixel_24");
-	shaderParams.Techniques[Technique_LitVertex] = effect->D3DEffect->GetTechniqueByName("LitVertex");
 	shaderParams.Techniques[Technique_ShadowMap] = effect->D3DEffect->GetTechniqueByName("ShadowMap");
 	shaderParams.Techniques[Technique_Water] = effect->D3DEffect->GetTechniqueByName("Water");
 	shaderParams.Techniques[Technique_Invisible] = effect->D3DEffect->GetTechniqueByName("Invisible");

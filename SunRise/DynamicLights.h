@@ -136,20 +136,6 @@ inline void SetDynamicLights(RenderModel* model)
 	}
 }
 
-inline bool UseVertexLighting(RenderModel* model)
-{
-	auto bbox_min = model->pMeshEntry->bbox_min;
-	auto bbox_max = model->pMeshEntry->bbox_max;
-
-	D3DXVec3TransformCoord(&bbox_min, &bbox_min, model->LocalToWorld);
-	D3DXVec3TransformCoord(&bbox_max, &bbox_max, model->LocalToWorld);
-
-	float cameraDistance1 = GetCameraDistance(bbox_min);
-	float cameraDistance2 = GetCameraDistance(bbox_max);
-
-	return cameraDistance1 > g_Config.LightLodDistance && cameraDistance2 > g_Config.LightLodDistance && NumSpotLights > 0;
-}
-
 inline bool ApplyEmissive(RenderModel* renderModel)
 {
 	auto effect = renderModel->Effect;
@@ -235,11 +221,6 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		if (RenderTarget::Current->ViewId == ViewId::Player1)
 		{
 			PopulateShaderSpotlights(renderModel);
-
-			if (UseVertexLighting(renderModel))
-			{
-				return Technique_LitVertex;
-			}
 
 			if (NumSpotLights == 0)
 			{

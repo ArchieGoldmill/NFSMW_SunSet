@@ -12,7 +12,6 @@ enum TechniqueType
 	Technique_LitPixel_8,
 	Technique_LitPixel_16,
 	Technique_LitPixel_24,
-	Technique_LitVertex,
 	Technique_ShadowMap,
 	Technique_Invisible,
 	Technique_Water,

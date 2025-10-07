@@ -36,7 +36,6 @@ struct PS_INPUT
 	float2 uv : TEXCOORD0;
 	float3 view : TEXCOORD1;
 	float4 color : COLOR0;
-	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
 };
@@ -75,7 +74,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1);
 	
 	float3 albedo = diffuse_tex.rgb;
 	float reflect_scale = smoothstep(0, 0.2, diffuse_tex.a);

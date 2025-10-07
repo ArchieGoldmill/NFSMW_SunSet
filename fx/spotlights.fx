@@ -67,7 +67,7 @@ SpotLightResult ApplySpotLights1(const float3 normal, const float3 localPos, con
 	return result;
 }
 
-SpotLightResult ApplySpotLights(const float3 normal, const float3 localPos, const int count, const float shine, const float3 defaultResult, float maxPower = 10.0)
+SpotLightResult ApplySpotLights(const float3 normal, const float3 localPos, const int count, const float shine, float maxPower = 10.0)
 {
 	if (count > 0)
 	{
@@ -75,7 +75,7 @@ SpotLightResult ApplySpotLights(const float3 normal, const float3 localPos, cons
 	}
 	
 	SpotLightResult result;
-	result.Diffuse = defaultResult;
+	result.Diffuse = float3(0, 0, 0);
 	result.Specular = float3(0, 0, 0);
 	return result;
 }

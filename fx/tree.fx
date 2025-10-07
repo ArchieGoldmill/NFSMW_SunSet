@@ -20,7 +20,6 @@ struct PS_INPUT
 	float3 normal : NORMAL0;
 	float2 uv : TEXCOORD0;
 	float4 color : COLOR0;
-	float4 spotlight : COLOR1;
 	float4 local_pos : TEXCOORD4;
 };
 
@@ -43,7 +42,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1, IN.spotlight.rgb);
+	SpotLightResult light = ApplySpotLights(normal, IN.local_pos.xyz, lightCount, -1);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = abs(dot(normal, lightDir));

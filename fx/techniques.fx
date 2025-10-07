@@ -1,14 +1,6 @@
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 {
 	OUT = VS_Base(IN);
-	OUT.spotlight = float4(0.0, 0.0, 0.0, 1.0);
-}
-
-void VS_LitVertex(VS_INPUT IN, out PS_INPUT OUT)
-{
-	OUT = VS_Base(IN);
-	SpotLightResult result = ApplySpotLights1(OUT.normal, OUT.local_pos.xyz, 12, -1);
-	OUT.spotlight = float4(result.Diffuse, 1);
 }
 
 void VS_Stub(VS_INPUT IN, out PS_INPUT OUT)
@@ -83,17 +75,6 @@ technique Unlit
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = compile ps_3_0 PS_LitPixel(0);
-	}
-}
-
-technique LitVertex
-{
-	pass p0
-	{
-		COMMON_PASS_BODY
-
-		VertexShader = compile vs_3_0 VS_LitVertex();
 		PixelShader = compile ps_3_0 PS_LitPixel(0);
 	}
 }

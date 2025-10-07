@@ -61,7 +61,6 @@ struct PS_INPUT
 	float3 normal : NORMAL0;
 	float2 uv : TEXCOORD0;
 	float4 color : COLOR0;
-	float4 spotlight : COLOR1;
 	float4 shadow_tex : TEXCOORD3;
 	float4 local_pos : TEXCOORD4;
 	float3 view : TEXCOORD2;
@@ -137,7 +136,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float4 vinyl_scale = float4(0.5, 0.5, 0.5, 0.5) + vdotn * float4(0.5, 0.5, 0.5, 0.5);
 	diffuse_scale = lerp(diffuse_scale, vinyl_scale, vinyl);
 	
-	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, SpecularPower * 100, IN.spotlight.rgb, 2.0);
+	SpotLightResult light = ApplySpotLights(flake_normal, IN.local_pos.xyz, lightCount, SpecularPower * 100, 2.0);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = dot(IN.normal.xyz, lightDir);

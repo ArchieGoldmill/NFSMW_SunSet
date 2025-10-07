@@ -157,7 +157,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	envmap_sample *= clamp(fresnel, 0.3, 1.0);
 	
 	float env_vdotn = pow(vdotn, EnvmapPower);
-	float3 envmapMin = lerp(EnvmapMin.xyz, float3(1.5, 1.5, 1.5), rainPower);
+	float3 envmapMin = lerp(EnvmapMin.rgb, float3(1.5, 1.5, 1.5), rainPower);
 	float3 envmap_scale = envmapMin + env_vdotn * EnvmapRange.rgb;
 	envmap_sample *= envmap_scale * 0.5;
 	
@@ -170,8 +170,11 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float metallic = 0.05 * flakeNoise.r * cfMetallicScale * saturate(1.2 - viewLen * 0.15) * (1 - vinyl);
 	
+	float fake_ao = lerp(0.8, 1.1, pow(vdotn, 2));
+	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;
+	final.rgb *= fake_ao;
 	final.rgb *= finalLight;
 	final.rgb += metallic;
 	final.rgb += envmap_sample * diffuse_scale.a;

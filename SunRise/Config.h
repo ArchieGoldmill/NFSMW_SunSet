@@ -76,59 +76,59 @@ void LoadConfig()
 	const auto& settings = settingsRoot["Config"];
 	g_Config.LightLodDistance = 300.0f;
 	g_Config.LightCellSize = 64;
-	g_Config.Console = settings["Console"].as<bool>();
-	g_Config.ShaderLoader = settings["ShaderLoader"].as<bool>();
-	g_Config.ShaderCompiler = settings["ShaderCompiler"].as<bool>();
-	g_Config.LiveReload = settings["LiveReload"].as<bool>();
-	g_Config.X360Effects = settings["X360Effects"].as<bool>();
-	g_Config.Editor = settings["Editor"].as<bool>();
-	g_Config.SkipFE = settings["SkipFE"].as<bool>();
-	g_Config.CarVinylPaintFix = settings["CarVinylPaintFix"].as<bool>();
-	g_Config.BrakeGlow = settings["BrakeGlow"].as<bool>();
-	g_Config.GodRays = settings["GodRays"].as<bool>();
-	g_Config.Bloom = settings["Bloom"].as<bool>();
-	g_Config.RealFeReflections = settings["RealFeReflections"].as<bool>();
-	g_Config.WorldVertexColor = settings["WorldVertexColor"].as<bool>();
-	g_Config.CarVertexColor = settings["CarVertexColor"].as<bool>();
-	g_Config.TunnelWetnessFix = settings["TunnelWetnessFix"].as<bool>();
-	g_Config.DisableNightShadows = settings["DisableNightShadows"].as<bool>();
-	g_Config.CustomMeshDist = settings["CustomMeshDist"].as<float>();
+	g_Config.Console = YmlGet(settings, "Console", false);
+	g_Config.ShaderLoader = YmlGet(settings, "ShaderLoader", true);
+	g_Config.ShaderCompiler = YmlGet(settings, "ShaderCompiler", false);
+	g_Config.LiveReload = YmlGet(settings, "LiveReload", false);
+	g_Config.X360Effects = YmlGet(settings, "X360Effects", false);
+	g_Config.Editor = YmlGet(settings, "Editor", false);
+	g_Config.SkipFE = YmlGet(settings, "SkipFE", false);
+	g_Config.CarVinylPaintFix = YmlGet(settings, "CarVinylPaintFix", true);
+	g_Config.BrakeGlow = YmlGet(settings, "BrakeGlow", true);
+	g_Config.GodRays = YmlGet(settings, "GodRays", true);
+	g_Config.Bloom = YmlGet(settings, "Bloom", true);
+	g_Config.RealFeReflections = YmlGet(settings, "RealFeReflections", true);
+	g_Config.WorldVertexColor = YmlGet(settings, "WorldVertexColor", false);
+	g_Config.CarVertexColor = YmlGet(settings, "CarVertexColor", true);
+	g_Config.TunnelWetnessFix = YmlGet(settings, "TunnelWetnessFix", true);
+	g_Config.DisableNightShadows = YmlGet(settings, "DisableNightShadows", true);
+	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
-	g_Config.WetTime = time["WetTime"].as<float>();
-	g_Config.DryTime = time["DryTime"].as<float>();
-	g_Config.ForceTime = time["ForceTime"].as<float>();
-	g_Config.TimeUpdateRate = time["TimeUpdateRate"].as<float>();
-	g_Config.LightsOn = time["LightsOn"].as<float>();
-	g_Config.LightsOff = time["LightsOff"].as<float>();
-	g_Config.RandomStartupTime = time["RandomStartupTime"].as<bool>();
-	g_Config.RealTime = time["RealTime"].as<bool>();
+	g_Config.WetTime = YmlGet(time, "WetTime", 2.0f);
+	g_Config.DryTime = YmlGet(time, "DryTime", 30.0f);
+	g_Config.ForceTime = YmlGet(time, "ForceTime", -1.0f);
+	g_Config.TimeUpdateRate = YmlGet(time, "TimeUpdateRate", 1.0f);
+	g_Config.LightsOn = YmlGet(time, "LightsOn", 0.0f);
+	g_Config.LightsOff = YmlGet(time, "LightsOff", 0.0f);
+	g_Config.RandomStartupTime = YmlGet(time, "RandomStartupTime", false);
+	g_Config.RealTime = YmlGet(time, "RealTime", false);
 	g_Config.SunRise = 0.2f;
 	g_Config.SunSet = 0.8f;
 
 	const auto& blur = settingsRoot["Blur"];
-	g_Config.BlurMinSpeed = blur["MinSpeed"].as<float>();
-	g_Config.BlurMaxSpeed = blur["MaxSpeed"].as<float>();
-	g_Config.BlurDepth = blur["Depth"].as<float>();
+	g_Config.BlurMinSpeed = YmlGet(blur, "MinSpeed", 0.0f);
+	g_Config.BlurMaxSpeed = YmlGet(blur, "MaxSpeed", 0.0f);
+	g_Config.BlurDepth = YmlGet(blur, "Depth", 0.0f);
 
 	const auto& hotkeys = settingsRoot["Hotkeys"];
 	g_Config.HK_ShaderReload = hotkeys["ShaderReload"].as<int>();
 	g_Config.HK_ToggleEditor = hotkeys["ToggleEditor"].as<int>();
 
 	const auto& rain = settingsRoot["Rain"];
-	g_Config.Rain.DryTime = rain["DryTime"].as<float>();
-	g_Config.Rain.DryTimeRandom = rain["DryTimeRandom"].as<float>();
-	g_Config.Rain.LightTime = rain["LightTime"].as<float>();
-	g_Config.Rain.LightTimeRandom = rain["LightTimeRandom"].as<float>();
-	g_Config.Rain.HeavyTime = rain["HeavyTime"].as<float>();
-	g_Config.Rain.HeavyTimeRandom = rain["HeavyTimeRandom"].as<float>();
-	g_Config.Rain.LightningTimeOut = rain["LightningTimeOut"].as<float>();
+	g_Config.Rain.DryTime = YmlGet(rain, "DryTime", 0.0f);
+	g_Config.Rain.DryTimeRandom = YmlGet(rain, "DryTimeRandom", 0.0f);
+	g_Config.Rain.LightTime = YmlGet(rain, "LightTime", 0.0f);
+	g_Config.Rain.LightTimeRandom = YmlGet(rain, "LightTimeRandom", 0.0f);
+	g_Config.Rain.HeavyTime = YmlGet(rain, "HeavyTime", 0.0f);
+	g_Config.Rain.HeavyTimeRandom = YmlGet(rain, "HeavyTimeRandom", 0.0f);
+	g_Config.Rain.LightningTimeOut = YmlGet(rain, "LightningTimeOut", 0.0f);
 
 	const auto& windowGlow = settingsRoot["WindowGlow"];
 	g_Config.WindowGlowColor = ParseVec3To4(windowGlow["Color"]);
-	g_Config.WindowGlowPower = windowGlow["Power"].as<float>();
-	g_Config.WindowGlowOverride = windowGlow["Override"].as<bool>();
+	g_Config.WindowGlowPower = YmlGet(windowGlow, "Power", 0.0f);
+	g_Config.WindowGlowOverride = YmlGet(windowGlow, "Override", false);
 
 	if (g_Config.Editor)
 	{

@@ -578,6 +578,36 @@ SolidLights:
         Intensity: 2
         Range: 35
         Specular: 1
+  - SolidLodA: TRN_CP_NS_TERRAIN_A_13_CHOP_O10_R0
+    Blink: 0
+    AlwaysOn: true
+    UseFirstLight: true
+    Flare: ""
+    SpotLights:
+      - Position: [3218.75732, 375.513916, 16.272028]
+        Direction: [0, 0, -1]
+        Color: [1, 0.856689692, 0.65196079]
+        InnerAngle: 15
+        OuterAngle: 60
+        Intensity: 3
+        Range: 30
+        Specular: 1.10000002
+      - Position: [3225.84302, 355.080261, 16.4053612]
+        Direction: [0, 0, -1]
+        Color: [1, 0.856689692, 0.65196079]
+        InnerAngle: 15
+        OuterAngle: 70
+        Intensity: 3
+        Range: 30
+        Specular: 1
+      - Position: [3233.60669, 333.177429, 16.4053612]
+        Direction: [0, 0, -1]
+        Color: [1, 0.856689692, 0.65196079]
+        InnerAngle: 15
+        OuterAngle: 70
+        Intensity: 3
+        Range: 30
+        Specular: 1
   - SolidLodA: TRN_CP_OILREFINERY_ROADE_02_CHOP_P34_R0
     Blink: 0
     AlwaysOn: true
@@ -1821,7 +1851,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 5
         Range: 50
-        Specular: 1
+        Specular: 0
   - SolidLodA: XB_ROSEWOODBURGERKING_1B_MM_00
     Blink: 0
     AlwaysOn: false

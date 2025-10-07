@@ -1,4 +1,5 @@
 float4x4 cmWorldIT;
+float4 cvWorldEyePos;
 
 struct SpotLightResult
 {
@@ -45,10 +46,10 @@ SpotLightResult GetSpotlight(const int i, const float3 normal, const float3 pos,
 	return result;
 }
 
-float3 CompressLight(float3 colour)
-{
-	return colour / (0.5 + colour);
-}
+//float3 CompressLight(float3 colour)
+//{
+//	return colour / (0.5 + colour);
+//}
 
 SpotLightResult ApplySpotLights1(const float3 normal, const float3 pos, const int count, const float shine, float maxPower = 5.0)
 {
@@ -56,7 +57,7 @@ SpotLightResult ApplySpotLights1(const float3 normal, const float3 pos, const in
 	result.Diffuse = 0;
 	result.Specular = 0;
 	
-	float3 view = normalize(LocalEyePos - pos);
+	float3 view = normalize(cvWorldEyePos.xyz - pos);
 	for (int i = 0; i < count; ++i)
 	{
 		if (cvaSpPositionRange[i].w > 0)

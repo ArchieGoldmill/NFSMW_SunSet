@@ -126,6 +126,9 @@ inline void SetDynamicLights(RenderModel* model)
 		{
 			effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
 		}
+
+		D3DXVECTOR4 camPos = D3DXVECTOR4(GetCameraPos(), 1);
+		effect->SetVector(ShaderParam::cvWorldEyePos, &camPos);
 	}
 }
 

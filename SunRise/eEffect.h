@@ -53,6 +53,7 @@ const char* ShaderParamNames[] =
 	"cfShadowsEnabled",
 	"cvLightning",
 	"cmWorldIT",
+	"cvWorldEyePos",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -97,6 +98,7 @@ enum class ShaderParam
 	cfShadowsEnabled,
 	cvLightning,
 	cmWorldIT,
+	cvWorldEyePos,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

@@ -152,7 +152,7 @@ private:
 		for (int i = 0; i < (int)shader_type::_count; i++)
 		{
 			auto e = eEffect::Get((shader_type)i);
-			e->SetFloat(ShaderParam::cfShadowsEnabled, Game::DrawShadows ? 1.0 : 0.0);
+			e->SetFloat(ShaderParam::cfShadowsEnabled, (Game::DrawShadows && Game::ShadowDetail > 0) ? 1.0 : 0.0);
 		}
 	}
 

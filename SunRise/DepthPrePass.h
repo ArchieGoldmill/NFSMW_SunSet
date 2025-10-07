@@ -44,7 +44,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	Game::StuffSky(eView::Player, 1.0, 0);
 	cullInfo->StuffScenery(eView::Player, 0x20);
 	WorldModel::RenderAll(eView::Player);
-	CustomMeshes.DrawPrepass();
+	CustomMeshes.DrawPrepass(g_Config.CustomMeshDist);
 	StuffFeScenery();
 
 	Game::CommitRenderedModels();

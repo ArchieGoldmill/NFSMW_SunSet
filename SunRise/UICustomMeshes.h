@@ -140,6 +140,11 @@ namespace UI
 								ImGui::InputFloat("##ScaleZ", &current->Scale.z, 0.1, 1.0, "%.2f");
 							}
 							ImGui::PopItemWidth();
+
+							ImGui::Text("");
+
+							ImGui::InputFloat("Distance", &current->Distance, 0.1, 0.2);
+							ImGui::Checkbox("Cast shadow", &current->CastShadow);
 						}
 					}
 				}

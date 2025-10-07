@@ -3,199 +3,299 @@ Meshes:
     Position: [-402.947693, 2959.71875, 190.293945]
     Rotation: [0, 0, 50]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-436.562866, 2923.80029, 195.014923]
     Rotation: [0, 0, 50]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-469.002472, 2888.07812, 200.849152]
     Rotation: [0, 0, 50]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-493.356537, 2859.05151, 205.56366]
     Rotation: [0, 0, 52]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-517.651733, 2825.89209, 211.673096]
     Rotation: [0, 0, 52]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-543.573547, 2787.11646, 215.756134]
     Rotation: [0, 0, 59]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-564.093384, 2749.26074, 222.330109]
     Rotation: [0, 0, 59]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-576.386475, 2713.39136, 227.175171]
     Rotation: [0, 0, 70]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-586.36322, 2673.11694, 231.534348]
     Rotation: [0, 0, 81]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-589.020142, 2636.50171, 235.083267]
     Rotation: [0, 0, 88]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-586.785828, 2597.49756, 237.78093]
     Rotation: [0, 0, 97]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-577.682068, 2554.72192, 240.866379]
     Rotation: [0, 0, 108]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-561.422791, 2520.56494, 242.117142]
     Rotation: [0, 0, 125]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-536.794189, 2485.4917, 243.817596]
     Rotation: [0, 0, 129]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-514.871033, 2465.68921, 244.784149]
     Rotation: [0, 0, 133]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-388.003357, 2903.66406, 196.06955]
     Rotation: [0, 0, 222]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-417.642273, 2875.08667, 197.12854]
     Rotation: [0, 0, 226]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-445.718384, 2842.61426, 202.97345]
     Rotation: [0, 0, 230]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-469.618622, 2812.8501, 208.411316]
     Rotation: [0, 0, 237]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-488.688232, 2785.79395, 212.858765]
     Rotation: [0, 0, 237]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-513.586365, 2747.53345, 218.448822]
     Rotation: [0, 0, 245]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-533.190918, 2713.06836, 223.214661]
     Rotation: [0, 0, 249]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-545.274963, 2684.28613, 227.277954]
     Rotation: [0, 0, 264]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-549.931519, 2652.6875, 230.043533]
     Rotation: [0, 0, 272]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-550.530334, 2619.61816, 233.500748]
     Rotation: [0, 0, 277]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-546.80072, 2589.36987, 236.510696]
     Rotation: [0, 0, 280]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-535.114258, 2554.24902, 239.090408]
     Rotation: [0, 0, 296]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-518.603943, 2526.63794, 240.751587]
     Rotation: [0, 0, 308]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_STREETLIGHTD2_1B_00
     Position: [-498.438995, 2502.19263, 242.705048]
     Rotation: [0, 0, 318]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XS_MEDIANPOLEGREEN_1B_CK_00
     Position: [220.1427, 3759.17065, 188.860336]
     Rotation: [0, 0, -109]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XS_MEDIANPOLEGREEN_1B_CK_00
     Position: [215.339752, 3766.09058, 188.812927]
     Rotation: [0, 0, -40]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [1598.69568, -487.117004, 92.1892929]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [1574.07629, -493.601288, 92.2643433]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [1547.26233, -502.469421, 93.2266998]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [602.996216, -134.880966, 103.232262]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [608.144653, -149.827454, 103.515594]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [612.373047, -165.16217, 103.250389]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [615.113892, -181.241165, 103.158737]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_CAGELIGHTC_1B_00
     Position: [615.278564, -200.090958, 103.561676]
     Rotation: [0, 0, 0]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1671.75854, 2380.71069, 150.247284]
     Rotation: [0, 0, 45]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1673.76001, 2453.28906, 151.044601]
     Rotation: [0, 0, -180]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1698.20496, 2438.47607, 150.244553]
     Rotation: [0, 0, 90]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1730.052, 2433.0271, 149.561996]
     Rotation: [0, 0, -60]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1713.20947, 2408.49048, 150.233093]
     Rotation: [0, 0, 200]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1746.60083, 2402.20215, 150.733124]
     Rotation: [0, 0, -60]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1730.60474, 2389.38965, 150.733124]
     Rotation: [0, 0, 100]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1695.13208, 2472.17432, 150.264877]
     Rotation: [0, 0, -45]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1731.88403, 2368.73608, 150.609894]
     Rotation: [0, 0, -270]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1699.77405, 2388.604, 150.586594]
     Rotation: [0, 0, -110]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true
   - Solid: XO_IRONLAMPHANGING_1B_00
     Position: [1695.44727, 2365.44189, 150.509598]
     Rotation: [0, 0, -90]
     Scale: [1, 1, 1]
+    Distance: -1
+    CastShadow: true

@@ -1,5 +1,6 @@
 #pragma once
 #include "WorldModel.h"
+#include "Config.h"
 
 struct CustomMesh
 {
@@ -8,6 +9,10 @@ struct CustomMesh
 	D3DXVECTOR3 Position = { 0, 0, 0 };
 	D3DXVECTOR3 Rotation = { 0, 0, 0 };
 	D3DXVECTOR3 Scale = { 1, 1, 1 };
+	bool CastShadow;
+	float Distance;
+
+	bool PassDistCheck = false;
 
 	D3DXMATRIX Matrix;
 
@@ -29,7 +34,7 @@ struct CustomMesh
 
 	bool IsValid()
 	{
-		return this->Scale != D3DXVECTOR3(0, 0, 0) && this->Model && this->Model->pSolid;
+		return this->Scale != D3DXVECTOR3(0, 0, 0) && this->Model && this->Model->pSolid && this->PassDistCheck;
 	}
 };
 
@@ -108,19 +113,29 @@ public:
 	{
 		for (auto& customMesh : this->list)
 		{
-			this->DrawCustomMesh(eView::Player, customMesh);
+			this->DrawCustomMesh(view, customMesh);
 		}
 	}
 
-	void DrawPrepass()
+	void DrawPrepass(float defaultDist)
 	{
 		this->ResetSolids();
 
 		for (auto& customMesh : this->list)
 		{
-			float dist = GetCameraDistance(customMesh.Position);
-			if (dist < 500)
+			float maxDist = customMesh.Distance;
+			if (maxDist <= 0)
 			{
+				maxDist = defaultDist;
+			}
+				
+			float dist = GetCameraDistance(customMesh.Position);
+
+			customMesh.PassDistCheck = false;
+			if (dist < maxDist)
+			{
+				customMesh.PassDistCheck = true;
+
 				if (!customMesh.Model->pSolid)
 				{
 					customMesh.Model->pSolid = Game::eFindSolid(customMesh.Model->NameHash);
@@ -163,6 +178,11 @@ private:
 	{
 		if (customMesh.IsValid())
 		{
+			if (view->Id == ViewId::ShadowMap && !customMesh.CastShadow)
+			{
+				return;
+			}
+
 			view->Render(customMesh.Model, &customMesh.Matrix, NULL, 0, NULL);
 		}
 	}

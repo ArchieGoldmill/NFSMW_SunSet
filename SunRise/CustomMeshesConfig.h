@@ -18,6 +18,8 @@ void LoadCustomMeshes()
 		mesh.Position = ParseVec3(node["Position"]);
 		mesh.Rotation = ParseVec3(node["Rotation"]);
 		mesh.Scale = ParseVec3(node["Scale"]);
+		mesh.Distance = YmlGet(node, "Distance", -1.0f);
+		mesh.CastShadow = YmlGet(node, "CastShadow", true);
 		mesh.SetMatrix();
 
 		CustomMeshes.Add(mesh);
@@ -35,6 +37,8 @@ void SaveCustomMeshes()
 		node["Position"] = SerializeVector3(mesh.Position);
 		node["Rotation"] = SerializeVector3(mesh.Rotation);
 		node["Scale"] = SerializeVector3(mesh.Scale);
+		node["Distance"] = mesh.Distance;
+		node["CastShadow"] = mesh.CastShadow;
 
 		list.push_back(node);
 	}

@@ -55,6 +55,8 @@ struct Config
 	float BlurMaxSpeed;
 	float BlurDepth;
 
+	float CustomMeshDist;
+
 	int HK_ShaderReload;
 	int HK_ToggleEditor;
 
@@ -90,6 +92,7 @@ void LoadConfig()
 	g_Config.CarVertexColor = settings["CarVertexColor"].as<bool>();
 	g_Config.TunnelWetnessFix = settings["TunnelWetnessFix"].as<bool>();
 	g_Config.DisableNightShadows = settings["DisableNightShadows"].as<bool>();
+	g_Config.CustomMeshDist = settings["CustomMeshDist"].as<float>();
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
@@ -154,6 +157,7 @@ void SaveConfig()
 	config["CarVertexColor"] = g_Config.CarVertexColor;
 	config["TunnelWetnessFix"] = g_Config.TunnelWetnessFix;
 	config["DisableNightShadows"] = g_Config.DisableNightShadows;
+	config["CustomMeshDist"] = g_Config.CustomMeshDist;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

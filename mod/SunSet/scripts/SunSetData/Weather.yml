@@ -156,7 +156,7 @@ Weather:
       SkyRayleigh: 5
       SkyBrightness: 8
       FogColor: [0.168012306, 0.211966008, 0.225490212]
-      FogSunColor: [0.485294104, 0.391257852, 0.285467088]
+      FogSunColor: [0.167999998, 0.211999997, 0.224999994]
       FogStart: 35
       FogEnd: 200
       FogPower: 0.49999997

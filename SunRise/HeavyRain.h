@@ -3,16 +3,17 @@
 class RainManager
 {
 private:
+	const char* pattern = "DLDH";
+	int current;
+
 	float timer = 0;
 	float target = 0;
+
 	float rain = 0;
 	float roadWetness = 0;
 	float tunnelWetness = 0;
 
-	bool isHeavy = true;
-	bool isRaining = true;
-
-	float lightningTimeOut = 20;
+	float lightningTimeOut = 0;
 	float lightningAnimTime = 0;
 
 	D3DXVECTOR4 lightningParams = { 0, 0, 0, 0 };
@@ -21,6 +22,28 @@ private:
 	int lightningTex = 0;
 
 public:
+	
+	void SetStartState()
+	{
+		this->lightningTimeOut = g_Config.Rain.LightningTimeOut;
+
+		srand(time(NULL));
+		this->current = rand() % 10;
+		if (this->current < 4)
+		{
+			this->current = 0;
+		}
+		else if (this->current < 7)
+		{
+			this->current = 1;
+		}
+		else
+		{
+			this->current = 3;
+		}
+
+		this->SetRainState();
+	}
 
 	float GetDiffuse()
 	{
@@ -49,12 +72,14 @@ public:
 			return false;
 		}
 
-		return this->isRaining || Game::ForceRain;
+		char state = this->GetState();
+
+		return (state == 'L' || state == 'H') || Game::ForceRain;
 	}
 
 	bool IsHeavy()
 	{
-		return this->isHeavy || Game::ForceRain;
+		return (GetState() == 'H' && this->IsRaining()) || Game::ForceRain;
 	}
 
 	void Update()
@@ -81,37 +106,50 @@ public:
 
 private:
 
+	char GetState()
+	{
+		return this->pattern[this->current];
+	}
+
 	void UpdateRainState()
 	{
 		if (this->timer > this->target)
 		{
 			this->timer = 0;
 
-			this->isRaining = !this->isRaining;
-
-			if (this->isRaining)
+			this->current++;
+			if (this->current > 3)
 			{
-				this->isHeavy = !this->isHeavy;
+				this->current = 0;
+			}
 
-				if (this->isHeavy)
-				{
-					this->target = (g_Config.Rain.HeavyTime + Game::fRandom(g_Config.Rain.HeavyTimeRandom)) * 60;
-				}
-				else
-				{
-					this->target = (g_Config.Rain.LightTime + Game::fRandom(g_Config.Rain.LightTimeRandom)) * 60;
-				}
-			}
-			else
-			{
-				this->target = (g_Config.Rain.DryTime + Game::fRandom(g_Config.Rain.DryTimeRandom)) * 60;
-			}
+			this->SetRainState();
+		}
+	}
+
+	void SetRainState()
+	{
+		char state = this->GetState();
+
+		if (state == 'H')
+		{
+			this->target = (g_Config.Rain.HeavyTime + Game::fRandom(g_Config.Rain.HeavyTimeRandom)) * 60;
+		}
+
+		if (state == 'L')
+		{
+			this->target = (g_Config.Rain.LightTime + Game::fRandom(g_Config.Rain.LightTimeRandom)) * 60;
+		}
+
+		if (state == 'D')
+		{
+			this->target = (g_Config.Rain.DryTime + Game::fRandom(g_Config.Rain.DryTimeRandom)) * 60;
 		}
 	}
 
 	void UpdateLightning()
 	{
-		if (this->IsRaining() && this->IsHeavy() && Game::State == 6)
+		if (this->IsHeavy() && Game::State == 6 && this->rain == 1.0)
 		{
 			MoveTowards(this->lightningTimeOut, 0, Game::DeltaTime);
 
@@ -194,5 +232,7 @@ float __cdecl GetRandomRain(float x, float y)
 
 void InitHeavyRain()
 {
+	g_Rain.SetStartState();
+
 	injector::MakeCALL(0x00758351, GetRandomRain);
 }

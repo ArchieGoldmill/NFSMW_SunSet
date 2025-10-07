@@ -100,35 +100,35 @@ void LoadConfig()
 	g_Config.DryTime = YmlGet(time, "DryTime", 30.0f);
 	g_Config.ForceTime = YmlGet(time, "ForceTime", -1.0f);
 	g_Config.TimeUpdateRate = YmlGet(time, "TimeUpdateRate", 1.0f);
-	g_Config.LightsOn = YmlGet(time, "LightsOn", 0.0f);
-	g_Config.LightsOff = YmlGet(time, "LightsOff", 0.0f);
+	g_Config.LightsOn = YmlGet(time, "LightsOn", 0.77f);
+	g_Config.LightsOff = YmlGet(time, "LightsOff", 0.24f);
 	g_Config.RandomStartupTime = YmlGet(time, "RandomStartupTime", false);
 	g_Config.RealTime = YmlGet(time, "RealTime", false);
 	g_Config.SunRise = 0.2f;
 	g_Config.SunSet = 0.8f;
 
 	const auto& blur = settingsRoot["Blur"];
-	g_Config.BlurMinSpeed = YmlGet(blur, "MinSpeed", 0.0f);
-	g_Config.BlurMaxSpeed = YmlGet(blur, "MaxSpeed", 0.0f);
-	g_Config.BlurDepth = YmlGet(blur, "Depth", 0.0f);
+	g_Config.BlurMinSpeed = YmlGet(blur, "MinSpeed", 25.0f);
+	g_Config.BlurMaxSpeed = YmlGet(blur, "MaxSpeed", 325.0f);
+	g_Config.BlurDepth = YmlGet(blur, "Depth", 150.0f);
 
 	const auto& hotkeys = settingsRoot["Hotkeys"];
-	g_Config.HK_ShaderReload = hotkeys["ShaderReload"].as<int>();
-	g_Config.HK_ToggleEditor = hotkeys["ToggleEditor"].as<int>();
+	g_Config.HK_ShaderReload = YmlGet(hotkeys, "ShaderReload", 0);
+	g_Config.HK_ToggleEditor = YmlGet(hotkeys, "ToggleEditor", 0);
 
 	const auto& rain = settingsRoot["Rain"];
-	g_Config.Rain.DryTime = YmlGet(rain, "DryTime", 0.0f);
-	g_Config.Rain.DryTimeRandom = YmlGet(rain, "DryTimeRandom", 0.0f);
-	g_Config.Rain.LightTime = YmlGet(rain, "LightTime", 0.0f);
-	g_Config.Rain.LightTimeRandom = YmlGet(rain, "LightTimeRandom", 0.0f);
-	g_Config.Rain.HeavyTime = YmlGet(rain, "HeavyTime", 0.0f);
-	g_Config.Rain.HeavyTimeRandom = YmlGet(rain, "HeavyTimeRandom", 0.0f);
-	g_Config.Rain.LightningTimeOut = YmlGet(rain, "LightningTimeOut", 0.0f);
+	g_Config.Rain.DryTime = YmlGet(rain, "DryTime", 10.0f);
+	g_Config.Rain.DryTimeRandom = YmlGet(rain, "DryTimeRandom", 5.0f);
+	g_Config.Rain.LightTime = YmlGet(rain, "LightTime", 1.0f);
+	g_Config.Rain.LightTimeRandom = YmlGet(rain, "LightTimeRandom", 1.0f);
+	g_Config.Rain.HeavyTime = YmlGet(rain, "HeavyTime", 3.0f);
+	g_Config.Rain.HeavyTimeRandom = YmlGet(rain, "HeavyTimeRandom", 3.0f);
+	g_Config.Rain.LightningTimeOut = YmlGet(rain, "LightningTimeOut", 15.0f);
 
 	const auto& windowGlow = settingsRoot["WindowGlow"];
 	g_Config.WindowGlowColor = ParseVec3To4(windowGlow["Color"]);
-	g_Config.WindowGlowPower = YmlGet(windowGlow, "Power", 0.0f);
-	g_Config.WindowGlowOverride = YmlGet(windowGlow, "Override", false);
+	g_Config.WindowGlowPower = YmlGet(windowGlow, "Power", 5.0f);
+	g_Config.WindowGlowOverride = YmlGet(windowGlow, "Override", true);
 
 	if (g_Config.Editor)
 	{
@@ -189,14 +189,15 @@ void SaveConfig()
 	rain["LightningTimeOut"] = g_Config.Rain.LightningTimeOut;
 
 	YAML::Node windowGlow;
+	windowGlow["Override"] = g_Config.WindowGlowOverride;
 	windowGlow["Color"] = SerializeVector3(g_Config.WindowGlowColor);
 	windowGlow["Power"] = g_Config.WindowGlowPower;
-	windowGlow["Override"] = g_Config.WindowGlowOverride;
 
 	root["Config"] = config;
 	root["Time"] = time;
 	root["Blur"] = blur;
 	root["Hotkeys"] = hotkeys;
+	root["Rain"] = rain;
 	root["WindowGlow"] = windowGlow;
 
 	std::ofstream fout(GetConfigFolder("Config.yml"));

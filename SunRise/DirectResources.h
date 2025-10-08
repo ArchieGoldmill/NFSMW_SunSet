@@ -212,5 +212,5 @@ void ReleaseDirectResources()
 
 void InitDirectResources()
 {
-	injector::MakeCALL(0x006BD622, ReleaseDirectResources);
+	injector::MakeJMP(0x006C343B, ReleaseDirectResources);
 }

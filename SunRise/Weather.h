@@ -254,6 +254,7 @@ private:
 	{
 		CreateSkyBoxTexture();
 		LoadVolumeTexture();
+		CreateFilterTexture();
 
 		if (!this->PuddleMask)
 		{

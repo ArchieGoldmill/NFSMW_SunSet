@@ -331,6 +331,15 @@ struct eEffect
 		}
 	}
 
+	void SetTexture(shader_param p, LPDIRECT3DVOLUMETEXTURE9 texture)
+	{
+		auto handle = this->Params[(int)p].handle;
+		if (handle)
+		{
+			this->D3DEffect->SetTexture(handle, texture);
+		}
+	}
+
 	void SetTexture(shader_param p, IDirect3DTexture9* texture)
 	{
 		auto handle = this->Params[(int)p].handle;

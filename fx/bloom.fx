@@ -13,6 +13,18 @@ sampler FILTERTEXTURE0_SAMPLER = sampler_state
 	MAGFILTER = LINEAR;
 };
 
+texture FilterTexture1 : FILTERTEXTURE1;
+sampler3D VOLUMEMAP_SAMPLER = sampler_state
+{
+	texture = <FilterTexture1>;
+	AddressU = CLAMP;
+	AddressV = CLAMP;
+	AddressW = CLAMP;
+	MIPFILTER = NONE;
+	MINFILTER = LINEAR;
+	MAGFILTER = LINEAR;
+};
+
 bool BloomThreshold(float3 hdrColor)
 {
 	return any(hdrColor > cvBloomParams.y);
@@ -40,6 +52,8 @@ float4 PS_ApplyBloom(PS_INPUT IN) : COLOR
 		float3 bloom_tex = tex2D(FILTERTEXTURE0_SAMPLER, IN.uv).rgb;
 		hdrColor += bloom_tex * cvBloomParams.x;
 	}
+	
+	hdrColor = tex3D(VOLUMEMAP_SAMPLER, saturate(hdrColor)).rgb;
 
 	return float4(hdrColor, 1);
 }

@@ -4,6 +4,8 @@ namespace UI
 {
 	namespace Cfg
 	{
+		char FilterBuffer[128] = { 0 };
+
 		void Draw()
 		{
 			if (ImGui::BeginChild("##ConfigScroller", ImGui::GetContentRegionAvail(), false, 0))
@@ -84,6 +86,19 @@ namespace UI
 				ImGui::InputFloat("Power", &g_Config.WindowGlowPower, 0.1, 0.2);
 				ImGui::PopItemWidth();
 				ImGui::Checkbox("Override", &g_Config.WindowGlowOverride);
+
+				ImGui::Text("");
+				strcpy(FilterBuffer, g_Config.Filter.GetChar());
+				if (ImGui::InputText("Filter", FilterBuffer, 128))
+				{
+					g_Config.Filter.SetString(FilterBuffer);
+
+					auto filterTexture = TextureInfo::Get(g_Config.Filter.hash, false, false);
+					if (filterTexture)
+					{
+						ReleaseFilterTexture();
+					}
+				}
 
 #ifdef _DEBUG
 				ImGui::Text("");

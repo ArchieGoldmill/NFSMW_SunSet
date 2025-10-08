@@ -65,6 +65,8 @@ struct Config
 	bool WindowGlowOverride;
 
 	RainConfig Rain;
+
+	HashField Filter;
 };
 
 inline Config g_Config;
@@ -129,6 +131,8 @@ void LoadConfig()
 	g_Config.WindowGlowColor = ParseVec3To4(windowGlow["Color"]);
 	g_Config.WindowGlowPower = YmlGet(windowGlow, "Power", 5.0f);
 	g_Config.WindowGlowOverride = YmlGet(windowGlow, "Override", true);
+
+	g_Config.Filter.SetString(settingsRoot["FilterTexture"].as<std::string>());
 
 	if (g_Config.Editor)
 	{
@@ -199,6 +203,7 @@ void SaveConfig()
 	root["Hotkeys"] = hotkeys;
 	root["Rain"] = rain;
 	root["WindowGlow"] = windowGlow;
+	root["FilterTexture"] = g_Config.Filter.str;
 
 	std::ofstream fout(GetConfigFolder("Config.yml"));
 	fout << root;

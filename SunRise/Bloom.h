@@ -74,6 +74,7 @@ void ApplyBloom()
 
 	pEffect->BeginPass(0);
 	effect->SetTexture(shader_param::FILTERTEXTURE0, Game::FilterTexture0); // bloom texture
+	effect->SetTexture(shader_param::FILTERTEXTURE1, FilterTexture);
 	effect->DrawFullScreenQuad(Game::FilterTexture1);
 	pEffect->EndPass();
 

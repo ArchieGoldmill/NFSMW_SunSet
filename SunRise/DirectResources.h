@@ -7,6 +7,7 @@ IDirect3DTexture9* DepthTexture = nullptr;
 IDirect3DSurface9* DepthSurface = nullptr;
 LPDIRECT3DVOLUMETEXTURE9 NoiseTexture = NULL;
 IDirect3DCubeTexture9* SkyCubeTexture = nullptr;
+IDirect3DVolumeTexture9* FilterTexture = NULL;
 
 void InitPrepassTextures()
 {
@@ -112,6 +113,64 @@ void CreateSkyBoxTexture()
 	}
 }
 
+struct VolumeFillData
+{
+	int Width;
+	BYTE* Data;
+};
+
+VOID WINAPI FillVolume(D3DXVECTOR4* pOut, const D3DXVECTOR3* pTexCoord, const D3DXVECTOR3* pTexelSize, LPVOID pData)
+{
+	auto fillData = (VolumeFillData*)pData;
+
+	auto size = fillData->Width;
+
+	int x = (int)(pTexCoord->x * size);
+	int y = (int)(pTexCoord->y * size);
+	int z = (int)(pTexCoord->z * size);
+
+	int index = x + y * (int)size + z * (int)(size * size);
+	BYTE* pPixel = fillData->Data + index * 4;
+
+	const float one255 = 1.0f / 255.0f;
+
+	pOut->x = pPixel[2] * one255;
+	pOut->y = pPixel[1] * one255;
+	pOut->z = pPixel[0] * one255;
+	pOut->w = 1.0f;
+}
+
+void CreateFilterTexture()
+{
+	if (!FilterTexture)
+	{
+		auto textureInfo = TextureInfo::Get(g_Config.Filter.hash, false, false);
+
+		if (textureInfo)
+		{
+			auto width = textureInfo->Width;
+			Game::Device->CreateVolumeTexture(width, width, width, 1u, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &FilterTexture, 0);
+
+			VolumeFillData fillData;
+			fillData.Data = (BYTE*)textureInfo->LockImage();
+			fillData.Width = width;
+
+			D3DXFillVolumeTexture(FilterTexture, FillVolume, &fillData);
+
+			textureInfo->UnlockImage();
+		}
+	}
+}
+
+void ReleaseFilterTexture()
+{
+	if (FilterTexture)
+	{
+		FilterTexture->Release();
+		FilterTexture = nullptr;
+	}
+}
+
 void ReleaseDirectResources()
 {
 	__asm pushad;
@@ -145,6 +204,8 @@ void ReleaseDirectResources()
 		DepthTexture->Release();
 		DepthTexture = nullptr;
 	}
+
+	ReleaseFilterTexture();
 
 	__asm popad;
 }

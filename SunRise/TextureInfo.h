@@ -43,6 +43,18 @@ struct TextureInfo
 	int8_t Flags;
 	int8_t MipmapBiasType;
 
+	void* LockImage()
+	{
+		FUNC(0x006BED80, void*, __thiscall, _LockImage, TextureInfo*, int);
+		return _LockImage(this, 1);
+	}
+
+	void UnlockImage()
+	{
+		FUNC(0x006BEDB0, void, __thiscall, _UnlockImage, TextureInfo*, int);
+		_UnlockImage(this, 1);
+	}
+
 	static TextureInfo* Get(Hash hash, bool defaultIfNotFound, bool includeUnloaded)
 	{
 		FUNC(0x00503400, TextureInfo*, __cdecl, _Get, Hash, bool, bool);

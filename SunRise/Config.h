@@ -67,6 +67,7 @@ struct Config
 	RainConfig Rain;
 
 	HashField Filter;
+	float FilterPower;
 };
 
 inline Config g_Config;
@@ -132,7 +133,9 @@ void LoadConfig()
 	g_Config.WindowGlowPower = YmlGet(windowGlow, "Power", 5.0f);
 	g_Config.WindowGlowOverride = YmlGet(windowGlow, "Override", true);
 
-	g_Config.Filter.SetString(settingsRoot["FilterTexture"].as<std::string>());
+	const auto& filter = settingsRoot["Filter"];
+	g_Config.Filter.SetString(filter["Texture"].as<std::string>());
+	g_Config.FilterPower = YmlGet(filter, "Power", 1.0f);
 
 	if (g_Config.Editor)
 	{
@@ -197,13 +200,17 @@ void SaveConfig()
 	windowGlow["Color"] = SerializeVector3(g_Config.WindowGlowColor);
 	windowGlow["Power"] = g_Config.WindowGlowPower;
 
+	YAML::Node filter;
+	filter["Texture"] = g_Config.Filter.str;
+	filter["Power"] = g_Config.FilterPower;
+
 	root["Config"] = config;
 	root["Time"] = time;
 	root["Blur"] = blur;
 	root["Hotkeys"] = hotkeys;
 	root["Rain"] = rain;
 	root["WindowGlow"] = windowGlow;
-	root["FilterTexture"] = g_Config.Filter.str;
+	root["Filter"] = filter;
 
 	std::ofstream fout(GetConfigFolder("Config.yml"));
 	fout << root;

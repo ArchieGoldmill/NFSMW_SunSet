@@ -93,12 +93,19 @@ namespace UI
 				{
 					g_Config.Filter.SetString(FilterBuffer);
 
+					if (g_Config.Filter.str.length() == 0)
+					{
+						g_Config.Filter.hash = Game::bStringHash("FILTER_DEFAULT");
+					}
+
 					auto filterTexture = TextureInfo::Get(g_Config.Filter.hash, false, false);
 					if (filterTexture)
 					{
 						ReleaseFilterTexture();
 					}
 				}
+
+				ImGui::InputFloat("Filter power", &g_Config.FilterPower, 0.1, 0.2);
 
 #ifdef _DEBUG
 				ImGui::Text("");

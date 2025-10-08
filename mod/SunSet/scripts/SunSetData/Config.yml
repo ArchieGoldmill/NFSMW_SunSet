@@ -50,4 +50,6 @@ WindowGlow:
   Color: [1.0, 0.8, 0.6]      # Window glow color at night.
   Power: 5                    # Window glow color multiplier.
 
-FilterTexture: FILTER_DEFAULT
+Filter:
+  Texture: FILTER_DEFAULT
+  Power: 1.0

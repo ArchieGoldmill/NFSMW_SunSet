@@ -22,6 +22,19 @@ struct SpotLight
 	{
 		return Direction == D3DXVECTOR3(0, 0, -1) && OuterAngle < 180 && InnerAngle < 180;
 	}
+
+	void GetBoundingBox(D3DXVECTOR3* min, D3DXVECTOR3* max)
+	{
+		D3DXVECTOR3 range = { this->Range, this->Range, this->Range };
+		*min = this->Position - range;
+
+		if (this->IsLampPost())
+		{
+			range.z = 0;
+		}
+
+		*max = this->Position + range;
+	}
 };
 
 enum class SpotLightSource

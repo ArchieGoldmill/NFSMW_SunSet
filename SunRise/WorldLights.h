@@ -38,7 +38,6 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 				for (auto& pSpotLight : solidLights.Lights)
 				{
 					auto spotLight = CreateSpotLight(pSpotLight, matrix);
-					float flareIntecity = solidLights.AlwaysOn ? 1.0f : g_Weather.GetLightIntensity();
 					if (solidLights.UseFirstLight)
 					{
 						spotLight.Color = solidLights.Lights[0].Color;
@@ -49,9 +48,12 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 						spotLight.Specular = solidLights.Lights[0].Specular;
 					}
 
+					float flareIntecity = 1.0f;
+
 					if (!solidLights.AlwaysOn)
 					{
-						spotLight.Color *= g_Weather.GetLightIntensity();
+						flareIntecity = g_Weather.GetLightIntensity();
+						spotLight.Color *= flareIntecity;
 					}
 
 					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare, flareIntecity);

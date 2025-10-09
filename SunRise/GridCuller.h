@@ -54,19 +54,9 @@ struct CellBuffer
 
 	void AssignSpotLightToGrid(SpotLightModel* model)
 	{
-		auto light = &model->Light;
-
-		float r = light->Range;
-		D3DXVECTOR3 range = { r, r, r };
-
-		D3DXVECTOR3 min = light->Position - range;
-
-		if (light->IsLampPost())
-		{
-			range.z = 0;
-		}
-
-		D3DXVECTOR3 max = light->Position + range;
+		auto& light = model->Light;
+		D3DXVECTOR3 min, max;
+		light.GetBoundingBox(&min, &max);
 
 		Int3 minCell = worldToCell(min);
 		Int3 maxCell = worldToCell(max);
@@ -238,7 +228,10 @@ struct CellBuffer
 			}
 		}
 
-		std::sort(candidateLights, candidateLights + numCandidateLights, [](SpotLightModel* a, SpotLightModel* b) { return (int)a->Source < (int)b->Source; });
+		if (numCandidateLights > 0)
+		{
+			std::sort(candidateLights, candidateLights + numCandidateLights, [](SpotLightModel* a, SpotLightModel* b) { return (int)a->Source < (int)b->Source; });
+		}
 	}
 };
 

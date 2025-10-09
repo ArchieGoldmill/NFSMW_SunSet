@@ -5,7 +5,7 @@
 SpotLightModel SpotLightBuffer[NUM_SPOTLIGHTS_BUFFER];
 int NumSpotLightBuffer = 0;
 
-void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare, float flareIntecity = 1.0)
+void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareModel* flare, float flareIntecity = 1.0f)
 {
 	if (spotLight.Color == D3DXVECTOR3(0, 0, 0))
 	{
@@ -20,7 +20,7 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 		return;
 	}
 
-	// Make sure we dont add the same light twice (TODO: how that happens?)
+	// Make sure we dont add the same light twice
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
 		auto s = SpotLightBuffer[i];
@@ -31,15 +31,8 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 	}
 
 	// Check that light is in camera view
-	D3DXVECTOR3 range = { spotLight.Range, spotLight.Range, spotLight.Range };
-	D3DXVECTOR3 min = spotLight.Position - range;
-
-	if (spotLight.IsLampPost())
-	{
-		range.z = 0;
-	}
-
-	D3DXVECTOR3 max = spotLight.Position + range;
+	D3DXVECTOR3 min, max;
+	spotLight.GetBoundingBox(&min, &max);
 
 	auto visibleState = eView::Player->GetVisibleState(&min, &max);
 	if (visibleState == visible_state::outside)

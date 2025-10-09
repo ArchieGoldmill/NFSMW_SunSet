@@ -101,6 +101,10 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 				NumSpotLights++;
 			}
 		}
+		else
+		{
+			break;
+		}
 	}
 }
 

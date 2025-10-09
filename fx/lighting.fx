@@ -38,8 +38,7 @@ float3 GetSpecular(float3 normal, float3 lightDir, float3 view)
 
 float3 GetDiffuse(float ndotl)
 {
-	float halfLambert = saturate(ndotl);
-	return halfLambert * cvDiffuseColor.rgb;
+	return saturate(ndotl) * cvDiffuseColor.rgb;
 }
 
 float4 vertex_color(float4 color)

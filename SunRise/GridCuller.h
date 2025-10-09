@@ -9,7 +9,16 @@
 
 struct Int3
 {
-	int x, y, z;
+	int x;
+	int y;
+	int z;
+
+	Int3(int x, int y, int z)
+	{
+		this->x = x;
+		this->y = y;
+		this->z = z;
+	}
 
 	Hash GetHash()
 	{
@@ -29,15 +38,14 @@ struct Cell
 	SpotLightModel* Lights[NumLights];
 };
 
-inline Int3 worldToCell(const D3DXVECTOR3& pos)
+inline Int3 WorldToCell(const D3DXVECTOR3& pos)
 {
 	float cellSize = g_Config.LightCellSize;
-	return
-	{
-		static_cast<int>(std::floor(pos.x / cellSize)),
-		static_cast<int>(std::floor(pos.y / cellSize)),
-		static_cast<int>(std::floor(pos.z / cellSize))
-	};
+	return Int3(
+		(int)std::floor(pos.x / cellSize),
+		(int)std::floor(pos.y / cellSize),
+		(int)std::floor(pos.z / cellSize)
+	);
 }
 
 struct CellBuffer
@@ -58,8 +66,8 @@ struct CellBuffer
 		D3DXVECTOR3 min, max;
 		light.GetBoundingBox(&min, &max);
 
-		Int3 minCell = worldToCell(min);
-		Int3 maxCell = worldToCell(max);
+		Int3 minCell = WorldToCell(min);
+		Int3 maxCell = WorldToCell(max);
 
 		for (int x = minCell.x; x <= maxCell.x; ++x)
 		{
@@ -67,8 +75,7 @@ struct CellBuffer
 			{
 				for (int z = minCell.z; z <= maxCell.z; ++z)
 				{
-					Int3 cell = { x, y, z };
-					this->Add(cell, model);
+					this->Add(Int3(x, y, z), model);
 				}
 			}
 		}
@@ -167,7 +174,7 @@ struct CellBuffer
 		numCandidateLights = 0;
 	}
 
-	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, float meshRadius)
+	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, const float meshRadius)
 	{
 		D3DXVECTOR3 min = meshCenter - D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
 		D3DXVECTOR3 max = meshCenter + D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
@@ -184,8 +191,8 @@ struct CellBuffer
 
 	void GetLightsForMeshBase(const D3DXVECTOR3& min, const D3DXVECTOR3& max)
 	{
-		Int3 minCell = worldToCell(min);
-		Int3 maxCell = worldToCell(max);
+		Int3 minCell = WorldToCell(min);
+		Int3 maxCell = WorldToCell(max);
 
 		for (int x = minCell.x; x <= maxCell.x; x++)
 		{
@@ -193,7 +200,7 @@ struct CellBuffer
 			{
 				for (int z = minCell.z; z <= maxCell.z; z++)
 				{
-					auto cell = this->Get({ x, y, z });
+					auto cell = this->Get(Int3(x, y, z));
 					if (cell)
 					{
 						for (int i = 0; i < Cell::NumLights; i++)
@@ -203,10 +210,9 @@ struct CellBuffer
 							{
 								bool alreadyAdded = false;
 
-								for (int i = 0; i < numCandidateLights; i++)
+								for (int j = 0; j < numCandidateLights; j++)
 								{
-									auto s = candidateLights[i];
-									if (s == light)
+									if (candidateLights[j] == light)
 									{
 										alreadyAdded = true;
 										break;

@@ -193,6 +193,8 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 {
 	TechniqueType technique = Technique_Invalid;
 
+	auto effect = renderModel->Effect;
+
 	if (RenderTarget::Current->ViewId == ViewId::Reflection && renderModel->pSolid)
 	{
 		if (renderModel->pSolid->NameHash == Hashes::XW_FENCEMETALB_1A_00)
@@ -201,23 +203,23 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		}
 	}
 
-	if (renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_)
+	if (RenderTarget::Current->ViewId == ViewId::ShadowMap && effect->HasTechnique(Technique_ShadowMap))
+	{
+		return Technique_ShadowMap;
+	}
+
+	if (renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_ && effect->id == shader_type::WorldShader)
 	{
 		return Technique_Water;
 	}
 
+	if (ApplyEmissive(renderModel))
+	{
+		return Technique_Prelit;
+	}
+
 	if (DynamicallyLit(renderModel))
 	{
-		if (RenderTarget::Current->ViewId == ViewId::ShadowMap)
-		{
-			return Technique_ShadowMap;
-		}
-
-		if (ApplyEmissive(renderModel))
-		{
-			return Technique_Prelit;
-		}
-
 		if (RenderTarget::Current->ViewId == ViewId::Player1)
 		{
 			PopulateShaderSpotlights(renderModel);

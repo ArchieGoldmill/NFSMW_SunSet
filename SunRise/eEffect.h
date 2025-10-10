@@ -444,6 +444,11 @@ struct eEffect
 		return ShaderParamsMap[(int)this->id].Params[(int)p] != NULL;
 	}
 
+	bool HasTechnique(TechniqueType t)
+	{
+		return ShaderParamsMap[(int)this->id].Techniques[t] != NULL;
+	}
+
 	void SetTechniqueByName(LPCSTR pName)
 	{
 		auto tech = this->D3DEffect->GetTechniqueByName(pName);

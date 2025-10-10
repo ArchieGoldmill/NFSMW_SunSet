@@ -26,15 +26,6 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 		{
 			if (solidLights.LodA.hash == model->NameHash)
 			{
-				if (solidLights.Blink)
-				{
-					int blink = Game::FlareBlink[solidLights.Blink - 1];
-					if (blink != -1)
-					{
-						continue;
-					}
-				}
-
 				for (auto& pSpotLight : solidLights.Lights)
 				{
 					auto spotLight = CreateSpotLight(pSpotLight, matrix);
@@ -56,7 +47,18 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 						spotLight.Color *= flareIntecity;
 					}
 
-					AddSpotLightToBuffer(spotLight, solidLights.Blink ? SpotLightSource::Blinking : SpotLightSource::LampPost, solidLights.Flare, flareIntecity);
+					auto source = SpotLightSource::LampPost;
+					if (solidLights.Blink)
+					{
+						source = SpotLightSource::Blinking;
+						int blink = Game::FlareBlink[solidLights.Blink - 1];
+						if (blink != -1)
+						{
+							spotLight.Color *= 0.0001;
+						}
+					}
+
+					AddSpotLightToBuffer(spotLight, source, solidLights.Flare, flareIntecity);
 				}
 			}
 		}

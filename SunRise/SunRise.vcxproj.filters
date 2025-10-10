@@ -277,9 +277,6 @@
     <ClInclude Include="UISpotlights.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="MotionBlur.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="PVehicle.h">
       <Filter>SDK</Filter>
     </ClInclude>
@@ -348,6 +345,9 @@
     </ClInclude>
     <ClInclude Include="HeavyRain.h">
       <Filter>Features\Weather</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionBlur.h">
+      <Filter>Features\PostEffects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

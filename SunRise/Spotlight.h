@@ -45,6 +45,7 @@ enum class SpotLightSource
 	Headlights,
 	Player_Breaklights,
 	Breaklights,
+	Reverse,
 	Blinking
 };
 

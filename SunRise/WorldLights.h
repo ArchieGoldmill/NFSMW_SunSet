@@ -40,6 +40,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 					}
 
 					float flareIntecity = 1.0f;
+					auto source = SpotLightSource::LampPost;
 
 					if (!solidLights.AlwaysOn)
 					{
@@ -47,7 +48,6 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 						spotLight.Color *= flareIntecity;
 					}
 
-					auto source = SpotLightSource::LampPost;
 					if (solidLights.Blink)
 					{
 						source = SpotLightSource::Blinking;

@@ -50,7 +50,6 @@ void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* ba
 
 	// Set depth texture
 	effect->SetTexture(shader_param::HeightMapTexture, DepthTexture);
-	effect->SetFloat(shader_param::FILTERBLEND, g_Config.BlurDepth);
 	// Set filter 1 texture that holds back buffer
 	effect->DrawFullScreenQuad(Game::FilterTexture1);
 

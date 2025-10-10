@@ -1,7 +1,6 @@
 #include "hdr.fx"
 
 float4 cvBloomParams;
-float cfFilter : FILTERBLEND;
 
 texture FilterTexture0 : FILTERTEXTURE0;
 sampler FILTERTEXTURE0_SAMPLER = sampler_state
@@ -56,7 +55,7 @@ float4 PS_ApplyBloom(PS_INPUT IN) : COLOR
 	
 	hdrColor = saturate(hdrColor);
 	float3 filtered = tex3D(VOLUMEMAP_SAMPLER, hdrColor).rgb;
-	hdrColor = lerp(hdrColor, filtered, cfFilter);
+	hdrColor = lerp(hdrColor, filtered, cfFilter.y);
 	
 	return float4(hdrColor, 1);
 }

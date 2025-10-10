@@ -87,7 +87,11 @@ void DrawBloom()
 
 	auto effect = eEffect::Get(shader_type::ScreenFilterShader);
 	effect->SetVector(ShaderParam::cvBloomParams, &bloomParams);
-	effect->SetFloat(shader_param::FILTERBLEND, g_Config.FilterPower);
+
+	D3DXVECTOR4 filterParams;
+	filterParams.x = g_Config.BlurDepth;
+	filterParams.y = g_Config.FilterPower;
+	effect->SetVector(shader_param::FILTERBLEND, &filterParams);
 
 	if (bloomParams.x > 0)
 	{

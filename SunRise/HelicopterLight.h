@@ -30,6 +30,11 @@ D3DXVECTOR3 GetPlayerPos()
 
 void AddHelicopterLight(D3DXMATRIX* matrix)
 {
+	if (Game::State != 6)
+	{
+		return;
+	}
+
 	auto playerPos = GetPlayerPos();
 	if (playerPos == D3DXVECTOR3(0, 0, 0))
 	{
@@ -42,7 +47,7 @@ void AddHelicopterLight(D3DXMATRIX* matrix)
 
 	spotLight.Direction = playerPos - pos;
 	float range = D3DXVec3Length(&spotLight.Direction);
-	if (range > spotLight.Range)
+	if (range > spotLight.Range || Rain::Instance->IsInTunnel || Rain::Instance->IsUnderOverpass)
 	{
 		spotLight.Color = D3DXVECTOR3(0, 0, 0);
 	}

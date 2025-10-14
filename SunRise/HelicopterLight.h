@@ -4,6 +4,7 @@
 #include "Spotlight.h"
 #include "Config.h"
 #include "LightsBuffer.h"
+#include "Rain.h"
 
 D3DXVECTOR3 GetPlayerPos()
 {

@@ -75,4 +75,7 @@ void InitTime()
 		float r = (rand() % 10) / 10.0f;
 		injector::WriteMemory<float>(0x00770F25, r);
 	}
+
+	// Enable TOD for challenges
+	injector::MakeNOP(0x00600AED, 2);
 }

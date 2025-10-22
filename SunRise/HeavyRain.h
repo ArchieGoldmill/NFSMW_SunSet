@@ -84,9 +84,13 @@ public:
 
 	void Update()
 	{
-		this->timer += Game::DeltaTime;
+		if (!Game::IsPaused())
+		{
+			this->timer += Game::DeltaTime;
 
-		MoveTowards(this->rain, this->IsRaining() && this->IsHeavy() ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
+			MoveTowards(this->rain, this->IsRaining() && this->IsHeavy() ? 1.0f : 0.0f, Game::DeltaTime / 20.0f);
+		}
+
 		if (g_Config.Editor)
 		{
 			if (Game::ForceRain)
@@ -151,33 +155,36 @@ private:
 	{
 		if (this->IsHeavy() && Game::State == 6 && this->rain == 1.0)
 		{
-			MoveTowards(this->lightningTimeOut, 0, Game::DeltaTime);
-
-			if (this->lightningTimeOut == 0.0)
+			if (!Game::IsPaused())
 			{
-				MoveTowards(this->lightningAnimTime, 5.5, Game::DeltaTime);
+				MoveTowards(this->lightningTimeOut, 0, Game::DeltaTime);
 
-				if (this->lightningAnimTime <= 0.5)
+				if (this->lightningTimeOut == 0.0)
 				{
-					MoveTowards(lightningParams.x, 1.0, Game::DeltaTime * 5);
-					MoveTowards(lightningParams.y, 1.0, Game::DeltaTime * 5);
-				}
-				else if (this->lightningAnimTime < 5.5)
-				{
-					MoveTowards(lightningParams.x, 0.0, Game::DeltaTime * 0.5);
-					MoveTowards(lightningParams.y, 0.0, Game::DeltaTime * 2);
-				}
-				else
-				{
-					lightningParams = { 0, 0, 0, 0 };
+					MoveTowards(this->lightningAnimTime, 5.5, Game::DeltaTime);
 
-					this->lightningAnimTime = 0.0;
-					this->lightningTimeOut = g_Config.Rain.LightningTimeOut;
-
-					this->lightningTex++;
-					if (this->lightningTex > 1)
+					if (this->lightningAnimTime <= 0.5)
 					{
-						this->lightningTex = 0;
+						MoveTowards(lightningParams.x, 1.0, Game::DeltaTime * 5);
+						MoveTowards(lightningParams.y, 1.0, Game::DeltaTime * 5);
+					}
+					else if (this->lightningAnimTime < 5.5)
+					{
+						MoveTowards(lightningParams.x, 0.0, Game::DeltaTime * 0.5);
+						MoveTowards(lightningParams.y, 0.0, Game::DeltaTime * 2);
+					}
+					else
+					{
+						lightningParams = { 0, 0, 0, 0 };
+
+						this->lightningAnimTime = 0.0;
+						this->lightningTimeOut = g_Config.Rain.LightningTimeOut;
+
+						this->lightningTex++;
+						if (this->lightningTex > 1)
+						{
+							this->lightningTex = 0;
+						}
 					}
 				}
 			}
@@ -194,15 +201,19 @@ private:
 	void UpdateShaders()
 	{
 		bool isRaining = this->IsRaining();
-		MoveTowards(this->roadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime / (isRaining ? g_Config.WetTime : g_Config.DryTime));
 
-		if (g_Config.TunnelWetnessFix)
+		if (!Game::IsPaused())
 		{
-			MoveTowards(this->tunnelWetness, Rain::Instance->IsInTunnel ? 0.0 : 1.0, Game::DeltaTime);
-		}
-		else
-		{
-			this->tunnelWetness = 1.0f;
+			MoveTowards(this->roadWetness, isRaining ? 1.0 : 0.0, Game::DeltaTime / (isRaining ? g_Config.WetTime : g_Config.DryTime));
+
+			if (g_Config.TunnelWetnessFix)
+			{
+				MoveTowards(this->tunnelWetness, Rain::Instance->IsInTunnel ? 0.0 : 1.0, Game::DeltaTime);
+			}
+			else
+			{
+				this->tunnelWetness = 1.0f;
+			}
 		}
 
 		bool covered = Rain::Instance->IsInTunnel || Rain::Instance->IsUnderOverpass;

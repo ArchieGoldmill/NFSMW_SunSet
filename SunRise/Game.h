@@ -51,6 +51,7 @@ namespace Game
 	INLINE_FUNC(0x00652AD0, void*, __cdecl, malloc, size_t);
 	INLINE_FUNC(0x00505340, eSolid*, __cdecl, eFindSolid, Hash);
 	INLINE_FUNC(0x0045DA70, float, __cdecl, fRandom, float);
+	INLINE_FUNC(0x0064B680, bool, __cdecl, IsPaused);
 }
 
 inline D3DXVECTOR3 GetCameraPos()

@@ -37,7 +37,10 @@ public:
 		this->SetParams();
 		this->UpdateWater();
 
-		MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime * 2);
+		if (!Game::IsPaused())
+		{
+			MoveTowards(this->LightIntensity, this->LightsOn() ? 1.0 : 0.0, Game::DeltaTime * 2);
+		}
 	}
 
 	float GetLightIntensity()

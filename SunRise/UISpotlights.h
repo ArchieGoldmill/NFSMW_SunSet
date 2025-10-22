@@ -5,10 +5,8 @@ namespace UI
 {
 	namespace Spotlights
 	{
-		int CurrentSolidNum = -1;
+		SolidLights* CurrentSolid = NULL;
 		int CurrentLightNum = -1;
-
-		int currentFlare = 0;
 
 		char SolidLodBufferA[128] = { 0 };
 		char FlareNameBuffer[128] = { 0 };
@@ -16,7 +14,7 @@ namespace UI
 
 		void Reset()
 		{
-			CurrentSolidNum = -1;
+			CurrentSolid = NULL;
 			CurrentLightNum = -1;
 		}
 
@@ -50,19 +48,22 @@ namespace UI
 							spotLight.Specular = 1;
 
 							solidLights.Lights.push_back(spotLight);
-							SolidLightsList.push_back(solidLights);
+							SolidLightsList.Add(solidLights);
+							SolidLightsList.Sort();
+							SolidLightsList.PopulateUiList();
 
-							CurrentSolidNum = SolidLightsList.size() - 1;
+							CurrentSolid = SolidLightsList.Get(solidLights.LodA.hash);
 							CurrentLightNum = 0;
 						}
 
 						ImGui::SameLine();
 						if (ImGui::Button("Remove##Solid", { 60, 20 }))
 						{
-							if (CurrentSolidNum >= 0)
+							if (CurrentSolid)
 							{
-								SolidLightsList.erase(SolidLightsList.begin() + CurrentSolidNum);
-								CurrentSolidNum = -1;
+								SolidLightsList.Remove(CurrentSolid->LodA.hash);
+								SolidLightsList.PopulateUiList();
+								CurrentSolid = NULL;
 							}
 						}
 
@@ -75,18 +76,16 @@ namespace UI
 
 						if (ImGui::BeginChild("##SolidList", ImGui::GetContentRegionAvail(), false, 0))
 						{
-							for (int i = 0; i < SolidLightsList.size(); i++)
+							for (auto solidLights : SolidLightsList.GetUiList())
 							{
-								auto& solidLights = SolidLightsList[i];
-
-								if (FilterBuff[0] && !strstr(solidLights.LodA.GetChar(), FilterBuff))
+								if (FilterBuff[0] && !strstr(solidLights->LodA.GetChar(), FilterBuff))
 								{
 									continue;
 								}
 
-								if (SelectableButton(solidLights.LodA.GetChar(), { 200, 20 }, CurrentSolidNum == i))
+								if (SelectableButton(solidLights->LodA.GetChar(), { 200, 20 }, CurrentSolid == solidLights))
 								{
-									CurrentSolidNum = i;
+									CurrentSolid = solidLights;
 									CurrentLightNum = 0;
 								}
 							}
@@ -97,9 +96,8 @@ namespace UI
 
 					ImGui::TableSetColumnIndex(1);
 					{
-						if (CurrentSolidNum >= 0)
+						if (CurrentSolid)
 						{
-							auto CurrentSolid = &SolidLightsList[CurrentSolidNum];
 							auto& lights = CurrentSolid->Lights;
 
 							if (ImGui::Button("Add##Light", { 40, 20 }))
@@ -133,14 +131,15 @@ namespace UI
 
 					ImGui::TableSetColumnIndex(2);
 					{
-						if (CurrentSolidNum >= 0)
+						if (CurrentSolid)
 						{
-							auto CurrentSolid = &SolidLightsList[CurrentSolidNum];
-
 							strcpy(SolidLodBufferA, CurrentSolid->LodA.GetChar());
 							if (ImGui::InputText("Lod A", SolidLodBufferA, 128))
 							{
 								CurrentSolid->LodA.SetString(SolidLodBufferA);
+								SolidLightsList.Sort();
+								SolidLightsList.PopulateUiList();
+								CurrentSolid = SolidLightsList.Get(Game::bStringHash(SolidLodBufferA));
 							}
 
 							ImGui::Text("");
@@ -165,10 +164,9 @@ namespace UI
 							ImGui::Checkbox("Always on", &CurrentSolid->AlwaysOn);
 							ImGui::Checkbox("Use first light", &CurrentSolid->UseFirstLight);
 
-
 							if (CurrentLightNum >= 0)
 							{
-								auto CurrentLight = &SolidLightsList[CurrentSolidNum].Lights[CurrentLightNum];
+								auto CurrentLight = &CurrentSolid->Lights[CurrentLightNum];
 
 								ImGui::Text("");
 

@@ -93,26 +93,17 @@ public:
 		return this->uilist;
 	}
 
-	std::vector<PrelitTexture>& GetList(bool ignoreSort = false)
+	std::vector<PrelitTexture>& GetList()
 	{
-#ifdef _DEBUG
-		if (!sorted && !ignoreSort)
-		{
-			throw "list is not sorted";
-		}
-#endif 
-
 		return this->list;
 	}
 
 	PrelitTexture* Get(Hash targetHash)
 	{
-#ifdef _DEBUG
 		if (!sorted)
 		{
 			throw "list is not sorted";
 		}
-#endif
 
 		int left = 0;
 		int right = static_cast<int>(list.size()) - 1;

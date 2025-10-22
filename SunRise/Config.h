@@ -234,5 +234,6 @@ void InitConfig()
 	if (g_Config.Editor)
 	{
 		PrelitTextures.PopulateUiList();
+		SolidLightsList.PopulateUiList();
 	}
 }

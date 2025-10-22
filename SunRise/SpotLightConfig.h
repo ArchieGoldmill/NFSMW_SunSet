@@ -4,9 +4,9 @@
 #include <unordered_map>
 #include <yaml-cpp/yaml.h>
 #include "Spotlight.h"
+#include "SolidLights.h"
 
 inline std::unordered_map<int, SolidLights> FrontEndLights;
-inline std::vector<SolidLights> SolidLightsList;
 inline SpotLight CarHeadlighsConfig;
 inline SpotLight CarBrakeLightsOnConfig;
 inline SpotLight CarBrakeLightsOffConfig;
@@ -52,7 +52,7 @@ FlareModel* GetFlareModel(const YAML::Node& lightNode)
 
 void LoadSpotLightConfig()
 {
-	SolidLightsList.clear();
+	SolidLightsList.Clear();
 	FrontEndLights.clear();
 
 	YAML::Node spotlightsRoot = YAML::LoadFile(GetConfigFolder("SpotLights.yml"));
@@ -86,10 +86,10 @@ void LoadSpotLightConfig()
 			solid.Lights.push_back(spotLight);
 		}
 
-		SolidLightsList.push_back(solid);
-
-		std::sort(SolidLightsList.begin(), SolidLightsList.end(), [](const SolidLights& a, const SolidLights& b) { return a.LodA.str < b.LodA.str; });
+		SolidLightsList.Add(solid);
 	}
+
+	SolidLightsList.Sort();
 
 	const auto& frontEndLights = spotlightsRoot["FrontEndLights"];
 	for (const auto& felightNode : frontEndLights)
@@ -135,7 +135,7 @@ void SaveSpotlights(YAML::Node& spotlights, std::vector<SpotLight>& lights)
 void SaveSpotLightConfig()
 {
 	YAML::Node list;
-	for (auto& solidLight : SolidLightsList)
+	for (auto& solidLight : SolidLightsList.GetList())
 	{
 		YAML::Node spotlights;
 		SaveSpotlights(spotlights, solidLight.Lights);

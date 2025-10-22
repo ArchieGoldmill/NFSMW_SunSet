@@ -22,44 +22,42 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 	auto solid = model->pSolid;
 	if (solid)
 	{
-		for (auto& solidLights : SolidLightsList)
+		auto solidLights = SolidLightsList.Get(model->NameHash);
+		if (solidLights)
 		{
-			if (solidLights.LodA.hash == model->NameHash)
+			for (auto& pSpotLight : solidLights->Lights)
 			{
-				for (auto& pSpotLight : solidLights.Lights)
+				auto spotLight = CreateSpotLight(pSpotLight, matrix);
+				if (solidLights->UseFirstLight)
 				{
-					auto spotLight = CreateSpotLight(pSpotLight, matrix);
-					if (solidLights.UseFirstLight)
-					{
-						spotLight.Color = solidLights.Lights[0].Color;
-						spotLight.Intensity = solidLights.Lights[0].Intensity;
-						spotLight.InnerAngle = solidLights.Lights[0].InnerAngle;
-						spotLight.OuterAngle = solidLights.Lights[0].OuterAngle;
-						spotLight.Range = solidLights.Lights[0].Range;
-						spotLight.Specular = solidLights.Lights[0].Specular;
-					}
-
-					float flareIntecity = 1.0f;
-					auto source = SpotLightSource::LampPost;
-
-					if (!solidLights.AlwaysOn)
-					{
-						flareIntecity = g_Weather.GetLightIntensity();
-						spotLight.Color *= flareIntecity;
-					}
-
-					if (solidLights.Blink)
-					{
-						source = SpotLightSource::Blinking;
-						int blink = Game::FlareBlink[solidLights.Blink - 1];
-						if (blink != -1)
-						{
-							spotLight.Color *= 0.0001;
-						}
-					}
-
-					AddSpotLightToBuffer(spotLight, source, solidLights.Flare, flareIntecity);
+					spotLight.Color = solidLights->Lights[0].Color;
+					spotLight.Intensity = solidLights->Lights[0].Intensity;
+					spotLight.InnerAngle = solidLights->Lights[0].InnerAngle;
+					spotLight.OuterAngle = solidLights->Lights[0].OuterAngle;
+					spotLight.Range = solidLights->Lights[0].Range;
+					spotLight.Specular = solidLights->Lights[0].Specular;
 				}
+
+				float flareIntecity = 1.0f;
+				auto source = SpotLightSource::LampPost;
+
+				if (!solidLights->AlwaysOn)
+				{
+					flareIntecity = g_Weather.GetLightIntensity();
+					spotLight.Color *= flareIntecity;
+				}
+
+				if (solidLights->Blink)
+				{
+					source = SpotLightSource::Blinking;
+					int blink = Game::FlareBlink[solidLights->Blink - 1];
+					if (blink != -1)
+					{
+						spotLight.Color *= 0.0001;
+					}
+				}
+
+				AddSpotLightToBuffer(spotLight, source, solidLights->Flare, flareIntecity);
 			}
 		}
 	}

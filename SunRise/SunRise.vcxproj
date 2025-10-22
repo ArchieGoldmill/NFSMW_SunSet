@@ -248,6 +248,7 @@
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="SmackableRenderConn.h" />
+    <ClInclude Include="SolidLights.h" />
     <ClInclude Include="Spotlight.h" />
     <ClInclude Include="SpotLightConfig.h" />
     <ClInclude Include="TextureConfig.h" />

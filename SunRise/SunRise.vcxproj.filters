@@ -349,6 +349,9 @@
     <ClInclude Include="MotionBlur.h">
       <Filter>Features\PostEffects</Filter>
     </ClInclude>
+    <ClInclude Include="SolidLights.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

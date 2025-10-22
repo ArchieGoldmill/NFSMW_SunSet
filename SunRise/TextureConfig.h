@@ -7,7 +7,7 @@
 
 bool CheckTexture(Hash target)
 {
-	for (auto& tex : PrelitTextures.GetList(true))
+	for (auto& tex : PrelitTextures.GetList())
 	{
 		if (tex.NameHash == target)
 		{

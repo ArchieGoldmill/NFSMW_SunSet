@@ -228,16 +228,16 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 color = RenderSky(dir, sun);
 	
 	float noise = frac(sin(dot(dir.xz, float2(12.9898, 78.233))) * 43758.5453);
-	color.rgb += noise * color * 0.05;
+	color += noise * color * 0.05;
 	
-	color.rgb += GetStars(sun, IN.uv);
+	color += GetStars(sun, IN.uv);
 	
 	float4 clouds = GetClouds(IN.view);
 	color = lerp(color, clouds.rgb, clouds.a);
 	
-	color.rgb = CompressColourSpace(color.rgb * 2);
+	color = CompressColourSpace(color * 2);
 	
-	color.rgb += GetLightning(IN.uv);
+	color += GetLightning(IN.uv);
 	
 	return float4(color, 1.0);
 }

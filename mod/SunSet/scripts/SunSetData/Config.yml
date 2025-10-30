@@ -33,7 +33,7 @@ Blur:
   Depth: 150.0                # Maximum distance for object to be affected by blur.
 
 Hotkeys:
-  ShaderReload: 0             # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
+  ShaderReload: 70             # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
   ToggleEditor: 114           # Hot key to toggle UI Editor visibility (F3 by default).
 
 Rain:
@@ -51,5 +51,5 @@ WindowGlow:
   Power: 5                    # Window glow color multiplier.
 
 Filter:
-  Texture: FILTER_DEFAULT
-  Power: 1.0
+  Texture: FILTER_DEFAULT     # LUT Filter to be used in game for color correction.
+  Power: 1.0                  # Power of the color correction effect.

@@ -190,15 +190,6 @@ private:
 
 inline CustomMesheContainer CustomMeshes;
 
-void CustomMeshesRenderHook()
-{
-	__asm pushad;
-
-	CustomMeshes.Draw(eView::Player);
-
-	__asm popad;
-}
-
 void __cdecl CustomMeshesShadowRenderHook(eView* view, int a)
 {
 	WorldModel::RenderAll(view, a);
@@ -207,6 +198,5 @@ void __cdecl CustomMeshesShadowRenderHook(eView* view, int a)
 
 void InitCustomMeshes()
 {
-	injector::MakeCALL(0x006DF22A, CustomMeshesRenderHook);
 	injector::MakeCALL(0x006E5110, CustomMeshesShadowRenderHook);
 }

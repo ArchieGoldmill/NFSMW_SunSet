@@ -171,7 +171,7 @@ Weather:
     CarDiffuseIntensity: 0.599999666
     CarAmbientIntensity: 0.799999952
     GodRaysColor: [1, 1, 1, 0]
-    CloudColor: [1, 1, 1, 0.301999986]
+    CloudColor: [1, 1, 1, 0.550000012]
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
     WaterSpecularPower: 10
     CarLightsPower: 0.0500000007
@@ -198,15 +198,15 @@ Weather:
       CarDiffuseIntensity: 0.599999666
       CarAmbientIntensity: 0.799999952
       GodRaysColor: [0, 0, 0, 0]
-      CloudColor: [0.480392158, 0.480392158, 0.480392158, 1]
+      CloudColor: [0.480392158, 0.480392158, 0.480392158, 0.254999995]
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
       WaterSpecularPower: 10
       CarLightsPower: 0.5
       TextureLightPower: 0.5
       BloomPower: 1
       BloomThreshold: 1.5
-      SkyBeta: [0.936274529, 0.848154604, 0.743512094]
-      SkyMie: 0.399999917
+      SkyBeta: [0.69607842, 0.660202086, 0.61759901]
+      SkyMie: 0.100000001
       SkyRayleigh: 5
       SkyBrightness: 3
       FogColor: [0.392637432, 0.429161906, 0.465686262]

@@ -5,6 +5,8 @@
 
 void __cdecl RenderCars(eView* view, int b)
 {
+	CustomMeshes.Draw(eView::Player);
+
 	if (!Game::MotionBlurEnable)
 	{
 		Game::VehicleConn_RenderCars(view, b);

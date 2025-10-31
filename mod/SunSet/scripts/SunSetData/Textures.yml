@@ -448,7 +448,7 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: ADS_CINGULAR_BB_D_EA
-    Brightness: 1
+    Brightness: 1.30000007
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false

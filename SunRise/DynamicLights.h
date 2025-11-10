@@ -18,6 +18,9 @@ float SP_Specular[NUM_SPOTLIGHTS];
 
 int NumSpotLights;
 
+float SpotLightsHash = 0;
+bool SetSpotLights = true;
+
 void PopulateSpotLights()
 {
 	PopulateWorldSpotLights();
@@ -49,10 +52,6 @@ inline bool DynamicallyLit(RenderModel* model)
 inline void PopulateShaderSpotlights(RenderModel* model)
 {
 	NumSpotLights = 0;
-	memset(&SP_Position_Range, 0, sizeof(SP_Position_Range));
-	memset(&SP_Direction_OuterCos, 0, sizeof(SP_Direction_OuterCos));
-	memset(&SP_Color_InnerCos, 0, sizeof(SP_Color_InnerCos));
-	memset(&SP_Specular, 0, sizeof(SP_Specular));
 
 	if (!model->pSolid || model->pSolid->Volume > 170, 000.0f)
 	{
@@ -87,6 +86,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 		g_CellBuffer.GetLightsForMesh(meshCenter, radius);
 	}
 
+	float hash = 0;
 	for (int i = 0; i < g_CellBuffer.numCandidateLights; i++)
 	{
 		auto lightmodel = g_CellBuffer.candidateLights[i];
@@ -100,6 +100,9 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color * s.Intensity, cosf(D3DXToRadian(s.InnerAngle)));
 				SP_Specular[NumSpotLights] = s.Specular;
 
+				// TODO: make sure this hash is reliable
+				hash += s.Position.x + s.Position.y + s.Position.z;
+
 				NumSpotLights++;
 			}
 		}
@@ -108,6 +111,18 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 			break;
 		}
 	}
+
+	SetSpotLights = NumSpotLights > 0 && hash != SpotLightsHash;
+
+	if (SetSpotLights)
+	{
+		for (int i = NumSpotLights; i < NUM_SPOTLIGHTS; i++)
+		{
+			SP_Position_Range[i].w = 0;
+		}
+	}
+
+	SpotLightsHash = hash;
 }
 
 inline void SetDynamicLights(RenderModel* model)
@@ -115,10 +130,14 @@ inline void SetDynamicLights(RenderModel* model)
 	if (DynamicallyLit(model) && NumSpotLights > 0)
 	{
 		auto effect = model->Effect;
-		effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, 24);
-		effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, 24);
-		effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, 24);
-		effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, 24);
+
+		if (SetSpotLights)
+		{
+			effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, 24);
+			effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, 24);
+			effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, 24);
+			effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, 24);
+		}
 
 		if (model->LocalToWorld != Game::IdentityMatrix)
 		{
@@ -132,9 +151,6 @@ inline void SetDynamicLights(RenderModel* model)
 		{
 			effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
 		}
-
-		D3DXVECTOR4 camPos = D3DXVECTOR4(GetCameraPos(), 1);
-		effect->SetVector(ShaderParam::cvWorldEyePos, &camPos);
 	}
 }
 

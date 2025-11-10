@@ -168,29 +168,24 @@ struct CellBuffer
 
 	SpotLightModel* candidateLights[256];
 	int numCandidateLights = 0;
-	void ResetCandidateLigts()
-	{
-		memset(candidateLights, 0, sizeof(candidateLights));
-		numCandidateLights = 0;
-	}
 
 	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, const float meshRadius)
 	{
 		D3DXVECTOR3 min = meshCenter - D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
 		D3DXVECTOR3 max = meshCenter + D3DXVECTOR3(meshRadius, meshRadius, meshRadius);
 
-		ResetCandidateLigts();
 		GetLightsForMeshBase(min, max);
 	}
 
 	void GetLightsForMesh(const D3DXVECTOR3& min, const D3DXVECTOR3& max)
 	{
-		ResetCandidateLigts();
 		GetLightsForMeshBase(min, max);
 	}
 
 	void GetLightsForMeshBase(const D3DXVECTOR3& min, const D3DXVECTOR3& max)
 	{
+		numCandidateLights = 0;
+
 		Int3 minCell = WorldToCell(min);
 		Int3 maxCell = WorldToCell(max);
 

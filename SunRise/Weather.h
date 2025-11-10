@@ -152,10 +152,13 @@ private:
 		auto windowGlowColor = this->GetWindowGlowColor();
 		glossyWindow->SetVector(ShaderParam::cvWindowColor, &windowGlowColor);
 
+		D3DXVECTOR4 camPos = D3DXVECTOR4(GetCameraPos(), 1);
 		for (int i = 0; i < (int)shader_type::_count; i++)
 		{
 			auto e = eEffect::Get((shader_type)i);
 			e->SetFloat(ShaderParam::cfShadowsEnabled, (Game::DrawShadows && Game::ShadowDetail > 0) ? 1.0 : 0.0);
+
+			e->SetVector(ShaderParam::cvWorldEyePos, &camPos);
 		}
 	}
 

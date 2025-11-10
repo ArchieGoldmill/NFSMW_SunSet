@@ -5,6 +5,7 @@
 #include "Config.h"
 #include "LightsBuffer.h"
 #include "Rain.h"
+#include "Weather.h"
 
 D3DXVECTOR3 GetPlayerPos()
 {
@@ -52,6 +53,8 @@ void AddHelicopterLight(D3DXMATRIX* matrix)
 	{
 		return;
 	}
+
+	spotLight.Color *= g_Weather.GetCarLightsPower();
 
 	D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
 

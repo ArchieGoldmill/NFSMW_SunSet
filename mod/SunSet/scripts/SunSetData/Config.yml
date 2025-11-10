@@ -16,6 +16,7 @@ Config:
   TunnelWetnessFix: true      # Dynamically removes puddles from the tunnels.
   DisableNightShadows: true   # Disable shadowmap rendering at night to improve performance.
   CustomMeshDist: 500         # Default max distance for custom meshes.
+  MaxLights: -1               # Max number of lights on scene.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

@@ -67,4 +67,10 @@ struct eView
 		FUNC(0x006DA9B0, void, __thiscall, _Render, eView*, eModel*, D3DXMATRIX*, void*, int, void*);
 		_Render(this, model, matrix, lightContext, flags, blendMatricies);
 	}
+
+	int GetPixelSize(D3DXVECTOR3* pos, float r)
+	{
+		FUNC(0x004FCAC0, int, __thiscall, _Render, eView*, D3DXVECTOR3*, float);
+		return _Render(this, pos, r);
+	}
 };

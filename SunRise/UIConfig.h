@@ -40,6 +40,7 @@ namespace UI
 				ImGui::Checkbox("Tunnel wetness fix", &g_Config.TunnelWetnessFix);
 				ImGui::Checkbox("Disable night shadows", &g_Config.DisableNightShadows);
 				ImGui::InputFloat("Custom mesh dist", &g_Config.CustomMeshDist, 0.1, 0.2);
+				ImGui::InputInt("Max lights", &g_Config.MaxLights, 1, 3);
 
 				ImGui::Text("");
 				ImGui::Text("Time");

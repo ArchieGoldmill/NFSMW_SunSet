@@ -66,6 +66,7 @@ struct SpotLightModel
 	SpotLightSource Source;
 	FlareModel* Flare;
 	float FlareIntecity;
+	float Distance;
 };
 
 struct SolidLights

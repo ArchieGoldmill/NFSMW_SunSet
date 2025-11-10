@@ -27,6 +27,7 @@ struct Config
 	float LightsOn;
 	float LightsOff;
 	float LightCellSize;
+	int MaxLights;
 
 	bool Console;
 	bool ShaderLoader;
@@ -96,6 +97,7 @@ void LoadConfig()
 	g_Config.TunnelWetnessFix = YmlGet(settings, "TunnelWetnessFix", true);
 	g_Config.DisableNightShadows = YmlGet(settings, "DisableNightShadows", true);
 	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
+	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
 	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
@@ -165,6 +167,7 @@ void SaveConfig()
 	config["TunnelWetnessFix"] = g_Config.TunnelWetnessFix;
 	config["DisableNightShadows"] = g_Config.DisableNightShadows;
 	config["CustomMeshDist"] = g_Config.CustomMeshDist;
+	config["MaxLights"] = g_Config.MaxLights;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

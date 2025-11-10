@@ -26,6 +26,8 @@ void PopulateSpotLights()
 
 	PopulateCarSpotLights();
 
+	ClampLights();
+
 	g_CellBuffer.Clear();
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{

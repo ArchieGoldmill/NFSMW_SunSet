@@ -59,36 +59,69 @@ void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& s
 	}
 }
 
-void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix)
+void PopulateCopLight(CarRenderInfo* carRenderInfo, VehicleFX fx, SpotLight& spotlightCfg, D3DXMATRIX* matrix)
 {
-	D3DXVECTOR3 pos = { matrix->_41, matrix->_42, matrix->_43 };
-
-	auto renderUsage = carRenderInfo->pRideInfo->mCarRenderUsage;
-	bool isPlayer = renderUsage == CarRenderUsage::Player;
-
-	auto headlightOn = carRenderInfo->IsLightOn(VehicleFX_HEADLIGHTS);
-	if (headlightOn)
+	if (carRenderInfo->IsLightOn(fx))
 	{
-		SpotLightSource source = isPlayer ? SpotLightSource::Player_Headlights : SpotLightSource::Headlights;
-		PopulateCarLight(carRenderInfo, Hashes::LEFT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
-		PopulateCarLight(carRenderInfo, Hashes::RIGHT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
+		float time = Game::Sim_GetTime();
+		time = fmod(time * 2.0f, 1.0f);
+		if (fx == VehicleFX_COPBLUE && time > 0.5)
+		{
+			return;
+		}
+
+		if (fx == VehicleFX_COPRED && time < 0.5)
+		{
+			return;
+		}
+
+		SpotLight spotLight = spotlightCfg;
+
+		spotLight.Color *= g_Weather.GetCarLightsPower();
+
+		D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
+
+		D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
+		D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
+
+		AddSpotLightToBuffer(spotLight, SpotLightSource::Blinking, NULL);
+	}
+}
+
+void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, bool roadBlock)
+{
+	if (!roadBlock)
+	{
+		auto renderUsage = carRenderInfo->pRideInfo->mCarRenderUsage;
+		bool isPlayer = renderUsage == CarRenderUsage::Player;
+
+		auto headlightOn = carRenderInfo->IsLightOn(VehicleFX_HEADLIGHTS);
+		if (headlightOn)
+		{
+			SpotLightSource source = isPlayer ? SpotLightSource::Player_Headlights : SpotLightSource::Headlights;
+			PopulateCarLight(carRenderInfo, Hashes::LEFT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
+			PopulateCarLight(carRenderInfo, Hashes::RIGHT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
+		}
+
+		auto brakelightOn = carRenderInfo->IsLightOn(VehicleFX_BRAKELIGHTS);
+		if (Game::State == 6 || brakelightOn)
+		{
+			SpotLight brakeLightsConfig = brakelightOn ? CarBrakeLightsOnConfig : CarBrakeLightsOffConfig;
+			SpotLightSource source = isPlayer ? SpotLightSource::Player_Breaklights : SpotLightSource::Breaklights;
+			PopulateCarLight(carRenderInfo, Hashes::LEFT_BRAKELIGHT, brakeLightsConfig, matrix, source);
+			PopulateCarLight(carRenderInfo, Hashes::RIGHT_BRAKELIGHT, brakeLightsConfig, matrix, source);
+		}
+
+		auto reverseOn = carRenderInfo->IsLightOn(VehicleFX_REVERSE);
+		if (reverseOn)
+		{
+			PopulateCarLight(carRenderInfo, Hashes::LEFT_REVERSE, CarReverseConfig, matrix, SpotLightSource::Reverse);
+			PopulateCarLight(carRenderInfo, Hashes::RIGHT_REVERSE, CarReverseConfig, matrix, SpotLightSource::Reverse);
+		}
 	}
 
-	auto brakelightOn = carRenderInfo->IsLightOn(VehicleFX_BRAKELIGHTS);
-	if (Game::State == 6 || brakelightOn)
-	{
-		SpotLight brakeLightsConfig = brakelightOn ? CarBrakeLightsOnConfig : CarBrakeLightsOffConfig;
-		SpotLightSource source = isPlayer ? SpotLightSource::Player_Breaklights : SpotLightSource::Breaklights;
-		PopulateCarLight(carRenderInfo, Hashes::LEFT_BRAKELIGHT, brakeLightsConfig, matrix, source);
-		PopulateCarLight(carRenderInfo, Hashes::RIGHT_BRAKELIGHT, brakeLightsConfig, matrix, source);
-	}
-
-	auto reverseOn = carRenderInfo->IsLightOn(VehicleFX_REVERSE);
-	if (reverseOn)
-	{
-		PopulateCarLight(carRenderInfo, Hashes::LEFT_REVERSE, CarReverseConfig, matrix, SpotLightSource::Reverse);
-		PopulateCarLight(carRenderInfo, Hashes::RIGHT_REVERSE, CarReverseConfig, matrix, SpotLightSource::Reverse);
-	}
+	PopulateCopLight(carRenderInfo, VehicleFX_COPBLUE, CopLightBlueConfig, matrix);
+	PopulateCopLight(carRenderInfo, VehicleFX_COPRED, CopLightRedConfig, matrix);
 }
 
 bool IsRoadBlockCar(VehicleRenderConn* renderConn)
@@ -129,16 +162,7 @@ void PopulateCarSpotLights()
 					}
 					else
 					{
-						bool populate = true;
-						if (renderUsage == CarRenderUsage::AICop)
-						{
-							populate = !IsRoadBlockCar(renderConn);
-						}
-
-						if (populate)
-						{
-							PopulateCarSpotLights(carRenderInfo, &renderConn->Matrix1);
-						}
+						PopulateCarSpotLights(carRenderInfo, &renderConn->Matrix1, renderUsage == CarRenderUsage::AICop && IsRoadBlockCar(renderConn));
 					}
 				}
 			}
@@ -150,7 +174,7 @@ void PopulateCarSpotLights()
 		auto fecar = FrontEndRenderingCar::List;
 		if (fecar && fecar->pCarRenderInfo && fecar->Visible)
 		{
-			PopulateCarSpotLights(fecar->pCarRenderInfo, &fecar->BodyMatrix);
+			PopulateCarSpotLights(fecar->pCarRenderInfo, &fecar->BodyMatrix, false);
 		}
 	}
 }

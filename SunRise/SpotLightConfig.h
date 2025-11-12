@@ -11,6 +11,8 @@ inline SpotLight CarHeadlighsConfig;
 inline SpotLight CarBrakeLightsOnConfig;
 inline SpotLight CarBrakeLightsOffConfig;
 inline SpotLight CarReverseConfig;
+inline SpotLight CopLightBlueConfig;
+inline SpotLight CopLightRedConfig;
 inline SpotLightModel HelicopterLightConfig;
 
 void ParseSpotLight(SpotLight& spotLight, const YAML::Node& spot)
@@ -61,6 +63,8 @@ void LoadSpotLightConfig()
 	ParseSpotLight(CarBrakeLightsOnConfig, spotlightsRoot["CarBrakeLightsOn"]);
 	ParseSpotLight(CarBrakeLightsOffConfig, spotlightsRoot["CarBrakeLightsOff"]);
 	ParseSpotLight(CarReverseConfig, spotlightsRoot["CarReverse"]);
+	ParseSpotLight(CopLightBlueConfig, spotlightsRoot["CopLightBlue"]);
+	ParseSpotLight(CopLightRedConfig, spotlightsRoot["CopLightRed"]);
 
 	auto heliNode = spotlightsRoot["HelicopterLight"];
 	ParseSpotLight(HelicopterLightConfig.Light, heliNode);
@@ -177,6 +181,12 @@ void SaveSpotLightConfig()
 	YAML::Node carReverse;
 	SaveSpotLight(carReverse, CarReverseConfig);
 
+	YAML::Node copLightBlue;
+	SaveSpotLight(copLightBlue, CopLightBlueConfig);
+
+	YAML::Node copLightRed;
+	SaveSpotLight(copLightRed, CopLightRedConfig);
+
 	YAML::Node helicopterLight;
 	helicopterLight["Flare"] = HelicopterLightConfig.Flare ? HelicopterLightConfig.Flare->Name : "";
 	SaveSpotLight(helicopterLight, HelicopterLightConfig.Light);
@@ -186,6 +196,8 @@ void SaveSpotLightConfig()
 	root["CarBrakeLightsOn"] = carBrakeLightsOn;
 	root["CarBrakeLightsOff"] = carBrakeLightsOff;
 	root["CarReverse"] = carReverse;
+	root["CopLightBlue"] = copLightBlue;
+	root["CopLightRed"] = copLightRed;
 	root["HelicopterLight"] = helicopterLight;
 	root["FrontEndLights"] = felist;
 	root["SolidLights"] = list;

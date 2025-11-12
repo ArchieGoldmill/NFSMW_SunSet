@@ -199,4 +199,5 @@ void __cdecl CustomMeshesShadowRenderHook(eView* view, int a)
 void InitCustomMeshes()
 {
 	injector::MakeCALL(0x006E5110, CustomMeshesShadowRenderHook);
+	injector::MakeCALL(0x006DED79, CustomMeshesShadowRenderHook);
 }

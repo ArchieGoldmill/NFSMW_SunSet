@@ -366,3 +366,4 @@ SunRise/vcpkg_installed/*
 *.zip
 
 */textures.bin
+/mod/SunSet/TexturePacks/SunSet/TEXTURES.BIN

@@ -42,7 +42,7 @@ float4 PS_GodRays(PS_INPUT IN) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
-	diffuse_tex.rgb += GetGodRays(IN.uv) * 0.3 * cvSunDir.z ;
+	diffuse_tex.rgb += GetGodRays(IN.uv) * 0.3 * cvSunDir.z;
 
 	return diffuse_tex;
 }

@@ -48,6 +48,7 @@ struct Config
 	bool CarVertexColor;
 	bool TunnelWetnessFix;
 	bool DisableNightShadows;
+	bool MSAAx8;
 
 	float WetTime;
 	float DryTime;
@@ -96,6 +97,7 @@ void LoadConfig()
 	g_Config.CarVertexColor = YmlGet(settings, "CarVertexColor", true);
 	g_Config.TunnelWetnessFix = YmlGet(settings, "TunnelWetnessFix", true);
 	g_Config.DisableNightShadows = YmlGet(settings, "DisableNightShadows", true);
+	g_Config.MSAAx8 = YmlGet(settings, "MSAAx8", false);
 	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
 	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
 	g_Config.DepthPrepass = true;
@@ -166,6 +168,7 @@ void SaveConfig()
 	config["CarVertexColor"] = g_Config.CarVertexColor;
 	config["TunnelWetnessFix"] = g_Config.TunnelWetnessFix;
 	config["DisableNightShadows"] = g_Config.DisableNightShadows;
+	config["MSAAx8"] = g_Config.MSAAx8;
 	config["CustomMeshDist"] = g_Config.CustomMeshDist;
 	config["MaxLights"] = g_Config.MaxLights;
 

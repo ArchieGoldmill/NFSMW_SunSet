@@ -11,7 +11,9 @@ namespace Game
 	inline HMODULE hModule;
 
 	inline bool& ReloadShaders = *(bool*)0x00982B14;
+	inline bool& ReloadDevice= *(bool*)0x00982C39;
 	inline IDirect3DDevice9*& Device = *(IDirect3DDevice9**)0x00982BDC;
+	inline IDirect3D9*& Direct3D9 = *(IDirect3D9**)0x00982BD8;
 	inline float& DeltaTime = *(float*)0x009259BC;
 	inline float& FlareRotation = *(float*)0x008F2920;
 	inline bool& LostFocus = *(bool*)0x00982C50;
@@ -31,6 +33,7 @@ namespace Game
 	inline auto DeviceParams = (D3DPRESENT_PARAMETERS*)0x0093E82C;
 	inline auto BlendState = (int*)0x0093DE20;
 	inline auto DebugCameraPos = (D3DXVECTOR3*)0x008EE260;
+	inline auto& FSAALevel = *(int*)0x00901808;
 
 	inline auto& FilterSurface0 = *(IDirect3DSurface9**)0x0093DE60;
 	inline auto& FilterTexture0 = *(IDirect3DTexture9**)0x0093DEF8;

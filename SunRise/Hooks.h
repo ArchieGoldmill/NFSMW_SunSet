@@ -242,6 +242,20 @@ void __cdecl NormalizeLightVec(D3DXVECTOR4* dest, D3DXVECTOR4* src)
 	D3DXVec4Normalize(dest, src);
 }
 
+void SetDeviceParams()
+{
+	if (g_Config.MSAAx8)
+	{
+		Game::DeviceParams->MultiSampleType = D3DMULTISAMPLE_8_SAMPLES;
+		Game::DeviceParams->MultiSampleQuality = 0;
+	}
+	else
+	{
+		Game::DeviceParams->MultiSampleType = D3DMULTISAMPLE_NONMASKABLE;
+		Game::DeviceParams->MultiSampleQuality = Game::FSAALevel;
+	}
+}
+
 void InitHooks()
 {
 	InitDirectResources();
@@ -296,6 +310,9 @@ void InitHooks()
 	injector::WriteMemory<BYTE>(0x006DE596, 4);
 
 	injector::MakeCALL(0x006C82B9, NormalizeLightVec);
+
+	injector::MakeNOP(0x006BFBB0, 6);
+	injector::MakeCALL(0x006BFBB0, SetDeviceParams);
 
 #ifdef _DEBUG
 	injector::MakeNOP(0x006C2206, 10);

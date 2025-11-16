@@ -5,9 +5,10 @@
 IDirect3DSurface9* DepthRenderTarget = nullptr;
 IDirect3DTexture9* DepthTexture = nullptr;
 IDirect3DSurface9* DepthSurface = nullptr;
-LPDIRECT3DVOLUMETEXTURE9 NoiseTexture = NULL;
+LPDIRECT3DVOLUMETEXTURE9 NoiseTexture = nullptr;
 IDirect3DCubeTexture9* SkyCubeTexture = nullptr;
-IDirect3DVolumeTexture9* FilterTexture = NULL;
+IDirect3DCubeTexture9* SkyRainCubeTexture = nullptr;
+IDirect3DVolumeTexture9* FilterTexture = nullptr;
 
 void InitPrepassTextures()
 {
@@ -60,13 +61,8 @@ void LoadVolumeTexture()
 	}
 }
 
-void CreateSkyBoxTexture()
+void CreateSkyBoxTexture(Hash* textures, IDirect3DCubeTexture9*& skyCubeTexture)
 {
-	if (SkyCubeTexture)
-	{
-		return;
-	}
-
 	D3DCUBEMAP_FACES faces[6] =
 	{
 		D3DCUBEMAP_FACE_POSITIVE_X,
@@ -77,28 +73,18 @@ void CreateSkyBoxTexture()
 		D3DCUBEMAP_FACE_NEGATIVE_Z
 	};
 
-	Hash textures[6] =
-	{
-		Hashes::SKYBOX_XPOS,
-		Hashes::SKYBOX_XNEG,
-		Hashes::SKYBOX_YPOS,
-		Hashes::SKYBOX_YNEG,
-		Hashes::SKYBOX_ZPOS,
-		Hashes::SKYBOX_ZNEG,
-	};
-
 	auto textureInfo = TextureInfo::Get(textures[0], false, false);
 	if (!textureInfo)
 	{
 		return;
 	}
 
-	D3DXCreateCubeTexture(Game::Device, textureInfo->Width, 1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &SkyCubeTexture);
+	D3DXCreateCubeTexture(Game::Device, textureInfo->Width, 1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &skyCubeTexture);
 
 	for (int i = 0; i < 6; i++)
 	{
 		LPDIRECT3DSURFACE9 pSurface = nullptr;
-		SkyCubeTexture->GetCubeMapSurface(faces[i], 0, &pSurface);
+		skyCubeTexture->GetCubeMapSurface(faces[i], 0, &pSurface);
 
 		auto textureInfo = TextureInfo::Get(textures[i], false, false);
 		auto texture = textureInfo->PlatInfo->D3DTexture;
@@ -111,6 +97,38 @@ void CreateSkyBoxTexture()
 		pSurface->Release();
 		pSrcSurface->Release();
 	}
+}
+
+void CreateSkyBoxTexture()
+{
+	if (SkyCubeTexture)
+	{
+		return;
+	}
+
+	Hash textures[6] =
+	{
+		Hashes::SKYBOX_XPOS,
+		Hashes::SKYBOX_XNEG,
+		Hashes::SKYBOX_YPOS,
+		Hashes::SKYBOX_YNEG,
+		Hashes::SKYBOX_ZPOS,
+		Hashes::SKYBOX_ZNEG,
+	};
+
+	CreateSkyBoxTexture(textures, SkyCubeTexture);
+
+	Hash texturesRain[6] =
+	{
+		Hashes::SKYBOX_RAIN_XPOS,
+		Hashes::SKYBOX_RAIN_XNEG,
+		Hashes::SKYBOX_RAIN_YPOS,
+		Hashes::SKYBOX_RAIN_YNEG,
+		Hashes::SKYBOX_RAIN_ZPOS,
+		Hashes::SKYBOX_RAIN_ZNEG,
+	};
+
+	CreateSkyBoxTexture(texturesRain, SkyRainCubeTexture);
 }
 
 struct VolumeFillData
@@ -185,6 +203,12 @@ void ReleaseDirectResources()
 	{
 		SkyCubeTexture->Release();
 		SkyCubeTexture = nullptr;
+	}
+
+	if (SkyRainCubeTexture)
+	{
+		SkyRainCubeTexture->Release();
+		SkyRainCubeTexture = nullptr;
 	}
 
 	if (DepthRenderTarget)

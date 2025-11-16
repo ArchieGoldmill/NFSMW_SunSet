@@ -111,7 +111,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	if (cbUseNormalMap)
 	{
 		float3 tangent = GetTangent(normal, IN.uv, IN.local_pos.xyz);
-		normal = ApplyNormalMap(normal, tangent, IN.uv);
+		normal = ApplyNormalMap(normal, tangent, IN.uv, true);
 	}
 	
 	float rainPower;

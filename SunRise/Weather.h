@@ -369,9 +369,14 @@ private:
 			e->SetTexture(ShaderParam::MISCMAP1_TEXTURE, SkyCubeTexture);
 		}
 
+		if (SkyRainCubeTexture)
+		{
+			e->SetTexture(ShaderParam::MISCMAP2_TEXTURE, SkyRainCubeTexture);
+		}
+
 		e->SetTexture(ShaderParam::SkyNoiseTexture, this->SkyNoise);
 
-		e->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->Lightning[g_Rain.GetLightningTex()]);
+		e->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->Lightning[g_Rain.GetLightningTex()]);
 	}
 
 	void UpdateWater()

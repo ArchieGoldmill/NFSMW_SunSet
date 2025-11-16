@@ -27,13 +27,12 @@ public:
 	{
 		this->lightningTimeOut = g_Config.Rain.LightningTimeOut;
 
-		srand(time(NULL));
-		this->current = rand() % 10;
-		if (this->current < 4)
+		this->current = time(NULL) % 10;
+		if (this->current <= 5)
 		{
 			this->current = 0;
 		}
-		else if (this->current < 7)
+		else if (this->current <= 7)
 		{
 			this->current = 1;
 		}
@@ -193,6 +192,8 @@ private:
 		{
 			lightningParams = { 0, 0, 0, 0 };
 		}
+
+		lightningParams.z = this->rain;
 
 		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvLightning, &lightningParams);

@@ -42,9 +42,21 @@ samplerCUBE MISCMAP1_SAMPLER = sampler_state
 };
 
 texture MISCMAP2_TEXTURE;
-sampler2D MISCMAP2_SAMPLER = sampler_state
+samplerCUBE MISCMAP2_SAMPLER = sampler_state
 {
-	texture = MISCMAP2_TEXTURE;
+	texture = <MISCMAP2_TEXTURE>;
+	AddressU = CLAMP;
+	AddressV = CLAMP;
+	AddressW = CLAMP;
+	MIPFILTER = LINEAR;
+	MINFILTER = LINEAR;
+	MAGFILTER = LINEAR;
+};
+
+texture MISCMAP3_TEXTURE;
+sampler2D MISCMAP3_SAMPLER = sampler_state
+{
+	texture = MISCMAP3_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
 	MIPFILTER = LINEAR;
@@ -170,7 +182,9 @@ float3 GetCloudView(float3 view)
 float4 GetClouds(float3 view)
 {
 	float3 cloudDir = GetCloudView(view);
-	float3 cloudTex = texCUBE(MISCMAP1_SAMPLER, cloudDir).rgb;
+	float3 cloudTex1 = texCUBE(MISCMAP1_SAMPLER, cloudDir).rgb;
+	float3 cloudTex2 = texCUBE(MISCMAP2_SAMPLER, cloudDir).rgb;
+	float3 cloudTex = lerp(cloudTex1, cloudTex2, cvLightning.z);
 	
 	float gray = dot(cloudTex, float3(0.299, 0.587, 0.114));
 	float3 clouds = float3(gray, gray, gray) * cvCloudColor.rgb;
@@ -210,7 +224,7 @@ float3 GetLightning(float4 uv)
 	{
 		float2 luv = uv.xy;
 
-		lightning = tex2D(MISCMAP2_SAMPLER, luv).rgb;
+		lightning = tex2D(MISCMAP3_SAMPLER, luv).rgb;
 		
 		lightning *= cvLightning.x;
 		lightning += float3(0.875, 0.831, 1) * cvLightning.y / 2;

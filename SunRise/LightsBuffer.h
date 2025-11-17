@@ -51,6 +51,8 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 	spotLightModel.Source = source;
 	spotLightModel.Flare = flare;
 	spotLightModel.FlareIntecity = flareIntecity;
+	spotLightModel.Added = false;
+	spotLightModel.Distance = 0.0f;
 
 	SpotLightBuffer[NumSpotLightBuffer] = spotLightModel;
 	NumSpotLightBuffer++;

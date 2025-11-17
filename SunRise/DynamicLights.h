@@ -90,6 +90,10 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	for (int i = 0; i < g_CellBuffer.numCandidateLights; i++)
 	{
 		auto lightmodel = g_CellBuffer.candidateLights[i];
+
+		// Reset added field that is set inside grid culler
+		lightmodel->Added = false;
+
 		auto& s = lightmodel->Light;
 		if (NumSpotLights < NUM_SPOTLIGHTS)
 		{
@@ -105,10 +109,6 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 
 				NumSpotLights++;
 			}
-		}
-		else
-		{
-			break;
 		}
 	}
 

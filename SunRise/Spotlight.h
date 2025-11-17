@@ -67,6 +67,7 @@ struct SpotLightModel
 	FlareModel* Flare;
 	float FlareIntecity;
 	float Distance;
+	bool Added;
 };
 
 struct SolidLights
@@ -85,16 +86,25 @@ struct SolidLights
 
 inline bool ConeSphereIntersect(SpotLight* worldLight, const D3DXVECTOR3& sphereCenter, float sphereRadius)
 {
-	auto v = sphereCenter - worldLight->Position;
-	float vlen = D3DXVec3Length(&v);
+	D3DXVECTOR3 v;
+	v.x = sphereCenter.x - worldLight->Position.x;
+	v.y = sphereCenter.y - worldLight->Position.y;
+	v.z = sphereCenter.z - worldLight->Position.z;
 
-	if (vlen > worldLight->Range + sphereRadius)
+	float lenSq = v.x * v.x + v.y * v.y + v.z * v.z;
+
+	float maxDist = worldLight->Range + sphereRadius;
+	float maxDistSq = maxDist * maxDist;
+
+	if (lenSq > maxDistSq)
 	{
 		return false;
 	}
 
-	if (worldLight->OuterAngle < 180)
+	if (worldLight->OuterAngle < 180 && !worldLight->IsLampPost())
 	{
+		float vlen = sqrtf(lenSq);
+
 		float sinA = sphereRadius / vlen;
 		auto vnorm = v / vlen;
 		float cosv = D3DXVec3Dot(&vnorm, &worldLight->Direction);

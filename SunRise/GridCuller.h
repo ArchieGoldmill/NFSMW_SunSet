@@ -201,27 +201,15 @@ struct CellBuffer
 						for (int i = 0; i < Cell::NumLights; i++)
 						{
 							SpotLightModel* light = cell->Lights[i];
-							if (light && numCandidateLights < 256)
-							{
-								bool alreadyAdded = false;
-
-								for (int j = 0; j < numCandidateLights; j++)
-								{
-									if (candidateLights[j] == light)
-									{
-										alreadyAdded = true;
-										break;
-									}
-								}
-
-								if (!alreadyAdded)
-								{
-									candidateLights[numCandidateLights++] = light;
-								}
-							}
-							else
+							if (!light || numCandidateLights >= 256)
 							{
 								break;
+							}
+
+							if (!light->Added)
+							{
+								candidateLights[numCandidateLights++] = light;
+								light->Added = true;
 							}
 						}
 					}

@@ -12,15 +12,9 @@ sampler NORMALMAP_SAMPLER = sampler_state
 float3 ApplyNormalMap(float3 normal, float3 tangent, float2 uv, bool flip = false)
 {
 	float3x3 tbn = { tangent, cross(normal, tangent), normal };
-	float3 normalSample = tex2D(NORMALMAP_SAMPLER, uv).rgb;
+	float3 normalSample = tex2D(NORMALMAP_SAMPLER, uv).rgb * 2 - 1;
 	
-	if (flip)
-	{
-		normalSample.g = 1 - normalSample.g;
-	}
+	normal = mul(normalSample, tbn);
 	
-	normalSample = normalSample * 2 - 1;
-	normal = mul(normalize(normalSample), tbn);
-	
-	return normal;
+	return normalize(normal);
 }

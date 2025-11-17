@@ -9,8 +9,9 @@ struct TimeOfDay
 	float UpdateRate;
 	int UpdateDirection;
 	float CurrentTime;
+	float SunAzimuth;
 
-	int pad[89];
+	int pad[88];
 
 	D3DXVECTOR4 SunPosition;
 	D3DXVECTOR4 SunDirection;

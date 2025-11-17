@@ -28,6 +28,7 @@ Time:
   DryTime: 30.0               # Time for the road to get fully dry.
   RandomStartupTime: false    # Random game time at start.
   RealTime: false             # Use real time from PC in the game.
+  SunAzimuth: 0.0             # Angle in deegrees of the initial sun azimuth.
 
 Blur:
   MinSpeed: 25.0              # Minimum speed for blur to activate.

@@ -36,7 +36,10 @@ void ForceTime()
 TimeOfDay* __fastcall CreateTimeOfDay(TimeOfDay* tod)
 {
 	tod->Ctor();
+
 	tod->UpdateRate = g_Config.TimeUpdateRate;
+	tod->SunAzimuth = D3DXToRadian(g_Config.SunAzimuth);
+
 	return tod;
 }
 

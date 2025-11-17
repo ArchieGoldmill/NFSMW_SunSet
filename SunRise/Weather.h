@@ -341,7 +341,7 @@ private:
 		const float pi = 3.141592f;
 
 		float altitude_rad = sin(sunTime * pi) * pi / 3;
-		float azimuth_rad = pi * sunTime + pi / 2;
+		float azimuth_rad = pi * sunTime + pi / 2 + TimeOfDay::Instance->SunAzimuth;
 
 		sunDirection.x = cos(altitude_rad) * sin(azimuth_rad);
 		sunDirection.y = cos(altitude_rad) * cos(azimuth_rad);

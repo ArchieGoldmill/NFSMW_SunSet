@@ -27,6 +27,8 @@ struct Config
 	float LightsOn;
 	float LightsOff;
 	float LightCellSize;
+	float SunAzimuth;
+
 	int MaxLights;
 
 	bool Console;
@@ -111,6 +113,7 @@ void LoadConfig()
 	g_Config.LightsOff = YmlGet(time, "LightsOff", 0.24f);
 	g_Config.RandomStartupTime = YmlGet(time, "RandomStartupTime", false);
 	g_Config.RealTime = YmlGet(time, "RealTime", false);
+	g_Config.SunAzimuth = YmlGet(time, "SunAzimuth", 0.0f);
 	g_Config.SunRise = 0.2f;
 	g_Config.SunSet = 0.8f;
 
@@ -182,6 +185,7 @@ void SaveConfig()
 	time["DryTime"] = g_Config.DryTime;
 	time["RandomStartupTime"] = g_Config.RandomStartupTime;
 	time["RealTime"] = g_Config.RealTime;
+	time["SunAzimuth"] = g_Config.SunAzimuth;
 
 	YAML::Node blur;
 	blur["MinSpeed"] = g_Config.BlurMinSpeed;

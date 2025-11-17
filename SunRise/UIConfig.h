@@ -64,6 +64,10 @@ namespace UI
 				ImGui::InputFloat("Lights off", &g_Config.LightsOff, 0.1, 0.2);
 				ImGui::InputFloat("Wet time", &g_Config.WetTime, 0.1, 0.2);
 				ImGui::InputFloat("Dry time", &g_Config.DryTime, 0.1, 0.2);
+				if (ImGui::SliderFloat("Sun azimuth", &g_Config.SunAzimuth, 0.0f, 360.0f, "%.1f"))
+				{
+					TimeOfDay::Instance->SunAzimuth = D3DXToRadian(g_Config.SunAzimuth);
+				}
 				ImGui::Checkbox("Random startup time", &g_Config.RandomStartupTime);
 				ImGui::Checkbox("Real time", &g_Config.RealTime);
 

@@ -19,8 +19,6 @@ void DrawBlur()
 		Game::VehicleConn_RenderCars(eView::Player, 0);
 		Game::CommitRenderedModels();
 	}
-
-	DrawPostEffects();
 }
 
 void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* backBuffer, RECT* pSourceRect, IDirect3DSurface9* filterSurface0, RECT* pDestRect, D3DTEXTUREFILTERTYPE Filter)
@@ -104,14 +102,12 @@ void InitMotionBlur()
 	// Remove second sky stuff
 	injector::MakeNOP(0x006DF449, 5);
 
-	if (g_Config.DepthPrepass)
-	{
-		injector::MakeNOP(0x006DBD7C, 6);
-		injector::MakeCALL(0x006DBD7C, CopyBufferForBlur);
+	// Depth prepass
+	injector::MakeNOP(0x006DBD7C, 6);
+	injector::MakeCALL(0x006DBD7C, CopyBufferForBlur);
 
-		injector::WriteMemory<BYTE>(0x006DBE9E, D3DBLEND_INVSRCALPHA);
-		injector::WriteMemory<BYTE>(0x006DBEA0, D3DBLEND_SRCALPHA);
-	}
+	injector::WriteMemory<BYTE>(0x006DBE9E, D3DBLEND_INVSRCALPHA);
+	injector::WriteMemory<BYTE>(0x006DBEA0, D3DBLEND_SRCALPHA);
 
 	// Swap rain to blur
 	injector::MakeCALL(0x00529B29, AddToggleOptionHook);

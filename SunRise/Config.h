@@ -41,7 +41,6 @@ struct Config
 	bool SkipFE;
 	bool RandomStartupTime;
 	bool RealTime;
-	bool DepthPrepass;
 	bool CarVinylPaintFix;
 	bool BrakeGlow;
 	bool GodRays;
@@ -103,7 +102,6 @@ void LoadConfig()
 	g_Config.MSAAx8 = YmlGet(settings, "MSAAx8", false);
 	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
 	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
-	g_Config.DepthPrepass = true;
 
 	const auto& time = settingsRoot["Time"];
 	g_Config.WetTime = YmlGet(time, "WetTime", 2.0f);

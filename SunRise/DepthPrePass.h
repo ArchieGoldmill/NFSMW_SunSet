@@ -92,13 +92,10 @@ void __cdecl SetTextureAlphaRefHook(unsigned int alphaTestEnable, unsigned int a
 
 void InitDepthPrePass()
 {
-	if (g_Config.DepthPrepass)
-	{
-		injector::MakeNOP(0x006C6983, 6);
-		injector::MakeCALL(0x006C6983, SetZWriteEnabledHook);
+	injector::MakeNOP(0x006C6983, 6);
+	injector::MakeCALL(0x006C6983, SetZWriteEnabledHook);
 
-		injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
+	injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
 
-		injector::MakeCALL(0x006C6910, SetTextureAlphaRefHook);
-	}
+	injector::MakeCALL(0x006C6910, SetTextureAlphaRefHook);
 }

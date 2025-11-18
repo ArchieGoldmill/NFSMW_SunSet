@@ -66,10 +66,7 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 
 	UpdateMaterials();
 
-	if (g_Config.DepthPrepass)
-	{
-		DoDepthPrePass(cullInfo);
-	}
+	DoDepthPrePass(cullInfo);
 }
 
 TextureInfo* StarsTexture = NULL;

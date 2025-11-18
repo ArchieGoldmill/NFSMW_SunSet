@@ -30,6 +30,13 @@ enum VehicleFX
 	VehicleFX_COPS = 0x7000
 };
 
+struct CarEmitter
+{
+	CarEmitter* Next;
+	D3DXVECTOR3 Position;
+	void* Marker;
+};
+
 struct CarRenderInfo
 {
 	int field_0;

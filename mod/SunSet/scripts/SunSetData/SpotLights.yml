@@ -62,6 +62,15 @@ CopLightRed:
   Intensity: 5
   Range: 4
   Specular: 0
+ExhaustLight:
+  Position: [-0.2, 0, 0]
+  Direction: [0, 1, 0]
+  Color: [1, 0.592, 0]
+  InnerAngle: 359
+  OuterAngle: 360
+  Intensity: 10
+  Range: 0.5
+  Specular: 0 
 FrontEndLights:
   - Type: 1
     Flare: LampPost

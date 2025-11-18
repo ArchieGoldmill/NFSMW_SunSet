@@ -7,11 +7,6 @@ struct IVehicleAI
 		FUNC(0x00431D80, void*, __thiscall, _GetRoadBlock, IVehicleAI*);
 		return _GetRoadBlock(this);
 	}
-
-	float GetBraking()
-	{
-
-	}
 };
 
 struct InputPlayer

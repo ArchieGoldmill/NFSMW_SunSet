@@ -3,6 +3,7 @@
 float4 LocalEyePos : LOCALEYEPOS;
 
 #include "fog.fx"
+#include "hdr.fx"
 
 struct VS_INPUT
 {
@@ -39,6 +40,8 @@ float4 PS_Prelit(PS_INPUT IN) : COLOR
 	{
 		APPLY_FOG
 	}
+	
+	final.rgb = CompressColourSpace(final.rgb);
 	
 	return final;
 }

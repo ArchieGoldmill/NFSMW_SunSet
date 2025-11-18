@@ -4,6 +4,7 @@ float4x4 WorldView : WORLDVIEW;
 #include "global.fx"
 #include "shadow.fx"
 #include "fog.fx"
+#include "hdr.fx"
 
 texture HEIGHTMAP_TEXTURE : HeightMapTexture;
 sampler HEIGHTMAP_SAMPLER = sampler_state
@@ -54,11 +55,14 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	
 	float4 final = diffuse_tex * IN.color;
 	final.rgb *= 2;
+	final.a *= 3;
 	
-	final.a *= smoothstep(0, 1, depth - IN.depth.z);
+	final.a *= smoothstep(0, 0.3, depth - IN.depth.z);
 	
 	APPLY_FOG
-
+	
+	final.rgb = CompressColourSpace(final.rgb);
+	
 	return final;
 }
 

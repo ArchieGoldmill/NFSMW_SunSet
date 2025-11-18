@@ -182,9 +182,13 @@ float3 GetCloudView(float3 view)
 float4 GetClouds(float3 view)
 {
 	float3 cloudDir = GetCloudView(view);
-	float3 cloudTex1 = texCUBE(MISCMAP1_SAMPLER, cloudDir).rgb;
-	float3 cloudTex2 = texCUBE(MISCMAP2_SAMPLER, cloudDir).rgb;
-	float3 cloudTex = lerp(cloudTex1, cloudTex2, cvLightning.z);
+	float3 cloudTex = texCUBE(MISCMAP1_SAMPLER, cloudDir).rgb;
+	
+	if (cvLightning.z > 0)
+	{
+		float3 cloudTex2 = texCUBE(MISCMAP2_SAMPLER, cloudDir).rgb;
+		cloudTex = lerp(cloudTex, cloudTex2, cvLightning.z);
+	}
 	
 	float gray = dot(cloudTex, float3(0.299, 0.587, 0.114));
 	float3 clouds = float3(gray, gray, gray) * cvCloudColor.rgb;

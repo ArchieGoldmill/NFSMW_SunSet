@@ -47,6 +47,7 @@ Rain:
   HeavyTime: 3.0              # Time in minutes for the heavy rain to last.
   HeavyTimeRandom: 3.0        # Random part is added to the heavy time.
   LightningTimeOut: 15.0      # Time in seconds between lightning strikes.
+  RainCloudsTexture: true     # Transition to rain clouds texture.
 
 WindowGlow:
   Override: true              # Use window color from config, rather then from texture properties.

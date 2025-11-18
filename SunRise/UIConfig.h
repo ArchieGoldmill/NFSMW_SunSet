@@ -86,6 +86,7 @@ namespace UI
 				ImGui::InputFloat("Heavy time ", &g_Config.Rain.HeavyTime, 0.1, 0.2);
 				ImGui::InputFloat("Heavy time random", &g_Config.Rain.HeavyTimeRandom, 0.1, 0.2);
 				ImGui::InputFloat("Lightning time out", &g_Config.Rain.LightningTimeOut, 0.1, 0.2);
+				ImGui::Checkbox("Rain clouds texture", &g_Config.Rain.RainCloudsTexture);
 
 				ImGui::PopItemWidth();
 

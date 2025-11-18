@@ -193,7 +193,10 @@ private:
 			lightningParams = { 0, 0, 0, 0 };
 		}
 
-		lightningParams.z = this->rain;
+		if (g_Config.Rain.RainCloudsTexture)
+		{
+			lightningParams.z = this->rain;
+		}
 
 		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvLightning, &lightningParams);

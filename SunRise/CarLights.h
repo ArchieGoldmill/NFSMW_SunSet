@@ -88,35 +88,38 @@ void PopulateCopLight(CarRenderInfo* carRenderInfo, VehicleFX fx, SpotLight& spo
 	}
 }
 
-void PopulateExhaustLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, VehicleRenderConn* conn)
+void PopulateExhaustLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, VehicleRenderConn* conn, CarRenderUsage renderUsage)
 {
-	auto icar = (int**)carRenderInfo;
-	auto iconn = (int*)conn;
-
-	if (!icar[0x45F])
+	if (renderUsage == CarRenderUsage::Player)
 	{
-		if ((iconn[0xFE] & 0x10) == 0 || iconn[0xF6] == 0)
+		auto icar = (int**)carRenderInfo;
+		auto iconn = (int*)conn;
+
+		if (!icar[0x45F])
 		{
-			return;
+			if ((iconn[0xFE] & 0x10) == 0 || iconn[0xF6] == 0)
+			{
+				return;
+			}
 		}
-	}
 
-	auto emmiters = (CarEmitter**)(icar + 0x6B);
+		auto emmiters = (CarEmitter**)(icar + 0x6B);
 
-	auto emmiter = *emmiters;
-	while ((void*)emmiter != (void*)emmiters)
-	{
-		SpotLight spotLight = ExhaustLightConfig;
-		spotLight.Position += emmiter->Position;
+		auto emmiter = *emmiters;
+		while ((void*)emmiter != (void*)emmiters)
+		{
+			SpotLight spotLight = ExhaustLightConfig;
+			spotLight.Position += emmiter->Position;
 
-		D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
+			D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 
-		D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
-		D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
+			D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);
+			D3DXVec3Normalize(&spotLight.Direction, &spotLight.Direction);
 
-		AddSpotLightToBuffer(spotLight, SpotLightSource::Player_Breaklights, NULL);
+			AddSpotLightToBuffer(spotLight, SpotLightSource::Player_Breaklights, NULL);
 
-		emmiter = emmiter->Next;
+			emmiter = emmiter->Next;
+		}
 	}
 }
 
@@ -194,11 +197,7 @@ void PopulateCarSpotLights()
 					}
 					else
 					{
-						if (renderUsage == CarRenderUsage::Player)
-						{
-							PopulateExhaustLights(carRenderInfo, &renderConn->Matrix1, renderConn);
-						}
-
+						PopulateExhaustLights(carRenderInfo, &renderConn->Matrix1, renderConn, renderUsage);
 						PopulateCarSpotLights(carRenderInfo, &renderConn->Matrix1, renderUsage == CarRenderUsage::AICop && IsRoadBlockCar(renderConn));
 					}
 				}

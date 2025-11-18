@@ -15,6 +15,7 @@ struct RainConfig
 	float HeavyTime;
 	float HeavyTimeRandom;
 	float LightningTimeOut;
+	bool RainCloudsTexture;
 };
 
 struct Config
@@ -134,6 +135,7 @@ void LoadConfig()
 	g_Config.Rain.HeavyTime = YmlGet(rain, "HeavyTime", 3.0f);
 	g_Config.Rain.HeavyTimeRandom = YmlGet(rain, "HeavyTimeRandom", 3.0f);
 	g_Config.Rain.LightningTimeOut = YmlGet(rain, "LightningTimeOut", 15.0f);
+	g_Config.Rain.RainCloudsTexture = YmlGet(rain, "RainCloudsTexture", true);
 
 	const auto& windowGlow = settingsRoot["WindowGlow"];
 	g_Config.WindowGlowColor = ParseVec3To4(windowGlow["Color"]);
@@ -204,6 +206,7 @@ void SaveConfig()
 	rain["HeavyTime"] = g_Config.Rain.HeavyTime;
 	rain["HeavyTimeRandom"] = g_Config.Rain.HeavyTimeRandom;
 	rain["LightningTimeOut"] = g_Config.Rain.LightningTimeOut;
+	rain["RainCloudsTexture"] = g_Config.Rain.RainCloudsTexture;
 
 	YAML::Node windowGlow;
 	windowGlow["Override"] = g_Config.WindowGlowOverride;

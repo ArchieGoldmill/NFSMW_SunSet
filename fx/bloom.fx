@@ -54,8 +54,12 @@ float4 PS_ApplyBloom(PS_INPUT IN) : COLOR
 	}
 	
 	hdrColor = saturate(hdrColor);
-	float3 filtered = tex3D(VOLUMEMAP_SAMPLER, hdrColor).rgb;
-	hdrColor = lerp(hdrColor, filtered, cfFilter.y);
+	
+	if (cfFilter.y > 0)
+	{
+		float3 filtered = tex3D(VOLUMEMAP_SAMPLER, hdrColor).rgb;
+		hdrColor = lerp(hdrColor, filtered, cfFilter.y);
+	}
 	
 	return float4(hdrColor, 1);
 }

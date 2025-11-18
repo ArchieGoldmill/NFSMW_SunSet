@@ -77,6 +77,7 @@ float DoShadow(float4 clipPos, float ndotl)
 			float fY = clipPos.y / clipPos.w;
 			float fade = saturate((fY + 0.3) * 2);
 			shadow = saturate(shadow + (1 - fade));
+			shadow = lerp(1, shadow, cfShadowsEnabled);
 		}
 	}
 	

@@ -41,13 +41,8 @@ void BlurBloom()
 	effect->DrawFullScreenQuad(Game::FilterTexture0);
 	pEffect->EndPass();
 
-	pEffect->End();
-
-
 	Game::Device->SetRenderTarget(0, Game::FilterSurface0);
 	Game::Device->SetDepthStencilSurface(0);
-
-	pEffect->Begin(&passes, 0);
 
 	pEffect->BeginPass(1);
 	effect->DrawFullScreenQuad(Game::FilterTexture1);

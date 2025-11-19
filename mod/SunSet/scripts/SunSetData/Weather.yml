@@ -144,7 +144,7 @@ Weather:
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
-      CloudColor: [1, 1, 1, 0.0820000023]
+      CloudColor: [1, 1, 1, 0.286000013]
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 300
       CarLightsPower: 0.499999911
@@ -198,7 +198,7 @@ Weather:
       CarDiffuseIntensity: 0.599999666
       CarAmbientIntensity: 0.799999952
       GodRaysColor: [0, 0, 0, 0]
-      CloudColor: [1, 1, 1, 0.129999995]
+      CloudColor: [1, 1, 1, 0.397000015]
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
       WaterSpecularPower: 10
       CarLightsPower: 0.5
@@ -252,7 +252,7 @@ Weather:
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
-      CloudColor: [1, 1, 1, 0.105999999]
+      CloudColor: [1, 0.737024188, 0.441176474, 0.349999994]
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 150
       CarLightsPower: 0.5
@@ -306,7 +306,7 @@ Weather:
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
-      CloudColor: [1, 1, 1, 0.0979999974]
+      CloudColor: [1, 1, 1, 0.0939999968]
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
       CarLightsPower: 1

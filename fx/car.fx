@@ -84,17 +84,21 @@ PS_INPUT VS_Base(VS_INPUT IN)
 	return OUT;
 }
 
-float3 GetTangent(float3 normal, float2 uv, float3 local_pos)
+float3 GetTangent(float3 fpNormal, float2 texcoord, float3 local_pos)
 {
-	float3 dpdx = ddx(local_pos);
-	float3 dpdy = ddy(local_pos);
-	float2 duvdx = ddx(uv);
-	float2 duvdy = ddy(uv);
-
-	float r = 1.0 / (duvdx.x * duvdy.y - duvdx.y * duvdy.x);
-	float3 tangent = normalize((dpdx * duvdy.y - dpdy * duvdx.y) * r);
-
-	return normalize(tangent - normal * dot(normal, tangent));
+	float3 dp1 = ddx(local_pos);
+	float3 dp2 = ddy(local_pos);
+	
+	float2 duv1 = max(abs(ddx(texcoord)), 0.001f);
+	float2 duv2 = max(abs(ddy(texcoord)), 0.001f);
+	
+	float3 dp2perp = cross(dp2, fpNormal);
+	float3 dp1perp = cross(fpNormal, dp1);
+	
+	float3 T = dp2perp * duv1.x + dp1perp * duv2.x;
+	float3 B = dp2perp * duv1.y + dp1perp * duv2.y;
+	
+	return normalize(T * rsqrt(max(dot(T, T), dot(B, B))));
 }
 
 float GetFlakeScale(float viewLen)
@@ -113,6 +117,8 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 		float3 tangent = GetTangent(normal, IN.uv, IN.local_pos.xyz);
 		normal = ApplyNormalMap(normal, tangent, IN.uv);
 	}
+	
+	float3 mapNormal = normal;
 	
 	float rainPower;
 	normal = ApplyRainDrops(IN.local_pos.xyz, normal, rainPower);
@@ -141,7 +147,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	SpotLightResult light = ApplySpotLights(ToWorldNormal(normal), IN.world_pos.xyz, lightCount, SpecularPower * 100, 2);
 	
 	float3 lightDir = normalize(LocalLightVec);
-	float ndotl = dot(IN.normal.xyz, lightDir);
+	float ndotl = dot(mapNormal, lightDir);
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = ndotl * cvDiffuseColor.rgb;

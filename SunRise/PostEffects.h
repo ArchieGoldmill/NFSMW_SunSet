@@ -4,18 +4,16 @@
 
 void DrawPostEffects()
 {
-	__asm pushad;
+	IDirect3DSurface9* rtBackup;
+	IDirect3DSurface9* ppZStencilSurface;
+	Game::Device->GetRenderTarget(0, &rtBackup);
+	Game::Device->GetDepthStencilSurface(&ppZStencilSurface);
 
 	DrawBloom();
 	DrawGodRays();
 
-	__asm popad;
-}
-
-void InitPostEffects()
-{
-	injector::WriteMemory<BYTE>(0x006DF81D, 0xEB);
-
-	injector::MakeNOP(0x006DF817, 6);
-	injector::MakeCALL(0x006DF817, DrawPostEffects);
+	Game::Device->SetRenderTarget(0, rtBackup);
+	Game::Device->SetDepthStencilSurface(ppZStencilSurface);
+	ppZStencilSurface->Release();
+	rtBackup->Release();
 }

@@ -9,7 +9,7 @@ sampler NORMALMAP_SAMPLER = sampler_state
 	MAGFILTER = <BaseMagTextureFilter>;
 };
 
-float3 ApplyNormalMap(float3 normal, float3 tangent, float2 uv, bool flip = false)
+float3 ApplyNormalMap(float3 normal, float3 tangent, float2 uv)
 {
 	float3x3 tbn = { tangent, cross(normal, tangent), normal };
 	float3 normalSample = tex2D(NORMALMAP_SAMPLER, uv).rgb * 2 - 1;

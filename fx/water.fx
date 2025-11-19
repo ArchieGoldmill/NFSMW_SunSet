@@ -66,13 +66,12 @@ float4 PS_Water(PS_WATER IN) : COLOR
 	float3 normal = normalize(component1 + component2);
 	
 	float2 screenUV = IN.screen.xy / IN.screen.w * 0.5 + 0.5;
-	float3 reflectionSampleMain = tex2D(REFLECTEDTEX_SAMPLER, saturate(screenUV + normal.rg * 0.003)).rgb;
-	float3 reflectionSample = tex2D(REFLECTEDTEX_SAMPLER, saturate(screenUV + normal.rg * 0.1)).rgb;
+	float3 reflectionSample = tex2D(REFLECTEDTEX_SAMPLER, saturate(screenUV + normal.rg * 0.03)).rgb;
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view), cvWaterColor.a);
 	
-	float4 final = float4(reflectionSample * 0.5 + reflectionSampleMain * 0.6, 1);
+	float4 final = float4(reflectionSample, 1);
 	final.rgb *= cvWaterColor.rgb;
 	final.rgb += specular;
 	

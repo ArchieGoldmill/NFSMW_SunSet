@@ -265,7 +265,6 @@ void InitHooks()
 	InitReflection();
 	InitAmbientShadow();
 	InitHeavyRain();
-	InitPostEffects();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 

@@ -19,6 +19,8 @@ void DrawBlur()
 		Game::VehicleConn_RenderCars(eView::Player, 0);
 		Game::CommitRenderedModels();
 	}
+
+	DrawPostEffects();
 }
 
 void __stdcall CopyBufferForBlur(IDirect3DDevice9* device, IDirect3DSurface9* backBuffer, RECT* pSourceRect, IDirect3DSurface9* filterSurface0, RECT* pDestRect, D3DTEXTUREFILTERTYPE Filter)

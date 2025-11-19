@@ -18,9 +18,6 @@ float SP_Specular[NUM_SPOTLIGHTS];
 
 int NumSpotLights;
 
-float SpotLightsHash = 0;
-bool SetSpotLights = true;
-
 void PopulateSpotLights()
 {
 	PopulateWorldSpotLights();
@@ -86,7 +83,6 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 		g_CellBuffer.GetLightsForMesh(meshCenter, radius);
 	}
 
-	float hash = 0;
 	for (int i = 0; i < g_CellBuffer.numCandidateLights; i++)
 	{
 		auto lightmodel = g_CellBuffer.candidateLights[i];
@@ -104,25 +100,15 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color * s.Intensity, cosf(D3DXToRadian(s.InnerAngle)));
 				SP_Specular[NumSpotLights] = s.Specular;
 
-				// TODO: make sure this hash is reliable
-				hash += s.Position.x + s.Position.y + s.Position.z;
-
 				NumSpotLights++;
 			}
 		}
 	}
 
-	SetSpotLights = NumSpotLights > 0 && hash != SpotLightsHash;
-
-	if (SetSpotLights)
+	for (int i = NumSpotLights; i < NUM_SPOTLIGHTS; i++)
 	{
-		for (int i = NumSpotLights; i < NUM_SPOTLIGHTS; i++)
-		{
-			SP_Position_Range[i].w = 0;
-		}
+		SP_Position_Range[i].w = 0;
 	}
-
-	SpotLightsHash = hash;
 }
 
 inline void SetDynamicLights(RenderModel* model)
@@ -131,25 +117,25 @@ inline void SetDynamicLights(RenderModel* model)
 	{
 		auto effect = model->Effect;
 
-		if (SetSpotLights)
+		if (NumSpotLights > 0)
 		{
 			effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, 24);
 			effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, 24);
 			effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, 24);
 			effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, 24);
-		}
+			
+			if (model->LocalToWorld != Game::IdentityMatrix)
+			{
+				D3DXMATRIX worldIT;
+				D3DXMatrixInverse(&worldIT, nullptr, model->LocalToWorld);
+				D3DXMatrixTranspose(&worldIT, &worldIT);
 
-		if (model->LocalToWorld != Game::IdentityMatrix)
-		{
-			D3DXMATRIX worldIT;
-			D3DXMatrixInverse(&worldIT, nullptr, model->LocalToWorld);
-			D3DXMatrixTranspose(&worldIT, &worldIT);
-
-			effect->SetMatrix(ShaderParam::cmWorldIT, &worldIT);
-		}
-		else
-		{
-			effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
+				effect->SetMatrix(ShaderParam::cmWorldIT, &worldIT);
+			}
+			else
+			{
+				effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
+			}
 		}
 	}
 }

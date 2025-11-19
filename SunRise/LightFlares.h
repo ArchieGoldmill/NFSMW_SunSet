@@ -7,7 +7,10 @@ FlareModel* CurrentFlare = NULL;
 FlareModel RainFlare;
 void __stdcall RenderWorldLightFlares()
 {
-	bool isRoadReflection = RenderTarget::Current->ViewId == ViewId::Reflection;
+	auto viewId = RenderTarget::Current->ViewId;
+	bool isRoadReflection = viewId == ViewId::Reflection;
+	auto view = eView::Get(viewId);
+
 	CurrentFlare = NULL;
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
@@ -30,8 +33,7 @@ void __stdcall RenderWorldLightFlares()
 			float intensity = spotlight.Flare->Intensity;
 			if (isRoadReflection)
 			{
-				size *= 0.25f;
-				intensity *= 0.25f;
+				size *= 0.5f;
 			}
 
 			intensity *= spotlight.FlareIntecity;
@@ -39,16 +41,16 @@ void __stdcall RenderWorldLightFlares()
 			float flareRotation = Game::FlareRotation;
 			Game::FlareRotation = 0;
 			{
-				Game::eRenderLightFlare(eView::Player, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
+				Game::eRenderLightFlare(view, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
 
-				if (RenderTarget::Current->ViewId == ViewId::Player1 && spotlight.Flare->TextureName == Hashes::LAMP_FLARE)
+				if (viewId == ViewId::Player1 && spotlight.Flare->TextureName == Hashes::LAMP_FLARE)
 				{
 					auto cameraDist = GetCameraDistance(flare.Position);
-					intensity *= Smoothstep(1, 100, cameraDist) * g_Rain.GetRain() * 0.3;
+					intensity *= Smoothstep(1, 100, cameraDist) * g_Rain.GetRain() * 0.6;
 					if (intensity > 0)
 					{
 						CurrentFlare = &RainFlare;
-						Game::eRenderLightFlare(eView::Player, &flare, Game::IdentityMatrix, intensity, 0, 0, 0, color, 15);
+						Game::eRenderLightFlare(view, &flare, Game::IdentityMatrix, intensity, 0, 0, 0, color, 15);
 					}
 				}
 			}
@@ -110,5 +112,5 @@ void InitLightFlares()
 
 	injector::MakeNOP(0x00742CB9, 8);
 
-	RainFlare.TextureName = Game::bStringHash("LAMP_FLARE_RAIN");
+	RainFlare.TextureName = Hashes::LAMP_FLARE_RAIN;
 }

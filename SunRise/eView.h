@@ -73,4 +73,10 @@ struct eView
 		FUNC(0x004FCAC0, int, __thiscall, _Render, eView*, D3DXVECTOR3*, float);
 		return _Render(this, pos, r);
 	}
+
+	static eView* Get(ViewId id)
+	{
+		FUNC(0x00405F80, eView*, __cdecl, _Get, ViewId);
+		return _Get(id);
+	}
 };

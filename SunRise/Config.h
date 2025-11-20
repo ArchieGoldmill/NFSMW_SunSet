@@ -230,17 +230,25 @@ void SaveConfig()
 
 void InitConfig()
 {
-	LoadConfig();
+	try
+	{
+		LoadConfig();
 
-	LoadLightFlareConfig();
+		LoadLightFlareConfig();
 
-	LoadSpotLightConfig();
+		LoadSpotLightConfig();
 
-	LoadWeatherConfig();
+		LoadWeatherConfig();
 
-	LoadTextureConfig();
+		LoadTextureConfig();
 
-	LoadCustomMeshes();
+		LoadCustomMeshes();
+	}
+	catch (const YAML::Exception& e)
+	{
+		MessageBoxA(NULL, (std::string("Config parse error: ") + e.what()).c_str(), ModName, MB_ICONERROR);
+		exit(1);
+	}
 
 	if (g_Config.Editor)
 	{

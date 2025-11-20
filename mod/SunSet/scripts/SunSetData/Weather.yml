@@ -110,7 +110,7 @@ Weather:
   - Time: 0.25999999
     DiffuseColor: [0, 0, 0]
     AmbientColor: [0.630526721, 0.698373914, 0.784313738]
-    SpecularColor: [1, 0.760092258, 0.372548997]
+    SpecularColor: [1, 0.704728961, 0.372548997]
     SpecularPower: 30
     DiffuseIntensity: 1
     AmbientIntensity: 1
@@ -220,7 +220,7 @@ Weather:
     AmbientColor: [1, 0.875865042, 0.799019575]
     SpecularColor: [1, 0.656285882, 0.269607842]
     SpecularPower: 15
-    DiffuseIntensity: 0
+    DiffuseIntensity: 1
     AmbientIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1

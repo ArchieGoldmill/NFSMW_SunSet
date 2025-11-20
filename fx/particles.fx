@@ -40,23 +40,22 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.color = IN.color;
 	OUT.local_pos = float4(IN.position.xyz, OUT.position.z);
 	
-	OUT.depth.xy = OUT.position.xy / OUT.position.w;
-	OUT.depth.xy = OUT.depth.xy * 0.5 + 0.5;
-	OUT.depth.y = 1.0 - OUT.depth.y;
+	//OUT.depth.xy = OUT.position.xy / OUT.position.w;
+	//OUT.depth.xy = OUT.depth.xy * 0.5 + 0.5;
+	//OUT.depth.y = 1.0 - OUT.depth.y;
 	
-	OUT.depth.z = mul(IN.position, WorldView).z;
+	//OUT.depth.z = mul(IN.position, WorldView).z;
 }
 
 float4 PS_Main(PS_INPUT IN) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
-	float depth = tex2D(HEIGHTMAP_SAMPLER, IN.depth.xy).r;
+	//float depth = tex2D(HEIGHTMAP_SAMPLER, IN.depth.xy).r;
 	
 	float4 final = diffuse_tex * IN.color;
-	final.rgb *= 2;
-	final.a *= 3;
+	final *= 2;
 	
-	final.a *= smoothstep(0, 0.3, depth - IN.depth.z);
+	//final.a *= smoothstep(0, 0.3, depth - IN.depth.z);
 	
 	APPLY_FOG
 	

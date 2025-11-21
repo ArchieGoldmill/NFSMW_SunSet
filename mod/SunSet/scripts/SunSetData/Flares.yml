@@ -1,7 +1,7 @@
 Flares:
   - Name: LampPost
     Intensity: 2
-    Size: 3.0
+    Size: 2.0
     Type: 10
     Texture: LAMP_FLARE
 

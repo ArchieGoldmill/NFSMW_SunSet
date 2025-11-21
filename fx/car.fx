@@ -188,7 +188,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb += specular * shadow * spec_scale;
 	final.rgb += hotSpot;
 	final.rgb += light.Specular * cfSpecularHotSpot;
-	final.rgb += GetEmissive(IN.uv);
+	final.rgb += GetEmissive(IN.uv, diffuse_tex.rgb);
 	final.rgb = lerp(final.rgb, cvCarEmissive.rgb * diffuse_tex.rgb, cvCarEmissive.w);
 	final.a += hotSpotIntensity;
 	

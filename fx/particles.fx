@@ -53,7 +53,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	//float depth = tex2D(HEIGHTMAP_SAMPLER, IN.depth.xy).r;
 	
 	float4 final = diffuse_tex * IN.color;
-	final *= 2;
+	final.rgb *= 2;
 	
 	//final.a *= smoothstep(0, 0.3, depth - IN.depth.z);
 	

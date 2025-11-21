@@ -177,7 +177,7 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 				else
 				{
 					effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());
-					color.w = 1;
+					color.w = prelitTex->Brightness;
 				}
 			}
 		}

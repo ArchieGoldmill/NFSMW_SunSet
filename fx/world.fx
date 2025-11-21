@@ -62,7 +62,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float4 final = diffuse_tex;
 	final.a *= IN.color.a;
 	final.rgb *= finalLight;
-	final.rgb += GetEmissive(IN.uv);
+	final.rgb += GetEmissive(IN.uv, diffuse_tex.rgb);
 	
 	if (BaseBlendState[4] != 2)
 	{

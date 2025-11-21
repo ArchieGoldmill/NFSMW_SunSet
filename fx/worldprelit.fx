@@ -33,7 +33,7 @@ float4 PS_Prelit(PS_INPUT IN) : COLOR
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
 	float4 final = diffuse_tex;
-	final *= IN.color;
+	final *= IN.color * 2;
 	
 	if (BaseBlendState[4] != 2)
 	{

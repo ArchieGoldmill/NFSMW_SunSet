@@ -70,7 +70,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * specMap;
 	final.rgb += spotlight.Specular * specMap;
-	final.rgb += GetEmissive(IN.uv);
+	final.rgb += GetEmissive(IN.uv, diffuse_tex.rgb);
 	
 	APPLY_FOG
 	

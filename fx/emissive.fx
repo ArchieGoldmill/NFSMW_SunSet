@@ -11,12 +11,18 @@ sampler2D EMISSIVE_SAMPLER = sampler_state
 	MAGFILTER = <BaseMagTextureFilter>;
 };
 
-float3 GetEmissive(float2 uv)
+float3 GetEmissive(float2 uv, float3 color)
 {
 	if (cvEmissive.a > 0)
 	{
 		float3 mask = tex2D(EMISSIVE_SAMPLER, uv).rgb;
-		return cvEmissive.rgb * mask;
+		float3 emissiveColor = cvEmissive.rgb;
+		if (all(emissiveColor == 0.0))
+		{
+			emissiveColor = color * cvEmissive.a;
+		}
+		
+		return emissiveColor * mask;
 	}
 	
 	return float3(0, 0, 0);

@@ -28,11 +28,11 @@ public:
 		this->lightningTimeOut = g_Config.Rain.LightningTimeOut;
 
 		this->current = time(NULL) % 10;
-		if (this->current <= 5)
+		if (this->current < 8)
 		{
 			this->current = 0;
 		}
-		else if (this->current <= 7)
+		else if (this->current < 9)
 		{
 			this->current = 1;
 		}

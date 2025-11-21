@@ -18,7 +18,7 @@ private:
 	TextureInfo* PuddleMask = NULL;
 	TextureInfo* RoadDetail = NULL;
 	TextureInfo* RainSplash[30];
-	TextureInfo* SkyNoise = NULL;
+	TextureInfo* SkyNoise[2] = { NULL, NULL };
 	TextureInfo* Lightning[2] = { NULL, NULL };
 
 	D3DXVECTOR4 fogValue;
@@ -272,7 +272,8 @@ private:
 			this->CarRainSlide = TextureInfo::Get(Hashes::SR_CAR_RAINDROPS_SLIDE_N, false, false);
 			this->PuddleMask = TextureInfo::Get(Hashes::SR_PUDDLE_MASK, false, false);
 			this->RoadDetail = TextureInfo::Get(Hashes::SR_ROAD_DETAIL, false, false);
-			this->SkyNoise = TextureInfo::Get(Hashes::SKYNOISETEX, false, false);
+			this->SkyNoise[0] = TextureInfo::Get(Hashes::SKYNOISETEX, false, false);
+			this->SkyNoise[1] = TextureInfo::Get(Hashes::SKYNOISETEX1, false, false);
 			this->Lightning[0] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE0, false, false);
 			this->Lightning[1] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE1, false, false);
 
@@ -377,7 +378,8 @@ private:
 			e->SetTexture(ShaderParam::MISCMAP2_TEXTURE, SkyRainCubeTexture);
 		}
 
-		e->SetTexture(ShaderParam::SkyNoiseTexture, this->SkyNoise);
+		e->SetTexture(ShaderParam::SkyNoiseTexture, this->SkyNoise[0]);
+		e->SetTexture(ShaderParam::SkyNoiseTexture1, this->SkyNoise[1]);
 
 		e->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->Lightning[g_Rain.GetLightningTex()]);
 	}

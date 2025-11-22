@@ -712,8 +712,8 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: SGN_TC_STADIUMSIGN
-    Brightness: 2
-    Color: [1, 0.352941155, 0]
+    Brightness: 2.39999962
+    Color: [0, 0, 0]
     Mask: SGN_TC_STADIUMSIGN_E
     AlwaysOn: false
     Prelit: false

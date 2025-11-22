@@ -308,6 +308,7 @@ void InitHooks()
 
 	injector::MakeCALL(0x006C82B9, NormalizeLightVec);
 
+	// MSAA x8
 	injector::MakeNOP(0x006BFBB0, 6);
 	injector::MakeCALL(0x006BFBB0, SetDeviceParams);
 

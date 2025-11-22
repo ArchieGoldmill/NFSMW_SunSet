@@ -11,7 +11,7 @@ namespace Game
 	inline HMODULE hModule;
 
 	inline bool& ReloadShaders = *(bool*)0x00982B14;
-	inline bool& ReloadDevice= *(bool*)0x00982C39;
+	inline bool& ReloadDevice = *(bool*)0x00982C39;
 	inline IDirect3DDevice9*& Device = *(IDirect3DDevice9**)0x00982BDC;
 	inline IDirect3D9*& Direct3D9 = *(IDirect3D9**)0x00982BD8;
 	inline float& DeltaTime = *(float*)0x009259BC;

@@ -55,8 +55,14 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	eEffect::Get(shader_type::ParticlesShader)->SetTexture(shader_param::HeightMapTexture, DepthTexture);
 }
 
-void __stdcall SetZWriteEnabledHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
+void __stdcall SetZWriteEnabledHook(TextureInfo* textureInfo, IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
 {
+	if(textureInfo->NameHash == Hashes::ARROW_GPS)
+	{
+		device->SetRenderState(state, value);
+		return;
+	}
+
 	if (RenderTarget::Current->ViewId == ViewId::Reflection && eEffect::Current->id == shader_type::skyshader)
 	{
 		device->SetRenderState(state, false);
@@ -68,6 +74,19 @@ void __stdcall SetZWriteEnabledHook(IDirect3DDevice9* device, D3DRENDERSTATETYPE
 	else
 	{
 		device->SetRenderState(state, value);
+	}
+}
+
+void __declspec(naked) SetZWriteEnabledCave()
+{
+	static constexpr auto cExit = 0x006C6989;
+
+	__asm
+	{
+		push esi;
+		call SetZWriteEnabledHook;
+
+		jmp cExit;
 	}
 }
 
@@ -93,7 +112,7 @@ void __cdecl SetTextureAlphaRefHook(unsigned int alphaTestEnable, unsigned int a
 void InitDepthPrePass()
 {
 	injector::MakeNOP(0x006C6983, 6);
-	injector::MakeCALL(0x006C6983, SetZWriteEnabledHook);
+	injector::MakeJMP(0x006C6983, SetZWriteEnabledCave);
 
 	injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
 

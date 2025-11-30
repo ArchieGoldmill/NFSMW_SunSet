@@ -128,8 +128,9 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 diffuse = GetDiffuse(ndotl);
 	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view)) * saturate(specMap + 0.25);
 	
-	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r * cvRainParams.y;
+	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r;
 	puddle_mask = lerp(1, puddle_mask, cvRainParams.w);
+	puddle_mask *= cvRainParams.y;
 	float reflMin = 1 - smoothstep(0, 0.2, length(cvDiffuseColor.rgb));
 	puddle_mask = max(puddle_mask, 0.05 * reflMin);
 	

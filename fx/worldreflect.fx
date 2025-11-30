@@ -122,7 +122,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 albedo = diffuse_tex.rgb + roadDetail.r * 0.2;
 	
 	float3 lightDir = normalize(LocalLightVec);
-	float ndotl = dot(normal, lightDir);
+	float ndotl = saturate(dot(normal, lightDir));
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = GetDiffuse(ndotl);

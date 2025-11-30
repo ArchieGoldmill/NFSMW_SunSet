@@ -52,7 +52,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	SpotLightResult spotlight = ApplySpotLights(normalize(IN.world_normal), IN.world_pos.xyz, lightCount, -1);
 	
 	float3 lightDir = normalize(LocalLightVec);
-	float ndotl = dot(normal, lightDir);
+	float ndotl = saturate(dot(normal, lightDir));
 	float shadow = DoShadow(IN.shadow_tex, ndotl);
 	
 	float3 diffuse = GetDiffuse(ndotl);

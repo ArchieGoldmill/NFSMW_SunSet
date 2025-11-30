@@ -30,6 +30,16 @@ bool BloomThreshold(float3 hdrColor)
 	return any(hdrColor > cvBloomParams.y);
 }
 
+float3 ACESFilm(float3 x)
+{
+	float tA = 2.51;
+	float tB = 0.03;
+	float tC = 2.43;
+	float tD = 0.59;
+	float tE = 0.14;
+	return clamp((x * (tA * x + tB)) / (x * (tC * x + tD) + tE), 0.0, 1.0);
+}
+
 float4 PS_Bloom(PS_INPUT IN) : COLOR
 {
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
@@ -51,6 +61,11 @@ float4 PS_ApplyBloom(PS_INPUT IN) : COLOR
 	{
 		float3 bloom_tex = tex2D(FILTERTEXTURE0_SAMPLER, IN.uv).rgb;
 		hdrColor += bloom_tex * cvBloomParams.x;
+	}
+	
+	if (cfFilter.z > 0)
+	{
+		hdrColor = ACESFilm(hdrColor);
 	}
 	
 	hdrColor = saturate(hdrColor);

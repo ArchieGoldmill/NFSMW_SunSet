@@ -51,6 +51,7 @@ struct Config
 	bool TunnelWetnessFix;
 	bool DisableNightShadows;
 	bool MSAAx8;
+	bool Tonemapping;
 
 	float WetTime;
 	float DryTime;
@@ -100,6 +101,7 @@ void LoadConfig()
 	g_Config.TunnelWetnessFix = YmlGet(settings, "TunnelWetnessFix", true);
 	g_Config.DisableNightShadows = YmlGet(settings, "DisableNightShadows", true);
 	g_Config.MSAAx8 = YmlGet(settings, "MSAAx8", false);
+	g_Config.Tonemapping = YmlGet(settings, "Tonemapping", false);
 	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
 	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
 
@@ -172,6 +174,7 @@ void SaveConfig()
 	config["TunnelWetnessFix"] = g_Config.TunnelWetnessFix;
 	config["DisableNightShadows"] = g_Config.DisableNightShadows;
 	config["MSAAx8"] = g_Config.MSAAx8;
+	config["Tonemapping"] = g_Config.Tonemapping;
 	config["CustomMeshDist"] = g_Config.CustomMeshDist;
 	config["MaxLights"] = g_Config.MaxLights;
 

@@ -68,6 +68,17 @@ technique LitPixel_24
 	}
 }
 
+technique LitPixel_32
+{
+	pass p0
+	{
+		COMMON_PASS_BODY
+
+		VertexShader = compile vs_3_0 VS_Main();
+		PixelShader = compile ps_3_0 PS_LitPixel(32);
+	}
+}
+
 technique Unlit
 {
 	pass p0

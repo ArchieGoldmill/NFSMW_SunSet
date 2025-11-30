@@ -10,7 +10,7 @@
 #include "CarLights.h"
 #include "WorldLights.h"
 
-#define NUM_SPOTLIGHTS 24
+#define NUM_SPOTLIGHTS 32
 D3DXVECTOR4 SP_Position_Range[NUM_SPOTLIGHTS];
 D3DXVECTOR4 SP_Direction_OuterCos[NUM_SPOTLIGHTS];
 D3DXVECTOR4 SP_Color_InnerCos[NUM_SPOTLIGHTS];
@@ -119,11 +119,11 @@ inline void SetDynamicLights(RenderModel* model)
 
 		if (NumSpotLights > 0)
 		{
-			effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, 24);
-			effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, 24);
-			effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, 24);
-			effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, 24);
-			
+			effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, NUM_SPOTLIGHTS);
+			effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, NUM_SPOTLIGHTS);
+			effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, NUM_SPOTLIGHTS);
+			effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, NUM_SPOTLIGHTS);
+
 			if (model->LocalToWorld != Game::IdentityMatrix)
 			{
 				D3DXMATRIX worldIT;
@@ -244,9 +244,13 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 			{
 				technique = Technique_LitPixel_16;
 			}
-			else
+			else if (NumSpotLights <= 24)
 			{
 				technique = Technique_LitPixel_24;
+			}
+			else
+			{
+				technique = Technique_LitPixel_32;
 			}
 		}
 		else

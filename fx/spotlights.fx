@@ -7,10 +7,10 @@ struct SpotLightResult
 	float3 Specular;
 };
 
-float4 cvaSpPositionRange[24];
-float4 cvaSpDirectionOuterCos[24];
-float4 cvaSpColorInnerCos[24];
-float cfaSpSpecular[24];
+float4 cvaSpPositionRange[32];
+float4 cvaSpDirectionOuterCos[32];
+float4 cvaSpColorInnerCos[32];
+float cfaSpSpecular[32];
 
 SpotLightResult GetSpotlight(const int i, const float3 normal, const float3 pos, const float3 view, const float shine)
 {

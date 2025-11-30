@@ -16,6 +16,7 @@ Weather:
     TextureLightPower: 1
     BloomPower: 1.50000012
     BloomThreshold: 2
+    RoadMaskIntensity: 1
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
     SkyMie: 0.799999952
     SkyRayleigh: 0.0299999993
@@ -43,6 +44,7 @@ Weather:
       TextureLightPower: 1
       BloomPower: 1
       BloomThreshold: 1.50000024
+      RoadMaskIntensity: 1
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
       SkyMie: 0.799999952
       SkyRayleigh: 0
@@ -70,6 +72,7 @@ Weather:
     TextureLightPower: 1
     BloomPower: 1.50000012
     BloomThreshold: 2
+    RoadMaskIntensity: 1
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
     SkyMie: 0.199999928
     SkyRayleigh: 0.0299999993
@@ -97,6 +100,7 @@ Weather:
       TextureLightPower: 1
       BloomPower: 1
       BloomThreshold: 1.50000024
+      RoadMaskIntensity: 1
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
       SkyMie: 0.199999928
       SkyRayleigh: 0
@@ -124,6 +128,7 @@ Weather:
     TextureLightPower: 1
     BloomPower: 1
     BloomThreshold: 1.5
+    RoadMaskIntensity: 1
     SkyBeta: [0.602941155, 0.49445346, 0.461072654]
     SkyMie: 1
     SkyRayleigh: 5
@@ -151,6 +156,7 @@ Weather:
       TextureLightPower: 1
       BloomPower: 1
       BloomThreshold: 1.5
+      RoadMaskIntensity: 1
       SkyBeta: [0.671568632, 0.615886748, 0.549764514]
       SkyMie: 0.099999927
       SkyRayleigh: 5
@@ -178,6 +184,7 @@ Weather:
     TextureLightPower: 0.600000024
     BloomPower: 1
     BloomThreshold: 2
+    RoadMaskIntensity: 1
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
     SkyMie: 1
     SkyRayleigh: 3
@@ -205,6 +212,7 @@ Weather:
       TextureLightPower: 0.5
       BloomPower: 1
       BloomThreshold: 1.5
+      RoadMaskIntensity: 1
       SkyBeta: [0.69607842, 0.660202086, 0.61759901]
       SkyMie: 0.100000001
       SkyRayleigh: 5
@@ -232,6 +240,7 @@ Weather:
     TextureLightPower: 0.5
     BloomPower: 1
     BloomThreshold: 1.5
+    RoadMaskIntensity: 1
     SkyBeta: [0.509803891, 0.460190624, 0.397347152]
     SkyMie: 1.50000012
     SkyRayleigh: 5
@@ -259,6 +268,7 @@ Weather:
       TextureLightPower: 0.5
       BloomPower: 1
       BloomThreshold: 1.5
+      RoadMaskIntensity: 1
       SkyBeta: [0.485294104, 0.453808784, 0.413927317]
       SkyMie: 1.50000012
       SkyRayleigh: 5
@@ -286,6 +296,7 @@ Weather:
     TextureLightPower: 1
     BloomPower: 1.50000012
     BloomThreshold: 2
+    RoadMaskIntensity: 1
     SkyBeta: [0.818627477, 0.818627477, 0.818627477]
     SkyMie: 0.199999928
     SkyRayleigh: 0.0299999993
@@ -313,6 +324,7 @@ Weather:
       TextureLightPower: 1
       BloomPower: 1
       BloomThreshold: 1.5
+      RoadMaskIntensity: 1
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
       SkyMie: 0.199999928
       SkyRayleigh: 0

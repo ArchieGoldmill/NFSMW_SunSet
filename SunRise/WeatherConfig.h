@@ -39,6 +39,8 @@ struct WeatherData
 	float BloomThreshold;
 
 	D3DXVECTOR4 GodRaysColor;
+
+	float RoadMaskIntensity;
 };
 
 struct WeatherConfig
@@ -86,6 +88,8 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 
 	config->BloomPower = YmlGet<float>(node, "BloomPower", 1.0f);
 	config->BloomThreshold = YmlGet<float>(node, "BloomThreshold", 1.5f);
+
+	config->RoadMaskIntensity = YmlGet<float>(node, "RoadMaskIntensity", 1.0f);
 }
 
 void LoadWeatherConfig()
@@ -139,6 +143,8 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 
 	node["BloomPower"] = data->BloomPower;
 	node["BloomThreshold"] = data->BloomThreshold;
+
+	node["RoadMaskIntensity"] = data->RoadMaskIntensity;
 
 	node["SkyBeta"] = SerializeVector3(data->SkyBeta);
 	node["SkyMie"] = data->SkyMie;

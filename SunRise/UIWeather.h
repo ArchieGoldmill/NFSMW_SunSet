@@ -187,6 +187,10 @@ namespace UI
 
 								ImGui::ColorEdit3("God rays color", (float*)&weather->GodRaysColor, ImGuiColorEditFlags_Float);
 
+								ImGui::Text("");
+
+								InputFloat("Road mask intensity", &weather->RoadMaskIntensity);
+
 								ImGui::EndChild();
 							}
 						}

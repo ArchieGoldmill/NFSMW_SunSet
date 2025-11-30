@@ -163,6 +163,8 @@ private:
 
 			e->SetVector(ShaderParam::cvWorldEyePos, &camPos);
 		}
+
+		g_Rain.SetRoadMaskIntensity(this->current.RoadMaskIntensity);
 	}
 
 	void LerpWeather(WeatherData* a, WeatherData* b, float t)
@@ -199,6 +201,8 @@ private:
 
 		this->current.BloomPower = std::lerp(a->BloomPower, b->BloomPower, t);
 		this->current.BloomThreshold = std::lerp(a->BloomThreshold, b->BloomThreshold, t);
+
+		this->current.RoadMaskIntensity = std::lerp(a->RoadMaskIntensity, b->RoadMaskIntensity, t);
 
 		this->current.GodRaysColor = LerpVector(a->GodRaysColor, b->GodRaysColor, t);
 	}

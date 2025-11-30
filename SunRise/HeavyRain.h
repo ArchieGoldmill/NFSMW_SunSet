@@ -107,6 +107,11 @@ public:
 		this->UpdateShaders();
 	}
 
+	void SetRoadMaskIntensity(float w)
+	{
+		this->rainParams.w = w;
+	}
+
 private:
 
 	char GetState()

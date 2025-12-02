@@ -52,6 +52,7 @@ enum class SpotLightSource
 struct FlareModel
 {
 	std::string Name;
+	Hash NameHash;
 	float Intensity;
 	float Size;
 	eLightFlareType Type;

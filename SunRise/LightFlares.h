@@ -43,12 +43,13 @@ void __stdcall RenderWorldLightFlares()
 			{
 				Game::eRenderLightFlare(view, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
 
-				if (viewId == ViewId::Player1 && spotlight.Flare->TextureName == Hashes::LAMP_FLARE)
+				if (viewId == ViewId::Player1 && spotlight.Flare->NameHash == Hashes::LampPost)
 				{
 					auto cameraDist = GetCameraDistance(flare.Position);
-					intensity *= Smoothstep(1, 100, cameraDist) * g_Rain.GetRain() * 0.6;
+					intensity *= Smoothstep(1, 100, cameraDist) * g_Rain.GetRain() * 0.1;
 					if (intensity > 0)
 					{
+						RainFlare.TextureName = Game::bStringHash1("_RAIN", spotlight.Flare->TextureName);
 						CurrentFlare = &RainFlare;
 						Game::eRenderLightFlare(view, &flare, Game::IdentityMatrix, intensity, 0, 0, 0, color, 15);
 					}
@@ -111,6 +112,4 @@ void InitLightFlares()
 	injector::MakeJMP(0x00505A3C, GetFlareTextureHook);
 
 	injector::MakeNOP(0x00742CB9, 8);
-
-	RainFlare.TextureName = Hashes::LAMP_FLARE_RAIN;
 }

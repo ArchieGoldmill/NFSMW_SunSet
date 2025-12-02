@@ -19,6 +19,7 @@ void LoadLightFlareConfig()
 		FlareModel flare;
 
 		flare.Name = flareNode["Name"].as<std::string>();
+		flare.NameHash = Game::bStringHash(flare.Name.c_str());
 		flare.Intensity = flareNode["Intensity"].as<float>();
 		flare.Size = flareNode["Size"].as<float>();
 		flare.Type = (eLightFlareType)flareNode["Type"].as<int>();

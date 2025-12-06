@@ -1788,7 +1788,7 @@ SolidLights:
         OuterAngle: 65
         Intensity: 5
         Range: 30
-        Specular: 1
+        Specular: 0.499999911
   - SolidLodA: XS_MEDIANPOLEGREEN_1B_CK_00
     Blink: 3
     AlwaysOn: false

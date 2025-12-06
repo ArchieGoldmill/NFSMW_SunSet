@@ -32,6 +32,8 @@ void BlurBloom()
 	auto pEffect = effect->D3DEffect;
 
 	effect->SetTechniqueByName("Blur");
+	effect->SetInt(ShaderParam::BaseAddressU, D3DTADDRESS_CLAMP);
+	effect->SetInt(ShaderParam::BaseAddressV, D3DTADDRESS_CLAMP);
 
 	UINT passes = 0;
 	Game::Device->SetVertexDeclaration(effect->VertexDecl);

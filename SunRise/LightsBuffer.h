@@ -46,23 +46,16 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 		return;
 	}
 
-	bool isVisible = g_QueryCuller.IsVisible(spotLight.Position);
+	SpotLightModel spotLightModel;
+	spotLightModel.Light = spotLight;
+	spotLightModel.Source = source;
+	spotLightModel.Flare = flare;
+	spotLightModel.FlareIntecity = flareIntecity;
+	spotLightModel.Added = false;
+	spotLightModel.Distance = 0.0f;
 
-	if (isVisible)
-	{
-		SpotLightModel spotLightModel;
-		spotLightModel.Light = spotLight;
-		spotLightModel.Source = source;
-		spotLightModel.Flare = flare;
-		spotLightModel.FlareIntecity = flareIntecity;
-		spotLightModel.Added = false;
-		spotLightModel.Distance = 0.0f;
-
-		SpotLightBuffer[NumSpotLightBuffer] = spotLightModel;
-		NumSpotLightBuffer++;
-	}
-
-	g_QueryCuller.Submit(spotLight.Position, spotLight.Range);
+	SpotLightBuffer[NumSpotLightBuffer] = spotLightModel;
+	NumSpotLightBuffer++;
 }
 
 void ClampLights()

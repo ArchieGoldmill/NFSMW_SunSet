@@ -68,8 +68,5 @@
     <ClInclude Include="blur.fx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lightQuery.fx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

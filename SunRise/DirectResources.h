@@ -231,8 +231,6 @@ void ReleaseDirectResources()
 
 	ReleaseFilterTexture();
 
-	g_QueryCuller.Release();
-
 	__asm popad;
 }
 

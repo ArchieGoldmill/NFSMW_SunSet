@@ -80,7 +80,7 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: false
   - Name: ADS_AXEB_BB_A_EA
-    Brightness: 1
+    Brightness: 1.20000005
     Color: [1, 1, 1]
     Mask: ""
     AlwaysOn: false
@@ -279,6 +279,14 @@ Textures:
     Prelit: true
     IgnoreWeather: false
     UseVertexColor: true
+  - Name: ARC_MERIDIANA_RR
+    Brightness: 1
+    Color: [1, 0.933390975, 0.79411763]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: false
+    UseVertexColor: false
   - Name: 0x4A5871B5
     Brightness: 1.09999979
     Color: [1, 1, 1]

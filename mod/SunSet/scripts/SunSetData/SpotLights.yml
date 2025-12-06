@@ -2041,11 +2041,11 @@ SolidLights:
     SpotLights:
       - Position: [0, 0, 6.09999657]
         Direction: [0, 0, -1]
-        Color: [1, 0.85467124, 0.691176474]
+        Color: [1, 0.783160329, 0.539215684]
         InnerAngle: 15
         OuterAngle: 90
         Intensity: 5
-        Range: 30
+        Range: 35
         Specular: 0
   - SolidLodA: XS_CP_CAFE_1B_00_DEINST1_A7
     Blink: 0

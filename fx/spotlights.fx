@@ -14,20 +14,27 @@ float cfaSpSpecular[32];
 
 SpotLightResult GetSpotlight(const int i, const float3 normal, const float3 pos, const float3 view, const float shine)
 {
-	float3 L = cvaSpPositionRange[i].xyz - pos;
+	float3 lightPos = cvaSpPositionRange[i].xyz;
+	float lightRange = cvaSpPositionRange[i].w;
+	float3 lightDir = cvaSpDirectionOuterCos[i].xyz;
+	float outerCos = cvaSpDirectionOuterCos[i].w;
+	float3 lightColor = cvaSpColorInnerCos[i].xyz;
+	float innerCos = cvaSpColorInnerCos[i].w;
+	
+	float3 L = lightPos - pos;
 	float distance = length(L);
 	L /= distance;
 
-	float spotCos = dot(-L, cvaSpDirectionOuterCos[i].xyz);
-	float diffuseAtten = smoothstep(cvaSpDirectionOuterCos[i].w, cvaSpColorInnerCos[i].w, spotCos);
+	float spotCos = dot(-L, lightDir);
+	float diffuseAtten = smoothstep(outerCos, innerCos, spotCos);
 
-	float distAtten = saturate(1.0 - distance / cvaSpPositionRange[i].w);
+	float distAtten = saturate(1.0 - distance / lightRange);
 	distAtten *= distAtten;
 
 	float dotL = dot(normal, L);
 	dotL = smoothstep(-0.5, 1.0, dotL);
 	
-	float3 lightScale = cvaSpColorInnerCos[i].xyz * dotL * distAtten;
+	float3 lightScale = lightColor * dotL * distAtten;
 	
 	float3 spec = float3(0, 0, 0);
 	

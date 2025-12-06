@@ -1,17 +1,7 @@
 #include "hdr.fx"
+#include "global.fx"
 
 float4 cfFilter : FILTERBLEND;
-
-texture diffusemap : DiffuseMap;
-sampler DIFFUSEMAP_SAMPLER = sampler_state
-{
-	texture = <diffusemap>;
-	AddressU = CLAMP;
-	AddressV = CLAMP;
-	MIPFILTER = NONE;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
-};
 
 texture HEIGHTMAP_TEXTURE : HeightMapTexture;
 sampler HEIGHTMAP_SAMPLER = sampler_state
@@ -64,3 +54,4 @@ technique Depth <int shader = 1; >
 #include "godrays.fx"
 #include "bloom.fx"
 #include "blur.fx"
+#include "lightQuery.fx"

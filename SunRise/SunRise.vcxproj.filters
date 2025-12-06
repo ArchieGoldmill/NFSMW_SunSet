@@ -352,6 +352,9 @@
     <ClInclude Include="SolidLights.h">
       <Filter>Features\DynamicLights</Filter>
     </ClInclude>
+    <ClInclude Include="QueryCuller.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

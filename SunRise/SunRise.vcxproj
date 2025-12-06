@@ -240,6 +240,7 @@
     <ClInclude Include="PostEffects.h" />
     <ClInclude Include="PrelitTextures.h" />
     <ClInclude Include="PVehicle.h" />
+    <ClInclude Include="QueryCuller.h" />
     <ClInclude Include="Rain.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="RenderModel.h" />

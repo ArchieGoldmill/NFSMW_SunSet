@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blur.fx" />
+    <ClInclude Include="lightQuery.fx" />
     <ClInclude Include="prepass.fx" />
     <ClInclude Include="shadow.fx" />
     <ClInclude Include="techniques.fx" />

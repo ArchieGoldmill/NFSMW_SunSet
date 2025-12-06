@@ -1,5 +1,6 @@
 #pragma once
 #include "Injector/injector.hpp"
+#include "QueryCuller.h"
 #include "DirectResources.h"
 #include "GrandSceneryCullInfo.h"
 #include "DynamicLights.h"
@@ -50,6 +51,8 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
 	NumSpotLightBuffer = 0;
 
+	g_QueryCuller.Clear();
+
 	cullInfo->SetuWorldCulling();
 
 	PopulateSpotLights();
@@ -67,6 +70,8 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	UpdateMaterials();
 
 	DoDepthPrePass(cullInfo);
+
+	g_QueryCuller.Render();
 }
 
 TextureInfo* StarsTexture = NULL;

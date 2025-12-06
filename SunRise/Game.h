@@ -41,6 +41,7 @@ namespace Game
 	inline auto& FilterTexture1 = *(IDirect3DTexture9**)0x0093DEFC;
 
 	inline auto& BackBuffer = *(IDirect3DSurface9**)0x00982A28;
+	inline auto& DepthStencilSurface = *(IDirect3DSurface9**)0x00982A2C;
 
 	INLINE_FUNC(0x00505380, void, __cdecl, eRenderLightFlare, eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale);
 	INLINE_FUNC(0x00460BF0, Hash, __cdecl, bStringHash, const char*);

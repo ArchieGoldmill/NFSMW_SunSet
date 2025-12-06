@@ -415,6 +415,15 @@ struct eEffect
 		}
 	}
 
+	void SetInt(shader_param p, int v)
+	{
+		auto handle = this->Params[(int)p].handle;
+		if (handle)
+		{
+			this->D3DEffect->SetInt(handle, v);
+		}
+	}
+
 	void SetFloat(shader_param p, float v)
 	{
 		auto handle = this->Params[(int)p].handle;
@@ -436,6 +445,15 @@ struct eEffect
 	void SetMatrix(ShaderParam p, D3DXMATRIX* m)
 	{
 		auto handle = ShaderParamsMap[(int)this->id].Params[(int)p];
+		if (handle)
+		{
+			this->D3DEffect->SetMatrix(handle, m);
+		}
+	}
+
+	void SetMatrix(shader_param p, D3DXMATRIX* m)
+	{
+		auto handle = this->Params[(int)p].handle;
 		if (handle)
 		{
 			this->D3DEffect->SetMatrix(handle, m);

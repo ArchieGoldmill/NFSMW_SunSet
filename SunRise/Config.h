@@ -61,6 +61,7 @@ struct Config
 	float BlurDepth;
 
 	float CustomMeshDist;
+	float FlareDistance;
 
 	int HK_ShaderReload;
 	int HK_ToggleEditor;
@@ -103,6 +104,7 @@ void LoadConfig()
 	g_Config.MSAAx8 = YmlGet(settings, "MSAAx8", false);
 	g_Config.Tonemapping = YmlGet(settings, "Tonemapping", false);
 	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
+	g_Config.FlareDistance = YmlGet(settings, "FlareDistance", 200.0f);
 	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
 
 	const auto& time = settingsRoot["Time"];
@@ -176,6 +178,7 @@ void SaveConfig()
 	config["MSAAx8"] = g_Config.MSAAx8;
 	config["Tonemapping"] = g_Config.Tonemapping;
 	config["CustomMeshDist"] = g_Config.CustomMeshDist;
+	config["FlareDistance"] = g_Config.FlareDistance;
 	config["MaxLights"] = g_Config.MaxLights;
 
 	YAML::Node time;

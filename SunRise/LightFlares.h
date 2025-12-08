@@ -112,4 +112,7 @@ void InitLightFlares()
 	injector::MakeJMP(0x00505A3C, GetFlareTextureHook);
 
 	injector::MakeNOP(0x00742CB9, 8);
+
+	injector::WriteMemory(&Game::FlareDistanceEnd, g_Config.FlareDistance * g_Config.FlareDistance);
+	injector::WriteMemory(&Game::FlareDistanceStart, Game::FlareDistanceEnd - 8000.0f);
 }

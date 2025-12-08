@@ -47,6 +47,7 @@ namespace UI
 
 				ImGui::InputFloat("Custom mesh dist", &g_Config.CustomMeshDist, 0.1, 0.2);
 				ImGui::InputInt("Max lights", &g_Config.MaxLights, 1, 3);
+				ImGui::InputFloat("Flare distance", &g_Config.FlareDistance, 1.0f, 5.0f);
 
 				ImGui::Text("");
 				ImGui::Text("Time");

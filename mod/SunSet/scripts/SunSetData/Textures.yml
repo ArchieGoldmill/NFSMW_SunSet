@@ -327,14 +327,6 @@ Textures:
     Prelit: false
     IgnoreWeather: false
     UseVertexColor: true
-  - Name: LICENSEPLATE
-    Brightness: 0.799999952
-    Color: [1, 1, 1]
-    Mask: ""
-    AlwaysOn: true
-    Prelit: true
-    IgnoreWeather: false
-    UseVertexColor: true
   - Name: ARC_BUILDINGBRICKKD_LZ
     Brightness: 5
     Color: [0.620000005, 0.850000024, 1]
@@ -1112,13 +1104,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: LICENSEPLATE_T
-    Brightness: 0.599999905
-    Color: [1, 1, 1]
-    Mask: ""
-    AlwaysOn: true
-    Prelit: true
+    Brightness: 1
+    Color: [0, 0, 0]
+    Mask: LICENSEPLATE_M
+    AlwaysOn: false
+    Prelit: false
     IgnoreWeather: true
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: SGN_HOSPITALROSE02_BS
     Brightness: 1.20000005
     Color: [1, 1, 1]

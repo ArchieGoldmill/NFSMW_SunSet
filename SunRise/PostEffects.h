@@ -16,4 +16,7 @@ void DrawPostEffects()
 	Game::Device->SetDepthStencilSurface(ppZStencilSurface);
 	ppZStencilSurface->Release();
 	rtBackup->Release();
+
+	auto prelitEffect = eEffect::Get(shader_type::WorldPrelitShader);
+	prelitEffect->SetBool(ShaderParam::cbCompressColor, false);
 }

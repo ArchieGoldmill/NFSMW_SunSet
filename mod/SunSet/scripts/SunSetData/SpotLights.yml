@@ -1009,7 +1009,7 @@ SolidLights:
     UseFirstLight: false
     Flare: LampPost
     SpotLights:
-      - Position: [0, -6, 12.9000006]
+      - Position: [0, -6, 13.000001]
         Direction: [0, 0, -1]
         Color: [1, 0.899999976, 0.800000012]
         InnerAngle: 55
@@ -1201,7 +1201,7 @@ SolidLights:
     Blink: 0
     AlwaysOn: false
     UseFirstLight: false
-    Flare: LampPost
+    Flare: ""
     SpotLights:
       - Position: [0, 0, 9.89995384]
         Direction: [0, 0, -1]
@@ -1210,7 +1210,7 @@ SolidLights:
         OuterAngle: 360
         Intensity: 3
         Range: 30
-        Specular: 1
+        Specular: 15
   - SolidLodA: XO_POPMACHINE_RUSH_1B_00
     Blink: 0
     AlwaysOn: false
@@ -1781,7 +1781,7 @@ SolidLights:
     UseFirstLight: false
     Flare: LampPost
     SpotLights:
-      - Position: [0.5, -0.5, 8.5]
+      - Position: [0.5, -0.5, 8.90000153]
         Direction: [0, 0, -1]
         Color: [0.5, 0.699999988, 1]
         InnerAngle: 35
@@ -1967,6 +1967,20 @@ SolidLights:
         InnerAngle: 15
         OuterAngle: 120
         Intensity: 3
+        Range: 20
+        Specular: 0
+  - SolidLodA: XB_ROCKETGIRL_1A_LV_00
+    Blink: 0
+    AlwaysOn: false
+    UseFirstLight: false
+    Flare: ""
+    SpotLights:
+      - Position: [0, 0, 13.3000174]
+        Direction: [0, 0, -1]
+        Color: [1, 0.176470578, 0]
+        InnerAngle: 359
+        OuterAngle: 360
+        Intensity: 5
         Range: 20
         Specular: 0
   - SolidLodA: XO_STREETLIGHTD_1B_00
@@ -2653,12 +2667,12 @@ SolidLights:
     SpotLights:
       - Position: [0, 0, 2.0999999]
         Direction: [0, 0, -1]
-        Color: [1, 0.800000012, 0.400000006]
+        Color: [1, 0.699999988, 0.399999976]
         InnerAngle: 359
         OuterAngle: 360
-        Intensity: 5
-        Range: 9
-        Specular: 1
+        Intensity: 3
+        Range: 10
+        Specular: 3
   - SolidLodA: TRN_TC_COLLEGEHIGHWAY_TUNNELB_LOWEND_CHOP_D20_R0
     Blink: 0
     AlwaysOn: true

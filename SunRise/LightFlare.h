@@ -4,38 +4,28 @@
 
 enum class eLightFlareType : std::uint8_t
 {
-	car_headlight,
-	car_brakelight,
-	car_traffic_brakelight,
-	car_reverse_light,
-	car_fog_light,
-	car_cop_light_red,
-	car_cop_light_blue,
-	car_cop_light_white,
-	car_cop_headlight_right,
-	car_cop_headlight_left,
-	car_cop_light_bright_red,
-	car_cop_light_bright_blue,
-	car_cop_light_orange,
-	lamppost,
+	headlight_inner,
+	headlight_outer,
+	brakelight_inner,
+	brakelight_traffic_inner,
+	reverselight_inner,
+	foglight_inner,
+	coplightred_inner,
+	coplightblue_inner,
+	coplightwhite_inner,
+	coplightbrightblue,
+	coplightbrightred,
+	coplightorange,
+	lamppost_inner,
+	lamppost_outer,
 	catseye_orange,
 	catseye_red,
 	catseye_blue,
-	blinking_amber,
-	blinking_red,
-	blinking_green,
-	hand_flare,
+	traffic_light,
+	traffic_light_red,
+	green_flare,
+	hand_flare_red,
 	sun_flare,
-	generic_1,
-	generic_2,
-	generic_3,
-	generic_4,
-	generic_5,
-	generic_6,
-	generic_7,
-	generic_8,
-	generic_9,
-	generic_10,
 	count,
 };
 
@@ -52,6 +42,18 @@ struct Color
 			BYTE a;
 		};
 	};
+};
+
+struct LightFlareParams
+{
+	float MinSize;
+	float MaxSize;
+	D3DXVECTOR4 Color;
+	float Power;
+	float ZBias;
+	float MinScale;
+	float MaxScale;
+	int TextureIndex;
 };
 
 struct LightFlare : bTNode<LightFlare>

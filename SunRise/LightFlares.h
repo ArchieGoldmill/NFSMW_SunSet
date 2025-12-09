@@ -5,20 +5,20 @@
 
 FlareModel* CurrentFlare = NULL;
 FlareModel RainFlare;
-void __stdcall RenderWorldLightFlares()
+void __stdcall RenderWorldLightFlares(int destinationType)
 {
 	auto viewId = RenderTarget::Current->ViewId;
 	bool isRoadReflection = viewId == ViewId::Reflection;
 	auto view = eView::Get(viewId);
 
-	CurrentFlare = NULL;
+	Game::LampPostParams.MaxScale = 0.04f;
+
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
 		auto spotlight = SpotLightBuffer[i];
 		if (spotlight.Flare && (spotlight.Source == SpotLightSource::LampPost || spotlight.Source == SpotLightSource::Helicopter))
 		{
 			auto color = D3DCOLOR_COLORVALUE(spotlight.Light.Color.z, spotlight.Light.Color.y, spotlight.Light.Color.x, 0);
-			CurrentFlare = spotlight.Flare;
 
 			LightFlare flare;
 			flare.Position = spotlight.Light.Position;
@@ -29,24 +29,24 @@ void __stdcall RenderWorldLightFlares()
 			flare.Type = spotlight.Flare->Type;
 			flare.Flags = 0;
 
+			float intensity = spotlight.Flare->Intensity * spotlight.FlareIntecity;
 			float size = spotlight.Flare->Size;
-			float intensity = spotlight.Flare->Intensity;
 			if (isRoadReflection)
 			{
 				size *= 0.5f;
 			}
 
-			intensity *= spotlight.FlareIntecity;
-
 			float flareRotation = Game::FlareRotation;
 			Game::FlareRotation = 0;
 			{
-				Game::eRenderLightFlare(view, &flare, Game::IdentityMatrix, intensity, isRoadReflection, isRoadReflection * 2, 0, color, size);
+				CurrentFlare = spotlight.Flare;
+
+				Game::eRenderLightFlare(view, &flare, Game::IdentityMatrix, intensity, isRoadReflection, destinationType, 0, color, size);
 
 				if (viewId == ViewId::Player1 && spotlight.Flare->NameHash == Hashes::LampPost)
 				{
 					auto cameraDist = GetCameraDistance(flare.Position);
-					intensity *= Smoothstep(1, 100, cameraDist) * g_Rain.GetRain() * 0.1;
+					intensity *= Smoothstep(1, 100, cameraDist) * g_Rain.GetRain() * 0.2f;
 					if (intensity > 0)
 					{
 						RainFlare.TextureName = Game::bStringHash1("_RAIN", spotlight.Flare->TextureName);
@@ -54,10 +54,13 @@ void __stdcall RenderWorldLightFlares()
 						Game::eRenderLightFlare(view, &flare, Game::IdentityMatrix, intensity, 0, 0, 0, color, 15);
 					}
 				}
+
+				CurrentFlare = NULL;
 			}
 			Game::FlareRotation = flareRotation;
 		}
 	}
+
 	CurrentFlare = NULL;
 }
 
@@ -66,6 +69,7 @@ void __declspec(naked) RenderWorldLightFlaresHook()
 	__asm
 	{
 		pushad;
+		push[esp + 0x28];
 		call RenderWorldLightFlares;
 		popad;
 
@@ -115,4 +119,7 @@ void InitLightFlares()
 
 	injector::WriteMemory(&Game::FlareDistanceEnd, g_Config.FlareDistance * g_Config.FlareDistance);
 	injector::WriteMemory(&Game::FlareDistanceStart, Game::FlareDistanceEnd - 8000.0f);
+
+	// Make reflection flares use proper texture
+	injector::WriteMemory<BYTE>(0x00505A22, 0xEB);
 }

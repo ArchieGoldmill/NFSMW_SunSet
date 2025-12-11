@@ -109,6 +109,16 @@ void __declspec(naked) GetFlareTextureHook()
 	}
 }
 
+void __cdecl RenderLightFlareFromPool(eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale)
+{
+	if(flare->Type == eLightFlareType::traffic_light)
+	{
+		return;
+	}
+
+	Game::eRenderLightFlare(view, flare, local_world, intensity_scale, reflexionAction, destinationType, reflectionOverride, colourOverRide, sizescale);
+}
+
 void InitLightFlares()
 {
 	injector::MakeJMP(0x00505F71, RenderWorldLightFlaresHook);
@@ -122,4 +132,6 @@ void InitLightFlares()
 
 	// Make reflection flares use proper texture
 	injector::WriteMemory<BYTE>(0x00505A22, 0xEB);
+
+	injector::MakeCALL(0x005078BC, RenderLightFlareFromPool);
 }

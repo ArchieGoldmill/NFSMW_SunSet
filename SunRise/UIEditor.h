@@ -15,7 +15,7 @@ namespace UI
 		ImGui::SetNextWindowSize(windowSize, ImGuiCond_FirstUseEver);
 		ImGui::SetNextWindowSizeConstraints(ImVec2(800, 400), ImVec2(800, FLT_MAX));
 
-		if (ImGui::Begin("Sun Set Editor 1.8", nullptr))
+		if (ImGui::Begin("Sun Set Editor 1.9", nullptr))
 		{
 			if (SelectableButton("Weather", { 150, 30 }, CurrentTab == 0))
 			{

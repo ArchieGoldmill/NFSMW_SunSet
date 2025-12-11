@@ -54,6 +54,7 @@ void PopulateFromModel(eModel* model, D3DXMATRIX* matrix)
 					if (blink != -1)
 					{
 						spotLight.Color *= 0.0001;
+						flareIntecity *= 0.0001;
 					}
 				}
 

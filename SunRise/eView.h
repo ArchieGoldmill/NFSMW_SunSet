@@ -46,6 +46,12 @@ struct eView
 {
 	eViewPlatInfo* Pinfo;
 	ViewId Id;
+	bool Active;
+	float H;
+	float NearZ;
+	float FarZ;
+	float FovBias;
+	float FovDegrees;
 
 	static inline auto Views = (eView*)0x009195E0;
 	static inline auto Player = (eView*)0x00919650;

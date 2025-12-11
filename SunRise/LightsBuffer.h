@@ -41,7 +41,7 @@ void AddSpotLightToBuffer(SpotLight spotLight, SpotLightSource source, FlareMode
 	}
 
 	int pixel = eView::Player->GetPixelSize(&spotLight.Position, spotLight.Range);
-	if (pixel < 64)
+	if (pixel < 4)
 	{
 		return;
 	}

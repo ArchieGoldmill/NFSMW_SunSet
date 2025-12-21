@@ -64,6 +64,11 @@ public:
 		return this->timer;
 	}
 
+	float GetRoadWetness()
+	{
+		return this->roadWetness;
+	}
+
 	bool IsRaining()
 	{
 		if (Game::State == 3)

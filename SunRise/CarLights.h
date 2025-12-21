@@ -49,6 +49,7 @@ void PopulateCarLight(CarRenderInfo* carRenderInfo, Hash flareHash, SpotLight& s
 
 		spotLight.Color *= g_Weather.GetCarLightsPower();
 		spotLight.Position += pos;
+		spotLight.Specular *= std::lerp(0.5, 1, g_Rain.GetRoadWetness());
 
 		D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 

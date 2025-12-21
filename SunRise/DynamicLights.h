@@ -111,31 +111,55 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 	}
 }
 
+int GetNumSpotLights()
+{
+	if (NumSpotLights == 0)
+	{
+		return 0;
+	}
+	else if (NumSpotLights <= 4)
+	{
+		return 4;
+	}
+	else if (NumSpotLights <= 8)
+	{
+		return 8;
+	}
+	else if (NumSpotLights <= 16)
+	{
+		return 16;
+	}
+	else if (NumSpotLights <= 24)
+	{
+		return 24;
+	}
+
+	return NUM_SPOTLIGHTS;
+}
+
 inline void SetDynamicLights(RenderModel* model)
 {
 	if (DynamicallyLit(model) && NumSpotLights > 0)
 	{
 		auto effect = model->Effect;
 
-		if (NumSpotLights > 0)
+		int num = GetNumSpotLights();
+		effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, num);
+		effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, num);
+		effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, num);
+		effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, num);
+
+		if (model->LocalToWorld != Game::IdentityMatrix)
 		{
-			effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, NUM_SPOTLIGHTS);
-			effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, NUM_SPOTLIGHTS);
-			effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, NUM_SPOTLIGHTS);
-			effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, NUM_SPOTLIGHTS);
+			D3DXMATRIX worldIT;
+			D3DXMatrixInverse(&worldIT, nullptr, model->LocalToWorld);
+			D3DXMatrixTranspose(&worldIT, &worldIT);
 
-			if (model->LocalToWorld != Game::IdentityMatrix)
-			{
-				D3DXMATRIX worldIT;
-				D3DXMatrixInverse(&worldIT, nullptr, model->LocalToWorld);
-				D3DXMatrixTranspose(&worldIT, &worldIT);
-
-				effect->SetMatrix(ShaderParam::cmWorldIT, &worldIT);
-			}
-			else
-			{
-				effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
-			}
+			effect->SetMatrix(ShaderParam::cmWorldIT, &worldIT);
+		}
+		else
+		{
+			effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
 		}
 	}
 }

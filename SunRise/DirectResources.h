@@ -46,18 +46,7 @@ void LoadVolumeTexture()
 {
 	if (!NoiseTexture)
 	{
-		HRSRC hRes = FindResource(Game::hModule, MAKEINTRESOURCE(IDR_RCDATA1), RT_RCDATA);
-		if (hRes)
-		{
-			HGLOBAL hResData = LoadResource(Game::hModule, hRes);
-			if (hResData)
-			{
-				void* pData = LockResource(hResData);
-				DWORD dataSize = SizeofResource(Game::hModule, hRes);
-
-				D3DXCreateVolumeTextureFromFileInMemory(Game::Device, pData, dataSize, &NoiseTexture);
-			}
-		}
+		D3DXCreateVolumeTextureFromFileA(Game::Device, "scripts\\SunSetData\\volume.dds", &NoiseTexture);
 	}
 }
 

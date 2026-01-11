@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{94099c38-2ec1-4edf-9f16-b5680735cec6}</ProjectGuid>
-    <RootNamespace>SunRise</RootNamespace>
+    <ProjectGuid>{bd2da0c6-229b-4f65-bb59-e43d5ddb83f3}</ProjectGuid>
+    <RootNamespace>SunSet</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -30,14 +30,14 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -70,41 +70,32 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetExt>.asi</TargetExt>
-    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>D:\Games\Need for Speed Most Wanted SR\scripts\</OutDir>
-    <TargetName>SunSet</TargetName>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetExt>.asi</TargetExt>
     <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>..\mod\SunSet\scripts</OutDir>
-    <TargetName>SunSet</TargetName>
-    <LinkIncremental>false</LinkIncremental>
+    <TargetExt>.asi</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>D:\Games\Need for Speed Most Wanted SR\scripts\</OutDir>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+    <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
   </PropertyGroup>
-  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <VcpkgUseStatic>true</VcpkgUseStatic>
-  </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseStatic>false</VcpkgUseStatic>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;SUNRISE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;SUNSET_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,31 +108,25 @@
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;SUNRISE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>Default</ConformanceMode>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <OmitFramePointers>true</OmitFramePointers>
-      <Optimization>MaxSpeed</Optimization>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>true</EnableUAC>
+      <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;SUNRISE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;SUNSET_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -158,7 +143,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;SUNRISE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;SUNSET_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -169,6 +154,27 @@
       <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="imgui\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="minhook\buffer.h" />
+    <ClInclude Include="minhook\hde\hde32.h" />
+    <ClInclude Include="minhook\hde\hde64.h" />
+    <ClInclude Include="minhook\hde\pstdint.h" />
+    <ClInclude Include="minhook\hde\table32.h" />
+    <ClInclude Include="minhook\hde\table64.h" />
+    <ClInclude Include="minhook\MinHook.h" />
+    <ClInclude Include="minhook\trampoline.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -185,114 +191,7 @@
     <ClCompile Include="minhook\trampoline.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AmbientShadow.h" />
-    <ClInclude Include="Bloom.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="CarBrakeGlow.h" />
-    <ClInclude Include="CarLights.h" />
-    <ClInclude Include="CarVinylMask.h" />
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="CustomMeshes.h" />
-    <ClInclude Include="CustomMeshesConfig.h" />
-    <ClInclude Include="DepthPrePass.h" />
-    <ClInclude Include="DirectResources.h" />
-    <ClInclude Include="DynamicLights.h" />
-    <ClInclude Include="eEffect.h" />
-    <ClInclude Include="eLightMaterial.h" />
-    <ClInclude Include="eModel.h" />
-    <ClInclude Include="eSolid.h" />
-    <ClInclude Include="eView.h" />
-    <ClInclude Include="FlareConfig.h" />
-    <ClInclude Include="FrontEndRenderingCar.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GarageMainScreen.h" />
-    <ClInclude Include="GodRays.h" />
-    <ClInclude Include="GrandSceneryCullInfo.h" />
-    <ClInclude Include="CarRenderInfo.h" />
-    <ClInclude Include="GridCuller.h" />
-    <ClInclude Include="Hashes.h" />
-    <ClInclude Include="eLightFlareParams.h" />
-    <ClInclude Include="HashField.h" />
-    <ClInclude Include="HeavyRain.h" />
-    <ClInclude Include="HelicopterLight.h" />
-    <ClInclude Include="Hooks.h" />
-    <ClInclude Include="imgui\imconfig.h" />
-    <ClInclude Include="imgui\imgui.h" />
-    <ClInclude Include="imgui\imgui_impl_dx9.h" />
-    <ClInclude Include="imgui\imgui_impl_win32.h" />
-    <ClInclude Include="imgui\imgui_internal.h" />
-    <ClInclude Include="imgui\imstb_rectpack.h" />
-    <ClInclude Include="imgui\imstb_textedit.h" />
-    <ClInclude Include="imgui\imstb_truetype.h" />
-    <ClInclude Include="LightFlare.h" />
-    <ClInclude Include="LightFlares.h" />
-    <ClInclude Include="LightsBuffer.h" />
-    <ClInclude Include="MeshEntry.h" />
-    <ClInclude Include="minhook\buffer.h" />
-    <ClInclude Include="minhook\hde\hde32.h" />
-    <ClInclude Include="minhook\hde\hde64.h" />
-    <ClInclude Include="minhook\hde\pstdint.h" />
-    <ClInclude Include="minhook\hde\table32.h" />
-    <ClInclude Include="minhook\hde\table64.h" />
-    <ClInclude Include="minhook\MinHook.h" />
-    <ClInclude Include="minhook\trampoline.h" />
-    <ClInclude Include="MotionBlur.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="PostEffects.h" />
-    <ClInclude Include="PrelitTextures.h" />
-    <ClInclude Include="PVehicle.h" />
-    <ClInclude Include="Rain.h" />
-    <ClInclude Include="Reflection.h" />
-    <ClInclude Include="RenderModel.h" />
-    <ClInclude Include="RenderTarget.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="RideInfo.h" />
-    <ClInclude Include="ShaderLoader.h" />
-    <ClInclude Include="Console.h" />
-    <ClInclude Include="SmackableRenderConn.h" />
-    <ClInclude Include="SolidLights.h" />
-    <ClInclude Include="Spotlight.h" />
-    <ClInclude Include="SpotLightConfig.h" />
-    <ClInclude Include="TextureConfig.h" />
-    <ClInclude Include="TextureInfo.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="TimeOfDay.h" />
-    <ClInclude Include="TrackPath.h" />
-    <ClInclude Include="UI.h" />
-    <ClInclude Include="UICommon.h" />
-    <ClInclude Include="UIConfig.h" />
-    <ClInclude Include="UICustomMeshes.h" />
-    <ClInclude Include="UIEditor.h" />
-    <ClInclude Include="UISpotlights.h" />
-    <ClInclude Include="UITextures.h" />
-    <ClInclude Include="UIWeather.h" />
-    <ClInclude Include="UIWidgetMenu.h" />
-    <ClInclude Include="UpdateMaterials.h" />
-    <ClInclude Include="Utilities.h" />
-    <ClInclude Include="VehicleRenderConn.h" />
-    <ClInclude Include="ViewId.h" />
-    <ClInclude Include="Weather.h" />
-    <ClInclude Include="WeatherConfig.h" />
-    <ClInclude Include="WorldLights.h" />
-    <ClInclude Include="WorldModel.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\mod\SunSet\scripts\SunSetData\Config.yml" />
-    <None Include="..\mod\SunSet\scripts\SunSetData\Flares.yml" />
-    <None Include="..\mod\SunSet\scripts\SunSetData\Meshes.yml" />
-    <None Include="..\mod\SunSet\scripts\SunSetData\SpotLights.yml" />
-    <None Include="..\mod\SunSet\scripts\SunSetData\Textures.yml" />
-    <None Include="..\mod\SunSet\scripts\SunSetData\Weather.yml" />
-    <None Include="rcdata1.bin" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="volume.dds" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\mod\readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

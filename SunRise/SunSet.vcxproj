@@ -121,6 +121,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetDir)*.asi" "D:\Programming\NFSMW\NFSMW_SunRise\mod\SunSet\scripts\"  /y
+copy "$(TargetDir)*.pdb" "D:\Programming\NFSMW\NFSMW_SunRise\mod\SunSet\scripts\"  /y
+copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunRise\mod\SunSet\scripts\"  /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

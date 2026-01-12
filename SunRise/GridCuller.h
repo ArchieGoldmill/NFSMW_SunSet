@@ -88,74 +88,58 @@ struct CellBuffer
 
 		Cell* targetCell = this->table.find(cellHash, true);
 
-		if (targetCell == nullptr)
-		{
-			if (this->Count >= BufferSize)
-			{
-#ifdef _DEBUG
-				throw std::runtime_error("Cell buffer is full");
-#endif
-				return;
-			}
-
-			targetCell = Buffer + this->Count;
-			targetCell->Index = cellHash;
-			this->Count++;
-		}
-
-		bool found = false;
 		for (int i = 0; i < Cell::NumLights; i++)
 		{
 			if (targetCell->Lights[i] == nullptr)
 			{
 				targetCell->Lights[i] = light;
-				found = true;
 				break;
 			}
 		}
 	}
 
 	Cell* Get(Int3 cell)
-		{
+	{
 		Hash cellHash = cell.GetHash();
 		return this->table.find(cellHash);
-		}
-#endif
 	}
 
-	void Sort()
-	{
-		std::sort(Buffer, Buffer + Count, [](const Cell& a, const Cell& b) { return a.Index < b.Index; });
-	}
-
-	Cell* Get(Int3 cell)
-	{
-		Hash target_hash = cell.GetHash();
-
-		int left = 0;
-		int right = Count - 1;
-		while (left <= right)
-		{
-			int mid = left + (right - left) / 2;
-			if (Buffer[mid].Index == target_hash)
-			{
-				return Buffer + mid;
-			}
-
-			else if (Buffer[mid].Index < target_hash)
-			{
-				left = mid + 1;
-			}
-			else {
-				right = mid - 1;
-			}
-		}
-
-		return NULL;
-	}
-
-	SpotLightModel* candidateLights[256];
+	SpotLightModel* candidateLights[NUM_SPOTLIGHTS];
 	int numCandidateLights = 0;
+	void AddCandidateLight(SpotLightModel* candidate)
+	{
+		if (!candidate->Added)
+		{
+			if (numCandidateLights == NUM_SPOTLIGHTS && candidate->Source >= candidateLights[NUM_SPOTLIGHTS - 1]->Source)
+			{
+				return;
+			}
+
+			int insertIdx = 0;
+			while (insertIdx < numCandidateLights && candidateLights[insertIdx]->Source < candidate->Source)
+			{
+				++insertIdx;
+			}
+
+			int end = min(numCandidateLights, NUM_SPOTLIGHTS - 1);
+			for (int j = end; j > insertIdx; --j)
+			{
+				candidateLights[j] = candidateLights[j - 1];
+			}
+
+			if (insertIdx < NUM_SPOTLIGHTS)
+			{
+				candidateLights[insertIdx] = candidate;
+			}
+
+			if (numCandidateLights < NUM_SPOTLIGHTS)
+			{
+				numCandidateLights++;
+			}
+
+			candidate->Added = true;
+		}
+	}
 
 	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, const float meshRadius)
 	{
@@ -189,25 +173,16 @@ struct CellBuffer
 						for (int i = 0; i < Cell::NumLights; i++)
 						{
 							SpotLightModel* light = cell->Lights[i];
-							if (!light || numCandidateLights >= 256)
+							if (!light)
 							{
 								break;
 							}
 
-							if (!light->Added)
-							{
-								candidateLights[numCandidateLights++] = light;
-								light->Added = true;
-							}
+							this->AddCandidateLight(light);
 						}
 					}
 				}
 			}
-		}
-
-		if (numCandidateLights > 0)
-		{
-			std::sort(candidateLights, candidateLights + numCandidateLights, [](SpotLightModel* a, SpotLightModel* b) { return (int)a->Source < (int)b->Source; });
 		}
 	}
 };

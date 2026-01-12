@@ -10,7 +10,6 @@
 #include "CarLights.h"
 #include "WorldLights.h"
 
-#define NUM_SPOTLIGHTS 32
 D3DXVECTOR4 SP_Position_Range[NUM_SPOTLIGHTS];
 D3DXVECTOR4 SP_Direction_OuterCos[NUM_SPOTLIGHTS];
 D3DXVECTOR4 SP_Color_InnerCos[NUM_SPOTLIGHTS];
@@ -33,7 +32,6 @@ void PopulateSpotLights()
 	{
 		g_CellBuffer.AssignSpotLightToGrid(SpotLightBuffer + i);
 	}
-	g_CellBuffer.Sort();
 }
 
 inline bool DynamicallyLit(eEffect* effect)

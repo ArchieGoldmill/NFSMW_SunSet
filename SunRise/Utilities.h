@@ -275,7 +275,7 @@ public:
 
 	inline void clear() noexcept
 	{
-		std::memset(entries, 0, sizeof(entries));
+		memset(entries, 0, sizeof(entries));
 	}
 
 	inline Value* insert(Key key, const Value& value) noexcept

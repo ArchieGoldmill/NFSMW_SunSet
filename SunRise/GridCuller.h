@@ -49,6 +49,8 @@ inline Int3 WorldToCell(const D3DXVECTOR3& pos)
 
 struct CellBuffer
 {
+	SpotLightModel* candidateLights[128];
+	int numCandidateLights = 0;
 	FastHashTable<Cell, 1024, Hash> table;
 
 	CellBuffer()
@@ -59,6 +61,7 @@ struct CellBuffer
 	void AssignSpotLightToGrid(SpotLightModel* model)
 	{
 		auto& light = model->Light;
+
 		D3DXVECTOR3 min, max;
 		light.GetBoundingBox(&min, &max);
 
@@ -90,7 +93,7 @@ struct CellBuffer
 
 		for (int i = 0; i < Cell::NumLights; i++)
 		{
-			if (targetCell->Lights[i] == nullptr)
+			if (!targetCell->Lights[i])
 			{
 				targetCell->Lights[i] = light;
 				break;
@@ -102,43 +105,6 @@ struct CellBuffer
 	{
 		Hash cellHash = cell.GetHash();
 		return this->table.find(cellHash);
-	}
-
-	SpotLightModel* candidateLights[NUM_SPOTLIGHTS];
-	int numCandidateLights = 0;
-	void AddCandidateLight(SpotLightModel* candidate)
-	{
-		if (!candidate->Added)
-		{
-			if (numCandidateLights == NUM_SPOTLIGHTS && candidate->Source >= candidateLights[NUM_SPOTLIGHTS - 1]->Source)
-			{
-				return;
-			}
-
-			int insertIdx = 0;
-			while (insertIdx < numCandidateLights && candidateLights[insertIdx]->Source < candidate->Source)
-			{
-				insertIdx++;
-			}
-
-			int end = min(numCandidateLights, NUM_SPOTLIGHTS - 1);
-			for (int j = end; j > insertIdx; --j)
-			{
-				candidateLights[j] = candidateLights[j - 1];
-			}
-
-			if (insertIdx < NUM_SPOTLIGHTS)
-			{
-				candidateLights[insertIdx] = candidate;
-			}
-
-			if (numCandidateLights < NUM_SPOTLIGHTS)
-			{
-				numCandidateLights++;
-			}
-
-			candidate->Added = true;
-		}
 	}
 
 	void GetLightsForMesh(const D3DXVECTOR3& meshCenter, const float meshRadius)
@@ -173,16 +139,25 @@ struct CellBuffer
 						for (int i = 0; i < Cell::NumLights; i++)
 						{
 							SpotLightModel* light = cell->Lights[i];
-							if (!light)
+							if (!light || numCandidateLights >= 256)
 							{
 								break;
 							}
 
-							this->AddCandidateLight(light);
+							if (!light->Added)
+							{
+								candidateLights[numCandidateLights++] = light;
+								light->Added = true;
+							}
 						}
 					}
 				}
 			}
+		}
+
+		if (numCandidateLights > 0)
+		{
+			std::sort(candidateLights, candidateLights + numCandidateLights, [](SpotLightModel* a, SpotLightModel* b) { return (int)a->Source < (int)b->Source; });
 		}
 	}
 };

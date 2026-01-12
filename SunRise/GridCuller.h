@@ -22,11 +22,11 @@ struct Int3
 
 	Hash GetHash()
 	{
-		int sx = x + 200;
-		int sy = y + 200;
-		int sz = z + 200;
+		Hash sx = x + 200;
+		Hash sy = y + 200;
+		Hash sz = z + 200;
 
-		return sx * 400 * 400 + sy * 400 + sz;
+		return sx * 73856093u ^ sy * 19349663u ^ sz * 83492791u;
 	}
 };
 
@@ -34,26 +34,22 @@ struct Cell
 {
 	static const int NumLights = 128;
 
-	Hash Index;
 	SpotLightModel* Lights[NumLights];
 };
 
 inline Int3 WorldToCell(const D3DXVECTOR3& pos)
 {
-	float cellSize = g_Config.LightCellSize;
+	float s = g_Config.LightCellSize;
 	return Int3(
-		(int)std::floor(pos.x / cellSize),
-		(int)std::floor(pos.y / cellSize),
-		(int)std::floor(pos.z / cellSize)
+		FastFloor(pos.x / s),
+		FastFloor(pos.y / s),
+		FastFloor(pos.z / s)
 	);
 }
 
 struct CellBuffer
 {
-	static const int BufferSize = 1024;
-
-	int Count = 0;
-	Cell Buffer[BufferSize];
+	FastHashTable<Cell, 1024, Hash> table;
 
 	CellBuffer()
 	{
@@ -83,23 +79,14 @@ struct CellBuffer
 
 	void Clear()
 	{
-		Count = 0;
-		memset(Buffer, 0, sizeof(Buffer));
+		this->table.clear();
 	}
 
-	void Add(Int3 cell, SpotLightModel* light)
+	void Add(Int3 coords, SpotLightModel* light)
 	{
-		Cell* targetCell = nullptr;
-		Hash cellHash = cell.GetHash();
+		Hash cellHash = coords.GetHash();
 
-		for (int i = 0; i < this->Count; i++)
-		{
-			if (Buffer[i].Index == cellHash)
-			{
-				targetCell = Buffer + i;
-				break;
-			}
-		}
+		Cell* targetCell = this->table.find(cellHash, true);
 
 		if (targetCell == nullptr)
 		{
@@ -126,11 +113,12 @@ struct CellBuffer
 				break;
 			}
 		}
+	}
 
-#ifdef _DEBUG
-		if (!found)
+	Cell* Get(Int3 cell)
 		{
-			throw std::runtime_error("Cell lights is full");
+		Hash cellHash = cell.GetHash();
+		return this->table.find(cellHash);
 		}
 #endif
 	}

@@ -64,6 +64,8 @@ inline const char* ModName = "NFSMW - Sun Set 1.9";
 	__asm pop ebx\
 }\
 
+#define NUM_SPOTLIGHTS 32
+
 bool WriteFileFromMemory(const char* FileName, const void* buffer, long size)
 {
 	FILE* fout = fopen(FileName, "wb");
@@ -276,7 +278,7 @@ public:
 		std::memset(entries, 0, sizeof(entries));
 	}
 
-	inline void insert(Key key, const Value& value) noexcept
+	inline Value* insert(Key key, const Value& value) noexcept
 	{
 		key = mix(key);
 
@@ -290,55 +292,46 @@ public:
 			{
 				entries[idx].key = key;
 				entries[idx].value = value;
-				return;
-			}
-
-			idx = nextIndex(idx);
-		}
-	}
-
-	inline Value find(Key key) noexcept
-	{
-		key = mix(key);
-
-		uint32_t idx = index(key);
-
-		for (;;)
-		{
-			Key k = entries[idx].key;
-
-			if (k == key)
-			{
-				return entries[idx].value;
-			}
-
-			if (k == 0)
-			{
-				return nullptr;
-			}
-
-			idx = nextIndex(idx);
-		}
-	}
-
-	inline const Value* find(Key key) const noexcept
-	{
-		key = mix(key);
-
-		uint32_t idx = index(key);
-
-		for (;;)
-		{
-			Key k = entries[idx].key;
-
-			if (k == key)
-			{
 				return &entries[idx].value;
 			}
 
+			idx = nextIndex(idx);
+		}
+	}
+
+	inline Value* find(Key key, bool create = false) noexcept
+	{
+		key = mix(key);
+
+		if (key == lastKey)
+		{
+			return lastValue;
+		}
+
+		uint32_t idx = index(key);
+
+		for (;;)
+		{
+			Key k = entries[idx].key;
+
+			if (k == key)
+			{
+				lastKey = key;
+				lastValue = &entries[idx].value;
+				return lastValue;
+			}
+
 			if (k == 0)
 			{
-				return nullptr;
+				if (create)
+				{
+					entries[idx].key = key;
+					return &entries[idx].value;
+				}
+				else
+				{
+					return nullptr;
+				}
 			}
 
 			idx = nextIndex(idx);
@@ -346,6 +339,9 @@ public:
 	}
 
 private:
+	Key lastKey = 0;
+	Value* lastValue = nullptr;
+
 	static constexpr uint32_t mask = TableSize - 1;
 
 	static inline Key mix(Key key) noexcept
@@ -366,3 +362,9 @@ private:
 
 	alignas(64) Entry entries[TableSize];
 };
+
+inline int FastFloor(float v)
+{
+	int i = (int)v;
+	return i - (v < i);
+}

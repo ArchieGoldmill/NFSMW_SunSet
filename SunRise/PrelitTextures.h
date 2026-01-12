@@ -103,7 +103,8 @@ public:
 
 	PrelitTexture* Get(Hash targetHash)
 	{
-		return this->table.find(targetHash);
+		auto tex = this->table.find(targetHash);
+		return tex ? *tex : nullptr;
 	}
 
 	void Remove(Hash targetHash)

@@ -118,7 +118,7 @@ struct CellBuffer
 			int insertIdx = 0;
 			while (insertIdx < numCandidateLights && candidateLights[insertIdx]->Source < candidate->Source)
 			{
-				++insertIdx;
+				insertIdx++;
 			}
 
 			int end = min(numCandidateLights, NUM_SPOTLIGHTS - 1);

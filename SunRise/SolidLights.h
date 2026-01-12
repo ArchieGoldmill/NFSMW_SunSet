@@ -5,60 +5,37 @@
 class SolidLightsContainer
 {
 private:
-	bool sorted = true;
 	std::vector<SolidLights> list;
 	std::vector<SolidLights*> uilist;
+	FastHashTable<SolidLights*, 1024, Hash> table;
 
 public:
 
 	void Add(SolidLights& s)
 	{
 		this->list.push_back(s);
-		this->sorted = false;
 	}
 
 	void Sort()
 	{
-		std::sort(this->list.begin(), this->list.end(), [](const SolidLights& a, const SolidLights& b) { return a.LodA.hash < b.LodA.hash; });
-		this->sorted = true;
+		this->table.clear();
+
+		for (auto& sl : this->list)
+		{
+			this->table.insert(sl.LodA.hash, &sl);
+		}
 	}
 
 	void Clear()
 	{
 		this->list.clear();
-		this->sorted = true;
+		this->table.clear();
 	}
 
 	SolidLights* Get(Hash targetHash)
 	{
-		if (!sorted)
-		{
-			throw "list is not sorted";
-		}
-
-		int left = 0;
-		int right = static_cast<int>(list.size()) - 1;
-
-		while (left <= right)
-		{
-			int mid = left + (right - left) / 2;
-			SolidLights& midItem = list[mid];
-
-			if (midItem.LodA.hash == targetHash)
-			{
-				return &midItem;
-			}
-			else if (midItem.LodA.hash < targetHash)
-			{
-				left = mid + 1;
-			}
-			else
-			{
-				right = mid - 1;
-			}
-		}
-
-		return nullptr;
+		auto sl = this->table.find(targetHash);
+		return sl ? *sl : nullptr;
 	}
 
 	std::vector<SolidLights>& GetList()
@@ -99,6 +76,8 @@ public:
 		{
 			list.erase(list.begin() + idx);
 		}
+
+		this->Sort();
 	}
 };
 

@@ -52,28 +52,31 @@ struct PrelitTexture
 struct PrelitTextureContainer
 {
 private:
-	bool sorted = true;
 	std::vector<PrelitTexture> list;
 	std::vector<PrelitTexture*> uilist;
+	FastHashTable<PrelitTexture*, 1024, Hash> table;
 
 public:
 
 	void Add(PrelitTexture& t)
 	{
 		this->list.push_back(t);
-		sorted = false;
 	}
 
 	void Clear()
 	{
 		this->list.clear();
-		sorted = true;
+		this->table.clear();
 	}
 
 	void Sort()
 	{
-		std::sort(this->list.begin(), this->list.end(), [](const PrelitTexture& a, const PrelitTexture& b) { return a.NameHash < b.NameHash; });
-		sorted = true;
+		this->table.clear();
+
+		for (auto& tex : this->list)
+		{
+			this->table.insert(tex.NameHash, &tex);
+		}
 	}
 
 	void PopulateUiList()
@@ -100,34 +103,7 @@ public:
 
 	PrelitTexture* Get(Hash targetHash)
 	{
-		if (!sorted)
-		{
-			throw "list is not sorted";
-		}
-
-		int left = 0;
-		int right = static_cast<int>(list.size()) - 1;
-
-		while (left <= right)
-		{
-			int mid = left + (right - left) / 2;
-			PrelitTexture& midItem = list[mid];
-
-			if (midItem.NameHash == targetHash)
-			{
-				return &midItem;
-			}
-			else if (midItem.NameHash < targetHash)
-			{
-				left = mid + 1;
-			}
-			else
-			{
-				right = mid - 1;
-			}
-		}
-
-		return nullptr;
+		return this->table.find(targetHash);
 	}
 
 	void Remove(Hash targetHash)
@@ -146,6 +122,8 @@ public:
 		{
 			list.erase(list.begin() + idx);
 		}
+
+		this->Sort();
 	}
 };
 

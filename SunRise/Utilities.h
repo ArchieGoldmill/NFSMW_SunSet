@@ -220,7 +220,8 @@ inline bool FileExists(const char* fileName)
 	return true;
 }
 
-inline YAML::Node SerializeVector3(const D3DXVECTOR4& vec) {
+inline YAML::Node SerializeVector3(const D3DXVECTOR4& vec)
+{
 	YAML::Node node(YAML::NodeType::Sequence);
 	node.push_back(vec.x);
 	node.push_back(vec.y);
@@ -229,7 +230,8 @@ inline YAML::Node SerializeVector3(const D3DXVECTOR4& vec) {
 	return node;
 }
 
-inline YAML::Node SerializeVector3(const D3DXVECTOR3& vec) {
+inline YAML::Node SerializeVector3(const D3DXVECTOR3& vec)
+{
 	YAML::Node node(YAML::NodeType::Sequence);
 	node.push_back(vec.x);
 	node.push_back(vec.y);
@@ -238,7 +240,8 @@ inline YAML::Node SerializeVector3(const D3DXVECTOR3& vec) {
 	return node;
 }
 
-inline YAML::Node SerializeVector4(const D3DXVECTOR4& vec) {
+inline YAML::Node SerializeVector4(const D3DXVECTOR4& vec)
+{
 	YAML::Node node(YAML::NodeType::Sequence);
 	node.push_back(vec.x);
 	node.push_back(vec.y);
@@ -252,3 +255,114 @@ bool StartsWith0x(const std::string& str)
 {
 	return str.size() > 2 && str.size() <= 10 && str[0] == '0' && (str[1] == 'x' || str[1] == 'X');
 }
+
+template<typename Value, uint32_t TableSize, typename Key = uint32_t>
+class FastHashTable
+{
+public:
+	struct Entry
+	{
+		Key key;
+		Value value;
+	};
+
+	FastHashTable() noexcept
+	{
+		clear();
+	}
+
+	inline void clear() noexcept
+	{
+		std::memset(entries, 0, sizeof(entries));
+	}
+
+	inline void insert(Key key, const Value& value) noexcept
+	{
+		key = mix(key);
+
+		uint32_t idx = index(key);
+
+		for (;;)
+		{
+			Key k = entries[idx].key;
+
+			if (k == 0 || k == key)
+			{
+				entries[idx].key = key;
+				entries[idx].value = value;
+				return;
+			}
+
+			idx = nextIndex(idx);
+		}
+	}
+
+	inline Value find(Key key) noexcept
+	{
+		key = mix(key);
+
+		uint32_t idx = index(key);
+
+		for (;;)
+		{
+			Key k = entries[idx].key;
+
+			if (k == key)
+			{
+				return entries[idx].value;
+			}
+
+			if (k == 0)
+			{
+				return nullptr;
+			}
+
+			idx = nextIndex(idx);
+		}
+	}
+
+	inline const Value* find(Key key) const noexcept
+	{
+		key = mix(key);
+
+		uint32_t idx = index(key);
+
+		for (;;)
+		{
+			Key k = entries[idx].key;
+
+			if (k == key)
+			{
+				return &entries[idx].value;
+			}
+
+			if (k == 0)
+			{
+				return nullptr;
+			}
+
+			idx = nextIndex(idx);
+		}
+	}
+
+private:
+	static constexpr uint32_t mask = TableSize - 1;
+
+	static inline Key mix(Key key) noexcept
+	{
+		key ^= key >> 16;
+		return key;
+	}
+
+	static inline uint32_t index(Key key) noexcept
+	{
+		return static_cast<uint32_t>(key) & mask;
+	}
+
+	static constexpr uint32_t nextIndex(uint32_t idx) noexcept
+	{
+		return (idx + 1) & mask;
+	}
+
+	alignas(64) Entry entries[TableSize];
+};

@@ -32,6 +32,12 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{6eaf6e46-b22f-4a78-b649-29587fe59ccd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\PostEffects">
+      <UniqueIdentifier>{4c731b23-e37e-48d5-b0a6-f308561cfdc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\DynamicLights">
+      <UniqueIdentifier>{4e696767-b0aa-42a5-8996-bd21b6b4f191}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -205,9 +211,6 @@
     <ClInclude Include="AmbientShadow.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="Bloom.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="CarBrakeGlow.h">
       <Filter>Features</Filter>
     </ClInclude>
@@ -216,9 +219,6 @@
     </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="CarLights.h">
-      <Filter>Features</Filter>
     </ClInclude>
     <ClInclude Include="CustomMeshes.h">
       <Filter>Features</Filter>
@@ -235,9 +235,6 @@
     <ClInclude Include="FlareConfig.h">
       <Filter>Config</Filter>
     </ClInclude>
-    <ClInclude Include="GodRays.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="GridCuller.h">
       <Filter>Features</Filter>
     </ClInclude>
@@ -250,16 +247,7 @@
     <ClInclude Include="Hooks.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="MotionBlur.h">
-      <Filter>Features</Filter>
-    </ClInclude>
-    <ClInclude Include="PostEffects.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="UpdateMaterials.h">
-      <Filter>Features</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldLights.h">
       <Filter>Features</Filter>
     </ClInclude>
     <ClInclude Include="Weather.h">
@@ -283,14 +271,32 @@
     <ClInclude Include="LightFlares.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="HelicopterLight.h">
-      <Filter>Features</Filter>
-    </ClInclude>
-    <ClInclude Include="PrelitTextures.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="LightsBuffer.h">
       <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Bloom.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="GodRays.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="PostEffects.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionBlur.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="HelicopterLight.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="CarLights.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldLights.h">
+      <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="PrelitTextures.h">
+      <Filter>Features\DynamicLights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -95,7 +95,7 @@ void __declspec(naked) SetZWriteEnabledCave()
 
 void __cdecl SimpleAnimApplyHook(eModel* model, eSolid* solid, D3DXMATRIX* matrix)
 {
-	if (DepthPrePass)
+	if (DepthPrePass || RenderTarget::Current->ViewId == ViewId::Reflection || RenderTarget::Current->ViewId == ViewId::ShadowMap)
 	{
 		Game::SimpleAnimApply(model, solid, matrix);
 	}

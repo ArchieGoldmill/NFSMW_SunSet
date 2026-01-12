@@ -65,7 +65,7 @@ Textures:
     UseVertexColor: true
   - Name: SFX_HEADLIGHTGLOW_TILED
     Brightness: 1
-    Color: [1, 1, 1]
+    Color: [0.519607842, 0.519607842, 0.519607842]
     Mask: ""
     AlwaysOn: true
     Prelit: true
@@ -632,13 +632,13 @@ Textures:
     IgnoreWeather: false
     UseVertexColor: true
   - Name: OBJ_TUNNEL_LIGHT_A_MM
-    Brightness: 5
+    Brightness: 1
     Color: [1, 1, 1]
     Mask: ""
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: true
     IgnoreWeather: true
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: ADS_BKING_BB_A
     Brightness: 1.10000002
     Color: [1, 1, 1]

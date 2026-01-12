@@ -65,7 +65,7 @@ void PopulateCopLight(CarRenderInfo* carRenderInfo, VehicleFX fx, SpotLight& spo
 	if (carRenderInfo->IsLightOn(fx))
 	{
 		float time = Game::Sim_GetTime();
-		time = fmod(time * 2.0f, 1.0f);
+		time = fmod(time * 3.0f, 1.0f);
 		if (fx == VehicleFX_COPBLUE && time > 0.5)
 		{
 			return;

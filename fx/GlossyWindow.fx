@@ -7,6 +7,7 @@
 #include "hdr.fx"
 
 float4 cvWindowColor;
+float cfWindowEnabled;
 
 texture WindowReflection : WINDOWREFLECTION;
 sampler reflected_sampler = sampler_state
@@ -103,7 +104,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 		windowGlowColor = cvWindowColor.rgb;
 	}
 	
-	windowGlowMask *= cvAmbientColor.w;
+	windowGlowMask *= cfWindowEnabled;
 	
 	float3 finalLight = lerp(IN.color.rgb + diffuse * shadow, windowGlowColor, windowGlowMask) + light.Diffuse;
 	
@@ -112,7 +113,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 reflection = GetWindowReflection(nview, normal, IN.uv, diffuse_tex.a);
 	
 	float3 final = albedo;
-	final.rgb += reflection * (1 - cvAmbientColor.w);
+	final.rgb += reflection * (1 - cfWindowEnabled);
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * reflect_scale;
 	final.rgb += light.Specular * reflect_scale;

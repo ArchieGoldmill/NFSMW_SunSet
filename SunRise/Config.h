@@ -52,6 +52,7 @@ struct Config
 	bool DisableNightShadows;
 	bool MSAAx8;
 	bool Tonemapping;
+	bool RandomWindows;
 
 	float WetTime;
 	float DryTime;
@@ -115,6 +116,7 @@ void LoadConfig()
 	g_Config.LightsOn = YmlGet(time, "LightsOn", 0.77f);
 	g_Config.LightsOff = YmlGet(time, "LightsOff", 0.24f);
 	g_Config.RandomStartupTime = YmlGet(time, "RandomStartupTime", false);
+	g_Config.RandomWindows = YmlGet(time, "RandomWindows", false);
 	g_Config.RealTime = YmlGet(time, "RealTime", false);
 	g_Config.SunAzimuth = YmlGet(time, "SunAzimuth", 0.0f);
 	g_Config.SunRise = 0.2f;
@@ -190,6 +192,7 @@ void SaveConfig()
 	time["DryTime"] = g_Config.DryTime;
 	time["DryTime"] = g_Config.DryTime;
 	time["RandomStartupTime"] = g_Config.RandomStartupTime;
+	time["RandomWindows"] = g_Config.RandomWindows;
 	time["RealTime"] = g_Config.RealTime;
 	time["SunAzimuth"] = g_Config.SunAzimuth;
 

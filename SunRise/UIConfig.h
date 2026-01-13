@@ -71,6 +71,7 @@ namespace UI
 					TimeOfDay::Instance->SunAzimuth = D3DXToRadian(g_Config.SunAzimuth);
 				}
 				ImGui::Checkbox("Random startup time", &g_Config.RandomStartupTime);
+				ImGui::Checkbox("Random windows", &g_Config.RandomWindows);
 				ImGui::Checkbox("Real time", &g_Config.RealTime);
 
 				ImGui::Text("");

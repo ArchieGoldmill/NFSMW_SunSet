@@ -212,6 +212,32 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 		}
 	}
 
+	if (effect->id == shader_type::GlossyWindow)
+	{
+		bool lightsOn = g_Weather.LightsOn();
+		bool windowEnabled = false;
+		if (g_Config.RandomWindows)
+		{
+			float time = lightsOn ? g_Weather.TimeSinceLightsOn() : g_Weather.TimeSinceLightsOff();
+			if (time > 0)
+			{
+				int rnd = RandomByHash(renderModel->pSolid->NameHash, g_Weather.GetDay());
+				windowEnabled = time > rnd * 0.03 / 25.0;
+			}
+
+			if (!lightsOn)
+			{
+				windowEnabled = !windowEnabled;
+			}
+		}
+		else
+		{
+			windowEnabled = lightsOn;
+		}
+
+		effect->SetFloat(ShaderParam::cfWindowEnabled, windowEnabled ? 1.0f : 0.0f);
+	}
+
 	return false;
 }
 

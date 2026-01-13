@@ -368,3 +368,16 @@ inline int FastFloor(float v)
 	int i = (int)v;
 	return i - (v < i);
 }
+
+uint32_t RandomByHash(uint32_t seed, uint32_t day)
+{
+	uint32_t combined = seed ^ (day * 0x9e3779b9);
+
+	combined ^= combined >> 16;
+	combined *= 0x7feb352d;
+	combined ^= combined >> 15;
+	combined *= 0x846ca68b;
+	combined ^= combined >> 16;
+
+	return (combined % 25) + 1;
+}

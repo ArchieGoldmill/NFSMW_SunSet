@@ -30,6 +30,7 @@ void ForceTime()
 	if (TimeOfDay::Instance->CurrentTime > 1)
 	{
 		TimeOfDay::Instance->CurrentTime = 0;
+		g_Weather.IncDay();
 	}
 }
 

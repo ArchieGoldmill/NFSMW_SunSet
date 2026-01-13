@@ -58,6 +58,7 @@ const char* ShaderParamNames[] =
 	"cmWorldIT",
 	"cvWorldEyePos",
 	"cbCompressColor",
+	"cfWindowEnabled",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -107,6 +108,7 @@ enum class ShaderParam
 	cmWorldIT,
 	cvWorldEyePos,
 	cbCompressColor,
+	cfWindowEnabled,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

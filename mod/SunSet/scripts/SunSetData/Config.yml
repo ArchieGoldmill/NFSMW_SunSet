@@ -4,8 +4,8 @@ Config:
   ShaderCompiler: false       # Enable shader compiler, place shader sources in the game\fx folder.
   X360Effects: false          # Enable light trails.
   LiveReload: false           # Live reload config files when game loses focus.
-  Editor: false               # Enable UI for editing.
-  SkipFE: false               # Allows to enter game faster by skipping all the frontend.
+  Editor: true               # Enable UI for editing.
+  SkipFE: true               # Allows to enter game faster by skipping all the frontend.
   CarVinylPaintFix: true      # Make vinyls to not be affected by car paint.
   BrakeGlow: true             # Enable brake rotor glow.
   GodRays: true               # Enable god rays effect.
@@ -30,6 +30,7 @@ Time:
   RandomStartupTime: false    # Random game time at start.
   RealTime: false             # Use real time from PC in the game.
   SunAzimuth: 0.0             # Angle in deegrees of the initial sun azimuth.
+  RandomWindows: true         # Randomize windows turn of and off per building.
 
 Blur:
   MinSpeed: 25.0              # Minimum speed for blur to activate.
@@ -37,7 +38,7 @@ Blur:
   Depth: 150.0                # Maximum distance for object to be affected by blur.
 
 Hotkeys:
-  ShaderReload: 0             # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
+  ShaderReload: 70             # Hot key to live recompile and reload shaders, source code needs to be placed in game\fx folder.
   ToggleEditor: 114           # Hot key to toggle UI Editor visibility (F3 by default).
 
 Rain:

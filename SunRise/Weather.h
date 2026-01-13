@@ -27,6 +27,7 @@ private:
 	float RoadRainDrops = 0.0f;
 	float LightIntensity = 0.0f;
 	float NightFactor = 0.0f;
+	int day = 1;
 
 public:
 
@@ -70,6 +71,33 @@ public:
 		return (time > g_Config.LightsOn || time < g_Config.LightsOff);
 	}
 
+	float TimeSinceLightsOn()
+	{
+		float time = this->GetTime();
+		if (time > g_Config.LightsOn)
+		{
+			return time - g_Config.LightsOn;
+		}
+
+		if (time < g_Config.LightsOff)
+		{
+			return 1 - g_Config.LightsOn + time;
+		}
+
+		return -1;
+	}
+
+	float TimeSinceLightsOff()
+	{
+		float time = this->GetTime();
+		if (time > g_Config.LightsOff && time < g_Config.LightsOn)
+		{
+			return time - g_Config.LightsOff;
+		}
+
+		return -1;
+	}
+
 	bool IsDay()
 	{
 		return NightFactor == 1.0;
@@ -106,6 +134,16 @@ public:
 		return windowGlowColor;
 	}
 
+	int GetDay()
+	{
+		return this->day;
+	}
+
+	void IncDay()
+	{
+		this->day++;
+	}
+
 private:
 
 	void SetFog(eEffect* e)
@@ -135,7 +173,6 @@ private:
 			D3DXVECTOR4 diffuseColor = this->current.DiffuseColor * (isCar ? this->current.CarDiffuseIntensity : this->current.DiffuseIntensity);
 			D3DXVECTOR4 ambientColor = this->current.AmbientColor * (isCar ? this->current.CarAmbientIntensity : this->current.AmbientIntensity);
 
-			ambientColor.w = this->LightsOn() ? 1.0f : 0.0f;
 			diffuseColor.w = (stype == shader_type::CarShader ? g_Config.CarVertexColor : g_Config.WorldVertexColor) * 1.0;
 
 			ambientColor += D3DXVECTOR4(0.875, 0.831, 1, 0) * g_Rain.GetDiffuse();

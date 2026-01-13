@@ -21,6 +21,8 @@ struct WeatherData
 	float SkyBrightness;
 
 	D3DXVECTOR4 CloudColor;
+	D3DXVECTOR4 MoonColor;
+	float MoonSize;
 
 	D3DXVECTOR4 WaterColor;
 	float WaterSpecularPower;
@@ -80,6 +82,8 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->TextureLightPower = YmlGet<float>(node, "TextureLightPower", cfg->TextureLightPower);
 
 	config->CloudColor = ParseVec4(node["CloudColor"], cfg->CloudColor);
+	config->MoonColor = ParseVec4(node["MoonColor"], cfg->MoonColor);
+	config->MoonSize = YmlGet<float>(node, "MoonSize", cfg->MoonSize);
 
 	config->GodRaysColor = ParseVec3To4(node["GodRaysColor"], cfg->GodRaysColor);
 
@@ -134,6 +138,8 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["GodRaysColor"] = SerializeVector4(data->GodRaysColor);
 
 	node["CloudColor"] = SerializeVector4(data->CloudColor);
+	node["MoonColor"] = SerializeVector4(data->MoonColor);
+	node["MoonSize"] = data->MoonSize;
 
 	node["WaterColor"] = SerializeVector3(data->WaterColor);
 	node["WaterSpecularPower"] = data->WaterSpecularPower;

@@ -153,6 +153,11 @@ namespace UI
 
 								ImGui::Text("");
 
+								ImGui::ColorEdit4("Moon color", (float*)&weather->MoonColor, ImGuiColorEditFlags_Float);
+								InputFloat("Moon size", &weather->MoonSize);
+
+								ImGui::Text("");
+
 								ImGui::ColorEdit4("Cloud color", (float*)&weather->CloudColor, ImGuiColorEditFlags_Float);
 								ImGui::ColorEdit3("Water color", (float*)&weather->WaterColor, ImGuiColorEditFlags_Float);
 								InputFloat("Water specular power", &weather->WaterSpecularPower);

@@ -20,6 +20,7 @@ private:
 	TextureInfo* RainSplash[30];
 	TextureInfo* SkyNoise[2] = { NULL, NULL };
 	TextureInfo* Lightning[2] = { NULL, NULL };
+	TextureInfo* Moon = NULL;
 
 	D3DXVECTOR4 fogValue;
 
@@ -195,6 +196,8 @@ private:
 		this->current.TextureLightPower = std::lerp(a->TextureLightPower, b->TextureLightPower, t);
 
 		this->current.CloudColor = LerpVector(a->CloudColor, b->CloudColor, t);
+		this->current.MoonColor = LerpVector(a->MoonColor, b->MoonColor, t);
+		this->current.MoonSize = std::lerp(a->MoonSize, b->MoonSize, t);
 
 		this->current.WaterColor = LerpVector(a->WaterColor, b->WaterColor, t);
 		this->current.WaterSpecularPower = std::lerp(a->WaterSpecularPower, b->WaterSpecularPower, t);
@@ -280,6 +283,7 @@ private:
 			this->SkyNoise[1] = TextureInfo::Get(Hashes::SKYNOISETEX1, false, false);
 			this->Lightning[0] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE0, false, false);
 			this->Lightning[1] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE1, false, false);
+			this->Moon = TextureInfo::Get(Hashes::SR_MOON, false, false);
 
 			char buff[256];
 			for (int i = 0; i < 30; i++)
@@ -386,6 +390,10 @@ private:
 		e->SetTexture(ShaderParam::SkyNoiseTexture1, this->SkyNoise[1]);
 
 		e->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->Lightning[g_Rain.GetLightningTex()]);
+
+		e->SetTexture(ShaderParam::MISCMAP4_TEXTURE, this->Moon);
+		e->SetVector(ShaderParam::cvMoonColor, &this->current.MoonColor);
+		e->SetFloat(ShaderParam::cfMoonSize, this->current.MoonSize);
 	}
 
 	void UpdateWater()

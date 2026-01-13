@@ -6,9 +6,11 @@ float4 LocalEyePos : LOCALEYEPOS;
 float4 cvSunDirection;
 float4 cvSkyParams;
 float4 cvCloudColor;
+float4 cvMoonColor;
 float4 cvSkyBeta;
 float4 cvLightning;
 float cfTimeTicker : CLOUDSCROLL;
+float cfMoonSize;
 
 struct VS_INPUT
 {
@@ -57,6 +59,18 @@ texture MISCMAP3_TEXTURE;
 sampler2D MISCMAP3_SAMPLER = sampler_state
 {
 	texture = MISCMAP3_TEXTURE;
+	AddressU = WRAP;
+	AddressV = WRAP;
+	MIPFILTER = LINEAR;
+	MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MaxAnisotropy = 8;
+};
+
+texture MISCMAP4_TEXTURE;
+sampler2D MISCMAP4_SAMPLER = sampler_state
+{
+	texture = MISCMAP4_TEXTURE;
 	AddressU = WRAP;
 	AddressV = WRAP;
 	MIPFILTER = LINEAR;
@@ -237,6 +251,54 @@ float3 GetLightning(float4 uv)
 	return lightning;
 }
 
+float2 DirectionToSpherical(float3 dir)
+{
+	float azimuth = atan2(dir.z, dir.x) / (2 * PI) + 0.5;
+	float altitude = acos(dir.y) / PI * 0.5;
+	return float2(azimuth, altitude);
+}
+
+float2 GetMoonUV(float sunSize, float3 D, float3 Ds)
+{
+	float2 pixelUV = DirectionToSpherical(D);
+	float2 sunUV = DirectionToSpherical(Ds);
+	
+	return (pixelUV - sunUV) * (1.0 / sunSize) + 0.5;
+}
+
+float4 GetMoon(float3 skyDir, float3 moonDir)
+{
+	if (cvSkyParams.w > 0 || cvMoonColor.a == 0)
+	{
+		return float4(0, 0, 0, 0);
+	}
+	
+	float cosAngle = dot(skyDir, moonDir);
+	float3 up = float3(0, 0, 1);
+	if (abs(dot(up, moonDir)) > 0.99f)
+	{
+		up = float3(0, 1, 0);
+	}
+	
+	float3 moonRight = normalize(cross(up, moonDir));
+	float3 moonUp = cross(moonDir, moonRight);
+	
+	float2 moonUV;
+	moonUV.x = dot(skyDir, moonRight);
+	moonUV.y = dot(skyDir, moonUp);
+
+	moonUV /= sin(cfMoonSize);
+	moonUV = moonUV * 0.5f + 0.5f;
+	
+	float4 moonTex = tex2D(MISCMAP4_SAMPLER, moonUV);
+	moonTex *= cvMoonColor;
+	
+	float cosInner = cos(cfMoonSize);
+	moonTex.a *= step(cosInner, cosAngle);
+	
+	return moonTex;
+}
+
 float4 PS_Main(PS_INPUT IN) : COLOR
 {
 	float3 dir = normalize(IN.local_pos.xzy);
@@ -248,6 +310,8 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	color += noise * color * 0.05;
 	
 	color += GetStars(sun, IN.uv);
+	float4 moon = GetMoon(dir, sun);
+	color = lerp(color, moon.rgb, moon.a);
 	
 	float4 clouds = GetClouds(IN.view);
 	color = lerp(color, clouds.rgb, clouds.a);

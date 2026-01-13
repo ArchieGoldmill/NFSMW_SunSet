@@ -10,6 +10,8 @@ Weather:
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
     CloudColor: [0.513840854, 0.592204392, 0.647058845, 0.0549999997]
+    MoonColor: [0.436274529, 0.436274529, 0.436274529, 0.827000022]
+    MoonSize: 0.0460000001
     WaterColor: [1, 1, 1]
     WaterSpecularPower: 10
     CarLightsPower: 1
@@ -38,6 +40,8 @@ Weather:
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       CloudColor: [1, 1, 1, 0.050999999]
+      MoonColor: [0, 0, 0, 0]
+      MoonSize: 0
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
       CarLightsPower: 1
@@ -66,6 +70,8 @@ Weather:
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
     CloudColor: [1, 1, 1, 0.0549999997]
+    MoonColor: [0.485294104, 0.485294104, 0.485294104, 0.666999996]
+    MoonSize: 0.0529999994
     WaterColor: [1, 1, 1]
     WaterSpecularPower: 10
     CarLightsPower: 1
@@ -74,8 +80,8 @@ Weather:
     BloomThreshold: 2
     RoadMaskIntensity: 1
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-    SkyMie: 0.199999928
-    SkyRayleigh: 0.0299999993
+    SkyMie: 0.100000001
+    SkyRayleigh: 0.0300000012
     SkyBrightness: 10
     FogColor: [0.171424448, 0.201306969, 0.284313738]
     FogSunColor: [0.171000004, 0.201000005, 0.284000009]
@@ -94,6 +100,8 @@ Weather:
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       CloudColor: [1, 1, 1, 0.050999999]
+      MoonColor: [0, 0, 0, 0]
+      MoonSize: 0
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
       CarLightsPower: 1
@@ -122,6 +130,8 @@ Weather:
     CarAmbientIntensity: 1
     GodRaysColor: [1, 0.951701283, 0.671568632, 0]
     CloudColor: [1, 0.868512094, 0.627450943, 0.501999974]
+    MoonColor: [1, 1, 1, 0.588]
+    MoonSize: 0.0410000011
     WaterColor: [0.759803891, 0.759803891, 0.759803891]
     WaterSpecularPower: 300
     CarLightsPower: 0.499999911
@@ -150,6 +160,8 @@ Weather:
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       CloudColor: [1, 1, 1, 0.286000013]
+      MoonColor: [0, 0, 0, 0]
+      MoonSize: 0
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 300
       CarLightsPower: 0.499999911
@@ -178,6 +190,8 @@ Weather:
     CarAmbientIntensity: 0.799999952
     GodRaysColor: [1, 1, 1, 0]
     CloudColor: [1, 1, 1, 0.550000012]
+    MoonColor: [0, 0, 0, 0]
+    MoonSize: 0
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
     WaterSpecularPower: 10
     CarLightsPower: 0.0500000007
@@ -206,6 +220,8 @@ Weather:
       CarAmbientIntensity: 0.799999952
       GodRaysColor: [0, 0, 0, 0]
       CloudColor: [1, 1, 1, 0.397000015]
+      MoonColor: [0, 0, 0, 0]
+      MoonSize: 0
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
       WaterSpecularPower: 10
       CarLightsPower: 0.5
@@ -234,6 +250,8 @@ Weather:
     CarAmbientIntensity: 1
     GodRaysColor: [1, 0.930795848, 0.843137264, 0]
     CloudColor: [1, 0.614763379, 0.181372523, 0.368999988]
+    MoonColor: [0, 0, 0, 0]
+    MoonSize: 0
     WaterColor: [0.759803891, 0.759803891, 0.759803891]
     WaterSpecularPower: 150
     CarLightsPower: 0.5
@@ -262,6 +280,8 @@ Weather:
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       CloudColor: [1, 0.737024188, 0.441176474, 0.349999994]
+      MoonColor: [0, 0, 0, 0]
+      MoonSize: 0
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 150
       CarLightsPower: 0.5
@@ -290,6 +310,8 @@ Weather:
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
     CloudColor: [0.622549057, 0.744665504, 1, 0.0590000004]
+    MoonColor: [0.558823526, 0.558823526, 0.558823526, 0.783999979]
+    MoonSize: 0.0469999984
     WaterColor: [1, 1, 1]
     WaterSpecularPower: 10
     CarLightsPower: 1
@@ -298,8 +320,8 @@ Weather:
     BloomThreshold: 2
     RoadMaskIntensity: 1
     SkyBeta: [0.818627477, 0.818627477, 0.818627477]
-    SkyMie: 0.199999928
-    SkyRayleigh: 0.0299999993
+    SkyMie: 0
+    SkyRayleigh: 0.0300000012
     SkyBrightness: 10
     FogColor: [0.194492519, 0.216971204, 0.279411793]
     FogSunColor: [0.194000006, 0.216999993, 0.279000014]
@@ -318,6 +340,8 @@ Weather:
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       CloudColor: [1, 1, 1, 0.050999999]
+      MoonColor: [0, 0, 0, 0]
+      MoonSize: 0
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
       CarLightsPower: 1

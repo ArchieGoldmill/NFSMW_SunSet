@@ -125,13 +125,15 @@ void InitLightFlares()
 
 	injector::MakeJMP(0x00505A3C, GetFlareTextureHook);
 
+	injector::MakeCALL(0x005078BC, RenderLightFlareFromPool);
+
+	// Remove cop headlights blink
 	injector::MakeNOP(0x00742CB9, 8);
 
+	// Flare distance
 	injector::WriteMemory(&Game::FlareDistanceEnd, g_Config.FlareDistance * g_Config.FlareDistance);
 	injector::WriteMemory(&Game::FlareDistanceStart, Game::FlareDistanceEnd - 8000.0f);
 
 	// Make reflection flares use proper texture
 	injector::WriteMemory<BYTE>(0x00505A22, 0xEB);
-
-	injector::MakeCALL(0x005078BC, RenderLightFlareFromPool);
 }

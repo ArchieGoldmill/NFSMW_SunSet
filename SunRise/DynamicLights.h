@@ -48,7 +48,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 {
 	NumSpotLights = 0;
 
-	if (!model->pSolid || model->pSolid->Volume > 170, 000.0f)
+	if (!model->pSolid || model->pSolid->Volume > 170000)
 	{
 		return;
 	}

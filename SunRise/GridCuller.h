@@ -49,7 +49,8 @@ inline Int3 WorldToCell(const D3DXVECTOR3& pos)
 
 struct CellBuffer
 {
-	SpotLightModel* candidateLights[128];
+	const static int MaxCandidateLights = 256;
+	SpotLightModel* candidateLights[MaxCandidateLights];
 	int numCandidateLights = 0;
 	FastHashTable<Cell, 1024, Hash> table;
 
@@ -139,7 +140,7 @@ struct CellBuffer
 						for (int i = 0; i < Cell::NumLights; i++)
 						{
 							SpotLightModel* light = cell->Lights[i];
-							if (!light || numCandidateLights >= 256)
+							if (!light || numCandidateLights >= MaxCandidateLights)
 							{
 								break;
 							}

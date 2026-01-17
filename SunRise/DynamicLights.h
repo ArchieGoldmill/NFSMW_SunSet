@@ -48,7 +48,7 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 {
 	NumSpotLights = 0;
 
-	if (!model->pSolid || model->pSolid->Volume > 170000)
+	if (!model->pSolid)
 	{
 		return;
 	}
@@ -162,83 +162,86 @@ inline void SetDynamicLights(RenderModel* model)
 	}
 }
 
-inline bool ApplyEmissive(RenderModel* renderModel)
+bool HandleRandomWindows(RenderModel* renderModel)
 {
+	D3DXVECTOR4 color = g_Weather.GetWindowGlowColor();
+
 	auto effect = renderModel->Effect;
-	if (effect->HasParam(ShaderParam::cvEmissive))
+
+	auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
+	if (prelitTex)
 	{
-		D3DXVECTOR4 color = { 0, 0, 0, 0 };
+		effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());
 
-		bool prelit = false;
-		bool enabled = false;
-
-		auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
-		if (prelitTex)
+		if (!g_Config.WindowGlowOverride)
 		{
-			prelit = prelitTex->Prelit;
-
-			enabled = prelitTex->AlwaysOn || g_Weather.LightsOn();
-			if (enabled)
-			{
-				color = D3DXVECTOR4(prelitTex->Color, 1) * prelitTex->Brightness;
-
-				if (!prelitTex->IgnoreWeather)
-				{
-					color *= g_Weather.GetTextureLightPower();
-				}
-
-				if (effect->id == shader_type::GlossyWindow && g_Config.WindowGlowOverride)
-				{
-					color = g_Weather.GetWindowGlowColor();
-				}
-
-				if (prelit)
-				{
-					color.w = prelitTex->UseVertexColor ? 1.0 : 0.0;
-				}
-				else
-				{
-					effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());
-					color.w = prelitTex->Brightness;
-				}
-			}
-		}
-
-		effect->SetVector(ShaderParam::cvEmissive, &color);
-
-		if (prelit && enabled)
-		{
-			return true;
+			color = D3DXVECTOR4(prelitTex->Color, 1);
+			color *= prelitTex->Brightness;
 		}
 	}
 
-	if (effect->id == shader_type::GlossyWindow)
+	// Use mask texture
+	color.w = prelitTex ? 1 : 0;
+
+	effect->SetVector(ShaderParam::cvEmissive, &color);
+
+	bool lightsOn = g_Weather.LightsOn();
+	bool windowEnabled = lightsOn;
+	if (g_Config.RandomWindows)
 	{
-		bool lightsOn = g_Weather.LightsOn();
-		bool windowEnabled = false;
-		if (g_Config.RandomWindows)
+		float time = lightsOn ? g_Weather.TimeSinceLightsOn() : g_Weather.TimeSinceLightsOff();
+		if (time >= 0 && time < 0.03)
 		{
-			float time = lightsOn ? g_Weather.TimeSinceLightsOn() : g_Weather.TimeSinceLightsOff();
-			if (time > 0)
-			{
-				int rnd = RandomByHash(renderModel->pSolid->NameHash, g_Weather.GetDay());
-				windowEnabled = time > rnd * 0.03 / 25.0;
-			}
+			int rnd = RandomByHash(renderModel->pSolid->NameHash, g_Weather.GetDay());
+			windowEnabled = time > rnd * 0.03 / 25.0;
 
 			if (!lightsOn)
 			{
 				windowEnabled = !windowEnabled;
 			}
 		}
-		else
-		{
-			windowEnabled = lightsOn;
-		}
-
-		effect->SetFloat(ShaderParam::cfWindowEnabled, windowEnabled ? 1.0f : 0.0f);
 	}
 
+	effect->SetFloat(ShaderParam::cfWindowEnabled, windowEnabled ? 1.0f : 0.0f);
+
 	return false;
+}
+
+inline bool ApplyEmissive(RenderModel* renderModel)
+{
+	auto effect = renderModel->Effect;
+	if (effect->id == shader_type::GlossyWindow)
+	{
+		return HandleRandomWindows(renderModel);
+	}
+
+	bool enabled = false;
+	bool prelit = false;
+	if (effect->HasParam(ShaderParam::cvEmissive))
+	{
+		D3DXVECTOR4 color = { 0, 0, 0, 0 };
+
+		auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
+		if (prelitTex)
+		{
+			enabled = prelitTex->AlwaysOn || g_Weather.LightsOn();
+			prelit = prelitTex->Prelit;
+
+			if (enabled)
+			{
+				color = prelitTex->GetColor();
+
+				if (!prelit)
+				{
+					effect->SetTexture(ShaderParam::EMISSIVE_TEXTURE, prelitTex->GetMaskTexture());
+				}
+			}
+		}
+
+		effect->SetVector(ShaderParam::cvEmissive, &color);
+	}
+
+	return prelit && enabled;
 }
 
 TechniqueType GetTechnique(RenderModel* renderModel)

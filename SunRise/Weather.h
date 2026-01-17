@@ -91,7 +91,7 @@ public:
 	float TimeSinceLightsOff()
 	{
 		float time = this->GetTime();
-		if (time > g_Config.LightsOff && time < g_Config.LightsOn)
+		if (time >= g_Config.LightsOff && time <= g_Config.LightsOn)
 		{
 			return time - g_Config.LightsOff;
 		}

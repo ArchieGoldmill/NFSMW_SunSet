@@ -6,7 +6,6 @@
 #include "emissive.fx"
 #include "hdr.fx"
 
-float4 cvWindowColor;
 float cfWindowEnabled;
 
 texture WindowReflection : WINDOWREFLECTION;
@@ -91,29 +90,20 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 diffuse = GetDiffuse(ndotl);
 	float3 specular = GetSpecular(normal, lightDir, nview, 10);
 	
-	float3 windowGlowColor;
-	float windowGlowMask;
-	if (cvEmissive.a > 0)
+	float windowGlowMask = 0;
+	if (cfWindowEnabled > 0)
 	{
-		windowGlowMask = tex2D(EMISSIVE_SAMPLER, IN.uv).r;
-		windowGlowColor = cvEmissive.rgb;
-	}
-	else
-	{
-		windowGlowMask = reflect_scale;
-		windowGlowColor = cvWindowColor.rgb;
+		windowGlowMask = cvEmissive.a > 0 ? tex2D(EMISSIVE_SAMPLER, IN.uv).r : reflect_scale;
 	}
 	
-	windowGlowMask *= cfWindowEnabled;
-	
-	float3 finalLight = lerp(IN.color.rgb + diffuse * shadow, windowGlowColor, windowGlowMask) + light.Diffuse;
+	float3 finalLight = lerp(IN.color.rgb + diffuse * shadow, cvEmissive.rgb, windowGlowMask) + light.Diffuse;
 	
 	albedo = lerp(albedo, albedo.rrr, windowGlowMask);
 	
 	float3 reflection = GetWindowReflection(nview, normal, IN.uv, diffuse_tex.a);
 	
 	float3 final = albedo;
-	final.rgb += reflection * (1 - cfWindowEnabled);
+	final.rgb += reflection * (1 - windowGlowMask);
 	final.rgb *= finalLight;
 	final.rgb += specular * shadow * reflect_scale;
 	final.rgb += light.Specular * reflect_scale;
@@ -125,7 +115,6 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	return float4(final, 1);
 }
 
-#include "prelit.fx"
 #include "prepass.fx"
 #include "techniques.fx"
 #include "shadowmap.fx"

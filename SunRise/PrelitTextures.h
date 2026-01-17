@@ -59,10 +59,13 @@ struct PrelitTexture
 
 		if (this->Prelit)
 		{
+			// For prelit textures embed brightness into color
+			color *= this->Brightness;
 			color.w = this->UseVertexColor ? 1.0 : 0.0;
 		}
 		else
 		{
+			// For emissive textures pass brightness to shader since base color might be used
 			color.w = this->Brightness;
 		}
 

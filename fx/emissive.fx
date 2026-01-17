@@ -19,10 +19,10 @@ float3 GetEmissive(float2 uv, float3 color)
 		float3 emissiveColor = cvEmissive.rgb;
 		if (all(emissiveColor == 0.0))
 		{
-			emissiveColor = color * cvEmissive.a;
+			emissiveColor = color;
 		}
 		
-		return emissiveColor * mask;
+		return emissiveColor * mask * cvEmissive.a;
 	}
 	
 	return float3(0, 0, 0);

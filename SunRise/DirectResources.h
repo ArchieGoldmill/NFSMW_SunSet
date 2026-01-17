@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderTarget.h"
-#include "resource.h"
+#include "Config.h"
 
 IDirect3DSurface9* DepthRenderTarget = nullptr;
 IDirect3DTexture9* DepthTexture = nullptr;

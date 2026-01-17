@@ -6,16 +6,6 @@
 #include "Spotlight.h"
 #include "SolidLights.h"
 
-inline std::unordered_map<int, SolidLights> FrontEndLights;
-inline SpotLight CarHeadlighsConfig;
-inline SpotLight CarBrakeLightsOnConfig;
-inline SpotLight CarBrakeLightsOffConfig;
-inline SpotLight CarReverseConfig;
-inline SpotLight CopLightBlueConfig;
-inline SpotLight CopLightRedConfig;
-inline SpotLight ExhaustLightConfig;
-inline SpotLightModel HelicopterLightConfig;
-
 void ParseSpotLight(SpotLight& spotLight, const YAML::Node& spot)
 {
 	spotLight.Position = ParseVec3(spot["Position"]);

@@ -1,6 +1,5 @@
 #pragma once
-#include "eModel.h"
-#include "CustomMeshes.h"
+#include "Config.h"
 
 void LoadCustomMeshes()
 {

@@ -4,8 +4,8 @@
 #include <fstream>
 #include "Console.h"
 #include "ShaderLoader.h"
+#include "InitConfig.h"
 #include "Hooks.h"
-#include "Config.h"
 #include "UI.h"
 
 bool CheckFiles()

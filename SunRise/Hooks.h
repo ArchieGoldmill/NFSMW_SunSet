@@ -15,6 +15,7 @@
 #include "Reflection.h"
 #include "AmbientShadow.h"
 #include "UpdateMaterials.h"
+#include "CustomMeshes.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()

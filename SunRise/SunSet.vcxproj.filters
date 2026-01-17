@@ -296,7 +296,13 @@
       <Filter>Features\DynamicLights</Filter>
     </ClInclude>
     <ClInclude Include="DynamicLights.h">
-      <Filter>Features\DynamicLights</Filter>
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="InitConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomMeshContainer.h">
+      <Filter>Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -358,9 +364,6 @@
     <None Include="..\mod\SunSet\scripts\SunSetData\Meshes.yml">
       <Filter>Mod</Filter>
     </None>
-    <None Include="..\mod\SunSet\scripts\SunSetData\SpotLights.yml">
-      <Filter>Mod</Filter>
-    </None>
     <None Include="..\mod\SunSet\scripts\SunSetData\Textures.yml">
       <Filter>Mod</Filter>
     </None>
@@ -368,6 +371,9 @@
       <Filter>Mod</Filter>
     </None>
     <None Include="..\mod\SunSet\scripts\TexWizard.json">
+      <Filter>Mod</Filter>
+    </None>
+    <None Include="..\mod\SunSet\scripts\SunSetData\SpotLights.yml">
       <Filter>Mod</Filter>
     </None>
   </ItemGroup>

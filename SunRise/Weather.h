@@ -5,6 +5,7 @@
 #include "TimeOfDay.h"
 #include "Utilities.h"
 #include "Rain.h"
+#include "DirectResources.h"
 #include "HeavyRain.h"
 
 class Weather
@@ -185,10 +186,6 @@ private:
 
 		auto worldPrelit = eEffect::Get(shader_type::WorldPrelitShader);
 		this->SetFog(worldPrelit);
-
-		auto glossyWindow = eEffect::Get(shader_type::GlossyWindow);
-		auto windowGlowColor = this->GetWindowGlowColor();
-		glossyWindow->SetVector(ShaderParam::cvWindowColor, &windowGlowColor);
 
 		D3DXVECTOR4 camPos = D3DXVECTOR4(GetCameraPos(), 1);
 		for (int i = 0; i < (int)shader_type::_count; i++)

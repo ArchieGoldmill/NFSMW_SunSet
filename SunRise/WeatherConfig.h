@@ -2,57 +2,7 @@
 #include <vector>
 #include <d3dx9.h>
 #include <yaml-cpp/yaml.h>
-
-struct WeatherData
-{
-	D3DXVECTOR4 DiffuseColor;
-	D3DXVECTOR4 AmbientColor;
-	D3DXVECTOR4 SpecularColor;
-	float SpecularPower;
-
-	float DiffuseIntensity;
-	float AmbientIntensity;
-	float CarDiffuseIntensity;
-	float CarAmbientIntensity;
-
-	D3DXVECTOR4 SkyBeta;
-	float SkyRayleigh;
-	float SkyMie;
-	float SkyBrightness;
-
-	D3DXVECTOR4 CloudColor;
-	D3DXVECTOR4 MoonColor;
-	float MoonSize;
-
-	D3DXVECTOR4 WaterColor;
-	float WaterSpecularPower;
-
-	D3DXVECTOR4 FogColor;
-	D3DXVECTOR4 FogSunColor;
-	float FogStart;
-	float FogEnd;
-	float FogPower;
-	float FogExponent;
-
-	float CarLightsPower;
-	float TextureLightPower;
-
-	float BloomPower;
-	float BloomThreshold;
-
-	D3DXVECTOR4 GodRaysColor;
-
-	float RoadMaskIntensity;
-};
-
-struct WeatherConfig
-{
-	float Time;
-	WeatherData Main;
-	WeatherData Rain;
-};
-
-inline std::vector<WeatherConfig*> WeatherList;
+#include "Config.h"
 
 void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* cfg)
 {

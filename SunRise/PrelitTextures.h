@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include "Hashes.h"
-#include "Config.h"
+#include "Weather.h"
 
 struct PrelitTexture
 {
@@ -46,6 +46,27 @@ struct PrelitTexture
 		}
 
 		return this->MaskTexture;
+	}
+
+	D3DXVECTOR4 GetColor()
+	{
+		D3DXVECTOR4 color = D3DXVECTOR4(this->Color, 1);
+
+		if (!this->IgnoreWeather)
+		{
+			color *= g_Weather.GetTextureLightPower();
+		}
+
+		if (this->Prelit)
+		{
+			color.w = this->UseVertexColor ? 1.0 : 0.0;
+		}
+		else
+		{
+			color.w = this->Brightness;
+		}
+
+		return color;
 	}
 };
 

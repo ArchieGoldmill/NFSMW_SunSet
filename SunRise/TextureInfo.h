@@ -61,3 +61,30 @@ struct TextureInfo
 		return _Get(hash, defaultIfNotFound, includeUnloaded);
 	}
 };
+
+class TextureInfoSingleton
+{
+private:
+	TextureInfo* inst = nullptr;
+	bool tried = false;
+	Hash hash;
+
+public:
+	TextureInfoSingleton(Hash hash)
+	{
+		this->hash = hash;
+	}
+
+	TextureInfo* Get()
+	{
+		if (this->tried)
+		{
+			return this->inst;
+		}
+
+		this->inst = TextureInfo::Get(this->hash, false, true);
+		this->tried = true;
+		return this->inst;
+	}
+
+};

@@ -70,21 +70,17 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 	DoDepthPrePass(cullInfo);
 }
 
-TextureInfo* StarsTexture = NULL;
+TextureInfoSingleton StarsTexture(Hashes::SR_STARS);
 void SetSkyTexture(RenderModel* renderModel)
 {
 	if (renderModel->Effect->id == shader_type::skyshader)
 	{
-		if (!StarsTexture)
-		{
-			StarsTexture = TextureInfo::Get(Hashes::SR_STARS, false, false);
-		}
-
-		renderModel->DiffuseTextureInfo = StarsTexture;
+		renderModel->DiffuseTextureInfo = StarsTexture.Get();
 	}
 }
 
-TextureInfo* PlainNormalTexture = NULL;
+TextureInfoSingleton PlainNormalTexture(Hashes::SR_PLAIN_NORMAL);
+TextureInfoSingleton DamageNormalTexture(Hashes::DAMAGE0_N);
 void __stdcall SetShaderParams(RenderModel* renderModel)
 {
 	SetDynamicLights(renderModel);
@@ -98,12 +94,14 @@ void __stdcall SetShaderParams(RenderModel* renderModel)
 
 	if (!hasNormalMap)
 	{
-		if (!PlainNormalTexture)
+		if (renderModel->DiffuseTextureInfo->NameHash == Hashes::DAMAGE0)
 		{
-			PlainNormalTexture = TextureInfo::Get(Hashes::SR_PLAIN_NORMAL, false, false);
+			renderModel->NormalTextureInfo = DamageNormalTexture.Get();
 		}
-
-		renderModel->NormalTextureInfo = PlainNormalTexture;
+		else
+		{
+			renderModel->NormalTextureInfo = PlainNormalTexture.Get();
+		}
 	}
 
 	auto effect = renderModel->Effect;

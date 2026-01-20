@@ -19,6 +19,7 @@ Config:
   CustomMeshDist: 500         # Default max distance for custom meshes.
   MaxLights: -1               # Max number of lights on scene.
   FlareDistance: 700.0        # Max distance for light flares.
+  DisableSunFlare: true       # Disable vanilla sun flare post effect.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

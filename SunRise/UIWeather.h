@@ -191,6 +191,7 @@ namespace UI
 								ImGui::Text("");
 
 								ImGui::ColorEdit3("God rays color", (float*)&weather->GodRaysColor, ImGuiColorEditFlags_Float);
+								InputFloat("Sun flare", &weather->SunFlare);
 
 								ImGui::Text("");
 

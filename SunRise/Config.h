@@ -52,6 +52,7 @@ struct WeatherData
 	float BloomThreshold;
 
 	D3DXVECTOR4 GodRaysColor;
+	float SunFlare;
 
 	float RoadMaskIntensity;
 };
@@ -112,6 +113,7 @@ struct Config
 	bool MSAAx8;
 	bool Tonemapping;
 	bool RandomWindows;
+	bool DisableSunFlare;
 
 	float WetTime;
 	float DryTime;

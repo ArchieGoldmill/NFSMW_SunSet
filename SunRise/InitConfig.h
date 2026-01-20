@@ -32,6 +32,7 @@ void LoadConfig()
 	g_Config.DisableNightShadows = YmlGet(settings, "DisableNightShadows", true);
 	g_Config.MSAAx8 = YmlGet(settings, "MSAAx8", false);
 	g_Config.Tonemapping = YmlGet(settings, "Tonemapping", false);
+	g_Config.DisableSunFlare = YmlGet(settings, "DisableSunFlare", false);
 	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
 	g_Config.FlareDistance = YmlGet(settings, "FlareDistance", 200.0f);
 	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
@@ -110,6 +111,7 @@ void SaveConfig()
 	config["CustomMeshDist"] = g_Config.CustomMeshDist;
 	config["FlareDistance"] = g_Config.FlareDistance;
 	config["MaxLights"] = g_Config.MaxLights;
+	config["DisableSunFlare"] = g_Config.DisableSunFlare;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

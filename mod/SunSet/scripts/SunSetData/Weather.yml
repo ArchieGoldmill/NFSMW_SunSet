@@ -9,6 +9,7 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
+    SunFlare: 0
     CloudColor: [0.513840854, 0.592204392, 0.647058845, 0.0549999997]
     MoonColor: [0.436274529, 0.436274529, 0.436274529, 0.827000022]
     MoonSize: 0.0460000001
@@ -39,6 +40,7 @@ Weather:
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
+      SunFlare: 0
       CloudColor: [1, 1, 1, 0.050999999]
       MoonColor: [0, 0, 0, 0]
       MoonSize: 0
@@ -69,6 +71,7 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
+    SunFlare: 0
     CloudColor: [1, 1, 1, 0.0549999997]
     MoonColor: [0.485294104, 0.485294104, 0.485294104, 0.666999996]
     MoonSize: 0.0529999994
@@ -99,6 +102,7 @@ Weather:
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
+      SunFlare: 0
       CloudColor: [1, 1, 1, 0.050999999]
       MoonColor: [0, 0, 0, 0]
       MoonSize: 0
@@ -129,6 +133,7 @@ Weather:
     CarDiffuseIntensity: 1
     CarAmbientIntensity: 1
     GodRaysColor: [1, 0.951701283, 0.671568632, 0]
+    SunFlare: 1
     CloudColor: [1, 0.868512094, 0.627450943, 0.501999974]
     MoonColor: [1, 1, 1, 0.588]
     MoonSize: 0.0410000011
@@ -159,6 +164,7 @@ Weather:
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
+      SunFlare: 0
       CloudColor: [1, 1, 1, 0.286000013]
       MoonColor: [0, 0, 0, 0]
       MoonSize: 0
@@ -189,6 +195,7 @@ Weather:
     CarDiffuseIntensity: 0.599999666
     CarAmbientIntensity: 0.799999952
     GodRaysColor: [1, 1, 1, 0]
+    SunFlare: 1
     CloudColor: [1, 1, 1, 0.550000012]
     MoonColor: [0, 0, 0, 0]
     MoonSize: 0
@@ -219,6 +226,7 @@ Weather:
       CarDiffuseIntensity: 0.599999666
       CarAmbientIntensity: 0.799999952
       GodRaysColor: [0, 0, 0, 0]
+      SunFlare: 0
       CloudColor: [1, 1, 1, 0.397000015]
       MoonColor: [0, 0, 0, 0]
       MoonSize: 0
@@ -249,6 +257,7 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     GodRaysColor: [1, 0.930795848, 0.843137264, 0]
+    SunFlare: 1
     CloudColor: [1, 0.614763379, 0.181372523, 0.368999988]
     MoonColor: [0, 0, 0, 0]
     MoonSize: 0
@@ -279,6 +288,7 @@ Weather:
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
+      SunFlare: 0
       CloudColor: [1, 0.737024188, 0.441176474, 0.349999994]
       MoonColor: [0, 0, 0, 0]
       MoonSize: 0
@@ -309,6 +319,7 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
+    SunFlare: 0
     CloudColor: [0.622549057, 0.744665504, 1, 0.0590000004]
     MoonColor: [0.558823526, 0.558823526, 0.558823526, 0.783999979]
     MoonSize: 0.0469999984
@@ -339,6 +350,7 @@ Weather:
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
+      SunFlare: 0
       CloudColor: [1, 1, 1, 0.050999999]
       MoonColor: [0, 0, 0, 0]
       MoonSize: 0

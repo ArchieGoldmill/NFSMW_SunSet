@@ -6,6 +6,14 @@ namespace UI
 	{
 		char FilterBuffer[128] = { 0 };
 
+		void GameRestart()
+		{
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("Requires game restart");
+			}
+		}
+
 		void Draw()
 		{
 			if (ImGui::BeginChild("##ConfigScroller", ImGui::GetContentRegionAvail(), false, 0))
@@ -29,12 +37,7 @@ namespace UI
 				ImGui::Checkbox("Brake glow", &g_Config.BrakeGlow);
 				ImGui::Checkbox("God rays", &g_Config.GodRays);
 				ImGui::Checkbox("Bloom", &g_Config.Bloom);
-				ImGui::Checkbox("Real Front End reflections", &g_Config.RealFeReflections);
-				if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
-				{
-					ImGui::SetTooltip("Requires game restart");
-				}
-
+				ImGui::Checkbox("Real Front End reflections", &g_Config.RealFeReflections); GameRestart();
 				ImGui::Checkbox("World vertex color", &g_Config.WorldVertexColor);
 				ImGui::Checkbox("Car vertex color", &g_Config.CarVertexColor);
 				ImGui::Checkbox("Tunnel wetness fix", &g_Config.TunnelWetnessFix);
@@ -44,10 +47,10 @@ namespace UI
 				{
 					Game::ReloadDevice = true;
 				}
-
+				ImGui::Checkbox("Disable sun flare", &g_Config.DisableSunFlare); GameRestart();
 				ImGui::InputFloat("Custom mesh dist", &g_Config.CustomMeshDist, 0.1, 0.2);
 				ImGui::InputInt("Max lights", &g_Config.MaxLights, 1, 3);
-				ImGui::InputFloat("Flare distance", &g_Config.FlareDistance, 1.0f, 5.0f);
+				ImGui::InputFloat("Flare distance", &g_Config.FlareDistance, 1.0f, 5.0f); GameRestart();
 
 				ImGui::Text("");
 				ImGui::Text("Time");

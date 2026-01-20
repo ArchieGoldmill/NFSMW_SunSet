@@ -145,6 +145,11 @@ public:
 		this->day++;
 	}
 
+	float* GetSunFlare()
+	{
+		return &this->current.SunFlare;
+	}
+
 private:
 
 	void SetFog(eEffect* e)
@@ -242,6 +247,7 @@ private:
 		this->current.RoadMaskIntensity = std::lerp(a->RoadMaskIntensity, b->RoadMaskIntensity, t);
 
 		this->current.GodRaysColor = LerpVector(a->GodRaysColor, b->GodRaysColor, t);
+		this->current.SunFlare = std::lerp(a->SunFlare, b->SunFlare, t);
 	}
 
 	void UpdateWeather()
@@ -397,6 +403,7 @@ private:
 		D3DXVec4Normalize(&sunDirection, &sunDirection);
 
 		TimeOfDay::Instance->SunDirection = sunDirection;
+		TimeOfDay::Instance->SunPosition = sunDirection * 120000;
 
 		D3DXVECTOR4 skyParams;
 		skyParams.x = this->current.SkyRayleigh;

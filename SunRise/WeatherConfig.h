@@ -36,6 +36,7 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->MoonSize = YmlGet<float>(node, "MoonSize", cfg->MoonSize);
 
 	config->GodRaysColor = ParseVec3To4(node["GodRaysColor"], cfg->GodRaysColor);
+	config->SunFlare = YmlGet<float>(node, "SunFlare", 0.0f);
 
 	config->WaterColor = ParseVec3To4(node["WaterColor"], cfg->WaterColor);
 	config->WaterSpecularPower = YmlGet<float>(node, "WaterSpecularPower", cfg->WaterSpecularPower);
@@ -86,6 +87,7 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["CarAmbientIntensity"] = data->CarAmbientIntensity;
 
 	node["GodRaysColor"] = SerializeVector4(data->GodRaysColor);
+	node["SunFlare"] = data->SunFlare;
 
 	node["CloudColor"] = SerializeVector4(data->CloudColor);
 	node["MoonColor"] = SerializeVector4(data->MoonColor);

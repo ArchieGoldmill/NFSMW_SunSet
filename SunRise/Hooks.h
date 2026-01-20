@@ -284,10 +284,17 @@ void InitHooks()
 	// Disable sun direction
 	injector::MakeNOP(0x0076956E, 5);
 
-	// Disable sun flare
-	injector::MakeNOP(0x00504C56, 5);
-	injector::MakeNOP(0x006DF57B, 5);
-	injector::MakeNOP(0x006DF585, 5);
+	if (g_Config.DisableSunFlare)
+	{
+		injector::MakeNOP(0x00504C56, 5);
+		injector::MakeNOP(0x006DF57B, 5);
+		injector::MakeNOP(0x006DF585, 5);
+	}
+	else
+	{
+		injector::MakeNOP(0x006C0167, 4);
+		injector::WriteMemory<float*>(0x006C0162, g_Weather.GetSunFlare());
+	}
 
 	// Disable tunnel bloom
 	injector::MakeNOP(0x00504C65, 5);

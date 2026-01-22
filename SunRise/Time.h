@@ -2,6 +2,22 @@
 #include "Config.h"
 #include "TimeOfDay.h"
 
+float TimeBackup = -1;
+
+void UpdateTime(float& time)
+{
+	if (!Game::IsPaused())
+	{
+		time += Game::DeltaTime * 0.016666668 * TimeOfDay::Instance->UpdateRate * 0.050000001;
+
+		if (time > 1)
+		{
+			time = 0;
+			g_Weather.IncDay();
+		}
+	}
+}
+
 void ForceTime()
 {
 	if (g_Config.ForceTime >= 0.0f)
@@ -30,22 +46,27 @@ void ForceTime()
 			auto time = FrontEndLights[garageType].Time;
 			if (time >= 0 && time <= 1)
 			{
+				if (TimeBackup < 0)
+				{
+					TimeBackup = TimeOfDay::Instance->CurrentTime;
+				}
+
+				UpdateTime(TimeBackup);
+
 				TimeOfDay::Instance->CurrentTime = time;
+
 				return;
 			}
 		}
 	}
 
-	if (!Game::IsPaused())
+	if (TimeBackup > -1)
 	{
-		TimeOfDay::Instance->CurrentTime += Game::DeltaTime * 0.016666668 * TimeOfDay::Instance->UpdateRate * 0.050000001;
-	
-		if (TimeOfDay::Instance->CurrentTime > 1)
-		{
-			TimeOfDay::Instance->CurrentTime = 0;
-			g_Weather.IncDay();
-		}
+		TimeOfDay::Instance->CurrentTime = TimeBackup;
+		TimeBackup = -1;
 	}
+
+	UpdateTime(TimeOfDay::Instance->CurrentTime);
 }
 
 TimeOfDay* __fastcall CreateTimeOfDay(TimeOfDay* tod)

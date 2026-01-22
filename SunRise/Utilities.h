@@ -276,6 +276,9 @@ public:
 	inline void clear() noexcept
 	{
 		memset(entries, 0, sizeof(entries));
+
+		this->lastKey = 0;
+		this->lastValue = nullptr;
 	}
 
 	inline Value* insert(Key key, const Value& value) noexcept

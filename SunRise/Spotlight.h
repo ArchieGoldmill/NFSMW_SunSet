@@ -85,6 +85,11 @@ struct SolidLights
 	bool UseFirstLight = false;
 };
 
+struct FESolidLights : SolidLights
+{
+	float Time;
+};
+
 inline bool ConeSphereIntersect(SpotLight* worldLight, const D3DXVECTOR3& sphereCenter, float sphereRadius)
 {
 	D3DXVECTOR3 v;

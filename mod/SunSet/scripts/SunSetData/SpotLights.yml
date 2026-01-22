@@ -74,6 +74,7 @@ HelicopterLight:
 FrontEndLights:
   - Type: 1
     Flare: LampPost
+    Time: -1
     SpotLights:
       - Position: [-1.10000002, 8.39999962, 4.0999999]
         Direction: [0, 0, -1]
@@ -133,6 +134,7 @@ FrontEndLights:
         Specular: 1
   - Type: 2
     Flare: ""
+    Time: -1
     SpotLights:
       - Position: [-8.30000019, 7.0999999, 4.0999999]
         Direction: [0, 0, -1]
@@ -152,6 +154,7 @@ FrontEndLights:
         Specular: 1
   - Type: 3
     Flare: LampPost
+    Time: -1
     SpotLights:
       - Position: [-7.5999999, 5.0999999, 3.5]
         Direction: [0, 0, -1]
@@ -187,6 +190,7 @@ FrontEndLights:
         Specular: 1
   - Type: 5
     Flare: ""
+    Time: -1
     SpotLights:
       - Position: [3.5, 1.70000005, 5.5]
         Direction: [0, 0, -1]

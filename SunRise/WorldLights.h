@@ -148,22 +148,9 @@ void __fastcall DrawScenery(SceneryPack* pack, int, SceneryCullInfo* cull_info)
 
 void PopulateFrontEndSpotlights()
 {
-	if (Game::State == 3)
+	if (Game::State == 3 && g_Weather.WorldLightsOn())
 	{
-		if (!g_Weather.WorldLightsOn())
-		{
-			return;
-		}
-
-		auto manager = (int*)GarageMainScreen::GetInstance();
-		if (!manager || manager[27])
-		{
-			return;
-		}
-
-		auto garageTypePtr = (int**)(0x0091CAE0);
-		auto garageType = (*garageTypePtr)[6];
-
+		auto garageType = GarageMainScreen::GetType();
 		if (FrontEndLights.contains(garageType))
 		{
 			auto& lights = FrontEndLights[garageType].Lights;

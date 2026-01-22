@@ -22,15 +22,29 @@ void ForceTime()
 		return;
 	}
 
+	if (Game::State == 3)
+	{
+		auto garageType = GarageMainScreen::GetType();
+		if (FrontEndLights.contains(garageType))
+		{
+			auto time = FrontEndLights[garageType].Time;
+			if (time >= 0 && time <= 1)
+			{
+				TimeOfDay::Instance->CurrentTime = time;
+				return;
+			}
+		}
+	}
+
 	if (!Game::IsPaused())
 	{
 		TimeOfDay::Instance->CurrentTime += Game::DeltaTime * 0.016666668 * TimeOfDay::Instance->UpdateRate * 0.050000001;
-	}
-
-	if (TimeOfDay::Instance->CurrentTime > 1)
-	{
-		TimeOfDay::Instance->CurrentTime = 0;
-		g_Weather.IncDay();
+	
+		if (TimeOfDay::Instance->CurrentTime > 1)
+		{
+			TimeOfDay::Instance->CurrentTime = 0;
+			g_Weather.IncDay();
+		}
 	}
 }
 

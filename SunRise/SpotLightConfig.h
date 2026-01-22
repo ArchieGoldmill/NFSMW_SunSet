@@ -91,10 +91,11 @@ void LoadSpotLightConfig()
 	for (const auto& felightNode : frontEndLights)
 	{
 		int type = felightNode["Type"].as<int>();
-		const auto& spotLights = felightNode["SpotLights"];
 
 		FrontEndLights[type].Flare = GetFlareModel(felightNode);
+		FrontEndLights[type].Time = YmlGet(felightNode, "Time", -1.0f);
 
+		const auto& spotLights = felightNode["SpotLights"];
 		for (const auto& spot : spotLights)
 		{
 			SpotLight spotLight;
@@ -156,6 +157,7 @@ void SaveSpotLightConfig()
 		YAML::Node node;
 		node["Type"] = felight.first;
 		node["Flare"] = felight.second.Flare ? felight.second.Flare->Name : "";
+		node["Time"] = felight.second.Time;
 		node["SpotLights"] = spotlights;
 
 		felist.push_back(node);

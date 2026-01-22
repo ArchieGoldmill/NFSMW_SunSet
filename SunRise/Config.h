@@ -3,7 +3,7 @@
 #include "SolidLights.h"
 #include "CustomMeshContainer.h"
 
-inline std::unordered_map<int, SolidLights> FrontEndLights;
+inline std::unordered_map<int, FESolidLights> FrontEndLights;
 inline SpotLight CarHeadlighsConfig;
 inline SpotLight CarBrakeLightsOnConfig;
 inline SpotLight CarBrakeLightsOffConfig;

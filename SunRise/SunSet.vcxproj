@@ -227,6 +227,12 @@ copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunRise\mod\SunSet\scripts\
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RideInfo.h" />
+    <ClInclude Include="ShaderLoader.h" />
+    <ClInclude Include="SmackableRenderConn.h" />
+    <ClInclude Include="SolidLights.h" />
+    <ClInclude Include="Spotlight.h" />
+    <ClInclude Include="SpotLightConfig.h" />
     <ClInclude Include="TextureConfig.h" />
     <ClInclude Include="TextureInfo.h" />
     <ClInclude Include="Time.h" />

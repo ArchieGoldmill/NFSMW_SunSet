@@ -304,6 +304,24 @@
     <ClInclude Include="CustomMeshContainer.h">
       <Filter>Features</Filter>
     </ClInclude>
+    <ClInclude Include="SpotLightConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidLights.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Spotlight.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="RideInfo.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderLoader.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="SmackableRenderConn.h">
+      <Filter>Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

@@ -295,9 +295,6 @@
     <ClInclude Include="PrelitTextures.h">
       <Filter>Features\DynamicLights</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicLights.h">
-      <Filter>Config</Filter>
-    </ClInclude>
     <ClInclude Include="InitConfig.h">
       <Filter>Config</Filter>
     </ClInclude>
@@ -321,6 +318,9 @@
     </ClInclude>
     <ClInclude Include="SmackableRenderConn.h">
       <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicLights.h">
+      <Filter>Features\DynamicLights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

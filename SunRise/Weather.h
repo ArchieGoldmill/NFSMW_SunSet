@@ -21,7 +21,8 @@ private:
 	TextureInfo* RainSplash[30];
 	TextureInfo* SkyNoise[2] = { NULL, NULL };
 	TextureInfo* Lightning[2] = { NULL, NULL };
-	TextureInfo* Moon = NULL;
+	TextureInfo* MoonTex = NULL;
+	TextureInfo* SunTex = NULL;
 
 	D3DXVECTOR4 fogValue;
 
@@ -323,7 +324,8 @@ private:
 			this->SkyNoise[1] = TextureInfo::Get(Hashes::SKYNOISETEX1, false, false);
 			this->Lightning[0] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE0, false, false);
 			this->Lightning[1] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE1, false, false);
-			this->Moon = TextureInfo::Get(Hashes::SR_MOON, false, false);
+			this->MoonTex = TextureInfo::Get(Hashes::SR_MOON, false, false);
+			this->SunTex = TextureInfo::Get(Hashes::SR_SUN, false, false);
 
 			char buff[256];
 			for (int i = 0; i < 30; i++)
@@ -432,7 +434,15 @@ private:
 
 		e->SetTexture(ShaderParam::MISCMAP3_TEXTURE, this->Lightning[g_Rain.GetLightningTex()]);
 
-		e->SetTexture(ShaderParam::MISCMAP4_TEXTURE, this->Moon);
+		if (this->IsDay())
+		{
+			e->SetTexture(ShaderParam::MISCMAP4_TEXTURE, this->SunTex);
+		}
+		else
+		{
+			e->SetTexture(ShaderParam::MISCMAP4_TEXTURE, this->MoonTex);
+		}
+
 		e->SetVector(ShaderParam::cvMoonColor, &this->current.MoonColor);
 		e->SetFloat(ShaderParam::cfMoonSize, this->current.MoonSize);
 	}

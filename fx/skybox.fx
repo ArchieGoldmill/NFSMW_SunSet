@@ -71,12 +71,13 @@ texture MISCMAP4_TEXTURE;
 sampler2D MISCMAP4_SAMPLER = sampler_state
 {
 	texture = MISCMAP4_TEXTURE;
-	AddressU = WRAP;
-	AddressV = WRAP;
+	AddressU = BORDER;
+	AddressV = BORDER;
 	MIPFILTER = LINEAR;
 	MINFILTER = ANISOTROPIC;
 	MAGFILTER = ANISOTROPIC;
 	MaxAnisotropy = 8;
+	BorderColor = float4(0.0f, 0.0f, 0.0f, 0.0f);
 };
 
 void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
@@ -268,7 +269,7 @@ float2 GetMoonUV(float sunSize, float3 D, float3 Ds)
 
 float4 GetMoon(float3 skyDir, float3 moonDir)
 {
-	if (cvSkyParams.w > 0 || cvMoonColor.a == 0)
+	if (cvMoonColor.a == 0)
 	{
 		return float4(0, 0, 0, 0);
 	}
@@ -293,7 +294,7 @@ float4 GetMoon(float3 skyDir, float3 moonDir)
 	float4 moonTex = tex2D(MISCMAP4_SAMPLER, moonUV);
 	moonTex *= cvMoonColor;
 	
-	float cosInner = cos(cfMoonSize);
+	float cosInner = cos(cfMoonSize * 3);
 	moonTex.a *= step(cosInner, cosAngle);
 	
 	return moonTex;

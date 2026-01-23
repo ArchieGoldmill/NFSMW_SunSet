@@ -73,8 +73,8 @@ Weather:
     GodRaysColor: [0, 0, 0, 0]
     SunFlare: 0
     CloudColor: [1, 1, 1, 0.0549999997]
-    MoonColor: [0.485294104, 0.485294104, 0.485294104, 0.666999996]
-    MoonSize: 0.0529999994
+    MoonColor: [0.485294104, 0.485294104, 0.485294104, 0.689999998]
+    MoonSize: 0.0599999987
     WaterColor: [1, 1, 1]
     WaterSpecularPower: 10
     CarLightsPower: 1
@@ -135,8 +135,8 @@ Weather:
     GodRaysColor: [1, 0.951701283, 0.671568632, 0]
     SunFlare: 1
     CloudColor: [1, 0.868512094, 0.627450943, 0.501999974]
-    MoonColor: [1, 1, 1, 0.588]
-    MoonSize: 0.0410000011
+    MoonColor: [1, 1, 1, 0.0860000029]
+    MoonSize: 1.49011612e-08
     WaterColor: [0.759803891, 0.759803891, 0.759803891]
     WaterSpecularPower: 300
     CarLightsPower: 0.499999911
@@ -197,8 +197,8 @@ Weather:
     GodRaysColor: [1, 1, 1, 0]
     SunFlare: 1
     CloudColor: [1, 1, 1, 0.550000012]
-    MoonColor: [0, 0, 0, 0]
-    MoonSize: 0
+    MoonColor: [1, 0.901384056, 0.627450943, 0.5]
+    MoonSize: 0.25
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
     WaterSpecularPower: 10
     CarLightsPower: 0.0500000007
@@ -259,7 +259,7 @@ Weather:
     GodRaysColor: [1, 0.930795848, 0.843137264, 0]
     SunFlare: 1
     CloudColor: [1, 0.614763379, 0.181372523, 0.368999988]
-    MoonColor: [0, 0, 0, 0]
+    MoonColor: [1, 1, 1, 0.815999985]
     MoonSize: 0
     WaterColor: [0.759803891, 0.759803891, 0.759803891]
     WaterSpecularPower: 150

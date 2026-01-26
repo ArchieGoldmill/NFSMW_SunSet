@@ -86,5 +86,4 @@ public:
 		this->tried = true;
 		return this->inst;
 	}
-
 };

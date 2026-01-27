@@ -7,6 +7,8 @@
 
 struct RenderModel
 {
+	static inline auto List = (RenderModel*)0x0093E878;
+
 	MeshEntry* pMeshEntry;
 	int unk;
 	eSolid* pSolid;
@@ -21,7 +23,18 @@ struct RenderModel
 	TextureInfo* HeightTextureInfo;
 	TextureInfo* SpecularTextureInfo;
 	TextureInfo* OpacityTextureInfo;
-	int unk2;
+	unsigned int SortOrder;
 	int UseLowLod;
 	int unk3;
+};
+
+struct RenderingOrder
+{
+	unsigned int model_index;
+	int sort_flags;
+
+	inline bool operator <(const RenderingOrder& other) const
+	{
+		return *reinterpret_cast<const std::uint64_t*>(this) < *reinterpret_cast<const std::uint64_t*>(&other);
+	}
 };

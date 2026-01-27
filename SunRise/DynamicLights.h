@@ -15,7 +15,45 @@ D3DXVECTOR4 SP_Direction_OuterCos[NUM_SPOTLIGHTS];
 D3DXVECTOR4 SP_Color_InnerCos[NUM_SPOTLIGHTS];
 float SP_Specular[NUM_SPOTLIGHTS];
 
-int NumSpotLights;
+struct RenderLight
+{
+	SpotLightModel* Lights[32];
+	int num = -1;
+
+	RenderLight()
+	{
+		this->num = -1;
+		memset(this->Lights, 0, sizeof(Lights));
+	}
+
+	int GetNumSpotLights()
+	{
+		if (num == 0)
+		{
+			return 0;
+		}
+		else if (num <= 4)
+		{
+			return 4;
+		}
+		else if (num <= 8)
+		{
+			return 8;
+		}
+		else if (num <= 16)
+		{
+			return 16;
+		}
+		else if (num <= 24)
+		{
+			return 24;
+		}
+
+		return NUM_SPOTLIGHTS;
+	}
+};
+
+RenderLight* RenderLights;
 
 void PopulateSpotLights()
 {
@@ -44,9 +82,14 @@ inline bool DynamicallyLit(RenderModel* model)
 	return DynamicallyLit(model->Effect);
 }
 
-inline void PopulateShaderSpotlights(RenderModel* model)
+inline void PopulateShaderSpotlights(RenderModel* model, RenderLight* renderLight)
 {
-	NumSpotLights = 0;
+	if (renderLight->num > -1)
+	{
+		return;
+	}
+
+	renderLight->num = 0;
 
 	if (!model->pSolid)
 	{
@@ -89,59 +132,30 @@ inline void PopulateShaderSpotlights(RenderModel* model)
 		lightmodel->Added = false;
 
 		auto& s = lightmodel->Light;
-		if (NumSpotLights < NUM_SPOTLIGHTS)
+		if (renderLight->num < NUM_SPOTLIGHTS)
 		{
 			if (ConeSphereIntersect(&s, meshCenter, radius))
 			{
-				SP_Position_Range[NumSpotLights] = D3DXVECTOR4(s.Position, s.Range);
-				SP_Direction_OuterCos[NumSpotLights] = D3DXVECTOR4(s.Direction, cosf(D3DXToRadian(s.OuterAngle)));
-				SP_Color_InnerCos[NumSpotLights] = D3DXVECTOR4(s.Color * s.Intensity, cosf(D3DXToRadian(s.InnerAngle)));
-				SP_Specular[NumSpotLights] = s.Specular;
-
-				NumSpotLights++;
+				renderLight->Lights[renderLight->num++] = lightmodel;
 			}
 		}
 	}
-
-	for (int i = NumSpotLights; i < NUM_SPOTLIGHTS; i++)
-	{
-		SP_Position_Range[i].w = 0;
-	}
 }
 
-int GetNumSpotLights()
+RenderLight* GetRenderLight(RenderModel* renderModel)
 {
-	if (NumSpotLights == 0)
-	{
-		return 0;
-	}
-	else if (NumSpotLights <= 4)
-	{
-		return 4;
-	}
-	else if (NumSpotLights <= 8)
-	{
-		return 8;
-	}
-	else if (NumSpotLights <= 16)
-	{
-		return 16;
-	}
-	else if (NumSpotLights <= 24)
-	{
-		return 24;
-	}
-
-	return NUM_SPOTLIGHTS;
+	int index = renderModel - RenderModel::List;
+	return RenderLights + index;
 }
 
 inline void SetDynamicLights(RenderModel* model)
 {
-	if (DynamicallyLit(model) && NumSpotLights > 0)
+	auto rl = GetRenderLight(model);
+	if (DynamicallyLit(model) && rl->num > 0)
 	{
 		auto effect = model->Effect;
 
-		int num = GetNumSpotLights();
+		int num = rl->GetNumSpotLights();
 		effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, num);
 		effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, num);
 		effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, num);
@@ -277,25 +291,41 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 	{
 		if (RenderTarget::Current->ViewId == ViewId::Player1)
 		{
-			PopulateShaderSpotlights(renderModel);
+			auto rl = GetRenderLight(renderModel);
+			int numSpotLights = rl->num;
 
-			if (NumSpotLights == 0)
+			for (int i = 0; i < numSpotLights; i++)
+			{
+				auto s = rl->Lights[i]->Light;
+
+				SP_Position_Range[i] = D3DXVECTOR4(s.Position, s.Range);
+				SP_Direction_OuterCos[i] = D3DXVECTOR4(s.Direction, cosf(D3DXToRadian(s.OuterAngle)));
+				SP_Color_InnerCos[i] = D3DXVECTOR4(s.Color * s.Intensity, cosf(D3DXToRadian(s.InnerAngle)));
+				SP_Specular[i] = s.Specular;
+			}
+
+			for (int i = numSpotLights; i < NUM_SPOTLIGHTS; i++)
+			{
+				SP_Position_Range[i].w = 0;
+			}
+
+			if (numSpotLights == 0)
 			{
 				technique = Technique_Unlit;
 			}
-			else if (NumSpotLights <= 4)
+			else if (numSpotLights <= 4)
 			{
 				technique = Technique_LitPixel_4;
 			}
-			else if (NumSpotLights <= 8)
+			else if (numSpotLights <= 8)
 			{
 				technique = Technique_LitPixel_8;
 			}
-			else if (NumSpotLights <= 16)
+			else if (numSpotLights <= 16)
 			{
 				technique = Technique_LitPixel_16;
 			}
-			else if (NumSpotLights <= 24)
+			else if (numSpotLights <= 24)
 			{
 				technique = Technique_LitPixel_24;
 			}

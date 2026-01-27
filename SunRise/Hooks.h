@@ -17,6 +17,8 @@
 #include "UpdateMaterials.h"
 #include "CustomMeshes.h"
 
+int tech = 0;
+
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
 {
@@ -50,6 +52,7 @@ void CheckReloadShaders()
 void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 {
 	NumSpotLightBuffer = 0;
+	tech = 0;
 
 	cullInfo->SetuWorldCulling();
 
@@ -165,6 +168,8 @@ void __stdcall SetCurrentPass(RenderModel* renderModel, eEffect* LastEffect)
 			effect->D3DEffect->SetTechnique(effect->main_technique_handle);
 		}
 
+		tech++;
+
 		eEffect::Current = effect;
 
 		LastTechnique = techName;
@@ -253,6 +258,57 @@ void SetDeviceParams()
 	}
 }
 
+inline unsigned int GetModelSort(RenderLight* rl, RenderModel* model)
+{
+	if (model->SortOrder > 0x80000000)
+	{
+		return model->SortOrder;
+	}
+
+	return rl->GetNumSpotLights() + (int)model->Effect->id * 100;
+}
+
+void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int count)
+{
+	if (DepthPrePass || RenderTarget::Current->ViewId == ViewId::ShadowMap)
+	{
+		std::sort(first, last, [](RenderingOrder& a, RenderingOrder& b)
+			{
+				auto model1 = RenderModel::List + a.model_index;
+				auto model2 = RenderModel::List + b.model_index;
+				return model1->Effect->id < model2->Effect->id;
+			});
+	}
+	else
+	{
+		if (RenderTarget::Current->ViewId == ViewId::Player1)
+		{
+			for (int i = 0; i < 4096; i++)
+			{
+				RenderLights[i].num = -1;
+			}
+
+			std::sort(first, last, [](RenderingOrder& a, RenderingOrder& b)
+				{
+					auto model1 = RenderModel::List + a.model_index;
+					auto model2 = RenderModel::List + b.model_index;
+
+					auto rm1 = RenderLights + a.model_index;
+					auto rm2 = RenderLights + b.model_index;
+
+					PopulateShaderSpotlights(model1, rm1);
+					PopulateShaderSpotlights(model2, rm2);
+
+					return GetModelSort(rm1, model1) < GetModelSort(rm2, model2);
+				});
+		}
+		else
+		{
+			std::sort(first, last);
+		}
+	}
+}
+
 void InitHooks()
 {
 	InitDirectResources();
@@ -318,6 +374,11 @@ void InitHooks()
 	// MSAA x8
 	injector::MakeNOP(0x006BFBB0, 6);
 	injector::MakeCALL(0x006BFBB0, SetDeviceParams);
+
+	// Model sorting
+	injector::MakeCALL(0x006E2F73, SortRenderModels);
+
+	RenderLights = new RenderLight[4096];
 
 #ifdef _DEBUG
 	injector::MakeNOP(0x006C2206, 10);

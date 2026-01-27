@@ -177,7 +177,6 @@ copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunRise\mod\SunSet\scripts\
     <ClInclude Include="DirectResources.h" />
     <ClInclude Include="DynamicLights.h" />
     <ClInclude Include="eEffect.h" />
-    <ClInclude Include="eLightFlareParams.h" />
     <ClInclude Include="eLightMaterial.h" />
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />

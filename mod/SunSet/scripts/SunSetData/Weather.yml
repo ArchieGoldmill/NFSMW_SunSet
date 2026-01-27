@@ -186,11 +186,11 @@ Weather:
       FogPower: 0.49999997
       FogExponent: 0.800000012
   - Time: 0.5
-    DiffuseColor: [1, 0.820934236, 0.661764741]
+    DiffuseColor: [0.995098054, 0.827239692, 0.678032458]
     AmbientColor: [0.62305361, 0.782865703, 0.985294104]
     SpecularColor: [1, 0.964677036, 0.759803891]
     SpecularPower: 40
-    DiffuseIntensity: 2.49999952
+    DiffuseIntensity: 1.99999988
     AmbientIntensity: 1
     CarDiffuseIntensity: 0.599999666
     CarAmbientIntensity: 0.799999952

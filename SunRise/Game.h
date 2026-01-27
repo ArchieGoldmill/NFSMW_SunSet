@@ -36,7 +36,6 @@ namespace Game
 	inline auto& FSAALevel = *(int*)0x00901808;
 	inline auto& FlareDistanceStart = *(float*)0x00899C60;
 	inline auto& FlareDistanceEnd = *(float*)0x00899C64;
-	inline auto& LampPostParams = *(LightFlareParams*)0x008F26A8;
 
 	inline auto& FilterSurface0 = *(IDirect3DSurface9**)0x0093DE60;
 	inline auto& FilterTexture0 = *(IDirect3DTexture9**)0x0093DEF8;

@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include "Utilities.h"
-#include "eLightFlareParams.h"
 #include "TextureInfo.h"
 #include "HashField.h"
 

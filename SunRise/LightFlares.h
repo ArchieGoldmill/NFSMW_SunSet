@@ -1,17 +1,26 @@
 #pragma once
 #include "DynamicLights.h"
 #include "Game.h"
-#include "eLightFlareParams.h"
 
 FlareModel* CurrentFlare = NULL;
 FlareModel RainFlare;
+
+float CarHeadlightsBackup = -1;
+
 void __stdcall RenderWorldLightFlares(int destinationType)
 {
 	auto viewId = RenderTarget::Current->ViewId;
 	bool isRoadReflection = viewId == ViewId::Reflection;
 	auto view = eView::Get(viewId);
 
-	Game::LampPostParams.MaxScale = 0.04f;
+	LightFlareParams::LampPost.MaxScale = 0.04f;
+
+	if (CarHeadlightsBackup < 0)
+	{
+		CarHeadlightsBackup = LightFlareParams::CarHeadlights.Color.w;
+	}
+
+	LightFlareParams::CarHeadlights.Color.w = CarHeadlightsBackup * max(g_Weather.GetCarLightsPower(), 0.3);
 
 	for (int i = 0; i < NumSpotLightBuffer; i++)
 	{
@@ -111,7 +120,7 @@ void __declspec(naked) GetFlareTextureHook()
 
 void __cdecl RenderLightFlareFromPool(eView* view, LightFlare* flare, D3DXMATRIX* local_world, float intensity_scale, int reflexionAction, int destinationType, float reflectionOverride, D3DCOLOR colourOverRide, float sizescale)
 {
-	if(flare->Type == eLightFlareType::traffic_light && !g_Weather.IsDay())
+	if (flare->Type == eLightFlareType::traffic_light && !g_Weather.IsDay())
 	{
 		return;
 	}

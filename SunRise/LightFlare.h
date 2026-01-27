@@ -46,6 +46,9 @@ struct Color
 
 struct LightFlareParams
 {
+	inline static auto& LampPost = *(LightFlareParams*)0x008F26A8;
+	inline static auto& CarHeadlights = *(LightFlareParams*)0x008F24C4;
+
 	float MinSize;
 	float MaxSize;
 	D3DXVECTOR4 Color;

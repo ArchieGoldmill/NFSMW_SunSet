@@ -106,9 +106,6 @@
     <ClInclude Include="eEffect.h">
       <Filter>SDK</Filter>
     </ClInclude>
-    <ClInclude Include="eLightFlareParams.h">
-      <Filter>SDK</Filter>
-    </ClInclude>
     <ClInclude Include="eLightMaterial.h">
       <Filter>SDK</Filter>
     </ClInclude>

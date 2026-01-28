@@ -17,39 +17,14 @@ float SP_Specular[NUM_SPOTLIGHTS];
 
 struct RenderLight
 {
-	SpotLightModel* Lights[32];
+	SpotLightModel* Lights[NUM_SPOTLIGHTS];
 	int num = -1;
+	TechniqueType Technique;
 
 	RenderLight()
 	{
 		this->num = -1;
-		memset(this->Lights, 0, sizeof(Lights));
-	}
-
-	int GetNumSpotLights()
-	{
-		if (num == 0)
-		{
-			return 0;
-		}
-		else if (num <= 4)
-		{
-			return 4;
-		}
-		else if (num <= 8)
-		{
-			return 8;
-		}
-		else if (num <= 16)
-		{
-			return 16;
-		}
-		else if (num <= 24)
-		{
-			return 24;
-		}
-
-		return NUM_SPOTLIGHTS;
+		this->Technique = Technique_Invalid;
 	}
 };
 
@@ -84,13 +59,6 @@ inline bool DynamicallyLit(RenderModel* model)
 
 inline void PopulateShaderSpotlights(RenderModel* model, RenderLight* renderLight)
 {
-	if (renderLight->num > -1)
-	{
-		return;
-	}
-
-	renderLight->num = 0;
-
 	if (!model->pSolid)
 	{
 		return;
@@ -150,28 +118,42 @@ RenderLight* GetRenderLight(RenderModel* renderModel)
 
 inline void SetDynamicLights(RenderModel* model)
 {
-	auto rl = GetRenderLight(model);
-	if (DynamicallyLit(model) && rl->num > 0)
+	if (RenderTarget::Current->ViewId == ViewId::Player1)
 	{
-		auto effect = model->Effect;
-
-		int num = rl->GetNumSpotLights();
-		effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, num);
-		effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, num);
-		effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, num);
-		effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, num);
-
-		if (model->LocalToWorld != Game::IdentityMatrix)
+		auto rl = GetRenderLight(model);
+		if (DynamicallyLit(model) && rl->num > 0)
 		{
-			D3DXMATRIX worldIT;
-			D3DXMatrixInverse(&worldIT, nullptr, model->LocalToWorld);
-			D3DXMatrixTranspose(&worldIT, &worldIT);
+			auto effect = model->Effect;
 
-			effect->SetMatrix(ShaderParam::cmWorldIT, &worldIT);
-		}
-		else
-		{
-			effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
+			int num = rl->num;
+			for (int i = 0; i < num; i++)
+			{
+				auto s = rl->Lights[i]->Light;
+
+				SP_Position_Range[i] = D3DXVECTOR4(s.Position, s.Range);
+				SP_Direction_OuterCos[i] = D3DXVECTOR4(s.Direction, cosf(D3DXToRadian(s.OuterAngle)));
+				SP_Color_InnerCos[i] = D3DXVECTOR4(s.Color * s.Intensity, cosf(D3DXToRadian(s.InnerAngle)));
+				SP_Specular[i] = s.Specular;
+			}
+
+			effect->SetVectorArray(ShaderParam::cvaSpPositionRange, SP_Position_Range, num);
+			effect->SetVectorArray(ShaderParam::cvaSpDirectionOuterCos, SP_Direction_OuterCos, num);
+			effect->SetVectorArray(ShaderParam::cvaSpColorInnerCos, SP_Color_InnerCos, num);
+			effect->SetFloatArray(ShaderParam::cfaSpSpecular, SP_Specular, num);
+			effect->SetInt(ShaderParam::ciNumLights, num);
+
+			if (model->LocalToWorld != Game::IdentityMatrix)
+			{
+				D3DXMATRIX worldIT;
+				D3DXMatrixInverse(&worldIT, nullptr, model->LocalToWorld);
+				D3DXMatrixTranspose(&worldIT, &worldIT);
+
+				effect->SetMatrix(ShaderParam::cmWorldIT, &worldIT);
+			}
+			else
+			{
+				effect->SetMatrix(ShaderParam::cmWorldIT, model->LocalToWorld);
+			}
 		}
 	}
 }
@@ -260,8 +242,6 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 
 TechniqueType GetTechnique(RenderModel* renderModel)
 {
-	TechniqueType technique = Technique_Invalid;
-
 	auto effect = renderModel->Effect;
 
 	if (RenderTarget::Current->ViewId == ViewId::Reflection && renderModel->pSolid)
@@ -272,14 +252,16 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		}
 	}
 
-	if (RenderTarget::Current->ViewId == ViewId::ShadowMap && effect->HasTechnique(Technique_ShadowMap))
+	if (RenderTarget::Current->ViewId == ViewId::ShadowMap)
 	{
-		return Technique_ShadowMap;
-	}
-
-	if (renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_ && effect->id == shader_type::WorldShader)
-	{
-		return Technique_Water;
+		if (effect->HasTechnique(Technique_ShadowMap))
+		{
+			return Technique_ShadowMap;
+		}
+		else
+		{
+			return Technique_Invalid;
+		}
 	}
 
 	if (ApplyEmissive(renderModel))
@@ -287,58 +269,69 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 		return Technique_Prelit;
 	}
 
-	if (DynamicallyLit(renderModel))
+	if (RenderTarget::Current->ViewId == ViewId::Player1)
 	{
-		if (RenderTarget::Current->ViewId == ViewId::Player1)
+		auto rl = GetRenderLight(renderModel);
+		return rl->Technique;
+	}
+	else if (DynamicallyLit(renderModel))
+	{
+		return Technique_Unlit;
+	}
+
+	return Technique_Invalid;
+}
+
+inline void PopulateTechnique(RenderModel* renderModel, RenderLight* renderLight)
+{
+	renderLight->num = 0;
+
+	auto effect = renderModel->Effect;
+
+	if (effect->id == shader_type::WorldShader && renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_)
+	{
+		renderLight->Technique = Technique_Water;
+		return;
+	}
+
+	if (effect->HasParam(ShaderParam::cvEmissive))
+	{
+		auto texture = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
+		if (texture && texture->Prelit)
 		{
-			auto rl = GetRenderLight(renderModel);
-			int numSpotLights = rl->num;
-
-			for (int i = 0; i < numSpotLights; i++)
-			{
-				auto s = rl->Lights[i]->Light;
-
-				SP_Position_Range[i] = D3DXVECTOR4(s.Position, s.Range);
-				SP_Direction_OuterCos[i] = D3DXVECTOR4(s.Direction, cosf(D3DXToRadian(s.OuterAngle)));
-				SP_Color_InnerCos[i] = D3DXVECTOR4(s.Color * s.Intensity, cosf(D3DXToRadian(s.InnerAngle)));
-				SP_Specular[i] = s.Specular;
-			}
-
-			for (int i = numSpotLights; i < NUM_SPOTLIGHTS; i++)
-			{
-				SP_Position_Range[i].w = 0;
-			}
-
-			if (numSpotLights == 0)
-			{
-				technique = Technique_Unlit;
-			}
-			else if (numSpotLights <= 4)
-			{
-				technique = Technique_LitPixel_4;
-			}
-			else if (numSpotLights <= 8)
-			{
-				technique = Technique_LitPixel_8;
-			}
-			else if (numSpotLights <= 16)
-			{
-				technique = Technique_LitPixel_16;
-			}
-			else if (numSpotLights <= 24)
-			{
-				technique = Technique_LitPixel_24;
-			}
-			else
-			{
-				technique = Technique_LitPixel_32;
-			}
-		}
-		else
-		{
-			technique = Technique_Unlit;
+			renderLight->Technique = Technique_Prelit;
+			return;
 		}
 	}
 
-	return technique;
+	if (DynamicallyLit(renderModel))
+	{
+		PopulateShaderSpotlights(renderModel, renderLight);
+		int numSpotLights = renderLight->num;
+
+		if (numSpotLights == 0)
+		{
+			renderLight->Technique = Technique_Unlit;
+		}
+		else if (numSpotLights <= 4)
+		{
+			renderLight->Technique = Technique_LitPixel_4;
+		}
+		else if (numSpotLights <= 8)
+		{
+			renderLight->Technique = Technique_LitPixel_8;
+		}
+		else if (numSpotLights <= 16)
+		{
+			renderLight->Technique = Technique_LitPixel_16;
+		}
+		else if (numSpotLights <= 24)
+		{
+			renderLight->Technique = Technique_LitPixel_24;
+		}
+		else
+		{
+			renderLight->Technique = Technique_LitPixel_32;
+		}
+	}
 }

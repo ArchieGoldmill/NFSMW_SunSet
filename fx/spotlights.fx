@@ -11,6 +11,7 @@ float4 cvaSpPositionRange[32];
 float4 cvaSpDirectionOuterCos[32];
 float4 cvaSpColorInnerCos[32];
 float cfaSpSpecular[32];
+int ciNumLights;
 
 SpotLightResult GetSpotlight(const int i, const float3 normal, const float3 pos, const float3 view, const float shine)
 {
@@ -60,9 +61,11 @@ SpotLightResult ApplySpotLights1(const float3 normal, const float3 pos, const in
 	result.Specular = 0;
 	
 	float3 view = normalize(cvWorldEyePos.xyz - pos);
-	for (int i = 0; i < count; ++i)
+	
+	[loop]
+	for (int i = 0; i < count; i++)
 	{
-		if (cvaSpPositionRange[i].w > 0)
+		if (i < ciNumLights)
 		{
 			SpotLightResult current = GetSpotlight(i, normal, pos, view, shine);
 			result.Diffuse += current.Diffuse;

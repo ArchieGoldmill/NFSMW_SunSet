@@ -114,6 +114,7 @@ struct Config
 	bool Tonemapping;
 	bool RandomWindows;
 	bool DisableSunFlare;
+	bool RoadblockLights;
 
 	float WetTime;
 	float DryTime;

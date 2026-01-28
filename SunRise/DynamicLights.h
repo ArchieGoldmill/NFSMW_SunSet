@@ -220,7 +220,7 @@ inline bool ApplyEmissive(RenderModel* renderModel)
 		auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
 		if (prelitTex)
 		{
-			enabled = prelitTex->AlwaysOn || g_Weather.LightsOn();
+			enabled = prelitTex->IsEnabled();
 			prelit = prelitTex->Prelit;
 
 			if (enabled)
@@ -296,8 +296,8 @@ inline void PopulateTechnique(RenderModel* renderModel, RenderLight* renderLight
 
 	if (effect->HasParam(ShaderParam::cvEmissive))
 	{
-		auto texture = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
-		if (texture && texture->Prelit)
+		auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
+		if (prelitTex && prelitTex->Prelit && prelitTex->IsEnabled())
 		{
 			renderLight->Technique = Technique_Prelit;
 			return;

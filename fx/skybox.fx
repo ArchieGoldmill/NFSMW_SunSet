@@ -209,12 +209,12 @@ float4 GetClouds(float3 view)
 	
 	float4 result;
 	result.rgb = clouds;
-	result.a = cvCloudColor.a * pow(gray, 2);
+	result.a = pow(gray, 2);
 	
 	return result;
 }
 
-float3 GetStars(float3 sun, float3 dir)
+float3 GetStars(float sun, float3 dir)
 {
 	float u = atan2(dir.y, dir.x) * (1.0 / (2.0 * 3.14159265)) + 0.5;
 	float v = asin(dir.z) * (1.0 / 3.14159265) + 0.5;
@@ -299,12 +299,14 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float noise = frac(sin(dot(dir.xz, float2(12.9898, 78.233))) * 43758.5453);
 	color += noise * color * 0.05;
 	
-	color += GetStars(sun, dir);
+	float4 clouds = GetClouds(IN.view);
+	float cloudMask = 1 - clouds.a;
+	
+	color += GetStars(sun.y, dir) * cloudMask;
 	float4 moon = GetMoon(dir, sun);
 	color = lerp(color, moon.rgb, moon.a);
 	
-	float4 clouds = GetClouds(IN.view);
-	color = lerp(color, clouds.rgb, clouds.a);
+	color = lerp(color, clouds.rgb, clouds.a * cvCloudColor.a);
 	
 	color = color * 2;
 	if (cfSaturateSky > 0)

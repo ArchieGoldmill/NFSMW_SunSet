@@ -20,6 +20,27 @@ namespace UI
 			{
 				ImGui::PushItemWidth(120);
 
+				strcpy(FilterBuffer, g_Config.Filter.GetChar());
+				if (ImGui::InputText("Filter", FilterBuffer, 128))
+				{
+					g_Config.Filter.SetString(FilterBuffer);
+
+					if (g_Config.Filter.str.length() == 0)
+					{
+						g_Config.Filter.hash = Game::bStringHash("FILTER_DEFAULT");
+					}
+
+					auto filterTexture = TextureInfo::Get(g_Config.Filter.hash, false, false);
+					if (filterTexture)
+					{
+						ReleaseFilterTexture();
+					}
+				}
+
+				ImGui::InputFloat("Filter power", &g_Config.FilterPower, 0.1, 0.2);
+
+				ImGui::Text("");
+
 				ImGui::Checkbox("Console", &g_Config.Console);
 				ImGui::Checkbox("Shader loader", &g_Config.ShaderLoader);
 				ImGui::Checkbox("Shader compiler", &g_Config.ShaderCompiler);
@@ -104,26 +125,6 @@ namespace UI
 				ImGui::InputFloat("Power", &g_Config.WindowGlowPower, 0.1, 0.2);
 				ImGui::PopItemWidth();
 				ImGui::Checkbox("Override", &g_Config.WindowGlowOverride);
-
-				ImGui::Text("");
-				strcpy(FilterBuffer, g_Config.Filter.GetChar());
-				if (ImGui::InputText("Filter", FilterBuffer, 128))
-				{
-					g_Config.Filter.SetString(FilterBuffer);
-
-					if (g_Config.Filter.str.length() == 0)
-					{
-						g_Config.Filter.hash = Game::bStringHash("FILTER_DEFAULT");
-					}
-
-					auto filterTexture = TextureInfo::Get(g_Config.Filter.hash, false, false);
-					if (filterTexture)
-					{
-						ReleaseFilterTexture();
-					}
-				}
-
-				ImGui::InputFloat("Filter power", &g_Config.FilterPower, 0.1, 0.2);
 
 #ifdef _DEBUG
 				ImGui::Text("");

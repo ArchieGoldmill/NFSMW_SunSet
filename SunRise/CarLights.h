@@ -162,16 +162,19 @@ void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, boo
 
 bool IsRoadBlockCar(VehicleRenderConn* renderConn)
 {
-	auto sim = (int*)renderConn->SimCon;
-	if (sim)
+	if (!g_Config.RoadblockLights)
 	{
-		auto pVehicle = (PVehicle*)sim[0x12];
-		if (pVehicle)
+		auto sim = (int*)renderConn->SimCon;
+		if (sim)
 		{
-			auto aiVehicle = pVehicle->GetAIVehiclePtr();
-			if (aiVehicle)
+			auto pVehicle = (PVehicle*)sim[0x12];
+			if (pVehicle)
 			{
-				return aiVehicle->GetRoadBlock() != NULL;
+				auto aiVehicle = pVehicle->GetAIVehiclePtr();
+				if (aiVehicle)
+				{
+					return aiVehicle->GetRoadBlock() != NULL;
+				}
 			}
 		}
 	}

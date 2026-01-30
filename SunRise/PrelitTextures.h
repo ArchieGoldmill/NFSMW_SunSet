@@ -71,6 +71,11 @@ struct PrelitTexture
 
 		return color;
 	}
+
+	bool IsEnabled()
+	{
+		return this->AlwaysOn || g_Weather.LightsOn();
+	}
 };
 
 struct PrelitTextureContainer

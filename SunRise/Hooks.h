@@ -253,6 +253,56 @@ void SetDeviceParams()
 	}
 }
 
+inline unsigned int GetModelSort(RenderLight* rl, RenderModel* model)
+{
+	if (model->SortOrder > 0x80000000)
+	{
+		return model->SortOrder;
+	}
+
+	return rl->Technique + (int)model->Effect->id * 100;
+}
+
+void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int count)
+{
+	if (DepthPrePass || RenderTarget::Current->ViewId == ViewId::ShadowMap)
+	{
+		std::sort(first, last, [](RenderingOrder& a, RenderingOrder& b)
+			{
+				auto model1 = RenderModel::List + a.model_index;
+				auto model2 = RenderModel::List + b.model_index;
+				return model1->Effect->id < model2->Effect->id;
+			});
+	}
+	else if (RenderTarget::Current->ViewId == ViewId::Player1)
+	{
+		auto it = first;
+		do
+		{
+			auto model = RenderModel::List + it->model_index;
+			auto rl = RenderLights + it->model_index;
+			PopulateTechnique(model, rl);
+
+			it++;
+		} while (it != last);
+
+		std::sort(first, last, [](RenderingOrder& a, RenderingOrder& b)
+			{
+				auto model1 = RenderModel::List + a.model_index;
+				auto model2 = RenderModel::List + b.model_index;
+
+				auto rm1 = RenderLights + a.model_index;
+				auto rm2 = RenderLights + b.model_index;
+
+				return GetModelSort(rm1, model1) < GetModelSort(rm2, model2);
+			});
+	}
+	else
+	{
+		std::sort(first, last);
+	}
+}
+
 void InitHooks()
 {
 	InitDirectResources();
@@ -318,6 +368,11 @@ void InitHooks()
 	// MSAA x8
 	injector::MakeNOP(0x006BFBB0, 6);
 	injector::MakeCALL(0x006BFBB0, SetDeviceParams);
+
+	// Model sorting
+	injector::MakeCALL(0x006E2F73, SortRenderModels);
+
+	RenderLights = new RenderLight[4096];
 
 #ifdef _DEBUG
 	injector::MakeNOP(0x006C2206, 10);

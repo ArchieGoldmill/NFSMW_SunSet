@@ -11,6 +11,7 @@ float4 cvSkyBeta;
 float4 cvLightning;
 float cfTimeTicker : CLOUDSCROLL;
 float cfMoonSize;
+float cfSaturateSky;
 
 struct VS_INPUT
 {
@@ -305,7 +306,13 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float4 clouds = GetClouds(IN.view);
 	color = lerp(color, clouds.rgb, clouds.a);
 	
-	color = CompressColourSpace(color * 2);
+	color = color * 2;
+	if (cfSaturateSky > 0)
+	{
+		color = saturate(color);
+	}
+	
+	color = CompressColourSpace(color);
 	
 	color += GetLightning(IN.uv);
 	

@@ -73,9 +73,11 @@ void __cdecl SetuWorldCulling(GrandSceneryCullInfo* cullInfo)
 TextureInfoSingleton StarsTexture(Hashes::SR_STARS);
 void SetSkyTexture(RenderModel* renderModel)
 {
-	if (renderModel->Effect->id == shader_type::skyshader)
+	auto effect = renderModel->Effect;
+	if (effect->id == shader_type::skyshader)
 	{
 		renderModel->DiffuseTextureInfo = StarsTexture.Get();
+		effect->SetFloat(ShaderParam::cfSaturateSky, RenderTarget::Current->ViewId == ViewId::Player1 ? 0 : 1);
 	}
 }
 

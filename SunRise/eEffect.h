@@ -59,6 +59,7 @@ const char* ShaderParamNames[] =
 	"cbCompressColor",
 	"cfWindowEnabled",
 	"ciNumLights",
+	"cfSaturateSky",
 
 	"MISCMAP1_TEXTURE",
 	"MISCMAP2_TEXTURE",
@@ -109,6 +110,7 @@ enum class ShaderParam
 	cbCompressColor,
 	cfWindowEnabled,
 	ciNumLights,
+	cfSaturateSky,
 
 	MISCMAP1_TEXTURE,
 	MISCMAP2_TEXTURE,

@@ -22,15 +22,15 @@ namespace UI
 		{
 			if (ImGui::BeginTable("SpotlightEditorTable", 3, ImGuiTableFlags_BordersInnerV))
 			{
-				ImGui::TableSetupColumn("Solid", ImGuiTableColumnFlags_WidthFixed, 220.0f);
-				ImGui::TableSetupColumn("Lights", ImGuiTableColumnFlags_WidthFixed, 110.0f);
+				ImGui::TableSetupColumn("Solid", ImGuiTableColumnFlags_WidthFixed, 260.0f * g_Config.EditorScale);
+				ImGui::TableSetupColumn("Lights", ImGuiTableColumnFlags_WidthFixed, 110.0f * g_Config.EditorScale);
 				ImGui::TableSetupColumn("Settings", ImGuiTableColumnFlags_WidthStretch);
 
 				ImGui::TableNextRow();
 				{
 					ImGui::TableSetColumnIndex(0);
 					{
-						if (ImGui::Button("Add##Solid", { 60, 20 }))
+						if (ImGui::Button("Add##Solid", GetSize({ 60, 20 })))
 						{
 							SolidLights solidLights;
 							solidLights.LodA.SetString("SOLID_A");
@@ -57,7 +57,7 @@ namespace UI
 						}
 
 						ImGui::SameLine();
-						if (ImGui::Button("Remove##Solid", { 60, 20 }))
+						if (ImGui::Button("Remove##Solid", GetSize({ 60, 20 })))
 						{
 							if (CurrentSolid)
 							{
@@ -69,7 +69,7 @@ namespace UI
 
 						ImGui::InputText("Filter", FilterBuff, 128);
 						ImGui::SameLine();
-						if (ImGui::Button("x", { 20, 20 }))
+						if (ImGui::Button("x", GetSize({ 20, 20 })))
 						{
 							FilterBuff[0] = 0;
 						}
@@ -83,7 +83,7 @@ namespace UI
 									continue;
 								}
 
-								if (SelectableButton(solidLights->LodA.GetChar(), { 200, 20 }, CurrentSolid == solidLights))
+								if (SelectableButton(solidLights->LodA.GetChar(), { 240, 20 }, CurrentSolid == solidLights))
 								{
 									CurrentSolid = solidLights;
 									CurrentLightNum = 0;
@@ -100,14 +100,14 @@ namespace UI
 						{
 							auto& lights = CurrentSolid->Lights;
 
-							if (ImGui::Button("Add##Light", { 40, 20 }))
+							if (ImGui::Button("Add##Light", GetSize({ 40, 20 })))
 							{
 								lights.push_back(lights[0]);
 								CurrentLightNum = lights.size() - 1;
 							}
 
 							ImGui::SameLine();
-							if (ImGui::Button("Remove##Light", { 60, 20 }))
+							if (ImGui::Button("Remove##Light", GetSize({ 60, 20 })))
 							{
 								if (lights.size() > 1)
 								{
@@ -185,7 +185,7 @@ namespace UI
 									ImGui::SetTooltip("Requires debug camera to be enabled, make sure light is in world space");
 								}
 
-								ImGui::PushItemWidth(120);
+								ImGui::PushItemWidth(120 * g_Config.EditorScale);
 								{
 									ImGui::Text("Position");
 									ImGui::InputFloat("##LightPosX", &CurrentLight->Position.x, 0.1, 1.0, "%.2f");

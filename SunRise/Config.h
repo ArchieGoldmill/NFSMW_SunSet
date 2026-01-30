@@ -138,6 +138,8 @@ struct Config
 
 	HashField Filter;
 	float FilterPower;
+
+	float EditorScale;
 };
 
 inline Config g_Config;

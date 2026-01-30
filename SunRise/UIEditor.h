@@ -11,9 +11,9 @@ namespace UI
 
 	void Draw()
 	{
-		ImVec2 windowSize(800, 1000);
+		ImVec2 windowSize(800 * g_Config.EditorScale, 1000 * g_Config.EditorScale);
 		ImGui::SetNextWindowSize(windowSize, ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSizeConstraints(ImVec2(800, 400), ImVec2(800, FLT_MAX));
+		ImGui::SetNextWindowSizeConstraints(ImVec2(800 * g_Config.EditorScale, 400 * g_Config.EditorScale), ImVec2(800 * g_Config.EditorScale, FLT_MAX));
 
 		if (ImGui::Begin("Sun Set Editor 1.9", nullptr))
 		{
@@ -48,7 +48,7 @@ namespace UI
 
 			ImGui::Text("");
 
-			if (ImGui::Button("Save", { 60, 20 }))
+			if (ImGui::Button("Save", GetSize({ 60, 20 })))
 			{
 				switch (CurrentTab)
 				{
@@ -61,7 +61,7 @@ namespace UI
 			}
 
 			ImGui::SameLine();
-			if (ImGui::Button("Reset", { 60, 20 }))
+			if (ImGui::Button("Reset", GetSize({ 60, 20 })))
 			{
 				switch (CurrentTab)
 				{

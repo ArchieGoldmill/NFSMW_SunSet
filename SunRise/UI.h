@@ -71,6 +71,9 @@ namespace UI
 		{
 			IMGUI_CHECKVERSION();
 			ImGui::CreateContext();
+
+			ImGui::GetIO().FontGlobalScale = g_Config.EditorScale;
+
 			ImGui::StyleColorsDark();
 
 			if (!wndProcHooked)

@@ -18,7 +18,7 @@ namespace UI
 		{
 			if (ImGui::BeginChild("##ConfigScroller", ImGui::GetContentRegionAvail(), false, 0))
 			{
-				ImGui::PushItemWidth(120);
+				ImGui::PushItemWidth(120 * g_Config.EditorScale);
 
 				strcpy(FilterBuffer, g_Config.Filter.GetChar());
 				if (ImGui::InputText("Filter", FilterBuffer, 128))

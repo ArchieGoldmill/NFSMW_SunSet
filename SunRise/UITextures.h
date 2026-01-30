@@ -16,7 +16,7 @@ namespace UI
 
 		void Draw()
 		{
-			if (ImGui::Button("Remove", { 60, 20 }))
+			if (ImGui::Button("Remove", GetSize({ 60, 20 })))
 			{
 				if (CurrentTexture)
 				{
@@ -30,7 +30,7 @@ namespace UI
 			ImGui::InputText("Texture", TextureNameBuff, 128);
 
 			ImGui::SameLine();
-			if (ImGui::Button("Add", { 60, 20 }))
+			if (ImGui::Button("Add", GetSize({ 60, 20 })))
 			{
 				if (strlen(TextureNameBuff) > 0)
 				{
@@ -51,7 +51,7 @@ namespace UI
 
 			if (ImGui::BeginTable("WeatherEditorTable", 2, ImGuiTableFlags_BordersInnerV))
 			{
-				ImGui::TableSetupColumn("Texture name", ImGuiTableColumnFlags_WidthFixed, 220.0f);
+				ImGui::TableSetupColumn("Texture name", ImGuiTableColumnFlags_WidthFixed, 220.0f * g_Config.EditorScale);
 				ImGui::TableSetupColumn("Settings", ImGuiTableColumnFlags_WidthStretch);
 
 				ImGui::TableNextRow();
@@ -60,7 +60,7 @@ namespace UI
 					{
 						ImGui::InputText("Filter", FilterBuff, 128);
 						ImGui::SameLine();
-						if (ImGui::Button("x", { 20, 20 }))
+						if (ImGui::Button("x", GetSize({ 20, 20 })))
 						{
 							FilterBuff[0] = 0;
 						}

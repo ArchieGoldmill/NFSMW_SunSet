@@ -28,7 +28,7 @@ namespace UI
 
 			if (ImGui::BeginTable("WeatherEditorTable", 2, ImGuiTableFlags_BordersInnerV))
 			{
-				ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed, 120.0f);
+				ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed, 120.0f * g_Config.EditorScale);
 				ImGui::TableSetupColumn("Data", ImGuiTableColumnFlags_WidthStretch);
 
 				ImGui::TableNextRow();
@@ -37,7 +37,7 @@ namespace UI
 					{
 						ImGui::BeginDisabled(WeatherIndex < 0);
 						{
-							if (ImGui::Button("Add", { 60, 20 }))
+							if (ImGui::Button("Add", GetSize({ 60, 20 })))
 							{
 								auto newWeather = new WeatherConfig();
 								*newWeather = *WeatherList[WeatherIndex];
@@ -50,7 +50,7 @@ namespace UI
 							ImGui::SameLine();
 							ImGui::BeginDisabled(zeroWeatherSelected);
 							{
-								if (ImGui::Button("Remove", { 60, 20 }))
+								if (ImGui::Button("Remove", GetSize({ 60, 20 })))
 								{
 									delete WeatherList[WeatherIndex];
 									WeatherList.erase(WeatherList.begin() + WeatherIndex);

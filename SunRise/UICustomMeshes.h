@@ -24,14 +24,14 @@ namespace UI
 
 			if (ImGui::BeginTable("CustomMeshesEditorTable", 2, ImGuiTableFlags_BordersInnerV))
 			{
-				ImGui::TableSetupColumn("Solids", ImGuiTableColumnFlags_WidthFixed, 220.0f);
+				ImGui::TableSetupColumn("Solids", ImGuiTableColumnFlags_WidthFixed, 220.0f * g_Config.EditorScale);
 				ImGui::TableSetupColumn("Settings", ImGuiTableColumnFlags_WidthStretch);
 
 				ImGui::TableNextRow();
 				{
 					ImGui::TableSetColumnIndex(0);
 					{
-						if (ImGui::Button("Add", { 60, 20 }))
+						if (ImGui::Button("Add", GetSize({ 60, 20 })))
 						{
 							CustomMesh customMesh;
 
@@ -47,7 +47,7 @@ namespace UI
 						}
 
 						ImGui::SameLine();
-						if (ImGui::Button("Remove", { 60, 20 }))
+						if (ImGui::Button("Remove", GetSize({ 60, 20 })))
 						{
 							if (current)
 							{
@@ -112,7 +112,7 @@ namespace UI
 
 							ImGui::Text("");
 
-							ImGui::PushItemWidth(120);
+							ImGui::PushItemWidth(120 * g_Config.EditorScale);
 							{
 								ImGui::Text("Position");
 								ImGui::InputFloat("##PosX", &current->Position.x, 0.1, 10.0, "%.2f");

@@ -37,6 +37,7 @@ void LoadConfig()
 	g_Config.CustomMeshDist = YmlGet(settings, "CustomMeshDist", 500.0f);
 	g_Config.FlareDistance = YmlGet(settings, "FlareDistance", 200.0f);
 	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
+	g_Config.EditorScale = YmlGet(settings, "EditorScale", 1.0);
 
 	const auto& time = settingsRoot["Time"];
 	g_Config.WetTime = YmlGet(time, "WetTime", 2.0f);
@@ -114,6 +115,7 @@ void SaveConfig()
 	config["MaxLights"] = g_Config.MaxLights;
 	config["DisableSunFlare"] = g_Config.DisableSunFlare;
 	config["RoadblockLights"] = g_Config.DisableSunFlare;
+	config["EditorScale"] = g_Config.EditorScale;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

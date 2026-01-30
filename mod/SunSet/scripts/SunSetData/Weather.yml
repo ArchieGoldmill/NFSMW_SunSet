@@ -206,9 +206,9 @@ Weather:
     BloomPower: 1
     BloomThreshold: 2
     RoadMaskIntensity: 1
-    SkyBeta: [0.649999976, 0.569999993, 0.474999994]
+    SkyBeta: [0.632352948, 0.555832922, 0.464965403]
     SkyMie: 1
-    SkyRayleigh: 3
+    SkyRayleigh: 2
     SkyBrightness: 15
     FogColor: [0.499495357, 0.663963497, 0.828431368]
     FogSunColor: [0.540417135, 0.694228232, 0.84803921]

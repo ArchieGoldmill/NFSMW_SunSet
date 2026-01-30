@@ -127,8 +127,6 @@ float3 RenderSky(in float3 viewDir, in float3 lightDir)
 	
 	const float kM4PI = kMIE * 4.0 * PI;
 
-	viewDir = normalize(viewDir);
-
 	float height = kInnerRadius + kCameraHeight;
 	float3 cameraPos = float3(0.0, height, 0.0);
 
@@ -215,24 +213,16 @@ float4 GetClouds(float3 view)
 	return result;
 }
 
-float3 GetStars(float3 sun, float4 uv)
+float3 GetStars(float3 sun, float3 dir)
 {
-	float2 starsUV;
+	float u = atan2(dir.y, dir.x) * (1.0 / (2.0 * 3.14159265)) + 0.5;
+	float v = asin(dir.z) * (1.0 / 3.14159265) + 0.5;
+
+	float2 uv = float2(u, v) * 7;
+	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, uv);
+	float stars_scale = cvSkyParams.w > 0 ? smoothstep(-0.1, -0.3, sun) : 1;
 	
-	if (uv.y > 0.09)
-	{
-		starsUV = uv.xy;
-		starsUV.y *= 4;
-	}
-	else
-	{
-		starsUV = uv.zw * 4;
-	}
-	
-	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, starsUV);
-	float stars_scale = cvSkyParams.w > 0 ? smoothstep(-0.1, -0.3, sun.y) : 1;
-	
-	return pow(diffuse_tex.rgb, 2.2) * stars_scale;
+	return pow(diffuse_tex.rgb, 5) * stars_scale * 50;
 }
 
 float3 GetLightning(float4 uv)
@@ -241,9 +231,7 @@ float3 GetLightning(float4 uv)
 	
 	if (cvLightning.x > 0)
 	{
-		float2 luv = uv.xy;
-
-		lightning = tex2D(MISCMAP3_SAMPLER, luv).rgb;
+		lightning = tex2D(MISCMAP3_SAMPLER, uv.xy).rgb;
 		
 		lightning *= cvLightning.x;
 		lightning += float3(0.875, 0.831, 1) * cvLightning.y / 2;
@@ -310,7 +298,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float noise = frac(sin(dot(dir.xz, float2(12.9898, 78.233))) * 43758.5453);
 	color += noise * color * 0.05;
 	
-	color += GetStars(sun, IN.uv);
+	color += GetStars(sun, dir);
 	float4 moon = GetMoon(dir, sun);
 	color = lerp(color, moon.rgb, moon.a);
 	

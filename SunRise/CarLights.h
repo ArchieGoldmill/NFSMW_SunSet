@@ -135,8 +135,9 @@ void PopulateCarSpotLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, boo
 		if (headlightOn)
 		{
 			SpotLightSource source = isPlayer ? SpotLightSource::Player_Headlights : SpotLightSource::Headlights;
-			PopulateCarLight(carRenderInfo, Hashes::LEFT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
-			PopulateCarLight(carRenderInfo, Hashes::RIGHT_HEADLIGHT, CarHeadlighsConfig, matrix, source);
+			auto headlighsConfig = isPlayer ? CarHeadlighsConfig : CarAiHeadlighsConfig;
+			PopulateCarLight(carRenderInfo, Hashes::LEFT_HEADLIGHT, headlighsConfig, matrix, source);
+			PopulateCarLight(carRenderInfo, Hashes::RIGHT_HEADLIGHT, headlighsConfig, matrix, source);
 		}
 
 		auto brakelightOn = carRenderInfo->IsLightOn(VehicleFX_BRAKELIGHTS);

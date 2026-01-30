@@ -51,6 +51,7 @@ void LoadSpotLightConfig()
 	YAML::Node spotlightsRoot = YAML::LoadFile(GetConfigFolder("SpotLights.yml"));
 
 	ParseSpotLight(CarHeadlighsConfig, spotlightsRoot["CarHeadLights"]);
+	ParseSpotLight(CarAiHeadlighsConfig, spotlightsRoot["CarAiHeadLights"]);
 	ParseSpotLight(CarBrakeLightsOnConfig, spotlightsRoot["CarBrakeLightsOn"]);
 	ParseSpotLight(CarBrakeLightsOffConfig, spotlightsRoot["CarBrakeLightsOff"]);
 	ParseSpotLight(CarReverseConfig, spotlightsRoot["CarReverse"]);
@@ -166,6 +167,9 @@ void SaveSpotLightConfig()
 	YAML::Node carHeadlights;
 	SaveSpotLight(carHeadlights, CarHeadlighsConfig);
 
+	YAML::Node carAiHeadlights;
+	SaveSpotLight(carAiHeadlights, CarAiHeadlighsConfig);
+
 	YAML::Node carBrakeLightsOn;
 	SaveSpotLight(carBrakeLightsOn, CarBrakeLightsOnConfig);
 
@@ -190,6 +194,7 @@ void SaveSpotLightConfig()
 
 	YAML::Node root;
 	root["CarHeadLights"] = carHeadlights;
+	root["CarAiHeadLights"] = carAiHeadlights;
 	root["CarBrakeLightsOn"] = carBrakeLightsOn;
 	root["CarBrakeLightsOff"] = carBrakeLightsOff;
 	root["CarReverse"] = carReverse;

@@ -5,6 +5,7 @@
 
 inline std::unordered_map<int, FESolidLights> FrontEndLights;
 inline SpotLight CarHeadlighsConfig;
+inline SpotLight CarAiHeadlighsConfig;
 inline SpotLight CarBrakeLightsOnConfig;
 inline SpotLight CarBrakeLightsOffConfig;
 inline SpotLight CarReverseConfig;

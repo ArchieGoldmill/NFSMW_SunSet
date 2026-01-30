@@ -7,6 +7,15 @@ CarHeadLights:
   Intensity: 2
   Range: 50
   Specular: 1
+CarAiHeadLights:
+  Position: [0.100000001, 0, 0]
+  Direction: [1, 0, 0]
+  Color: [1, 1, 1]
+  InnerAngle: 10
+  OuterAngle: 50
+  Intensity: 2
+  Range: 15
+  Specular: 1
 CarBrakeLightsOn:
   Position: [-0.100000001, 0, 0]
   Direction: [-1, 0, -0.5]

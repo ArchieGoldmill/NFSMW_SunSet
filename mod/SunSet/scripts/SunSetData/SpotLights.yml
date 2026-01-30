@@ -44,7 +44,7 @@ CarReverse:
   Range: 2
   Specular: 1
 CopLightBlue:
-  Position: [0, -1, 1]
+  Position: [0, -0.5, 1]
   Direction: [0, -1, 0]
   Color: [0, 0, 1]
   InnerAngle: 25
@@ -53,7 +53,7 @@ CopLightBlue:
   Range: 4
   Specular: 0
 CopLightRed:
-  Position: [0, 1, 1]
+  Position: [0, 0.5, 1]
   Direction: [0, 1, 0]
   Color: [1, 0, 0]
   InnerAngle: 25

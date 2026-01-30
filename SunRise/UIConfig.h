@@ -18,7 +18,7 @@ namespace UI
 		{
 			if (ImGui::BeginChild("##ConfigScroller", ImGui::GetContentRegionAvail(), false, 0))
 			{
-				ImGui::PushItemWidth(120 * g_Config.EditorScale);
+				ImGui::PushItemWidth(220 * g_Config.EditorScale);
 
 				strcpy(FilterBuffer, g_Config.Filter.GetChar());
 				if (ImGui::InputText("Filter", FilterBuffer, 128))
@@ -40,6 +40,7 @@ namespace UI
 				ImGui::InputFloat("Filter power", &g_Config.FilterPower, 0.1, 0.2);
 
 				ImGui::Text("");
+				ImGui::PushItemWidth(120 * g_Config.EditorScale);
 
 				ImGui::Checkbox("Console", &g_Config.Console);
 				ImGui::Checkbox("Shader loader", &g_Config.ShaderLoader);

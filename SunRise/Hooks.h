@@ -255,8 +255,18 @@ void SetDeviceParams()
 	}
 }
 
+inline shader_type GetModelId(RenderModel* model)
+{
+	return model->Effect ? model->Effect->id : shader_type::WorldShader;
+}
+
 inline unsigned int GetModelSort(RenderLight* rl, RenderModel* model)
 {
+	if (!model->Effect)
+	{
+		return 0;
+	}
+
 	if (model->SortOrder > 0x80000000)
 	{
 		return model->SortOrder;
@@ -273,11 +283,17 @@ void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int c
 			{
 				auto model1 = RenderModel::List + a.model_index;
 				auto model2 = RenderModel::List + b.model_index;
-				return model1->Effect->id < model2->Effect->id;
+
+				return GetModelId(model1) < GetModelId(model2);
 			});
 	}
 	else if (RenderTarget::Current->ViewId == ViewId::Player1)
 	{
+		for (int i = 0; i < 4096; i++)
+		{
+			RenderLights[i].num = -1;
+		}
+
 		auto it = first;
 		do
 		{
@@ -293,10 +309,13 @@ void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int c
 				auto model1 = RenderModel::List + a.model_index;
 				auto model2 = RenderModel::List + b.model_index;
 
-				auto rm1 = RenderLights + a.model_index;
-				auto rm2 = RenderLights + b.model_index;
+				auto rl1 = RenderLights + a.model_index;
+				auto rl2 = RenderLights + b.model_index;
 
-				return GetModelSort(rm1, model1) < GetModelSort(rm2, model2);
+				PopulateTechnique(model1, rl1);
+				PopulateTechnique(model2, rl2);
+
+				return GetModelSort(rl1, model1) < GetModelSort(rl2, model2);
 			});
 	}
 	else

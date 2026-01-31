@@ -284,54 +284,63 @@ TechniqueType GetTechnique(RenderModel* renderModel)
 
 inline void PopulateTechnique(RenderModel* renderModel, RenderLight* renderLight)
 {
-	renderLight->num = 0;
-
-	auto effect = renderModel->Effect;
-
-	if (effect->id == shader_type::WorldShader && renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_)
+	if (renderLight->num > -1)
 	{
-		renderLight->Technique = Technique_Water;
 		return;
 	}
 
-	if (effect->HasParam(ShaderParam::cvEmissive))
+	renderLight->num = 0;
+	renderLight->Technique = Technique_Unlit;
+
+	auto effect = renderModel->Effect;
+
+	if (effect)
 	{
-		auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
-		if (prelitTex && prelitTex->Prelit && prelitTex->IsEnabled())
+		if (effect->id == shader_type::WorldShader && renderModel->DiffuseTextureInfo->NameHash == Hashes::ANM_WATERA_)
 		{
-			renderLight->Technique = Technique_Prelit;
+			renderLight->Technique = Technique_Water;
 			return;
 		}
-	}
 
-	if (DynamicallyLit(renderModel))
-	{
-		PopulateShaderSpotlights(renderModel, renderLight);
-		int numSpotLights = renderLight->num;
+		if (effect->HasParam(ShaderParam::cvEmissive))
+		{
+			auto prelitTex = PrelitTextures.Get(renderModel->DiffuseTextureInfo->NameHash);
+			if (prelitTex && prelitTex->Prelit && prelitTex->IsEnabled())
+			{
+				renderLight->Technique = Technique_Prelit;
+				return;
+			}
+		}
 
-		if (numSpotLights == 0)
+		if (DynamicallyLit(renderModel))
 		{
-			renderLight->Technique = Technique_Unlit;
-		}
-		else if (numSpotLights <= 4)
-		{
-			renderLight->Technique = Technique_LitPixel_4;
-		}
-		else if (numSpotLights <= 8)
-		{
-			renderLight->Technique = Technique_LitPixel_8;
-		}
-		else if (numSpotLights <= 16)
-		{
-			renderLight->Technique = Technique_LitPixel_16;
-		}
-		else if (numSpotLights <= 24)
-		{
-			renderLight->Technique = Technique_LitPixel_24;
-		}
-		else
-		{
-			renderLight->Technique = Technique_LitPixel_32;
+			PopulateShaderSpotlights(renderModel, renderLight);
+			int numSpotLights = renderLight->num;
+
+			if (numSpotLights == 0)
+			{
+				renderLight->Technique = Technique_Unlit;
+			}
+			else if (numSpotLights <= 4)
+			{
+				renderLight->Technique = Technique_LitPixel_4;
+			}
+			else if (numSpotLights <= 8)
+			{
+				renderLight->Technique = Technique_LitPixel_8;
+			}
+			else if (numSpotLights <= 16)
+			{
+				renderLight->Technique = Technique_LitPixel_16;
+			}
+			else if (numSpotLights <= 24)
+			{
+				renderLight->Technique = Technique_LitPixel_24;
+			}
+			else
+			{
+				renderLight->Technique = Technique_LitPixel_32;
+			}
 		}
 	}
 }

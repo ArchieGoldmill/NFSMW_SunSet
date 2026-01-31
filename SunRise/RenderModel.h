@@ -25,7 +25,7 @@ struct RenderModel
 	TextureInfo* OpacityTextureInfo;
 	unsigned int SortOrder;
 	int UseLowLod;
-	int unk3;
+	float unk3;
 };
 
 struct RenderingOrder

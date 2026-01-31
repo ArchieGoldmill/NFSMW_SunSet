@@ -58,6 +58,18 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 	prelitEffect->SetBool(ShaderParam::cbCompressColor, true);
 }
 
+void __stdcall SetZWriteEnabledHookCar(IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
+{
+	if (RenderTarget::Current->ViewId == ViewId::Player1)
+	{
+		device->SetRenderState(state, true);
+	}
+	else
+	{
+		device->SetRenderState(state, value);
+	}
+}
+
 void __stdcall SetZWriteEnabledHook(TextureInfo* textureInfo, IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
 {
 	if(textureInfo->NameHash == Hashes::ARROW_GPS)
@@ -116,6 +128,9 @@ void InitDepthPrePass()
 {
 	injector::MakeNOP(0x006C6983, 6);
 	injector::MakeJMP(0x006C6983, SetZWriteEnabledCave);
+
+	injector::MakeNOP(0x006C6A49, 6);
+	injector::MakeCALL(0x006C6A49, SetZWriteEnabledHookCar);
 
 	injector::MakeCALL(0x006DAA2B, SimpleAnimApplyHook);
 

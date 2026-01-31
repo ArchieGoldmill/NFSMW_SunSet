@@ -104,7 +104,7 @@ float3 GetTangent(float3 fpNormal, float2 texcoord, float3 local_pos)
 float GetFlakeScale(float viewLen)
 {
 	float flake = saturate(viewLen * -0.25 + 1.2);
-	flake *= 0.04 * cfMetallicScale;
+	flake *= 0.1 * cfMetallicScale;
 	return flake;
 }
 
@@ -175,17 +175,14 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 finalLight = IN.color.rgb * (cvAmbientColor.rgb + diffuse * shadow) + light.Diffuse;
 	
-	float metallic = 0.05 * flakeNoise.r * cfMetallicScale * saturate(1.2 - viewLen * 0.15) * (1 - vinyl);
-	
 	float fake_ao = lerp(0.8, 1.1, pow(vdotn, 2));
 	
 	float4 final = diffuse_tex;
 	final *= diffuse_scale;
 	final.rgb *= fake_ao;
 	final.rgb *= finalLight;
-	final.rgb += metallic;
 	final.rgb += envmap_sample * diffuse_scale.a;
-	final.rgb += specular * shadow * spec_scale;
+	final.rgb += specular * spec_scale;
 	final.rgb += hotSpot;
 	final.rgb += light.Specular * cfSpecularHotSpot;
 	final.rgb += GetEmissive(IN.uv, diffuse_tex.rgb);

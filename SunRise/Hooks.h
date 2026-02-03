@@ -294,16 +294,6 @@ void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int c
 			RenderLights[i].num = -1;
 		}
 
-		auto it = first;
-		do
-		{
-			auto model = RenderModel::List + it->model_index;
-			auto rl = RenderLights + it->model_index;
-			PopulateTechnique(model, rl);
-
-			it++;
-		} while (it != last);
-
 		std::sort(first, last, [](RenderingOrder& a, RenderingOrder& b)
 			{
 				auto model1 = RenderModel::List + a.model_index;

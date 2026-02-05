@@ -33,8 +33,13 @@ struct RenderingOrder
 	unsigned int model_index;
 	int sort_flags;
 
-	inline bool operator <(const RenderingOrder& other) const
+	inline bool operator < (const RenderingOrder& other) const
 	{
-		return *reinterpret_cast<const std::uint64_t*>(this) < *reinterpret_cast<const std::uint64_t*>(&other);
+		return this->ToInt64() < other.ToInt64();
+	}
+
+	inline const std::uint64_t ToInt64() const
+	{
+		return *reinterpret_cast<const std::uint64_t*>(this);
 	}
 };

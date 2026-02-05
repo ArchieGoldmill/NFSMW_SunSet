@@ -260,7 +260,7 @@ inline shader_type GetModelId(RenderModel* model)
 	return model->Effect ? model->Effect->id : shader_type::WorldShader;
 }
 
-inline unsigned int GetModelSort(RenderLight* rl, RenderModel* model)
+inline std::uint64_t GetModelSort(RenderLight* rl, RenderModel* model, RenderingOrder* order)
 {
 	if (!model->Effect)
 	{
@@ -269,7 +269,7 @@ inline unsigned int GetModelSort(RenderLight* rl, RenderModel* model)
 
 	if (model->SortOrder > 0x80000000)
 	{
-		return model->SortOrder;
+		return order->ToInt64();
 	}
 
 	return rl->Technique + (int)model->Effect->id * 100;
@@ -305,7 +305,7 @@ void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int c
 				PopulateTechnique(model1, rl1);
 				PopulateTechnique(model2, rl2);
 
-				return GetModelSort(rl1, model1) < GetModelSort(rl2, model2);
+				return GetModelSort(rl1, model1, &a) < GetModelSort(rl2, model2, &b);
 			});
 	}
 	else

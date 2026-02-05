@@ -35,6 +35,14 @@
     [
       "LICENSEPLATE",
       "LICENSEPLATE_T"
+    ],
+    [
+      "OBJ_FENCE_CHNLINK",
+      "OBJ_FENCE_CHNLINK_T"
+    ],
+    [
+      "OBJ_FENCE_CHNLINK01_TOP",
+      "OBJ_FENCE_CHNLINK01_TOP_T"
     ]
   ]
 }

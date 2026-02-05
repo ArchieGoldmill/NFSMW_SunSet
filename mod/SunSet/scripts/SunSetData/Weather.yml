@@ -147,7 +147,7 @@ Weather:
     SkyBeta: [0.602941155, 0.49445346, 0.461072654]
     SkyMie: 1
     SkyRayleigh: 5
-    SkyBrightness: 8
+    SkyBrightness: 5
     FogColor: [0.289191663, 0.379175484, 0.406862736]
     FogSunColor: [0.852941155, 0.54796797, 0.2048731]
     FogStart: 35

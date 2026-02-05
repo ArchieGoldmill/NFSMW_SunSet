@@ -383,6 +383,10 @@ void InitHooks()
 	// Model sorting
 	injector::MakeCALL(0x006E2F73, SortRenderModels);
 
+	// Disable ShadowPolyCurrentGen
+	injector::WriteMemory<BYTE>(0x006DAC03, 0xEB);
+	injector::WriteMemory<BYTE>(0x006E5352, 0xEB);
+
 	RenderLights = new RenderLight[4096];
 
 #ifdef _DEBUG

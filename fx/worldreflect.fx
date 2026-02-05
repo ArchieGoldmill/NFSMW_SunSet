@@ -104,6 +104,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 {
 	float3 og_normal = normalize(IN.normal);
 	float3 normal = ApplyNormalMap(og_normal, normalize(IN.tangent), IN.uv);
+	float3 nview = normalize(IN.view);
 
 	// Apply road detail normal map
 	float3 roadDetail = tex2Dbias(MISCMAP3_SAMPLER, float4(IN.world_pos.xy * 0.6, 0, 0)).rgb * 2 - 1;
@@ -123,10 +124,12 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float ndotl = saturate(dot(normal, lightDir));
-	float shadow = DoShadow(IN.shadow_tex, ndotl);
+	float shadow = DoShadow(IN.shadow_tex, saturate(dot(og_normal, lightDir)));
 	
 	float3 diffuse = GetDiffuse(ndotl);
-	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view)) * saturate(specMap + 0.25);
+	float3 specular = GetSpecular(normal, lightDir, nview);
+	specular += GetSpecular(og_normal, lightDir, nview);
+	specular *= saturate(specMap + 0.25);
 	
 	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r;
 	puddle_mask = lerp(1, puddle_mask, cvRainParams.w);

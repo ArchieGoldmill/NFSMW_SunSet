@@ -143,7 +143,9 @@
     <FxCompile Include="tree.fx" />
     <FxCompile Include="water.fx" />
     <FxCompile Include="world.fx" />
+    <FxCompile Include="worldnofog.fx" />
     <FxCompile Include="worldnormalmap.fx" />
+    <FxCompile Include="worldnormalmapnofog.fx" />
     <FxCompile Include="worldprelit.fx" />
     <FxCompile Include="worldreflect.fx" />
   </ItemGroup>

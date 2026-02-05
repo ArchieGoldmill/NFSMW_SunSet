@@ -19,6 +19,8 @@ class FXCCompiler
 			("screenfilter.fx", "IDI_SCREENFILTER_FX"),
 			("worldprelit.fx", "IDI_WORLDPRELIT_FX"),
 			("particles.fx", "IDI_PARTICLES_FX"),
+			("worldnofog.fx", "IDI_WORLDNOFOG_FX"),
+			("worldnormalmapnofog.fx", "IDI_WORLDNORMALMAPNOFOG_FX"),
 		};
 
 		string fxcPath = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x86\\fxc.exe";

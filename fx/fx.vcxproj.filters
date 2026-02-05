@@ -54,6 +54,8 @@
       <Filter>Header Files</Filter>
     </FxCompile>
     <FxCompile Include="particles.fx" />
+    <FxCompile Include="worldnofog.fx" />
+    <FxCompile Include="worldnormalmapnofog.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="techniques.fx">

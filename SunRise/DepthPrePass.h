@@ -60,7 +60,7 @@ void DoDepthPrePass(GrandSceneryCullInfo* cullInfo)
 
 void __stdcall SetZWriteEnabledHook(TextureInfo* textureInfo, IDirect3DDevice9* device, D3DRENDERSTATETYPE state, DWORD value)
 {
-	if(textureInfo->NameHash == Hashes::ARROW_GPS)
+	if (textureInfo->NameHash == Hashes::ARROW_GPS)
 	{
 		device->SetRenderState(state, value);
 		return;

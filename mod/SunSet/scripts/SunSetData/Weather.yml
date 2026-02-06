@@ -42,8 +42,8 @@ Weather:
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]
-      MoonColor: [0, 0, 0, 0]
-      MoonSize: 0
+      MoonColor: [0.647058845, 0.647058845, 0.647058845, 0.573000014]
+      MoonSize: 0.0460000001
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
       CarLightsPower: 1
@@ -52,7 +52,7 @@ Weather:
       BloomThreshold: 1.50000024
       RoadMaskIntensity: 1
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-      SkyMie: 0.799999952
+      SkyMie: 0.199999928
       SkyRayleigh: 0
       SkyBrightness: 10
       FogColor: [0.0410899855, 0.043189019, 0.0490196347]
@@ -104,8 +104,8 @@ Weather:
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]
-      MoonColor: [0, 0, 0, 0]
-      MoonSize: 0
+      MoonColor: [0.387254894, 0.387254894, 0.387254894, 0.936999977]
+      MoonSize: 0.0410000011
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
       CarLightsPower: 1
@@ -114,7 +114,7 @@ Weather:
       BloomThreshold: 1.50000024
       RoadMaskIntensity: 1
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-      SkyMie: 0.199999928
+      SkyMie: 0.00999999791
       SkyRayleigh: 0
       SkyBrightness: 10
       FogColor: [0.0396482348, 0.0421289019, 0.0490196347]
@@ -155,9 +155,9 @@ Weather:
     FogPower: 0.599999964
     FogExponent: 0.599999905
     Rain:
-      DiffuseColor: [0, 0, 0]
-      AmbientColor: [0.411380231, 0.4612903, 0.524509788]
-      SpecularColor: [1, 0.760092258, 0.372548997]
+      DiffuseColor: [0.210784316, 0.210784316, 0.210784316]
+      AmbientColor: [0.45544982, 0.507543743, 0.573529422]
+      SpecularColor: [0.186274529, 0.171611041, 0.147923887]
       SpecularPower: 50
       DiffuseIntensity: 1
       AmbientIntensity: 1
@@ -196,7 +196,7 @@ Weather:
     CarAmbientIntensity: 0.799999952
     GodRaysColor: [1, 1, 1, 0]
     SunFlare: 1
-    CloudColor: [1, 1, 1, 0.550000012]
+    CloudColor: [1, 1, 1, 0.303000003]
     MoonColor: [1, 0.901384056, 0.627450943, 0.5]
     MoonSize: 0.25
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
@@ -206,7 +206,7 @@ Weather:
     BloomPower: 1
     BloomThreshold: 2
     RoadMaskIntensity: 1
-    SkyBeta: [0.632352948, 0.555832922, 0.464965403]
+    SkyBeta: [0.80392158, 0.654396653, 0.476835847]
     SkyMie: 1
     SkyRayleigh: 2
     SkyBrightness: 15
@@ -217,17 +217,17 @@ Weather:
     FogPower: 0.49999997
     FogExponent: 0.800000012
     Rain:
-      DiffuseColor: [0.0975586176, 0.122481167, 0.142156839]
-      AmbientColor: [0.79411763, 0.79411763, 0.79411763]
+      DiffuseColor: [0.0938581377, 0.117782772, 0.15196079]
+      AmbientColor: [0.764705896, 0.764705896, 0.764705896]
       SpecularColor: [0, 0, 0]
       SpecularPower: 40
-      DiffuseIntensity: 0.799999714
-      AmbientIntensity: 1.20000005
+      DiffuseIntensity: 1
+      AmbientIntensity: 1
       CarDiffuseIntensity: 0.599999666
       CarAmbientIntensity: 0.799999952
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
-      CloudColor: [1, 1, 1, 0.397000015]
+      CloudColor: [1, 1, 1, 0.507000029]
       MoonColor: [0, 0, 0, 0]
       MoonSize: 0
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
@@ -240,7 +240,7 @@ Weather:
       SkyBeta: [0.69607842, 0.660202086, 0.61759901]
       SkyMie: 0.100000001
       SkyRayleigh: 5
-      SkyBrightness: 3
+      SkyBrightness: 1
       FogColor: [0.392637432, 0.429161906, 0.465686262]
       FogSunColor: [0.393000007, 0.42899999, 0.465999991]
       FogStart: 30
@@ -352,8 +352,8 @@ Weather:
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]
-      MoonColor: [0, 0, 0, 0]
-      MoonSize: 0
+      MoonColor: [0.45588237, 0.45588237, 0.45588237, 0.995999992]
+      MoonSize: 0.0469999984
       WaterColor: [1, 1, 1]
       WaterSpecularPower: 10
       CarLightsPower: 1
@@ -362,7 +362,7 @@ Weather:
       BloomThreshold: 1.5
       RoadMaskIntensity: 1
       SkyBeta: [0.649999976, 0.569999993, 0.474999994]
-      SkyMie: 0.199999928
+      SkyMie: 0.00999999978
       SkyRayleigh: 0
       SkyBrightness: 10
       FogColor: [0.0396482348, 0.0421289019, 0.0490196347]

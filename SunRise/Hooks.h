@@ -387,6 +387,9 @@ void InitHooks()
 	injector::WriteMemory<BYTE>(0x006DAC03, 0xEB);
 	injector::WriteMemory<BYTE>(0x006E5352, 0xEB);
 
+	// Disable max shadow detail
+	injector::MakeNOP(0x006D24C5, 2);
+
 	RenderLights = new RenderLight[4096];
 
 #ifdef _DEBUG

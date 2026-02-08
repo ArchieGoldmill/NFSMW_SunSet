@@ -56,6 +56,10 @@ struct WeatherData
 	float SunFlare;
 
 	float RoadMaskIntensity;
+
+	float ExposureKey;
+	float ExposureMin;
+	float ExposureMax;
 };
 
 struct WeatherConfig
@@ -116,6 +120,7 @@ struct Config
 	bool RandomWindows;
 	bool DisableSunFlare;
 	bool RoadblockLights;
+	bool Exposure;
 
 	float WetTime;
 	float DryTime;

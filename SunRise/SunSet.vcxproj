@@ -181,6 +181,7 @@ copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunRise\mod\SunSet\scripts\
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />
     <ClInclude Include="eView.h" />
+    <ClInclude Include="Exposure.h" />
     <ClInclude Include="FlareConfig.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="FrontEndRenderingCar.h" />

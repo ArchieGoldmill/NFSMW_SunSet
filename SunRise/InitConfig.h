@@ -38,6 +38,7 @@ void LoadConfig()
 	g_Config.FlareDistance = YmlGet(settings, "FlareDistance", 200.0f);
 	g_Config.MaxLights = YmlGet(settings, "MaxLights", 500);
 	g_Config.EditorScale = YmlGet(settings, "EditorScale", 1.0);
+	g_Config.Exposure = YmlGet(settings, "Exposure", false);
 
 	const auto& time = settingsRoot["Time"];
 	g_Config.WetTime = YmlGet(time, "WetTime", 2.0f);

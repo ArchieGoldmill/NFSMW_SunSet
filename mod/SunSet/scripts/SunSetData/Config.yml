@@ -22,6 +22,7 @@ Config:
   DisableSunFlare: true       # Disable vanilla sun flare post effect.
   RoadblockLights: false      # Determines if roadblock cop cars should have their lights enabled.
   EditorScale: 1.0            # Scale of the UI Editor
+  Exposure: true              # Enabled auto exposure.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

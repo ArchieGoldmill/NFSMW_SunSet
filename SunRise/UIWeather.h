@@ -197,6 +197,12 @@ namespace UI
 
 								InputFloat("Road mask intensity", &weather->RoadMaskIntensity);
 
+								ImGui::Text("");
+
+								InputFloat("Exposure key", &weather->ExposureKey);
+								InputFloat("Exposure min", &weather->ExposureMin);
+								InputFloat("Exposure max", &weather->ExposureMax);
+
 								ImGui::EndChild();
 							}
 						}

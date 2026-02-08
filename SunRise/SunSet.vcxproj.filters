@@ -274,9 +274,6 @@
     <ClInclude Include="GodRays.h">
       <Filter>Features\PostEffects</Filter>
     </ClInclude>
-    <ClInclude Include="PostEffects.h">
-      <Filter>Features\PostEffects</Filter>
-    </ClInclude>
     <ClInclude Include="MotionBlur.h">
       <Filter>Features\PostEffects</Filter>
     </ClInclude>
@@ -318,6 +315,12 @@
     </ClInclude>
     <ClInclude Include="DynamicLights.h">
       <Filter>Features\DynamicLights</Filter>
+    </ClInclude>
+    <ClInclude Include="Exposure.h">
+      <Filter>Features\PostEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="PostEffects.h">
+      <Filter>Features\PostEffects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

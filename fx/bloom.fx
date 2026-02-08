@@ -45,6 +45,7 @@ float4 PS_Bloom(PS_INPUT IN) : COLOR
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
 	float3 hdrColor = DeCompressColourSpace(diffuse_tex.rgb);
+	hdrColor *= cfFilter.w;
 	
 	diffuse_tex.rgb = BloomThreshold(hdrColor) ? hdrColor : float3(0.0, 0.0, 0.0);
 
@@ -56,6 +57,8 @@ float4 PS_ApplyBloom(PS_INPUT IN) : COLOR
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
 	float3 hdrColor = DeCompressColourSpace(diffuse_tex.rgb);
+	
+	hdrColor *= cfFilter.w;
 	
 	if (cvBloomParams.x > 0)
 	{

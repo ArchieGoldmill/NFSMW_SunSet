@@ -151,6 +151,17 @@ public:
 		return &this->current.SunFlare;
 	}
 
+	D3DXVECTOR3 GetExposure()
+	{
+		D3DXVECTOR3 exp;
+
+		exp.x = this->current.ExposureKey;
+		exp.y = this->current.ExposureMin;
+		exp.z = this->current.ExposureMax;
+
+		return exp;
+	}
+
 private:
 
 	void SetFog(eEffect* e)
@@ -249,6 +260,10 @@ private:
 
 		this->current.GodRaysColor = LerpVector(a->GodRaysColor, b->GodRaysColor, t);
 		this->current.SunFlare = std::lerp(a->SunFlare, b->SunFlare, t);
+
+		this->current.ExposureKey = std::lerp(a->ExposureKey, b->ExposureKey, t);
+		this->current.ExposureMin = std::lerp(a->ExposureMin, b->ExposureMin, t);
+		this->current.ExposureMax = std::lerp(a->ExposureMax, b->ExposureMax, t);
 	}
 
 	void UpdateWeather()

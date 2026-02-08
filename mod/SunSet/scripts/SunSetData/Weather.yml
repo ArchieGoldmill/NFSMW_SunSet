@@ -1,11 +1,11 @@
 Weather:
   - Time: 0
     DiffuseColor: [0, 0, 0]
-    AmbientColor: [0.26912725, 0.319786489, 0.392156839]
+    AmbientColor: [0.486928076, 0.587178111, 0.730392158]
     SpecularColor: [0.107843161, 0.107843161, 0.107843161]
     SpecularPower: 40
     DiffuseIntensity: 0
-    AmbientIntensity: 1.49999988
+    AmbientIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
@@ -30,6 +30,9 @@ Weather:
     FogEnd: 750
     FogPower: 0.200000018
     FogExponent: 0.800000012
+    ExposureKey: 0.300000012
+    ExposureMin: 1
+    ExposureMax: 1
     Rain:
       DiffuseColor: [0, 0, 0]
       AmbientColor: [0.308823526, 0.308823526, 0.308823526]
@@ -61,13 +64,16 @@ Weather:
       FogEnd: 750
       FogPower: 0.700000048
       FogExponent: 0.800000012
+      ExposureKey: 0.300000012
+      ExposureMin: 1
+      ExposureMax: 1
   - Time: 0.200000003
     DiffuseColor: [0, 0, 0]
-    AmbientColor: [0.308823526, 0.308823526, 0.308823526]
+    AmbientColor: [0.617647052, 0.617647052, 0.617647052]
     SpecularColor: [0, 0, 0]
     SpecularPower: 40
     DiffuseIntensity: 0
-    AmbientIntensity: 1.50000012
+    AmbientIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
@@ -92,6 +98,9 @@ Weather:
     FogEnd: 750
     FogPower: 0.200000018
     FogExponent: 0.800000012
+    ExposureKey: 0.300000012
+    ExposureMin: 1
+    ExposureMax: 1
     Rain:
       DiffuseColor: [0, 0, 0]
       AmbientColor: [0.308823526, 0.308823526, 0.308823526]
@@ -123,6 +132,9 @@ Weather:
       FogEnd: 750
       FogPower: 0.200000018
       FogExponent: 0.800000012
+      ExposureKey: 0.300000012
+      ExposureMin: 1
+      ExposureMax: 1
   - Time: 0.25999999
     DiffuseColor: [0, 0, 0]
     AmbientColor: [0.630526721, 0.698373914, 0.784313738]
@@ -154,6 +166,9 @@ Weather:
     FogEnd: 300
     FogPower: 0.599999964
     FogExponent: 0.599999905
+    ExposureKey: 0.300000012
+    ExposureMin: 1
+    ExposureMax: 1
     Rain:
       DiffuseColor: [0.210784316, 0.210784316, 0.210784316]
       AmbientColor: [0.45544982, 0.507543743, 0.573529422]
@@ -185,6 +200,9 @@ Weather:
       FogEnd: 150
       FogPower: 0.49999997
       FogExponent: 0.800000012
+      ExposureKey: 0.300000012
+      ExposureMin: 1
+      ExposureMax: 1
   - Time: 0.5
     DiffuseColor: [0.995098054, 0.827239692, 0.678032458]
     AmbientColor: [0.62305361, 0.782865703, 0.985294104]
@@ -206,7 +224,7 @@ Weather:
     BloomPower: 1
     BloomThreshold: 2
     RoadMaskIntensity: 1
-    SkyBeta: [0.80392158, 0.654396653, 0.476835847]
+    SkyBeta: [0.676470578, 0.588548303, 0.484140694]
     SkyMie: 1
     SkyRayleigh: 2
     SkyBrightness: 15
@@ -216,6 +234,9 @@ Weather:
     FogEnd: 500
     FogPower: 0.49999997
     FogExponent: 0.800000012
+    ExposureKey: 0.300000012
+    ExposureMin: 1
+    ExposureMax: 1
     Rain:
       DiffuseColor: [0.0938581377, 0.117782772, 0.15196079]
       AmbientColor: [0.764705896, 0.764705896, 0.764705896]
@@ -247,6 +268,9 @@ Weather:
       FogEnd: 150
       FogPower: 0.699999988
       FogExponent: 0.599999964
+      ExposureKey: 0.300000012
+      ExposureMin: 1
+      ExposureMax: 1
   - Time: 0.730000019
     DiffuseColor: [0.470588207, 0.221453264, 0]
     AmbientColor: [1, 0.875865042, 0.799019575]
@@ -278,6 +302,9 @@ Weather:
     FogEnd: 700
     FogPower: 0.49999997
     FogExponent: 0.800000012
+    ExposureKey: 0.300000012
+    ExposureMin: 1
+    ExposureMax: 1
     Rain:
       DiffuseColor: [0, 0, 0]
       AmbientColor: [0.720588207, 0.631138027, 0.57576406]
@@ -309,13 +336,16 @@ Weather:
       FogEnd: 150
       FogPower: 0.49999997
       FogExponent: 0.800000012
+      ExposureKey: 0.300000012
+      ExposureMin: 1
+      ExposureMax: 1
   - Time: 0.800000012
     DiffuseColor: [0, 0, 0]
-    AmbientColor: [0.308823526, 0.308823526, 0.308823526]
+    AmbientColor: [0.656862736, 0.656862736, 0.656862736]
     SpecularColor: [0, 0, 0]
     SpecularPower: 40
     DiffuseIntensity: 0
-    AmbientIntensity: 1.50000012
+    AmbientIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
@@ -340,6 +370,9 @@ Weather:
     FogEnd: 750
     FogPower: 0.200000018
     FogExponent: 0.800000012
+    ExposureKey: 0.300000012
+    ExposureMin: 1
+    ExposureMax: 1
     Rain:
       DiffuseColor: [0, 0, 0]
       AmbientColor: [0.308823526, 0.308823526, 0.308823526]
@@ -371,3 +404,6 @@ Weather:
       FogEnd: 750
       FogPower: 0.200000018
       FogExponent: 0.800000012
+      ExposureKey: 0.300000012
+      ExposureMin: 1
+      ExposureMax: 1

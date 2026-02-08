@@ -89,6 +89,7 @@ void DrawBloom()
 	filterParams.x = g_Config.BlurDepth;
 	filterParams.y = g_Config.FilterPower;
 	filterParams.z = g_Config.Tonemapping;
+	filterParams.w = GetExposure();
 	effect->SetVector(shader_param::FILTERBLEND, &filterParams);
 
 	if (bloomParams.x > 0)

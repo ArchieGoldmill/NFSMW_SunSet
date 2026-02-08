@@ -115,7 +115,7 @@ float GetExposure()
 		if (exposure > maxExposure)
 		{
 			MoveTowards(g_CurrentExposure, maxExposure, Game::DeltaTime);
-		}8
+		}
 		else if (exposure < minExposure)
 		{
 			MoveTowards(g_CurrentExposure, minExposure, Game::DeltaTime);

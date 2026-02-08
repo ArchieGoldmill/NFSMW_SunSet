@@ -1375,3 +1375,19 @@ Textures:
     Prelit: true
     IgnoreWeather: true
     UseVertexColor: true
+  - Name: ARC_STADIUMDOORS_SA
+    Brightness: 3
+    Color: [1, 0.767012715, 0.504902005]
+    Mask: ARC_STADIUMDOORS_SA_M
+    AlwaysOn: false
+    Prelit: false
+    IgnoreWeather: true
+    UseVertexColor: false
+  - Name: ARC_WOODRED_CK
+    Brightness: 1
+    Color: [1, 0.705882311, 0]
+    Mask: ""
+    AlwaysOn: false
+    Prelit: true
+    IgnoreWeather: true
+    UseVertexColor: false

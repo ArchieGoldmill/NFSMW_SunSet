@@ -1,5 +1,4 @@
 #include "hdr.fx"
-#include "global.fx"
 
 float4 cfFilter : FILTERBLEND;
 
@@ -12,6 +11,21 @@ sampler HEIGHTMAP_SAMPLER = sampler_state
 	MIPFILTER = NONE;
 	MINFILTER = LINEAR;
 	MAGFILTER = LINEAR;
+};
+
+texture diffusemap : DiffuseMap;
+sampler DIFFUSEMAP_SAMPLER = sampler_state
+{
+	texture = <diffusemap>;
+
+	MinFilter = POINT;
+	MagFilter = POINT;
+	MipFilter = NONE;
+
+	AddressU = CLAMP;
+	AddressV = CLAMP;
+
+	MaxAnisotropy = 1;
 };
 
 struct VS_INPUT

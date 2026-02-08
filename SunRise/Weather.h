@@ -235,6 +235,7 @@ private:
 		this->current.SkyRayleigh = std::lerp(a->SkyRayleigh, b->SkyRayleigh, t);
 		this->current.SkyMie = std::lerp(a->SkyMie, b->SkyMie, t);
 		this->current.SkyBrightness = std::lerp(a->SkyBrightness, b->SkyBrightness, t);
+		this->current.SkyPower = std::lerp(a->SkyPower, b->SkyPower, t);
 
 		this->current.FogColor = LerpVector(a->FogColor, b->FogColor, t);
 		this->current.FogSunColor = LerpVector(a->FogSunColor, b->FogSunColor, t);
@@ -428,9 +429,12 @@ private:
 		skyParams.z = this->current.SkyBrightness;
 		skyParams.w = NightFactor;
 
+		D3DXVECTOR4 skyBeta = this->current.SkyBeta;
+		skyBeta.w = this->current.SkyPower;
+
 		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvSunDirection, &sunDirection);
-		e->SetVector(ShaderParam::cvSkyBeta, &this->current.SkyBeta);
+		e->SetVector(ShaderParam::cvSkyBeta, &skyBeta);
 		e->SetVector(ShaderParam::cvSkyParams, &skyParams);
 		e->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
 

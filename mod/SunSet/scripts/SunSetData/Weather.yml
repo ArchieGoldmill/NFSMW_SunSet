@@ -23,7 +23,8 @@ Weather:
     SkyBeta: [0.649999976, 0.569999993, 0.474999994]
     SkyMie: 0.799999952
     SkyRayleigh: 0.0299999993
-    SkyBrightness: 10
+    SkyBrightness: 15
+    SkyPower: 2
     FogColor: [0.0513264127, 0.0688819066, 0.117647052]
     FogSunColor: [0.050999999, 0.0689999983, 0.118000001]
     FogStart: 150
@@ -58,6 +59,7 @@ Weather:
       SkyMie: 0.199999928
       SkyRayleigh: 0
       SkyBrightness: 10
+      SkyPower: 2
       FogColor: [0.0410899855, 0.043189019, 0.0490196347]
       FogSunColor: [0.0410000011, 0.0430000015, 0.0489999987]
       FogStart: 150
@@ -92,6 +94,7 @@ Weather:
     SkyMie: 0.100000001
     SkyRayleigh: 0.0300000012
     SkyBrightness: 10
+    SkyPower: 2
     FogColor: [0.171424448, 0.201306969, 0.284313738]
     FogSunColor: [0.171000004, 0.201000005, 0.284000009]
     FogStart: 150
@@ -126,6 +129,7 @@ Weather:
       SkyMie: 0.00999999791
       SkyRayleigh: 0
       SkyBrightness: 10
+      SkyPower: 2
       FogColor: [0.0396482348, 0.0421289019, 0.0490196347]
       FogSunColor: [0.0399999991, 0.0419999994, 0.0489999987]
       FogStart: 150
@@ -160,15 +164,16 @@ Weather:
     SkyMie: 1
     SkyRayleigh: 5
     SkyBrightness: 5
+    SkyPower: 2
     FogColor: [0.289191663, 0.379175484, 0.406862736]
     FogSunColor: [0.852941155, 0.54796797, 0.2048731]
     FogStart: 35
     FogEnd: 300
     FogPower: 0.599999964
     FogExponent: 0.599999905
-    ExposureKey: 0.300000012
-    ExposureMin: 1
-    ExposureMax: 1
+    ExposureKey: 0.200000018
+    ExposureMin: 0.899999976
+    ExposureMax: 1.4000001
     Rain:
       DiffuseColor: [0.210784316, 0.210784316, 0.210784316]
       AmbientColor: [0.45544982, 0.507543743, 0.573529422]
@@ -194,6 +199,7 @@ Weather:
       SkyMie: 0.099999927
       SkyRayleigh: 5
       SkyBrightness: 8
+      SkyPower: 2
       FogColor: [0.168012306, 0.211966008, 0.225490212]
       FogSunColor: [0.167999998, 0.211999997, 0.224999994]
       FogStart: 20
@@ -204,17 +210,17 @@ Weather:
       ExposureMin: 1
       ExposureMax: 1
   - Time: 0.5
-    DiffuseColor: [0.995098054, 0.827239692, 0.678032458]
+    DiffuseColor: [0.985294104, 0.798633635, 0.632713318]
     AmbientColor: [0.62305361, 0.782865703, 0.985294104]
     SpecularColor: [1, 0.964677036, 0.759803891]
     SpecularPower: 40
-    DiffuseIntensity: 1.99999988
+    DiffuseIntensity: 2
     AmbientIntensity: 1
-    CarDiffuseIntensity: 0.599999666
+    CarDiffuseIntensity: 0.699999928
     CarAmbientIntensity: 0.799999952
     GodRaysColor: [1, 1, 1, 0]
     SunFlare: 1
-    CloudColor: [1, 1, 1, 0.303000003]
+    CloudColor: [0.765835285, 0.873723626, 0.995098054, 0.501999974]
     MoonColor: [1, 0.901384056, 0.627450943, 0.5]
     MoonSize: 0.25
     WaterColor: [0.593137264, 0.593137264, 0.593137264]
@@ -224,19 +230,20 @@ Weather:
     BloomPower: 1
     BloomThreshold: 2
     RoadMaskIntensity: 1
-    SkyBeta: [0.676470578, 0.588548303, 0.484140694]
+    SkyBeta: [0.715686262, 0.576157451, 0.410467118]
     SkyMie: 1
     SkyRayleigh: 2
     SkyBrightness: 15
+    SkyPower: 2
     FogColor: [0.499495357, 0.663963497, 0.828431368]
     FogSunColor: [0.540417135, 0.694228232, 0.84803921]
     FogStart: 150
     FogEnd: 500
     FogPower: 0.49999997
     FogExponent: 0.800000012
-    ExposureKey: 0.200000003
-    ExposureMin: 0.799999952
-    ExposureMax: 2
+    ExposureKey: 0.300000012
+    ExposureMin: 0.900000095
+    ExposureMax: 3
     Rain:
       DiffuseColor: [0.0938581377, 0.117782772, 0.15196079]
       AmbientColor: [0.764705896, 0.764705896, 0.764705896]
@@ -262,6 +269,7 @@ Weather:
       SkyMie: 0.100000001
       SkyRayleigh: 5
       SkyBrightness: 1
+      SkyPower: 2
       FogColor: [0.392637432, 0.429161906, 0.465686262]
       FogSunColor: [0.393000007, 0.42899999, 0.465999991]
       FogStart: 30
@@ -290,12 +298,13 @@ Weather:
     CarLightsPower: 0.5
     TextureLightPower: 0.5
     BloomPower: 1
-    BloomThreshold: 1.5
+    BloomThreshold: 2.49999952
     RoadMaskIntensity: 1
     SkyBeta: [0.509803891, 0.460190624, 0.397347152]
     SkyMie: 1.50000012
     SkyRayleigh: 5
     SkyBrightness: 8
+    SkyPower: 2
     FogColor: [0.480392158, 0.427061409, 0.315551698]
     FogSunColor: [0.818627477, 0.355139852, 0.068218939]
     FogStart: 150
@@ -303,8 +312,8 @@ Weather:
     FogPower: 0.49999997
     FogExponent: 0.800000012
     ExposureKey: 0.300000012
-    ExposureMin: 1
-    ExposureMax: 1
+    ExposureMin: 0.799999952
+    ExposureMax: 1.49999988
     Rain:
       DiffuseColor: [0, 0, 0]
       AmbientColor: [0.720588207, 0.631138027, 0.57576406]
@@ -330,6 +339,7 @@ Weather:
       SkyMie: 1.50000012
       SkyRayleigh: 5
       SkyBrightness: 3
+      SkyPower: 2
       FogColor: [0.480392158, 0.427061409, 0.315551698]
       FogSunColor: [0.602941155, 0.502451003, 0.452205867]
       FogStart: 30
@@ -364,6 +374,7 @@ Weather:
     SkyMie: 0
     SkyRayleigh: 0.0300000012
     SkyBrightness: 10
+    SkyPower: 2
     FogColor: [0.194492519, 0.216971204, 0.279411793]
     FogSunColor: [0.194000006, 0.216999993, 0.279000014]
     FogStart: 150
@@ -398,6 +409,7 @@ Weather:
       SkyMie: 0.00999999978
       SkyRayleigh: 0
       SkyBrightness: 10
+      SkyPower: 2
       FogColor: [0.0396482348, 0.0421289019, 0.0490196347]
       FogSunColor: [0.0399999991, 0.0419999994, 0.0489999987]
       FogStart: 150

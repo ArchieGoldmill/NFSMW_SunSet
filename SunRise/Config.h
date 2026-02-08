@@ -31,6 +31,7 @@ struct WeatherData
 	float SkyRayleigh;
 	float SkyMie;
 	float SkyBrightness;
+	float SkyPower;
 
 	D3DXVECTOR4 CloudColor;
 	D3DXVECTOR4 MoonColor;

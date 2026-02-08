@@ -13,6 +13,6 @@ float3 DeCompressColourSpace(float3 colour)
 	return colour / clr;
 }
 
-static const float3 LuminanceVector = float3(0.2125f, 0.7154f, 0.0721f);
+static const float3 LuminanceVector = float3(0.2126f, 0.7152f, 0.0722f);
 
 #endif // HDR_HEADER

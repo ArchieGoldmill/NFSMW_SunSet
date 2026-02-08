@@ -22,7 +22,7 @@ Config:
   DisableSunFlare: true       # Disable vanilla sun flare post effect.
   RoadblockLights: false      # Determines if roadblock cop cars should have their lights enabled.
   EditorScale: 1.0            # Scale of the UI Editor
-  Exposure: true              # Enabled auto exposure.
+  Exposure: false             # Enable auto exposure.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.
@@ -61,5 +61,5 @@ WindowGlow:
   Power: 5                    # Window glow color multiplier.
 
 Filter:
-  Texture: FILTER_DEFAULT     # LUT Filter to be used in game for color correction.
-  Power: 1.0                  # Power of the color correction effect.
+  Texture: FILTER_CARBON2     # LUT Filter to be used in game for color correction.
+  Power: 0.5                  # Power of the color correction effect.

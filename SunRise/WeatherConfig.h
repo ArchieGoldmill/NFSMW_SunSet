@@ -20,6 +20,7 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
 	config->SkyMie = YmlGet<float>(node, "SkyMie", cfg->SkyMie);
 	config->SkyBrightness = YmlGet<float>(node, "SkyBrightness", cfg->SkyBrightness);
+	config->SkyPower = YmlGet<float>(node, "SkyPower", 2.0f);
 
 	config->FogColor = ParseVec3To4(node["FogColor"], cfg->FogColor);
 	config->FogSunColor = ParseVec3To4(node["FogSunColor"], cfg->FogSunColor);
@@ -112,6 +113,7 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["SkyMie"] = data->SkyMie;
 	node["SkyRayleigh"] = data->SkyRayleigh;
 	node["SkyBrightness"] = data->SkyBrightness;
+	node["SkyPower"] = data->SkyPower;
 
 	node["FogColor"] = SerializeVector3(data->FogColor);
 	node["FogSunColor"] = SerializeVector3(data->FogSunColor);

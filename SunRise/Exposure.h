@@ -35,7 +35,8 @@ void DownSampleLuminance()
 
 	for (int i = 0; i < Exposure::Downsample.size() - 1; i++)
 	{
-		Game::Device->SetRenderTarget(0, Exposure::Downsample[i + 1].Surface);
+		auto target = Exposure::Downsample[i + 1];
+		Game::Device->SetRenderTarget(0, target.Surface);
 		Game::Device->SetDepthStencilSurface(0);
 
 		pEffect->Begin(&passes, 0);
@@ -46,7 +47,7 @@ void DownSampleLuminance()
 		texelSize.y = 1.0 / Exposure::Downsample[i].height;
 
 		effect->SetVector(ShaderParam::cvTexelSize, &texelSize);
-		effect->DrawFullScreenQuad(Exposure::Downsample[i].Texture);
+		effect->DrawFullScreenQuad(Exposure::Downsample[i].Texture, target.width, target.height);
 
 		pEffect->EndPass();
 		pEffect->End();
@@ -72,7 +73,7 @@ float GetCurrentLuminance()
 
 bool IsExposureEnabled()
 {
-	if (g_Config.Exposure)
+	if (g_Config.Exposure && Game::State == 6)
 	{
 		auto exp = g_Weather.GetExposure();
 		return exp.y != exp.z;
@@ -82,39 +83,49 @@ bool IsExposureEnabled()
 }
 
 float logAdaptedLum = logf(0.18f);
+float g_CurrentExposure = 1;
+
 float GetExposure()
 {
-	if (g_Config.Exposure)
+	if (g_Config.Exposure && Game::State == 6)
 	{
-		auto exp = g_Weather.GetExposure();
-		float minExposure = exp.y;
-		float maxExposure = exp.z;
+		auto params = g_Weather.GetExposure();
+
+		float adaptationRate = 1.0f;
+		float minExposure = params.y;
+		float maxExposure = params.z;
+		float key = params.x;
 
 		if (minExposure == maxExposure)
 		{
 			return minExposure;
 		}
 
-		float key = exp.x;
+		float logCurrLum = GetCurrentLuminance();
 
-		float currLum = GetCurrentLuminance();
-		float logCurrLum = logf(max(currLum, 0.0001f));
+		logAdaptedLum += (logCurrLum - logAdaptedLum) * adaptationRate * Game::DeltaTime;
 
-		float delta = logCurrLum - logAdaptedLum;
-		float adaptationRate = (logCurrLum > logAdaptedLum ? 3.0f : 1.5f) * (0.2f + min(abs(delta), 2));
+		float sceneLum = exp(logAdaptedLum);
 
-		logAdaptedLum += delta * adaptationRate * Game::DeltaTime;
-
-		float adaptedLum = expf(logAdaptedLum);
-
-		float exposure = key / adaptedLum;
+		float exposure = key / sceneLum;
 
 		minExposure = min(minExposure, maxExposure);
 		maxExposure = max(minExposure, maxExposure);
 
-		exposure = std::clamp(exposure, minExposure, maxExposure);
+		if (exposure > maxExposure)
+		{
+			MoveTowards(g_CurrentExposure, maxExposure, Game::DeltaTime);
+		}8
+		else if (exposure < minExposure)
+		{
+			MoveTowards(g_CurrentExposure, minExposure, Game::DeltaTime);
+		}
+		else
+		{
+			g_CurrentExposure = exposure;
+		}
 
-		return exposure;
+		return g_CurrentExposure;
 	}
 
 	return 1.0;

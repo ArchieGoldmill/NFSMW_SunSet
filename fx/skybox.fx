@@ -308,7 +308,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	
 	color = lerp(color, clouds.rgb, clouds.a * cvCloudColor.a);
 	
-	color = color * 2;
+	color = color * cvSkyBeta.w;
 	if (cfSaturateSky > 0)
 	{
 		color = saturate(color);

@@ -486,7 +486,7 @@ struct eEffect
 		this->D3DEffect->SetTechnique(tech);
 	}
 
-	void DrawFullScreenQuad(IDirect3DTexture9* texture, bool invert = false)
+	void DrawFullScreenQuad(IDirect3DTexture9* texture, float w = -1, float h = -1)
 	{
 		struct {
 			D3DXVECTOR3 position;
@@ -496,21 +496,24 @@ struct eEffect
 
 		Game::Device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
-		D3DSURFACE_DESC desc;
-
-		texture->GetLevelDesc(0u, &desc);
-
-		float w = static_cast<float>(desc.Width);
-		float h = static_cast<float>(desc.Height);
-
-		if ((desc.Width & 0x80000000) != 0)
+		if (w < 0)
 		{
-			w += 4.2949673e9f;
-		}
+			D3DSURFACE_DESC desc;
 
-		if ((desc.Height & 0x80000000) != 0)
-		{
-			h += 4.2949673e9f;
+			texture->GetLevelDesc(0u, &desc);
+
+			w = static_cast<float>(desc.Width);
+			h = static_cast<float>(desc.Height);
+
+			if ((desc.Width & 0x80000000) != 0)
+			{
+				w += 4.2949673e9f;
+			}
+
+			if ((desc.Height & 0x80000000) != 0)
+			{
+				h += 4.2949673e9f;
+			}
 		}
 
 		float inv_w = 0.5f / w;
@@ -526,21 +529,10 @@ struct eEffect
 		float uv21;
 		float uv01;
 
-		if (invert)
-		{
-			uv01 = inv_h + 1.0f;
-			uv11 = inv_h + 1.0f;
-			uv21 = inv_h;
-			uv31 = inv_h;
-		}
-		else
-		{
-			uv01 = inv_h;
-			uv11 = inv_h;
-			uv21 = inv_h + 1.0f;
-			uv31 = inv_h + 1.0f;
-		}
-
+		uv01 = inv_h;
+		uv11 = inv_h;
+		uv21 = inv_h + 1.0f;
+		uv31 = inv_h + 1.0f;
 		vertices[0].position.x = -1.0f;
 		vertices[0].position.y = +1.0f;
 		vertices[0].position.z = +0.0f;

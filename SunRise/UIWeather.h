@@ -169,10 +169,11 @@ namespace UI
 
 								ImGui::Text("");
 
-								ImGui::ColorEdit3("Sky Beta", (float*)&weather->SkyBeta, ImGuiColorEditFlags_Float);
-								InputFloat("Sky Mie", &weather->SkyMie);
-								InputFloat("Sky Rayleigh", &weather->SkyRayleigh);
-								InputFloat("Sky Brightness", &weather->SkyBrightness);
+								ImGui::ColorEdit3("Sky beta", (float*)&weather->SkyBeta, ImGuiColorEditFlags_Float);
+								InputFloat("Sky mie", &weather->SkyMie);
+								InputFloat("Sky rayleigh", &weather->SkyRayleigh);
+								InputFloat("Sky brightness", &weather->SkyBrightness);
+								InputFloat("Sky power", &weather->SkyPower);
 
 								ImGui::Text("");
 
@@ -202,6 +203,11 @@ namespace UI
 								InputFloat("Exposure key", &weather->ExposureKey);
 								InputFloat("Exposure min", &weather->ExposureMin);
 								InputFloat("Exposure max", &weather->ExposureMax);
+
+#ifdef _DEBUG
+								ImGui::Text("");
+								ImGui::Text("Current lum: %f", g_CurrentExposure);
+#endif
 
 								ImGui::EndChild();
 							}

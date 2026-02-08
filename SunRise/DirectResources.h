@@ -206,8 +206,8 @@ namespace Exposure
 
 		auto renderTarget = RenderTarget::Player;
 
-		int width = renderTarget->resolution_x / 4;
-		int height = renderTarget->resolution_y / 4;
+		int width = renderTarget->resolution_x;
+		int height = renderTarget->resolution_y;
 
 		bool flag = false;
 		while (true)

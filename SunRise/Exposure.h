@@ -70,28 +70,44 @@ float GetCurrentLuminance()
 	return avgLuminance;
 }
 
+bool IsExposureEnabled()
+{
+	if (g_Config.Exposure)
+	{
+		auto exp = g_Weather.GetExposure();
+		return exp.y != exp.z;
+	}
+
+	return false;
+}
+
 float logAdaptedLum = logf(0.18f);
 float GetExposure()
 {
 	if (g_Config.Exposure)
 	{
 		auto exp = g_Weather.GetExposure();
+		float minExposure = exp.y;
+		float maxExposure = exp.z;
+
+		if (minExposure == maxExposure)
+		{
+			return minExposure;
+		}
 
 		float key = exp.x;
 
 		float currLum = GetCurrentLuminance();
 		float logCurrLum = logf(max(currLum, 0.0001f));
 
-		float adaptationRate = logCurrLum > logAdaptedLum ? 3.0f : 1.5f;
+		float delta = logCurrLum - logAdaptedLum;
+		float adaptationRate = (logCurrLum > logAdaptedLum ? 3.0f : 1.5f) * (0.2f + min(abs(delta), 2));
 
-		logAdaptedLum += (logCurrLum - logAdaptedLum) * adaptationRate * Game::DeltaTime;
+		logAdaptedLum += delta * adaptationRate * Game::DeltaTime;
 
 		float adaptedLum = expf(logAdaptedLum);
 
 		float exposure = key / adaptedLum;
-
-		float minExposure = exp.y;
-		float maxExposure = exp.z;
 
 		minExposure = min(minExposure, maxExposure);
 		maxExposure = max(minExposure, maxExposure);
@@ -106,7 +122,7 @@ float GetExposure()
 
 void ApplyExposure()
 {
-	if (g_Config.Exposure)
+	if (IsExposureEnabled())
 	{
 		Exposure::Init();
 

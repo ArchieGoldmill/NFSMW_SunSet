@@ -47,8 +47,8 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->RoadMaskIntensity = YmlGet<float>(node, "RoadMaskIntensity", 1.0f);
 
 	config->ExposureKey = YmlGet<float>(node, "ExposureKey", 0.3f);
-	config->ExposureMin = YmlGet<float>(node, "ExposureKey", 1.0f);
-	config->ExposureMax = YmlGet<float>(node, "ExposureKey", 1.0f);
+	config->ExposureMin = YmlGet<float>(node, "ExposureMin", 1.0f);
+	config->ExposureMax = YmlGet<float>(node, "ExposureMax", 1.0f);
 }
 
 void LoadWeatherConfig()

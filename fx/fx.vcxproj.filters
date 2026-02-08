@@ -70,5 +70,8 @@
     <ClInclude Include="blur.fx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="exposure.fx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

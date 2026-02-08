@@ -234,9 +234,9 @@ Weather:
     FogEnd: 500
     FogPower: 0.49999997
     FogExponent: 0.800000012
-    ExposureKey: 0.300000012
-    ExposureMin: 1
-    ExposureMax: 1
+    ExposureKey: 0.200000003
+    ExposureMin: 0.799999952
+    ExposureMax: 2
     Rain:
       DiffuseColor: [0.0938581377, 0.117782772, 0.15196079]
       AmbientColor: [0.764705896, 0.764705896, 0.764705896]

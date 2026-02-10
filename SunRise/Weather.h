@@ -29,6 +29,8 @@ private:
 	float RoadRainDrops = 0.0f;
 	float LightIntensity = 0.0f;
 	float NightFactor = 0.0f;
+	float AmbientIntencity = 1.0;
+	float DiffuseIntencity = 1.0;
 	int day = 1;
 
 public:
@@ -181,6 +183,9 @@ private:
 			this->current.FogExponent
 		};
 
+		MoveTowards(this->DiffuseIntencity, Rain::Instance->IsInTunnel ? this->current.TunnelDiffuseIntensity : 1, Game::DeltaTime);
+		MoveTowards(this->AmbientIntencity, Rain::Instance->IsInTunnel ? this->current.TunnelAmbientIntensity : 1, Game::DeltaTime);
+
 		for (shader_type stype : { shader_type::WorldShader, shader_type::WorldNormalMap, shader_type::WorldReflectShader, shader_type::GlossyWindow, shader_type::CarShader, shader_type::billboardshader })
 		{
 			auto e = eEffect::Get(stype);
@@ -190,6 +195,9 @@ private:
 			auto isCar = stype == shader_type::CarShader;
 			D3DXVECTOR4 diffuseColor = this->current.DiffuseColor * (isCar ? this->current.CarDiffuseIntensity : this->current.DiffuseIntensity);
 			D3DXVECTOR4 ambientColor = this->current.AmbientColor * (isCar ? this->current.CarAmbientIntensity : this->current.AmbientIntensity);
+
+			ambientColor *= this->AmbientIntencity;
+			diffuseColor *= this->DiffuseIntencity;
 
 			diffuseColor.w = (stype == shader_type::CarShader ? g_Config.CarVertexColor : g_Config.WorldVertexColor) * 1.0;
 
@@ -230,6 +238,9 @@ private:
 		this->current.CarDiffuseIntensity = std::lerp(a->CarDiffuseIntensity, b->CarDiffuseIntensity, t);
 		this->current.CarAmbientIntensity = std::lerp(a->CarAmbientIntensity, b->CarAmbientIntensity, t);
 		this->current.CarSpecularIntensity = std::lerp(a->CarSpecularIntensity, b->CarSpecularIntensity, t);
+
+		this->current.TunnelDiffuseIntensity = std::lerp(a->TunnelDiffuseIntensity, b->TunnelDiffuseIntensity, t);
+		this->current.TunnelAmbientIntensity = std::lerp(a->TunnelAmbientIntensity, b->TunnelAmbientIntensity, t);
 
 		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t);
 		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t);

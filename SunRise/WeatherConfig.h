@@ -19,6 +19,9 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 	config->CarAmbientIntensity = YmlGet<float>(node, "CarAmbientIntensity", cfg->CarAmbientIntensity);
 	config->CarSpecularIntensity = YmlGet<float>(node, "CarSpecularIntensity", 1.0f);
 
+	config->TunnelDiffuseIntensity = YmlGet<float>(node, "TunnelDiffuseIntensity", 1.5f);
+	config->TunnelAmbientIntensity = YmlGet<float>(node, "TunnelAmbientIntensity", 0.5f);
+
 	config->SkyBeta = ParseVec3To4(node["SkyBeta"], cfg->SkyBeta);
 	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
 	config->SkyMie = YmlGet<float>(node, "SkyMie", cfg->SkyMie);
@@ -95,6 +98,9 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 	node["CarDiffuseIntensity"] = data->CarDiffuseIntensity;
 	node["CarAmbientIntensity"] = data->CarAmbientIntensity;
 	node["CarSpecularIntensity"] = data->CarSpecularIntensity;
+
+	node["TunnelDiffuseIntensity"] = data->TunnelDiffuseIntensity;
+	node["TunnelAmbientIntensity"] = data->TunnelAmbientIntensity;
 
 	node["GodRaysColor"] = SerializeVector4(data->GodRaysColor);
 	node["SunFlare"] = data->SunFlare;

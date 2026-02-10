@@ -7,10 +7,9 @@ float4 PS_Luminance(PS_INPUT IN) : COLOR
 	float4 diffuse_tex = tex2D(DIFFUSEMAP_SAMPLER, IN.uv);
 	
 	float3 color = DeCompressColourSpace(diffuse_tex.rgb);
-	color = saturate(color);
 	
 	float lum = dot(color, LuminanceVector);
-	lum = clamp(lum, 0.0001, 10);
+	lum = max(lum, 0.0001);
 	
 	return float4(log(lum), 0, 0, 0);
 }

@@ -1391,3 +1391,11 @@ Textures:
     Prelit: true
     IgnoreWeather: true
     UseVertexColor: false
+  - Name: OBJ_TUNNEL_LIGHT_B_MM
+    Brightness: 1.50000012
+    Color: [0, 0, 0]
+    Mask: OBJ_TUNNEL_LIGHT_B_MM_T
+    AlwaysOn: true
+    Prelit: false
+    IgnoreWeather: true
+    UseVertexColor: false

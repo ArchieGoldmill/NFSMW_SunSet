@@ -10,6 +10,8 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     CarSpecularIntensity: 1
+    TunnelDiffuseIntensity: 1.5
+    TunnelAmbientIntensity: 0.300000012
     GodRaysColor: [0, 0, 0, 0]
     SunFlare: 0
     CloudColor: [0.0269127395, 0.0340649746, 0.0490196347, 1]
@@ -47,6 +49,8 @@ Weather:
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
       CarSpecularIntensity: 1
+      TunnelDiffuseIntensity: 1.5
+      TunnelAmbientIntensity: 0.300000012
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]
@@ -84,6 +88,8 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     CarSpecularIntensity: 1
+    TunnelDiffuseIntensity: 1.5
+    TunnelAmbientIntensity: 0.300000012
     GodRaysColor: [0, 0, 0, 0]
     SunFlare: 0
     CloudColor: [0.0270000007, 0.0340000018, 0.0489999987, 0.984000027]
@@ -121,6 +127,8 @@ Weather:
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
       CarSpecularIntensity: 1
+      TunnelDiffuseIntensity: 1.5
+      TunnelAmbientIntensity: 0.300000012
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]
@@ -158,6 +166,8 @@ Weather:
     CarDiffuseIntensity: 1
     CarAmbientIntensity: 1
     CarSpecularIntensity: 1
+    TunnelDiffuseIntensity: 1.5
+    TunnelAmbientIntensity: 0.300000012
     GodRaysColor: [1, 0.951701283, 0.671568632, 0]
     SunFlare: 1
     CloudColor: [1, 0.868512094, 0.627450943, 0.501999974]
@@ -195,6 +205,8 @@ Weather:
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
       CarSpecularIntensity: 1
+      TunnelDiffuseIntensity: 1.5
+      TunnelAmbientIntensity: 0.300000012
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [1, 1, 1, 0.286000013]
@@ -222,16 +234,18 @@ Weather:
       ExposureMin: 1
       ExposureMax: 1
   - Time: 0.5
-    DiffuseColor: [0.985294104, 0.798633635, 0.632713318]
-    AmbientColor: [0.62305361, 0.782865703, 0.985294104]
+    DiffuseColor: [0.985294104, 0.819373727, 0.632713318]
+    AmbientColor: [0.578431368, 0.764417827, 1]
     SpecularColor: [1, 0.964677036, 0.759803891]
     SpecularPower: 40
-    DiffuseIntensity: 2
-    AmbientIntensity: 1
+    DiffuseIntensity: 2.50000048
+    AmbientIntensity: 1.50000012
     SpecularIntensity: 1
     CarDiffuseIntensity: 0.699999928
     CarAmbientIntensity: 0.799999952
     CarSpecularIntensity: 1
+    TunnelDiffuseIntensity: 2
+    TunnelAmbientIntensity: 0.300000012
     GodRaysColor: [1, 1, 1, 0]
     SunFlare: 1
     CloudColor: [0.765835285, 0.873723626, 0.995098054, 0.501999974]
@@ -242,7 +256,7 @@ Weather:
     CarLightsPower: 0.099999927
     TextureLightPower: 0.600000024
     BloomPower: 1
-    BloomThreshold: 2
+    BloomThreshold: 3
     RoadMaskIntensity: 1
     SkyBeta: [0.715686262, 0.576157451, 0.410467118]
     SkyMie: 1
@@ -255,9 +269,9 @@ Weather:
     FogEnd: 500
     FogPower: 0.49999997
     FogExponent: 0.800000012
-    ExposureKey: 0.300000012
+    ExposureKey: 0.449999988
     ExposureMin: 0.900000095
-    ExposureMax: 3
+    ExposureMax: 1.20000005
     Rain:
       DiffuseColor: [0.0938581377, 0.117782772, 0.15196079]
       AmbientColor: [0.764705896, 0.764705896, 0.764705896]
@@ -269,6 +283,8 @@ Weather:
       CarDiffuseIntensity: 0.599999666
       CarAmbientIntensity: 0.799999952
       CarSpecularIntensity: 1
+      TunnelDiffuseIntensity: 1.5
+      TunnelAmbientIntensity: 0.300000012
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [1, 1, 1, 0.507000029]
@@ -306,6 +322,8 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     CarSpecularIntensity: 1
+    TunnelDiffuseIntensity: 1.5
+    TunnelAmbientIntensity: 0.300000012
     GodRaysColor: [1, 0.930795848, 0.843137264, 0]
     SunFlare: 1
     CloudColor: [1, 0.614763379, 0.181372523, 0.368999988]
@@ -343,6 +361,8 @@ Weather:
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
       CarSpecularIntensity: 1
+      TunnelDiffuseIntensity: 1.5
+      TunnelAmbientIntensity: 0.300000012
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [1, 0.737024188, 0.441176474, 0.349999994]
@@ -380,6 +400,8 @@ Weather:
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
     CarSpecularIntensity: 1
+    TunnelDiffuseIntensity: 1.5
+    TunnelAmbientIntensity: 0.300000012
     GodRaysColor: [0, 0, 0, 0]
     SunFlare: 0
     CloudColor: [0.0296039954, 0.032662265, 0.0392156839, 1]
@@ -417,6 +439,8 @@ Weather:
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
       CarSpecularIntensity: 1
+      TunnelDiffuseIntensity: 1.5
+      TunnelAmbientIntensity: 0.300000012
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]

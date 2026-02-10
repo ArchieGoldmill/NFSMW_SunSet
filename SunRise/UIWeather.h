@@ -155,6 +155,11 @@ namespace UI
 
 								ImGui::Text("");
 
+								InputFloat("Tunnel diffuse intensity", &weather->TunnelDiffuseIntensity);
+								InputFloat("Tunnel ambient intensity", &weather->TunnelAmbientIntensity);
+
+								ImGui::Text("");
+
 								ImGui::ColorEdit4("Moon color", (float*)&weather->MoonColor, ImGuiColorEditFlags_Float);
 								InputFloat("Moon size", &weather->MoonSize);
 
@@ -206,10 +211,8 @@ namespace UI
 								InputFloat("Exposure min", &weather->ExposureMin);
 								InputFloat("Exposure max", &weather->ExposureMax);
 
-#ifdef _DEBUG
 								ImGui::Text("");
-								ImGui::Text("Current lum: %f", g_CurrentExposure);
-#endif
+								ImGui::Text("Current Exposure: %f", g_CurrentExposure);
 
 								ImGui::EndChild();
 							}

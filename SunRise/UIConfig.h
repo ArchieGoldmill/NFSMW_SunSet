@@ -63,6 +63,7 @@ namespace UI
 				ImGui::Checkbox("World vertex color", &g_Config.WorldVertexColor);
 				ImGui::Checkbox("Car vertex color", &g_Config.CarVertexColor);
 				ImGui::Checkbox("Tunnel wetness fix", &g_Config.TunnelWetnessFix);
+				ImGui::Checkbox("Tunnel light intensity", &g_Config.TunnelLightIntensity);
 				ImGui::Checkbox("Disable night shadows", &g_Config.DisableNightShadows);
 				ImGui::Checkbox("Tonemapping", &g_Config.Tonemapping);
 				if (ImGui::Checkbox("MSAA 8x", &g_Config.MSAAx8))

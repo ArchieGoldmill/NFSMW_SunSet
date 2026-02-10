@@ -14,6 +14,7 @@ Config:
   WorldVertexColor: false     # Enable baked world vertex colors.
   CarVertexColor: true        # Enable baked car vertex colors.
   TunnelWetnessFix: true      # Dynamically removes puddles from the tunnels.
+  TunnelLightIntensity: true  # Uses separate intensity values when player is in tunnel.
   DisableNightShadows: true   # Disable shadowmap rendering at night to improve performance.
   MSAAx8: false               # Force MSAA 8x sample count.
   CustomMeshDist: 500         # Default max distance for custom meshes.

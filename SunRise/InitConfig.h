@@ -29,6 +29,7 @@ void LoadConfig()
 	g_Config.WorldVertexColor = YmlGet(settings, "WorldVertexColor", false);
 	g_Config.CarVertexColor = YmlGet(settings, "CarVertexColor", true);
 	g_Config.TunnelWetnessFix = YmlGet(settings, "TunnelWetnessFix", true);
+	g_Config.TunnelLightIntensity = YmlGet(settings, "TunnelLightIntensity", true);
 	g_Config.DisableNightShadows = YmlGet(settings, "DisableNightShadows", true);
 	g_Config.MSAAx8 = YmlGet(settings, "MSAAx8", false);
 	g_Config.Tonemapping = YmlGet(settings, "Tonemapping", false);
@@ -108,6 +109,7 @@ void SaveConfig()
 	config["WorldVertexColor"] = g_Config.WorldVertexColor;
 	config["CarVertexColor"] = g_Config.CarVertexColor;
 	config["TunnelWetnessFix"] = g_Config.TunnelWetnessFix;
+	config["TunnelLightIntensity"] = g_Config.TunnelLightIntensity;
 	config["DisableNightShadows"] = g_Config.DisableNightShadows;
 	config["MSAAx8"] = g_Config.MSAAx8;
 	config["Tonemapping"] = g_Config.Tonemapping;

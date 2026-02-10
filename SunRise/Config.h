@@ -121,6 +121,7 @@ struct Config
 	bool WorldVertexColor;
 	bool CarVertexColor;
 	bool TunnelWetnessFix;
+	bool TunnelLightIntensity;
 	bool DisableNightShadows;
 	bool MSAAx8;
 	bool Tonemapping;

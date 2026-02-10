@@ -196,8 +196,13 @@ private:
 			D3DXVECTOR4 diffuseColor = this->current.DiffuseColor * (isCar ? this->current.CarDiffuseIntensity : this->current.DiffuseIntensity);
 			D3DXVECTOR4 ambientColor = this->current.AmbientColor * (isCar ? this->current.CarAmbientIntensity : this->current.AmbientIntensity);
 
-			ambientColor *= this->AmbientIntencity;
-			diffuseColor *= this->DiffuseIntencity;
+			if (g_Config.TunnelLightIntensity)
+			{
+				diffuseColor += ambientColor * (1 - this->AmbientIntencity);
+
+				ambientColor *= this->AmbientIntencity;
+				diffuseColor *= this->DiffuseIntencity;
+			}
 
 			diffuseColor.w = (stype == shader_type::CarShader ? g_Config.CarVertexColor : g_Config.WorldVertexColor) * 1.0;
 
@@ -442,7 +447,7 @@ private:
 		skyParams.w = NightFactor;
 
 		D3DXVECTOR4 skyBeta = this->current.SkyBeta;
-		skyBeta.w = this->current.SkyPower;
+		skyBeta.w = this->current.SkyPower * this->DiffuseIntencity;
 
 		auto e = eEffect::Get(shader_type::skyshader);
 		e->SetVector(ShaderParam::cvSunDirection, &sunDirection);

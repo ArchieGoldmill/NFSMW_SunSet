@@ -245,7 +245,7 @@ Weather:
     CarAmbientIntensity: 0.799999952
     CarSpecularIntensity: 1
     TunnelDiffuseIntensity: 1.49999988
-    TunnelAmbientIntensity: 0.300000012
+    TunnelAmbientIntensity: 0.5
     GodRaysColor: [1, 1, 1, 0]
     SunFlare: 1
     CloudColor: [0.765835285, 0.873723626, 0.995098054, 0.501999974]

@@ -488,13 +488,13 @@ Textures:
     IgnoreWeather: true
     UseVertexColor: false
   - Name: ARC_CAMPUS_PKD_ACCESS
-    Brightness: 2
+    Brightness: 5
     Color: [1, 1, 1]
     Mask: ARC_CAMPUS_PKD_ACCESS_E
-    AlwaysOn: false
+    AlwaysOn: true
     Prelit: false
     IgnoreWeather: false
-    UseVertexColor: true
+    UseVertexColor: false
   - Name: 0x5D013360
     Brightness: 1.10000002
     Color: [1, 1, 1]

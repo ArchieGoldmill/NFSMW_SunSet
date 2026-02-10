@@ -87,7 +87,7 @@ float g_CurrentExposure = 1;
 
 float GetExposure()
 {
-	if (g_Config.Exposure && Game::State == 6)
+	if (g_Config.Exposure && Game::State == 6 && !Game::IsPaused())
 	{
 		auto params = g_Weather.GetExposure();
 

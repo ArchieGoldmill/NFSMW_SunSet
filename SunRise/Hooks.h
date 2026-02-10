@@ -314,6 +314,17 @@ void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int c
 	}
 }
 
+void __cdecl NormalizeSunDirForShadow(D3DXVECTOR3* dest, D3DXVECTOR3* src)
+{
+	D3DXVECTOR3 dir = *src;
+	D3DXVec3Normalize(&dir, &dir);
+
+	dir.z = max(0.3, dir.z);
+	D3DXVec3Normalize(&dir, &dir);
+
+	*dest = dir;
+}
+
 void InitHooks()
 {
 	InitDirectResources();
@@ -389,6 +400,9 @@ void InitHooks()
 
 	// Disable max shadow detail
 	injector::MakeNOP(0x006D24C5, 2);
+
+	// Clamp sun dir for shadows
+	injector::MakeCALL(0x006E455A, NormalizeSunDirForShadow);
 
 	RenderLights = new RenderLight[4096];
 

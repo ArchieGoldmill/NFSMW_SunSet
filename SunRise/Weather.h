@@ -217,12 +217,8 @@ private:
 		D3DXVECTOR4 camPos = D3DXVECTOR4(GetCameraPos(), 1);
 		for (int i = 0; i < (int)shader_type::_count; i++)
 		{
-			float sunZ = TimeOfDay::Instance->SunDirection.z;
-			float shadowEnabled = Smoothstep(0.15, 0.25, sunZ);
-
 			auto e = eEffect::Get((shader_type)i);
-			e->SetFloat(ShaderParam::cfShadowsEnabled, (Game::DrawShadows && Game::ShadowDetail > 0) ? shadowEnabled : 0.0);
-
+			e->SetFloat(ShaderParam::cfShadowsEnabled, (Game::DrawShadows && Game::ShadowDetail > 0) ? 1.0 : 0.0);
 			e->SetVector(ShaderParam::cvWorldEyePos, &camPos);
 		}
 

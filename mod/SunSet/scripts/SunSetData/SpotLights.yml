@@ -1032,7 +1032,7 @@ SolidLights:
         Specular: 0.5
   - SolidLodA: XB_BLUESTRIPGASS_1A_00
     Blink: 0
-    AlwaysOn: false
+    AlwaysOn: true
     UseFirstLight: false
     Flare: ""
     SpotLights:

@@ -6,8 +6,10 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 0
     AmbientIntensity: 1
+    SpecularIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
+    CarSpecularIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
     SunFlare: 0
     CloudColor: [0.0269127395, 0.0340649746, 0.0490196347, 1]
@@ -41,8 +43,10 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 0
       AmbientIntensity: 1.30000007
+      SpecularIntensity: 1
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
+      CarSpecularIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]
@@ -76,8 +80,10 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 0
     AmbientIntensity: 1
+    SpecularIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
+    CarSpecularIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
     SunFlare: 0
     CloudColor: [0.0270000007, 0.0340000018, 0.0489999987, 0.984000027]
@@ -111,8 +117,10 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 0
       AmbientIntensity: 1.30000007
+      SpecularIntensity: 1
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
+      CarSpecularIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]
@@ -146,8 +154,10 @@ Weather:
     SpecularPower: 30
     DiffuseIntensity: 1
     AmbientIntensity: 1
+    SpecularIntensity: 1
     CarDiffuseIntensity: 1
     CarAmbientIntensity: 1
+    CarSpecularIntensity: 1
     GodRaysColor: [1, 0.951701283, 0.671568632, 0]
     SunFlare: 1
     CloudColor: [1, 0.868512094, 0.627450943, 0.501999974]
@@ -181,8 +191,10 @@ Weather:
       SpecularPower: 50
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      SpecularIntensity: 1
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
+      CarSpecularIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [1, 1, 1, 0.286000013]
@@ -216,8 +228,10 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 2
     AmbientIntensity: 1
+    SpecularIntensity: 1
     CarDiffuseIntensity: 0.699999928
     CarAmbientIntensity: 0.799999952
+    CarSpecularIntensity: 1
     GodRaysColor: [1, 1, 1, 0]
     SunFlare: 1
     CloudColor: [0.765835285, 0.873723626, 0.995098054, 0.501999974]
@@ -251,8 +265,10 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      SpecularIntensity: 1
       CarDiffuseIntensity: 0.599999666
       CarAmbientIntensity: 0.799999952
+      CarSpecularIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [1, 1, 1, 0.507000029]
@@ -286,8 +302,10 @@ Weather:
     SpecularPower: 15
     DiffuseIntensity: 1
     AmbientIntensity: 1
+    SpecularIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
+    CarSpecularIntensity: 1
     GodRaysColor: [1, 0.930795848, 0.843137264, 0]
     SunFlare: 1
     CloudColor: [1, 0.614763379, 0.181372523, 0.368999988]
@@ -321,8 +339,10 @@ Weather:
       SpecularPower: 15
       DiffuseIntensity: 1
       AmbientIntensity: 1
+      SpecularIntensity: 1
       CarDiffuseIntensity: 1
       CarAmbientIntensity: 1
+      CarSpecularIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [1, 0.737024188, 0.441176474, 0.349999994]
@@ -356,8 +376,10 @@ Weather:
     SpecularPower: 40
     DiffuseIntensity: 0
     AmbientIntensity: 1
+    SpecularIntensity: 1
     CarDiffuseIntensity: 0
     CarAmbientIntensity: 1
+    CarSpecularIntensity: 1
     GodRaysColor: [0, 0, 0, 0]
     SunFlare: 0
     CloudColor: [0.0296039954, 0.032662265, 0.0392156839, 1]
@@ -391,8 +413,10 @@ Weather:
       SpecularPower: 40
       DiffuseIntensity: 0
       AmbientIntensity: 1.30000007
+      SpecularIntensity: 1
       CarDiffuseIntensity: 0
       CarAmbientIntensity: 1
+      CarSpecularIntensity: 1
       GodRaysColor: [0, 0, 0, 0]
       SunFlare: 0
       CloudColor: [0, 0, 0, 1]

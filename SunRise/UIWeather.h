@@ -145,11 +145,13 @@ namespace UI
 
 								InputFloat("Diffuse intensity", &weather->DiffuseIntensity);
 								InputFloat("Ambient intensity", &weather->AmbientIntensity);
+								InputFloat("Specular intensity", &weather->SpecularIntensity);
 
 								ImGui::Text("");
 
 								InputFloat("Car diffuse intensity", &weather->CarDiffuseIntensity);
 								InputFloat("Car ambient intensity", &weather->CarAmbientIntensity);
+								InputFloat("Car specular intensity", &weather->CarSpecularIntensity);
 
 								ImGui::Text("");
 

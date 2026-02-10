@@ -195,6 +195,8 @@ private:
 
 			ambientColor += D3DXVECTOR4(0.875, 0.831, 1, 0) * g_Rain.GetDiffuse();
 
+			ambientColor.w = stype == shader_type::CarShader ? this->current.CarSpecularIntensity : this->current.SpecularIntensity;
+
 			e->SetVector(ShaderParam::cvDiffuseColor, &diffuseColor);
 			e->SetVector(ShaderParam::cvAmbientColor, &ambientColor);
 			e->SetVector(ShaderParam::cvSpecularColor, &this->current.SpecularColor);
@@ -223,8 +225,11 @@ private:
 	{
 		this->current.DiffuseIntensity = std::lerp(a->DiffuseIntensity, b->DiffuseIntensity, t);
 		this->current.AmbientIntensity = std::lerp(a->AmbientIntensity, b->AmbientIntensity, t);
+		this->current.SpecularIntensity = std::lerp(a->SpecularIntensity, b->SpecularIntensity, t);
+
 		this->current.CarDiffuseIntensity = std::lerp(a->CarDiffuseIntensity, b->CarDiffuseIntensity, t);
 		this->current.CarAmbientIntensity = std::lerp(a->CarAmbientIntensity, b->CarAmbientIntensity, t);
+		this->current.CarSpecularIntensity = std::lerp(a->CarSpecularIntensity, b->CarSpecularIntensity, t);
 
 		this->current.DiffuseColor = LerpVector(a->DiffuseColor, b->DiffuseColor, t);
 		this->current.AmbientColor = LerpVector(a->AmbientColor, b->AmbientColor, t);

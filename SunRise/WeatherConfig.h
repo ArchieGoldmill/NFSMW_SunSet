@@ -13,8 +13,11 @@ void LoadWeatherData(WeatherData* config, const YAML::Node& node, WeatherData* c
 
 	config->DiffuseIntensity = YmlGet<float>(node, "DiffuseIntensity", cfg->DiffuseIntensity);
 	config->AmbientIntensity = YmlGet<float>(node, "AmbientIntensity", cfg->AmbientIntensity);
+	config->SpecularIntensity = YmlGet<float>(node, "SpecularIntensity", 1.0f);
+
 	config->CarDiffuseIntensity = YmlGet<float>(node, "CarDiffuseIntensity", cfg->CarDiffuseIntensity);
 	config->CarAmbientIntensity = YmlGet<float>(node, "CarAmbientIntensity", cfg->CarAmbientIntensity);
+	config->CarSpecularIntensity = YmlGet<float>(node, "CarSpecularIntensity", 1.0f);
 
 	config->SkyBeta = ParseVec3To4(node["SkyBeta"], cfg->SkyBeta);
 	config->SkyRayleigh = YmlGet<float>(node, "SkyRayleigh", cfg->SkyRayleigh);
@@ -87,9 +90,11 @@ void SaveWeatherData(YAML::Node& node, WeatherData* data)
 
 	node["DiffuseIntensity"] = data->DiffuseIntensity;
 	node["AmbientIntensity"] = data->AmbientIntensity;
+	node["SpecularIntensity"] = data->SpecularIntensity;
 
 	node["CarDiffuseIntensity"] = data->CarDiffuseIntensity;
 	node["CarAmbientIntensity"] = data->CarAmbientIntensity;
+	node["CarSpecularIntensity"] = data->CarSpecularIntensity;
 
 	node["GodRaysColor"] = SerializeVector4(data->GodRaysColor);
 	node["SunFlare"] = data->SunFlare;

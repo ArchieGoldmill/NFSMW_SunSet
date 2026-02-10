@@ -128,7 +128,6 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	float3 diffuse = GetDiffuse(ndotl);
 	float3 specular = GetSpecular(normal, lightDir, nview);
-	specular += GetSpecular(og_normal, lightDir, nview);
 	specular *= saturate(specMap + 0.25);
 	
 	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r;

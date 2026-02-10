@@ -28,7 +28,7 @@ float3 GetSpecular(float3 normal, float3 lightDir, float3 view, float power)
 	float3 reflectDir = normalize(reflect(-lightDir, normal));
 	float specularFactor = saturate(dot(reflectDir, view));
 	specularFactor = pow(specularFactor, power);
-	return specularFactor * cvSpecularColor;
+	return specularFactor * cvSpecularColor * cvAmbientColor.w;
 }
 
 float3 GetSpecular(float3 normal, float3 lightDir, float3 view)

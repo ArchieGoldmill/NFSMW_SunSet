@@ -24,8 +24,11 @@ struct WeatherData
 
 	float DiffuseIntensity;
 	float AmbientIntensity;
+	float SpecularIntensity;
+
 	float CarDiffuseIntensity;
 	float CarAmbientIntensity;
+	float CarSpecularIntensity;
 
 	D3DXVECTOR4 SkyBeta;
 	float SkyRayleigh;

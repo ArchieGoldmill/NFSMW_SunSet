@@ -87,42 +87,45 @@ float g_CurrentExposure = 1;
 
 float GetExposure()
 {
-	if (g_Config.Exposure && Game::State == 6 && !Game::IsPaused())
+	if (g_Config.Exposure && Game::State == 6)
 	{
-		auto params = g_Weather.GetExposure();
-
-		float adaptationRate = 1.0f;
-		float minExposure = params.y;
-		float maxExposure = params.z;
-		float key = params.x;
-
-		if (minExposure == maxExposure)
+		if (!Game::IsPaused())
 		{
-			return minExposure;
-		}
+			auto params = g_Weather.GetExposure();
 
-		float logCurrLum = GetCurrentLuminance();
+			float adaptationRate = 1.0f;
+			float minExposure = params.y;
+			float maxExposure = params.z;
+			float key = params.x;
 
-		logAdaptedLum += (logCurrLum - logAdaptedLum) * adaptationRate * Game::DeltaTime;
+			if (minExposure == maxExposure)
+			{
+				return minExposure;
+			}
 
-		float sceneLum = exp(logAdaptedLum);
+			float logCurrLum = GetCurrentLuminance();
 
-		float exposure = key / sceneLum;
+			logAdaptedLum += (logCurrLum - logAdaptedLum) * adaptationRate * Game::DeltaTime;
 
-		minExposure = min(minExposure, maxExposure);
-		maxExposure = max(minExposure, maxExposure);
+			float sceneLum = exp(logAdaptedLum);
 
-		if (exposure > maxExposure)
-		{
-			MoveTowards(g_CurrentExposure, maxExposure, Game::DeltaTime);
-		}
-		else if (exposure < minExposure)
-		{
-			MoveTowards(g_CurrentExposure, minExposure, Game::DeltaTime);
-		}
-		else
-		{
-			g_CurrentExposure = exposure;
+			float exposure = key / sceneLum;
+
+			minExposure = min(minExposure, maxExposure);
+			maxExposure = max(minExposure, maxExposure);
+
+			if (exposure > maxExposure)
+			{
+				MoveTowards(g_CurrentExposure, maxExposure, Game::DeltaTime);
+			}
+			else if (exposure < minExposure)
+			{
+				MoveTowards(g_CurrentExposure, minExposure, Game::DeltaTime);
+			}
+			else
+			{
+				g_CurrentExposure = exposure;
+			}
 		}
 
 		return g_CurrentExposure;

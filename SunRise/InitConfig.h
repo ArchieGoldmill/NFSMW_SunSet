@@ -117,8 +117,9 @@ void SaveConfig()
 	config["FlareDistance"] = g_Config.FlareDistance;
 	config["MaxLights"] = g_Config.MaxLights;
 	config["DisableSunFlare"] = g_Config.DisableSunFlare;
-	config["RoadblockLights"] = g_Config.DisableSunFlare;
+	config["RoadblockLights"] = g_Config.RoadblockLights;
 	config["EditorScale"] = g_Config.EditorScale;
+	config["Exposure"] = g_Config.Exposure;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

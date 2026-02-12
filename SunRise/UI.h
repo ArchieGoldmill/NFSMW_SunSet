@@ -135,7 +135,10 @@ namespace UI
 			return;
 		}
 
-		injector::MakeNOP(0x006E6CAE, 7);
+		if (*(short*)0x006E6CAC != 0x0BE9)
+		{
+			injector::MakeNOP(0x006E6CAE, 7);
+		}
 
 		std::thread(SubInitUI).detach();
 	}

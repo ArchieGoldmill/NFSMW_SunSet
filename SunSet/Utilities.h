@@ -203,7 +203,7 @@ inline float Smoothstep(float edge0, float edge1, float x) {
 inline std::string GetConfigFolder(const char* fileName)
 {
 #ifdef _DEBUG
-	return std::string("D:\\Programming\\NFSMW\\NFSMW_SunRise\\mod\\SunSet\\scripts\\SunSetData\\") + fileName;
+	return std::string("D:\\Programming\\NFSMW\\NFSMW_SunSet\\mod\\SunSet\\scripts\\SunSetData\\") + fileName;
 #endif
 
 	auto dir = GetExeDirectory();

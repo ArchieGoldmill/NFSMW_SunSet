@@ -89,20 +89,20 @@ float GetExposure()
 {
 	if (g_Config.Exposure && Game::State == 6)
 	{
+		auto params = g_Weather.GetExposure();
+
+		float adaptationRate = 1.0f;
+		float minExposure = params.y;
+		float maxExposure = params.z;
+		float key = params.x;
+
+		if (minExposure == maxExposure)
+		{
+			return minExposure;
+		}
+
 		if (!Game::IsPaused())
 		{
-			auto params = g_Weather.GetExposure();
-
-			float adaptationRate = 1.0f;
-			float minExposure = params.y;
-			float maxExposure = params.z;
-			float key = params.x;
-
-			if (minExposure == maxExposure)
-			{
-				return minExposure;
-			}
-
 			float logCurrLum = GetCurrentLuminance();
 
 			logAdaptedLum += (logCurrLum - logAdaptedLum) * adaptationRate * Game::DeltaTime;

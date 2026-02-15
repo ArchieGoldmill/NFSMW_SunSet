@@ -30,7 +30,7 @@ class FXCCompiler
 		bool errors = false;
 		foreach (var (inputFile, outputFile) in fxFiles)
 		{
-			string inputLocation = "D:\\Programming\\NFSMW\\NFSMW_SunRise\\fx\\";
+			string inputLocation = "D:\\Programming\\NFSMW\\NFSMW_SunSet\\fx\\";
 			string outputLocation = "D:\\Games\\Need for Speed Most Wanted SR\\shaders\\";
 			string inputPath = inputLocation + inputFile;
 			string outputPath = outputLocation + outputFile;

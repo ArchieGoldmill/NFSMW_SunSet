@@ -1,0 +1,10 @@
+add_node emittergroup car fxcar_nos_2
+resize_field emittergroup fxcar_nos_2 Emitters 2
+update_field emittergroup fxcar_nos_2 Emitters[0] Class emitterdata
+update_field emittergroup fxcar_nos_2 Emitters[1] Class emitterdata
+update_field emittergroup fxcar_nos_2 Emitters[1] Collection emcar_nos_glow
+update_field emittergroup fxcar_nos_2 Emitters[0] Collection emcar_nos_fire_2
+
+copy_node emitterdata emcar_nos_fire emcar_nos_fire emcar_nos_fire_2
+update_field emitterdata emcar_nos_fire_2 Color3 796127794
+update_field emitterdata emcar_nos_fire_2 Color4 65280

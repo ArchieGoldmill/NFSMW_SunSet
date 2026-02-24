@@ -70,6 +70,15 @@ ExhaustLight:
   Intensity: 10
   Range: 0.5
   Specular: 0
+NosLight:
+  Position: [-0.200000003, 0, 0]
+  Direction: [0, 1, 0]
+  Color: [0.2, 0.2, 1]
+  InnerAngle: 359
+  OuterAngle: 360
+  Intensity: 10
+  Range: 0.5
+  Specular: 0
 HelicopterLight:
   Flare: Helicopter
   Position: [2.5999999, 0, -0.699999988]

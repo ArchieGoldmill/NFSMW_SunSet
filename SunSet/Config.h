@@ -12,6 +12,7 @@ inline SpotLight CarReverseConfig;
 inline SpotLight CopLightBlueConfig;
 inline SpotLight CopLightRedConfig;
 inline SpotLight ExhaustLightConfig;
+inline SpotLight NosLightConfig;
 inline SpotLightModel HelicopterLightConfig;
 inline CustomMeshContainer CustomMeshes;
 
@@ -129,6 +130,7 @@ struct Config
 	bool DisableSunFlare;
 	bool RoadblockLights;
 	bool Exposure;
+	bool NosLight;
 
 	float WetTime;
 	float DryTime;

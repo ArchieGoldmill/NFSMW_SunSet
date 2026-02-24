@@ -96,12 +96,12 @@ void PopulateExhaustLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, Veh
 		auto icar = (int**)carRenderInfo;
 		auto iconn = (int*)conn;
 
-		if (!icar[0x45F])
+		bool usingNos = icar[0x45F];
+		bool shifting = ((iconn[0xFE] & 0x10) != 0 && iconn[0xF6] != 0) && !usingNos;
+
+		if (!usingNos && !shifting)
 		{
-			if ((iconn[0xFE] & 0x10) == 0 || iconn[0xF6] == 0)
-			{
-				return;
-			}
+			return;
 		}
 
 		auto emmiters = (CarEmitter**)(icar + 0x6B);
@@ -109,7 +109,7 @@ void PopulateExhaustLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, Veh
 		auto emmiter = *emmiters;
 		while ((void*)emmiter != (void*)emmiters)
 		{
-			SpotLight spotLight = ExhaustLightConfig;
+			SpotLight spotLight = usingNos && g_Config.NosLight ? NosLightConfig : ExhaustLightConfig;
 			spotLight.Position += emmiter->Position;
 
 			D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);

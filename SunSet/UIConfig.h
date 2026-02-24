@@ -79,6 +79,7 @@ namespace UI
 							ImGui::Checkbox("Disable sun flare", &g_Config.DisableSunFlare); GameRestart();
 							ImGui::Checkbox("Roadblock lights", &g_Config.RoadblockLights);
 							ImGui::Checkbox("Exposure", &g_Config.Exposure);
+							ImGui::Checkbox("Nos light", &g_Config.NosLight); GameRestart();
 						}
 
 						ImGui::TableSetColumnIndex(1);

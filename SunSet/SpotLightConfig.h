@@ -58,6 +58,7 @@ void LoadSpotLightConfig()
 	ParseSpotLight(CopLightBlueConfig, spotlightsRoot["CopLightBlue"]);
 	ParseSpotLight(CopLightRedConfig, spotlightsRoot["CopLightRed"]);
 	ParseSpotLight(ExhaustLightConfig, spotlightsRoot["ExhaustLight"]);
+	ParseSpotLight(NosLightConfig, spotlightsRoot["NosLight"]);
 
 	auto heliNode = spotlightsRoot["HelicopterLight"];
 	ParseSpotLight(HelicopterLightConfig.Light, heliNode);
@@ -188,6 +189,9 @@ void SaveSpotLightConfig()
 	YAML::Node exhaustLight;
 	SaveSpotLight(exhaustLight, ExhaustLightConfig);
 
+	YAML::Node nosLight;
+	SaveSpotLight(nosLight, NosLightConfig);
+
 	YAML::Node helicopterLight;
 	helicopterLight["Flare"] = HelicopterLightConfig.Flare ? HelicopterLightConfig.Flare->Name : "";
 	SaveSpotLight(helicopterLight, HelicopterLightConfig.Light);
@@ -201,6 +205,7 @@ void SaveSpotLightConfig()
 	root["CopLightBlue"] = copLightBlue;
 	root["CopLightRed"] = copLightRed;
 	root["ExhaustLight"] = exhaustLight;
+	root["NosLight"] = nosLight;
 	root["HelicopterLight"] = helicopterLight;
 	root["FrontEndLights"] = felist;
 	root["SolidLights"] = list;

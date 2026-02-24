@@ -310,9 +310,6 @@
     <ClInclude Include="ShaderLoader.h">
       <Filter>Features</Filter>
     </ClInclude>
-    <ClInclude Include="SmackableRenderConn.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="DynamicLights.h">
       <Filter>Features\DynamicLights</Filter>
     </ClInclude>
@@ -324,6 +321,9 @@
     </ClInclude>
     <ClInclude Include="FastHashTable.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="SmackableRenderConn.h">
+      <Filter>SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

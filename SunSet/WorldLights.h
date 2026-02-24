@@ -124,11 +124,6 @@ void __fastcall DrawScenery(SceneryPack* pack, int, SceneryCullInfo* cull_info)
 
 				if ((cull_info->Flags & (flags ^ 0xFFFFFF60) & 0x80000FF) == 0)
 				{
-					D3DXMATRIX matrix;
-
-					instance.SetRotation(&matrix);
-					instance.SetPosition(&matrix);
-
 					auto& info = pack->infos[instance.SceneryInfoNumber];
 
 					for (int j = 0; j < 4; j++)
@@ -136,7 +131,13 @@ void __fastcall DrawScenery(SceneryPack* pack, int, SceneryCullInfo* cull_info)
 						auto model = info.models[j];
 						if (model)
 						{
+							D3DXMATRIX matrix;
+
+							instance.SetRotation(&matrix);
+							instance.SetPosition(&matrix);
+
 							PopulateFromModel(model, &matrix);
+
 							break;
 						}
 					}

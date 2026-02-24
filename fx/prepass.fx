@@ -1,4 +1,3 @@
-float4x4 WorldView : WORLDVIEW;
 
 void VS_ZPrePass(VS_INPUT IN, out PS_INPUT OUT)
 {

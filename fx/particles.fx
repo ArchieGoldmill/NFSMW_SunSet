@@ -1,5 +1,4 @@
 float4 LocalEyePos : LOCALEYEPOS;
-float4x4 WorldView : WORLDVIEW;
 
 #include "global.fx"
 #include "shadow.fx"

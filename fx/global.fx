@@ -3,6 +3,7 @@
 
 float4x4 WorldViewProj : WORLDVIEWPROJECTION;
 float4x4 cmWorldMat : LOCALWORLD;
+float4x4 WorldView : WORLDVIEW;
 float4 TextureOffset : TEXTUREOFFSET;
 float4 LocalLightVec : LOCALLIGHTDIRVEC;
 

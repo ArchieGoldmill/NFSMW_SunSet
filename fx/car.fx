@@ -10,8 +10,6 @@
 #include "hdr.fx"
 #include "emissive.fx"
 
-float4x4 WorldView : WORLDVIEW;
-
 float4 DiffuseMin : DIFFUSEMIN;
 float4 DiffuseRange : DIFFUSERANGE;
 float4 EnvmapRange : ENVMAPANGE;

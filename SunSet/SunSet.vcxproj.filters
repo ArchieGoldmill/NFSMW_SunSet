@@ -325,6 +325,9 @@
     <ClInclude Include="SmackableRenderConn.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="UIAbout.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

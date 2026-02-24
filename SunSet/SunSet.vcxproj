@@ -240,6 +240,7 @@ copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunSet\mod\SunSet\scripts\"
     <ClInclude Include="TimeOfDay.h" />
     <ClInclude Include="TrackPath.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UIAbout.h" />
     <ClInclude Include="UICommon.h" />
     <ClInclude Include="UIConfig.h" />
     <ClInclude Include="UICustomMeshes.h" />

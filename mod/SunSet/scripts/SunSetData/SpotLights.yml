@@ -73,7 +73,7 @@ ExhaustLight:
 NosLight:
   Position: [-0.200000003, 0, 0]
   Direction: [0, 1, 0]
-  Color: [0.2, 0.2, 1]
+  Color: [0.200000003, 0.200000003, 1]
   InnerAngle: 359
   OuterAngle: 360
   Intensity: 10

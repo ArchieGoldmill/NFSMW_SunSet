@@ -5,7 +5,7 @@
 #include "Hashes.h"
 #include "FastHashTable.h"
 
-inline const char* ModName = "NFSMW - Sun Set 1.12";
+inline const char* ModName = "NFSMW - Sun Set 1.13";
 
 #define ASSERT_SIZE(T, N) static_assert(sizeof(T) == N, "sizeof("#T") != "#N)
 #define INLINE_FUNC(address, return_t, callconv, name, ...) inline return_t (callconv* name)(__VA_ARGS__) = reinterpret_cast<decltype(name)>(address)

@@ -90,11 +90,18 @@ technique Unlit
 	}
 }
 
+void VS_Invisible(VS_INPUT IN, out PS_INPUT OUT)
+{
+	OUT.position = float4(0.0, 0.0, -1.0, 1.0);
+}
+
 technique Invisible
 {
 	pass p0
 	{
-		VertexShader = null;
+		COMMON_PASS_BODY
+
+		VertexShader = compile vs_3_0 VS_Main();
 		PixelShader = null;
 	}
 }

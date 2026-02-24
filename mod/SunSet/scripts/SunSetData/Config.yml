@@ -24,7 +24,8 @@ Config:
   RoadblockLights: false      # Determines if roadblock cop cars should have their lights enabled.
   EditorScale: 1.0            # Scale of the UI Editor
   Exposure: false             # Enable auto exposure.
-  NosLight: false             # Enable separate exhaust emmiter and light for nos. Requires exhaust.nfsms vlt script.
+  NosLight: false             # Enable separate exhaust light for nos.
+  NosEmmiter: false           # Enable separate exhaust emmiter for nos. Requires exhaust.nfsms vlt script.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

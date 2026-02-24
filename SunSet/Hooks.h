@@ -421,7 +421,7 @@ void InitHooks()
 	// Clamp sun dir for shadows
 	injector::MakeCALL(0x006E455A, NormalizeSunDirForShadow);
 
-	if (g_Config.NosLight)
+	if (g_Config.NosEmmiter)
 	{
 		injector::MakeJMP(0x00756346, NosEffectCave);
 	}

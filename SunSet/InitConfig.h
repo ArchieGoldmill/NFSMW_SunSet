@@ -41,6 +41,7 @@ void LoadConfig()
 	g_Config.EditorScale = YmlGet(settings, "EditorScale", 1.0);
 	g_Config.Exposure = YmlGet(settings, "Exposure", false);
 	g_Config.NosLight = YmlGet(settings, "NosLight", false);
+	g_Config.NosEmmiter = YmlGet(settings, "NosEmmiter", false);
 
 	const auto& time = settingsRoot["Time"];
 	g_Config.WetTime = YmlGet(time, "WetTime", 2.0f);

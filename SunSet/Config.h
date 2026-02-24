@@ -131,6 +131,7 @@ struct Config
 	bool RoadblockLights;
 	bool Exposure;
 	bool NosLight;
+	bool NosEmmiter;
 
 	float WetTime;
 	float DryTime;

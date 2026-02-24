@@ -8,6 +8,11 @@
 
 void ParseSpotLight(SpotLight& spotLight, const YAML::Node& spot)
 {
+	if (!spot.IsDefined())
+	{
+		return;
+	}
+
 	spotLight.Position = ParseVec3(spot["Position"]);
 	spotLight.Direction = ParseVec3(spot["Direction"]);
 	spotLight.Color = ParseVec3(spot["Color"]);

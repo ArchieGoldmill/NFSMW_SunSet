@@ -122,6 +122,8 @@ void SaveConfig()
 	config["RoadblockLights"] = g_Config.RoadblockLights;
 	config["EditorScale"] = g_Config.EditorScale;
 	config["Exposure"] = g_Config.Exposure;
+	config["NosLight"] = g_Config.NosLight;
+	config["NosEmmiter"] = g_Config.NosEmmiter;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

@@ -112,6 +112,8 @@ void PopulateExhaustLights(CarRenderInfo* carRenderInfo, D3DXMATRIX* matrix, Veh
 			SpotLight spotLight = usingNos && g_Config.NosLight ? NosLightConfig : ExhaustLightConfig;
 			spotLight.Position += emmiter->Position;
 
+			spotLight.Color *= g_Weather.GetCarLightsPower();
+
 			D3DXVec3TransformCoord(&spotLight.Position, &spotLight.Position, matrix);
 
 			D3DXVec3TransformNormal(&spotLight.Direction, &spotLight.Direction, matrix);

@@ -141,8 +141,9 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float4 reflection_uv = IN.reflection;
 	
 	// Distort reflection by rain drops
-	float2 rainDrops = tex2D(MISCMAP2_SAMPLER, IN.world_pos.xy).rg * 2 - 1;
-	reflection_uv.xy += rainDrops * cvRainParams.x;
+	float2 rainDrops = tex2D(MISCMAP2_SAMPLER, IN.world_pos.xy).rg - 4.0 / 255.0;
+	rainDrops = rainDrops * 2 - 1;
+	reflection_uv.xy -= rainDrops * cvRainParams.x;
 	
 	// Distor reflection by normal map
 	reflection_uv.xy += normal.xy * 0.1;
@@ -164,7 +165,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	final += reflection_sample * reflectance;
 	
 	APPLY_FOG
-	
+
 	final.rgb = CompressColourSpace(final.rgb);
 	
 	return float4(final, 1);

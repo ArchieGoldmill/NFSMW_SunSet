@@ -23,6 +23,8 @@ private:
 	TextureInfo* Lightning[2] = { NULL, NULL };
 	TextureInfo* MoonTex = NULL;
 	TextureInfo* SunTex = NULL;
+	TextureInfo* SkyTex = NULL;
+	TextureInfo* SkyRainTex = NULL;
 
 	D3DXVECTOR4 fogValue;
 
@@ -342,7 +344,6 @@ private:
 
 	void InitTextures()
 	{
-		CreateSkyBoxTexture();
 		LoadVolumeTexture();
 		CreateFilterTexture();
 
@@ -359,6 +360,8 @@ private:
 			this->Lightning[1] = TextureInfo::Get(Hashes::LIGHTNING_STRIKE1, false, false);
 			this->MoonTex = TextureInfo::Get(Hashes::SR_MOON, false, false);
 			this->SunTex = TextureInfo::Get(Hashes::SR_SUN, false, false);
+			this->SkyTex = TextureInfo::Get(Hashes::SR_SKYBOX, false, false);
+			this->SkyRainTex = TextureInfo::Get(Hashes::SR_SKYBOX_RAIN, false, false);
 
 			char buff[256];
 			for (int i = 0; i < 30; i++)
@@ -455,15 +458,8 @@ private:
 		e->SetVector(ShaderParam::cvSkyParams, &skyParams);
 		e->SetVector(ShaderParam::cvCloudColor, &this->current.CloudColor);
 
-		if (SkyCubeTexture)
-		{
-			e->SetTexture(ShaderParam::MISCMAP1_TEXTURE, SkyCubeTexture);
-		}
-
-		if (SkyRainCubeTexture)
-		{
-			e->SetTexture(ShaderParam::MISCMAP2_TEXTURE, SkyRainCubeTexture);
-		}
+		e->SetTexture(ShaderParam::MISCMAP1_TEXTURE, this->SkyTex);
+		e->SetTexture(ShaderParam::MISCMAP2_TEXTURE, this->SkyRainTex);
 
 		e->SetTexture(ShaderParam::SkyNoiseTexture, this->SkyNoise[0]);
 		e->SetTexture(ShaderParam::SkyNoiseTexture1, this->SkyNoise[1]);

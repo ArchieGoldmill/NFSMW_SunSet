@@ -33,27 +33,27 @@ struct PS_INPUT
 };
 
 texture MISCMAP1_TEXTURE;
-samplerCUBE MISCMAP1_SAMPLER = sampler_state
+sampler2D MISCMAP1_SAMPLER = sampler_state
 {
-	texture = <MISCMAP1_TEXTURE>;
-	AddressU = CLAMP;
-	AddressV = CLAMP;
-	AddressW = CLAMP;
+	texture = MISCMAP1_TEXTURE;
+	AddressU = WRAP;
+	AddressV = WRAP;
 	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
+	MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MaxAnisotropy = 8;
 };
 
 texture MISCMAP2_TEXTURE;
-samplerCUBE MISCMAP2_SAMPLER = sampler_state
+sampler2D MISCMAP2_SAMPLER = sampler_state
 {
-	texture = <MISCMAP2_TEXTURE>;
-	AddressU = CLAMP;
-	AddressV = CLAMP;
-	AddressW = CLAMP;
+	texture = MISCMAP2_TEXTURE;
+	AddressU = WRAP;
+	AddressV = WRAP;
 	MIPFILTER = LINEAR;
-	MINFILTER = LINEAR;
-	MAGFILTER = LINEAR;
+	MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MaxAnisotropy = 8;
 };
 
 texture MISCMAP3_TEXTURE;
@@ -86,7 +86,7 @@ void VS_Main(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.position = mul(IN.position, WorldViewProj);
 	OUT.local_pos = IN.position;
 	OUT.uv = float4(IN.tex, IN.tex1);
-	OUT.view = LocalEyePos.xyz - IN.position.xyz;
+	OUT.view = IN.position.xyz - LocalEyePos.xyz;
 }
 
 #define PI (3.14159265)
@@ -181,26 +181,29 @@ float3 RenderSky(in float3 viewDir, in float3 lightDir)
 	return col;
 }
 
-float3 GetCloudView(float3 view)
+float2 HDRIMapUV(float3 dir)
 {
-	float angle = cfTimeTicker * 0.2;
-	float c = cos(angle);
-	float s = sin(angle);
+	dir = normalize(dir);
 
-	float3x3 rotZ = float3x3(c, -s, 0, s, c, 0, 0, 0, 1);
-	float3 cloudDir = mul(normalize(view), rotZ);
+	const float INV_TWO_PI = 0.15915494;
+
+	float2 uv;
+	uv.x = 0.5 + atan2(dir.y, dir.x) / (2.0 * 3.14159265);
+	uv.y = 0.5 - asin(dir.z) / 3.14159265;
 	
-	return cloudDir;
+	uv.x += cfTimeTicker * 0.05;
+	
+	return uv;
 }
 
 float4 GetClouds(float3 view)
 {
-	float3 cloudDir = GetCloudView(view);
-	float3 cloudTex = texCUBE(MISCMAP1_SAMPLER, cloudDir).rgb;
+	float2 uv = HDRIMapUV(view);
+	float3 cloudTex = tex2D(MISCMAP1_SAMPLER, uv).rgb;
 	
 	if (cvLightning.z > 0)
 	{
-		float3 cloudTex2 = texCUBE(MISCMAP2_SAMPLER, cloudDir).rgb;
+		float3 cloudTex2 = tex2D(MISCMAP2_SAMPLER, uv).rgb;
 		cloudTex = lerp(cloudTex, cloudTex2, cvLightning.z);
 	}
 	
@@ -209,7 +212,7 @@ float4 GetClouds(float3 view)
 	
 	float4 result;
 	result.rgb = clouds;
-	result.a = pow(gray, 2);
+	result.a = gray;
 	
 	return result;
 }
@@ -297,7 +300,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 color = RenderSky(dir, sun);
 	
 	float noise = frac(sin(dot(dir.xz, float2(12.9898, 78.233))) * 43758.5453);
-	color += noise * color * 0.05;
+	color += noise * color * 0.02;
 	
 	float4 clouds = GetClouds(IN.view);
 	float cloudMask = 1 - clouds.a;

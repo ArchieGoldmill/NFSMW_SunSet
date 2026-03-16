@@ -51,4 +51,7 @@ namespace Hashes
 	Hash ARROW_GPS = 0xA36EF433;
 
 	Hash LampPost = 0xE03A91AF;
+
+	Hash SR_SKYBOX = 0xC55C18E3;
+	Hash SR_SKYBOX_RAIN = 0x93134BEC;
 }

@@ -130,7 +130,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	float3 specular = GetSpecular(normal, lightDir, nview);
 	specular *= saturate(specMap + 0.25);
 	
-	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r;
+	float puddle_mask = tex2D(MISCMAP1_SAMPLER, IN.world_pos.xy / 20).r + 0.2;
 	puddle_mask = lerp(1, puddle_mask, cvRainParams.w);
 	puddle_mask *= cvRainParams.y;
 	float reflMin = 1 - smoothstep(0, 0.2, length(cvDiffuseColor.rgb));
@@ -166,7 +166,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	
 	APPLY_FOG
 
-	final.rgb = CompressColourSpace(final.rgb);
+	final = CompressColourSpace(final);
 	
 	return float4(final, 1);
 }

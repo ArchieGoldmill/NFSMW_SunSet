@@ -196,7 +196,7 @@ Weather:
     ExposureMax: 1.4000001
     Rain:
       DiffuseColor: [0.210784316, 0.210784316, 0.210784316]
-      AmbientColor: [0.45544982, 0.507543743, 0.573529422]
+      AmbientColor: [0.784313738, 0.879469395, 1]
       SpecularColor: [0.186274529, 0.171611041, 0.147923887]
       SpecularPower: 50
       DiffuseIntensity: 1
@@ -214,7 +214,7 @@ Weather:
       MoonSize: 0
       WaterColor: [0.759803891, 0.759803891, 0.759803891]
       WaterSpecularPower: 300
-      CarLightsPower: 0.499999911
+      CarLightsPower: 0.699999928
       TextureLightPower: 1
       BloomPower: 1
       BloomThreshold: 1.5
@@ -292,7 +292,7 @@ Weather:
       MoonSize: 0
       WaterColor: [0.372548997, 0.372548997, 0.372548997]
       WaterSpecularPower: 10
-      CarLightsPower: 0.5
+      CarLightsPower: 0.700000048
       TextureLightPower: 0.5
       BloomPower: 1
       BloomThreshold: 1.5

@@ -82,29 +82,29 @@ TimeOfDay* __fastcall CreateTimeOfDay(TimeOfDay* tod)
 void TimeSetting()
 {
 	// VOTimeOfDay::Act(char const *,uint)
-	injector::WriteMemory<DWORD>(0x89BB44, 0x50F7A0, true); // change code location
-	injector::MakeRangedNOP(0x50F7AE, 0x50F7B6, true); // cleanup
+	injector::WriteMemory<DWORD>(0x89BB44, 0x50F7A0); // change code location
+	injector::MakeRangedNOP(0x50F7AE, 0x50F7B6); // cleanup
 
 	char LoadToEcx[] = { 0x8B, 0x0D, 0x2C, 0x39, 0x9B, 0x00 }; // mov ecx,[009B392C]
-	injector::WriteMemoryRaw(0x50F7AE, LoadToEcx, sizeof(LoadToEcx), true);
-	injector::WriteMemory<unsigned char>(0x50F7BE, 0x08, true); // mov [ecx+8], edx
+	injector::WriteMemoryRaw(0x50F7AE, LoadToEcx, sizeof(LoadToEcx));
+	injector::WriteMemory<unsigned char>(0x50F7BE, 0x08); // mov [ecx+8], edx
 
 	// VOTimeOfDay::Draw(void)
-	injector::WriteMemory<DWORD>(0x89BB4C, 0x51B5E0, true);
-	injector::WriteMemory<DWORD>(0x51B5F5, 0x999D1383, true); // "Time of Day"
+	injector::WriteMemory<DWORD>(0x89BB4C, 0x51B5E0);
+	injector::WriteMemory<DWORD>(0x51B5F5, 0x999D1383); // "Time of Day"
 	char LoadToEcx2[] = { 0x8B, 0x0D, 0x2C, 0x39, 0x9B, 0x00, 0x90, 0x90, 0x90, 0x8B, 0x49, 0x08 }; // mov ecx,[009B392C]; mov ecx,[ecx+08]
-	injector::WriteMemoryRaw(0x51B617, LoadToEcx2, sizeof(LoadToEcx2), true);
+	injector::WriteMemoryRaw(0x51B617, LoadToEcx2, sizeof(LoadToEcx2));
 
 	// VOTimeOfDay::SetInitialValues(void)
 	char LoadTimeOfDay[] = { 0x8B, 0x15, 0x2C, 0x39, 0x9B, 0x00, 0x8B, 0x52, 0x08 }; // mov edx,[009B392C]; mov edx,[edx+08]
-	injector::WriteMemoryRaw(0x50F9E0, LoadTimeOfDay, sizeof(LoadTimeOfDay), true);
+	injector::WriteMemoryRaw(0x50F9E0, LoadTimeOfDay, sizeof(LoadTimeOfDay));
 
-	injector::MakeRangedNOP(0x50F9F5, 0x50F9F8, true); // nop fstp
-	injector::WriteMemory<unsigned char>(0x0050F9F4, 0x52, true); // push edx
+	injector::MakeRangedNOP(0x50F9F5, 0x50F9F8); // nop fstp
+	injector::WriteMemory<unsigned char>(0x0050F9F4, 0x52); // push edx
 
-	injector::WriteMemory<float>(0x50F9F9, 0.01f, true); // Step Size
-	injector::WriteMemory<float>(0x50F9FE, 0.95f, true); // Max Value
-	injector::WriteMemory<float>(0x50FA03, 0.05f, true); // Min Value
+	injector::WriteMemory<float>(0x50F9F9, 0.01f); // Step Size
+	injector::WriteMemory<float>(0x50F9FE, 0.95f); // Max Value
+	injector::WriteMemory<float>(0x50FA03, 0.05f); // Min Value
 }
 
 void InitTime()

@@ -185,8 +185,6 @@ float2 HDRIMapUV(float3 dir)
 {
 	dir = normalize(dir);
 
-	const float INV_TWO_PI = 0.15915494;
-
 	float2 uv;
 	uv.x = 0.5 + atan2(dir.y, dir.x) / (2.0 * 3.14159265);
 	uv.y = 0.5 - asin(dir.z) / 3.14159265;
@@ -300,7 +298,7 @@ float4 PS_Main(PS_INPUT IN) : COLOR
 	float3 color = RenderSky(dir, sun);
 	
 	float noise = frac(sin(dot(dir.xz, float2(12.9898, 78.233))) * 43758.5453);
-	color += noise * color * 0.02;
+	color += noise * color * 0.05;
 	
 	float4 clouds = GetClouds(IN.view);
 	float cloudMask = 1 - clouds.a;

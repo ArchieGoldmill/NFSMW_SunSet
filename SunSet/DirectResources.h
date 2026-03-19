@@ -257,8 +257,3 @@ void ReleaseDirectResources()
 
 	__asm popad;
 }
-
-void InitDirectResources()
-{
-	injector::MakeJMP(0x006C343B, ReleaseDirectResources);
-}

@@ -1,12 +1,17 @@
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
+//#define EDITOR
+
 #include <fstream>
 #include "Console.h"
 #include "ShaderLoader.h"
 #include "InitConfig.h"
 #include "Hooks.h"
+
+#ifdef EDITOR
 #include "UI.h"
+#endif
 
 bool CheckFiles()
 {
@@ -42,6 +47,20 @@ bool CheckFiles()
 	return true;
 }
 
+void __declspec(naked) Reset()
+{
+	__asm pushad;
+
+	ReleaseDirectResources();
+
+#ifdef EDITOR
+	UI::Reset();
+#endif
+
+	__asm popad;
+	__asm ret;
+}
+
 void Init()
 {
 	if (!CheckFiles())
@@ -60,7 +79,12 @@ void Init()
 
 	InitShaderLoader();
 	InitHooks();
+
+#ifdef EDITOR
 	UI::Init();
+#endif
+
+	injector::MakeJMP(0x006C343B, Reset);
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)

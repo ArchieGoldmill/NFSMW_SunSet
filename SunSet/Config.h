@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.h"
 #include "SolidLights.h"
 #include "CustomMeshContainer.h"
 

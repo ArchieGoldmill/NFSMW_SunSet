@@ -5,23 +5,17 @@
 #include "UIEditor.h"
 #include "imgui/imgui_impl_dx9.h"
 #include "imgui/imgui_impl_win32.h"
-#include "minhook/MinHook.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 namespace UI
 {
-	typedef HRESULT(__stdcall* tEndScene)(LPDIRECT3DDEVICE9);
-	typedef HRESULT(__stdcall* tReset)(LPDIRECT3DDEVICE9, D3DPRESENT_PARAMETERS*);
-
-	tEndScene oEndScene;
-	tReset oReset;
 	WNDPROC oWNDPROC;
 	bool initUI = false;
 	bool wndProcHooked = false;
 	bool DrawUI = true;
 
-	HRESULT __stdcall hookedReset(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETERS* pPresentationParameters)
+	void Reset()
 	{
 		if (initUI)
 		{
@@ -31,8 +25,6 @@ namespace UI
 
 			initUI = false;
 		}
-
-		return oReset(pDevice, pPresentationParameters);
 	}
 
 	void HandleKeyDownInput(int wParam)
@@ -89,9 +81,12 @@ namespace UI
 		}
 	}
 
-	HRESULT __stdcall hookedEndScene(LPDIRECT3DDEVICE9 pDevice)
+	void __cdecl hookedEndScene(int a)
 	{
-		InitUI(pDevice);
+		FUNC(0x006E6E40, void, __cdecl, sub_6E6E40, int);
+		sub_6E6E40(a);
+
+		InitUI(Game::Device);
 
 		ImGui_ImplDX9_NewFrame();
 		ImGui_ImplWin32_NewFrame();
@@ -105,27 +100,6 @@ namespace UI
 		ImGui::EndFrame();
 		ImGui::Render();
 		ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
-
-		return oEndScene(pDevice);
-	}
-
-	void SubInitUI()
-	{
-		LPDIRECT3DDEVICE9 pDevice = NULL;
-		while (pDevice == NULL)
-		{
-			pDevice = Game::Device;
-			Sleep(1000);
-		}
-
-		auto vt = *(void***)pDevice;
-
-		MH_Initialize();
-
-		MH_CreateHook(vt[16], hookedReset, (LPVOID*)&oReset);
-		MH_CreateHook(vt[42], hookedEndScene, (LPVOID*)&oEndScene);
-
-		MH_EnableHook(MH_ALL_HOOKS);
 	}
 
 	void Init()
@@ -140,6 +114,6 @@ namespace UI
 			injector::MakeNOP(0x006E6CAE, 7);
 		}
 
-		std::thread(SubInitUI).detach();
+		injector::MakeCALL(0x006E75A7, hookedEndScene);
 	}
 }

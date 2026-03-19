@@ -344,7 +344,6 @@ void __declspec(naked) NosEffectCave()
 
 void InitHooks()
 {
-	InitDirectResources();
 	InitLightFlares();
 	InitTime();
 	InitMotionBlur();

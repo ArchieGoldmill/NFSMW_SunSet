@@ -5,7 +5,7 @@ bool MaterialsUpdated = false;
 
 bool IsPaintMaterial(eLightMaterial* mat)
 {
-	const char* PaintMaterials[] = { "WINDSHIELD", "WINDOWMASK", "METPAINT", "REGPAINT", "PEARL" };
+	const char* PaintMaterials[] = { "WINDSHIELD", "WINDOWMASK", "METPAINT", "REGPAINT", "PEARL", "DRIVERHEAD"};
 
 	for (auto name : PaintMaterials)
 	{

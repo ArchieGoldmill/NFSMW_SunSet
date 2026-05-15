@@ -148,7 +148,7 @@ float4 PS_LitPixel(PS_INPUT IN, uniform int lightCount) : COLOR
 	// Distor reflection by normal map
 	reflection_uv.xy += normal.xy * 0.1;
 	
-	float3 reflection_sample = tex2Dproj(REFLECTEDTEX_SAMPLER, reflection_uv).rgb;
+	float3 reflection_sample = tex2Dproj(REFLECTEDTEX_SAMPLER, reflection_uv).rgb * 1.3;
 	reflection_sample *= puddle_mask;
 	
 	// Vertical surfaces should not reflect

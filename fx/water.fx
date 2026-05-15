@@ -67,6 +67,7 @@ float4 PS_Water(PS_WATER IN) : COLOR
 	
 	float2 screenUV = IN.screen.xy / IN.screen.w * 0.5 + 0.5;
 	float3 reflectionSample = tex2D(REFLECTEDTEX_SAMPLER, saturate(screenUV + normal.rg * 0.03)).rgb;
+	reflectionSample = DeCompressColourSpace(reflectionSample);
 	
 	float3 lightDir = normalize(LocalLightVec);
 	float3 specular = GetSpecular(normal, lightDir, normalize(IN.view), cvWaterColor.a);

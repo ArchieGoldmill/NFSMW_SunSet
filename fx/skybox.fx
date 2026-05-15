@@ -249,14 +249,6 @@ float2 DirectionToSpherical(float3 dir)
 	return float2(azimuth, altitude);
 }
 
-float2 GetMoonUV(float sunSize, float3 D, float3 Ds)
-{
-	float2 pixelUV = DirectionToSpherical(D);
-	float2 sunUV = DirectionToSpherical(Ds);
-	
-	return (pixelUV - sunUV) * (1.0 / sunSize) + 0.5;
-}
-
 float4 GetMoon(float3 skyDir, float3 moonDir)
 {
 	if (cvMoonColor.a == 0)

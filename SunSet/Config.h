@@ -131,6 +131,7 @@ struct Config
 	bool Exposure;
 	bool NosLight;
 	bool NosEmmiter;
+	bool NosFix;
 
 	float WetTime;
 	float DryTime;

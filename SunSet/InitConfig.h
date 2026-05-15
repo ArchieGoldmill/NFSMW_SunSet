@@ -42,6 +42,7 @@ void LoadConfig()
 	g_Config.Exposure = YmlGet(settings, "Exposure", false);
 	g_Config.NosLight = YmlGet(settings, "NosLight", false);
 	g_Config.NosEmmiter = YmlGet(settings, "NosEmmiter", false);
+	g_Config.NosFix = YmlGet(settings, "NosFix", false);
 
 	const auto& time = settingsRoot["Time"];
 	g_Config.WetTime = YmlGet(time, "WetTime", 2.0f);
@@ -124,6 +125,7 @@ void SaveConfig()
 	config["Exposure"] = g_Config.Exposure;
 	config["NosLight"] = g_Config.NosLight;
 	config["NosEmmiter"] = g_Config.NosEmmiter;
+	config["NosFix"] = g_Config.NosFix;
 
 	YAML::Node time;
 	time["ForceTime"] = g_Config.ForceTime;

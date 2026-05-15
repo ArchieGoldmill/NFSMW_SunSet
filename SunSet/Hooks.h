@@ -16,6 +16,7 @@
 #include "AmbientShadow.h"
 #include "UpdateMaterials.h"
 #include "CustomMeshes.h"
+#include "NosEffect.h"
 
 bool ReloadOnFocus = false;
 void CheckReloadShaders()
@@ -327,23 +328,6 @@ void __cdecl NormalizeSunDirForShadow(D3DXVECTOR3* dest, D3DXVECTOR3* src)
 	*dest = dir;
 }
 
-void __declspec(naked) NosEffectCave()
-{
-	static constexpr auto cExit = 0x0075634B;
-
-	__asm
-	{
-		mov al, [ecx + 0x71];
-		mov ebp, 0x6B7916BD; // fxcar_nos
-		test al, al;
-		je NosEffectCave_Exit;
-		mov ebp, 0x138f6983; // fxcar_nos_2
-
-	NosEffectCave_Exit:
-		jmp cExit;
-	}
-}
-
 void InitHooks()
 {
 	InitLightFlares();
@@ -355,6 +339,7 @@ void InitHooks()
 	InitReflection();
 	InitAmbientShadow();
 	InitHeavyRain();
+	InitNosEffect();
 
 	injector::MakeCALL(0x006DE3F5, SetuWorldCulling);
 
@@ -421,11 +406,6 @@ void InitHooks()
 
 	// Clamp sun dir for shadows
 	injector::MakeCALL(0x006E455A, NormalizeSunDirForShadow);
-
-	if (g_Config.NosEmmiter)
-	{
-		injector::MakeJMP(0x00756346, NosEffectCave);
-	}
 
 	auto RenderModelSize = *(int*)(0x006E0AD4);
 	RenderLights = new RenderLight[RenderModelSize];

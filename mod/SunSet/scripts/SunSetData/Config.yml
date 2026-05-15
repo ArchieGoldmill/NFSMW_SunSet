@@ -26,6 +26,7 @@ Config:
   Exposure: false             # Enable auto exposure.
   NosLight: false             # Enable separate exhaust light for nos.
   NosEmmiter: false           # Enable separate exhaust emmiter for nos. Requires exhaust.nfsms vlt script.
+  NosFix: true		          # Fix stretched nos effect at high car speed.
 
 Time:
   ForceTime: -1.0             # Foce specific time of day from 0.0 to 1.0, negative values disable feature.

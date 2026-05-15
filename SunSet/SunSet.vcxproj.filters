@@ -295,6 +295,12 @@
     <ClInclude Include="LightsBuffer.h">
       <Filter>Features\DynamicLights</Filter>
     </ClInclude>
+    <ClInclude Include="NosEffect.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="EmitterGroup.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

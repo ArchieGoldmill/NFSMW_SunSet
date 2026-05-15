@@ -178,6 +178,7 @@ copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunSet\mod\SunSet\scripts\"
     <ClInclude Include="DynamicLights.h" />
     <ClInclude Include="eEffect.h" />
     <ClInclude Include="eLightMaterial.h" />
+    <ClInclude Include="EmitterGroup.h" />
     <ClInclude Include="eModel.h" />
     <ClInclude Include="eSolid.h" />
     <ClInclude Include="eView.h" />
@@ -210,6 +211,7 @@ copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunSet\mod\SunSet\scripts\"
     <ClInclude Include="MeshEntry.h" />
     <ClInclude Include="MotionBlur.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NosEffect.h" />
     <ClInclude Include="PostEffects.h" />
     <ClInclude Include="PrelitTextures.h" />
     <ClInclude Include="PVehicle.h" />

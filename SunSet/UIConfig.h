@@ -81,6 +81,7 @@ namespace UI
 							ImGui::Checkbox("Exposure", &g_Config.Exposure);
 							ImGui::Checkbox("Nos light", &g_Config.NosLight);
 							ImGui::Checkbox("Nos emmiter", &g_Config.NosEmmiter); GameRestart();
+							ImGui::Checkbox("Nos fix", &g_Config.NosFix); GameRestart();
 						}
 
 						ImGui::TableSetColumnIndex(1);

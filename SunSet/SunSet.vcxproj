@@ -205,6 +205,7 @@ copy "$(TargetDir)*.dll" "D:\Programming\NFSMW\NFSMW_SunSet\mod\SunSet\scripts\"
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="InitConfig.h" />
+    <ClInclude Include="Injector\injector.hpp" />
     <ClInclude Include="LightFlare.h" />
     <ClInclude Include="LightFlares.h" />
     <ClInclude Include="LightsBuffer.h" />

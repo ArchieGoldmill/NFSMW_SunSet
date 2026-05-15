@@ -46,7 +46,6 @@ void __declspec(naked) DrawAmbientShadowMap()
 	}
 }
 
-TimeOfDay* fakeTod = new TimeOfDay();
 void InitAmbientShadow()
 {
 	// Disable helicopter ambient shadow

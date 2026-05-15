@@ -275,6 +275,8 @@ inline std::uint64_t GetModelSort(RenderLight* rl, RenderModel* model, Rendering
 	return rl->Technique + (int)model->Effect->id * 100;
 }
 
+int RenderModelSize = 4096;
+
 void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int count)
 {
 	if (DepthPrePass || RenderTarget::Current->ViewId == ViewId::ShadowMap)
@@ -289,7 +291,7 @@ void __cdecl SortRenderModels(RenderingOrder* first, RenderingOrder* last, int c
 	}
 	else if (RenderTarget::Current->ViewId == ViewId::Player1)
 	{
-		for (int i = 0; i < 4096; i++)
+		for (int i = 0; i < RenderModelSize; i++)
 		{
 			RenderLights[i].num = -1;
 		}
@@ -425,7 +427,10 @@ void InitHooks()
 		injector::MakeJMP(0x00756346, NosEffectCave);
 	}
 
-	RenderLights = new RenderLight[4096];
+	auto RenderModelSize = *(int*)(0x006E0AD4);
+	RenderLights = new RenderLight[RenderModelSize];
+
+	RenderModel::List = *(RenderModel**)(0x006E0AEC);
 
 #ifdef _DEBUG
 	injector::MakeNOP(0x006C2206, 10);

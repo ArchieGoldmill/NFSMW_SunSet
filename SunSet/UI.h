@@ -81,11 +81,8 @@ namespace UI
 		}
 	}
 
-	void __cdecl hookedEndScene(int a)
+	IDirect3DDevice9* hookedEndScene()
 	{
-		FUNC(0x006E6E40, void, __cdecl, sub_6E6E40, int);
-		sub_6E6E40(a);
-
 		InitUI(Game::Device);
 
 		ImGui_ImplDX9_NewFrame();
@@ -100,6 +97,21 @@ namespace UI
 		ImGui::EndFrame();
 		ImGui::Render();
 		ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+
+		return Game::Device;
+	}
+
+	void __declspec(naked) hookedEndSceneCave()
+	{
+		static constexpr auto cExit = 0x006E75B1;
+
+		__asm
+		{
+			SAVE_REGS_EAX;
+			call hookedEndScene;
+			RESTORE_REGS_EAX;
+			jmp cExit;
+		}
 	}
 
 	void Init()
@@ -114,6 +126,6 @@ namespace UI
 			injector::MakeNOP(0x006E6CAE, 7);
 		}
 
-		injector::MakeCALL(0x006E75A7, hookedEndScene);
+		injector::MakeJMP(0x006E75AC, hookedEndSceneCave);
 	}
 }

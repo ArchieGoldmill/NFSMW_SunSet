@@ -11,9 +11,6 @@
     <Filter Include="ThirdParty\imgui">
       <UniqueIdentifier>{9d5ae4ee-a769-4be4-981a-b5084e6a0072}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\MinHook">
-      <UniqueIdentifier>{ca773903-225c-46a1-a8c0-f21775cd3d9e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mod">
       <UniqueIdentifier>{b1542633-61eb-4f18-95d6-bb5c476bc9f0}</UniqueIdentifier>
     </Filter>
@@ -300,6 +297,9 @@
     </ClInclude>
     <ClInclude Include="EmitterGroup.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Injector\injector.hpp">
+      <Filter>ThirdParty</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

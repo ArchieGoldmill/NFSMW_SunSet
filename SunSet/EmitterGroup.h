@@ -52,6 +52,12 @@ struct EmitterGroup : bTNode<EmitterGroup>
 	short mNumEmitters;
 	short mSectionNumber;
 	D3DXMATRIX mLocalWorld;
+
+	void SetLocalWorld(D3DXMATRIX* matrix)
+	{
+		FUNC(0x00503BC0, void, __thiscall, _SetLocalWorld, EmitterGroup*, D3DXMATRIX*);
+		_SetLocalWorld(this, matrix);
+	}
 };
 
 struct CarEffect : bTNode<CarEffect>

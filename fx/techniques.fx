@@ -95,6 +95,12 @@ void VS_Invisible(VS_INPUT IN, out PS_INPUT OUT)
 	OUT.position = float4(0.0, 0.0, -1.0, 1.0);
 }
 
+float4 PS_Invisible(PS_INPUT IN) : COLOR
+{
+	clip(-1);
+	return float4(0, 1, 0, 1);
+}
+
 technique Invisible
 {
 	pass p0
@@ -102,6 +108,6 @@ technique Invisible
 		COMMON_PASS_BODY
 
 		VertexShader = compile vs_3_0 VS_Main();
-		PixelShader = null;
+		PixelShader = compile ps_3_0 PS_Invisible();
 	}
 }

@@ -10,8 +10,8 @@ HRESULT WINAPI D3DXCreateEffectFromResourceHook(const char* efxPath, LPDIRECT3DD
 
 	char FilenameBuf[256];
 #ifdef _DEBUG
-	strcpy(FilenameBuf, "D:\\Programming\\NFSMW\\NFSMW_SunRise\\");
-	strcpy(FilenameBuf + 35, efxPath);
+	strcpy(FilenameBuf, "D:\\Programming\\NFSMW\\NFSMW_SunSet\\");
+	strcpy(FilenameBuf + 34, efxPath);
 #else
 	strcpy(FilenameBuf, efxPath);
 #endif

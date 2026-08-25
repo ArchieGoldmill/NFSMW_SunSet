@@ -181,8 +181,6 @@ void SaveConfig()
 	fout.close();
 }
 
-
-
 void InitConfig()
 {
 	try

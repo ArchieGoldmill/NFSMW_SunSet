@@ -38,6 +38,7 @@ void __declspec(naked) CarReflectionHook()
 
 void DrawFeReflections()
 {
+	Game::StuffSky(eView::Player, 1.0, 0);
 	StuffFeScenery();
 	Game::CommitRenderedModels();
 }

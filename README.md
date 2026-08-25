@@ -15,3 +15,5 @@ Features:
 - Car rain effects.
 - Dynamic ligting.
 - Improved motion blur.
+
+Disclaimer: This repository is provided for educational purposes. You may use the code for private, personal, or internal builds, but you may not redistribute, republish, or re-release the code or derivative builds publicly.

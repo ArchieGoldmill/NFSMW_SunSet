@@ -361,7 +361,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-SunRise/vcpkg_installed/*
+SunSet/vcpkg_installed/*
 
 *.zip
 
